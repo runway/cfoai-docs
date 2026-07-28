@@ -23,6 +23,10 @@ function baseFixture() {
   return {
     "docs.json": JSON.stringify({
       navigation: { pages: ["index"] },
+      favicon: {
+        light: "/favicon.png",
+        dark: "/favicon-dark.png"
+      },
       logo: {
         light: "/logo/cfo-ai-logo.svg",
         dark: "/logo/cfo-ai-logo-dark.svg"
@@ -38,6 +42,8 @@ function baseFixture() {
       "",
       "![Example](/images/example.png)"
     ].join("\n"),
+    "favicon.png": "",
+    "favicon-dark.png": "",
     "images/example.png": "",
     "logo/cfo-ai-logo.svg": VALID_LOGO,
     "logo/cfo-ai-logo-dark.svg": VALID_LOGO.replaceAll(
@@ -55,6 +61,70 @@ test("accepts a valid repository when supplied the fixture logo checksum", async
     });
     assert.deepEqual(result.findings, []);
     assert.equal(result.ok, true);
+  } finally {
+    await rm(root, { force: true, recursive: true });
+  }
+});
+
+test("reports a missing configured favicon", async () => {
+  const fixture = baseFixture();
+  fixture["docs.json"] = JSON.stringify({
+    navigation: { pages: ["index"] },
+    favicon: {
+      light: "/missing-favicon.png",
+      dark: "/favicon-dark.png"
+    },
+    logo: {
+      light: "/logo/cfo-ai-logo.svg",
+      dark: "/logo/cfo-ai-logo-dark.svg"
+    }
+  });
+  const root = await writeFixture(fixture);
+  try {
+    const result = await checkRepository(root, {
+      expectedLogoSha256: null
+    });
+    assert.ok(
+      result.findings.some(
+        (item) =>
+          item.code === "missing-asset" &&
+          item.message === "Missing configured asset /missing-favicon.png."
+      ),
+      `Expected missing configured favicon, received ${JSON.stringify(result.findings)}`
+    );
+  } finally {
+    await rm(root, { force: true, recursive: true });
+  }
+});
+
+test("uses changed configured logo paths for dark-logo validation", async () => {
+  const fixture = baseFixture();
+  fixture["docs.json"] = JSON.stringify({
+    navigation: { pages: ["index"] },
+    favicon: {
+      light: "/favicon.png",
+      dark: "/favicon-dark.png"
+    },
+    logo: {
+      light: "/logo/rebranded.svg",
+      dark: "/logo/rebranded-dark.svg"
+    }
+  });
+  fixture["logo/rebranded.svg"] = VALID_LOGO;
+  fixture["logo/rebranded-dark.svg"] = '<svg><path fill="red"/></svg>';
+  const root = await writeFixture(fixture);
+  try {
+    const result = await checkRepository(root, {
+      expectedLogoSha256: null
+    });
+    assert.ok(
+      result.findings.some(
+        (item) =>
+          item.code === "dark-logo-drift" &&
+          item.file === "logo/rebranded-dark.svg"
+      ),
+      `Expected dark logo drift at the configured path, received ${JSON.stringify(result.findings)}`
+    );
   } finally {
     await rm(root, { force: true, recursive: true });
   }

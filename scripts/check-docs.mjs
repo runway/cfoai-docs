@@ -38,6 +38,23 @@ function collectPages(value, pages = []) {
   return pages;
 }
 
+function collectRootRelativeAssets(value, assets = []) {
+  if (typeof value === "string") {
+    if (value.startsWith("/")) assets.push(value);
+  } else if (Array.isArray(value)) {
+    for (const item of value) collectRootRelativeAssets(item, assets);
+  } else if (value && typeof value === "object") {
+    for (const item of Object.values(value)) {
+      collectRootRelativeAssets(item, assets);
+    }
+  }
+  return assets;
+}
+
+function isRootRelativeAsset(value) {
+  return typeof value === "string" && value.startsWith("/");
+}
+
 function sha256(contents) {
   return createHash("sha256").update(contents).digest("hex");
 }
@@ -125,27 +142,48 @@ export async function checkRepository(
     LEGACY_TERM.lastIndex = 0;
   }
 
-  const lightPath = join(root, "logo/cfo-ai-logo.svg");
-  const darkPath = join(root, "logo/cfo-ai-logo-dark.svg");
-  if (!existsSync(lightPath)) {
-    findings.push(
-      finding(
-        "missing-asset",
-        relative(root, lightPath),
-        "Missing configured light logo."
-      )
-    );
+  const configuredAssets = new Set([
+    ...collectRootRelativeAssets(config.favicon),
+    ...collectRootRelativeAssets(config.logo)
+  ]);
+  for (const asset of configuredAssets) {
+    const assetPath = join(root, asset.slice(1));
+    if (existsSync(assetPath)) continue;
+
+    if (asset === config.logo?.light) {
+      findings.push(
+        finding(
+          "missing-asset",
+          relative(root, assetPath),
+          "Missing configured light logo."
+        )
+      );
+    } else if (asset === config.logo?.dark) {
+      findings.push(
+        finding(
+          "missing-asset",
+          relative(root, assetPath),
+          "Missing configured dark logo."
+        )
+      );
+    } else {
+      findings.push(
+        finding(
+          "missing-asset",
+          "docs.json",
+          `Missing configured asset ${asset}.`
+        )
+      );
+    }
   }
-  if (!existsSync(darkPath)) {
-    findings.push(
-      finding(
-        "missing-asset",
-        relative(root, darkPath),
-        "Missing configured dark logo."
-      )
-    );
-  }
-  if (existsSync(lightPath) && existsSync(darkPath)) {
+
+  const lightPath = isRootRelativeAsset(config.logo?.light)
+    ? join(root, config.logo.light.slice(1))
+    : null;
+  const darkPath = isRootRelativeAsset(config.logo?.dark)
+    ? join(root, config.logo.dark.slice(1))
+    : null;
+  if (lightPath && darkPath && existsSync(lightPath) && existsSync(darkPath)) {
     const lightLogo = await readFile(lightPath, "utf8");
     const darkLogo = await readFile(darkPath, "utf8");
 

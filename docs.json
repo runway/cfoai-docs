@@ -1,0 +1,38 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "maple",
+  "name": "cfo.ai Docs",
+  "colors": {
+    "primary": "#3A362F",
+    "light": "#FBFAF6",
+    "dark": "#171716"
+  },
+  "favicon": {
+    "light": "/favicon.png",
+    "dark": "/favicon-dark.png"
+  },
+  "logo": {
+    "light": "/logo/cfo-ai-logo.svg",
+    "dark": "/logo/cfo-ai-logo-dark.svg"
+  },
+  "navigation": {
+    "pages": [
+      "index",
+      "glossary",
+      "use-cases"
+    ]
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Support",
+        "href": "mailto:success@cfo.ai"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Open cfo.ai",
+      "href": "https://app.cfo.ai"
+    }
+  }
+}

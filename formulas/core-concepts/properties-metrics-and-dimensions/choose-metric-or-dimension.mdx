@@ -1,0 +1,63 @@
+---
+title: "Choose between a metric and a dimension"
+---
+
+Choose a property's role based on how people will use it in the model.
+
+## Use a metric when
+
+The property:
+
+- Represents a financial value, KPI, assumption, or driver
+- Is added, averaged, counted, compared, or calculated
+- Belongs in the values or line-item area of a financial table
+- Is a result you want a formula to produce
+
+Examples:
+
+- Revenue
+- Cash Balance
+- Headcount
+- Units Sold
+- Average Salary
+- Gross Margin
+
+## Use a dimension when
+
+The property:
+
+- Names a category
+- Groups or filters other values
+- Identifies where a value belongs
+- Has items people use to break down a report
+
+Examples:
+
+- Department
+- Legal Entity
+- Region
+- Product
+- Customer
+- Vendor
+- Account
+- Date
+
+## Ask two questions
+
+1. Is this the value I want to measure?
+2. Or is this how I want to organize that value?
+
+If it is the value, use a metric. If it organizes the value, use a dimension.
+
+## Do not choose by data type alone
+
+- Employee ID may contain numbers, but it identifies employees and is usually a dimension.
+- Gross Margin is a percentage, but it is a calculated value and is a metric.
+- Date is stored as a date, but it organizes values across time and is a dimension.
+- Headcount is a count, not a list of employees, so it is a metric.
+
+## A common ambiguous case: Account
+
+A source Account or Account Code usually classifies transactions and is a dimension. A modeled line item such as Revenue or Rent Expense is usually a metric.
+
+If several account values roll into one modeled result, Account is the organizing dimension and the modeled result is the metric.

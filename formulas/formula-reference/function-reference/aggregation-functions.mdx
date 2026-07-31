@@ -1,0 +1,77 @@
+---
+title: "Aggregation functions"
+---
+
+Aggregation functions combine several selected values into one result.
+
+## sum
+
+Returns the numeric total.
+
+```text
+sum(Revenue[Department: ANY])
+```
+
+## average
+
+Returns the arithmetic mean, or null when no values exist.
+
+```text
+average(Revenue[Department: ANY])
+```
+
+Use `average` in new formulas. The older name `avg` remains accepted.
+
+## min and max
+
+Return the smallest or largest value, or null when no values exist.
+
+```text
+min(Revenue[Department: ANY])
+max(Revenue[Department: ANY])
+```
+
+## count
+
+Counts non-empty values of any type. It behaves like Excel `COUNTA`, not Excel `COUNT`.
+
+```text
+count(Orders[Department: ANY])
+```
+
+## first and last
+
+Return the first or last value in the selected series order, or null when the series is empty.
+
+```text
+first(Revenue[Date.Month: ANY])
+last(Revenue[Date.Month: ANY])
+```
+
+## median
+
+Returns the middle numeric value, or the midpoint of the two middle values, or null when no values exist.
+
+```text
+median(Revenue[Department: ANY])
+```
+
+## stdev
+
+Returns sample standard deviation. It returns null with fewer than two values.
+
+```text
+stdev(Revenue[Date.Month: ANY])
+```
+
+Use `stdev` in new formulas. The older name `stddev` remains accepted.
+
+## var
+
+Returns sample variance. It returns null with fewer than two values.
+
+```text
+var(Revenue[Date.Month: ANY])
+```
+
+Use `var` in new formulas. The older name `variance` remains accepted.

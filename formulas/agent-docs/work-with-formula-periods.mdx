@@ -1,0 +1,49 @@
+---
+title: "Work with Formula periods as an agent"
+---
+
+Formula periods such as Actuals and Forecast are stored as formula breaks.
+
+## Read periods first
+
+Call `list_formula_breaks` for the selected scenario before writing a Formula-period formula. Use the returned ID rather than guessing it.
+
+The system Actuals and Forecast periods already exist. Do not create a new period for a normal Actuals or Forecast request.
+
+## Date scope is required
+
+A `formula_break_id` is valid only when the formula condition includes a Date term.
+
+Accepted examples:
+
+```text
+Date.Month: ANY
+```
+
+```text
+Department: "Sales", Date.Month: ANY
+```
+
+```text
+anySegment, Date.Month: ANY
+```
+
+Rejected examples:
+
+```text
+anySegment
+```
+
+```text
+Department: "Sales"
+```
+
+A period has nothing to apply to when Date is absent. Resolve scope from a time-based table block or add the correct Date term before writing.
+
+## Granularity
+
+Use the table's Date granularity when available. Otherwise use the model default of Month. Keep the condition and expression references at the same grain.
+
+## Combining scope
+
+A Formula period can be combined with segmentation and segment conditions. The formula applies only where both the period and segment scope match.

@@ -1,0 +1,75 @@
+---
+title: "Reference properties"
+---
+
+A formula can use other properties as inputs. Write property names the same way they appear in CFO.ai.
+
+## Plain references
+
+A plain name reads the property in the current segment:
+
+```text
+Revenue
+```
+
+If the formula is calculating Sales, `Revenue` means Sales Revenue. If it is calculating West, it means West Revenue.
+
+## Names with spaces or punctuation
+
+Wrap a name in backticks when it contains spaces, punctuation, an operator, or a reserved word:
+
+```text
+`Cost of Goods Sold`
+```
+
+Example:
+
+```text
+Revenue - `Cost of Goods Sold`
+```
+
+## A specific segment
+
+Use brackets to replace one part of the current segment:
+
+```text
+Revenue[Region: "West"]
+```
+
+Other dimensions still follow the current segment.
+
+## An absolute reference
+
+Prefix the property with `$` when the lookup should not inherit the current segment:
+
+```text
+$Revenue
+```
+
+You can combine an absolute reference with explicit filters:
+
+```text
+$Revenue[Region: "West"]
+```
+
+Use absolute references carefully. Most formulas should follow the segment they are calculating.
+
+## Duplicate names
+
+If two properties have the same name, CFO.ai adds a short disambiguator:
+
+```text
+Revenue#a3f
+```
+
+Use the shortest disambiguator offered by the editor or Ari.
+
+## Date granularity
+
+Add a granularity to Date when the formula works with time buckets:
+
+```text
+Date.Month
+```
+
+Supported granularities are Day, Week, Month, Quarter, Half, and Year.

@@ -1,0 +1,71 @@
+---
+title: "Properties, metrics, and dimensions"
+---
+
+Everything in cfo.ai starts with a **property**. A property is a named piece of information your model knows about, such as Revenue, Department, Headcount, or Date.
+
+**Metric** and **dimension** describe the primary role a property plays. They are not separate modeling systems.
+
+<Note>
+  **Why properties come first**
+
+  A text property can play different roles depending on the question you are answering. Used as a **dimension**, it enumerates categories and creates the breakdown in a model. Used as a **metric**, it can return the mapped category for each underlying item.
+
+  - **Department:** As a dimension, it breaks payroll and operating expenses out by department. As a metric, it maps each employee to their department.
+  - **Customer segment:** As a dimension, it breaks revenue out by segment. As a metric, it maps each customer to a segment such as Enterprise or SMB.
+  - **Account category:** As a dimension, it structures the P&L into groups such as Revenue, COGS, and OpEx. As a metric, it maps each GL account to its reporting category.
+
+  Properties let you define a business concept once and reuse it in different modeling contexts. You do not need to maintain separate, disconnected dimension and metric versions of the same data. Each property still has a primary role, which helps cfo.ai choose sensible grouping and calculation behavior by default.
+</Note>
+
+## One concept, two roles
+
+A metric answers questions such as:
+
+- How much revenue did we earn?
+- How many employees do we have?
+- What is our gross margin?
+
+A dimension answers questions such as:
+
+- Revenue by which department?
+- Headcount in which region?
+- Gross margin for which product?
+
+A useful shorthand is:
+
+- **Metrics** answer "how much?" or "how many?"
+- **Dimensions** answer "by what?", "where?", or "for whom?"
+
+For example, **Revenue by Department** combines two properties. Revenue is used as a metric. Department is used as a dimension.
+
+## Properties in a financial model
+
+A property can represent:
+
+- A financial line item, such as Revenue or Cost of Goods Sold
+- A KPI or operating driver, such as Headcount or Units Sold
+- An assumption, such as Price or Commission Rate
+- A category, such as Department, Entity, Product, or Region
+- A calculated output, such as Gross Profit or Gross Margin
+- A date used to place values in time
+
+Each property has a primary role in cfo.ai. That role controls how the property is grouped, calculated, aggregated, and displayed.
+
+## Data type does not decide the role
+
+Numbers are not always metrics. Employee ID and Account Code may contain numbers, but they identify categories and are usually dimensions.
+
+Text is not always a dimension. A calculated property can return a label, although most calculated financial outputs are metrics.
+
+Choose the role based on how the property is used in the model.
+
+## How formulas fit
+
+A formula calculates a property. Most formula targets are metrics because metrics represent financial values, KPIs, assumptions, and outputs.
+
+Supported source-backed dimensions can also use formulas to determine their values. Dimension formulas have narrower behavior than metric formulas.
+
+## Explore this concept
+
+Use the pages below to connect properties with familiar FP&A models, dimensional modeling, and practical decisions in cfo.ai.

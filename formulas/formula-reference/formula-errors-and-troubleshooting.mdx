@@ -1,0 +1,44 @@
+---
+title: "Formula errors and troubleshooting"
+---
+
+Start with the problem you can see, then check the formula's expression and scope.
+
+## The formula will not save
+
+Check for:
+
+- A missing parenthesis or quote
+- A property name that needs backticks
+- A property that does not exist in the scenario
+- An unsupported number of function arguments
+- A Formula period on a formula without Date scope
+
+## A property cannot be found
+
+Use the name shown in CFO.ai. If the name contains spaces or punctuation, wrap it in backticks. If several properties share the name, use the short disambiguator offered by the editor or Ari.
+
+## The result is unexpectedly high
+
+The formula may be selecting several values and summing them. Review lookups that use `ANY`, sets, or `where`. Add an explicit aggregation when the intended behavior is average, minimum, maximum, count, first, last, median, standard deviation, or variance.
+
+## The formula works in one segment but not another
+
+Check whether:
+
+- A segment-specific formula overrides the default
+- The referenced property exists in both segments
+- An absolute reference should be a current-segment reference, or the reverse
+- The table uses a different segmentation
+
+## The formula works in Actuals but not Forecast
+
+Check the Formula period, Date scope, Date granularity, scenario, and Last close. A formula assigned to Actuals or Forecast must include Date in its scope.
+
+## A date lookup returns no value
+
+Confirm that the Date grain and value format match. A monthly lookup should use `Date.Month` and a value such as `"2026-01"`.
+
+## Ari changed only some formulas
+
+Formula writes can apply valid items while rejecting invalid items. Review the result cards and rejected count, correct the invalid formulas, and ask Ari to write them again.

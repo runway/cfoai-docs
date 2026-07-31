@@ -1,0 +1,45 @@
+---
+title: "Validate and verify formulas as an agent"
+---
+
+Validation checks formula syntax and semantic references before a write. Verification checks whether the resulting values match the business rule.
+
+## Validate
+
+Call `validate_formula` with one or more expression-and-condition pairs.
+
+Validation checks:
+
+- Expression syntax
+- Condition syntax
+- Property references
+- Function names and arguments
+- Semantic compatibility
+
+Correct every reported error and validate again before calling `write_formulas`.
+
+## Read after writing
+
+Inspect the `write_formulas` ledger:
+
+- Attempted count
+- Applied count
+- Rejected count
+- Per-item expression or condition errors
+
+If the batch partially applied, correct and retry only the rejected formulas.
+
+## Verify calculated behavior
+
+Use `get_table_block_data` on a relevant saved table after a material change. Check representative dates and segments.
+
+Examples:
+
+- Compare Gross Profit with Revenue minus Cost of Goods Sold
+- Check a Department formula for two different departments
+- Check both sides of Last close for a Formula-period change
+- Compare the intended scenario with the scenario that was written
+
+## Report clearly
+
+State what was written and whether verification matched the request. Disclose any guessed table, scenario, condition, or Formula period so the user can correct it.

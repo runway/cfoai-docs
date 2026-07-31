@@ -1,0 +1,45 @@
+---
+title: "Segments and segmentations"
+---
+
+Dimensions divide a model into useful groups. Two related terms describe that structure.
+
+## Segmentation
+
+A **segmentation** is the dimension, or combination of dimensions, used to break down a value.
+
+Examples:
+
+- Revenue by Department
+- Revenue by Region
+- Revenue by Department and Region
+
+In the first example, Department is the segmentation.
+
+## Segment
+
+A **segment** is one specific position inside a segmentation.
+
+Examples:
+
+- Department = Sales
+- Region = West
+- Department = Sales and Region = West
+
+## Why the distinction matters
+
+A segmentation formula applies to a way of breaking down the model. A segment formula applies only to one or more specific dimension values.
+
+For example:
+
+- A Department segmentation formula can calculate Revenue for every department.
+- A Sales segment formula can override that calculation only for Sales.
+- The broader formula continues to apply to Engineering, Marketing, and other departments.
+
+## Date is also a dimension
+
+When a formula is calculated by month, quarter, or year, Date is part of its segmentation. This matters when a formula uses a Formula period such as Actuals or Forecast.
+
+## Keep scope as broad as possible
+
+Start with a default formula. Add segmentation or segment formulas only when the calculation genuinely needs to differ. This makes the model easier to understand and maintain.

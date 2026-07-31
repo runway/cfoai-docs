@@ -1,0 +1,64 @@
+---
+title: "Date and time functions"
+---
+
+These functions build dates, shift them, compare them, or return information about a period.
+
+## offset
+
+Shifts a date by a signed amount.
+
+```text
+offset(Date.Month, -1, "month")
+```
+
+Supported units are day, week, month, quarter, half, and year. `offset` shifts a date, not a cell range.
+
+## datedif
+
+Returns the difference between a start date and end date using an Excel-style unit code.
+
+```text
+datedif(`Start Date`, Date.Month, "M")
+```
+
+Supported codes include `Y`, `M`, `D`, `MD`, `YM`, and `YD`. The start date must not be after the end date.
+
+## daysin
+
+Returns the number of days in the aligned period containing a date.
+
+```text
+daysin(Date.Month, "month")
+```
+
+Supported units are day, week, month, quarter, half, and year.
+
+## date
+
+Builds a date from year, month, and day numbers.
+
+```text
+date(2026, 12, 31)
+date(year(Date.Month), 12, 31)
+```
+
+Month and day values can roll into adjacent periods, following Excel `DATE` behavior for normal supported dates.
+
+## edate
+
+Shifts a date by whole months and clamps the day to the target month when needed.
+
+```text
+edate(Date.Month, 3)
+```
+
+## eomonth
+
+Returns the last day of a month a signed number of months from a date.
+
+```text
+eomonth(Date.Month, 0)
+```
+
+Use `0` for the current month, `1` for the next month, and `-1` for the previous month.

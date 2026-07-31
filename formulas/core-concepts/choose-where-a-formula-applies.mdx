@@ -1,0 +1,41 @@
+---
+title: "Choose where a formula applies"
+---
+
+A formula's scope determines where it is used. Choose the broadest scope that matches the business rule.
+
+## Default formula
+
+A default formula is the fallback calculation for a property. Use it when the same business rule should apply across the model.
+
+Example: Gross Profit is Revenue minus Cost of Goods Sold everywhere.
+
+## Segmentation formula
+
+A segmentation formula applies when the property is calculated using a particular dimension.
+
+Example: calculate an allocation differently whenever Expense is broken down by Department.
+
+A segmentation formula is about the grouping itself. It is not limited to one Department value.
+
+## Segment formula
+
+A segment formula applies to a specific dimension value or combination of values.
+
+Examples:
+
+- Department = Sales
+- Region = West
+- Department = Sales and Region = West
+
+Use segment formulas for true exceptions. If every department needs the same expression, use a segmentation formula instead of creating one formula per department.
+
+## Formula period
+
+A formula can also be limited to a Formula period such as Actuals or Forecast. Formula periods use the Date dimension, so the formula must be scoped by Date.
+
+## Combining scopes
+
+Scopes can be combined. For example, a formula can apply only to Sales during Forecast.
+
+The more specific formula is used where its full scope matches. Broader formulas remain available as fallbacks elsewhere.

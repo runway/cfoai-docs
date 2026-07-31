@@ -1,0 +1,33 @@
+---
+title: "Formula authoring overview for agents"
+---
+
+Use this contract when an agent reads, evaluates, validates, creates, or updates formulas in CFO.ai.
+
+## Choose the job first
+
+There are three distinct jobs:
+
+1. **Read:** use `list_formulas` to inspect saved formulas.
+2. **Evaluate:** use `evaluate_formulas` for request-local calculations that must not change the model.
+3. **Write:** use `write_formulas` to create or update saved property formulas.
+
+Do not persist a formula when the user is exploring, testing a hypothesis, or asking for an answer. Do not describe a temporary evaluation as a saved model change.
+
+## Resolve references
+
+Use search to resolve every property name the user mentions, including the target and referenced properties. Capture the property ID, property type, and data type.
+
+Write expressions with readable property names rather than property URIs. Use backticks and short disambiguators when needed.
+
+## Respect scenario context
+
+Formulas are scenario-scoped. Use the scenario from the runtime or explicit user request. If several scenarios are plausible, make an informed choice and tell the user which one was used.
+
+## Separate condition and expression
+
+The condition determines where the formula applies. The expression determines what it calculates. Validate both before writing.
+
+## Verify outcomes
+
+A syntactically valid formula can still express the wrong business rule. After a material write, read calculated values from a relevant table and compare them with the user's stated intent.

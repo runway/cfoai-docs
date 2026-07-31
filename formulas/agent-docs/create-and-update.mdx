@@ -1,0 +1,46 @@
+---
+title: "Create and update formulas as an agent"
+---
+
+Use `write_formulas` only when the user wants a persistent model change.
+
+## Workflow
+
+1. Resolve the target and referenced properties.
+2. Identify the scenario.
+3. Determine formula scope from explicit context or a table block.
+4. Read formulas at the exact condition to determine create versus update.
+5. Validate the expression and condition.
+6. Write the formula.
+7. Review applied and rejected results.
+8. Verify calculated values when the change is material.
+
+## Create versus update
+
+Call `list_formulas` with the final condition.
+
+- If a matching formula exists, pass its `formula_id` to update it.
+- If none exists, omit `formula_id` to create a new formula.
+
+## Batch behavior
+
+`write_formulas` accepts several formula items.
+
+- `partial` is the default. Valid items are applied and invalid items are rejected.
+- `atomic` rejects the entire batch when any item is invalid.
+
+Inspect the attempted, applied, and rejected counts. Never imply that all items were written when the result reports a partial apply.
+
+## Required fields
+
+Each item requires:
+
+- `property_id`
+- `condition`
+- `expression`
+
+Use `formula_break_id` only for a Date-scoped Formula-period formula.
+
+## Response behavior
+
+Written formulas render as cards. Do not restate each formula in prose. Send a one-sentence headline, disclose assumptions, and ask a focused follow-up only when needed.

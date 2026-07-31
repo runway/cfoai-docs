@@ -19,7 +19,99 @@
     "pages": [
       "index",
       "glossary",
-      "use-cases"
+      "use-cases",
+      {
+        "group": "Formulas",
+        "pages": [
+          "formulas",
+          {
+            "group": "Get started",
+            "pages": [
+              "formulas/get-started",
+              "formulas/get-started/understand-the-formula-model",
+              "formulas/get-started/write-your-first-formula"
+            ]
+          },
+          {
+            "group": "Core concepts",
+            "pages": [
+              "formulas/core-concepts",
+              "formulas/core-concepts/segments-and-segmentations",
+              "formulas/core-concepts/choose-where-a-formula-applies",
+              {
+                "group": "Properties, metrics, and dimensions",
+                "pages": [
+                  "formulas/core-concepts/properties-metrics-and-dimensions",
+                  "formulas/core-concepts/properties-metrics-and-dimensions/what-is-a-property",
+                  "formulas/core-concepts/properties-metrics-and-dimensions/fpa-model-to-properties",
+                  "formulas/core-concepts/properties-metrics-and-dimensions/dimensional-modeling-to-properties",
+                  "formulas/core-concepts/properties-metrics-and-dimensions/choose-metric-or-dimension",
+                  "formulas/core-concepts/properties-metrics-and-dimensions/worked-example-revenue-by-department"
+                ]
+              },
+              "formulas/core-concepts/how-cfoai-chooses-a-formula",
+              "formulas/core-concepts/formula-periods-actuals-and-forecast",
+              "formulas/core-concepts/how-aggregation-works"
+            ]
+          },
+          {
+            "group": "Formula guides",
+            "pages": [
+              "formulas/formula-guides",
+              "formulas/formula-guides/reference-properties",
+              "formulas/formula-guides/filter-by-dimension-values",
+              "formulas/formula-guides/work-with-dates",
+              "formulas/formula-guides/use-conditional-logic",
+              "formulas/formula-guides/common-formula-patterns"
+            ]
+          },
+          {
+            "group": "Work with formulas using Ari",
+            "pages": [
+              "formulas/work-with-ari",
+              "formulas/work-with-ari/use-ari-for-formula-work",
+              "formulas/work-with-ari/ask-ari-to-explain-existing-formulas",
+              "formulas/work-with-ari/explore-calculations-without-saving",
+              "formulas/work-with-ari/ask-ari-to-create-or-update-formulas",
+              "formulas/work-with-ari/review-and-troubleshoot-aris-formula-changes"
+            ]
+          },
+          {
+            "group": "Formula reference",
+            "pages": [
+              "formulas/formula-reference",
+              "formulas/formula-reference/formula-syntax-and-operators",
+              "formulas/formula-reference/formula-errors-and-troubleshooting",
+              {
+                "group": "Function reference",
+                "pages": [
+                  "formulas/formula-reference/function-reference",
+                  "formulas/formula-reference/function-reference/aggregation-functions",
+                  "formulas/formula-reference/function-reference/math-functions",
+                  "formulas/formula-reference/function-reference/conditional-functions",
+                  "formulas/formula-reference/function-reference/date-part-functions",
+                  "formulas/formula-reference/function-reference/date-truncation-functions",
+                  "formulas/formula-reference/function-reference/date-and-time-functions"
+                ]
+              },
+              "formulas/formula-reference/formula-glossary"
+            ]
+          },
+          {
+            "group": "Formula documentation for agents",
+            "pages": [
+              "formulas/agent-docs",
+              "formulas/agent-docs/authoring-overview",
+              "formulas/agent-docs/read-and-explain",
+              "formulas/agent-docs/evaluate-without-saving",
+              "formulas/agent-docs/create-and-update",
+              "formulas/agent-docs/resolve-scope",
+              "formulas/agent-docs/work-with-formula-periods",
+              "formulas/agent-docs/validate-and-verify"
+            ]
+          }
+        ]
+      }
     ]
   },
   "navbar": {

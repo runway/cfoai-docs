@@ -1,0 +1,77 @@
+---
+title: "Date-part functions"
+---
+
+Date-part functions return a numeric part of a date.
+
+## year
+
+Returns the four-digit year.
+
+```text
+year(Date.Month)
+```
+
+## month
+
+Returns the month as a number from 1 to 12.
+
+```text
+month(Date.Month)
+```
+
+## day
+
+Returns the day of the month from 1 to 31.
+
+```text
+day(Date.Day)
+```
+
+## quarter
+
+Returns the calendar quarter from 1 to 4.
+
+```text
+quarter(Date.Month)
+```
+
+## half
+
+Returns 1 for January through June and 2 for July through December.
+
+```text
+half(Date.Month)
+```
+
+## weekday
+
+Returns the day of the week as a number.
+
+```text
+weekday(Date.Day)
+weekday(Date.Day, 2)
+```
+
+Without a return type, Sunday is 1 and Saturday is 7. Optional Excel-compatible return types control the starting day and numbering.
+
+## weeknum
+
+Returns the week number within the year.
+
+```text
+weeknum(Date.Week)
+weeknum(Date.Week, 21)
+```
+
+The optional return type follows Excel. Return type 21 uses ISO weeks.
+
+## isoweeknum
+
+Returns the ISO 8601 week number.
+
+```text
+isoweeknum(Date.Week)
+```
+
+This is equivalent to `weeknum(Date.Week, 21)`.

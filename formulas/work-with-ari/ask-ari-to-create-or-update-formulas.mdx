@@ -1,0 +1,53 @@
+---
+title: "Ask Ari to create or update formulas"
+---
+
+Ari can turn a business rule into a saved property formula.
+
+## Start with a clear request
+
+A complete request names the target property and calculation:
+
+> Set Gross Profit to Revenue minus Cost of Goods Sold.
+
+Add context only when it changes where the formula should apply.
+
+## Choose the scope
+
+Default formula:
+
+> Use this calculation for Gross Profit everywhere.
+
+Segmentation formula:
+
+> When Payroll is broken down by Department, calculate it as Headcount times Average Salary.
+
+Segment formula:
+
+> For the Sales department, calculate Commission as Revenue times Commission Rate.
+
+Ari uses the table context and dimension values to resolve the correct formula scope.
+
+## Choose the Formula period
+
+> Use imported Payroll for Actuals and Headcount times Average Salary for Forecast.
+
+Formula-period formulas must be scoped by Date. If Date is not part of the formula context, Ari must add Date scope or explain why the period cannot be applied.
+
+## Choose the scenario
+
+> Make this change in the Plan scenario.
+
+If you do not name a scenario, Ari uses the scenario from the current context. Include it when a change could otherwise be ambiguous.
+
+## Validate before writing
+
+For an extra review step, ask:
+
+> Draft and validate this formula, but do not save it yet.
+
+When you are ready:
+
+> Save the validated formula and check the result in the P&L table.
+
+Ari validates formulas before writing and reports any formulas that could not be applied.

@@ -1,0 +1,52 @@
+---
+title: "How aggregation works"
+---
+
+Aggregation combines several values into one result. In formulas, aggregation can happen in three related ways.
+
+## 1. Property aggregation
+
+A property has a default way to roll underlying values into a model cell. Metrics normally use `sum`. Dimensions normally use `first` because they describe a group rather than a numeric total.
+
+This behavior applies when source data contains several records for the same model position.
+
+## 2. Multi-value references
+
+A formula reference can deliberately select several values. For example:
+
+```text
+Revenue[Department: ANY]
+```
+
+This selects Revenue across all Department values. If no aggregation function is written, a multi-value metric lookup uses `sum`.
+
+It is clearer to write the intended aggregation when the choice matters:
+
+```text
+average(Revenue[Department: ANY])
+```
+
+## 3. Aggregation functions
+
+Aggregation functions let you choose how several values become one result. Supported functions include:
+
+- `sum`
+- `average`
+- `min` and `max`
+- `count`
+- `median`
+- `stdev` and `var`
+- `first` and `last`
+
+## Example
+
+If Department Revenue is Sales 50, Marketing 30, and Engineering 20:
+
+- `sum(Revenue[Department: ANY])` returns 100
+- `average(Revenue[Department: ANY])` returns about 33.33
+- `max(Revenue[Department: ANY])` returns 50
+- `count(Revenue[Department: ANY])` returns 3 when all three values are present
+
+## Write the business meaning
+
+Use the aggregation that matches the question. Totals usually use `sum`. Rates and ratios often need to be calculated from their underlying totals rather than averaged after the fact.

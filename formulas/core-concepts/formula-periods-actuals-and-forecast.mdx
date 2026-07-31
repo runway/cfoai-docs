@@ -1,0 +1,43 @@
+---
+title: "Formula periods: Actuals and Forecast"
+---
+
+Formula periods let a property use different calculations on different parts of the timeline. They are sometimes called formula breaks.
+
+A common setup uses a Date reference named **Last close** to separate closed Actuals from open Forecast periods.
+
+## Example
+
+Payroll might use imported accounting data for Actuals and a planning formula for Forecast:
+
+```text
+Headcount * `Average Salary`
+```
+
+The imported formula applies to Actuals. The planning formula applies to Forecast.
+
+## Formula periods depend on Date
+
+A Formula period is a boundary on the Date dimension. The formula must therefore be scoped by Date at a supported granularity such as month, quarter, or year.
+
+A formula scoped only by Department cannot be limited to Actuals or Forecast. Add Date to its scope first.
+
+## Combine periods with segments
+
+A Formula period can be combined with other dimensions. For example, Sales can use one Forecast formula while other departments use the broader Forecast formula.
+
+The formula must match both the Formula period and the segment before it applies.
+
+## When Last close changes
+
+Moving Last close changes which dates fall into Actuals and Forecast. The formulas do not need to be rewritten; CFO.ai applies them to the periods on the appropriate side of the updated boundary.
+
+## If a formula does not apply
+
+Check:
+
+- The formula is assigned to the intended Formula period
+- Date is included in the formula scope
+- The Date granularity matches the table
+- A more specific segment formula is not overriding it
+- You are viewing the intended scenario

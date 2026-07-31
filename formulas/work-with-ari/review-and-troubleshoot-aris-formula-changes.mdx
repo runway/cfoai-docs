@@ -1,0 +1,41 @@
+---
+title: "Review and troubleshoot Ari's formula changes"
+---
+
+After Ari writes a formula, review the formula card and the calculated result.
+
+## Review the formula card
+
+Check:
+
+- **Property:** Is this the property you meant to change?
+- **Expression:** Does it describe the intended business rule?
+- **Scope:** Does it apply everywhere, to a segmentation, or to a specific segment?
+- **Formula period:** Does it apply to Actuals, Forecast, or both?
+- **Scenario:** Was it written to the intended scenario?
+
+## Ask Ari to verify the result
+
+> Check the resulting values in the P&L table and compare them with Revenue minus Cost of Goods Sold.
+
+> Verify this formula for Sales and Engineering for the next three months.
+
+A successful save confirms that the formula is valid. Checking calculated values confirms that its business behavior is also correct.
+
+## Diagnose before changing
+
+If a result is unexpected, ask Ari to inspect the current formulas first:
+
+> Explain why this formula works for Sales but not Marketing. Do not change anything yet.
+
+> Check whether a more specific formula is overriding this one.
+
+> Check whether this lookup returns several values and needs an aggregation.
+
+> Explain why this formula cannot be assigned only to Forecast.
+
+## Correct a formula
+
+Once the cause is clear, describe the intended correction and scope. Ask Ari to validate, write, and verify the revised formula.
+
+For several changes at once, review which items were applied and which were rejected. Do not assume that every item in a batch was saved.

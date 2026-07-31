@@ -1,0 +1,31 @@
+---
+title: "Read and explain formulas as an agent"
+---
+
+Use `list_formulas` when a user asks how a property is calculated, asks why values differ by segment or period, or wants to review existing formulas.
+
+## Workflow
+
+1. Resolve the property name with search.
+2. Choose the scenario from runtime context or the user's request.
+3. Call `list_formulas` with the target property ID.
+4. Pass an empty conditions array to read all formulas, or exact conditions when checking one scope.
+5. Explain the expression, scope, Formula period, and likely precedence in business language.
+
+## Formula cards
+
+`list_formulas` renders each result as a formula card. Do not repeat the cards as a table, bullet list, or per-formula prose.
+
+After the tool result, text should contain only:
+
+- A one-sentence headline
+- Any assumptions or educated guesses
+- A clarifying question when needed
+
+## Historical reads
+
+Use `as_of_point` only when the user asks for formula state at a prior change-log point. Omit it for current state.
+
+## Generated formulas
+
+Results can include default generated formulas for source-backed properties. Treat them as effective formulas when explaining current behavior.

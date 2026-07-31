@@ -1,0 +1,37 @@
+---
+title: "How CFO.ai chooses a formula"
+---
+
+A property can have several formulas. CFO.ai selects the formula that best matches the value being calculated.
+
+## Start with applicable formulas
+
+A formula must match the current scenario, segmentation, segment values, Date context, and Formula period before it can be used.
+
+## Specific formulas override broad formulas
+
+When more than one formula applies, CFO.ai prefers the more specific rule.
+
+A common pattern is:
+
+1. A default formula covers the property broadly.
+2. A segmentation formula overrides it when the model is broken down by a particular dimension.
+3. A segment formula overrides it for one specific dimension value.
+
+Formula periods add another boundary. An Actuals formula applies only inside Actuals, and a Forecast formula applies only inside Forecast.
+
+## Example
+
+Suppose Payroll has:
+
+- A default formula for all departments
+- A Department formula for departmental views
+- A Sales formula for Department = Sales
+
+When CFO.ai calculates Sales, it uses the Sales formula. When it calculates Engineering, it uses the Department formula. When Department is not part of the calculation, it uses the default formula.
+
+## Avoid overlapping exceptions
+
+Several highly specific formulas can make a model difficult to reason about. Prefer one clear default and add overrides only for real differences in business logic.
+
+If a result is unexpected, review the property's formulas and compare their scopes before changing the expression.

@@ -1,0 +1,33 @@
+---
+title: "Conditional functions"
+---
+
+## if
+
+Returns one of two values based on a condition.
+
+```text
+if(condition, value_when_true, value_when_false)
+```
+
+Example:
+
+```text
+if(Revenue > 0, `Gross Profit` / Revenue, 0)
+```
+
+The three arguments are:
+
+1. A condition
+2. The result when the condition is true
+3. The result when the condition is false
+
+The two result expressions should represent compatible types.
+
+You can nest `if` calls:
+
+```text
+if(Revenue > 100, "high", if(Revenue > 50, "medium", "low"))
+```
+
+For several categories or exceptions, a dimension-based formula may be easier to maintain than a deeply nested expression.

@@ -1,0 +1,29 @@
+---
+title: "Math functions"
+---
+
+Math functions transform numeric values.
+
+## abs
+
+Returns the absolute value of a number.
+
+```text
+abs(Actual - Plan)
+```
+
+A negative value becomes positive. A positive value stays positive.
+
+## sqrt
+
+Returns the square root of a number.
+
+```text
+sqrt(Variance)
+```
+
+The input must be zero or positive. Use conditional logic if the input can be negative:
+
+```text
+if(Variance >= 0, sqrt(Variance), 0)
+```

@@ -1,0 +1,51 @@
+---
+title: "What is a property?"
+---
+
+A property is a named piece of information in your model. It gives cfo.ai a consistent way to recognize, calculate, organize, and reuse that information.
+
+Examples include:
+
+- Revenue
+- Cost of Goods Sold
+- Headcount
+- Department
+- Legal Entity
+- Product
+- Date
+- Gross Margin
+
+## Properties give model values meaning
+
+A number such as `100,000` is not useful by itself. A property tells you what the number represents.
+
+When the property is Revenue, the value becomes Revenue of 100,000. Dimensions, Date, and scenario add more context: Revenue of 100,000 for Sales in January 2026 in the Plan scenario.
+
+## Properties can come from data or formulas
+
+A property can be:
+
+- Imported from a source system
+- Entered or managed in the model
+- Calculated from other properties with a formula
+
+The source can change without changing the business meaning of the property. Revenue remains Revenue whether it is imported, planned, or calculated.
+
+## Every property has characteristics
+
+A property has a name and a primary role. It also has a data type, such as number, text, or date.
+
+Its primary role determines how cfo.ai uses it:
+
+- As a **metric**, it is calculated or aggregated
+- As a **dimension**, it groups or filters other values
+
+The role and data type are related, but they are not the same. An Account Code can be numeric and still be a dimension.
+
+## Properties are reusable
+
+The same Revenue property can appear in a P&L, a chart, a forecast, and a formula. Because each place refers to the same property, the model keeps a consistent meaning across pages and calculations.
+
+## Properties and formulas
+
+A formula belongs to the property it calculates. A Gross Profit formula targets the Gross Profit property and references Revenue and Cost of Goods Sold properties.

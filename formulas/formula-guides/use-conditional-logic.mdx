@@ -1,0 +1,48 @@
+---
+title: "Use conditional logic"
+---
+
+Conditional logic chooses a result based on a test.
+
+## Use if
+
+```text
+if(Revenue > 0, `Gross Profit` / Revenue, 0)
+```
+
+The first argument is the test. The second is the result when the test is true. The third is the result when it is false.
+
+## Comparisons
+
+Use:
+
+- `=` for equal
+- `<>` for not equal
+- `>` and `<`
+- `>=` and `<=`
+
+Example:
+
+```text
+if(Plan = "Enterprise", Revenue * 0.9, Revenue)
+```
+
+## Combine tests
+
+Use `AND`, `OR`, and `NOT`:
+
+```text
+if(Revenue > 0 AND `Cost of Goods Sold` > 0, `Gross Profit` / Revenue, 0)
+```
+
+## Nested conditions
+
+```text
+if(Revenue > 100, "high", if(Revenue > 50, "medium", "low"))
+```
+
+Nested conditions are useful for a small number of clear outcomes. If the formula becomes difficult to read, consider separating the logic into properties or using dimension-based formulas.
+
+## Handle missing or unsafe calculations
+
+Use a condition before dividing or taking a square root. This avoids predictable errors such as division by zero or taking the square root of a negative value.

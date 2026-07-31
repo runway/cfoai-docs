@@ -1,0 +1,64 @@
+---
+title: "Write your first formula"
+---
+
+This guide walks through a simple formula for Gross Profit.
+
+## Before you begin
+
+You need a target property and the properties it will reference. In this example:
+
+- Target property: Gross Profit
+- Referenced properties: Revenue and Cost of Goods Sold
+
+## 1. Open the target property
+
+Open **Gross Profit** and go to its formula editor. The formula belongs to Gross Profit because that is the value it calculates.
+
+## 2. Enter the calculation
+
+Write:
+
+```text
+Revenue - `Cost of Goods Sold`
+```
+
+Use the property names shown in cfo.ai. Wrap names that contain spaces, punctuation, operators, or reserved words in backticks.
+
+## 3. Choose where it applies
+
+For a first formula, use the broadest scope so it acts as the default calculation for the property.
+
+You can add more specific formulas later for a segmentation, a segment, Actuals, or Forecast.
+
+## 4. Check the formula
+
+Before saving, confirm that:
+
+- Gross Profit is the target property
+- Revenue and Cost of Goods Sold are the intended inputs
+- The formula applies in the intended scenario
+- The scope is not more specific than you need
+
+cfo.ai validates the syntax and property references when the formula is saved.
+
+## 5. Review the result
+
+Open a table that contains Gross Profit. Check a few periods and, if the table is segmented, a few dimension values.
+
+For example, if Revenue is 100 and Cost of Goods Sold is 40, Gross Profit should be 60.
+
+## Add detail when you need it
+
+Once the default formula works, you can add a more specific formula without changing the default everywhere. Common next steps include:
+
+- Calculate Gross Profit differently for one department
+- Use a different formula in Forecast
+- Reference another period
+- Aggregate several dimension values
+
+Use [Choose where a formula applies](/formulas/core-concepts/choose-where-a-formula-applies) before adding an override.
+
+<Note>
+  The source Notion page included an embedded interactive walkthrough (a short HTML walkthrough of this Gross Profit example) that could not be carried over automatically. Consider re-adding it here manually if it's still useful.
+</Note>

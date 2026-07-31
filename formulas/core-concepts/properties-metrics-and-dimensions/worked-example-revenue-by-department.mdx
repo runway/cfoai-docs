@@ -1,0 +1,53 @@
+---
+title: "Worked example: Revenue by Department"
+---
+
+This example shows how properties, metrics, dimensions, segments, and formulas work together.
+
+## The business question
+
+> How much Revenue did each Department produce by month in the Plan scenario?
+
+## The properties
+
+- **Revenue** is a metric property. It is the value being measured.
+- **Department** is a dimension property. It organizes Revenue by team.
+- **Date** is a dimension property. It organizes Revenue by month.
+
+Plan is the scenario used for the calculation.
+
+## The model coordinates
+
+One result might be:
+
+> Revenue = 250,000 for Department = Sales in January 2026 in Plan
+
+The metric is Revenue. Sales is a dimension item and the current Department segment. January 2026 is the current Date segment.
+
+## The table
+
+A familiar table might place:
+
+- Revenue on rows
+- Month on columns
+- Department as a drill-down or grouping
+
+The layout does not create new business concepts. It arranges the same properties so people can answer a question.
+
+## The formula
+
+Suppose planned Revenue is calculated as:
+
+```text
+Units Sold * Price
+```
+
+Revenue is the target property. Units Sold and Price are referenced metric properties.
+
+When the table is broken down by Department, plain references follow the current Department segment. The Sales Revenue cell uses Sales Units Sold and Sales Price when those properties share the same context.
+
+## A segment-specific exception
+
+If Sales uses a different pricing rule, Revenue can have a more specific formula for Department = Sales. The broader Revenue formula continues to apply to other departments.
+
+This is why property, metric, dimension, and segment belong to one model: properties define the information, while roles and context determine how each value is calculated and displayed.

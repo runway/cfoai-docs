@@ -1,0 +1,80 @@
+---
+title: "Work with dates"
+---
+
+Date references let formulas move through time, group dates, and calculate period boundaries.
+
+## Use the table's granularity
+
+Write Date with the grain used by the formula:
+
+```text
+Date.Month
+Date.Quarter
+Date.Year
+```
+
+Supported grains are Day, Week, Month, Quarter, Half, and Year.
+
+## Reference a nearby period
+
+The compact lookup uses the formula's current Date grain:
+
+```text
+Revenue[[-1]]
+```
+
+At monthly grain, this reads Revenue from the previous month. A positive value moves forward.
+
+For an explicit shift, use `offset`:
+
+```text
+offset(Date.Month, -1, "month")
+```
+
+Supported units are day, week, month, quarter, half, and year.
+
+## Select a fixed period
+
+```text
+Revenue[Date.Month: "2026-01"]
+Revenue[Date.Quarter: "2026-Q1"]
+Revenue[Date.Year: "2026"]
+```
+
+## Read part of a date
+
+```text
+year(Date.Month)
+month(Date.Month)
+quarter(Date.Month)
+half(Date.Month)
+```
+
+Week functions include `weekday`, `weeknum`, and `isoweeknum`.
+
+## Find a period boundary
+
+```text
+startofmonth(Date.Month)
+startofquarter(Date.Month)
+eomonth(Date.Month, 0)
+```
+
+## Calculate between dates
+
+```text
+datedif(`Start Date`, Date.Month, "M")
+```
+
+`datedif` uses Excel-style unit codes such as `Y`, `M`, and `D`.
+
+## Build a date
+
+```text
+date(year(Date.Month), 12, 31)
+```
+
+## Formula periods
+
+Actuals and Forecast also depend on Date. A formula assigned to a Formula period must include Date in its scope.

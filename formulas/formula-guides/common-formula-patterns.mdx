@@ -1,0 +1,79 @@
+---
+title: "Common formula patterns"
+---
+
+These patterns use supported formula syntax. Replace the example property and dimension names with names from your model.
+
+## Gross profit
+
+```text
+Revenue - `Cost of Goods Sold`
+```
+
+## Gross margin
+
+```text
+if(Revenue <> 0, (Revenue - `Cost of Goods Sold`) / Revenue, 0)
+```
+
+## Variance
+
+```text
+Actual - Plan
+```
+
+## Variance percentage
+
+```text
+if(Plan <> 0, (Actual - Plan) / Plan, 0)
+```
+
+## Previous-period change
+
+```text
+Revenue - Revenue[[-1]]
+```
+
+At monthly grain, this compares the current month with the previous month.
+
+## Total across a dimension
+
+```text
+sum(Revenue[Department: ANY])
+```
+
+## Share of total
+
+```text
+if(sum(Revenue[Department: ANY]) <> 0, Revenue / sum(Revenue[Department: ANY]), 0)
+```
+
+Because the plain `Revenue` follows the current segment, this produces each department's share when calculated by Department.
+
+## Average across selected segments
+
+```text
+average(Revenue[Region: {"East", "West"}])
+```
+
+## Forecast driver formula
+
+```text
+Headcount * `Average Salary`
+```
+
+Assign the formula to Forecast when Actuals should continue to use imported values.
+
+## Conditional assumption
+
+```text
+if(Revenue > 100000, Revenue * 0.05, Revenue * 0.03)
+```
+
+## Calendar-year end
+
+```text
+date(year(Date.Month), 12, 31)
+```
+
+Before saving a pattern, confirm its target property, scope, Date grain, and scenario.

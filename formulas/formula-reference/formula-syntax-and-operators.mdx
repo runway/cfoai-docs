@@ -1,0 +1,90 @@
+---
+title: "Formula syntax and operators"
+---
+
+Use this page to look up the building blocks of a formula.
+
+## Numbers and percentages
+
+```text
+1000
+1000.5
+.5
+50%
+```
+
+`50%` is the same as `0.5`. A minus sign can make a value negative.
+
+## Arithmetic
+
+- `+` add
+- `-` subtract
+- `*` multiply
+- `/` divide
+- `%` remainder
+- `^` power
+
+Example:
+
+```text
+Price * Quantity
+```
+
+Power chains are evaluated from the right. Use parentheses when the order matters.
+
+## Comparisons
+
+- `=` equal
+- `<>` not equal
+- `>` greater than
+- `<` less than
+- `>=` greater than or equal
+- `<=` less than or equal
+
+## Logical operators
+
+Use `AND`, `OR`, and `NOT`.
+
+```text
+Revenue > 0 AND `Cost of Goods Sold` > 0
+```
+
+## Property names
+
+```text
+Revenue
+`Net Revenue`
+Revenue#a3f
+```
+
+Backticks protect names with spaces or punctuation. A short `#` suffix distinguishes duplicate names.
+
+## Segment lookups
+
+```text
+Revenue[Department: "Sales"]
+Revenue[Department: {"Sales", "Marketing"}]
+Revenue[Department: NOT {"Engineering"}]
+Revenue[Department: ANY]
+```
+
+A plain lookup inherits the rest of the current segment. Prefix the property with `$` for an absolute lookup.
+
+## Date references
+
+```text
+Date.Day
+Date.Week
+Date.Month
+Date.Quarter
+Date.Half
+Date.Year
+```
+
+## Formula conditions
+
+Conditions describe where a saved formula applies. Most users choose scope in the formula editor rather than writing a condition directly. Agent documentation contains the exact condition syntax used by formula-writing tools.
+
+## Preferred spellings
+
+Use `^`, `=`, and `<>` in new formulas. Older formulas may contain `**`, `==`, or `!=`; those spellings remain accepted.

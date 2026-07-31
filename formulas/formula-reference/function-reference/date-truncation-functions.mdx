@@ -1,0 +1,55 @@
+---
+title: "Date-truncation functions"
+---
+
+Date-truncation functions return the start of the period that contains a date.
+
+## startofday
+
+```text
+startofday(Date.Day)
+```
+
+Returns the start of the day.
+
+## startofweek
+
+```text
+startofweek(Date.Week)
+```
+
+Returns the Monday at the start of the week.
+
+## startofmonth
+
+```text
+startofmonth(Date.Month)
+```
+
+Returns the first day of the month.
+
+## startofquarter
+
+```text
+startofquarter(Date.Month)
+```
+
+Returns the first day of the calendar quarter.
+
+## startofhalf
+
+```text
+startofhalf(Date.Month)
+```
+
+Returns January 1 or July 1 for the half-year containing the date.
+
+## startofyear
+
+```text
+startofyear(Date.Month)
+```
+
+Returns January 1 of the year.
+
+These functions are useful when source dates must be aligned with a model period.

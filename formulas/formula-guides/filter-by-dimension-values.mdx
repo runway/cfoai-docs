@@ -1,0 +1,63 @@
+---
+title: "Filter by dimension values"
+---
+
+A property lookup can select one dimension value, several values, or every value of a dimension.
+
+## Select one value
+
+```text
+Revenue[Department: "Sales"]
+```
+
+This changes Department to Sales while other dimensions continue to follow the current segment.
+
+## Select several values
+
+Use a set:
+
+```text
+Revenue[Department: {"Engineering", "Product", "Design"}]
+```
+
+A multi-value metric lookup is summed when no aggregation function is written. Add the intended function when another behavior is clearer:
+
+```text
+average(Revenue[Department: {"Engineering", "Product", "Design"}])
+```
+
+## Exclude values
+
+```text
+Revenue[Department: NOT {"Engineering"}]
+```
+
+## Select every value
+
+```text
+Revenue[Department: ANY]
+```
+
+This is useful for totals, averages, and percent-of-total calculations.
+
+## Filter with an expression
+
+Use `where` when membership depends on another value:
+
+```text
+Revenue[Department: where Headcount > 0]
+```
+
+Inside a `where` filter, a plain property refers to each candidate value. Use `thisSegment` when you need to compare a candidate with the current cell:
+
+```text
+Revenue[Department: where Headcount > thisSegment.Headcount]
+```
+
+## Combine dimensions
+
+```text
+Revenue[Region: "West", Department: "Sales"]
+```
+
+Keep filters as narrow as the business rule requires. If the same rule applies to the current segment, prefer a plain property reference.

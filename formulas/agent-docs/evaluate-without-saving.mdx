@@ -1,0 +1,40 @@
+---
+title: "Evaluate formulas without saving as an agent"
+---
+
+Use `evaluate_formulas` for calculations needed during analysis when nothing should be persisted.
+
+## Inputs
+
+Provide:
+
+- Named request-local formulas
+- A table configuration that defines rows, columns, Date range, and segmentation
+- Scenario context
+- Variant overrides, or null
+- A row limit
+
+Formula names must be identifier-like. Reference a temporary formula from another formula as `@name` and place it on an axis with `@name` where a saved property URI would normally appear.
+
+## Behavior
+
+Temporary formulas:
+
+- Use normal formula syntax
+- Can reference saved properties
+- Can reference other temporary formulas
+- Recalculate at every requested grain
+- Can use scenario or time comparison through the table configuration
+- Create no property, saved formula, or block
+
+A ratio drilled into Department is calculated per Department. It is not a rollup of an already calculated parent ratio.
+
+## Tool choice
+
+Prefer `get_table_block_data` when an existing table already answers the question. Use `evaluate_formulas` when the required calculation or layout is not saved.
+
+## Errors
+
+Evaluation acts as validation. Syntax problems fail the request. Semantic problems can appear as error cells. Correct the formulas and call the tool again.
+
+Read row identity from the structured `metric` and `segments` fields rather than parsing row URIs.

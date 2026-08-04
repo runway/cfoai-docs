@@ -16,6 +16,23 @@ Functions perform common calculations inside formulas. The reference is grouped 
 - **Date truncation:** `startofday`, `startofweek`, `startofmonth`, `startofquarter`, `startofhalf`, `startofyear`
 - **Date offset:** `offset`
 
+## What's coming
+
+Function support is actively expanding. The current build priority, based on live customer usage across active orgs:
+
+1. **Date-math family** — `offset` extensions, a date-difference function, and context helpers like "this month" or "last close." This is also where `month` and `quarter` are expected to land. It unblocks aging schedules, revenue recognition, cohort analysis, and month-over-month or year-over-year comparisons.
+2. **Rounding** — `round`, `roundDown`, `floor`, `ceiling`. These already show up in the formula editor's autocomplete today, but currently error at compute — see the warning below.
+3. **`ifError` and `coalesce`** — the single highest-impact fix on the list: just two functions, used across thousands of live driver formulas.
+4. **`daysIn` / `monthsIn`** — enables revenue-recognition proration patterns.
+
+`median`, `stdev`, `var`, and most of the [Date-part functions](/formulas/formula-reference/function-reference/date-part-functions) don't have a confirmed place in the build order yet.
+
+There's also a separate, broader effort to make functions match Excel's shape more closely: case-insensitive function names, `SUM`-style variadic arguments, and Excel-named aliases (`AVERAGE` as an alias for `avg`, `IFERROR` for `ifError`, and so on). None of this is built yet, but it's designed to make formulas easier to write from memory and easier for Ari to get right on the first try.
+
+<Warning>
+  **Editor trap:** the formula editor currently suggests `ROUND`, `FLOOR`, `CEIL`, `FIRSTVALUE`, and `LASTVALUE` in autocomplete. All five error at compute — this is a known issue with the editor, not a sign that these functions work.
+</Warning>
+
 ## Function groups
 
 - Aggregation functions combine several values

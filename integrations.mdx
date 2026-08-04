@@ -39,6 +39,43 @@ Use a Google Sheets connection when a Variable or driver is still maintained in 
 
 Use a database connection when your data lives in a system of record that does not have a dedicated integration above, but is reachable through one of these PostgreSQL-compatible sources.
 
+## Connections for Ari
+
+The integrations above bring data into your Model as Actuals. Separately, cfo.ai has a **Connections** area where you can link external tools and services for Ari to work with directly, browsable through an **MCP** tab and an **APIs** tab. As of this writing, everything here is available to connect but nothing is connected yet — each item has its own **Connect** button waiting to be clicked.
+
+### MCP
+
+Browsable by category:
+
+- **Payments** — Stripe, PayPal, Square, Mercado Pago
+- **Banking & Spend** — Mercury, Ramp, Brex, Expensify, Plaid
+- **Accounting & Tax** — Avalara AvaTax, Avalara Returns, Numeric
+- **HR & Payroll** — Gusto, Deel
+- **Equity & Compliance** — Carta, and others
+- **Productivity & Docs** — Notion, Linear, Asana, Atlassian (Jira and Confluence), Airtable, monday.com
+- **Data & Analytics** — Google BigQuery, Supabase, ThoughtSpot
+
+If you don't see what you need, use **Add server** or the search bar to look for others.
+
+### APIs
+
+A separate, direct list of API connections:
+
+- Stripe
+- Adyen (Transfers, Management, Balance Platform)
+- Increase
+- Synctera
+- Pleo
+- Pennylane
+- TaxJar
+- Rippling
+- CoinAPI
+- Tradier
+- Frankfurter — FX rates, no key needed
+- U.S. Treasury Fiscal Data — no key needed
+
+Use **Add API** or the search bar for anything not listed.
+
 ## About Fivetran
 
 Most connectors other than CSV upload, QuickBooks Online, and Xero run through **Fivetran**, which handles the underlying sync. You connect the source once, and Fivetran keeps it up to date on a regular schedule.

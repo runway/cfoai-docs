@@ -53,7 +53,7 @@ Because the plain `Revenue` follows the current segment, this produces each depa
 ## Average across selected segments
 
 ```text
-average(Revenue[Region: {"East", "West"}])
+avg(Revenue[Region: {"East", "West"}])
 ```
 
 ## Forecast driver formula
@@ -70,10 +70,12 @@ Assign the formula to Forecast when Actuals should continue to use imported valu
 if(Revenue > 100000, Revenue * 0.05, Revenue * 0.03)
 ```
 
-## Calendar-year end
+## 🚧 Not yet available: calendar-year end
 
 ```text
 date(year(Date.Month), 12, 31)
 ```
+
+This pattern relies on `date` and `year`, which are designed but not yet implemented. See [Date and time functions](/formulas/formula-reference/function-reference/date-and-time-functions) and [Date-part functions](/formulas/formula-reference/function-reference/date-part-functions).
 
 Before saving a pattern, confirm its target property, scope, Date grain, and scenario.

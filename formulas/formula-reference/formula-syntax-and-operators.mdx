@@ -88,3 +88,7 @@ Conditions describe where a saved formula applies. Most users choose scope in th
 ## Preferred spellings
 
 Use `^`, `=`, and `<>` in new formulas. Older formulas may contain `**`, `==`, or `!=`; those spellings remain accepted.
+
+<Note>
+  **Looking ahead:** a broader formula grammar redesign ("Modeling V3") is in active design internally. Early proposals include dot notation for mapped dimensions (`Employee.Department`), an `=`-based predicate syntax inside segment lookups (`Revenue[Country = "USA"]` instead of `Revenue[Department: "Sales"]`), and scenario references written like Excel sheet references (`"Downside"!Revenue[...]`). None of this is built yet — the syntax on this page is what cfo.ai runs today — but formula syntax may look different in a future release.
+</Note>

@@ -4,6 +4,10 @@ title: "Work with dates"
 
 Date references let formulas move through time, group dates, and calculate period boundaries.
 
+<Warning>
+  Several date functions described below (reading date parts, and building or diffing dates) are designed but not yet implemented in cfo.ai. Each section below is marked with its current availability.
+</Warning>
+
 ## Use the table's granularity
 
 Write Date with the grain used by the formula:
@@ -26,7 +30,7 @@ Revenue[[-1]]
 
 At monthly grain, this reads Revenue from the previous month. A positive value moves forward.
 
-For an explicit shift, use `offset`:
+For an explicit shift, use `offset`, which is available today:
 
 ```text
 offset(Date.Month, -1, "month")
@@ -42,7 +46,16 @@ Revenue[Date.Quarter: "2026-Q1"]
 Revenue[Date.Year: "2026"]
 ```
 
-## Read part of a date
+## Find a period boundary — available today
+
+```text
+startofmonth(Date.Month)
+startofquarter(Date.Month)
+```
+
+`startofday`, `startofweek`, `startofhalf`, and `startofyear` are also available. See [Date-truncation functions](/formulas/formula-reference/function-reference/date-truncation-functions).
+
+## 🚧 Not yet available: read part of a date
 
 ```text
 year(Date.Month)
@@ -51,25 +64,16 @@ quarter(Date.Month)
 half(Date.Month)
 ```
 
-Week functions include `weekday`, `weeknum`, and `isoweeknum`.
+Week functions such as `weekday`, `weeknum`, and `isoweeknum` are also not yet implemented. See [Date-part functions](/formulas/formula-reference/function-reference/date-part-functions).
 
-## Find a period boundary
+## 🚧 Not yet available: end-of-period and date-diff functions
 
 ```text
-startofmonth(Date.Month)
-startofquarter(Date.Month)
 eomonth(Date.Month, 0)
-```
-
-## Calculate between dates
-
-```text
 datedif(`Start Date`, Date.Month, "M")
 ```
 
-`datedif` uses Excel-style unit codes such as `Y`, `M`, and `D`.
-
-## Build a date
+## 🚧 Not yet available: build a date
 
 ```text
 date(year(Date.Month), 12, 31)

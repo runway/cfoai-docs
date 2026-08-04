@@ -1,5 +1,5 @@
 ---
-title: "From dimensional modeling to properties"
+title: "From dimensional modeling to Variables and Dimensions"
 ---
 
 If you are familiar with business intelligence or dimensional modeling, cfo.ai uses many of the same ideas with finance-friendly language.
@@ -8,26 +8,26 @@ If you are familiar with business intelligence or dimensional modeling, cfo.ai u
 
 | Dimensional-modeling term | cfo.ai concept |
 | --- | --- |
-| Measure or fact | Metric property |
-| Dimension or attribute | Dimension property |
-| Dimension member | Dimension item |
+| Measure or fact | Variable |
+| Dimension or attribute | Dimension |
+| Dimension member | DimensionItem |
 | Group by, slice, or dice | Segmentation and filtering |
-| Grain | The dimensions and Date granularity used for a value |
-| Cube cell | A metric value at a segment, date, and scenario |
+| Grain | The Dimensions and Date granularity used for a value |
+| Cube cell | A Variable value at a segment, date, and scenario |
 
-## Metrics are the values being measured
+## Variables are the values being measured
 
-Revenue, Expenses, Units Sold, Headcount, and Gross Margin are examples of metrics. They occupy the value being calculated or displayed.
+Revenue, Expenses, Units Sold, Headcount, and Gross Margin are examples of Variables. They occupy the value being calculated or displayed.
 
 ## Dimensions provide coordinates
 
-Department, Region, Product, Customer, Account, and Date identify where a metric value belongs.
+Department, Region, Product, Customer, Account, and Date identify where a Variable's value belongs.
 
 For example:
 
 > Revenue = 100,000 at Department = Sales, Region = West, Date = January 2026, Scenario = Plan
 
-Revenue is the metric. Department, Region, and Date provide coordinates. Plan provides scenario context.
+Revenue is the Variable. Department, Region, and Date provide coordinates. Plan provides scenario context.
 
 ## Grain explains what one value represents
 
@@ -39,7 +39,6 @@ Formulas recalculate at the requested grain. A margin shown by Department is cal
 
 Users do not need to build a star schema or cube to work in cfo.ai. The useful mental model is simpler:
 
-- Properties describe what the model knows
-- Metrics are calculated values
+- Variables are calculated values
 - Dimensions organize those values
 - A segment identifies one position in that organization

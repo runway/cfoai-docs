@@ -2,17 +2,17 @@
 title: "Understand the formula model"
 ---
 
-A formula tells cfo.ai how to calculate a property. The property is the result you want to produce, and the formula is the calculation used to produce it.
+A formula tells cfo.ai how to calculate a Variable. The Variable is the result you want to produce, and the formula is the calculation used to produce it.
 
-If properties are new to you, start with [Properties, metrics, and dimensions](/formulas/core-concepts/properties-metrics-and-dimensions).
+If Variables and Dimensions are new to you, start with [Variables and Dimensions](/formulas/core-concepts/properties-metrics-and-dimensions).
 
-For example, a **Gross Profit** property might use this formula:
+For example, a **Gross Profit** Variable might use this formula:
 
 ```text
 Revenue - `Cost of Goods Sold`
 ```
 
-Property names with spaces are wrapped in backticks.
+Variable names with spaces are wrapped in backticks.
 
 ## A formula has two parts
 
@@ -23,9 +23,9 @@ Every saved formula has:
 
 The expression above calculates Gross Profit. Its scope might apply everywhere, whenever the model is broken down by Department, or only when Department is Sales.
 
-## Properties can have more than one formula
+## A Variable can have more than one formula
 
-A property can use different formulas in different parts of a model. You might use:
+A Variable can use different formulas in different parts of a model. You might use:
 
 - One default formula across the model
 - A different formula for a particular department
@@ -33,18 +33,18 @@ A property can use different formulas in different parts of a model. You might u
 
 cfo.ai chooses the most relevant formula for each value it calculates. A specific formula can override a broader formula without replacing it everywhere.
 
-## Properties play different roles
+## Variables and Dimensions do different jobs
 
-A property used as a **metric** is calculated or aggregated. A property used as a **dimension** organizes values into groups.
+A **Variable** is calculated or aggregated. A **Dimension** organizes values into groups.
 
-When Revenue is shown by Department, both are properties. Revenue is the metric being measured. Department is the dimension used to organize it, and Sales is one segment within that dimension.
+When Revenue is shown by Department, Revenue is the Variable being measured. Department is the Dimension used to organize it, and Sales is one segment within that Dimension.
 
 ## References follow the current context
 
-A plain property reference normally follows the current segment. If a formula is calculating Revenue for Sales, a reference to `Headcount` uses Sales headcount when that property is available in the same context.
+A plain Variable reference normally follows the current segment. If a formula is calculating Revenue for Sales, a reference to `Headcount` uses Sales headcount when that Variable is available in the same context.
 
-You can also ask for a specific segment, several segments, every value of a dimension, or an absolute value that does not inherit the current segment.
+You can also ask for a specific segment, several segments, every value of a Dimension, or an absolute value that does not inherit the current segment.
 
 ## Next step
 
-Use [Write your first formula](/formulas/get-started/write-your-first-formula) to create a simple property formula and check its result.
+Use [Write your first formula](/formulas/get-started/write-your-first-formula) to create a simple Variable formula and check its result.

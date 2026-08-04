@@ -12,11 +12,11 @@ A named point on the timeline. **Last close** commonly separates closed Actuals 
 
 ## Dimension
 
-The primary role of a property used to group, filter, or segment values. Examples include Department, Region, and Product.
+A named category used to group, filter, or segment Variables. Examples include Department, Region, and Product.
 
-## Dimension item
+## DimensionItem
 
-One value within a dimension, such as Sales within Department or West within Region.
+One value within a Dimension, such as Sales within Department or West within Region.
 
 ## Expression
 
@@ -24,7 +24,7 @@ The part of a formula that describes what to calculate.
 
 ## Formula
 
-A saved calculation for a property. A formula has an expression and a scope.
+A saved calculation for a Variable. A formula has an expression and a scope.
 
 ## Formula break
 
@@ -33,14 +33,6 @@ Another name for a Formula period boundary. User-facing documentation generally 
 ## Formula period
 
 A part of the timeline that can use its own formula, such as Actuals or Forecast.
-
-## Metric
-
-The primary role of a property used as a calculated or aggregated value. Examples include Revenue, Headcount, and Gross Margin.
-
-## Property
-
-A named piece of information the model knows about, such as Revenue, Department, Headcount, or Date. Metric and dimension describe the property's primary role.
 
 ## Scenario
 
@@ -52,8 +44,12 @@ The part of the model where a formula applies. Scope can include segmentations, 
 
 ## Segment
 
-A specific dimension value or combination of values, such as Department = Sales.
+A specific Dimension value or combination of values, such as Department = Sales.
 
 ## Segmentation
 
-The dimension or dimensions used to break down a value, such as Revenue by Department.
+The Dimension or Dimensions used to break down a value, such as Revenue by Department.
+
+## Variable
+
+A named model quantity — a value you calculate, aggregate, or hold, such as Revenue, Headcount, or Gross Margin. A formula calculates a Variable's value.

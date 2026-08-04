@@ -18,7 +18,7 @@ Choose global scope when the user asks for a default formula or no reliable tabl
 
 When a table block is available, call `resolve_table_condition` with:
 
-- Target property ID
+- Target Variable ID
 - Block ID
 - Scenario ID
 - Explicit segment values, or null for ANY
@@ -43,7 +43,7 @@ Department: ANY
 Department: "Sales", Date.Month: ANY
 ```
 
-Use readable dimension names, backticks, and disambiguators. When several condition items are written manually, order them by dimension property ID in ascending lexicographic order.
+Use readable dimension names, backticks, and disambiguators. When several condition items are written manually, order them by dimension ID in ascending lexicographic order.
 
 ## Do not invent scope
 

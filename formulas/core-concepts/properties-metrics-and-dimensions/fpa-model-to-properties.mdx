@@ -1,22 +1,22 @@
 ---
-title: "From an FP&A model to properties"
+title: "From an FP&A model to Variables and Dimensions"
 ---
 
-Properties map familiar FP&A concepts into a model that can be reused across pages, scenarios, and calculations.
+Variables and Dimensions map familiar FP&A concepts into a model that can be reused across pages, scenarios, and calculations.
 
 ## Common translations
 
 | Familiar FP&A concept | cfo.ai concept |
 | --- | --- |
-| Financial line item | Metric property |
-| KPI or operating driver | Metric property |
-| Assumption | Metric property |
-| Department or cost center | Dimension property |
-| Entity, product, region, or customer | Dimension property |
+| Financial line item | Variable |
+| KPI or operating driver | Variable |
+| Assumption | Variable |
+| Department or cost center | Dimension |
+| Entity, product, region, or customer | Dimension |
 | Month, quarter, or year columns | Date dimension and granularity |
 | Budget version or plan case | Scenario |
-| A value such as Sales or West | Dimension item or segment |
-| A P&L broken down by Department | Metrics segmented by a dimension |
+| A value such as Sales or West | DimensionItem or segment |
+| A P&L broken down by Department | A Variable segmented by a Dimension |
 
 ## A traditional P&L
 
@@ -24,23 +24,23 @@ Imagine a P&L with Revenue and Cost of Goods Sold on rows and months across colu
 
 In cfo.ai:
 
-- Revenue is a metric property
-- Cost of Goods Sold is a metric property
-- Date is a dimension
+- Revenue is a Variable
+- Cost of Goods Sold is a Variable
+- Date is a Dimension
 - Month is the Date granularity
 - Base or Plan is the scenario
 - Actuals and Forecast can be Formula periods separated by Last close
 
-If you add Department beneath each line item, Department is another dimension. Sales, Marketing, and Engineering are dimension items.
+If you add Department beneath each line item, Department is another Dimension. Sales, Marketing, and Engineering are DimensionItems.
 
 ## Line items and accounts are not always the same
 
-A modeled line item such as Revenue is usually a metric. A source Account or Account Code is often a dimension because it classifies transactions.
+A modeled line item such as Revenue is usually a Variable. A source Account or Account Code is often a Dimension because it classifies transactions.
 
-Several accounts may contribute to one modeled Revenue metric. The correct role depends on whether the property represents the value being analyzed or the category used to organize it.
+Several accounts may contribute to one modeled Revenue Variable. The correct choice depends on whether the field represents the value being analyzed (a Variable) or the category used to organize it (a Dimension).
 
-## Assumptions are properties too
+## Assumptions are Variables too
 
-Price, Conversion Rate, Average Salary, and Commission Rate are metric properties. They may be inputs rather than financial results, but they are still values that can be calculated, compared, and used in formulas.
+Price, Conversion Rate, Average Salary, and Commission Rate are Variables. They may be inputs rather than financial results, but they are still values that can be calculated, compared, and used in formulas.
 
-This shared property model lets a formula connect financial statements with operating drivers without treating them as separate systems.
+This shared model lets a formula connect financial statements with operating drivers without treating them as separate systems.

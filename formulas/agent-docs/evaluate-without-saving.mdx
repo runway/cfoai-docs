@@ -14,18 +14,18 @@ Provide:
 - Variant overrides, or null
 - A row limit
 
-Formula names must be identifier-like. Reference a temporary formula from another formula as `@name` and place it on an axis with `@name` where a saved property URI would normally appear.
+Formula names must be identifier-like. Reference a temporary formula from another formula as `@name` and place it on an axis with `@name` where a saved Variable URI would normally appear.
 
 ## Behavior
 
 Temporary formulas:
 
 - Use normal formula syntax
-- Can reference saved properties
+- Can reference saved Variables
 - Can reference other temporary formulas
 - Recalculate at every requested grain
 - Can use scenario or time comparison through the table configuration
-- Create no property, saved formula, or block
+- Create no Variable, saved formula, or block
 
 A ratio drilled into Department is calculated per Department. It is not a rollup of an already calculated parent ratio.
 

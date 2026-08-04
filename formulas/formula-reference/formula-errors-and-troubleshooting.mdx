@@ -9,25 +9,25 @@ Start with the problem you can see, then check the formula's expression and scop
 Check for:
 
 - A missing parenthesis or quote
-- A property name that needs backticks
-- A property that does not exist in the scenario
+- A Variable name that needs backticks
+- A Variable that does not exist in the scenario
 - An unsupported number of function arguments
 - A Formula period on a formula without Date scope
 
-## A property cannot be found
+## A Variable cannot be found
 
-Use the name shown in CFO.ai. If the name contains spaces or punctuation, wrap it in backticks. If several properties share the name, use the short disambiguator offered by the editor or Ari.
+Use the name shown in CFO.ai. If the name contains spaces or punctuation, wrap it in backticks. If several Variables share the name, use the short disambiguator offered by the editor or Ari.
 
 ## The result is unexpectedly high
 
-The formula may be selecting several values and summing them. Review lookups that use `ANY`, sets, or `where`. Add an explicit aggregation when the intended behavior is average, minimum, maximum, count, first, last, median, standard deviation, or variance.
+The formula may be selecting several values and summing them. Review lookups that use `ANY`, sets, or `where`. Add an explicit aggregation when the intended behavior is average, minimum, maximum, count, first, or last. (Median and standard deviation aren't available yet — see [Aggregation functions](/formulas/formula-reference/function-reference/aggregation-functions).)
 
 ## The formula works in one segment but not another
 
 Check whether:
 
 - A segment-specific formula overrides the default
-- The referenced property exists in both segments
+- The referenced Variable exists in both segments
 - An absolute reference should be a current-segment reference, or the reverse
 - The table uses a different segmentation
 

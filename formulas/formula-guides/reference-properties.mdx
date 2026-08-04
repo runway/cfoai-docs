@@ -1,12 +1,12 @@
 ---
-title: "Reference properties"
+title: "Reference Variables"
 ---
 
-A formula can use other properties as inputs. Write property names the same way they appear in CFO.ai.
+A formula can use other Variables as inputs. Write Variable names the same way they appear in cfo.ai.
 
 ## Plain references
 
-A plain name reads the property in the current segment:
+A plain name reads the Variable in the current segment:
 
 ```text
 Revenue
@@ -40,7 +40,7 @@ Other dimensions still follow the current segment.
 
 ## An absolute reference
 
-Prefix the property with `$` when the lookup should not inherit the current segment:
+Prefix the Variable with `$` when the lookup should not inherit the current segment:
 
 ```text
 $Revenue
@@ -56,7 +56,7 @@ Use absolute references carefully. Most formulas should follow the segment they 
 
 ## Duplicate names
 
-If two properties have the same name, CFO.ai adds a short disambiguator:
+If two Variables have the same name, cfo.ai adds a short disambiguator:
 
 ```text
 Revenue#a3f

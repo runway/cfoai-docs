@@ -2,7 +2,7 @@
 title: "Filter by dimension values"
 ---
 
-A property lookup can select one dimension value, several values, or every value of a dimension.
+A Variable lookup can select one dimension value, several values, or every value of a dimension.
 
 ## Select one value
 
@@ -20,7 +20,7 @@ Use a set:
 Revenue[Department: {"Engineering", "Product", "Design"}]
 ```
 
-A multi-value metric lookup is summed when no aggregation function is written. Add the intended function when another behavior is clearer:
+A multi-value lookup is summed when no aggregation function is written. Add the intended function when another behavior is clearer:
 
 ```text
 avg(Revenue[Department: {"Engineering", "Product", "Design"}])
@@ -48,7 +48,7 @@ Use `where` when membership depends on another value:
 Revenue[Department: where Headcount > 0]
 ```
 
-Inside a `where` filter, a plain property refers to each candidate value. Use `thisSegment` when you need to compare a candidate with the current cell:
+Inside a `where` filter, a plain Variable refers to each candidate value. Use `thisSegment` when you need to compare a candidate with the current cell:
 
 ```text
 Revenue[Department: where Headcount > thisSegment.Headcount]
@@ -60,4 +60,4 @@ Revenue[Department: where Headcount > thisSegment.Headcount]
 Revenue[Region: "West", Department: "Sales"]
 ```
 
-Keep filters as narrow as the business rule requires. If the same rule applies to the current segment, prefer a plain property reference.
+Keep filters as narrow as the business rule requires. If the same rule applies to the current segment, prefer a plain Variable reference.

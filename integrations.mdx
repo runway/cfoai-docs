@@ -1,0 +1,54 @@
+---
+title: "Integrations"
+sidebarTitle: "Integrations"
+description: "Connect the accounting, HR, spreadsheet, and database sources cfo.ai can pull Actuals from."
+---
+
+cfo.ai connects to the systems where your financial and operational data already lives, so your Model stays current without manual entry.
+
+<Frame>
+  ![Integrations directory in cfo.ai](/images/integrations.png)
+</Frame>
+
+## File upload
+
+**CSV / file upload** is a manual option for bringing in a raw file directly. Use it when a live connection is not set up yet, or for a one-off or specialized report a system does not sync automatically.
+
+## Accounting and ERP
+
+- **QuickBooks Online**
+- **Xero**
+- **NetSuite SuiteAnalytics** (via Fivetran)
+
+Use an accounting or ERP integration when you want Actuals to update automatically each time your books close.
+
+## HR
+
+- **Rippling** (via Fivetran)
+
+Connect Rippling to bring headcount, compensation, and other people data into your Model alongside your financials.
+
+## Spreadsheets
+
+- **Google Sheets** (via Fivetran)
+
+Use a Google Sheets connection when a Variable or driver is still maintained in a spreadsheet outside your other systems.
+
+## Databases
+
+- **PostgreSQL** (via Fivetran)
+- **Amazon RDS for PostgreSQL** (via Fivetran)
+- **Amazon Aurora PostgreSQL** (via Fivetran)
+- **Google Cloud SQL for PostgreSQL** (via Fivetran)
+
+Use a database connection when your data lives in a system of record that does not have a dedicated integration above, but is reachable through one of these PostgreSQL-compatible sources.
+
+## About Fivetran
+
+Most connectors other than CSV upload, QuickBooks Online, and Xero run through **Fivetran**, which handles the underlying sync. You connect the source once, and Fivetran keeps it up to date on a regular schedule.
+
+## Something look off?
+
+<Card title="Ask Ari" icon="sparkles" href="https://app.cfo.ai">
+  Ask Ari to check a specific number, account, or entity against its source.
+</Card>

@@ -1,51 +1,43 @@
 ---
-title: "What is a property?"
+title: "What is a Variable?"
 ---
 
-A property is a named piece of information in your model. It gives cfo.ai a consistent way to recognize, calculate, organize, and reuse that information.
+A Variable is a named model quantity — a value you calculate, hold, or aggregate. It gives cfo.ai a consistent way to recognize, calculate, organize, and reuse that value everywhere it appears.
 
 Examples include:
 
 - Revenue
 - Cost of Goods Sold
 - Headcount
-- Department
-- Legal Entity
-- Product
-- Date
 - Gross Margin
+- Price
 
-## Properties give model values meaning
+For the categories used to group Variables, like Department or Region, see [Variables and Dimensions](/formulas/core-concepts/properties-metrics-and-dimensions).
 
-A number such as `100,000` is not useful by itself. A property tells you what the number represents.
+## Variables give model values meaning
 
-When the property is Revenue, the value becomes Revenue of 100,000. Dimensions, Date, and scenario add more context: Revenue of 100,000 for Sales in January 2026 in the Plan scenario.
+A number such as `100,000` isn't useful by itself. A Variable tells you what the number represents.
 
-## Properties can come from data or formulas
+When the Variable is Revenue, the value becomes Revenue of 100,000. Dimensions, Date, and scenario add more context: Revenue of 100,000 for Sales in January 2026 in the Plan scenario.
 
-A property can be:
+## Variables can come from data or formulas
+
+A Variable can be:
 
 - Imported from a source system
 - Entered or managed in the model
-- Calculated from other properties with a formula
+- Calculated from other Variables with a formula
 
-The source can change without changing the business meaning of the property. Revenue remains Revenue whether it is imported, planned, or calculated.
+The source can change without changing the business meaning of the Variable. Revenue remains Revenue whether it's imported, planned, or calculated.
 
-## Every property has characteristics
+## Every Variable has characteristics
 
-A property has a name and a primary role. It also has a data type, such as number, text, or date.
+A Variable has a name and a data type, such as number, text, or date. Most Variables hold numbers, but a calculated Variable can also return text or a date.
 
-Its primary role determines how cfo.ai uses it:
+## Variables are reusable
 
-- As a **metric**, it is calculated or aggregated
-- As a **dimension**, it groups or filters other values
+The same Revenue Variable can appear in a P&L, a chart, a forecast, and a formula. Because each place refers to the same Variable, the model keeps a consistent meaning across pages and calculations.
 
-The role and data type are related, but they are not the same. An Account Code can be numeric and still be a dimension.
+## Variables and formulas
 
-## Properties are reusable
-
-The same Revenue property can appear in a P&L, a chart, a forecast, and a formula. Because each place refers to the same property, the model keeps a consistent meaning across pages and calculations.
-
-## Properties and formulas
-
-A formula belongs to the property it calculates. A Gross Profit formula targets the Gross Profit property and references Revenue and Cost of Goods Sold properties.
+A formula belongs to the Variable it calculates. A Gross Profit formula targets the Gross Profit Variable and references the Revenue and Cost of Goods Sold Variables.

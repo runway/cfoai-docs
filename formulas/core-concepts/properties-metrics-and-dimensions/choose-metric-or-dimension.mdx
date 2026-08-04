@@ -1,12 +1,12 @@
 ---
-title: "Choose between a metric and a dimension"
+title: "Choose between a Variable and a Dimension"
 ---
 
-Choose a property's role based on how people will use it in the model.
+Choose based on how people will use the field in the model.
 
-## Use a metric when
+## Use a Variable when
 
-The property:
+The field:
 
 - Represents a financial value, KPI, assumption, or driver
 - Is added, averaged, counted, compared, or calculated
@@ -22,9 +22,9 @@ Examples:
 - Average Salary
 - Gross Margin
 
-## Use a dimension when
+## Use a Dimension when
 
-The property:
+The field:
 
 - Names a category
 - Groups or filters other values
@@ -47,17 +47,17 @@ Examples:
 1. Is this the value I want to measure?
 2. Or is this how I want to organize that value?
 
-If it is the value, use a metric. If it organizes the value, use a dimension.
+If it's the value, use a Variable. If it organizes the value, use a Dimension.
 
 ## Do not choose by data type alone
 
-- Employee ID may contain numbers, but it identifies employees and is usually a dimension.
-- Gross Margin is a percentage, but it is a calculated value and is a metric.
-- Date is stored as a date, but it organizes values across time and is a dimension.
-- Headcount is a count, not a list of employees, so it is a metric.
+- Employee ID may contain numbers, but it identifies employees and is usually a Dimension.
+- Gross Margin is a percentage, but it is a calculated value and is a Variable.
+- Date is stored as a date, but it organizes values across time and is a Dimension.
+- Headcount is a count, not a list of employees, so it is a Variable.
 
 ## A common ambiguous case: Account
 
-A source Account or Account Code usually classifies transactions and is a dimension. A modeled line item such as Revenue or Rent Expense is usually a metric.
+A source Account or Account Code usually classifies transactions and is a Dimension. A modeled line item such as Revenue or Rent Expense is usually a Variable.
 
-If several account values roll into one modeled result, Account is the organizing dimension and the modeled result is the metric.
+If several account values roll into one modeled result, Account is the organizing Dimension and the modeled result is the Variable.

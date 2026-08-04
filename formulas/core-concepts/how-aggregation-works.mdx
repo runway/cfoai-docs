@@ -4,9 +4,9 @@ title: "How aggregation works"
 
 Aggregation combines several values into one result. In formulas, aggregation can happen in three related ways.
 
-## 1. Property aggregation
+## 1. Variable aggregation
 
-A property has a default way to roll underlying values into a model cell. Metrics normally use `sum`. Dimensions normally use `first` because they describe a group rather than a numeric total.
+A Variable has a default way to roll underlying values into a model cell. Variables normally use `sum`. Dimensions normally use `first` because they describe a group rather than a numeric total.
 
 This behavior applies when source data contains several records for the same model position.
 
@@ -18,7 +18,7 @@ A formula reference can deliberately select several values. For example:
 Revenue[Department: ANY]
 ```
 
-This selects Revenue across all Department values. If no aggregation function is written, a multi-value metric lookup uses `sum`.
+This selects Revenue across all Department values. If no aggregation function is written, a multi-value Variable lookup uses `sum`.
 
 It is clearer to write the intended aggregation when the choice matters:
 

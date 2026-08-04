@@ -38,7 +38,7 @@
               "formulas/core-concepts/segments-and-segmentations",
               "formulas/core-concepts/choose-where-a-formula-applies",
               {
-                "group": "Properties, metrics, and dimensions",
+                "group": "Variables and Dimensions",
                 "pages": [
                   "formulas/core-concepts/properties-metrics-and-dimensions",
                   "formulas/core-concepts/properties-metrics-and-dimensions/what-is-a-property",

@@ -10,15 +10,15 @@ There are three distinct jobs:
 
 1. **Read:** use `list_formulas` to inspect saved formulas.
 2. **Evaluate:** use `evaluate_formulas` for request-local calculations that must not change the model.
-3. **Write:** use `write_formulas` to create or update saved property formulas.
+3. **Write:** use `write_formulas` to create or update saved Variable formulas.
 
 Do not persist a formula when the user is exploring, testing a hypothesis, or asking for an answer. Do not describe a temporary evaluation as a saved model change.
 
 ## Resolve references
 
-Use search to resolve every property name the user mentions, including the target and referenced properties. Capture the property ID, property type, and data type.
+Use search to resolve every Variable name the user mentions, including the target and referenced Variables. Capture the Variable ID, Variable type, and data type.
 
-Write expressions with readable property names rather than property URIs. Use backticks and short disambiguators when needed.
+Write expressions with readable Variable names rather than Variable URIs. Use backticks and short disambiguators when needed.
 
 ## Respect scenario context
 

@@ -6,7 +6,7 @@ Use `write_formulas` only when the user wants a persistent model change.
 
 ## Workflow
 
-1. Resolve the target and referenced properties.
+1. Resolve the target and referenced Variables.
 2. Identify the scenario.
 3. Determine formula scope from explicit context or a table block.
 4. Read formulas at the exact condition to determine create versus update.
@@ -35,11 +35,11 @@ Inspect the attempted, applied, and rejected counts. Never imply that all items 
 
 Each item requires:
 
-- `property_id`
+- `variable_id`
 - `condition`
 - `expression`
 
-Use `formula_break_id` only for a Date-scoped Formula-period formula.
+Use `formula_range_id` only for a Date-scoped FormulaRange formula.
 
 ## Response behavior
 

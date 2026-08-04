@@ -23,27 +23,29 @@ This selects Revenue across all Department values. If no aggregation function is
 It is clearer to write the intended aggregation when the choice matters:
 
 ```text
-average(Revenue[Department: ANY])
+avg(Revenue[Department: ANY])
 ```
 
 ## 3. Aggregation functions
 
-Aggregation functions let you choose how several values become one result. Supported functions include:
+Aggregation functions let you choose how several values become one result. Available functions:
 
 - `sum`
-- `average`
+- `avg`
 - `min` and `max`
 - `count`
-- `median`
-- `stdev` and `var`
 - `first` and `last`
+
+<Warning>
+  **🚧 Not yet available:** `median`, `stdev`, and `var` are designed but not implemented yet. They will fail with an "Unknown function" error if used today.
+</Warning>
 
 ## Example
 
 If Department Revenue is Sales 50, Marketing 30, and Engineering 20:
 
 - `sum(Revenue[Department: ANY])` returns 100
-- `average(Revenue[Department: ANY])` returns about 33.33
+- `avg(Revenue[Department: ANY])` returns about 33.33
 - `max(Revenue[Department: ANY])` returns 50
 - `count(Revenue[Department: ANY])` returns 3 when all three values are present
 

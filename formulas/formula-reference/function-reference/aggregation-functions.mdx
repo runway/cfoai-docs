@@ -12,15 +12,15 @@ Returns the numeric total.
 sum(Revenue[Department: ANY])
 ```
 
-## average
+## avg
 
 Returns the arithmetic mean, or null when no values exist.
 
 ```text
-average(Revenue[Department: ANY])
+avg(Revenue[Department: ANY])
 ```
 
-Use `average` in new formulas. The older name `avg` remains accepted.
+Use `avg` — it is the function name cfo.ai actually computes today. `average` is not implemented and will fail if used.
 
 ## min and max
 
@@ -48,30 +48,6 @@ first(Revenue[Date.Month: ANY])
 last(Revenue[Date.Month: ANY])
 ```
 
-## median
-
-Returns the middle numeric value, or the midpoint of the two middle values, or null when no values exist.
-
-```text
-median(Revenue[Department: ANY])
-```
-
-## stdev
-
-Returns sample standard deviation. It returns null with fewer than two values.
-
-```text
-stdev(Revenue[Date.Month: ANY])
-```
-
-Use `stdev` in new formulas. The older name `stddev` remains accepted.
-
-## var
-
-Returns sample variance. It returns null with fewer than two values.
-
-```text
-var(Revenue[Date.Month: ANY])
-```
-
-Use `var` in new formulas. The older name `variance` remains accepted.
+<Warning>
+  **🚧 Not yet available:** `median`, `stdev`, and `var` are designed but not implemented. Using them in a formula today will fail with an "Unknown function" error. If you need a median or standard deviation today, it is not currently possible to calculate one directly in a formula.
+</Warning>

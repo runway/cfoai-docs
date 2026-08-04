@@ -1,18 +1,18 @@
 ---
-title: "Work with Formula periods as an agent"
+title: "Work with FormulaRanges as an agent"
 ---
 
-Formula periods such as Actuals and Forecast are stored as formula breaks.
+FormulaRanges such as Actuals and Forecast are the current canonical name for what used to be called formula periods or formula breaks.
 
-## Read periods first
+## Read FormulaRanges first
 
-Call `list_formula_breaks` for the selected scenario before writing a Formula-period formula. Use the returned ID rather than guessing it.
+Call `list_formula_ranges` for the selected scenario before writing a FormulaRange-scoped formula. Use the returned ID rather than guessing it.
 
-The system Actuals and Forecast periods already exist. Do not create a new period for a normal Actuals or Forecast request.
+The system Actuals and Forecast FormulaRanges already exist. Do not create a new one for a normal Actuals or Forecast request.
 
 ## Date scope is required
 
-A `formula_break_id` is valid only when the formula condition includes a Date term.
+A `formula_range_id` is valid only when the formula condition includes a Date term.
 
 Accepted examples:
 
@@ -38,7 +38,7 @@ anySegment
 Department: "Sales"
 ```
 
-A period has nothing to apply to when Date is absent. Resolve scope from a time-based table block or add the correct Date term before writing.
+A FormulaRange has nothing to apply to when Date is absent. Resolve scope from a time-based table block or add the correct Date term before writing.
 
 ## Granularity
 
@@ -46,4 +46,4 @@ Use the table's Date granularity when available. Otherwise use the model default
 
 ## Combining scope
 
-A Formula period can be combined with segmentation and segment conditions. The formula applies only where both the period and segment scope match.
+A FormulaRange can be combined with segmentation and segment conditions. The formula applies only where both the FormulaRange and segment scope match.

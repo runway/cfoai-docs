@@ -1,40 +1,53 @@
 ---
 title: "Integrations"
+sidebarTitle: "Integrations"
+description: "Connect the accounting, HR, spreadsheet, and database sources cfo.ai can pull Actuals from."
 ---
 
-cfo.ai connects to the systems where your financial data already lives, so your Model stays current without manual entry.
+cfo.ai connects to the systems where your financial and operational data already lives, so your Model stays current without manual entry.
 
 <Frame>
-  ![Integrations overview in cfo.ai](/images/integrations.png)
+  ![Integrations directory in cfo.ai](/images/integrations.png)
 </Frame>
 
-## Accounting systems
+## File upload
 
-cfo.ai connects directly to the accounting systems most finance teams already use:
+**CSV / file upload** is a manual option for bringing in a raw file directly. Use it when a live connection is not set up yet, or for a one-off or specialized report a system does not sync automatically.
 
-- **NetSuite** — imports Actuals for revenue, expenses, and balance sheet accounts, including reconciliation against voided or deleted transactions to keep historical Actuals accurate.
-- **QuickBooks Online (QBO)** — imports Actuals for smaller or single-entity businesses, including class and location dimensions where available.
-- **Xero** — imports Actuals for businesses on Xero, including multi-currency accounts.
+## Accounting and ERP
 
-Use an accounting system integration when you want Actuals to update automatically each time your books close.
+- **QuickBooks Online**
+- **Xero**
+- **NetSuite SuiteAnalytics** (via Fivetran)
 
-## Data warehouses and pipelines
+Use an accounting or ERP integration when you want Actuals to update automatically each time your books close.
 
-For teams with data already centralized in a warehouse, cfo.ai can connect through **Fivetran** to sources such as **Snowflake**, bringing in general ledger detail, subledger data, or operational data that lives outside your accounting system.
+## HR
 
-Use a warehouse integration when your data comes from more than one system, needs custom transformation before it reaches cfo.ai, or already flows through an existing pipeline.
+- **Rippling** (via Fivetran)
 
-## Multi-entity businesses
+Connect Rippling to bring headcount, compensation, and other people data into your Model alongside your financials.
 
-If your business has more than one legal entity, cfo.ai can bring in Actuals for each entity separately and combine them into a consolidated view, so entity-level detail and consolidated reporting stay in sync.
+## Spreadsheets
 
-## Keeping data current
+- **Google Sheets** (via Fivetran)
 
-Once an integration is connected, cfo.ai syncs on a regular schedule so Actuals reflect your latest close without a manual import.
+Use a Google Sheets connection when a Variable or driver is still maintained in a spreadsheet outside your other systems.
+
+## Databases
+
+- **PostgreSQL** (via Fivetran)
+- **Amazon RDS for PostgreSQL** (via Fivetran)
+- **Amazon Aurora PostgreSQL** (via Fivetran)
+- **Google Cloud SQL for PostgreSQL** (via Fivetran)
+
+Use a database connection when your data lives in a system of record that does not have a dedicated integration above, but is reachable through one of these PostgreSQL-compatible sources.
+
+## About Fivetran
+
+Most connectors other than CSV upload, QuickBooks Online, and Xero run through **Fivetran**, which handles the underlying sync. You connect the source once, and Fivetran keeps it up to date on a regular schedule.
 
 ## Something look off?
-
-A mismatch between your source system and cfo.ai is usually a sync timing issue, a mapping difference, or a stale transaction that has not been reconciled yet.
 
 <Card title="Ask Ari" icon="sparkles" href="https://app.cfo.ai">
   Ask Ari to check a specific number, account, or entity against its source.

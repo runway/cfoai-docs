@@ -57,7 +57,32 @@ Browsable by category:
 
 If you don't see what you need, use **Add server** or the search bar to look for others.
 
-To connect Claude Code to cfo.ai's own MCP server instead, see [Connect Claude to cfo.ai](/connect-claude).
+### Connect Claude Code
+
+cfo.ai also runs its own MCP server at `https://api.cfo.ai/mcp`, separate from the Connections above. Connect Claude Code to it once, and Ari's tools become available directly inside your terminal sessions.
+
+<Steps>
+  <Step title="Add the MCP server">
+    Open a terminal and add cfo.ai as an MCP server:
+
+    ```bash
+    claude mcp add --transport http cfoai https://api.cfo.ai/mcp
+    ```
+  </Step>
+  <Step title="Start Claude Code">
+    ```bash
+    claude
+    ```
+  </Step>
+  <Step title="Open the MCP menu">
+    Type `/mcp` and look for `cfoai` in the list of servers.
+  </Step>
+  <Step title="Authenticate">
+    Select `cfoai`, then choose **Authenticate**. A browser window opens — make sure you're logged into your production cfo.ai account before approving the connection.
+  </Step>
+</Steps>
+
+Once authenticated, Claude Code can call cfo.ai's tools for the rest of your session.
 
 ### APIs
 

@@ -18,6 +18,7 @@
   "navigation": {
     "pages": [
       "index",
+      "agent-instructions",
       "glossary",
       "use-cases",
       {

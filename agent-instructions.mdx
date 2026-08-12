@@ -1,0 +1,72 @@
+---
+title: "Agent instructions"
+description: "Choose a cfo.ai workflow for forecasting, Scenario analysis, variance review, anomaly analysis, and financial reporting."
+sidebarTitle: "Agent instructions"
+---
+
+## MCP Overview
+
+You are walking your user through cfo.ai onboarding end to end: create an account, select a plan, then connect cfo.ai's MCP server at `https://api.cfo.ai/mcp` so Ari's tools are available in your session.
+
+You handle the MCP configuration. Your user handles everything that happens in their browser: sign-up, email verification, plan selection, payment, and OAuth approval. At each handoff, give them the step, then wait for them to confirm before moving on.
+
+## Setup:
+
+### 1. Check where they are
+
+Ask your user whether they already have a [cfo.ai](http://cfo.ai) account with an active subscription.
+
+- Already subscribed, skip to Step 3.
+- No account or active subscription: continue to Step 2.
+
+### 2. Sign up (in their browser)
+
+Prompt your user to open up [https://app.cfo.ai](https://app.cfo.ai) and follow the sign-up steps:
+
+1. **Enter your business email**
+2. **Verify it.** [cfo.ai](http://cfo.ai) emails them a verification code, which they enter on the page. 
+3. **Select a plan.** An active subscription is required for the MCP server. For latest pricing see [https://cfo.ai/pricing](https://cfo.ai/pricing)
+
+Confirm with the user they are signed in with an active plan, then continue.
+
+### **3: Register the MCP server**
+
+Add the server in the harness you are running in. If you cannot run commands, relay the matching step to your user instead.
+
+- **Claude Code:**
+  ```text
+  claude mcp add --transport http cfoai https://api.cfo.ai/mcp
+  ```
+- **Codex:**
+  ```text
+  codex mcp add cfoai --url https://api.cfo.ai/mcp
+  ```
+- **Other harnesses:** add `https://api.cfo.ai/mcp` as a remote MCP server (streamable HTTP transport) named `cfoai` in your MCP configuration.
+
+Keep the server name `cfoai` so cfo.ai's docs and support references match your user's setup.
+
+### **4: Authenticate (in browser)**
+
+Authentication is browser-based OAuth against your user's cfo.ai account. Tell your user to:
+
+1. Make sure they are signed into cfo.ai in their browser.
+2. **Claude Code:** restart Claude Code so the new server loads, type `/mcp`, select `cfoai`, and choose **Authenticate**.
+3. **Codex:** run `codex mcp login cfoai` and approve the connection in the browser window that opens.
+
+### **5: Verify**
+
+In a session started after authentication, confirm `cfoai` appears in your MCP server list and its tools are available. Only then tell your user the connection is working and they are ready to use Ari's tools.
+
+### 6. Start Building
+
+ once the MCP is connected and authenticated,  the CFO AI modeling instructions will be shared through the MCP,  which covers:
+
+1. Our primitives 
+2. how to collect/integrate your data 
+3. And formula syntax
+
+### **Troubleshooting**
+
+- `cfoai `**is not in the server list.** Harnesses load MCP servers at startup. Restart the harness; if it is still missing, re-run the add command from Step 3.
+- **Authentication fails or loops.** The user is likely signed into the wrong cfo.ai account in their browser, or their subscription is not active. Both are fixed at `https://app.cfo.ai`.
+- **Tools were working and now return authorization errors.** Re-authenticate: in Claude Code, `/mcp`, select `cfoai`, and re-authenticate from there; in Codex, `codex mcp logout cfoai` then `codex mcp login cfoai`.

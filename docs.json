@@ -111,7 +111,13 @@
           }
         ]
       },
-      "integrations"
+      {
+        "group": "Integrations",
+        "pages": [
+          "integrations/integrations-directory",
+          "integrations/mcp-server"
+        ]
+      }
     ]
   },
   "navbar": {
@@ -126,5 +132,12 @@
       "label": "Open cfo.ai",
       "href": "https://app.cfo.ai"
     }
-  }
+  },
+  "redirects": [
+    {
+      "source": "/integrations",
+      "destination": "/integrations/integrations-directory",
+      "permanent": true
+    }
+  ]
 }

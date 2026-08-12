@@ -6,36 +6,45 @@ description: "Connect the accounting, HR, spreadsheet, and database sources cfo.
 
 cfo.ai connects to the systems where your financial and operational data already lives, so your Model stays current without manual entry.
 
+## Standard and premium integrations
+
+Connected sources are classed as standard or premium:
+
+- **Standard**: QuickBooks Online, Xero, Rippling, Google Sheets, and many more.
+- **Premium**: NetSuite SuiteAnalytics and all database connections.
+
+File upload is not a billable integration and doesn't fall into either class.
+
 ## File upload
 
-**CSV / file upload** is a manual option for bringing in a raw file directly. Use it when a live connection is not set up yet, or for a one-off or specialized report a system does not sync automatically.
+**CSV / file upload** is a manual option for bringing in a raw file directly. Use it when a live connection is not set up yet, or for a one-off or specialized report a system does not sync automatically. File upload is not a billable integration.
 
 ## Accounting and ERP
 
-- **QuickBooks Online**
-- **Xero**
-- **NetSuite SuiteAnalytics** (via Fivetran)
+- **QuickBooks Online** (Standard)
+- **Xero** (Standard)
+- **NetSuite SuiteAnalytics** (via Fivetran, Premium)
 
 Use an accounting or ERP integration when you want Actuals to update automatically each time your books close.
 
 ## HR
 
-- **Rippling** (via Fivetran)
+- **Rippling** (via Fivetran, Standard)
 
 Connect Rippling to bring headcount, compensation, and other people data into your Model alongside your financials.
 
 ## Spreadsheets
 
-- **Google Sheets** (via Fivetran)
+- **Google Sheets** (via Fivetran, Standard)
 
-Use a Google Sheets connection when a Variable or driver is still maintained in a spreadsheet outside your other systems.
+Use a Google Sheets connection when a Variable is still maintained in a spreadsheet outside your other systems.
 
 ## Databases
 
-- **PostgreSQL** (via Fivetran)
-- **Amazon RDS for PostgreSQL** (via Fivetran)
-- **Amazon Aurora PostgreSQL** (via Fivetran)
-- **Google Cloud SQL for PostgreSQL** (via Fivetran)
+- **PostgreSQL** (via Fivetran, Premium)
+- **Amazon RDS for PostgreSQL** (via Fivetran, Premium)
+- **Amazon Aurora PostgreSQL** (via Fivetran, Premium)
+- **Google Cloud SQL for PostgreSQL** (via Fivetran, Premium)
 
 Use a database connection when your data lives in a system of record that does not have a dedicated integration above, but is reachable through one of these PostgreSQL-compatible sources.
 

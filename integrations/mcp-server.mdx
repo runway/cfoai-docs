@@ -1,10 +1,18 @@
 ---
 title: "MCP Server"
 sidebarTitle: "MCP Server"
-description: "Connect Claude Code to cfo.ai's own MCP server so Ari's tools are available in your terminal."
+description: "Connect our MCP server to your preferred harness so Ari's tools are available wherever your agents work."
 ---
 
-cfo.ai runs its own MCP server at `https://api.cfo.ai/mcp`, separate from the Connections directory covered in [Integrations Directory](/integrations/integrations-directory). Connect Claude Code to it once, and Ari's tools become available directly inside your terminal sessions.
+cfo.ai runs its own MCP server at `https://api.cfo.ai/mcp`. Any agent that supports remote MCP servers can connect to it, including Claude, Codex, and other clients. This is separate from the Connections directory covered in [Integrations Directory](/integrations/integrations-directory): Connections bring your financial data into cfo.ai, while the MCP server makes cfo.ai's tools available to agents outside it.
+
+Setup below covers Claude Code and Codex.
+
+## Before you start
+
+You need a cfo.ai account with an active subscription. If you don't have one yet, sign up at [cfo.ai](https://app.cfo.ai) first: the MCP server authenticates against your cfo.ai account.
+
+## Claude Code
 
 <Steps>
   <Step title="Add the MCP server">
@@ -23,8 +31,44 @@ cfo.ai runs its own MCP server at `https://api.cfo.ai/mcp`, separate from the Co
     Type `/mcp` and look for `cfoai` in the list of servers.
   </Step>
   <Step title="Authenticate">
-    Select `cfoai`, then choose **Authenticate**. A browser window opens — make sure you're logged into your production cfo.ai account before approving the connection.
+    Select `cfoai`, then choose **Authenticate**. A browser window opens. Make sure you're logged into your cfo.ai account before approving the connection.
   </Step>
 </Steps>
 
-Once authenticated, Claude Code can call cfo.ai's tools for the rest of your session.
+## Codex
+
+<Steps>
+  <Step title="Add the MCP server">
+    Open a terminal and add cfo.ai as an MCP server:
+
+    ```bash
+    codex mcp add cfoai --url https://api.cfo.ai/mcp
+    ```
+  </Step>
+  <Step title="Authenticate">
+    ```bash
+    codex mcp login cfoai
+    ```
+
+    A browser window opens. Make sure you're logged into your cfo.ai account before approving the connection.
+  </Step>
+  <Step title="Verify">
+    Start Codex with `codex`, then type `/mcp` to confirm `cfoai` is connected.
+  </Step>
+</Steps>
+
+## Other agents
+
+Any harness that supports remote MCP servers can connect. Add `https://api.cfo.ai/mcp` as a custom connector or MCP server in your agent's settings, then sign in with your cfo.ai account when the browser prompt appears.
+
+## Agent instructions
+
+Rather have your agent do this? Copy this prompt into it. Your agent will walk you through everything, from sign-up to a working connection, and tell you when it needs you:
+
+```text
+Set up cfo.ai for me. Fetch https://docs.cfo.ai/agent-instructions.md and follow the instructions there. If I don't have a cfo.ai account yet, walk me through creating one first, then connect the cfo.ai MCP server to this harness and verify it's working.
+```
+
+If you are an AI agent reading this page: fetch `https://docs.cfo.ai/agent-instructions.md` and follow it.
+
+Once authenticated, your agent can call Ari's tools directly. If authentication fails, check that you're signed into the right cfo.ai account and that your subscription is active.

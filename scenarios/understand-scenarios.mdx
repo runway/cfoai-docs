@@ -1,0 +1,48 @@
+---
+title: "Understand Scenarios"
+sidebarTitle: "Understand Scenarios"
+description: "Learn what a Scenario is in cfo.ai, how Main and child Scenarios relate, and when to use each."
+---
+
+cfo.ai lets you branch your Model into a Scenario: a separate copy of your Variables, Table Blocks, and Pages that you can change without affecting anyone else's view of the numbers.
+
+## Main and child Scenarios
+
+Every Model has one **Main** Scenario. Main holds the numbers your team treats as the current plan, and it's what most Pages show by default.
+
+A **child Scenario** branches off Main (or off another Scenario) at a point in time. Changes you make in a child Scenario, like updating a formula or adjusting a headcount assumption, apply only there until you decide to bring them back.
+
+Child Scenarios are useful for:
+
+- Modeling a what-if question, like a hiring freeze or a pricing change, without disturbing the plan everyone else is working from.
+- Drafting next quarter's Forecast before you're ready to share it.
+- Comparing two versions of the same plan side by side.
+
+## Rebasing a Scenario
+
+A child Scenario **rebases** onto its parent, meaning its changes stay layered on top of whatever the parent Scenario currently holds. If Main updates (say, Actuals resync from a new integration), a rebasing child Scenario reflects that update too, while still keeping its own changes on top.
+
+## What a Scenario would merge in
+
+Before merging a child Scenario's changes into its parent, you can ask Ari what would change. Ari reads the Scenario's summary and reports the Variables, formulas, and values that differ from the parent, so you can review before anything moves.
+
+## Draft and snapshot Scenarios
+
+cfo.ai also distinguishes:
+
+- **Draft Scenarios** — in-progress work not yet ready to share broadly.
+- **Snapshot Scenarios** — a frozen copy of the Model at a point in time, useful for preserving what a Board deck or a submitted plan looked like when it was sent.
+
+## Undo, redo, and revert
+
+cfo.ai keeps a changelog of every write to a Scenario. You can:
+
+- **Undo** a specific change (or a batch of them).
+- **Redo** a change you undid.
+- **Revert** a Scenario entirely back to an earlier point in its history — this is destructive, since everything after that point is rolled back, so use it only when you're sure.
+
+Ask Ari to show you the changelog, or to explain what changed between two points in time, before deciding to undo or revert.
+
+## Next steps
+
+See [Create and compare Scenarios](/scenarios/create-and-compare-scenarios) for how to branch a new Scenario and view it alongside Main on a Table Block.

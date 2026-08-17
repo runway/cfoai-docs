@@ -48,7 +48,8 @@
               },
               "formulas/core-concepts/how-cfoai-chooses-a-formula",
               "formulas/core-concepts/formula-periods-actuals-and-forecast",
-              "formulas/core-concepts/how-aggregation-works"
+              "formulas/core-concepts/how-aggregation-works",
+              "formulas/core-concepts/dimension-mappings"
             ]
           },
           {
@@ -109,6 +110,34 @@
         "pages": [
           "integrations/integrations-directory",
           "integrations/mcp-server"
+        ]
+      },
+      {
+        "group": "Scenarios",
+        "pages": [
+          "scenarios/understand-scenarios",
+          "scenarios/create-and-compare-scenarios"
+        ]
+      },
+      {
+        "group": "Dashboards",
+        "pages": [
+          "dashboards/pages-and-blocks",
+          "dashboards/build-and-format-tables"
+        ]
+      },
+      {
+        "group": "Automation",
+        "pages": [
+          "automation/skills",
+          "automation/triggers",
+          "automation/guides"
+        ]
+      },
+      {
+        "group": "Headcount",
+        "pages": [
+          "headcount/build-a-headcount-page"
         ]
       }
     ]

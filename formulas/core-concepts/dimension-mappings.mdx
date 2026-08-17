@@ -1,0 +1,39 @@
+---
+title: "Map one Dimension's items to another"
+sidebarTitle: "Dimension mappings"
+description: "Group GL accounts, cost centers, or any other source coordinates into a shared reporting Dimension with a mapping."
+---
+
+A **Dimension mapping** is a one-way lookup that assigns coordinates from one or more source Dimensions to an item in a target Dimension. The most common use is grouping raw GL accounts into a reporting bucket, like mapping account `5001` to `COGS`, but a mapping can key off any Dimension, or combination of Dimensions.
+
+## Choose a direction
+
+Mappings only go one way: pick the shared, canonical Dimension as the **target**, and map each source Dimension into it. If you have GL accounts from two different entities that need to land in the same reporting structure, map each entity's Account Dimension into the same target separately — don't try to map the target back to a source, since a mapping that creates a cycle is refused.
+
+## Create a mapping
+
+Ask Ari to map specific items, for example "Map GL account 5001 to COGS and 6001 to Payroll." For simple one-to-one pairs, this writes the rows directly. A pair whose coordinate already has a rule retargets it in place — nothing is ever silently overwritten elsewhere.
+
+## When a plain pair isn't enough
+
+Some rows need a real condition instead of a simple equality, like a set of accounts ("8001 or 8002 maps to Other Income") or a rule that spans more than one key at once. Ask Ari to write these as a condition instead of a pair; Ari carries this through into the same formula-style logic used elsewhere in the Model.
+
+## Set a catch-all
+
+Every target Dimension can have one **catch-all**: the item shown for any coordinate that no row explicitly matches. Ask Ari to set or clear it. Clearing a catch-all means an unmatched coordinate maps to nothing, rather than to a blank that still gets counted.
+
+## Remove mappings
+
+Ask Ari to:
+
+- **Unmap** specific rows, leaving the rest of the lookup untouched.
+- **Drop** an entire lookup when a source stops feeding into a target altogether.
+
+## See what's already mapped
+
+Ask Ari to read a target Dimension's mappings. It reports every lookup feeding that target, each with its keys, row count, and the pairs, ready to hand back for an edit. It also lists which Table Blocks display the mapping, so you can see where a change would show up.
+
+## Related
+
+- [What is a Variable?](/formulas/core-concepts/properties-metrics-and-dimensions/what-is-a-property)
+- [Segments and segmentations](/formulas/core-concepts/segments-and-segmentations)

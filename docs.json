@@ -110,6 +110,19 @@
           "integrations/integrations-directory",
           "integrations/mcp-server"
         ]
+      },
+      {
+        "group": "Workspace settings",
+        "pages": [
+          "workspace-settings/team-and-workspace",
+          "workspace-settings/billing"
+        ]
+      },
+      {
+        "group": "Dashboards",
+        "pages": [
+          "dashboards/table-view-grammar"
+        ]
       }
     ]
   },

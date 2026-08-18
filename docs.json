@@ -114,7 +114,8 @@
       {
         "group": "Workspace settings",
         "pages": [
-          "workspace-settings/personal-theme"
+          "workspace-settings/personal-theme",
+          "workspace-settings/file-attachments-in-chat"
         ]
       },
       {

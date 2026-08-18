@@ -115,13 +115,16 @@
         "group": "Workspace settings",
         "pages": [
           "workspace-settings/personal-theme",
-          "workspace-settings/file-attachments-in-chat"
+          "workspace-settings/file-attachments-in-chat",
+          "workspace-settings/team-and-workspace",
+          "workspace-settings/billing"
         ]
       },
       {
         "group": "Dashboards",
         "pages": [
-          "dashboards/charts-and-custom-visualizations"
+          "dashboards/charts-and-custom-visualizations",
+          "dashboards/table-view-grammar"
         ]
       }
     ]

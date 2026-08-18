@@ -1,0 +1,38 @@
+---
+title: "Understand table view grammar"
+sidebarTitle: "Table view grammar"
+description: "Understand the breakdown grammar that shapes a Table Block's rows and columns, so you can describe the layout you want precisely."
+---
+
+When you ask Ari to build or reshape a Table Block, the shape of its columns is described in a compact grammar called a **breakdown**. You don't need to write this yourself — Ari does — but knowing the shapes helps you describe what you want precisely.
+
+## The basic forms
+
+- **One Dimension**: `[Department]` splits a row's values across every Department.
+- **A name with spaces**: `[`Spend Type`]` — backticks quote a Dimension name that isn't a single word.
+- **Nested drill-in**: `[Department, Level]` splits by Department, then splits each Department further by Level.
+- **Side-by-side split**: `[Department, {Level, Owner}]` splits by Department, then forks into two parallel breakdowns — one by Level, one by Owner — under each Department.
+- **A branch condition**: `[Department, {Level[Department = "Engineering"], Owner}]` routes the Level breakdown under Engineering specifically, while Owner applies more broadly.
+- **Filtering to specific items**: `[Region in {East, West}]` keeps only the named items instead of showing every item in the Dimension.
+- **A date grain**: `[Date.Month]` buckets a date Dimension at a chosen grain — Day, Week, Month, Quarter, Half, or Year.
+
+## Variables vs. Dimensions as rows
+
+Each row in a table's view is either:
+
+- A **Variable**, which measures something (Revenue, Headcount, Gross Margin), or
+- A **Dimension used as a mapping**, where each cell shows that Dimension's item for its row and column instead of a number — useful for a database-style list of entities and their attributes.
+
+A Variable row can carry its own breakdown, splitting just that one row differently from the rest of the table.
+
+## Transpose
+
+By default, a view with a real measured Variable keeps values on rows and the breakdown (including time) on columns. A mapping-only view flips this automatically, since listing raw source coordinates as columns would create hundreds of them. Ask Ari to transpose explicitly for a database-style list: items down the rows, attributes across the columns.
+
+## When a table comes back empty
+
+An empty result on a table with dates is almost always a **window** problem — the date range or grain the table is set to show — not a breakdown problem. Ask Ari to check the table's window before reworking its breakdown.
+
+## Related
+
+- [Charts and custom visualizations](/dashboards/charts-and-custom-visualizations)

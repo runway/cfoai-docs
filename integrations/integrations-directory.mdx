@@ -17,7 +17,11 @@ File upload is not a billable integration and doesn't fall into either class.
 
 ## File upload
 
-**CSV / file upload** is a manual option for bringing in a raw file directly. Use it when a live connection is not set up yet, or for a one-off or specialized report a system does not sync automatically. File upload is not a billable integration.
+**CSV / Raw File Upload** is a manual option for bringing in a raw file directly. Use it when a live connection is not set up yet, or for a one-off or specialized report a system does not sync automatically. File upload is not a billable integration.
+
+An uploaded file is tracked as its own connection, using its filename until you rename it, so ask Ari by that name if you need to check on it later. After upload, ask Ari whether the file has finished loading — ingestion runs in the background, and a model that ends up with fewer rows than the source file isn't necessarily a problem: a query that intentionally scopes the data down looks the same from the outside as one that's missing rows, so ask Ari to explain what the load actually produced before treating a smaller row count as an error.
+
+This is for bringing a file's data into your Model as Actuals. To attach a file to an Ari chat message instead — for Ari to read a screenshot, PDF, or spreadsheet in the moment — see [Attach files to a chat message](/workspace-settings/file-attachments-in-chat).
 
 ## Accounting and ERP
 
@@ -31,7 +35,14 @@ Use an accounting or ERP integration when you want Actuals to update automatical
 
 - **Rippling** (via Fivetran, Standard)
 
-Connect Rippling to bring headcount, compensation, and other people data into your Model alongside your financials.
+Connect Rippling to bring headcount, compensation, and other people data into your Model alongside your financials. cfo.ai's catalog also lists a much longer roster of HR and payroll systems available to connect (via Merge), including BambooHR, Gusto, Workday, ADP Workforce Now, Paychex, Paycor, Justworks, TriNet, UKG Pro, Deel, Personio, Hibob, and dozens more. If your HR system isn't Rippling, ask Ari to check whether it's in the catalog before assuming you need a file upload or manual entry instead.
+
+## CRM
+
+- **HubSpot** (via Fivetran)
+- **Salesforce** (via Fivetran)
+
+Connect a CRM when Bookings, pipeline, or customer data needs to feed your Model directly, rather than being re-entered from a report export.
 
 ## Spreadsheets
 

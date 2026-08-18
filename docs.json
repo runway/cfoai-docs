@@ -123,7 +123,9 @@
         "group": "Dashboards",
         "pages": [
           "dashboards/pages-and-blocks",
-          "dashboards/build-and-format-tables"
+          "dashboards/build-and-format-tables",
+          "dashboards/charts-and-custom-visualizations",
+          "dashboards/table-view-grammar"
         ]
       },
       {
@@ -138,6 +140,15 @@
         "group": "Headcount",
         "pages": [
           "headcount/build-a-headcount-page"
+        ]
+      },
+      {
+        "group": "Workspace settings",
+        "pages": [
+          "workspace-settings/personal-theme",
+          "workspace-settings/file-attachments-in-chat",
+          "workspace-settings/team-and-workspace",
+          "workspace-settings/billing"
         ]
       }
     ]

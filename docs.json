@@ -110,6 +110,18 @@
           "integrations/integrations-directory",
           "integrations/mcp-server"
         ]
+      },
+      {
+        "group": "Workspace settings",
+        "pages": [
+          "workspace-settings/personal-theme"
+        ]
+      },
+      {
+        "group": "Dashboards",
+        "pages": [
+          "dashboards/charts-and-custom-visualizations"
+        ]
       }
     ]
   },

@@ -1,0 +1,34 @@
+---
+title: "Charts and custom visualizations"
+sidebarTitle: "Charts and visualizations"
+description: "Build charts, scorecards, and other custom visuals backed by live data from your Model."
+---
+
+A Table Block shows your Model as a grid. When you want a trend line, a KPI scorecard, or another visual a grid can't express, ask Ari to build a **code block** instead — a chart or custom visual backed by live data from your Model.
+
+## What a code block can be
+
+Ask Ari for any of:
+
+- A **chart** — trend lines, bar comparisons, breakdowns over time.
+- A **scorecard** — a headline number with a delta, like current-quarter Revenue against target.
+- A **custom layout or interactive control** — a grid of stats, a small form, or another purpose-built view of your data.
+
+## Live data, not a snapshot
+
+A code block reads from named **datasets**, each one a view into your Model — the same Variables, Dimensions, and breakdowns you'd use to build a Table Block. Ari resolves each dataset every time the block renders and every time your Model changes, so a chart on a Page stays current the same way a Table Block does.
+
+A dataset always resolves at the Page's own Scenario, so a single code block can't compare two Scenarios side by side the way a Table Block comparison can — for that, use a Table Block instead. See [Create and compare Scenarios](/scenarios/create-and-compare-scenarios).
+
+## Update a code block
+
+Ask Ari to change an existing code block's visual, its datasets, or its title. Ari rewrites the whole thing rather than patching pieces, since a chart's logic and its data are tied together.
+
+## When to reach for a Table Block instead
+
+Use a Table Block when the numbers themselves, laid out in rows and columns, are what your reader needs — a variance report, a detailed breakdown, anything meant to be read cell by cell. Reach for a code block when the shape of the story matters more than the individual numbers, like a trend or a single headline metric.
+
+## Related
+
+- [Pages and blocks](/dashboards/pages-and-blocks)
+- [Build and format a Table Block](/dashboards/build-and-format-tables)

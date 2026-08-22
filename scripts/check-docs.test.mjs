@@ -24,12 +24,12 @@ function baseFixture() {
       navigation: { pages: ["index"] },
       favicon: {
         light: "/favicon.png",
-        dark: "/favicon-dark.png",
+        dark: "/favicon-dark.png"
       },
       logo: {
         light: "/logo/cfo-ai-logo.svg",
-        dark: "/logo/cfo-ai-logo-dark.svg",
-      },
+        dark: "/logo/cfo-ai-logo-dark.svg"
+      }
     }),
     "index.mdx": [
       "---",
@@ -39,7 +39,7 @@ function baseFixture() {
       "",
       "A verified cfo.ai page.",
       "",
-      "![Example](/images/example.png)",
+      "![Example](/images/example.png)"
     ].join("\n"),
     "favicon.png": "",
     "favicon-dark.png": "",
@@ -47,8 +47,8 @@ function baseFixture() {
     "logo/cfo-ai-logo.svg": VALID_LOGO,
     "logo/cfo-ai-logo-dark.svg": VALID_LOGO.replaceAll(
       'fill="black"',
-      'fill="white"',
-    ),
+      'fill="white"'
+    )
   };
 }
 
@@ -56,7 +56,7 @@ test("accepts a valid repository when supplied the fixture logo checksum", async
   const root = await writeFixture(baseFixture());
   try {
     const result = await checkRepository(root, {
-      expectedLogoSha256: null,
+      expectedLogoSha256: null
     });
     assert.deepEqual(result.findings, []);
     assert.equal(result.ok, true);
@@ -73,12 +73,12 @@ test("accepts cash runway as ordinary financial language", async () => {
     'description: "Forecast cash runway from a financial model."',
     "---",
     "",
-    "Compare hiring plans while keeping at least 12 months of cash runway.",
+    "Compare hiring plans while keeping at least 12 months of cash runway."
   ].join("\n");
   const root = await writeFixture(fixture);
   try {
     const result = await checkRepository(root, {
-      expectedLogoSha256: null,
+      expectedLogoSha256: null
     });
     assert.deepEqual(result.findings, []);
     assert.equal(result.ok, true);
@@ -93,25 +93,25 @@ test("reports a missing configured favicon", async () => {
     navigation: { pages: ["index"] },
     favicon: {
       light: "/missing-favicon.png",
-      dark: "/favicon-dark.png",
+      dark: "/favicon-dark.png"
     },
     logo: {
       light: "/logo/cfo-ai-logo.svg",
-      dark: "/logo/cfo-ai-logo-dark.svg",
-    },
+      dark: "/logo/cfo-ai-logo-dark.svg"
+    }
   });
   const root = await writeFixture(fixture);
   try {
     const result = await checkRepository(root, {
-      expectedLogoSha256: null,
+      expectedLogoSha256: null
     });
     assert.ok(
       result.findings.some(
         (item) =>
           item.code === "missing-asset" &&
-          item.message === "Missing configured asset /missing-favicon.png.",
+          item.message === "Missing configured asset /missing-favicon.png."
       ),
-      `Expected missing configured favicon, received ${JSON.stringify(result.findings)}`,
+      `Expected missing configured favicon, received ${JSON.stringify(result.findings)}`
     );
   } finally {
     await rm(root, { force: true, recursive: true });
@@ -124,27 +124,27 @@ test("uses changed configured logo paths for dark-logo validation", async () => 
     navigation: { pages: ["index"] },
     favicon: {
       light: "/favicon.png",
-      dark: "/favicon-dark.png",
+      dark: "/favicon-dark.png"
     },
     logo: {
       light: "/logo/rebranded.svg",
-      dark: "/logo/rebranded-dark.svg",
-    },
+      dark: "/logo/rebranded-dark.svg"
+    }
   });
   fixture["logo/rebranded.svg"] = VALID_LOGO;
   fixture["logo/rebranded-dark.svg"] = '<svg><path fill="red"/></svg>';
   const root = await writeFixture(fixture);
   try {
     const result = await checkRepository(root, {
-      expectedLogoSha256: null,
+      expectedLogoSha256: null
     });
     assert.ok(
       result.findings.some(
         (item) =>
           item.code === "dark-logo-drift" &&
-          item.file === "logo/rebranded-dark.svg",
+          item.file === "logo/rebranded-dark.svg"
       ),
-      `Expected dark logo drift at the configured path, received ${JSON.stringify(result.findings)}`,
+      `Expected dark logo drift at the configured path, received ${JSON.stringify(result.findings)}`
     );
   } finally {
     await rm(root, { force: true, recursive: true });
@@ -156,78 +156,78 @@ const failureCases = [
   [
     "missing-nav-page",
     () => ({
-      "docs.json": JSON.stringify({ navigation: { pages: ["missing"] } }),
-    }),
+      "docs.json": JSON.stringify({ navigation: { pages: ["missing"] } })
+    })
   ],
   [
     "missing-title",
     () => ({
-      "index.mdx": '---\ndescription: "Description."\n---\nBody.',
-    }),
+      "index.mdx": '---\ndescription: "Description."\n---\nBody.'
+    })
   ],
   [
     "missing-description",
     () => ({
-      "index.mdx": '---\ntitle: "Title"\n---\nBody.',
-    }),
+      "index.mdx": '---\ntitle: "Title"\n---\nBody.'
+    })
   ],
   [
     "missing-asset",
     () => ({
       "index.mdx":
-        '---\ntitle: "Title"\ndescription: "Description."\n---\n![Missing](/images/missing.png)',
-    }),
+        '---\ntitle: "Title"\ndescription: "Description."\n---\n![Missing](/images/missing.png)'
+    })
   ],
   [
     "forbidden-link",
     () => ({
       "index.mdx":
-        '---\ntitle: "Title"\ndescription: "Description."\n---\n[Private](https://notion.so/example)',
-    }),
+        '---\ntitle: "Title"\ndescription: "Description."\n---\n[Private](https://notion.so/example)'
+    })
   ],
   [
     "hidden-page",
     () => ({
       "index.mdx":
-        '---\ntitle: "Title"\ndescription: "Description."\nhidden: true\n---\nBody.',
-    }),
+        '---\ntitle: "Title"\ndescription: "Description."\nhidden: true\n---\nBody.'
+    })
   ],
   [
     "legacy-terminology",
     () => ({
       "index.mdx":
-        '---\ntitle: "Title"\ndescription: "Description."\n---\nCreate a metric in Runway.',
-    }),
+        '---\ntitle: "Title"\ndescription: "Description."\n---\nCreate a metric in Runway.'
+    })
   ],
   [
     "logo-checksum",
     () => ({
-      "logo/cfo-ai-logo.svg": "<svg/>",
+      "logo/cfo-ai-logo.svg": "<svg/>"
     }),
-    { expectedLogoSha256: "expected-checksum" },
+    { expectedLogoSha256: "expected-checksum" }
   ],
   [
     "dark-logo-drift",
     () => ({
-      "logo/cfo-ai-logo-dark.svg": '<svg><path fill="red"/></svg>',
-    }),
-  ],
+      "logo/cfo-ai-logo-dark.svg": '<svg><path fill="red"/></svg>'
+    })
+  ]
 ];
 
 for (const [code, mutation, caseOptions = {}] of failureCases) {
   test(`reports ${code}`, async () => {
     const root = await writeFixture({
       ...baseFixture(),
-      ...mutation(),
+      ...mutation()
     });
     try {
       const result = await checkRepository(root, {
         expectedLogoSha256: null,
-        ...caseOptions,
+        ...caseOptions
       });
       assert.ok(
         result.findings.some((item) => item.code === code),
-        `Expected ${code}, received ${JSON.stringify(result.findings)}`,
+        `Expected ${code}, received ${JSON.stringify(result.findings)}`
       );
     } finally {
       await rm(root, { force: true, recursive: true });

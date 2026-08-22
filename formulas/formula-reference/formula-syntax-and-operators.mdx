@@ -106,7 +106,13 @@ Conditions describe where a saved formula applies:
 [Department in any]
 [Department = "Sales"]
 [Department = "Sales", Date.Month in any]
+$[Department = "Sales"]
+$[]
 ```
+
+`[]` applies broadly across the Model. An unprefixed condition such as `[Department = "Sales"]` continues to match when other Dimensions are present. `$[Department = "Sales"]` matches exactly the named Dimension set, while `$[]` matches only the empty segmentation.
+
+The leading `$` belongs to a saved formula condition. In an expression, an absolute Variable reference instead places `$` after its name, as in `Revenue$[Department = "Sales"]`.
 
 Most users choose scope through the formula editor or tell Ari where the rule should apply.
 

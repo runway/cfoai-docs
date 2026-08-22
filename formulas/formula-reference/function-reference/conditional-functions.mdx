@@ -52,5 +52,5 @@ If Revenue is zero, the division creates a cell-level error and `iferror` return
 You can also use it with date calculations:
 
 ```text
-iferror(datedif(`Start Date`, Date, "M"), 0)
+iferror(datedif(`Start Date`, Date.Month, "M"), 0)
 ```

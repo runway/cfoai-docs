@@ -21,7 +21,20 @@ Copy row and column references from the response when narrowing a follow-up to a
 
 ## Compare or rank existing values
 
-Use the saved table's existing Scenario or time comparison when it already answers the question. For a top-items question, use the `rank` read on one saved Table Block.
+Use the saved table's existing Scenario or time comparison when it already answers the question. For a top-items question, pass the supported `rank` argument to `inspect_table_blocks` with exactly one saved Table Block.
+
+```json
+{
+  "scenario": "Main",
+  "tables": ["Revenue by Customer"],
+  "rank": {
+    "dimension": "Customer",
+    "n": 5,
+    "by": "value",
+    "direction": "desc"
+  }
+}
+```
 
 Historical reads use `as_of_point` against the same saved table and the same target. That keeps the before-and-after comparison tied to one stable artifact.
 

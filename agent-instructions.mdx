@@ -54,7 +54,7 @@ Use a read-only inspection call to verify access before reporting success. If th
 
 ## Understand the Model before changing it
 
-The MCP connection provides cfo.ai's modeling instructions during initialization. Use `inspect_reference` to read the relevant product guidance, and inspect the existing workspace before creating or changing content.
+The MCP connection provides cfo.ai's modeling instructions during initialization. When the connected client exposes `inspect_reference`, use it to read the relevant product guidance. Use the available `inspect_variables`, `inspect_dimensions`, and `inspect_table_blocks` tools to understand the existing workspace before creating or changing content.
 
 The important mental model is:
 

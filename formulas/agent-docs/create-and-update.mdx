@@ -3,14 +3,15 @@ title: "Create and update formulas as an agent"
 description: "Save formulas through visible Table Block targets or table-independent Variable writes, then verify the exact resulting Model values."
 ---
 
-A formula change belongs to the visible Model object the user asked to change. For a table row, column, or cell, that object is the saved Table Block.
+A saved formula belongs to its Variable. When the user selects a visible row, column, or cell, the saved Table Block provides the target that resolves the correct Variable and scope.
 
 ## Write through the saved table
 
-First use `inspect_table_blocks` to obtain the visible row and column references. Then send the related formula edits together using `edit_table_blocks`.
+First use `inspect_table_blocks` to obtain the visible row and column references. Then send the related formula edits together using `edit_table_blocks`. Pass the same requested Scenario to the inspection and the write so they resolve the same saved table.
 
 ```json
 {
+  "scenario": "Main",
   "table": "Operating Plan",
   "edits": [
     {
@@ -33,6 +34,7 @@ A new Variable can be defined and placed on a saved Table Block in the same chan
 
 ```json
 {
+  "scenario": "Main",
   "table": "Operating Plan",
   "edits": [
     {

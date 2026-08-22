@@ -68,7 +68,7 @@ Any harness that supports remote MCP servers can connect. Add `https://api.cfo.a
 
 ## Choose the correct workspace
 
-If your account belongs to one workspace, the connection can use it automatically. If your account belongs to several workspaces, ask the agent to call `list_orgs` and select the correct workspace by its ID or slug before reading or changing data.
+If your account belongs to one workspace, the connection can use it automatically. If your account belongs to several workspaces, ask the agent to call `list_orgs`, select the correct workspace by its ID or slug, and pass that value as `org_id` on each later tool call.
 
 Writes apply to the selected live workspace. Use a Scenario when you want an external agent to work on an alternative plan without changing Main.
 

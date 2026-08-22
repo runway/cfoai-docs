@@ -56,7 +56,7 @@ Both functions accept one expression.
 
 ## median
 
-Returns the middle numeric value, or null when no values exist.
+Returns the middle numeric value when the selection has an odd number of values. When the count is even, it returns the average of the two middle values. It returns null when no values exist.
 
 ```text
 median(`Annual Salary`[Employee in any])

@@ -29,7 +29,7 @@ A rule for every Department item uses:
 [Department in any]
 ```
 
-The unsuffixed condition continues to apply when additional Dimensions are present.
+The unprefixed condition continues to apply when additional Dimensions are present.
 
 ## A rule for one segment
 
@@ -63,5 +63,15 @@ A condition without `$` can continue to match a richer cell address. A condition
 [Department = "Sales"]
 $[Department = "Sales"]
 ```
+
+For a table-independent write, pass the exact condition directly in the supported `condition` field:
+
+```json
+{
+  "condition": "$[Department = \"Sales\"]"
+}
+```
+
+The leading `$` is part of the condition grammar. In an expression, an absolute Variable reference instead places `$` after its name: `Revenue$[Department = "Sales"]`.
 
 Use exact scope only when the user intends that narrower behavior. A rule that omits Date cannot fill dated cells if it matches only its exact Dimension set.

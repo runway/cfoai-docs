@@ -1,14 +1,9 @@
 ---
 title: "Write your first formula"
+description: "Create a Gross Profit formula, choose its scope and Scenario, save it, and verify the resulting Model values."
 ---
 
-This guide walks through a simple formula for Gross Profit.
-
-<Frame>
-  <iframe src="https://grossprofitwalkthrough.runwaydev.com/" className="w-full rounded-xl" style={{ height: "900px", border: "none" }} title="Interactive walkthrough: build the Gross Profit formula" />
-</Frame>
-
-Click into the table above and follow along, or use the steps below.
+Start with a calculation your team can recognize: Gross Profit equals Revenue minus Cost of Goods Sold.
 
 ## Before you begin
 
@@ -33,9 +28,9 @@ Use the Variable names shown in cfo.ai. Wrap names that contain spaces, punctuat
 
 ## 3. Choose where it applies
 
-For a first formula, use the broadest scope so it acts as the default calculation for the Variable.
+For a first formula, use the broadest appropriate scope so it acts as the default calculation for the Variable.
 
-You can add more specific formulas later for a segmentation, a segment, Actuals, or Forecast.
+You can add a more specific formula later for a Dimension, a segment, Actuals, or Forecast.
 
 ## 4. Check the formula
 
@@ -43,14 +38,14 @@ Before saving, confirm that:
 
 - Gross Profit is the target Variable
 - Revenue and Cost of Goods Sold are the intended inputs
-- The formula applies in the intended scenario
+- The formula applies in the intended Scenario.
 - The scope is not more specific than you need
 
 cfo.ai validates the syntax and Variable references when the formula is saved.
 
 ## 5. Review the result
 
-Open a table that contains Gross Profit. Check a few periods and, if the table is segmented, a few Dimension values.
+Open a Table Block that contains Gross Profit. Check a few periods and, if the table is segmented, a few Dimension items.
 
 For example, if Revenue is 100 and Cost of Goods Sold is 40, Gross Profit should be 60.
 
@@ -61,6 +56,14 @@ Once the default formula works, you can add a more specific formula without chan
 - Calculate Gross Profit differently for one department
 - Use a different formula in Forecast
 - Reference another period
-- Aggregate several Dimension values
+- Aggregate several Dimension items.
 
 Use [Choose where a formula applies](/formulas/core-concepts/choose-where-a-formula-applies) before adding an override.
+
+## Ask Ari instead
+
+You can also describe the same outcome:
+
+> Add Gross Profit to this table, calculate it as Revenue minus Cost of Goods Sold, and check the result for the last three months.
+
+Ari can add the visible row, save the calculation, and inspect the resulting values.

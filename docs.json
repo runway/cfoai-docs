@@ -18,9 +18,26 @@
   "navigation": {
     "pages": [
       "index",
-      "agent-instructions",
-      "glossary",
-      "use-cases",
+      {
+        "group": "Get started",
+        "pages": [
+          "getting-started/quickstart",
+          "getting-started/understand-your-workspace",
+          "getting-started/build-your-financial-model",
+          "getting-started/import-a-spreadsheet-model",
+          "glossary",
+          "use-cases"
+        ]
+      },
+      {
+        "group": "Work with Ari",
+        "pages": [
+          "ari/meet-ari",
+          "ari/ask-better-questions",
+          "ari/read-and-change-your-model",
+          "workspace-settings/file-attachments-in-chat"
+        ]
+      },
       {
         "group": "Formulas",
         "pages": [
@@ -37,17 +54,17 @@
               "formulas/core-concepts/segments-and-segmentations",
               "formulas/core-concepts/choose-where-a-formula-applies",
               {
-                "group": "Variables and Dimensions",
+                "group": "Variables and dimensions",
                 "pages": [
-                  "formulas/core-concepts/properties-metrics-and-dimensions/what-is-a-property",
-                  "formulas/core-concepts/properties-metrics-and-dimensions/fpa-model-to-properties",
-                  "formulas/core-concepts/properties-metrics-and-dimensions/dimensional-modeling-to-properties",
-                  "formulas/core-concepts/properties-metrics-and-dimensions/choose-metric-or-dimension",
-                  "formulas/core-concepts/properties-metrics-and-dimensions/worked-example-revenue-by-department"
+                  "formulas/core-concepts/variables-and-dimensions/what-is-a-variable",
+                  "formulas/core-concepts/variables-and-dimensions/financial-model-to-variables-and-dimensions",
+                  "formulas/core-concepts/variables-and-dimensions/dimensional-modeling-to-variables-and-dimensions",
+                  "formulas/core-concepts/variables-and-dimensions/choose-variable-or-dimension",
+                  "formulas/core-concepts/variables-and-dimensions/worked-example-revenue-by-department"
                 ]
               },
               "formulas/core-concepts/how-cfoai-chooses-a-formula",
-              "formulas/core-concepts/formula-periods-actuals-and-forecast",
+              "formulas/core-concepts/actuals-forecast-and-formula-ranges",
               "formulas/core-concepts/how-aggregation-works",
               "formulas/core-concepts/dimension-mappings"
             ]
@@ -55,8 +72,8 @@
           {
             "group": "Formula guides",
             "pages": [
-              "formulas/formula-guides/reference-properties",
-              "formulas/formula-guides/filter-by-dimension-values",
+              "formulas/formula-guides/reference-variables-and-dimensions",
+              "formulas/formula-guides/filter-by-dimension-items",
               "formulas/formula-guides/work-with-dates",
               "formulas/formula-guides/use-conditional-logic",
               "formulas/formula-guides/common-formula-patterns"
@@ -92,14 +109,14 @@
             ]
           },
           {
-            "group": "Formula documentation for agents",
+            "group": "Formula guidance for agents",
             "pages": [
               "formulas/agent-docs/authoring-overview",
               "formulas/agent-docs/read-and-explain",
               "formulas/agent-docs/evaluate-without-saving",
               "formulas/agent-docs/create-and-update",
               "formulas/agent-docs/resolve-scope",
-              "formulas/agent-docs/work-with-formula-periods",
+              "formulas/agent-docs/work-with-formula-ranges",
               "formulas/agent-docs/validate-and-verify"
             ]
           }
@@ -108,8 +125,10 @@
       {
         "group": "Integrations",
         "pages": [
+          "integrations/connect-and-sync-data",
           "integrations/integrations-directory",
-          "integrations/mcp-server"
+          "integrations/mcp-server",
+          "agent-instructions"
         ]
       },
       {
@@ -125,7 +144,8 @@
           "dashboards/pages-and-blocks",
           "dashboards/build-and-format-tables",
           "dashboards/charts-and-custom-visualizations",
-          "dashboards/table-view-grammar"
+          "dashboards/table-view-grammar",
+          "dashboards/share-pages-and-scenarios"
         ]
       },
       {
@@ -138,15 +158,12 @@
       },
       {
         "group": "Headcount",
-        "pages": [
-          "headcount/build-a-headcount-page"
-        ]
+        "pages": ["headcount/build-a-headcount-page"]
       },
       {
         "group": "Workspace settings",
         "pages": [
           "workspace-settings/personal-theme",
-          "workspace-settings/file-attachments-in-chat",
           "workspace-settings/team-and-workspace",
           "workspace-settings/billing"
         ]
@@ -168,8 +185,93 @@
   },
   "redirects": [
     {
+      "source": "/formulas",
+      "destination": "/formulas/get-started/understand-the-formula-model",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/get-started",
+      "destination": "/formulas/get-started/understand-the-formula-model",
+      "permanent": true
+    },
+    {
       "source": "/integrations",
       "destination": "/integrations/integrations-directory",
+      "permanent": true
+    },
+    {
+      "source": "/ari",
+      "destination": "/ari/meet-ari",
+      "permanent": true
+    },
+    {
+      "source": "/scenarios",
+      "destination": "/scenarios/understand-scenarios",
+      "permanent": true
+    },
+    {
+      "source": "/dashboards",
+      "destination": "/dashboards/pages-and-blocks",
+      "permanent": true
+    },
+    {
+      "source": "/automation",
+      "destination": "/automation/skills",
+      "permanent": true
+    },
+    {
+      "source": "/untitled-page",
+      "destination": "/agent-instructions",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/core-concepts/properties-metrics-and-dimensions",
+      "destination": "/formulas/core-concepts/variables-and-dimensions/what-is-a-variable",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/core-concepts/properties-metrics-and-dimensions/what-is-a-property",
+      "destination": "/formulas/core-concepts/variables-and-dimensions/what-is-a-variable",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/core-concepts/properties-metrics-and-dimensions/fpa-model-to-properties",
+      "destination": "/formulas/core-concepts/variables-and-dimensions/financial-model-to-variables-and-dimensions",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/core-concepts/properties-metrics-and-dimensions/dimensional-modeling-to-properties",
+      "destination": "/formulas/core-concepts/variables-and-dimensions/dimensional-modeling-to-variables-and-dimensions",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/core-concepts/properties-metrics-and-dimensions/choose-metric-or-dimension",
+      "destination": "/formulas/core-concepts/variables-and-dimensions/choose-variable-or-dimension",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/core-concepts/properties-metrics-and-dimensions/worked-example-revenue-by-department",
+      "destination": "/formulas/core-concepts/variables-and-dimensions/worked-example-revenue-by-department",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/formula-guides/reference-properties",
+      "destination": "/formulas/formula-guides/reference-variables-and-dimensions",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/formula-guides/filter-by-dimension-values",
+      "destination": "/formulas/formula-guides/filter-by-dimension-items",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/core-concepts/formula-periods-actuals-and-forecast",
+      "destination": "/formulas/core-concepts/actuals-forecast-and-formula-ranges",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/agent-docs/work-with-formula-periods",
+      "destination": "/formulas/agent-docs/work-with-formula-ranges",
       "permanent": true
     }
   ]

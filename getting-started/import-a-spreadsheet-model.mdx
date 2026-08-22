@@ -1,0 +1,66 @@
+---
+title: "Import an existing spreadsheet model"
+sidebarTitle: "Import a spreadsheet model"
+description: "Give Ari an Excel workbook, spreadsheet export, CSV, or financial report and rebuild its business logic as a native cfo.ai Model."
+---
+
+If your financial model already lives in a spreadsheet, ask Ari to rebuild it as a native cfo.ai Model. Ari uses the source as evidence of how the business works, then recreates its data, assumptions, formulas, Scenarios, and reporting views.
+
+## Start with the original file
+
+Attach the Excel workbook, spreadsheet export, CSV, PDF, or other readable financial-model source to your Ari conversation.
+
+Then say whether you want Ari to analyze the file or rebuild it:
+
+> Import this workbook into cfo.ai. Rebuild the revenue forecast, hiring plan, operating expenses, financial statements, and the Scenarios shown in the file.
+
+If you only want Ari to explain the file, say that directly:
+
+> Review this workbook and explain how the forecast works. Do not change the Model.
+
+## What Ari looks for
+
+Ari examines the source to understand:
+
+- Which sheets contain inputs, source data, calculations, financial statements, or reporting views.
+- How the sheets depend on each other.
+- Which repeated rows, columns, or sheet groups represent business Dimensions.
+- The source's time horizon, reporting grain, and Actuals cutoff.
+- The assumptions and formulas that produce the visible results.
+- Alternative cases that should become Scenarios.
+- Missing inputs, broken references, or source numbers that do not reconcile.
+
+When a workbook contains formulas, Ari can inspect both the saved formulas and the values shown in the file. A PDF or values-only export provides less evidence, so any inferred business logic should be identified as an assumption.
+
+## What the rebuilt Model contains
+
+A native rebuild expresses the underlying business concepts directly:
+
+- Repeated department, customer, employee, product, or entity sections become shared Dimensions.
+- Revenue, payroll, assumptions, balances, and other financial results become reusable Variables.
+- Spreadsheet calculations become cfo.ai formulas.
+- Closed historical data and future planning logic are separated using Last close and formula ranges.
+- Statement and reporting sheets become Pages with saved Table Blocks.
+- Alternative plans become Scenarios when the source and your request support that interpretation.
+
+The goal is a Model you can operate and update, not a cell-for-cell copy of the old spreadsheet layout.
+
+## Review the result
+
+Ask Ari to compare the rebuilt values with the source workbook, explain any differences, and list the assumptions it had to infer.
+
+> Reconcile the rebuilt revenue, payroll, and cash totals to the source workbook for every quarter. Explain any difference you cannot resolve.
+
+Pay particular attention to:
+
+- The Actuals cutoff and the first Forecast period.
+- The business categories used to segment the Model.
+- Imported source totals versus calculated subtotals.
+- Scenario names and assumptions.
+- Existing workspace content that should remain unchanged.
+
+## Related
+
+- [Attach files to an Ari conversation](/workspace-settings/file-attachments-in-chat)
+- [Build a financial model](/getting-started/build-your-financial-model)
+- [Understand the formula model](/formulas/get-started/understand-the-formula-model)

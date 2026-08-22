@@ -1,0 +1,71 @@
+---
+title: "Connect and sync your data"
+sidebarTitle: "Connect your data"
+description: "Connect an accounting, HR, CRM, spreadsheet, database, or file source, then confirm when its data is ready to use in cfo.ai."
+---
+
+Integrations bring financial and operating data into your cfo.ai Model. Connect a source when real accounting, people, customer, or spreadsheet history should inform your analysis.
+
+## Choose the right source
+
+Common starting points include:
+
+- Accounting systems such as QuickBooks Online, Xero, or NetSuite.
+- HR and payroll systems such as Rippling, Gusto, BambooHR, or Workday.
+- CRM systems such as HubSpot or Salesforce.
+- Google Sheets or a PostgreSQL-compatible database.
+- A CSV or another supported file-upload flow for a source that is not connected directly.
+
+Available sources and plan entitlements can vary. Ask Ari to check the catalog for the system you use.
+
+## Connect a business system
+
+<Steps>
+  <Step title="Tell Ari what you want to connect">
+    Name the source and what you want to use it for.
+
+    > Connect QuickBooks Online so we can build a monthly profit and loss statement.
+
+  </Step>
+  <Step title="Approve the connection">
+    Ari opens or links you to the connection flow. Complete the sign-in and approval in your browser. Ari cannot enter your password or approve access for you.
+  </Step>
+  <Step title="Wait for the initial load">
+    cfo.ai starts loading the connected data after the source links. The import can continue in the background while you work on something else.
+  </Step>
+  <Step title="Check what arrived">
+    Ask Ari whether the connection has finished, when data was last loaded, and which information is ready for analysis.
+
+    > Check whether QuickBooks finished syncing and tell me which accounting periods are available.
+
+  </Step>
+</Steps>
+
+## Upload a file
+
+If you attach a CSV in Ari chat, choose whether it should become a data source or stay attached only to the conversation.
+
+- **Use as a data source** when the file's rows should become available in the Model.
+- **Use in chat only** when Ari should read or summarize the file without importing it.
+
+An uploaded data source is identified by its filename until you rename it. If the same filename already backs a connection, cfo.ai asks for confirmation before replacing it.
+
+If the file is an existing financial model rather than a source-data export, ask Ari to [import and rebuild the spreadsheet model](/getting-started/import-a-spreadsheet-model) instead of treating the workbook as an ordinary data connection.
+
+## Understand sync status
+
+A connected source is ready only after its background load completes. A linked account, started import, or uploaded file does not by itself mean the resulting data is already available.
+
+If the Model contains fewer rows than the source file, ask Ari which source records were included. A saved query may intentionally filter the source to match your request.
+
+## Connections for external tools
+
+An integration imports business data into cfo.ai. A connected external MCP server or API gives Ari access to another service's tools. The cfo.ai MCP server does the opposite: it lets an outside AI client use cfo.ai's tools.
+
+These are separate connection types with different setup and access controls.
+
+## Related
+
+- [Browse the integrations directory](/integrations/integrations-directory)
+- [Connect the cfo.ai MCP server](/integrations/mcp-server)
+- [Attach files to a chat message](/workspace-settings/file-attachments-in-chat)

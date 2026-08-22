@@ -9,9 +9,9 @@ const DEFAULT_LOGO_SHA256 =
   "ce96c268d5ac58b770445388de7f6a8991b3e925db6f4d3d2046206cb9129494";
 const FORBIDDEN_LINK =
   /https?:\/\/(?:[^/\s]+\.)?(?:notion\.so|runwaydev\.com|docs\.runway\.com)|https?:\/\/localhost\b/gi;
-const LEGACY_TERM = /\b(?:Runway|metrics?|drivers?|properties)\b/gi;
-const LOCAL_ASSET =
-  /(?:!\[[^\]]*]\(|\bsrc=["'])(\/(?:images|logo)\/[^)"']+)/g;
+const LEGACY_TERM =
+  /\b(?:metrics?|drivers?|properties)\b|(?<!\bcash\s)\brunway\b/gi;
+const LOCAL_ASSET = /(?:!\[[^\]]*]\(|\bsrc=["'])(\/(?:images|logo)\/[^)"']+)/g;
 
 function finding(code, file, message) {
   return { code, file, message };
@@ -24,7 +24,10 @@ function frontmatterValue(contents, key) {
     .split("\n")
     .find((candidate) => candidate.startsWith(`${key}:`));
   if (!line) return null;
-  return line.slice(key.length + 1).trim().replace(/^["']|["']$/g, "");
+  return line
+    .slice(key.length + 1)
+    .trim()
+    .replace(/^["']|["']$/g, "");
 }
 
 function collectPages(value, pages = []) {
@@ -61,7 +64,7 @@ function sha256(contents) {
 
 export async function checkRepository(
   root,
-  { expectedLogoSha256 = DEFAULT_LOGO_SHA256 } = {}
+  { expectedLogoSha256 = DEFAULT_LOGO_SHA256 } = {},
 ) {
   const findings = [];
   const configPath = join(root, "docs.json");
@@ -71,7 +74,11 @@ export async function checkRepository(
     config = JSON.parse(await readFile(configPath, "utf8"));
   } catch (error) {
     findings.push(
-      finding("invalid-docs-json", "docs.json", `Invalid JSON: ${error.message}`)
+      finding(
+        "invalid-docs-json",
+        "docs.json",
+        `Invalid JSON: ${error.message}`,
+      ),
     );
     return { ok: false, findings };
   }
@@ -82,7 +89,7 @@ export async function checkRepository(
     const displayPage = `${page}.mdx`;
     if (!existsSync(pagePath)) {
       findings.push(
-        finding("missing-nav-page", "docs.json", `Missing ${displayPage}.`)
+        finding("missing-nav-page", "docs.json", `Missing ${displayPage}.`),
       );
       continue;
     }
@@ -90,7 +97,7 @@ export async function checkRepository(
     const contents = await readFile(pagePath, "utf8");
     if (!frontmatterValue(contents, "title")) {
       findings.push(
-        finding("missing-title", displayPage, "Frontmatter requires title.")
+        finding("missing-title", displayPage, "Frontmatter requires title."),
       );
     }
     if (!frontmatterValue(contents, "description")) {
@@ -98,13 +105,17 @@ export async function checkRepository(
         finding(
           "missing-description",
           displayPage,
-          "Frontmatter requires description."
-        )
+          "Frontmatter requires description.",
+        ),
       );
     }
     if (frontmatterValue(contents, "hidden") === "true") {
       findings.push(
-        finding("hidden-page", displayPage, "Navigated pages cannot be hidden.")
+        finding(
+          "hidden-page",
+          displayPage,
+          "Navigated pages cannot be hidden.",
+        ),
       );
     }
 
@@ -115,8 +126,8 @@ export async function checkRepository(
           finding(
             "missing-asset",
             displayPage,
-            `Missing local asset ${match[1]}.`
-          )
+            `Missing local asset ${match[1]}.`,
+          ),
         );
       }
     }
@@ -125,8 +136,8 @@ export async function checkRepository(
         finding(
           "forbidden-link",
           displayPage,
-          "Private or legacy documentation link found."
-        )
+          "Private or legacy documentation link found.",
+        ),
       );
     }
     FORBIDDEN_LINK.lastIndex = 0;
@@ -135,8 +146,8 @@ export async function checkRepository(
         finding(
           "legacy-terminology",
           displayPage,
-          "Legacy product terminology found."
-        )
+          "Legacy product terminology found.",
+        ),
       );
     }
     LEGACY_TERM.lastIndex = 0;
@@ -144,7 +155,7 @@ export async function checkRepository(
 
   const configuredAssets = new Set([
     ...collectRootRelativeAssets(config.favicon),
-    ...collectRootRelativeAssets(config.logo)
+    ...collectRootRelativeAssets(config.logo),
   ]);
   for (const asset of configuredAssets) {
     const assetPath = join(root, asset.slice(1));
@@ -155,24 +166,24 @@ export async function checkRepository(
         finding(
           "missing-asset",
           relative(root, assetPath),
-          "Missing configured light logo."
-        )
+          "Missing configured light logo.",
+        ),
       );
     } else if (asset === config.logo?.dark) {
       findings.push(
         finding(
           "missing-asset",
           relative(root, assetPath),
-          "Missing configured dark logo."
-        )
+          "Missing configured dark logo.",
+        ),
       );
     } else {
       findings.push(
         finding(
           "missing-asset",
           "docs.json",
-          `Missing configured asset ${asset}.`
-        )
+          `Missing configured asset ${asset}.`,
+        ),
       );
     }
   }
@@ -192,8 +203,8 @@ export async function checkRepository(
         finding(
           "logo-checksum",
           relative(root, lightPath),
-          "Light logo does not match the supplied source."
-        )
+          "Light logo does not match the supplied source.",
+        ),
       );
     }
     if (darkLogo !== lightLogo.replaceAll('fill="black"', 'fill="white"')) {
@@ -201,8 +212,8 @@ export async function checkRepository(
         finding(
           "dark-logo-drift",
           relative(root, darkPath),
-          "Dark logo must differ only by black-to-white fill replacement."
-        )
+          "Dark logo must differ only by black-to-white fill replacement.",
+        ),
       );
     }
   }

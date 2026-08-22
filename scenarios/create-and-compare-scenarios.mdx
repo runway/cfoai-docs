@@ -4,11 +4,17 @@ sidebarTitle: "Create and compare"
 description: "Branch a new Scenario, show it alongside Main on a Table Block, and ask Ari to compare the two."
 ---
 
+Use a Scenario when you want to save an alternative plan while keeping Main unchanged. Use a saved Table Block comparison to view the two versions side by side.
+
 ## Create a Scenario
 
-Ask Ari to branch a new Scenario, for example: "Create a Scenario called Hiring Freeze off Main." Ari names it, sets its parent, and it starts as an exact copy of the parent at that moment.
+Ask Ari to create an editable Scenario from Main:
 
-Work inside a Scenario the same way you work in Main: update Variables, change formulas, add headcount, or restructure Pages. Nothing you do there changes Main until you merge it back.
+> Create a Scenario called Hiring Freeze from Main.
+
+The Scenario inherits Main and keeps any changes you make separately. Work inside it by updating Variables, changing formulas, adjusting headcount, or reorganizing Pages.
+
+An editable Scenario is created from Main. If you need to preserve another Scenario exactly as it exists now, ask Ari to create a read-only Snapshot instead.
 
 ## Compare Scenarios on a Table Block
 
@@ -18,15 +24,19 @@ A Table Block can show one or more Scenarios beside its baseline. Ask Ari to add
 - **Layout** — compared Scenarios can sit in columns or in rows.
 - **Measures** — the raw value, the delta, the percent difference, or some combination.
 
-A Table Block compares across Scenarios or across time, never both at once. If a table is already set up to compare against an earlier period, adding a Scenario comparison replaces that time comparison.
+A Table Block compares across Scenarios or across a shifted time period, but those two comparison modes cannot be active together. The table can still show ordinary monthly columns while comparing Scenarios.
 
-## Ask Ari to compare without building a table
+## Ask Ari about existing Scenario values
 
-You don't need a saved Table Block to compare two Scenarios. Ask Ari something like "How does Operating Expense in the Hiring Freeze Scenario compare to Main for next quarter?" and Ari calculates both and reports the difference directly.
+If a saved table already contains the relevant information, ask Ari to compare what is visible in each Scenario:
+
+> How does Operating Expense in the Hiring Freeze Scenario compare with Main for next quarter?
+
+If the comparison needs a new saved layout, Ari can add a comparison to a Table Block or create a separate analysis table when you authorize that change.
 
 ## Review before merging
 
-Before bringing a child Scenario's changes into its parent, ask Ari what would change. Ari reports every Variable, formula, and value that differs so you can review the impact before anything moves into the Scenario your team relies on.
+Before merging, ask Ari what would change. Review the affected Model content and remember that a successful merge applies those changes to Main and removes the merged Scenario.
 
 ## Related
 

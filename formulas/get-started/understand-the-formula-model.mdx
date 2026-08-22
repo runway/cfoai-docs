@@ -1,10 +1,11 @@
 ---
 title: "Understand the formula model"
+description: "Learn how Variables, Dimensions, formula expressions, scope, time, and Scenarios work together in a cfo.ai Model."
 ---
 
-A formula tells cfo.ai how to calculate a Variable. The Variable is the result you want to produce, and the formula is the calculation used to produce it.
+A formula tells cfo.ai how to calculate a Variable. The Variable names the result, the expression defines the calculation, and the formula's scope determines which Model values it controls.
 
-If Variables and Dimensions are new to you, start with [Variables and Dimensions](/formulas/core-concepts/properties-metrics-and-dimensions).
+If these concepts are new, start with [What is a Variable?](/formulas/core-concepts/variables-and-dimensions/what-is-a-variable).
 
 For example, a **Gross Profit** Variable might use this formula:
 
@@ -14,14 +15,14 @@ Revenue - `Cost of Goods Sold`
 
 Variable names with spaces are wrapped in backticks.
 
-## A formula has two parts
+## Every formula has an expression and a scope
 
 Every saved formula has:
 
-- An **expression**, which describes what to calculate
-- A **scope**, which describes where the formula applies
+- An **expression** describes what to calculate.
+- A **scope** describes which Dimensions, segments, or time ranges the calculation applies to.
 
-The expression above calculates Gross Profit. Its scope might apply everywhere, whenever the model is broken down by Department, or only when Department is Sales.
+The expression above calculates Gross Profit. Its scope might apply everywhere, whenever the Model is segmented by Department, or only to Department = Sales.
 
 ## A Variable can have more than one formula
 
@@ -31,20 +32,34 @@ A Variable can use different formulas in different parts of a model. You might u
 - A different formula for a particular department
 - One formula for Actuals and another for Forecast
 
-cfo.ai chooses the most relevant formula for each value it calculates. A specific formula can override a broader formula without replacing it everywhere.
+cfo.ai chooses the matching formula for each value it calculates. A specific formula can override a broader formula without replacing the default everywhere.
 
 ## Variables and Dimensions do different jobs
 
-A **Variable** is calculated or aggregated. A **Dimension** organizes values into groups.
+A **Variable** holds a value. A **Dimension** organizes that value by a business category or time period.
 
-When Revenue is shown by Department, Revenue is the Variable being measured. Department is the Dimension used to organize it, and Sales is one segment within that Dimension.
+When Revenue is shown by Department, Revenue is the Variable, Department is the Dimension, and Sales is a Dimension item. Revenue for Sales is a segment of Revenue.
 
-## References follow the current context
+## References follow the current cell
 
-A plain Variable reference normally follows the current segment. If a formula is calculating Revenue for Sales, a reference to `Headcount` uses Sales headcount when that Variable is available in the same context.
+A plain Variable reference follows the current segment. If a formula is calculating a value for Sales in March, a reference to `Headcount` reads the Sales headcount for the same period when that context applies.
 
-You can also ask for a specific segment, several segments, every value of a Dimension, or an absolute value that does not inherit the current segment.
+You can choose a different segment explicitly:
+
+```text
+Revenue[Department = "Sales"]
+```
+
+Use a suffix `$` when a reference should not inherit the current segment:
+
+```text
+Revenue$[Department = "Sales"]
+```
+
+## Time and Scenarios provide context
+
+The same Variable can use different formulas in Actuals and Forecast, and a Scenario can hold its own version of a plan. Name the Scenario and formula range whenever that choice matters to the result.
 
 ## Next step
 
-Use [Write your first formula](/formulas/get-started/write-your-first-formula) to create a simple Variable formula and check its result.
+Use [Write your first formula](/formulas/get-started/write-your-first-formula) to create a calculation and verify the values it produces.

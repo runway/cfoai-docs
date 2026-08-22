@@ -1,34 +1,36 @@
 ---
 title: "Use Ari for formula work"
+description: "Ask Ari to explain saved formulas, validate a proposed rule, update a visible Model calculation, and verify the result."
 ---
 
-Ari can help you understand, test, and change formulas in CFO.ai. You can describe the business rule in plain language instead of writing the full expression yourself.
+Ari can help you understand, review, and change formulas in cfo.ai. Describe the business rule in plain language instead of writing the full expression yourself.
 
 ## What Ari can do
 
 Ari can:
 
 - Find and explain formulas on a Variable
-- Check how a formula changes across segments or FormulaRanges
-- Test a calculation without changing the model
+- Check how a formula changes across segments or formula ranges.
+- Answer questions from existing saved Model data.
+- Validate a supported proposed change without applying it.
 - Validate formula syntax and references
 - Create or update formulas
-- Apply a formula to a table, segmentation, segment, Actuals, or Forecast
+- Apply a formula to a table, Dimension, segment, Actuals, or Forecast.
 - Read calculated values after a change
 
 ## Decide whether to save
 
 Tell Ari whether you are exploring or changing the model.
 
-For analysis that should not be saved:
+For analysis based on saved information:
 
-> Calculate contribution margin by Department without changing the model.
+> Explain the existing contribution margin by Department without changing the Model.
 
 For a persistent change:
 
-> Set Gross Profit to Revenue minus Cost of Goods Sold in the Base scenario.
+> Add Gross Profit to the operating plan and calculate it as Revenue minus Cost of Goods Sold in Main.
 
-If you do not want a write, say so directly. Ari can evaluate temporary formulas through the same calculation engine without creating a Variable, formula, or table.
+If you do not want a write, say so directly. Ari can inspect existing values or validate a supported draft without changing the Model. A new calculated series requires a saved, visible Model row.
 
 ## Give Ari useful context
 
@@ -37,12 +39,12 @@ Include these details when they matter:
 - The target Variable
 - The business calculation
 - The table or page
-- The segmentation or segment
+- The Dimension or segment.
 - Actuals, Forecast, or all periods
-- The scenario to use
+- The Scenario to use.
 
 You do not need to provide Variable IDs or formula conditions. Ari resolves those from the model.
 
 ## Review the result
 
-When Ari reads or writes formulas, CFO.ai shows formula cards with the Variable, scope, and expression. Review those cards before moving on to a related change.
+After a change, ask Ari to check the visible values, the formula's scope, and the Scenario where the result was saved.

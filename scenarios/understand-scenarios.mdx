@@ -1,16 +1,16 @@
 ---
 title: "Understand Scenarios"
 sidebarTitle: "Understand Scenarios"
-description: "Learn what a Scenario is in cfo.ai, how Main and child Scenarios relate, and when to use each."
+description: "Understand Main, editable Scenarios, automatic inheritance, read-only Snapshots, comparisons, and Scenario history."
 ---
 
-cfo.ai lets you branch your Model into a Scenario: a separate copy of your Variables, Table Blocks, and Pages that you can change without affecting anyone else's view of the numbers.
+A Scenario lets you explore a different version of your Model without changing Main. Use one when a pricing decision, hiring plan, financing event, or other assumption needs its own saved alternative.
 
 ## Main and child Scenarios
 
 Every Model has one **Main** Scenario. Main holds the numbers your team treats as the current plan, and it's what most Pages show by default.
 
-A **child Scenario** branches off Main (or off another Scenario) at a point in time. Changes you make in a child Scenario, like updating a formula or adjusting a headcount assumption, apply only there until you decide to bring them back.
+An editable Scenario branches from Main. Changes you make in that Scenario, such as updating a formula or adjusting a headcount assumption, apply there until you decide whether to merge them into Main.
 
 Child Scenarios are useful for:
 
@@ -18,28 +18,31 @@ Child Scenarios are useful for:
 - Drafting next quarter's Forecast before you're ready to share it.
 - Comparing two versions of the same plan side by side.
 
-## Rebasing a Scenario
+## How a Scenario stays current
 
-A child Scenario **rebases** onto its parent, meaning its changes stay layered on top of whatever the parent Scenario currently holds. If Main updates (say, Actuals resync from a new integration), a rebasing child Scenario reflects that update too, while still keeping its own changes on top.
+An editable Scenario automatically inherits updates from Main while keeping its own changes. For example, refreshed accounting data can appear in both Main and your hiring-plan Scenario, while the alternative hiring assumption remains specific to the Scenario.
+
+Connected source data is shared. A Scenario changes the Model rules, values, and presentation that differ from Main; it does not create a private copy of an integration.
 
 ## What a Scenario would merge in
 
-Before merging a child Scenario's changes into its parent, you can ask Ari what would change. Ari reads the Scenario's summary and reports the Variables, formulas, and values that differ from the parent, so you can review before anything moves.
+Before merging a Scenario, ask Ari what would change. Ari can inspect the saved change summary and explain which Variables, formulas, values, Pages, or tables differ from Main.
 
-## Draft and snapshot Scenarios
+Merging applies the Scenario's changes to Main and removes the merged Scenario. Review the affected changes before approving the merge.
 
-cfo.ai also distinguishes:
+## Snapshots preserve a point in time
 
-- **Draft Scenarios** — in-progress work not yet ready to share broadly.
-- **Snapshot Scenarios** — a frozen copy of the Model at a point in time, useful for preserving what a Board deck or a submitted plan looked like when it was sent.
+A **Snapshot** freezes Main or an editable Scenario at a specific point in its history. It is read-only and cannot be merged.
 
-## Undo, redo, and revert
+Use a Snapshot to preserve a submitted budget, board-reporting baseline, or the plan your team approved at a particular date.
+
+## Review and reverse changes
 
 cfo.ai keeps a changelog of every write to a Scenario. You can:
 
-- **Undo** a specific change (or a batch of them).
+- **Undo** a specific change or a related batch of changes.
 - **Redo** a change you undid.
-- **Revert** a Scenario entirely back to an earlier point in its history — this is destructive, since everything after that point is rolled back, so use it only when you're sure.
+- **Revert** a Scenario to an earlier point in its history. This rolls back later changes, so review the impact first.
 
 Ask Ari to show you the changelog, or to explain what changed between two points in time, before deciding to undo or revert.
 

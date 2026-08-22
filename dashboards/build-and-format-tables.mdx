@@ -4,14 +4,14 @@ sidebarTitle: "Build and format tables"
 description: "Set what a Table Block calculates, then adjust how it's presented, without disturbing the other."
 ---
 
-A Table Block has two layers that you (or Ari) can change independently: **what it calculates** and **how it's presented**. Keeping them separate means you can restyle a table without touching its numbers, or restructure its numbers without losing your formatting.
+A Table Block has two concerns that you or Ari can change independently: **what it calculates** and **how it is presented**. You can restyle a table without changing its numbers, or restructure its numbers without losing the surrounding presentation.
 
 ## What a Table Block calculates
 
 Ask Ari to set:
 
 - **Variables** — which Variables appear, in what order, each becoming a row.
-- **Breakdown** — how to split those Variables across columns, by one Dimension or several nested or side-by-side Dimensions, or by a date grain like month or quarter.
+- **Dimensions and time** — how to segment those Variables by one or more business categories, or by a Date grain such as month or quarter.
 - **Window** — the date range and grain a new table shows. Reconfiguring an existing table's Variables leaves its window alone; change the window through presentation instead.
 - **Transpose** — flip rows and columns, useful for a database-style list of items with attributes across the top instead of a wide row of dates.
 
@@ -22,7 +22,7 @@ Ask Ari to check a table's declaration for problems, like an axis pointing at a 
 Once a table calculates the right thing, ask Ari to adjust its presentation without touching the calculation:
 
 - **Rename** the block's title.
-- **Columns** — widths, and whether the formula column that shows the rule behind a cell is visible.
+- **Columns** — widths and whether the formula column is visible.
 - **Visibility** — hide or show specific rows or columns without deleting them.
 - **Window** — change the shown date range or grain on an existing table.
 - **Comparison** — show another Scenario, or an earlier period, alongside the baseline. See [Create and compare Scenarios](/scenarios/create-and-compare-scenarios).
@@ -37,6 +37,12 @@ Ask Ari to copy an existing table onto a new or different Page. The original is 
 ## Custom visualizations
 
 When a grid isn't the right shape for what you want to show, like a trend line or a KPI scorecard, ask Ari to build a code block instead. A code block pulls live data out of your Model the same way a Table Block does, but renders it as a chart, scorecard, or interactive control.
+
+## Inspect formulas and segments
+
+Use **Segment by** to expose a Variable's values by another Dimension. Use **Drill in** when you want to see the formula inputs behind a calculated result.
+
+These actions answer different questions: **Segment by** asks how a value is distributed, while **Drill in** asks which inputs produced it.
 
 ## Related
 

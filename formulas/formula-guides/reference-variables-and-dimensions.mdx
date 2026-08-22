@@ -1,5 +1,6 @@
 ---
-title: "Reference Variables"
+title: "Reference Variables and Dimensions"
+description: "Reference current segments, named Dimension items, absolute values, duplicate names, and Date grains in a cfo.ai formula."
 ---
 
 A formula can use other Variables as inputs. Write Variable names the same way they appear in cfo.ai.
@@ -12,7 +13,15 @@ A plain name reads the Variable in the current segment:
 Revenue
 ```
 
-If the formula is calculating Sales, `Revenue` means Sales Revenue. If it is calculating West, it means West Revenue.
+If the formula is calculating a result for Sales, `Revenue` reads Sales Revenue. If it is calculating a result for West, it reads West Revenue.
+
+These three forms read the same current-segment value:
+
+```text
+Revenue
+this.Revenue
+Revenue[]
+```
 
 ## Names with spaces or punctuation
 
@@ -33,23 +42,23 @@ Revenue - `Cost of Goods Sold`
 Use brackets to replace one part of the current segment:
 
 ```text
-Revenue[Region: "West"]
+Revenue[Region = "West"]
 ```
 
 Other dimensions still follow the current segment.
 
 ## An absolute reference
 
-Prefix the Variable with `$` when the lookup should not inherit the current segment:
+Place `$` immediately after the Variable name when the lookup should not inherit the current segment:
 
 ```text
-$Revenue
+Revenue$
 ```
 
 You can combine an absolute reference with explicit filters:
 
 ```text
-$Revenue[Region: "West"]
+Revenue$[Region = "West"]
 ```
 
 Use absolute references carefully. Most formulas should follow the segment they are calculating.
@@ -72,4 +81,20 @@ Add a granularity to Date when the formula works with time buckets:
 Date.Month
 ```
 
-Supported granularities are Day, Week, Month, Quarter, Half, and Year.
+Supported grains are Day, Week, Month, Quarter, Half, and Year.
+
+## Previous and next periods
+
+Use a signed offset after a Variable to read a nearby period:
+
+```text
+Revenue[-1]
+Revenue[1]
+```
+
+At a monthly grain, `Revenue[-1]` reads the previous month. The same expression follows the current Date grain.
+
+## Related
+
+- [Filter by Dimension items](/formulas/formula-guides/filter-by-dimension-items)
+- [Work with dates](/formulas/formula-guides/work-with-dates)

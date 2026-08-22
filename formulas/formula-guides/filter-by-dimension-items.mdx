@@ -1,0 +1,64 @@
+---
+title: "Filter by Dimension items"
+description: "Use equality, sets, any, exclusions, and where clauses to select the Dimension items a formula should include."
+---
+
+A Variable lookup can select one Dimension item, a chosen set of items, or every item in a Dimension.
+
+## Select one item
+
+```text
+Revenue[Department = "Sales"]
+```
+
+This changes Department to Sales while other dimensions continue to follow the current segment.
+
+## Select several items
+
+Use a set:
+
+```text
+Revenue[Department in {"Engineering", "Product", "Design"}]
+```
+
+A multi-value lookup is summed when no aggregation function is written. Add the intended function when another behavior is clearer:
+
+```text
+average(Revenue[Department in {"Engineering", "Product", "Design"}])
+```
+
+## Exclude selected items
+
+```text
+Revenue[Department not in {"Engineering"}]
+```
+
+## Select every item
+
+```text
+Revenue[Department in any]
+```
+
+This is useful for totals, averages, and percent-of-total calculations.
+
+## Filter with an expression
+
+Use `where` when the selected segment must meet an additional condition:
+
+```text
+sum(Revenue[Department in any] where Revenue > 10000)
+```
+
+In this example, the condition keeps only Department segments whose Revenue exceeds 10,000. Use `this` when you need to refer to the current formula context from within a filter:
+
+```text
+sum(Revenue[Department in any] where Revenue > this.Revenue)
+```
+
+## Combine dimensions
+
+```text
+Revenue[Region = "West", Department = "Sales"]
+```
+
+Keep filters as narrow as the business rule requires. If the current segment already matches the intended result, use a plain Variable reference.

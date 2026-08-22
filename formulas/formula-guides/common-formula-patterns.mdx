@@ -1,5 +1,6 @@
 ---
 title: "Common formula patterns"
+description: "Reuse supported examples for margins, variances, previous periods, segment totals, rolling windows, forecasts, and date boundaries."
 ---
 
 These patterns use supported formula syntax. Replace the example Variable and dimension names with names from your model.
@@ -31,7 +32,7 @@ if(Plan <> 0, (Actual - Plan) / Plan, 0)
 ## Previous-period change
 
 ```text
-Revenue - Revenue[[-1]]
+Revenue - Revenue[-1]
 ```
 
 At monthly grain, this compares the current month with the previous month.
@@ -39,13 +40,13 @@ At monthly grain, this compares the current month with the previous month.
 ## Total across a dimension
 
 ```text
-sum(Revenue[Department: ANY])
+sum(Revenue[Department in any])
 ```
 
 ## Share of total
 
 ```text
-if(sum(Revenue[Department: ANY]) <> 0, Revenue / sum(Revenue[Department: ANY]), 0)
+iferror(Revenue / sum(Revenue[Department in any]), 0)
 ```
 
 Because the plain `Revenue` follows the current segment, this produces each department's share when calculated by Department.
@@ -53,16 +54,24 @@ Because the plain `Revenue` follows the current segment, this produces each depa
 ## Average across selected segments
 
 ```text
-avg(Revenue[Region: {"East", "West"}])
+average(Revenue[Region in {"East", "West"}])
 ```
 
-## Forecast driver formula
+## Trailing 12-month revenue
+
+```text
+sum(Revenue[Date.Month in [-11]:[0]])
+```
+
+The range includes the current month and the preceding 11 months.
+
+## Forecast payroll
 
 ```text
 Headcount * `Average Salary`
 ```
 
-Assign the formula to Forecast when Actuals should continue to use imported values.
+Assign the formula to Forecast when Actuals should continue to reflect imported data.
 
 ## Conditional assumption
 
@@ -70,12 +79,16 @@ Assign the formula to Forecast when Actuals should continue to use imported valu
 if(Revenue > 100000, Revenue * 0.05, Revenue * 0.03)
 ```
 
-## 🚧 Not yet available: calendar-year end
+## Calendar-year end
 
 ```text
 date(year(Date.Month), 12, 31)
 ```
 
-This pattern relies on `date` and `year`, which are designed but not yet implemented. See [Date and time functions](/formulas/formula-reference/function-reference/date-and-time-functions) and [Date-part functions](/formulas/formula-reference/function-reference/date-part-functions).
+The same result can also be expressed as:
 
-Before saving a pattern, confirm its target Variable, scope, Date grain, and scenario.
+```text
+eomonth(date(year(Date.Month), 12, 1), 0)
+```
+
+Before saving a pattern, confirm its target Variable, scope, Date grain, formula range, and Scenario.

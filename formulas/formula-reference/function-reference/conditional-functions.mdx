@@ -1,5 +1,6 @@
 ---
 title: "Conditional functions"
+description: "Use if to choose between business outcomes and iferror to recover from calculation errors."
 ---
 
 ## if
@@ -31,3 +32,25 @@ if(Revenue > 100, "high", if(Revenue > 50, "medium", "low"))
 ```
 
 For several categories or exceptions, a dimension-based formula may be easier to maintain than a deeply nested expression.
+
+## iferror
+
+Returns the first expression when it succeeds, or the fallback when that expression produces a calculation error.
+
+```text
+iferror(value, value_if_error)
+```
+
+For example:
+
+```text
+iferror(`Gross Profit` / Revenue, 0)
+```
+
+If Revenue is zero, the division creates a cell-level error and `iferror` returns `0` instead.
+
+You can also use it with date calculations:
+
+```text
+iferror(datedif(`Start Date`, Date, "M"), 0)
+```

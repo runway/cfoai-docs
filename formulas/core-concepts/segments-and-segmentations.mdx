@@ -1,45 +1,53 @@
 ---
-title: "Segments and segmentations"
+title: "Segments, Dimensions, and cell addresses"
+sidebarTitle: "Segments and cell addresses"
+description: "Understand how Dimension items identify segments, how a Table Block exposes them, and how a cell address identifies one Model value."
 ---
 
-Dimensions divide a model into useful groups. Two related terms describe that structure.
+Dimensions organize Model values into meaningful business categories. A segment is the slice of a Variable identified by one or more Dimension items.
 
-## Segmentation
+## Dimensions and their items
 
-A **segmentation** is the dimension, or combination of dimensions, used to break down a value.
+A Dimension defines a category, and its items identify the entries within that category.
 
-Examples:
+- Department might contain Sales, Engineering, and Marketing.
+- Region might contain East and West.
+- Product might contain Starter and Enterprise.
 
-- Revenue by Department
-- Revenue by Region
-- Revenue by Department and Region
+## A segment belongs to a Variable
 
-In the first example, Department is the segmentation.
+A segment is a slice of a Variable's data:
 
-## Segment
+- Revenue for Sales.
+- Revenue for the West.
+- Revenue for Sales in the West.
 
-A **segment** is one specific position inside a segmentation.
+Sales is a Dimension item. Revenue for Sales is the segment. Several Dimensions can describe the same segment when the question needs more detail.
 
-Examples:
+## A cell address identifies one result
 
-- Department = Sales
-- Region = West
-- Department = Sales and Region = West
-
-## Why the distinction matters
-
-A segmentation formula applies to a way of breaking down the model. A segment formula applies only to one or more specific dimension values.
+A cell address identifies a Variable, one item from each applicable Dimension, and a time period.
 
 For example:
 
-- A Department segmentation formula can calculate Revenue for every department.
-- A Sales segment formula can override that calculation only for Sales.
-- The broader formula continues to apply to Engineering, Marketing, and other departments.
+> Revenue for Sales in the West for March 2026.
 
-## Date is also a dimension
+That address is more precise than a segment because it also identifies the exact period and every Dimension needed for that cell.
 
-When a formula is calculated by month, quarter, or year, Date is part of its segmentation. This matters when a formula uses a FormulaRange such as Actuals or Forecast.
+## Show segments in a Table Block
 
-## Keep scope as broad as possible
+Use **Segment by** when you want a Table Block to expose a Variable's segments by another Dimension. For example, segment Revenue by Department to see Sales, Engineering, and Marketing separately.
 
-Start with a default formula. Add segmentation or segment formulas only when the calculation genuinely needs to differ. This makes the model easier to understand and maintain.
+The **Segmentation** option in the **Use as** control identifies a Dimension's display role. A Dimension used as **Mapping** instead shows its item as a cell value.
+
+## Formula scope follows the business rule
+
+A default formula can apply broadly. A more specific formula can apply when a Variable is segmented by Department, or only when Department is Sales.
+
+Start with the broadest rule that expresses the actual business behavior. Add a segment-specific formula only when that segment genuinely needs a different calculation.
+
+## Related
+
+- [Choose where a formula applies](/formulas/core-concepts/choose-where-a-formula-applies)
+- [Build and format a Table Block](/dashboards/build-and-format-tables)
+- [Glossary and key concepts](/glossary)

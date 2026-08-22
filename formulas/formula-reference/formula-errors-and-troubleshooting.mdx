@@ -1,5 +1,6 @@
 ---
 title: "Formula errors and troubleshooting"
+description: "Troubleshoot invalid formulas, missing references, unexpected totals, date mismatches, formula ranges, and calculation errors."
 ---
 
 Start with the problem you can see, then check the formula's expression and scope.
@@ -10,17 +11,17 @@ Check for:
 
 - A missing parenthesis or quote
 - A Variable name that needs backticks
-- A Variable that does not exist in the scenario
+- A Variable that does not exist in the selected Scenario.
 - An unsupported number of function arguments
-- A FormulaRange on a formula without Date scope
+- A formula range on a formula without Date scope.
 
 ## A Variable cannot be found
 
-Use the name shown in CFO.ai. If the name contains spaces or punctuation, wrap it in backticks. If several Variables share the name, use the short disambiguator offered by the editor or Ari.
+Use the name shown in cfo.ai. If the name contains spaces or punctuation, wrap it in backticks. If several Variables share the name, use the short disambiguator offered by the editor or Ari.
 
 ## The result is unexpectedly high
 
-The formula may be selecting several values and summing them. Review lookups that use `ANY`, sets, or `where`. Add an explicit aggregation when the intended behavior is average, minimum, maximum, count, first, or last. (Median and standard deviation aren't available yet — see [Aggregation functions](/formulas/formula-reference/function-reference/aggregation-functions).)
+The formula may be selecting several values and summing them. Review lookups that use `in any`, sets, or `where`. Use an explicit aggregation when the intended result is an average, median, minimum, maximum, count, standard deviation, first value, or last value.
 
 ## The formula works in one segment but not another
 
@@ -33,7 +34,7 @@ Check whether:
 
 ## The formula works in Actuals but not Forecast
 
-Check the FormulaRange, Date scope, Date granularity, scenario, and Last close. A formula assigned to Actuals or Forecast must include Date in its scope.
+Check the formula range, Date scope, Date grain, Scenario, and Last close. A formula assigned to Actuals or Forecast must include Date in its scope.
 
 ## A date lookup returns no value
 
@@ -41,4 +42,17 @@ Confirm that the Date grain and value format match. A monthly lookup should use 
 
 ## Ari changed only some formulas
 
-Formula writes can apply valid items while rejecting invalid items. Review the result cards and rejected count, correct the invalid formulas, and ask Ari to write them again.
+Depending on the operation, a batch can apply valid changes while rejecting invalid ones, or reject the whole batch when all changes must succeed together. Ask Ari which changes were applied, fix the reported issue, and verify the resulting values.
+
+## A division returns an error
+
+Division by zero produces a calculation error. Guard the divisor or provide a fallback:
+
+```text
+iferror(`Gross Profit` / Revenue, 0)
+```
+
+## Related
+
+- [Formula syntax and operators](/formulas/formula-reference/formula-syntax-and-operators)
+- [Aggregation functions](/formulas/formula-reference/function-reference/aggregation-functions)

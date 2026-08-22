@@ -1,31 +1,42 @@
 ---
 title: "Read and explain formulas as an agent"
+description: "Inspect saved Variable formulas and visible Table Block values, then explain their expression, scope, range, and Scenario."
 ---
 
-Use `list_formulas` when a user asks how a Variable is calculated, asks why values differ by segment or period, or wants to review existing formulas.
+Use `inspect_variables` with `saved_formulas` when a user asks how a Variable is calculated or why its behavior changes by segment or period.
 
-## Workflow
+## Read the saved rules
 
-1. Resolve the Variable name with search.
-2. Choose the scenario from runtime context or the user's request.
-3. Call `list_formulas` with the target Variable ID.
-4. Pass an empty conditions array to read all formulas, or exact conditions when checking one scope.
-5. Explain the expression, scope, FormulaRange, and likely precedence in business language.
+For example:
 
-## Formula cards
+```json
+{
+  "scenario": "Main",
+  "saved_formulas": {
+    "variables": ["Gross Margin"]
+  }
+}
+```
 
-`list_formulas` renders each result as a formula card. Do not repeat the cards as a table, bullet list, or per-formula prose.
+Add `conditions` only when the question requires one exact saved scope. Omit the filter when the user wants the complete set of rules.
 
-After the tool result, text should contain only:
+## Connect rules to visible values
 
-- A one-sentence headline
-- Any assumptions or educated guesses
-- A clarifying question when needed
+Use `inspect_table_blocks` for the table that actually shows the result. Request `formula_origins: "all"` when the explanation depends on which rule filled a row or cell.
+
+```json
+{
+  "tables": ["Operating Plan"],
+  "formula_origins": "all"
+}
+```
+
+The saved rule explains the intended calculation. The visible table confirms which rule actually applies to the selected period, segment, and Scenario.
 
 ## Historical reads
 
-Use `as_of_point` only when the user asks for formula state at a prior change-log point. Omit it for current state.
+Use `as_of_point` when the user asks for the Model as it existed at a previous saved change. Omit it for the current state.
 
-## Generated formulas
+## Explain the business meaning
 
-Results can include default generated formulas for source-backed Dimensions. Treat them as effective formulas when explaining current behavior.
+Lead with what the formula does, then explain the inputs, the Scenario, the relevant Dimensions, and whether Actuals or Forecast changes the result. Include assumptions only when they matter to the user's question.

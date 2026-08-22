@@ -1,6 +1,6 @@
 ---
-title: "Integrations Directory"
-sidebarTitle: "Integrations Directory"
+title: "Browse the integrations directory"
+sidebarTitle: "Integrations directory"
 description: "Connect the accounting, HR, spreadsheet, and database sources cfo.ai can pull Actuals from, and browse the connectors available to Ari."
 ---
 
@@ -8,12 +8,12 @@ cfo.ai connects to the systems where your financial and operational data already
 
 ## Standard and premium integrations
 
-Connected sources are classed as standard or premium:
+Your plan can classify connected sources as standard or premium:
 
 - **Standard**: QuickBooks Online, Xero, Rippling, Google Sheets, and many more.
 - **Premium**: NetSuite SuiteAnalytics and all database connections.
 
-File upload is not a billable integration and doesn't fall into either class.
+File upload is not a billable integration. Check your workspace's Usage or billing settings for the current limits and classification that apply to your plan.
 
 ## File upload
 
@@ -33,7 +33,7 @@ Use an accounting or ERP integration when you want Actuals to update automatical
 
 ## HR
 
-- **Rippling** (via Fivetran, Standard)
+- **Rippling** (Standard)
 
 Connect Rippling to bring headcount, compensation, and other people data into your Model alongside your financials. cfo.ai's catalog also lists a much longer roster of HR and payroll systems available to connect (via Merge), including BambooHR, Gusto, Workday, ADP Workforce Now, Paychex, Paycor, Justworks, TriNet, UKG Pro, Deel, Personio, Hibob, and dozens more. If your HR system isn't Rippling, ask Ari to check whether it's in the catalog before assuming you need a file upload or manual entry instead.
 
@@ -61,7 +61,7 @@ Use a database connection when your data lives in a system of record that does n
 
 ## Connections for Ari
 
-The integrations above bring data into your Model as Actuals. Separately, cfo.ai has a **Connections** area where you can link external tools and services for Ari to work with directly, browsable through an **MCP** tab and an **APIs** tab. As of this writing, everything here is available to connect but nothing is connected yet — each item has its own **Connect** button waiting to be clicked.
+The integrations above bring data into your Model. Separately, **Settings → Connections** lets an authorized workspace administrator connect external tools and services for Ari to use directly. The **MCP** and **APIs** tabs show available connections and the services already connected for your workspace.
 
 ### MCP Connectors
 
@@ -71,7 +71,9 @@ Browsable by category:
 - **Banking & Spend** — Mercury, Ramp, Brex, Expensify, Plaid
 - **Accounting & Tax** — Avalara AvaTax, Avalara Returns, Numeric
 - **HR & Payroll** — Gusto, Deel
-- **Equity & Compliance** — Carta, and others
+- **Equity & Compliance** — Carta and Vanta
+- **Market Data** — Alpha Vantage and Morningstar
+- **CRM & Sales** — HubSpot, Intercom, Close, and Attio
 - **Productivity & Docs** — Notion, Linear, Asana, Atlassian (Jira and Confluence), Airtable, monday.com
 - **Data & Analytics** — Google BigQuery, Supabase, ThoughtSpot
 
@@ -87,6 +89,8 @@ A separate, direct list of API connections:
 - Adyen (Transfers, Management, Balance Platform)
 - Increase
 - Synctera
+- Mercury
+- Brex
 - Pleo
 - Pennylane
 - TaxJar
@@ -98,9 +102,9 @@ A separate, direct list of API connections:
 
 Use **Add API** or the search bar for anything not listed.
 
-## About Fivetran
+## How sources stay current
 
-Most connectors other than CSV upload, QuickBooks Online, and Xero run through **Fivetran**, which handles the underlying sync. You connect the source once, and Fivetran keeps it up to date on a regular schedule.
+After a source is connected, cfo.ai manages its initial load and subsequent refreshes through the provider appropriate to that connection. Ask Ari to check the last completed sync and any reported problems before relying on a time-sensitive result.
 
 ## Something look off?
 

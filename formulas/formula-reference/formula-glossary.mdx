@@ -1,5 +1,6 @@
 ---
 title: "Formula glossary"
+description: "Look up formula terms including aggregation, Date, Dimension items, expressions, scope, segments, cell addresses, and formula ranges."
 ---
 
 ## Aggregation
@@ -8,15 +9,15 @@ The process of combining several values into one result, such as a sum or averag
 
 ## Date reference
 
-A named point on the timeline. **Last close** commonly separates closed Actuals from open Forecast FormulaRanges.
+A named point on the timeline. **Last close** commonly separates closed Actuals from future Forecast periods.
 
 ## Dimension
 
 A named category used to group, filter, or segment Variables. Examples include Department, Region, and Product.
 
-## DimensionItem
+## Dimension item
 
-One value within a Dimension, such as Sales within Department or West within Region.
+One entry within a Dimension, such as Sales within Department or West within Region.
 
 ## Expression
 
@@ -26,25 +27,29 @@ The part of a formula that describes what to calculate.
 
 A saved calculation for a Variable. A formula has an expression and a scope.
 
-## FormulaRange
+## Formula range
 
-A span of the timeline that can use its own formula, such as Actuals or Forecast. Also called a formula period or formula break in older material; **FormulaRange** is the current canonical name.
+A span of the timeline that can use its own formula, such as Actuals or Forecast.
 
 ## Scenario
 
-A version of the model, such as Base or Plan. Formulas are saved within a scenario.
+A version of the Model, such as Main or Plan. Formulas are saved within a Scenario.
 
 ## Scope
 
-The part of the model where a formula applies. Scope can include segmentations, segment values, Date, and FormulaRanges.
+The part of the Model where a formula applies. Scope can include Dimensions, Dimension items, Date, and formula ranges.
 
 ## Segment
 
-A specific Dimension value or combination of values, such as Department = Sales.
+A slice of a Variable's data identified by one or more Dimension items, such as Revenue for Sales.
 
 ## Segmentation
 
-The Dimension or Dimensions used to break down a value, such as Revenue by Department.
+The Table Block role that groups data by a Dimension. Use **Segment by** to expose the relevant slices.
+
+## Cell address
+
+The complete identity of one value: a Variable, one item from each applicable Dimension, and a period.
 
 ## Variable
 

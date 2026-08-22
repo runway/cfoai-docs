@@ -1,5 +1,6 @@
 ---
 title: "Use conditional logic"
+description: "Use if, iferror, comparisons, and logical operators to express clear business rules and handle calculation errors."
 ---
 
 Conditional logic chooses a result based on a test.
@@ -29,10 +30,10 @@ if(Plan = "Enterprise", Revenue * 0.9, Revenue)
 
 ## Combine tests
 
-Use `AND`, `OR`, and `NOT`:
+Use `and`, `or`, and `not`:
 
 ```text
-if(Revenue > 0 AND `Cost of Goods Sold` > 0, `Gross Profit` / Revenue, 0)
+if(Revenue > 0 and `Cost of Goods Sold` > 0, `Gross Profit` / Revenue, 0)
 ```
 
 ## Nested conditions
@@ -43,6 +44,18 @@ if(Revenue > 100, "high", if(Revenue > 50, "medium", "low"))
 
 Nested conditions are useful for a small number of clear outcomes. If the formula becomes difficult to read, consider separating the logic into Variables or using dimension-based formulas.
 
-## Handle missing or unsafe calculations
+## Handle calculation errors
 
-Use a condition before dividing or taking a square root. This avoids predictable errors such as division by zero or taking the square root of a negative value.
+Use a condition when the fallback is part of the business rule:
+
+```text
+if(Revenue <> 0, `Gross Profit` / Revenue, 0)
+```
+
+Use `iferror` when an expression can produce an error and you want a defined fallback:
+
+```text
+iferror(`Gross Profit` / Revenue, 0)
+```
+
+Division by zero produces a cell-level error. `iferror` can catch that error instead of letting it propagate to dependent calculations.

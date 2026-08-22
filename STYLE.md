@@ -11,12 +11,30 @@ Use Mintlify components when they improve comprehension. Put procedures in `<Ste
 - Address the reader as "you."
 - Use active voice, present tense, and US English.
 - Explain why before how.
+- Start with a real business question before introducing finance terminology.
+- Use specific examples about hiring, cash, growth, or costs instead of vague claims about visibility.
+- Keep the tone warm, direct, and practical. Let the product behavior make the case.
 - Keep headings in sentence case.
 - Do not use "simply," "just," "easily," "powerful," or "seamless."
+
+## Product story
+
+Ari is the AI finance coworker. The shared Model is how Ari answers a business question and leaves behind work you can inspect, change, and use again.
+
+When explaining a customer workflow:
+
+1. Start with the decision, such as whether the company can hire.
+2. Show what Ari reads, builds, or changes.
+3. Show the sources and assumptions behind the answer.
+4. Explain what the customer can inspect or change directly.
+5. Describe the Model or calculation only when it helps explain the result.
+
+Keep Ari, the human interface, and external agents connected to the same Model. Do not present the modeling engine as a separate customer product or imply a founder must know which financial model to request.
 
 ## Product language
 
 - Write the product and company name as `cfo.ai`, including at the start of a sentence.
+- Call Ari an AI finance coworker when describing its role. Use concrete examples to explain what that means.
 - Use `Model`, `Scenario`, `Variable`, `Dimension`, `Page`, `Table Block`, and `Database` for their product concepts.
 - Never use `Runway` for the product or company.
 - Ordinary financial phrases such as `cash runway` remain correct when they describe how long cash will last.
@@ -34,6 +52,7 @@ Use Mintlify components when they improve comprehension. Put procedures in `<Ste
 
 - Verify every behavior against the current product or the `runway/cfoai` repository.
 - Do not document a feature flag, experiment, aspiration, or planned behavior as shipped.
+- Do not promise unverified work channels, autonomous actions, pricing, privacy controls, or security certifications.
 - If a claim cannot be verified, omit it and open a follow-up issue with the evidence needed.
 
 ## Product sources of truth

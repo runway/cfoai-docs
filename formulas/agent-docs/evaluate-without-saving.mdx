@@ -1,40 +1,51 @@
 ---
-title: "Evaluate formulas without saving as an agent"
+title: "Analyze saved values without changing the Model"
+description: "Answer financial questions from saved tables, use dry-run validation when requested, and recognize when a new result requires a saved row."
 ---
 
-Use `evaluate_formulas` for calculations needed during analysis when nothing should be persisted.
+A read-only analysis starts with saved Model content. Inspect existing Table Blocks, Variables, Scenarios, and source information without creating a new calculation.
 
-## Inputs
+## Read a saved Table Block
 
-Provide:
+Use `inspect_table_blocks` with the table that contains the values:
 
-- Named request-local formulas
-- A table configuration that defines rows, columns, Date range, and segmentation
-- Scenario context
-- Variant overrides, or null
-- A row limit
+```json
+{
+  "scenario": "Main",
+  "tables": ["Revenue by Customer"],
+  "formula_origins": "all"
+}
+```
 
-Formula names must be identifier-like. Reference a temporary formula from another formula as `@name` and place it on an axis with `@name` where a saved Variable URI would normally appear.
+Copy row and column references from the response when narrowing a follow-up to a visible row, cell, or subtree.
 
-## Behavior
+## Compare or rank existing values
 
-Temporary formulas:
+Use the saved table's existing Scenario or time comparison when it already answers the question. For a top-items question, pass the supported `rank` argument to `inspect_table_blocks` with exactly one saved Table Block.
 
-- Use normal formula syntax
-- Can reference saved Variables
-- Can reference other temporary formulas
-- Recalculate at every requested grain
-- Can use scenario or time comparison through the table configuration
-- Create no Variable, saved formula, or block
+```json
+{
+  "scenario": "Main",
+  "tables": ["Revenue by Customer"],
+  "rank": {
+    "dimension": "Customer",
+    "n": 5,
+    "by": "value",
+    "direction": "desc"
+  }
+}
+```
 
-A ratio drilled into Department is calculated per Department. It is not a rollup of an already calculated parent ratio.
+Historical reads use `as_of_point` against the same saved table and the same target. That keeps the before-and-after comparison tied to one stable artifact.
 
-## Tool choice
+## Validate without applying a change
 
-Prefer `get_table_block_data` when an existing table already answers the question. Use `evaluate_formulas` when the required calculation or layout is not saved.
+When the user asks whether a proposed formula would be accepted, use `dry_run: true` on a supported `edit_table_blocks` or `edit_variables` formula write. The result validates the proposed write without saving it.
 
-## Errors
+A dry run checks the write. It does not create a new calculated series to inspect.
 
-Evaluation acts as validation. Syntax problems fail the request. Semantic problems can appear as error cells. Correct the formulas and call the tool again.
+## Create a result only when authorized
 
-Read row identity from the structured `metric` and `segments` fields rather than parsing row URIs.
+A new ratio, signal, or comparison that does not already exist needs a saved visible Model artifact. If the user authorizes that work, use `edit_table_blocks` to add a row and its initial formula, then inspect the saved result.
+
+If the user asked for no Model changes, explain the existing information you can answer from and identify the saved change a new calculation would require.

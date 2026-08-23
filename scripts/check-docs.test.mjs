@@ -6,8 +6,7 @@ import test from "node:test";
 
 import { checkRepository } from "./check-docs.mjs";
 
-const VALID_LOGO =
-  '<svg width="119" height="34"><path fill="black"/></svg>';
+const VALID_LOGO = '<svg width="119" height="34"><path fill="black"/></svg>';
 
 async function writeFixture(files) {
   const root = await mkdtemp(join(tmpdir(), "cfoai-docs-check-"));
@@ -55,6 +54,28 @@ function baseFixture() {
 
 test("accepts a valid repository when supplied the fixture logo checksum", async () => {
   const root = await writeFixture(baseFixture());
+  try {
+    const result = await checkRepository(root, {
+      expectedLogoSha256: null
+    });
+    assert.deepEqual(result.findings, []);
+    assert.equal(result.ok, true);
+  } finally {
+    await rm(root, { force: true, recursive: true });
+  }
+});
+
+test("accepts cash runway as ordinary financial language", async () => {
+  const fixture = baseFixture();
+  fixture["index.mdx"] = [
+    "---",
+    'title: "Cash planning"',
+    'description: "Forecast cash runway from a financial model."',
+    "---",
+    "",
+    "Compare hiring plans while keeping at least 12 months of cash runway."
+  ].join("\n");
+  const root = await writeFixture(fixture);
   try {
     const result = await checkRepository(root, {
       expectedLogoSha256: null
@@ -132,33 +153,65 @@ test("uses changed configured logo paths for dark-logo validation", async () => 
 
 const failureCases = [
   ["invalid-docs-json", () => ({ "docs.json": "{" })],
-  ["missing-nav-page", () => ({
-    "docs.json": JSON.stringify({ navigation: { pages: ["missing"] } })
-  })],
-  ["missing-title", () => ({
-    "index.mdx": '---\ndescription: "Description."\n---\nBody.'
-  })],
-  ["missing-description", () => ({
-    "index.mdx": '---\ntitle: "Title"\n---\nBody.'
-  })],
-  ["missing-asset", () => ({
-    "index.mdx": '---\ntitle: "Title"\ndescription: "Description."\n---\n![Missing](/images/missing.png)'
-  })],
-  ["forbidden-link", () => ({
-    "index.mdx": '---\ntitle: "Title"\ndescription: "Description."\n---\n[Private](https://notion.so/example)'
-  })],
-  ["hidden-page", () => ({
-    "index.mdx": '---\ntitle: "Title"\ndescription: "Description."\nhidden: true\n---\nBody.'
-  })],
-  ["legacy-terminology", () => ({
-    "index.mdx": '---\ntitle: "Title"\ndescription: "Description."\n---\nCreate a metric in Runway.'
-  })],
-  ["logo-checksum", () => ({
-    "logo/cfo-ai-logo.svg": "<svg/>"
-  }), { expectedLogoSha256: "expected-checksum" }],
-  ["dark-logo-drift", () => ({
-    "logo/cfo-ai-logo-dark.svg": '<svg><path fill="red"/></svg>'
-  })]
+  [
+    "missing-nav-page",
+    () => ({
+      "docs.json": JSON.stringify({ navigation: { pages: ["missing"] } })
+    })
+  ],
+  [
+    "missing-title",
+    () => ({
+      "index.mdx": '---\ndescription: "Description."\n---\nBody.'
+    })
+  ],
+  [
+    "missing-description",
+    () => ({
+      "index.mdx": '---\ntitle: "Title"\n---\nBody.'
+    })
+  ],
+  [
+    "missing-asset",
+    () => ({
+      "index.mdx":
+        '---\ntitle: "Title"\ndescription: "Description."\n---\n![Missing](/images/missing.png)'
+    })
+  ],
+  [
+    "forbidden-link",
+    () => ({
+      "index.mdx":
+        '---\ntitle: "Title"\ndescription: "Description."\n---\n[Private](https://notion.so/example)'
+    })
+  ],
+  [
+    "hidden-page",
+    () => ({
+      "index.mdx":
+        '---\ntitle: "Title"\ndescription: "Description."\nhidden: true\n---\nBody.'
+    })
+  ],
+  [
+    "legacy-terminology",
+    () => ({
+      "index.mdx":
+        '---\ntitle: "Title"\ndescription: "Description."\n---\nCreate a metric in Runway.'
+    })
+  ],
+  [
+    "logo-checksum",
+    () => ({
+      "logo/cfo-ai-logo.svg": "<svg/>"
+    }),
+    { expectedLogoSha256: "expected-checksum" }
+  ],
+  [
+    "dark-logo-drift",
+    () => ({
+      "logo/cfo-ai-logo-dark.svg": '<svg><path fill="red"/></svg>'
+    })
+  ]
 ];
 
 for (const [code, mutation, caseOptions = {}] of failureCases) {

@@ -1,44 +1,45 @@
 ---
-title: "Explore calculations without saving"
+title: "Explore existing calculations without saving"
+description: "Ask Ari to inspect saved Model values, explain results, or validate a proposed formula without changing your workspace."
 ---
 
-Ari can evaluate temporary formulas when you need an answer without adding anything to the model.
+Ari can answer many financial questions by reading existing Table Blocks, saved formulas, connected sources, and Scenario history. Reading that information does not change your Model.
 
-## Use temporary evaluation for analysis
+## Analyze what already exists
 
 Examples:
 
-> Calculate contribution margin by Department without saving anything.
+> Explain the existing contribution margin by Department without changing anything.
 
-> Compare Revenue growth by Region for the last six months. Do not create a Variable.
+> Compare the Revenue already shown by Region for the last six months. Do not change the table.
 
-> Test Revenue divided by Headcount in the Base and Plan scenarios.
+> Compare the saved Revenue and Headcount values in Main and Plan.
 
-> Check whether Gross Margin behaves correctly when we drill into Product.
+> Check whether Gross Margin behaves correctly when the table is segmented by Product.
 
-Ari runs these formulas through CFO.ai's calculation engine. The calculation follows the requested Date range, segmentation, and scenario, but no Variable, saved formula, or table is created.
+Ari reads the relevant saved Model values and explains them in the context of the selected Date range, Dimensions, and Scenario.
 
-## Temporary formulas can work together
+## Review a formula before applying it
 
-Ari can define several temporary calculations and use one in another. This is useful for:
+Ask Ari to draft and validate a supported formula change when you want to review the rule first:
 
-- Ratios and margins
-- Variances and deltas
-- Baseline comparisons
-- Driver checks
-- Per-segment analysis
-- Scenario comparisons
+> Draft a formula for Gross Margin, check whether it is valid, and wait for my approval before saving it.
 
-## Be clear about the output
+Validation checks the proposed expression and target. It does not create a new calculated series or return values for a formula that has not been saved.
 
-Specify the shape you want:
+## When a new calculation is required
 
-> Show monthly Gross Margin by Department from January through June.
+A result that depends on a new formula needs a visible saved Model row. If you ask Ari to produce that new calculation, Ari can create or reuse a row in a Table Block, save the rule, and inspect its results.
 
-> Return one total for each Region.
+Use a Scenario if you want the saved analysis isolated from Main:
 
-> Compare the same ratio between Base and Plan.
+> Create a Scenario called Analysis, add Gross Margin by Department, and show the result without changing Main.
 
-## Save the result only when you want to
+## Keep the requested output clear
 
-If the analysis produces a calculation you want in the model, ask Ari to create or update a Variable formula in a separate step. Confirm the target Variable, scope, FormulaRange, and scenario before saving.
+Tell Ari which existing table, Variable, period, or Scenario to inspect. If a needed calculation is missing, Ari should explain the visible change required before creating it.
+
+## Related
+
+- [Understand when Ari changes your Model](/ari/read-and-change-your-model)
+- [Ask Ari to create or update formulas](/formulas/work-with-ari/ask-ari-to-create-or-update-formulas)

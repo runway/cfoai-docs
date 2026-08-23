@@ -1,34 +1,46 @@
 ---
 title: "Attach files to a chat message"
 sidebarTitle: "File attachments in chat"
-description: "Attach images, PDFs, and spreadsheets directly to a message in Ari chat, separate from the Model's data integrations."
+description: "Attach up to five files to an Ari message, understand the image and document size limits, and choose how CSV files are used."
 ---
 
-You can attach files to a message in Ari chat, the same way you'd attach a file in a conversation with a coworker — useful when you want Ari to work from a screenshot of a P&L, an Excel export, or a PDF report that isn't already synced into your Model.
+Attach files to an Ari chat message when you want to discuss a screenshot, an Excel workbook, a PDF report, a CSV export, or another document that is not already available in your Model.
 
-This is separate from the [CSV / Raw File Upload integration](/integrations/integrations-directory): that one brings a file's data into your Model as Actuals. Attaching a file in chat just lets Ari read it for the conversation you're having right now.
+A normal chat attachment gives Ari access to the file in that conversation. A CSV can also be imported as a Model data source when you choose that option.
 
 ## What you can attach
 
-| File type | Extensions | Max size |
-| --- | --- | --- |
-| Image | .png, .jpg, .webp | 10 MB |
-| PDF | .pdf | 10 MB |
-| Spreadsheet | .xlsx, .xls, .csv | 10 MB |
+| File category             | Examples                                               | Maximum size   |
+| ------------------------- | ------------------------------------------------------ | -------------- |
+| Images                    | PNG, JPEG, WebP, and other image files                 | 10 MB per file |
+| Documents and other files | PDF, Excel, CSV, text files, and other supported files | 50 MB per file |
 
-Up to **4 files per message**. Use the attach button in the chat input, select your file(s), and send — a thumbnail with the filename and file type shows above the input before you send, and stays attached to your message afterward.
+You can attach up to **five files per message**. Use the attachment control in the chat input, select your files, and wait for their uploads to complete before sending the message.
 
 ## How Ari reads each type
 
-- **Images** are passed to Ari directly, so it can read a screenshot the same way it would read a photo — including a table or chart baked into the image.
-- **PDFs** have their text pulled out and included alongside your message. Ari reasons over that extracted text, so a scanned image with no underlying text layer won't read as well as a native PDF export.
-- **Spreadsheets** (.xlsx, .xls, .csv) are parsed into structured data before Ari sees them. For a very large workbook, Ari may only see the first portion of it with a note that it was trimmed — if a big file seems to be getting cut off, ask Ari to focus on a specific sheet or range instead of the whole thing.
+- **Images and PDFs** are made available directly for Ari to inspect.
+- **Text files and CSVs** can be included as readable conversation context. Large text content may be shortened before it is included.
+- **Excel workbooks and other binary files** are opened through Ari's secure workspace, where Ari can inspect workbook sheets, formulas, cached values, and other file contents.
+
+If a workbook is large, tell Ari which sheet, date range, or business question matters most.
+
+## Choose how a CSV should be used
+
+A CSV attachment can serve one of two purposes:
+
+- **Data source** imports the file so its rows can become available to your Model.
+- **Chat only** lets Ari discuss or analyze the file without creating a data connection.
+
+Importing a CSV can continue in the background. Ask Ari to confirm that the load has completed before treating the rows as available Model data.
 
 ## Good to know
 
-- Attachments are scoped to the message and conversation you send them in — there's no separate file library to browse later, so re-attach a file if you need Ari to reference it in a new conversation.
-- A password-protected PDF or a corrupted file won't extract cleanly; Ari will tell you if it couldn't read an attachment rather than guessing at its contents.
+- Ari can look up files shared earlier in the same conversation.
+- Attachments do not automatically move into a different conversation. Attach the file again if you start a new chat.
+- A damaged, encrypted, or otherwise unreadable file may require a different export or an unprotected copy.
 
 ## Related
 
 - [Integrations Directory](/integrations/integrations-directory)
+- [Connect and sync your data](/integrations/connect-and-sync-data)

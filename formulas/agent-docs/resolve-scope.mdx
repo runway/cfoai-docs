@@ -1,54 +1,77 @@
 ---
 title: "Resolve formula scope as an agent"
+description: "Derive formula scope from visible table targets or write current supported default, Dimension, segment, and Date conditions."
 ---
 
-Formula scope is expressed as a condition. Prefer table-derived scope over manually constructed conditions.
+Formula scope determines which Model values a saved rule controls. A visible Table Block target is the preferred authority because the server can derive the actual cell address and formula range.
 
-## Global scope
+## Start from the visible target
 
-Use:
+Inspect the relevant saved table and copy the returned row or column reference into `edit_table_blocks`. Use a row or column for a rule that applies along that axis, or a cell for one exact visible result.
 
-```text
-anySegment
-```
+The server derives scope from the target. The caller does not invent Dimension IDs, array positions, or formula-range IDs.
 
-Choose global scope when the user asks for a default formula or no reliable table or segment context exists.
+## Model-wide default
 
-## Resolve from a table
-
-When a table block is available, call `resolve_table_condition` with:
-
-- Target Variable ID
-- Block ID
-- Scenario ID
-- Explicit segment values, or null for ANY
-
-Use the returned condition with `write_formulas` and with the exact-condition `list_formulas` check.
-
-## Manual conditions
-
-Construct conditions manually only when dimension IDs and values are explicit and reliable.
-
-Examples:
+The broad default condition is:
 
 ```text
-Department: "Sales"
+[]
+```
+
+Use it when the same rule should apply across the Model and no narrower business condition is intended.
+
+## A rule for a Dimension
+
+A rule for every Department item uses:
+
+```text
+[Department in any]
+```
+
+The unprefixed condition continues to apply when additional Dimensions are present.
+
+## A rule for one segment
+
+Use the readable Dimension and item names returned by inspection:
+
+```text
+[Department = "Sales"]
 ```
 
 ```text
-Department: ANY
+[Department = "Sales", Region = "West"]
 ```
+
+Wrap names with spaces in backticks and use a returned short disambiguator only when needed.
+
+## Time-aware scope
+
+A formula range needs the Model's Date grain. In a monthly Model:
 
 ```text
-Department: "Sales", Date.Month: ANY
+[Department = "Sales", Date.Month in any]
 ```
 
-Use readable dimension names, backticks, and disambiguators. When several condition items are written manually, order them by dimension ID in ascending lexicographic order.
+For a table-independent `edit_variables` write, pair the condition with the requested `period`, such as `"forecast"`, when the rule belongs to that formula range.
 
-## Do not invent scope
+## Exact versus broader scope
 
-Do not guess dimension IDs or segment labels. If a user names a segment but no reliable table or dimension context is available, use global scope only when that matches the request; otherwise explain the missing context.
+A condition without `$` can continue to match a richer cell address. A condition beginning with `$` matches the exact set of Dimensions it names:
 
-## Specificity
+```text
+[Department = "Sales"]
+$[Department = "Sales"]
+```
 
-A specific condition can override a broad condition. Read existing formulas before writing to avoid creating an unintended competing rule.
+For a table-independent write, pass the exact condition directly in the supported `condition` field:
+
+```json
+{
+  "condition": "$[Department = \"Sales\"]"
+}
+```
+
+The leading `$` is part of the condition grammar. In an expression, an absolute Variable reference instead places `$` after its name: `Revenue$[Department = "Sales"]`.
+
+Use exact scope only when the user intends that narrower behavior. A rule that omits Date cannot fill dated cells if it matches only its exact Dimension set.

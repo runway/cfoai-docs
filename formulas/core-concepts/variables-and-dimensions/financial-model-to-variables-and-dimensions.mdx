@@ -1,0 +1,47 @@
+---
+title: "Translate a financial model into Variables and Dimensions"
+description: "Map familiar financial line items, assumptions, departments, reporting periods, and planning cases into cfo.ai concepts."
+---
+
+Variables and Dimensions map familiar FP&A concepts into a Model that can be reused across Pages, Scenarios, and calculations.
+
+## Common translations
+
+| Familiar FP&A concept                       | cfo.ai concept                      |
+| ------------------------------------------- | ----------------------------------- |
+| Financial line item                         | Variable                            |
+| Performance measure or operating assumption | Variable                            |
+| Assumption                                  | Variable                            |
+| Department or cost center                   | Dimension                           |
+| Entity, product, region, or customer        | Dimension                           |
+| Month, quarter, or year columns             | Date dimension and granularity      |
+| Budget version or plan case                 | Scenario                            |
+| A category entry such as Sales or West      | Dimension item                      |
+| A P&L broken down by Department             | A Variable segmented by a Dimension |
+
+## A traditional P&L
+
+Imagine a P&L with Revenue and Cost of Goods Sold on rows and months across columns.
+
+In cfo.ai:
+
+- Revenue is a Variable.
+- Cost of Goods Sold is a Variable.
+- Date is a Dimension.
+- Month is the Date granularity.
+- Main is the primary Scenario. Plan can be a separate Scenario for an alternative case.
+- Actuals and Forecast can be formula ranges separated by Last close.
+
+If you show each line by Department, Department is another Dimension. Sales, Marketing, and Engineering are Dimension items.
+
+## Line items and accounts are not always the same
+
+A modeled line item such as Revenue is usually a Variable. A source Account or Account Code is often a Dimension because it classifies transactions.
+
+Several accounts may contribute to one modeled Revenue Variable. The correct choice depends on whether the field represents the value being analyzed (a Variable) or the category used to organize it (a Dimension).
+
+## Assumptions are Variables too
+
+Price, Conversion Rate, Average Salary, and Commission Rate are Variables. They may be inputs rather than financial results, but they are still values that can be calculated, compared, and used in formulas.
+
+This shared Model lets formulas connect financial statements with operating activity without treating them as separate systems.

@@ -1,26 +1,19 @@
 ---
 title: "Date and time functions"
+description: "Shift dates, calculate differences, count days in a period, construct dates, and find month-end dates."
 ---
 
 These functions build dates, shift them, compare them, or return information about a period.
 
-## offset
+## dateadd
 
 Shifts a date by a signed amount.
 
 ```text
-offset(Date.Month, -1, "month")
+dateadd(Date.Month, -1, "month")
 ```
 
-Supported units are day, week, month, quarter, half, and year. `offset` shifts a date, not a cell range.
-
-<Warning>
-  **Naming collision with Excel:** cfo.ai's `offset` shifts a time period. Excel's `OFFSET` returns a cell range shifted by rows and columns — an unrelated operation. If you or an agent are used to Excel, don't assume `offset` behaves the same way here.
-</Warning>
-
-<Warning>
-  **🚧 Not yet available:** `datedif`, `daysin`, `date`, `edate`, and `eomonth` below are designed but not yet implemented. Using any of them in a formula today will fail with an "Unknown function" error. `offset` above is the only function on this page that works today. Of the unimplemented ones, a date-difference function (name still undecided — may end up as `datedif` or `age`) is part of the current top build priority, and `daysin` is fourth in line; `date`, `edate`, and `eomonth` don't have a confirmed timeline yet.
-</Warning>
+Supported units are `"day"`, `"week"`, `"month"`, `"quarter"`, `"half"`, and `"year"`. The amount is a signed whole number, and the unit must be quoted.
 
 ## datedif
 
@@ -70,3 +63,8 @@ eomonth(Date.Month, 0)
 ```
 
 Use `0` for the current month, `1` for the next month, and `-1` for the previous month.
+
+## Related
+
+- [Work with dates](/formulas/formula-guides/work-with-dates)
+- [Date-part functions](/formulas/formula-reference/function-reference/date-part-functions)

@@ -1,34 +1,38 @@
 ---
 title: "Aggregation functions"
+description: "Use sum, product, average, count, min, max, median, first, last, stdev, and var to combine selected Model values."
 ---
 
 Aggregation functions combine several selected values into one result.
 
-## sum
+## sum and product
 
-Returns the numeric total.
+`sum` adds selected numeric values. `product` multiplies them.
 
 ```text
-sum(Revenue[Department: ANY])
+sum(Revenue[Department in any])
+product(`Growth Factor`[Date.Month in any])
 ```
 
-## avg
+Both functions accept one to 10 expressions.
+
+## average
 
 Returns the arithmetic mean, or null when no values exist.
 
 ```text
-avg(Revenue[Department: ANY])
+average(Revenue[Department in any])
 ```
 
-Use `avg` — it is the function name cfo.ai actually computes today. `average` is not implemented and will fail if used.
+`average` is the preferred spelling. Existing formulas using `avg` remain supported.
 
 ## min and max
 
 Return the smallest or largest value, or null when no values exist.
 
 ```text
-min(Revenue[Department: ANY])
-max(Revenue[Department: ANY])
+min(Revenue[Department in any])
+max(Revenue[Department in any])
 ```
 
 ## count
@@ -36,7 +40,7 @@ max(Revenue[Department: ANY])
 Counts non-empty values of any type. It behaves like Excel `COUNTA`, not Excel `COUNT`.
 
 ```text
-count(Orders[Department: ANY])
+count(Orders[Department in any])
 ```
 
 ## first and last
@@ -44,10 +48,39 @@ count(Orders[Department: ANY])
 Return the first or last value in the selected series order, or null when the series is empty.
 
 ```text
-first(Revenue[Date.Month: ANY])
-last(Revenue[Date.Month: ANY])
+first(Revenue[Date.Month in any])
+last(Revenue[Date.Month in any])
 ```
 
-<Warning>
-  **🚧 Not yet available:** `median`, `stdev`, and `var` are designed but not implemented. Using them in a formula today will fail with an "Unknown function" error. If you need a median or standard deviation today, it is not currently possible to calculate one directly in a formula.
-</Warning>
+Both functions accept one expression.
+
+## median
+
+Returns the middle numeric value when the selection has an odd number of values. When the count is even, it returns the average of the two middle values. It returns null when no values exist.
+
+```text
+median(`Annual Salary`[Employee in any])
+```
+
+`median` accepts one expression.
+
+## stdev and var
+
+`stdev` returns sample standard deviation. `var` returns sample variance. Both use the sample calculation with one degree of freedom and return null when fewer than two values are present.
+
+```text
+stdev(Revenue[Region in any])
+var(Revenue[Region in any])
+```
+
+Both functions accept one to 10 expressions. Existing formulas using `stddev` or `variance` remain supported, but `stdev` and `var` are preferred.
+
+## Combine multiple expressions
+
+`sum`, `product`, `average`, `count`, `min`, `max`, `stdev`, and `var` can combine up to 10 expressions:
+
+```text
+sum(Revenue[Region in any], `Other Income`[Region in any])
+```
+
+`average` pools the underlying values rather than averaging the average of each expression.

@@ -1,46 +1,63 @@
 ---
 title: "Create and update formulas as an agent"
+description: "Save formulas through visible Table Block targets or table-independent Variable writes, then verify the exact resulting Model values."
 ---
 
-Use `write_formulas` only when the user wants a persistent model change.
+A saved formula belongs to its Variable. When the user selects a visible row, column, or cell, the saved Table Block provides the target that resolves the correct Variable and scope.
 
-## Workflow
+## Write through the saved table
 
-1. Resolve the target and referenced Variables.
-2. Identify the scenario.
-3. Determine formula scope from explicit context or a table block.
-4. Read formulas at the exact condition to determine create versus update.
-5. Validate the expression and condition.
-6. Write the formula.
-7. Review applied and rejected results.
-8. Verify calculated values when the change is material.
+First use `inspect_table_blocks` to obtain the visible row and column references. Then send the related formula edits together using `edit_table_blocks`. Pass the same requested Scenario to the inspection and the write so they resolve the same saved table.
 
-## Create versus update
+```json
+{
+  "scenario": "Main",
+  "table": "Operating Plan",
+  "edits": [
+    {
+      "target": {
+        "kind": "row",
+        "row": "<row reference returned by the table inspection>"
+      },
+      "action": "set_formula",
+      "formula": "Revenue - `Cost of Goods Sold`"
+    }
+  ]
+}
+```
 
-Call `list_formulas` with the final condition.
+The server derives the Variable, cell address, formula range, and write permissions from the visible target. Copy references from the inspection result instead of inventing IDs, positions, or range identifiers.
 
-- If a matching formula exists, pass its `formula_id` to update it.
-- If none exists, omit `formula_id` to create a new formula.
+## Create a visible derived row
 
-## Batch behavior
+A new Variable can be defined and placed on a saved Table Block in the same change:
 
-`write_formulas` accepts several formula items.
+```json
+{
+  "scenario": "Main",
+  "table": "Operating Plan",
+  "edits": [
+    {
+      "target": { "kind": "table" },
+      "action": "insert",
+      "kind": "variable",
+      "name": "Gross Margin",
+      "formula": "iferror(`Gross Profit` / Revenue, 0)"
+    }
+  ]
+}
+```
 
-- `partial` is the default. Valid items are applied and invalid items are rejected.
-- `atomic` rejects the entire batch when any item is invalid.
+The saved row makes the calculation visible, inspectable, and available for follow-up.
 
-Inspect the attempted, applied, and rejected counts. Never imply that all items were written when the result reports a partial apply.
+## Use a table-independent write only when appropriate
 
-## Required fields
+Use `edit_variables` with `action: "set_values"` when the requested rule has no saved table target. Send related items together and provide the intended Scenario, formula scope, and time range.
 
-Each item requires:
+`dry_run: true` validates supported formula writes without applying them. `mode: "atomic"` makes the selected batch succeed together or fail together; the default partial mode can apply valid items and report invalid ones.
 
-- `variable_id`
-- `condition`
-- `expression`
+## Verify the saved result
 
-Use `formula_range_id` only for a Date-scoped FormulaRange formula.
+Read the affected Table Block after a material change. Check the intended Scenario, representative dates and segments, formula origins, and the actual numeric result.
 
-## Response behavior
-
-Written formulas render as cards. Do not restate each formula in prose. Send a one-sentence headline, disclose assumptions, and ask a focused follow-up only when needed.
+When a batch reports rejected items, distinguish saved changes from unsuccessful ones and retry only the work that still needs correction.

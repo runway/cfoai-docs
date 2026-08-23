@@ -9,8 +9,8 @@ When you ask Ari to build or reshape a Table Block (see [Build and format a Tabl
 ## The basic forms
 
 - **One Dimension**: `[Department]` splits a row's values across every Department.
-- **A name with spaces**: `[`Spend Type`]` — backticks quote a Dimension name that isn't a single word.
-- **Nested drill-in**: `[Department, Level]` splits by Department, then splits each Department further by Level.
+- **A name with spaces**: ``[`Spend Type`]`` — backticks quote a Dimension name that is not a single word.
+- **Nested segmentation**: `[Department, Level]` splits by Department, then splits each Department further by Level.
 - **Side-by-side split**: `[Department, {Level, Owner}]` splits by Department, then forks into two parallel breakdowns — one by Level, one by Owner — under each Department.
 - **A branch condition**: `[Department, {Level[Department = "Engineering"], Owner}]` routes the Level breakdown under Engineering specifically, while Owner applies more broadly.
 - **Filtering to specific items**: `[Region in {East, West}]` keeps only the named items instead of showing every item in the Dimension.
@@ -27,7 +27,7 @@ A Variable row can carry its own breakdown, splitting just that one row differen
 
 ## Transpose
 
-By default, a view with a real measured Variable keeps values on rows and the breakdown (including time) on columns. A mapping-only view flips this automatically, since listing raw source coordinates as columns would create hundreds of them. Ask Ari to transpose explicitly for a database-style list: items down the rows, attributes across the columns.
+By default, a view with a measured Variable keeps values on rows and its Dimensions, including time, on columns. A mapping-only view can be easier to read with items down the rows and their attributes across the columns. Ask Ari to transpose the table when that layout better matches the question.
 
 ## When a table comes back empty
 

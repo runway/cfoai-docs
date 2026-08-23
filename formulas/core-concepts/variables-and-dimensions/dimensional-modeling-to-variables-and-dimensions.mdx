@@ -1,25 +1,26 @@
 ---
-title: "From dimensional modeling to Variables and Dimensions"
+title: "Translate dimensional modeling into cfo.ai concepts"
+description: "Connect familiar business-intelligence ideas such as facts, dimensions, grain, and cube cells to a cfo.ai Model."
 ---
 
 If you are familiar with business intelligence or dimensional modeling, cfo.ai uses many of the same ideas with finance-friendly language.
 
 ## Common translations
 
-| Dimensional-modeling term | cfo.ai concept |
-| --- | --- |
-| Measure or fact | Variable |
-| Dimension or attribute | Dimension |
-| Dimension member | DimensionItem |
-| Group by, slice, or dice | Segmentation and filtering |
-| Grain | The Dimensions and Date granularity used for a value |
-| Cube cell | A Variable value at a segment, date, and scenario |
+| Dimensional-modeling term | cfo.ai concept                                       |
+| ------------------------- | ---------------------------------------------------- |
+| Measure or fact           | Variable                                             |
+| Dimension or attribute    | Dimension                                            |
+| Dimension entry           | Dimension item                                       |
+| Group by, slice, or dice  | Segment by and filtering                             |
+| Grain                     | The Dimensions and Date granularity used for a value |
+| Cube cell                 | A Variable value at a segment, date, and scenario    |
 
 ## Variables are the values being measured
 
 Revenue, Expenses, Units Sold, Headcount, and Gross Margin are examples of Variables. They occupy the value being calculated or displayed.
 
-## Dimensions provide coordinates
+## Dimensions identify business context
 
 Department, Region, Product, Customer, Account, and Date identify where a Variable's value belongs.
 
@@ -27,7 +28,7 @@ For example:
 
 > Revenue = 100,000 at Department = Sales, Region = West, Date = January 2026, Scenario = Plan
 
-Revenue is the Variable. Department, Region, and Date provide coordinates. Plan provides scenario context.
+Revenue is the Variable. Department, Region, and Date identify the cell address. Plan provides Scenario context.
 
 ## Grain explains what one value represents
 
@@ -41,4 +42,5 @@ Users do not need to build a star schema or cube to work in cfo.ai. The useful m
 
 - Variables are calculated values
 - Dimensions organize those values
-- A segment identifies one position in that organization
+- A segment identifies a slice of a Variable's data.
+- A cell address identifies one complete result, including its period.

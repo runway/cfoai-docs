@@ -1,5 +1,6 @@
 ---
 title: "Worked example: Revenue by Department"
+description: "See how Revenue, Department, Date, a Scenario, and a saved formula combine to produce one meaningful Model value."
 ---
 
 This example shows how Variables, Dimensions, segments, and formulas work together.
@@ -14,15 +15,15 @@ This example shows how Variables, Dimensions, segments, and formulas work togeth
 - **Department** is a Dimension. It organizes Revenue by team.
 - **Date** is a Dimension. It organizes Revenue by month.
 
-Plan is the scenario used for the calculation.
+Plan is the Scenario used for the calculation.
 
-## The model coordinates
+## The cell address
 
 One result might be:
 
 > Revenue = 250,000 for Department = Sales in January 2026 in Plan
 
-Revenue is the Variable. Sales is a DimensionItem and the current Department segment. January 2026 is the current Date segment.
+Revenue is the Variable. Sales is a Department item, January 2026 is the Date period, and Plan provides the Scenario context. Together, the Variable, Dimension item, and period identify the cell address.
 
 ## The table
 
@@ -30,7 +31,7 @@ A familiar table might place:
 
 - Revenue on rows
 - Month on columns
-- Department as a drill-down or grouping
+- Department exposed with **Segment by**.
 
 The layout does not create new business concepts. It arranges the same Variables and Dimensions so people can answer a question.
 
@@ -39,10 +40,10 @@ The layout does not create new business concepts. It arranges the same Variables
 Suppose planned Revenue is calculated as:
 
 ```text
-Units Sold * Price
+`Units Sold` * Price
 ```
 
-Revenue is the target Variable. Units Sold and Price are the referenced Variables.
+Revenue is the target Variable. Units Sold and Price are the referenced Variables. The backticks around `Units Sold` preserve the space in its name.
 
 When the table is broken down by Department, plain references follow the current Department segment. The Sales Revenue cell uses Sales Units Sold and Sales Price when those Variables share the same context.
 
@@ -50,4 +51,4 @@ When the table is broken down by Department, plain references follow the current
 
 If Sales uses a different pricing rule, Revenue can have a more specific formula for Department = Sales. The broader Revenue formula continues to apply to other departments.
 
-This is why Variable, Dimension, and segment belong to one model: Variables hold the values, Dimensions organize them, and segments pin down one position within that organization.
+Variables hold the values, Dimensions organize them, segments describe meaningful slices, and a cell address identifies one exact result.

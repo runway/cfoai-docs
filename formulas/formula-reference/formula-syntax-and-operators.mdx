@@ -1,5 +1,6 @@
 ---
 title: "Formula syntax and operators"
+description: "Look up supported cfo.ai formula literals, arithmetic, comparisons, references, Dimension filters, Date grains, and scope syntax."
 ---
 
 Use this page to look up the building blocks of a formula.
@@ -43,10 +44,10 @@ Power chains are evaluated from the right. Use parentheses when the order matter
 
 ## Logical operators
 
-Use `AND`, `OR`, and `NOT`.
+Use `and`, `or`, and `not`.
 
 ```text
-Revenue > 0 AND `Cost of Goods Sold` > 0
+Revenue > 0 and `Cost of Goods Sold` > 0
 ```
 
 ## Variable names
@@ -62,13 +63,28 @@ Backticks protect names with spaces or punctuation. A short `#` suffix distingui
 ## Segment lookups
 
 ```text
-Revenue[Department: "Sales"]
-Revenue[Department: {"Sales", "Marketing"}]
-Revenue[Department: NOT {"Engineering"}]
-Revenue[Department: ANY]
+Revenue[Department = "Sales"]
+Revenue[Department in {"Sales", "Marketing"}]
+Revenue[Department not in {"Engineering"}]
+Revenue[Department in any]
 ```
 
-A plain lookup inherits the rest of the current segment. Prefix the Variable with `$` for an absolute lookup.
+A plain lookup inherits the rest of the current segment. Put `$` after the Variable name for an absolute lookup:
+
+```text
+Revenue$
+Revenue$[Department = "Sales"]
+```
+
+## Relative period references
+
+```text
+Revenue[-1]
+Revenue[1]
+Revenue[Department = "Sales"][-1]
+```
+
+An offset follows the current Date grain. In a monthly calculation, `Revenue[-1]` refers to the previous month.
 
 ## Date references
 
@@ -83,12 +99,38 @@ Date.Year
 
 ## Formula conditions
 
-Conditions describe where a saved formula applies. Most users choose scope in the formula editor rather than writing a condition directly. Agent documentation contains the exact condition syntax used by formula-writing tools.
+Conditions describe where a saved formula applies:
+
+```text
+[]
+[Department in any]
+[Department = "Sales"]
+[Department = "Sales", Date.Month in any]
+$[Department = "Sales"]
+$[]
+```
+
+`[]` applies broadly across the Model. An unprefixed condition such as `[Department = "Sales"]` continues to match when other Dimensions are present. `$[Department = "Sales"]` matches exactly the named Dimension set, while `$[]` matches only the empty segmentation.
+
+The leading `$` belongs to a saved formula condition. In an expression, an absolute Variable reference instead places `$` after its name, as in `Revenue$[Department = "Sales"]`.
+
+Most users choose scope through the formula editor or tell Ari where the rule should apply.
+
+## Function calls
+
+Write functions with their supported lowercase names:
+
+```text
+sum(Revenue[Department in any])
+average(Revenue[Department in any])
+iferror(`Gross Profit` / Revenue, 0)
+dateadd(Date.Month, -1, "month")
+```
+
+See the function reference for the full supported catalog and argument counts.
 
 ## Preferred spellings
 
 Use `^`, `=`, and `<>` in new formulas. Older formulas may contain `**`, `==`, or `!=`; those spellings remain accepted.
 
-<Note>
-  **Looking ahead:** a broader formula grammar redesign ("Modeling V3") is in active design internally. Early proposals include dot notation for mapped dimensions (`Employee.Department`), an `=`-based predicate syntax inside segment lookups (`Revenue[Country = "USA"]` instead of `Revenue[Department: "Sales"]`), and scenario references written like Excel sheet references (`"Downside"!Revenue[...]`). None of this is built yet — the syntax on this page is what cfo.ai runs today — but formula syntax may look different in a future release.
-</Note>
+Use the syntax shown on this page for new formulas. If an older expression is unclear, ask Ari to explain or update it using the current supported form.

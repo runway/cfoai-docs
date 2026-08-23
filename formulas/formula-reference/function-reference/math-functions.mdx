@@ -1,5 +1,6 @@
 ---
 title: "Math functions"
+description: "Calculate absolute values, square roots, and Excel-compatible rounding with abs, sqrt, ceiling, floor, and round."
 ---
 
 Math functions transform numeric values.
@@ -27,3 +28,33 @@ The input must be zero or positive. Use conditional logic if the input can be ne
 ```text
 if(Variance >= 0, sqrt(Variance), 0)
 ```
+
+## ceiling
+
+Rounds a number up to the nearest multiple of a specified significance.
+
+```text
+ceiling(`Unit Price`, 0.05)
+```
+
+This follows Excel `CEILING` behavior.
+
+## floor
+
+Rounds a number down to the nearest multiple of a specified significance.
+
+```text
+floor(`Unit Price`, 0.05)
+```
+
+This follows Excel `FLOOR` behavior.
+
+## round
+
+Rounds a number to the requested number of digits.
+
+```text
+round(Forecast, 2)
+```
+
+This follows Excel `ROUND` behavior.

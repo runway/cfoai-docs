@@ -1,54 +1,61 @@
 ---
 title: "How aggregation works"
+description: "Choose how cfo.ai combines source records and Dimension items using sums, averages, counts, medians, and other supported functions."
 ---
 
-Aggregation combines several values into one result. In formulas, aggregation can happen in three related ways.
+Aggregation combines several values into one result. The correct aggregation depends on the business question, not only on how a Table Block is arranged.
 
 ## 1. Variable aggregation
 
-A Variable has a default way to roll underlying values into a model cell. Variables normally use `sum`. Dimensions normally use `first` because they describe a group rather than a numeric total.
+A Variable has a default method for combining source records into a Model value. Numeric flows such as revenue or expenses commonly use `sum`.
 
-This behavior applies when source data contains several records for the same model position.
+Balances, ratios, headcount, and other point-in-time results can require a different time rollup. For example, a quarter-end cash balance should show the closing balance rather than adding three monthly balances together.
 
 ## 2. Multi-value references
 
 A formula reference can deliberately select several values. For example:
 
 ```text
-Revenue[Department: ANY]
+Revenue[Department in any]
 ```
 
-This selects Revenue across all Department values. If no aggregation function is written, a multi-value Variable lookup uses `sum`.
+This selects Revenue across all Department items. A multi-value Variable lookup uses a sum when another aggregation is not stated.
 
 It is clearer to write the intended aggregation when the choice matters:
 
 ```text
-avg(Revenue[Department: ANY])
+average(Revenue[Department in any])
 ```
 
 ## 3. Aggregation functions
 
 Aggregation functions let you choose how several values become one result. Available functions:
 
-- `sum`
-- `avg`
-- `min` and `max`
-- `count`
-- `first` and `last`
+- `sum` and `product`.
+- `average`.
+- `min` and `max`.
+- `count`.
+- `first` and `last`.
+- `median`.
+- `stdev` and `var`.
 
-<Warning>
-  **🚧 Not yet available:** `median`, `stdev`, and `var` are designed but not implemented yet. They will fail with an "Unknown function" error if used today.
-</Warning>
+Most numeric aggregation functions accept up to 10 expressions. `first`, `last`, and `median` each accept one expression.
 
 ## Example
 
 If Department Revenue is Sales 50, Marketing 30, and Engineering 20:
 
-- `sum(Revenue[Department: ANY])` returns 100
-- `avg(Revenue[Department: ANY])` returns about 33.33
-- `max(Revenue[Department: ANY])` returns 50
-- `count(Revenue[Department: ANY])` returns 3 when all three values are present
+- `sum(Revenue[Department in any])` returns 100.
+- `average(Revenue[Department in any])` returns about 33.33.
+- `max(Revenue[Department in any])` returns 50.
+- `median(Revenue[Department in any])` returns 30.
+- `count(Revenue[Department in any])` returns 3 when all three values are present.
 
 ## Write the business meaning
 
-Use the aggregation that matches the question. Totals usually use `sum`. Rates and ratios often need to be calculated from their underlying totals rather than averaged after the fact.
+Use the aggregation that matches the question. Totals usually use `sum`. Rates and ratios often need to be recalculated from their underlying totals instead of averaged after the fact.
+
+## Related
+
+- [Aggregation function reference](/formulas/formula-reference/function-reference/aggregation-functions)
+- [Common formula patterns](/formulas/formula-guides/common-formula-patterns)

@@ -1,12 +1,9 @@
 ---
 title: "Work with dates"
+description: "Use Date grains, relative period offsets, date functions, ranges, and formula ranges in a cfo.ai calculation."
 ---
 
 Date references let formulas move through time, group dates, and calculate period boundaries.
-
-<Warning>
-  Several date functions described below (reading date parts, and building or diffing dates) are designed but not yet implemented in cfo.ai. Each section below is marked with its current availability.
-</Warning>
 
 ## Use the table's granularity
 
@@ -25,15 +22,15 @@ Supported grains are Day, Week, Month, Quarter, Half, and Year.
 The compact lookup uses the formula's current Date grain:
 
 ```text
-Revenue[[-1]]
+Revenue[-1]
 ```
 
 At monthly grain, this reads Revenue from the previous month. A positive value moves forward.
 
-For an explicit shift, use `offset`, which is available today:
+For an explicit date shift, use `dateadd`:
 
 ```text
-offset(Date.Month, -1, "month")
+dateadd(Date.Month, -1, "month")
 ```
 
 Supported units are day, week, month, quarter, half, and year.
@@ -41,12 +38,26 @@ Supported units are day, week, month, quarter, half, and year.
 ## Select a fixed period
 
 ```text
-Revenue[Date.Month: "2026-01"]
-Revenue[Date.Quarter: "2026-Q1"]
-Revenue[Date.Year: "2026"]
+Revenue[Date.Month = "2026-01"]
+Revenue[Date.Quarter = "2026-Q1"]
+Revenue[Date.Year = "2026"]
 ```
 
-## Find a period boundary — available today
+## Select a time window
+
+Use an inclusive range when a calculation spans several periods:
+
+```text
+sum(Revenue[Date.Month in "2026-01":"2026-12"])
+```
+
+Relative endpoints move with the current period:
+
+```text
+sum(Revenue[Date.Month in [-12]:[-1]])
+```
+
+## Find a period boundary
 
 ```text
 startofmonth(Date.Month)
@@ -55,7 +66,7 @@ startofquarter(Date.Month)
 
 `startofday`, `startofweek`, `startofhalf`, and `startofyear` are also available. See [Date-truncation functions](/formulas/formula-reference/function-reference/date-truncation-functions).
 
-## 🚧 Not yet available: read part of a date
+## Read part of a date
 
 ```text
 year(Date.Month)
@@ -64,21 +75,26 @@ quarter(Date.Month)
 half(Date.Month)
 ```
 
-Week functions such as `weekday`, `weeknum`, and `isoweeknum` are also not yet implemented. See [Date-part functions](/formulas/formula-reference/function-reference/date-part-functions).
+Week functions include `weekday`, `weeknum`, and `isoweeknum`. See [Date-part functions](/formulas/formula-reference/function-reference/date-part-functions).
 
-## 🚧 Not yet available: end-of-period and date-diff functions
+## Calculate a period end or date difference
 
 ```text
 eomonth(Date.Month, 0)
 datedif(`Start Date`, Date.Month, "M")
 ```
 
-## 🚧 Not yet available: build a date
+## Build a date
 
 ```text
 date(year(Date.Month), 12, 31)
 ```
 
-## FormulaRanges
+## Formula ranges
 
-Actuals and Forecast also depend on Date. A formula assigned to a FormulaRange must include Date in its scope.
+Actuals and Forecast also depend on Date. A formula assigned to a formula range must include the Model's Date grain in its scope.
+
+## Related
+
+- [Date and time functions](/formulas/formula-reference/function-reference/date-and-time-functions)
+- [Actuals, Forecast, and formula ranges](/formulas/core-concepts/actuals-forecast-and-formula-ranges)

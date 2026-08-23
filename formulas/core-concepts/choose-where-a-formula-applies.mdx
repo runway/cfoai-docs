@@ -1,5 +1,6 @@
 ---
 title: "Choose where a formula applies"
+description: "Choose a default, Dimension-specific, segment-specific, or time-range formula without creating unnecessary overrides."
 ---
 
 A formula's scope determines where it is used. Choose the broadest scope that matches the business rule.
@@ -10,17 +11,29 @@ A default formula is the fallback calculation for a Variable. Use it when the sa
 
 Example: Gross Profit is Revenue minus Cost of Goods Sold everywhere.
 
-## Segmentation formula
+The broad default condition is:
 
-A segmentation formula applies when the Variable is calculated using a particular dimension.
+```text
+[]
+```
+
+## Formula for a Dimension
+
+A Dimension-specific formula applies when the Variable is calculated using that Dimension.
 
 Example: calculate an allocation differently whenever Expense is broken down by Department.
 
-A segmentation formula is about the grouping itself. It is not limited to one Department value.
+A rule for every Department can be represented as:
+
+```text
+[Department in any]
+```
+
+This rule matches Department as a whole. It does not pick only Sales or Engineering.
 
 ## Segment formula
 
-A segment formula applies to a specific dimension value or combination of values.
+A segment formula applies to a specific Dimension item or combination of items.
 
 Examples:
 
@@ -28,14 +41,37 @@ Examples:
 - Region = West
 - Department = Sales and Region = West
 
-Use segment formulas for true exceptions. If every department needs the same expression, use a segmentation formula instead of creating one formula per department.
+For example:
 
-## FormulaRange
+```text
+[Department = "Sales"]
+```
 
-A formula can also be limited to a FormulaRange such as Actuals or Forecast. FormulaRanges use the Date dimension, so the formula must be scoped by Date.
+Use segment formulas for real exceptions. If every department needs the same expression, use one broader rule instead of creating a separate formula for every item.
+
+## Formula range
+
+A formula can also be limited to a formula range such as Actuals or Forecast. Formula ranges use Date, so a range-specific formula must include the Model's Date grain in its scope.
+
+For a monthly Model:
+
+```text
+[Date.Month in any]
+```
 
 ## Combining scopes
 
 Scopes can be combined. For example, a formula can apply only to Sales during Forecast.
 
-The more specific formula is used where its full scope matches. Broader formulas remain available as fallbacks elsewhere.
+For example:
+
+```text
+[Department = "Sales", Date.Month in any]
+```
+
+Assign that rule to Forecast when it should apply only to Sales in future periods. Broader formulas remain available everywhere the specific rule does not match.
+
+## Related
+
+- [Actuals, Forecast, and formula ranges](/formulas/core-concepts/actuals-forecast-and-formula-ranges)
+- [How cfo.ai chooses a formula](/formulas/core-concepts/how-cfoai-chooses-a-formula)

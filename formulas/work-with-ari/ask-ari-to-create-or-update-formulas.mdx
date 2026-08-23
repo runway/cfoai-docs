@@ -1,5 +1,6 @@
 ---
 title: "Ask Ari to create or update formulas"
+description: "Ask Ari to save a Variable formula and provide Scenario, range, or table context when it affects where the rule applies."
 ---
 
 Ari can turn a business rule into a saved Variable formula.
@@ -18,7 +19,7 @@ Default formula:
 
 > Use this calculation for Gross Profit everywhere.
 
-Segmentation formula:
+Formula for a Dimension:
 
 > When Payroll is broken down by Department, calculate it as Headcount times Average Salary.
 
@@ -26,19 +27,19 @@ Segment formula:
 
 > For the Sales department, calculate Commission as Revenue times Commission Rate.
 
-Ari uses the table context and dimension values to resolve the correct formula scope.
+Ari uses the visible Table Block and Dimension items to resolve the correct formula scope.
 
-## Choose the FormulaRange
+## Choose the formula range
 
 > Use imported Payroll for Actuals and Headcount times Average Salary for Forecast.
 
-FormulaRange formulas must be scoped by Date. If Date is not part of the formula context, Ari must add Date scope or explain why the FormulaRange cannot be applied.
+Formula-range rules must be scoped by Date. Ari can derive the correct range from the visible table target or explain why the target does not support the requested range.
 
 ## Choose the scenario
 
 > Make this change in the Plan scenario.
 
-If you do not name a scenario, Ari uses the scenario from the current context. Include it when a change could otherwise be ambiguous.
+If you do not name a Scenario, Ari uses the current context. Include the Scenario when a change could otherwise land in the wrong place.
 
 ## Validate before writing
 
@@ -50,4 +51,4 @@ When you are ready:
 
 > Save the validated formula and check the result in the P&L table.
 
-Ari validates formulas before writing and reports any formulas that could not be applied.
+Ari can validate supported writes without applying them. When you approve the saved change, ask Ari to verify the resulting values in the relevant Table Block.

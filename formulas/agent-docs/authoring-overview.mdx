@@ -1,33 +1,36 @@
 ---
 title: "Formula authoring overview for agents"
+description: "Understand the current agent tool boundaries for reading saved formulas, inspecting table values, validating writes, and saving changes."
 ---
 
-Use this contract when an agent reads, evaluates, validates, creates, or updates formulas in CFO.ai.
+Formulas belong to saved Variables, and calculated values appear in saved Table Blocks. The user-visible Model is the source of truth for both human and agent work.
 
-## Choose the job first
+## Match the tool to the question
 
-There are three distinct jobs:
+- Use `inspect_variables` with `saved_formulas` to read the rules attached to a Variable.
+- Use `inspect_table_blocks` to inspect saved values, visible row and column references, formula origins, and source information.
+- Use `edit_table_blocks` when the user wants to create or update a formula on a visible row, column, or cell.
+- Use `edit_variables` with `action: "set_values"` for a genuinely Model-wide or table-independent formula.
+- Use `dry_run: true` on a supported write when the user asks for validation without a saved change.
 
-1. **Read:** use `list_formulas` to inspect saved formulas.
-2. **Evaluate:** use `evaluate_formulas` for request-local calculations that must not change the model.
-3. **Write:** use `write_formulas` to create or update saved Variable formulas.
+A question that can be answered from existing values stays read-only. A new calculated result requires a visible, saved Model rule and the user's authorization to create it.
 
-Do not persist a formula when the user is exploring, testing a hypothesis, or asking for an answer. Do not describe a temporary evaluation as a saved model change.
+## Start from the visible artifact
 
-## Resolve references
+Inspect the relevant Table Block once, reuse its returned row and column references, and send related edits together. The server derives the actual Variable, formula scope, time range, and write permissions from that visible target.
 
-Use search to resolve every Variable name the user mentions, including the target and referenced Variables. Capture the Variable ID, Variable type, and data type.
+When the work has no table target, inspect the existing Variables and Dimensions first. Reuse their returned grammar references when composing a formula.
 
-Write expressions with readable Variable names rather than Variable URIs. Use backticks and short disambiguators when needed.
+Write expressions with readable Variable names. Use backticks for names containing spaces, punctuation, operators, or reserved words, and use the returned short disambiguator only when names collide.
 
 ## Respect scenario context
 
-Formulas are scenario-scoped. Use the scenario from the runtime or explicit user request. If several scenarios are plausible, make an informed choice and tell the user which one was used.
+Formulas are Scenario-scoped. Use the current Scenario or the Scenario the user requested. If a write could reasonably target more than one Scenario, resolve that choice before changing the Model.
 
 ## Separate condition and expression
 
-The condition determines where the formula applies. The expression determines what it calculates. Validate both before writing.
+The condition determines where the formula applies. The expression determines what it calculates. For a visible table edit, the server derives the condition from the selected target. For a headless rule, provide the intended condition, segments, period, or grain directly.
 
 ## Verify outcomes
 
-A syntactically valid formula can still express the wrong business rule. After a material write, read calculated values from a relevant table and compare them with the user's stated intent.
+A syntactically valid formula can still express the wrong business rule. After a material write, inspect the saved Table Block and compare representative periods and segments with the user's intent.

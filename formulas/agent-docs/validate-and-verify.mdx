@@ -1,12 +1,16 @@
 ---
 title: "Validate and verify formulas as an agent"
+description: "Use supported dry-run writes to validate formulas, inspect write outcomes, and verify the financial result on a saved Table Block."
 ---
 
 Validation checks formula syntax and semantic references before a write. Verification checks whether the resulting values match the business rule.
 
 ## Validate
 
-Call `validate_formula` with one or more expression-and-condition pairs.
+Use `dry_run: true` with the write that would own the actual change:
+
+- Use `edit_table_blocks` for a visible saved table target.
+- Use `edit_variables` with `action: "set_values"` for a table-independent formula.
 
 Validation checks:
 
@@ -16,30 +20,30 @@ Validation checks:
 - Function names and arguments
 - Semantic compatibility
 
-Correct every reported error and validate again before calling `write_formulas`.
+Correct reported errors before applying the same intended change.
 
 ## Read after writing
 
-Inspect the `write_formulas` ledger:
+Inspect the write result:
 
 - Attempted count
 - Applied count
 - Rejected count
 - Per-item expression or condition errors
 
-If the batch partially applied, correct and retry only the rejected formulas.
+An atomic write applies all requested changes together or applies none. If a partial write reports rejected items, correct and retry only those unsuccessful items.
 
 ## Verify calculated behavior
 
-Use `get_table_block_data` on a relevant saved table after a material change. Check representative dates and segments.
+Use `inspect_table_blocks` on the relevant saved table after a material change. Check representative dates, segments, formula origins, and source information.
 
 Examples:
 
 - Compare Gross Profit with Revenue minus Cost of Goods Sold
 - Check a Department formula for two different departments
-- Check both sides of Last close for a FormulaRange change
-- Compare the intended scenario with the scenario that was written
+- Check both sides of Last close for a formula-range change.
+- Compare the intended Scenario with the Scenario that was written.
 
 ## Report clearly
 
-State what was written and whether verification matched the request. Disclose any guessed table, scenario, condition, or FormulaRange so the user can correct it.
+State what was written and whether verification matched the request. Disclose any inferred table, Scenario, or business assumption that materially affects the result.

@@ -1,10 +1,10 @@
 ---
 title: "Map one Dimension's items to another"
 sidebarTitle: "Dimension mappings"
-description: "Group GL accounts, cost centers, or any other source coordinates into a shared reporting Dimension with a mapping."
+description: "Group general-ledger accounts, cost centers, or other source Dimension items into one shared reporting Dimension."
 ---
 
-A **Dimension mapping** is a one-way lookup that assigns coordinates from one or more source Dimensions to an item in a target Dimension. The most common use is grouping raw GL accounts into a reporting bucket, like mapping account `5001` to `COGS`, but a mapping can key off any Dimension, or combination of Dimensions.
+A **Dimension mapping** is a one-way lookup that assigns items from one or more source Dimensions to an item in a target Dimension. A common example is grouping general-ledger accounts into a reporting category, such as mapping account `5001` to `COGS`.
 
 ## Choose a direction
 
@@ -12,7 +12,7 @@ Mappings only go one way: pick the shared, canonical Dimension as the **target**
 
 ## Create a mapping
 
-Ask Ari to map specific items, for example "Map GL account 5001 to COGS and 6001 to Payroll." For simple one-to-one pairs, this writes the rows directly. A pair whose coordinate already has a rule retargets it in place — nothing is ever silently overwritten elsewhere.
+Ask Ari to map specific items, for example, "Map account 5001 to COGS and 6001 to Payroll." A rule for an item that already has a mapping updates that item's existing rule.
 
 ## When a plain pair isn't enough
 
@@ -20,14 +20,14 @@ Some rows need a real condition instead of a simple equality, like a set of acco
 
 ## Set a catch-all
 
-Every target Dimension can have one **catch-all**: the item shown for any coordinate that no row explicitly matches. Ask Ari to set or clear it. Clearing a catch-all means an unmatched coordinate maps to nothing, rather than to a blank that still gets counted.
+Every target Dimension can have one **catch-all**: the target item used when no explicit mapping rule matches. Ask Ari to set or clear it. Without a catch-all, an unmatched source item remains unmapped.
 
 ## Remove mappings
 
 Ask Ari to:
 
 - **Unmap** specific rows, leaving the rest of the lookup untouched.
-- **Drop** an entire lookup when a source stops feeding into a target altogether.
+- Remove an entire lookup when a source stops feeding into a target altogether.
 
 ## See what's already mapped
 
@@ -35,5 +35,5 @@ Ask Ari to read a target Dimension's mappings. It reports every lookup feeding t
 
 ## Related
 
-- [What is a Variable?](/formulas/core-concepts/properties-metrics-and-dimensions/what-is-a-property)
+- [What is a Variable?](/formulas/core-concepts/variables-and-dimensions/what-is-a-variable)
 - [Segments and segmentations](/formulas/core-concepts/segments-and-segmentations)

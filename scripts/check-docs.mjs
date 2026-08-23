@@ -9,9 +9,9 @@ const DEFAULT_LOGO_SHA256 =
   "ce96c268d5ac58b770445388de7f6a8991b3e925db6f4d3d2046206cb9129494";
 const FORBIDDEN_LINK =
   /https?:\/\/(?:[^/\s]+\.)?(?:notion\.so|runwaydev\.com|docs\.runway\.com)|https?:\/\/localhost\b/gi;
-const LEGACY_TERM = /\b(?:Runway|metrics?|drivers?|properties)\b/gi;
-const LOCAL_ASSET =
-  /(?:!\[[^\]]*]\(|\bsrc=["'])(\/(?:images|logo)\/[^)"']+)/g;
+const LEGACY_TERM =
+  /\b(?:metrics?|drivers?|properties)\b|(?<!\bcash\s)\brunway\b/gi;
+const LOCAL_ASSET = /(?:!\[[^\]]*]\(|\bsrc=["'])(\/(?:images|logo)\/[^)"']+)/g;
 
 function finding(code, file, message) {
   return { code, file, message };
@@ -24,7 +24,10 @@ function frontmatterValue(contents, key) {
     .split("\n")
     .find((candidate) => candidate.startsWith(`${key}:`));
   if (!line) return null;
-  return line.slice(key.length + 1).trim().replace(/^["']|["']$/g, "");
+  return line
+    .slice(key.length + 1)
+    .trim()
+    .replace(/^["']|["']$/g, "");
 }
 
 function collectPages(value, pages = []) {
@@ -71,7 +74,11 @@ export async function checkRepository(
     config = JSON.parse(await readFile(configPath, "utf8"));
   } catch (error) {
     findings.push(
-      finding("invalid-docs-json", "docs.json", `Invalid JSON: ${error.message}`)
+      finding(
+        "invalid-docs-json",
+        "docs.json",
+        `Invalid JSON: ${error.message}`
+      )
     );
     return { ok: false, findings };
   }

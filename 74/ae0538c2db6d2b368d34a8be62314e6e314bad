@@ -1,0 +1,20 @@
+docs.json
+  s_0b4a5e1baf9b81::t_0ce278860bea05 176-178
+  s_0b4a5e1baf9b81::t_1cac3a8fa00dff 175
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "74ae0538c2db6d2b368d34a8be62314e6e314bad",
+  "prompts": {},
+  "sessions": {
+    "s_0b4a5e1baf9b81": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a03ae6-16e7-7610-a951-21e7715acb92",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Samantha Stauffer <sam@runway.com>"
+    }
+  }
+}

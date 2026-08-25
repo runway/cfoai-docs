@@ -173,6 +173,10 @@
   "navbar": {
     "links": [
       {
+        "label": "Status",
+        "href": "https://status.cfo.ai/"
+      },
+      {
         "label": "Support",
         "href": "mailto:success@cfo.ai"
       }

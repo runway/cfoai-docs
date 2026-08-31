@@ -35,7 +35,8 @@
           "ari/meet-ari",
           "ari/ask-better-questions",
           "ari/read-and-change-your-model",
-          "workspace-settings/file-attachments-in-chat"
+          "workspace-settings/file-attachments-in-chat",
+          "ari/prompts"
         ]
       },
       {

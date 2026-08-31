@@ -1,0 +1,173 @@
+---
+title: "Ari prompts"
+sidebarTitle: "Ari prompts"
+description: "Match a plain-language prompt to the visual Ari should build — line, bar, stacked, waterfall, funnel, gauge, or scorecard — plus prompts for tables, forecasts, Scenarios, and scheduled work."
+---
+
+Ari builds a different thing depending on how you ask. The same numbers can become a trend line, a stacked composition, a bridge that explains a change, or a single headline figure — and the right choice depends on the question you're asking, not on the data. Each table below pairs a plain-language prompt with what Ari should produce.
+
+Naming the shape you want is the fastest way to get it. "Show me revenue" is ambiguous; "show me revenue by month as a line" is not.
+
+For how to frame the question itself — the decision, the period, the level of detail — see [Ask Ari better questions](/ari/ask-better-questions).
+
+## Choose the right visual
+
+| When your question is | Ask Ari for |
+| --- | --- |
+| How has this moved over time? | A line chart |
+| How do these categories compare? | A bar chart |
+| How much accumulated, and when? | An area chart |
+| What is this total made of, month by month? | A stacked bar or stacked area chart |
+| Is our mix shifting, regardless of size? | A 100% stacked chart |
+| What was the split in one period? | A pie or donut chart |
+| Where do we lose people between stages? | A funnel chart |
+| What explains the change from A to B? | A waterfall chart |
+| How does a total compare against a rate? | A combo chart, with bars and a line |
+| How close are we to a target? | A gauge, or a scorecard with a delta |
+| What are the few numbers I check daily? | A scorecard grid |
+| What if this assumption changed? | A chart with an interactive control |
+| I need the actual numbers in rows and columns | A Table Block, not a chart |
+
+## Trends over time
+
+| Ari prompts | Ari results |
+| --- | --- |
+| "Show me revenue by month as a line." | A line chart of Revenue across months, on the current Page, resolved in that Page's Scenario. |
+| "Plot revenue and expenses on the same chart." | One line chart with two series and a legend, sharing a time axis. |
+| "Show cumulative cash collected this year as an area chart." | An area chart, where the filled magnitude is the point rather than the month-to-month wiggle. |
+| "Compare this year against last year on one chart." | Two series on the same time axis so the shapes sit on top of each other. |
+| "Show revenue as bars with gross margin percent as a line." | A combo chart: revenue bars on one scale, margin percent as a line on its own scale. |
+| "Make that quarterly instead of monthly." | The chart rebuilt at the coarser period and recalculated, rather than a monthly series visually thinned. |
+
+## Composition and mix
+
+| Ari prompts | Ari results |
+| --- | --- |
+| "Show our revenue mix as stacked bars by customer segment." | A stacked bar chart splitting Revenue by segment, each segment its own series, stacking to the total. |
+| "Same chart, but show each segment as a share of the total." | A 100% stacked chart, so mix shift is visible even while the total grows. |
+| "Break operating expense down by department over the last six months." | A stacked chart with departments as the composition and months as the axis. |
+| "What was our revenue split by region last quarter?" | A pie or donut chart of that one period. A pie shows a single period's split, so name the period you mean. |
+| "Show the same split as a bar chart instead." | The categories as bars, which is easier to compare precisely than slices. |
+| "Show only the segments, not the total." | The composition series alone, with the parent total excluded rather than double-counted. |
+
+<Note>
+  A pie or donut chart shows one period. If you want composition _over_ time, ask for stacked bars or a stacked area chart instead.
+</Note>
+
+## Explaining a change
+
+| Ari prompts | Ari results |
+| --- | --- |
+| "Build a waterfall explaining the change in revenue from Q1 to Q2." | A waterfall: the opening total, the ordered signed changes that moved it, and the closing total, reconciling to the actual difference. |
+| "Bridge our cash from January to June." | A cash bridge of the increases and decreases between those two points. |
+| "Show what moved gross margin, from best to worst." | The changes ordered by size so the largest contributor reads first. |
+| "Explain the budget-to-actual gap for operating expense as a waterfall." | The variance decomposed into ordered contributions that add back to the total gap. |
+
+<Note>
+  A waterfall bridges two totals with signed changes. It is not a chart of account balances — if you want the levels themselves, ask for bars.
+</Note>
+
+## Conversion and stages
+
+| Ari prompts | Ari results |
+| --- | --- |
+| "Show our sales funnel from lead to closed won." | A funnel chart with each stage's volume and the fall-off between stages. |
+| "Where are we losing the most deals?" | The stage-to-stage conversion, with the weakest step identified. |
+| "Show the funnel for enterprise only." | The same funnel filtered to that segment. |
+
+## Headline numbers
+
+| Ari prompts | Ari results |
+| --- | --- |
+| "Add a scorecard for current-quarter Revenue against target." | A card with the headline number and its delta against target. |
+| "Give me a row of our five key numbers with change since last month." | A scorecard grid: each figure with its own delta, formatted in its own currency and precision. |
+| "Show how close we are to our annual revenue target." | A gauge, or a headline figure with progress against the target. |
+| "Add a one-line summary above this chart saying what it shows." | A short written explanation as part of the same visual, not a separate block. |
+
+<Note>
+  A delta is colored by business meaning, not by sign. A cost coming in under plan reads as good news even though the number is negative.
+</Note>
+
+## Interactive visuals
+
+| Ari prompts | Ari results |
+| --- | --- |
+| "Put a slider on this so I can try different hiring dates." | A control wired to that assumption, with the outcome updating as you move it. |
+| "Let me toggle between monthly and quarterly on this chart." | A control that switches the view, remembered for that Page and Scenario. |
+| "Let me try different growth rates and see the effect on cash." | An input and a live preview of the result. |
+| "I like this version — save it." | The change committed. Until you commit, a control changes only your local preview. |
+
+<Note>
+  A visual reads your Model but cannot write to it. Moving a slider previews an outcome; it does not change a saved assumption. To change the Model itself, ask Ari to update the Variable or formula, or edit the value in a Table Block.
+</Note>
+
+## Getting the axis and period right
+
+| Ari prompts | Ari results |
+| --- | --- |
+| "Show this weekly." | The series recalculated weekly. You can ask for daily, weekly, monthly, quarterly, half-year, or yearly. |
+| "Drop the time axis and show the total by product." | A single-snapshot categorical chart with no date axis. |
+| "Only show the last 12 months." | The window narrowed, with the values recalculated for it. |
+| "Start the axis at zero." | Explicit axis bounds, overriding the default fit. |
+| "Format the axis in thousands and label it." | Compact axis formatting and a title, with the underlying values left exact. |
+| "This chart is too short." | The height adjusted. Charts default to a standard height unless the content calls for more. |
+
+## Changing an existing visual
+
+| Ari prompts | Ari results |
+| --- | --- |
+| "Turn that line chart into stacked bars." | The same visual and the same underlying data, redrawn in the new shape. |
+| "Narrow that chart to enterprise customers only." | The existing visual updated in place, rather than a second chart added below it. |
+| "Change the title of this chart." | The title updated, with the data and code left alone. |
+| "Make this one bar orange." | A change scoped to the element you selected, not a redesign of the whole visual. |
+| "Move the cash chart above the expense table." | The block repositioned on the Page. |
+
+## When a chart is the wrong answer
+
+| Ari prompts | Ari results |
+| --- | --- |
+| "I need the actual numbers behind this chart." | A Table Block with the values in rows and columns, which you can read and edit. |
+| "Let me type next year's headcount plan in directly." | A Table Block. Editable assumptions and recorded values belong in a table, not a chart. |
+| "Show this side by side for Main and the Downside Scenario." | A Table Block with Scenario comparison columns. |
+| "Build a proper P&L with subtotals." | A Table Block in statement structure, with subtotals that match their meaning. |
+| "Which five vendors grew the most?" | A named analysis table ranked to answer the question, kept as real Model state. |
+
+## Tables, formulas, and forecasts
+
+| Ari prompts | Ari results |
+| --- | --- |
+| "Build an operating expense table by department for the last six months." | A Table Block with departments as rows and months as columns, reading live Model values. |
+| "Add a column comparing Actuals with Forecast and show the variance." | A variance column added to the existing Table Block. |
+| "Add a Variable for average contract value." | A new Variable with its formula, placed where the rest of the Model can reference it. |
+| "Break revenue out by region." | A Dimension applied to Revenue, so it resolves per region and rolls up to the total. |
+| "Which formula applies to this cell?" | The formula that resolves there, and why that one rather than another. |
+| "Draft the formula and check whether it is valid, but wait before applying it." | A validated formula and nothing saved, so you can review it first. |
+| "Why is this row blank?" | The reason the value doesn't resolve — a missing mapping, a formula range, or a Dimension that doesn't apply — rather than a silent zero. |
+| "Build a 12-month revenue forecast by customer segment and label any assumptions you make." | The Variables, Dimensions, and formulas behind the forecast, with each assumption named so you can change it. |
+| "Build a headcount plan by department with loaded payroll cost." | Employee and department tables, compensation, start dates, and planned hires across time. |
+| "Build a P&L, balance sheet, and cash flow statement that tie together." | A linked set of statements built from Model values and accounting records, with assumptions disclosed. |
+| "Rebuild this spreadsheet in cfo.ai." | An import that reconstructs the workbook's logic as Variables and formulas, rather than loading it as source data. |
+
+## Scenarios, data, and recurring work
+
+| Ari prompts | Ari results |
+| --- | --- |
+| "Can we hire three engineers in September? Build a hiring Scenario and show the effect on payroll and cash." | A Scenario with the hires modeled and the effect on each outcome. |
+| "What's different between this Scenario and Main?" | A summary of what actually changed, not a rebuild. |
+| "Is this Scenario ready to merge into Main?" | What merging would change, and a confirmation step you press yourself before anything moves. |
+| "Connect QuickBooks Online so we can build a monthly profit and loss statement." | A link into the connection flow for you to approve. Ari cannot sign in on your behalf. |
+| "Did the sync finish, and which periods are available?" | The connection's load status, when it last loaded, and what's ready to use. |
+| "Why did software spend increase last month? Break it down by vendor." | The breakdown, the largest contributors, and the source records behind them. |
+| "Undo that last change." | The change reverted, at the smallest scope that matches what you asked. |
+| "Every Monday, summarize last week's cash activity and send it to my Slack direct messages." | A named Trigger on that schedule, delivering to your own Slack direct messages or verified email. |
+| "Save this as our monthly close process." | A Skill with a trigger condition and instructions, which Ari activates on its own next time. |
+| "Build a Guide walking a new analyst through this Page." | A saved Guide whose steps spotlight specific blocks, rows, or cells. |
+
+## Related
+
+- [Charts and custom visualizations](/dashboards/charts-and-custom-visualizations)
+- [Ask Ari better questions](/ari/ask-better-questions)
+- [Build and format a Table Block](/dashboards/build-and-format-tables)
+- [Pages and blocks](/dashboards/pages-and-blocks)
+- [Create and compare Scenarios](/scenarios/create-and-compare-scenarios)
+- [Use cases](/use-cases)

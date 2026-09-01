@@ -26,13 +26,233 @@ Ask Ari to update a saved Skill's description or instructions, or to delete one 
 
 ## Sample custom Skill prompts
 
-These are complete, ready-to-save Skills. Each row gives the three things Ari needs: a name, a trigger condition, and the full instructions to follow once the Skill activates. Copy a row and ask Ari to save it, or adapt the instructions to how your team works.
+These are complete, ready-to-save Skills. Each one gives the three things Ari needs: a name, a trigger condition, and the instructions to follow once the Skill activates. Every block below has a copy button — copy each field, then ask Ari to save a Skill with them.
 
-| Skill name | Description | Instructions for Ari |
-| --- | --- | --- |
-| `driver-model-scaffold` | Use when building a driver-based model from scratch, adding a variable that rolls forward across periods, or debugging a model where drill-in rows read zero, a formula reports a circular reference, or the first period looks inflated. | **Build order.** Build and verify one layer at a time; never stack a layer on an unverified one. 1. Volume or capacity spine — the physical unit the business scales on, such as stores, megawatts, seats, or shipments; roll it forward. 2. Unit economics — the per-unit drivers, such as transactions, price, and utilization, that produce revenue per unit. 3. Revenue — spine multiplied by unit economics. 4. Costs — rates against revenue, or per-unit costs against the spine. 5. Headcount. 6. P&L and capital structure — operating expenses, depreciation, debt, and interest. After each table, read it back at the top level across the window boundaries and confirm zero formula errors and sensible magnitudes before continuing.<br /><br />**Trap 1 — a total that sums itself creates a circular reference.** A rule written at the total's scope does not constrain the business dimension, so it also matches every breakdown member; the total then makes each member sum itself. Symptom: a circular reference on every row of the variable, total and members alike. Fix: write explicit rules at both scopes in one pass — the total gets `sum(Variable[Dimension in any])`, and each member gets the actual formula. Any variable that both has a breakdown and needs a total, or that refers to its own prior period, needs both. Purely multiplicative chains usually do not, because the total computes correctly from total operands.<br /><br />**Trap 2 — seeds do not cross dimensions.** An opening value written into a cell lands as an exact condition on that cell's coordinates. It will not reach a cell that also carries another dimension, so the recurrence starts from nothing and the entire drill-in reads zero. Symptom: the total row is correct while every row beneath a different dimension reads zero. Fix: when a formula reads a value that lives outside its own dimensional space, drop the foreign dimension and re-supply the period explicitly, as in `Monthly Sales per Store$[Date.Month = this.Date.Month]`. Use this for every cross-space read: totals read from a segmented cell, rates read from a dimensioned cell, and any scalar consumed inside a breakdown.<br /><br />**Trap 3 — first-period differencing.** `X - X[-1]` has no prior value in the first period, so the entire opening balance registers as first-period activity, silently inflating capital expenditure, hiring, and anything derived from them. Fix: `if(X[-1] > 0, max(0, X - X[-1]), 0)`.<br /><br />**Trap 4 — write budget.** A single request accepts 50 combined updates, and each regime counts separately, so a row update carrying both actuals and forecast costs two. The practical ceiling is 25 row updates, fewer alongside cell updates; creating a variable plus its initial formula also counts as two. Plan splits in advance, because a rejected request applies no writes at all.<br /><br />**Conventions.** Set both actuals and forecast on every default, since with no close date configured either regime may be selected. Seed roll-forwards at the first period and let the recurrence carry the rest. Make every assumption a named variable rather than a number buried inside a formula, so it stays adjustable. Write every ratio as `iferror(a / b, NULL)` rather than a bare division. Build a weighted-average total from two aggregates that are themselves sums, such as total cost over total units — never from an element-wise product across two wildcards, which does not pair up and silently returns a plain sum. |
-| `forecast-simulator` | Use when building an interactive forecast tool, a what-if page, or a scenario explorer with controls over model variables. | **The property that matters.** At default settings the simulated series must sit exactly on the model baseline. If it drifts, every difference the reader sees is contaminated by model error and the tool loses credibility.<br /><br />**Two ways to achieve it, in order of preference.** First, re-run the recurrence: rebuild the series in the visual using the model's own inputs and the scenario driver, so at the default value it reproduces the model exactly, because it is the same recurrence. Second, where a recurrence is impractical, scale the baseline by the ratio of the scenario setting to the default — for example a growth factor of `((1 + newTraffic) * (1 + newPrice)) / ((1 + baseTraffic) * (1 + basePrice))` raised to the period index, which equals one at defaults, so the simulated series equals the baseline. Read cost rates, asset life, and load factors from the model rather than hardcoding them, so the tool stays in sync when the model changes.<br /><br />**Dataset rules.** Use one breakdown per dataset. Several variables each broken down by the same dimension in a single dataset collapses the duplicate member labels, so you get the totals and one set of members while the rest render blank. Cap at eight datasets per visual, and check the write receipt's reported series count and names against what you expected. A series with no segments is the variable total; populated segments are breakdown members — filter to members before stacking, or the total double-counts against its own children. Rows become series and date columns become plotted points.<br /><br />**Control contract.** Controls preview locally and must never write to the model. Save a setting only when the reader commits it, not while dragging. Always offer a reset that restores defaults and clears saved state. Show a status indicator so the reader always knows whether they are looking at the baseline or at a scenario.<br /><br />**After writing.** A newly saved visual is unverified. Always run the render check on it and fix anything reported before calling the work done — it renders the visual in a real browser in light and dark and returns actual runtime errors.<br /><br />**Chart selection.** Before shipping, check whether any two charts are the same curve rescaled. If per-unit economics are uniform across a dimension, then units by dimension, revenue by dimension, and profit by dimension are one shape drawn three times. Replace duplicates with ratios that actually diverge, such as cost as a percent of revenue, support headcount per hundred units, or profit per employee. A quotient of two things growing at different rates carries information that a level chart cannot. |
-| `headcount-from-capacity` | Use when building a hiring plan, a workforce forecast, a personnel cost model, or a department-level org plan. | **Why not a growth rate.** A monthly hiring rate compounds. Fitting one to a fast-growth year and running it four years produces absurd totals — a rate near 7.7 percent per month that matches one year of real hiring yields roughly 30,000 employees four years out. Anchor headcount to whatever the business actually scales on: megawatts, stores, shipments, accounts, or recurring revenue.<br /><br />**Structure.** Hold `Headcount per Unit` by department as a driver seeded at the first period. Compute `Headcount` by department as `Headcount per Unit * Total Units$[Date.Month = this.Date.Month]`. Hold `Average Salary` by department as driver constants. Compute `Personnel Cost` by department as `Headcount * Average Salary / 12 * Payroll Load Multiplier`. Headcount needs no separate total and member rules, because the total computes correctly as the total ratio multiplied by units. Personnel cost does need them: the total is a sum and the members are the explicit product. Note the pinned period on the units read — the unit total lives outside department space, and without it the seed on the spine will not reach a department-coordinated cell and every row reads zero.<br /><br />**Let the ratio move.** A flat ratio understates early scaling and overstates it later. Give the ratio its own decaying trend: `Ratio Growth = Ratio Growth[-1] * Ratio Decay`, seeded positive with a decay near 0.94, then `Headcount per Unit = Headcount per Unit[-1] * (1 + Ratio Growth$[Date.Month = this.Date.Month])`. This reproduces a hiring surge early and flattens into operating leverage later without exploding. Tune the seed to hit year-one actuals and the decay to keep the terminal ratio sane.<br /><br />**Diagnostics worth surfacing.** Revenue per employee, as a sanity check against comparables. Units per employee, as the productivity trend. Support ratio — corporate heads per hundred units — for whether the organization is outgrowing what it serves. Profit per corporate employee, as returns on overhead headcount; this one often declines, and saying so is more useful than hiding it.<br /><br />**Reconcile to the P&L.** If the P&L also carries labor as a percent of revenue, either drive that line from this build or add an explicit reconciliation row showing the implied percentage. Never let a bottom-up headcount plan sit beside a top-down labor percentage with no tie between them. |
+### `driver-model-scaffold`
+
+**Trigger condition**
+
+```text
+Build a driver-based, natively dimensional model — volume or capacity spine through unit economics, P&L, and headcount. Use when creating a new operating model, adding a dimensioned variable with a roll-forward, or debugging circular references, drill-in rows that read zero, or inflated first-period values in saved tables.
+```
+
+**Instructions**
+
+````markdown
+# Driver model scaffold
+
+## Build order
+Build and verify one layer at a time. Never stack a layer on an unverified one.
+
+1. **Volume/capacity spine** — the physical unit the business scales on (stores, megawatts, seats, shipments). Roll it forward.
+2. **Unit economics** — per-unit drivers (transactions, price, utilization) that produce revenue per unit.
+3. **Revenue** — spine × unit economics.
+4. **Costs** — rates against revenue, or per-unit costs against the spine.
+5. **Headcount** — see `headcount-from-capacity`.
+6. **P&L and capital structure** — opex, D&A, debt, interest.
+
+After each table, read it back at `depth: 0` with `periods: "boundaries"`,
+`formula_origins: "off"`, `source_health: "off"`, `format: "text"`. Confirm
+`formula_errors: 0` and that the numbers are the right order of magnitude before
+continuing.
+
+## The four traps
+
+### 1. Parent self-sum creates a cycle at the child
+A rule on the parent's `[Date.Month in any]` condition does not constrain the business
+dimension, so it **also matches every child**. A parent self-sum therefore makes each
+child sum itself.
+
+Symptom: `Circular reference` on every row of a variable, parent and children alike.
+
+Fix — explicit rules at both scopes, in one write:
+- Parent target `Variable`: `sum(`Variable`[Dim in any])`
+- Each child target `Variable > Item`: the actual formula
+
+Any variable that (a) has a breakdown and (b) needs a parent aggregate or has a
+self-referencing recurrence needs both. Multiplicative chains (`A * B`) usually don't —
+the parent computes correctly from parent operands.
+
+### 2. Exact-reach seeds do not cross dimensions
+A seed written via `cell_updates` lands as an **exact** condition:
+`$[Channel = "In-Store", Date.Month = "2025-01"]`. It will not reach a cell that also
+carries a Region coordinate. The recurrence then starts from nothing and the whole
+drill-in reads 0.
+
+Symptom: parent row is correct, every child under a *different* dimension reads 0. The
+write receipt warns `every row drilled under "X" reads 0 while the row above it does not`.
+
+Fix — when reading a variable that lives in a different dimensional space, drop the
+foreign dimension and re-supply time:
+
+    `Monthly Sales per Store`$[Date.Month = this.Date.Month]
+
+Use this for every cross-space read: totals read from a segmented cell, rates read from
+a dimensioned cell, any scalar consumed inside a breakdown.
+
+### 3. First-period differencing artifact
+`X - X[-1]` in period 1 has no prior value, so the entire opening balance registers as
+period-1 activity. This silently inflates capex, hiring, and anything derived from them.
+
+Fix:
+
+    if(`X`[-1] > 0, max(0, `X` - `X`[-1]), 0)
+
+### 4. Write budget
+One request accepts **50 combined updates**, and each regime counts separately — so a
+`row_updates` entry carrying both `actuals` and `forecast` costs 2. Practical ceiling:
+**25 row_updates**, or fewer alongside `cell_updates`. Creation counts too: a new
+variable plus its initial formula is 2.
+
+Plan splits in advance. A rejection applies no writes at all.
+
+## Conventions
+- Set both `actuals` and `forecast` on every default. With no last-close configured,
+  either regime may be selected.
+- Seed roll-forwards at the first period via `cell_updates`; the recurrence carries the rest.
+- Make every assumption a named variable, not a literal inside a formula. Literals aren't playable.
+- Ratios use `iferror(a / b, NULL)` — never a bare division.
+- Weighted-average parents: derive from two aggregates that are themselves sums
+  (`total cost / total units`), never from an element-wise product across two wildcards —
+  that does not pair up and silently returns a plain sum.
+````
+
+### `forecast-simulator`
+
+**Trigger condition**
+
+```text
+Build a Canvas simulator whose scenario ties exactly to the model baseline at default settings, so every visible difference is attributable to the driver the user moved. Use when creating an interactive forecast tool, what-if page, scenario explorer, or any page with sliders over saved model variables.
+```
+
+**Instructions**
+
+````markdown
+# Forecast simulator
+
+## The property that matters
+At default slider settings the simulated series must sit **exactly** on the baseline. If
+it drifts, every delta the user reads is contaminated by model error and the tool loses
+credibility.
+
+Two ways to achieve it, in order of preference:
+
+**A. Re-run the recurrence.** Rebuild the series in component code using the model's own
+inputs and the scenario driver. At the default driver value this reproduces the model
+exactly because it is the same recurrence:
+
+    const mwS = [];
+    for (let i = 0; i < n; i++) {
+      if (i === 0) { mwS.push(mwB[0] || 0); continue; }
+      const contPrev = (contB[i-1] || 0) * Math.pow(live.contract, i-1);
+      mwS.push(mwS[i-1] + Math.max(0, contPrev - mwS[i-1]) * live.act);
+    }
+
+**B. Ratio against baseline.** Where a recurrence is impractical, scale the baseline by
+the ratio of scenario to default:
+
+    const g = ((1 + live.traffic) * (1 + live.price)) / ((1 + D.traffic) * (1 + D.price));
+    const sim = base[i] * Math.pow(g, i);
+
+At defaults `g === 1`, so `sim === base`.
+
+Read cost rates, life, and load factors from a `rates` dataset rather than hardcoding, so
+the component stays in sync when the model changes.
+
+## Dataset rules
+- **One breakdown per dataset.** Multiple variables each broken down by the same dimension
+  in a single dataset collapses the duplicate child labels — you get the totals and one set
+  of children, and the rest render blank. Split into one dataset per variable.
+- Max 8 datasets per block. Check `dataset_evidence` in the write receipt: `series_count`
+  and `series_names` tell you what actually came back.
+- A series with empty `segments` is the variable **total**; populated `segments` are
+  breakdown members. Filter to `segments.length` before stacking, or the total
+  double-counts against its children.
+- `layout.rows` become series; `layout.columns` (Date) become plotted points.
+
+## Component contract
+- `Block({ data, state, emit })`. React and its hooks are lexical bindings — no imports,
+  no `window.React`.
+- `Slider` fires `onChange(v)` for a local draft and `onCommit(v)` for an accepted change.
+  **Persist only on commit** via `emit({ type: "setState", patch: { key: v } })`.
+- Sliders must never write to the model. The scenario is a local preview.
+- Provide a reset that restores defaults and clears saved state (`patch` values to `null`).
+- Show a status pill so the viewer always knows whether they're looking at baseline or a
+  scenario.
+
+## After writing
+`add_canvas` leaves `render_verified: false`. Always run `validate_code_blocks` on the
+block id — it renders in Chromium in light and dark and returns real runtime errors. Fix
+anything it reports before calling the work done.
+
+## Chart selection
+Before shipping charts, check whether any two are the same curve rescaled. If per-unit
+economics are uniform across a dimension, then "units by dimension", "revenue by
+dimension", and "profit by dimension" are one shape drawn three times. Replace duplicates
+with **ratios that diverge** — cost as % of revenue, support headcount per 100 units,
+profit per employee. A quotient of two things growing at different rates carries
+information a level chart cannot.
+````
+
+### `headcount-from-capacity`
+
+**Trigger condition**
+
+```text
+Model headcount as a ratio to the business's physical driver rather than a compounding growth rate, so the plan stays anchored as the business scales. Use when building a hiring plan, workforce forecast, personnel cost model, or department-level org plan.
+```
+
+**Instructions**
+
+````markdown
+# Headcount from capacity
+
+## Why not a growth rate
+A monthly hiring rate compounds. Fitting one to a fast-growth year and running it 48
+months produces absurd totals — a 7.7%/month rate that matches one year of real hiring
+yields 30,000 employees four years out.
+
+Anchor headcount to whatever the business actually scales on: megawatts, stores,
+shipments, accounts, ARR.
+
+## Structure
+
+    `Headcount per Unit` [Department]  — driver, seeded at the first period
+    `Headcount` [Department] = `Headcount per Unit` * `Total Units`$[Date.Month = this.Date.Month]
+    `Average Salary` [Department]      — driver constants
+    `Personnel Cost` [Department] = `Headcount` * `Average Salary` / 12 * `Payroll Load Multiplier`
+
+`Headcount` needs no parent/child rules — the parent computes correctly as parent-ratio ×
+units. `Personnel Cost` does: parent is a sum, children are the explicit product.
+
+Note the `$[Date.Month = this.Date.Month]` on the units read. The unit total lives outside
+Department space; without it, the exact-reach seed on the spine won't reach a
+Department-coordinated cell and every row reads zero.
+
+## Let the ratio move
+A flat ratio understates early scaling and overstates late. Give the ratio its own
+decaying trend:
+
+    `Ratio Growth` = `Ratio Growth`[-1] * `Ratio Decay`        // seeded positive, decay ~0.94
+    `Headcount per Unit` [Dept] = `Headcount per Unit`[-1] * (1 + `Ratio Growth`$[Date.Month = this.Date.Month])
+
+This reproduces a hiring surge early and flattens into operating leverage later, without
+exploding. Tune the seed to hit year-1 actuals and the decay to keep the terminal ratio sane.
+
+## Diagnostics worth surfacing
+- **Revenue per employee** — sanity check against comparables.
+- **Units per employee** — the productivity trend.
+- **Support ratio** (corporate heads per 100 units) — whether the org is outgrowing what
+  it serves.
+- **Profit per corporate employee** — returns on overhead headcount. This one often
+  declines, and saying so is more useful than hiding it.
+
+## Reconcile to the P&L
+If the P&L carries labor as a % of revenue, either drive that line from this build
+(`Units * Cost per Unit`) or add an explicit reconciliation row showing the implied
+percentage. Never let a bottom-up headcount plan sit beside a top-down labor percentage
+with no tie between them.
+````
 
 ## Related
 

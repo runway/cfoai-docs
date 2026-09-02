@@ -30,9 +30,150 @@ These are complete, ready-to-save Skills. Prompt Ari with the instructions below
 
 | Name | Description | Instructions |
 | --- | --- | --- |
+| three-statement-buildout | Build a saved page with native Income Statement, Cash Flow Statement, and Balance Sheet tables using the workspace's existing variables, formulas, and mappings. Use when creating or updating the full three-statement model, or when auditing subtotals, cash continuity, and the balance check. | See [instructions](#three-statement-buildout-instructions) below. |
 | forecast-simulator | Build an interactive forecast tool whose scenario ties exactly to the model baseline. Use for what-if pages, scenario explorers, or any page with controls over model variables. | See [instructions](#forecast-simulator-instructions) below. |
 | headcount-from-capacity | Model headcount as a ratio to the business's real driver, not a growth rate. Use for hiring plans, workforce forecasts, personnel cost models, or org plans. | See [instructions](#headcount-from-capacity-instructions) below. |
 | interactive-profitability-bridge | Build a reusable interactive Canvas visual from the organization's existing income statement, with local preview controls that never write back to the model. Use for what-if profitability views, scenario walkthroughs of the income statement, or margin bridges. | See [instructions](#interactive-profitability-bridge-instructions) below. |
+
+### `three-statement-buildout` instructions
+
+<Accordion title="View and copy instructions">
+  ```markdown expandable wrap
+  # Three statement buildout
+  
+  Build a saved page titled "9. Financial Statements" with three native model tables:
+  
+  1. Income Statement
+  2. Cash Flow Statement
+  3. Balance Sheet
+  
+  Use the workspace's existing variables, formulas, dimensions, mappings, source data, accounting conventions, currency, signs, scenario, and Last close. Do not assume USD, tax rates, fiscal years, or literal variable names. Resolve the closest verified existing variables and formulas first. Reuse existing model objects instead of creating duplicates.
+  
+  Use the current scenario unless another is specified. Preserve unrelated pages, tables, variables, formulas, mappings, scenarios, and time settings. If the page or tables already exist, update them in place.
+  
+  Use variables on rows and the system Date dimension by month across columns. Use a visible window from January 2025 through December 2030 unless another window is requested. Preserve the scenario's existing Last close and label Actuals and Forecast according to that boundary.
+  
+  ## Income Statement rows
+  
+  Use verified organizational equivalents where necessary:
+  
+  - Revenue
+  - Cost of Revenue
+  - Gross Profit
+  - Gross Margin
+  - Technology and Infrastructure
+  - Sales and Marketing
+  - General and Administrative
+  - Total Operating Expenses
+  - Operating Income
+  - Operating Margin
+  - Interest Expense Net
+  - Other Income Net
+  - Pre-Tax Income
+  - Income Tax Expense
+  - Net Income
+  - Depreciation and Amortization
+  - Stock-Based Compensation Expense
+  - Other Non-GAAP Adjustments
+  - Adjusted EBITDA
+  - Adjusted EBITDA Margin
+  - Adjusted Operating Income
+  - Adjusted Operating Margin
+  - Adjusted Net Income
+  
+  ## Cash Flow Statement rows
+  
+  - Net Income
+  - Depreciation and Amortization
+  - Stock-Based Compensation Expense
+  - Customer Prepayments Received
+  - Deferred Revenue Recognized
+  - Change in Deferred Revenue
+  - Working Capital Intensity of Revenue Growth
+  - Other Working Capital Change
+  - Operating Cash Flow
+  - Cash Capital Expenditures
+  - Free Cash Flow
+  - Net Debt Draws
+  - Equity Issuance
+  - Financing Cash Flow
+  - Net Change in Cash
+  - Cash Balance
+  
+  ## Balance Sheet rows
+  
+  - Cash Balance
+  - Property and Equipment Net
+  - Net Working Capital and Other Assets
+  - Lease ROU Capitalized per Leased MW
+  - Operating Lease ROU Assets
+  - Total Assets
+  - Total Debt
+  - Deferred Revenue Balance
+  - Operating Lease Liabilities
+  - Total Liabilities
+  - Stockholders Equity
+  - Balance Check
+  
+  ## Before writing
+  
+  Inspect:
+  
+  - The current page and its existing blocks
+  - Existing saved tables and layouts
+  - Variables, formulas, source metadata, formats, currencies, and preferred time bindings
+  - Dimensions, items, reporting grain, ranges, and Last close
+  - Existing account mappings and statement formulas
+  - Calculated values at monthly grain
+  
+  ## Modeling requirements
+  
+  - Use native editable tables, not read-only Canvas tables.
+  - Use the system Date axis, not a source date column.
+  - Preserve source signs exactly.
+  - Preserve currencies, units, decimal precision, and number formats.
+  - Preserve Actuals and Forecast logic.
+  - Keep meaningful business dimensions and mappings.
+  - Use existing statement subtotals when available.
+  - Do not double-count source rollups and their children.
+  - Use correct monthly aggregation for flows.
+  - Use closing-value behavior for balance-sheet stocks such as Cash Balance.
+  - Calculate margins only when the denominator exists and is nonzero.
+  - Do not invent tax rates or unsupported relationships.
+  - Keep observed source data, formulas, and editable assumptions distinct.
+  - If a requested line is unavailable, omit it and explain why.
+  - Only create a clearly labeled editable assumption when it is necessary and useful to complete the report.
+  
+  ## After saving
+  
+  Verify:
+  
+  - All three tables exist on the page.
+  - The monthly Date axis and requested window are correct.
+  - Actuals and Forecast periods align with Last close.
+  - Income statement subtotals and margins calculate correctly.
+  - Cash flow subtotals and Cash Balance continuity are supported.
+  - Balance Sheet totals and Balance Check reconcile.
+  - Early, middle, and late periods have been checked.
+  - Unexpected zeros, blanks, and unchanged values have been traced to their formula origins.
+  - Any missing mappings, source gaps, omitted rows, formula gaps, assumptions, or reconciliation residuals are reported.
+  
+  ## Final response
+  
+  Include:
+  
+  - Links to the saved page and tables
+  - Selected scenario and reporting window
+  - Currency and formatting basis
+  - The verified variable used for each statement line
+  - Omitted lines and reasons
+  - Assumptions, mappings, formula gaps, and residuals
+  - Whether Actuals/Forecast boundaries were verified
+  - Whether the balance check and cash-flow reconciliation passed or remain unverified
+  
+  Do not create a Canvas visualization unless separately requested.
+  ```
+</Accordion>
 
 ### `forecast-simulator` instructions
 

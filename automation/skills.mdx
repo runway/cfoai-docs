@@ -32,6 +32,7 @@ These are complete, ready-to-save Skills. Prompt Ari with the instructions below
 | --- | --- | --- |
 | forecast-simulator | Build an interactive forecast tool whose scenario ties exactly to the model baseline. Use for what-if pages, scenario explorers, or any page with controls over model variables. | See [instructions](#forecast-simulator-instructions) below. |
 | headcount-from-capacity | Model headcount as a ratio to the business's real driver, not a growth rate. Use for hiring plans, workforce forecasts, personnel cost models, or org plans. | See [instructions](#headcount-from-capacity-instructions) below. |
+| interactive-profitability-bridge | Build a reusable interactive Canvas visual from the organization's existing income statement, with local preview controls that never write back to the model. Use for what-if profitability views, scenario walkthroughs of the income statement, or margin bridges. | See [instructions](#interactive-profitability-bridge-instructions) below. |
 
 ### `forecast-simulator` instructions
 
@@ -155,6 +156,100 @@ These are complete, ready-to-save Skills. Prompt Ari with the instructions below
   (`Units * Cost per Unit`) or add an explicit reconciliation row showing the implied
   percentage. Never let a bottom-up headcount plan sit beside a top-down labor percentage
   with no tie between them.
+  ```
+</Accordion>
+
+### `interactive-profitability-bridge` instructions
+
+<Accordion title="View and copy instructions">
+  ```markdown expandable wrap
+  # Interactive profitability bridge
+  
+  Create a custom workspace skill called `interactive-profitability-bridge`.
+  
+  The skill should create or update a reusable interactive Canvas visual based on the organization's existing income statement. It should work across different organizations and must not assume specific line-item names such as Subscription Revenue, Total COGS, Gross Profit, EBIT, or Net Income.
+  
+  ## When the skill runs
+  
+  1. Inspect the current page, saved income statement tables, variables, formulas, dimensions, mappings, reporting grain, currency, and Last close.
+  2. Identify the organization's available equivalents for:
+     - Revenue or total income
+     - Direct costs or cost of sales
+     - Gross profit or contribution profit
+     - Operating expenses
+     - Operating profit or EBIT
+     - Pretax profit
+     - Tax expense
+     - Net income or net profit
+  3. Prefer variables already used by the organization's saved income statement.
+  4. Preserve the organization's actual labels, formulas, accounting signs, currency, number formats, dimensions, and Actuals/Forecast logic.
+  5. If a stage is unavailable, omit it instead of inventing a value. Do not use generic tax rates, hardcoded currencies, or assumed financial categories.
+  
+  ## Canvas block
+  
+  Create a saved Canvas block titled "Interactive Income Statement Funnel" or an equivalent organization-specific title.
+  
+  The Canvas visual should:
+  
+  - Connect to a live dataset containing the supported statement variables and system Date.
+  - Allow the user to select an available reporting period at the statement's existing grain.
+  - Identify the selected period as Actuals or Forecast using Last close.
+  - Show supported profitability stages in order:
+    - Top-line revenue or income
+    - Gross or contribution profit
+    - Operating profit
+    - Pretax profit
+    - Net income or net profit
+  - Display each stage's organization-specific label, value, percentage of the top-line measure, proportional bar, and change from baseline when a preview is active.
+  - Distinguish missing values from zero.
+  - Display losses and negative values honestly.
+  - Show a useful empty state when no supported periods or values are available.
+  
+  ## Preview controls
+  
+  Add local, non-persisted preview controls only when the required model stages exist:
+  
+  - Increase revenue or income
+  - Reduce direct costs
+  - Reduce operating expenses
+  
+  The controls should:
+  
+  - Start at zero.
+  - Use bounded sliders with clear labels.
+  - Use the organization's terminology.
+  - Recalculate downstream supported stages using the same relationships as the income statement.
+  - Preserve non-operating income and expense unless a specific control exists for them.
+  - Preserve the selected period's tax treatment when tax is available.
+  - Omit unsupported controls or outputs.
+  - Include a reset-to-baseline action.
+  - Never write values, formulas, assumptions, or scenario changes to the model.
+  
+  Show local impact summaries for supported outputs, such as top-line, gross or contribution profit, operating profit, and net income. Clearly label these as local preview impacts, not approved forecasts or model changes.
+  
+  ## Components and state
+  
+  Use cfo.ai Canvas components and theme tokens. Use injected components such as Select, Slider, Button, Card, Text, NumberText, Delta, and appropriate chart or visualization components. Do not use hardcoded USD formatting, a 21% tax rate, FY2026, company-specific variable names, replacement color palettes, or native HTML controls where an injected component is available.
+  
+  Store only presentation state in Canvas state, such as the selected period and preview-control values. Keep actual model data read-only.
+  
+  ## Validation
+  
+  After saving, validate the Canvas block in light and dark themes. Test:
+  
+  - Baseline values with all controls at zero
+  - Period selection
+  - Actuals and Forecast labeling
+  - Each enabled preview control
+  - Negative profit or loss
+  - Missing optional stages
+  - Missing values versus zero
+  - Reset behavior
+  - Confirmation that no model values or formulas changed
+  
+  ## Final report
+  
+  In the final response, report the saved Canvas block, the variables mapped to each profitability stage, omitted stages, preview assumptions, and any unresolved ambiguity or data gap.
   ```
 </Accordion>
 

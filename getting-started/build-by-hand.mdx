@@ -219,7 +219,7 @@ Choose **Format and display** to open a submenu:
 - **Variance colors** with **Higher is better** or **Lower is better**, which decides whether a positive variance shows as good or bad.
 - **Reset** to return the row to default formatting.
 
-Format and Precision apply to the Variable, so they follow it onto every table. Background, text style, and indent apply to the row, column, or cell you clicked. To format many rows at once, press **⌘ A** and then use the row menu.
+Format and Precision apply to the Variable, so they follow it onto every table. Background, text style, and indent apply to the row, column, or cell you clicked. To format many rows at once, press **⌘ A** and then use the row menu. For Dimension colors, text, charts, and your own theme, see [Change formatting](#change-formatting).
 
 ### Other right-click actions
 
@@ -248,6 +248,71 @@ Format and Precision apply to the Variable, so they follow it onto every table. 
 Select the **Compare** button in the table header. Choose **Scenarios** and tick the Scenarios to show beside the current one, or choose **Time periods** to compare against an earlier period. Pick whether comparisons appear in **Columns** or **Rows**, and whether to group **By scenario** or **By variable**. Select **Reset** to remove the comparison. Time-period comparison needs a Date row or column on the table.
 
 For more on comparisons, see [Create and compare Scenarios](/scenarios/create-and-compare-scenarios).
+
+## Change formatting
+
+Where you change formatting depends on what you want to change: a Variable's numbers, a table's look, a Dimension's colors, text, a chart, or your own view of the app.
+
+### Variables
+
+A Variable's number format belongs to the Variable, so one change applies everywhere the Variable appears, on every table and chart.
+
+<Steps>
+  <Step title="Open the Variable's format menu">
+    Right-click the Variable's row label, or any cell in its row, and choose **Format and display**.
+  </Step>
+  <Step title="Choose a format">
+    Under **Format**, pick **Auto**, **Number**, **Currency**, **Percentage**, **Integer**, **Multiple**, or **Date**. When you pick **Currency**, a **Currency** row appears for the currency code, such as USD, EUR, GBP, or JPY.
+  </Step>
+  <Step title="Set decimal places">
+    Under **Precision**, choose how many decimal places to show.
+  </Step>
+  <Step title="Set variance colors">
+    Under **Variance colors**, choose **Higher is better** or **Lower is better**. This decides whether a positive variance shows in the good or bad color when the table compares Scenarios or periods.
+  </Step>
+</Steps>
+
+To format several Variables at once, press **⌘ A** to select the whole table, then right-click a row label and use the same menu. **Reset** in the same submenu returns a row to default formatting.
+
+<Note>
+  **Background**, **Text style**, and **Indent** in the same submenu are table formatting, not Variable formatting. They apply to the row, column, or cell you right-clicked on this table only.
+</Note>
+
+### Dimensions and dates
+
+- **Dimension color.** Right-click the Dimension's header and choose **Dimension color** to change the accent color used for its pills wherever the Dimension appears.
+- **Pills or plain text.** Right-click the header and choose **Display as**, then **Pill** or **Plain text**.
+- **Date grain on one axis.** Right-click a Date header and choose **Date granularity** to change one axis without changing the whole table.
+- **Date labels on a table.** Right-click a Date header, choose **Format and display**, then **Date format**, and pick a style such as `Sep-26`, `2026-09-02`, `September 2026`, or `FY2026`. This applies to the current table.
+
+### Text blocks
+
+Click into a Text block and select some text. A small toolbar appears with **Heading**, **Bold**, **Italic**, **Underline**, **Strikethrough**, **Code**, **Bullet list**, and **Link**. It also offers **Add selection to chat** if you want Ari to rewrite the passage.
+
+### Charts
+
+If a Page already has a chart block, you can restyle it yourself. Select the chart and open its sidebar from the toggle in the chart's header. The sidebar has three sections.
+
+- **Setup** controls what the chart shows: the Variables plotted as series, the **X axis** (usually **Date**, with its own granularity control), the **Y axis**, and **Segment by** to split a series by a Dimension. Use the chart type picker to switch between **Line**, **Bar**, **Area**, and the other chart types. Select a series' color swatch (**Pick color**) to change its color. In a combo chart, each series has its own **Line** or **Bar** type.
+- **Display** controls the chrome: **Show chart title** and **Chart title text**, **Show legend**, **Show X axis** and **X axis title**, **Show Y axis** and **Y axis title**, and grid lines. Waterfall charts add **Positive**, **Negative**, and **Total** colors and a **Values** label toggle.
+- **Compare** adds a Scenario or time-period comparison, with the same choices as a Table Block.
+
+Axis labels and tooltips follow each Variable's number format and precision. To change how a chart's values display, change the Variable's format as described above.
+
+<Note>
+  Creating a new chart block from the **Add block** menu is not available in every workspace. Ask Ari to build a chart or a Canvas visual when you need a new one.
+</Note>
+
+### Canvas blocks
+
+Canvas blocks have no manual editor. Hover the block and use **Select element** to point at the exact element you want changed, then **Mention in chat** and describe the change to Ari. Canvas blocks follow the app theme automatically.
+
+### Your own view of the app
+
+These settings change how cfo.ai looks for you and never affect your teammates.
+
+- Open the account menu and use **Appearance** to choose **Auto**, **Light**, or **Dark**.
+- Open **Settings → General → Appearance** and select **Theme studio** to pick a built-in theme or create a personal one. See [Set your personal theme](/workspace-settings/personal-theme).
 
 ## Segment a table by a Dimension
 

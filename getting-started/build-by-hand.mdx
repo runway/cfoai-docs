@@ -1,0 +1,400 @@
+---
+title: "Build and edit your Model by hand"
+sidebarTitle: "Work without Ari"
+description: "Create Pages and Table Blocks, add Variables and Dimensions, type values, write formulas, format tables, manage Scenarios, and connect data directly in the cfo.ai app."
+---
+
+Everything Ari can build for you, you can also build yourself. This guide covers the hands-on path: where the controls are in the cfo.ai app, what each one is called, and the click path for the modeling work you would otherwise ask Ari to do. Use it when you want to make a small change quickly, check Ari's work, or model the way you would in a spreadsheet.
+
+You and Ari edit the same Model, so anything you build here is visible to Ari and appears in Version history.
+
+## Find your way around
+
+Sign in at [app.cfo.ai](https://app.cfo.ai) on a desktop browser. The app has four areas you will use throughout this guide.
+
+- **Navigation sidebar** on the left. It holds **New chat**, your chat list, the **Model** section with the current Scenario and its list of Pages, and **Integrations**. Your account menu sits at the bottom of the sidebar.
+- **Model pane header** above the Page. It holds the Scenario picker, **Version history**, and the pane toggle.
+- **Page header**. It shows the Page icon and name, a date-range control that applies to every block on the Page, **Download spreadsheet**, the access badge, and **Share**.
+- **Account menu**. Open it from the avatar at the bottom of the sidebar for **Appearance**, **Settings**, **Help**, the workspace switcher under **Workspaces**, and **Log out**.
+
+<Tip>
+Press **⌘ ?** (**Ctrl ?** on Windows and Linux) at any time to open the Help center, which includes short interactive walkthroughs and the keyboard shortcut list.
+</Tip>
+
+## Pages
+
+A Page is a dashboard of blocks. Pages nest, so a top-level Page can hold subpages.
+
+### Create, rename, and organize Pages
+
+<Steps>
+  <Step title="Create a Page">
+    In the sidebar's **Pages** section, select the **+** button labeled **New page**. cfo.ai creates a Page named "New Page" and opens it. To create a subpage, hover a Page row and select its **New subpage** button.
+  </Step>
+  <Step title="Rename the Page">
+    Double-click the Page row in the sidebar, or select it and press **F2**. You can also click the Page name in the Page header and type. Press **Enter** to save or **Esc** to cancel.
+  </Step>
+  <Step title="Pick an icon">
+    Select the icon beside the Page name. The picker has a **Search icons** field, a **Shuffle icon** action, and **Remove page icon**.
+  </Step>
+  <Step title="Reorder or nest Pages">
+    Drag a Page row in the sidebar. Drop it between two rows to reorder it, or drop it onto a row to nest it inside that Page. With the keyboard, focus a row and use **Alt ↑** or **Alt ↓** to move it among its siblings, **Alt →** to nest it under the Page above, and **Alt ←** to move it out again.
+  </Step>
+</Steps>
+
+### Delete a Page
+
+Hover the Page row in the sidebar and select **Delete page**. There is no confirmation step, so make sure you have the right Page. Deleting a Page removes its blocks. Its subpages move up to sit beside it rather than being deleted.
+
+## Blocks
+
+Blocks stack top to bottom on a Page. You can add three kinds yourself.
+
+| Block | What it holds | How you edit it |
+| --- | --- | --- |
+| **Table block** | A live grid of Variables and Dimensions across time. | Directly, as described in the rest of this guide. |
+| **Text block** | Notes, narrative, and headings beside your numbers. | Click into it and type. Select text to see the formatting menu. |
+| **Canvas block** | A custom visual or interactive tool. | Ask Ari. A blank Canvas block offers **Mention block in chat** so Ari can build it; there is no code editor in the app. |
+
+### Add a block
+
+- On a Page that already has blocks, select **Add block** at the bottom of the Page and choose **Table block**, **Text block**, or **Canvas block**.
+- Hover the left edge of any block and select the **+** labeled **New block below**. The compact menu offers **Table**, **Text**, and **Canvas**.
+- On an empty Page, choose one of the **Table block**, **Text block**, or **Canvas block** cards, or select **Create with Ari**.
+
+### Move, duplicate, or delete a block
+
+Hover the left edge of a block to reveal its grabber (a six-dot handle). Drag the grabber to reorder blocks on the Page. Click it to open the **Block menu**, which offers:
+
+- **Mention in chat** and **Explain with Ari**, which hand the block to Ari.
+- **Duplicate block**.
+- **Move to page**, with a list of Pages you can edit plus **New page**.
+- **Delete block**.
+
+Clicking the grabber also selects the block. While a block is selected, **Shift F10** opens the same menu, **↑** and **↓** move between blocks, **Enter** enters the block, and **Esc** returns to it.
+
+## Build a Table Block
+
+A new Table Block is blank. Its heading reads **Build your table**, and the hint says to add a row below or a column above. Rows are usually Variables, columns are usually time, and either axis can be segmented by a Dimension.
+
+### Rename the table
+
+Click the table's title in its header and type. Press **Enter** to save.
+
+### Open the table setup panel
+
+Select the **Show table setup** button at the left of the table header. The panel has four sections: **Layout**, **Formula**, **Columns**, and **Rows**. Each of the **Columns** and **Rows** sections lists what is on that axis as a tree you can drag to reorder, with an **Add** button underneath.
+
+### Add a row or column
+
+You can add to a table from the setup panel or from the grid itself.
+
+- In the setup panel, select **Add** under **Rows** or **Columns**.
+- In the grid, use the pinned **Add row** at the bottom of the table or the **+** at the right end of the column headers.
+- Hover the left gutter beside a row and select the **+** to insert a row directly below it. Right-click a row or column header for **Insert above**, **Insert below**, **Insert left**, or **Insert right**.
+
+Every path opens the same search field, with the placeholder **Create or search**. Type a name. Matching Variables and Dimensions appear as you type; select one to add it. Selecting an existing Dimension may ask whether to add it as a segmentation or a mapping. See [Segment a table by a Dimension](#segment-a-table-by-a-dimension).
+
+### Create a Variable
+
+Creating a Variable happens in the same search field. Type the new name and select **Create variable: \[name\]**, or press **Enter**. cfo.ai creates the Variable and places it on the table in one step.
+
+A Variable is created with only its name. You set its number format, precision, and colors afterward from the right-click menu. See [Format cells, rows, and columns](#format-cells-rows-and-columns).
+
+When you add a Variable as a row and the table has no time columns yet, cfo.ai adds a **Date** column automatically so the row gets one cell per period. When you add a Variable as a column, cfo.ai nests **Date** beneath it.
+
+<Note>
+Variables are shared across your whole Model. A Variable you create on one table can be added to any other table, and editing its formula in one place changes it everywhere. To take a Variable off a table without deleting it, right-click it and choose **Remove item**, or use **Remove from table** in the setup panel.
+</Note>
+
+### Create a Dimension
+
+In the same search field, type a name and select **Create dimension: \[name\]**. cfo.ai then asks how the table should use it:
+
+- **Segmentation** splits the axis by the Dimension's items, one row or column per item.
+- **Mapping** shows the Dimension's value in each cell instead, the way a "Department" column in a list of employees would.
+
+You can change this later by right-clicking the Dimension's header and choosing **Use as**.
+
+### Set the time window
+
+The table header has two controls for time.
+
+- The **date range** button sets the first and last period the table shows. Selecting a complete range updates the table immediately. Choose **Today** to jump to the current period.
+- The **granularity** button sets the grain: **Daily**, **Weekly**, **Monthly**, **Quarterly**, **Half-yearly**, or **Yearly**. It reads **Mixed** when the table's Date axes disagree.
+
+The Page header has its own date-range control. Changing it updates every Table Block on the Page at once. A later change on an individual table stays local to that table.
+
+Workspace-wide defaults for new tables live in **Settings → General → Date & Time**. See [Workspace and personal settings](#workspace-and-personal-settings).
+
+## Enter values
+
+Cells that hold their own value or formula show a dashed underline. Cells without an underline inherit their value from a default formula on the row.
+
+<Steps>
+  <Step title="Type a value">
+    Select a cell and start typing, or press **Enter** to open it. The first key you press replaces the cell's content. Press **Enter** or click elsewhere to save, or press **Esc** to cancel. The new value appears immediately while cfo.ai recalculates anything that depends on it.
+  </Step>
+  <Step title="Clear a value">
+    Select one or more cells and press **Delete** or **Backspace**. The cells return to whatever the row's default formula produces.
+  </Step>
+  <Step title="Copy and paste">
+    **⌘ C** copies the selected cell's formula; **⌘ Shift C** copies its displayed value. **⌘ V** pastes into the selected cell or range, so one copied cell can fill a whole row, and you can paste a run of values from a spreadsheet across several months. Right-click a cell for **Copy value**, **Copy formula**, and **Paste**.
+  </Step>
+  <Step title="Fill across cells">
+    Drag the small handle at the corner of a selected cell across neighboring cells to copy its formula into them. References adjust relative to each destination.
+  </Step>
+</Steps>
+
+Some cells open a specialized editor instead of a text field.
+
+- A **date-typed Variable** opens a calendar. Pick a day, or choose **Edit formula** beneath the calendar.
+- A **Dimension used as a mapping** opens a searchable list of that Dimension's items. Pick one, or choose **Edit formula**.
+
+Select several cells to see **Count**, **Sum**, and the average in a footer beneath the table. **⌘ A** selects the whole table.
+
+<Tip>
+A solid blue vertical line marks the boundary between Actuals and Forecast columns once your workspace has a **Last close** date. Cells to the left are Actuals; cells to the right are Forecast.
+</Tip>
+
+## Write formulas
+
+Any cell, row, or column can hold a formula. Formulas use readable names such as `Revenue - Expenses`, functions like `sum()` and `iferror()`, and bracketed lookups like `Revenue[-1]` for the previous period. For the full grammar and function list, start with [Write your first formula](/formulas/get-started/write-your-first-formula).
+
+### Open the formula editor
+
+You can open the editor from several places. Where you open it decides what the formula applies to.
+
+| Entry point | What the formula applies to |
+| --- | --- |
+| Double-click a cell, or select it and press **Enter** | That one cell. |
+| Hover a row label and select the **fx** icon (**Edit variable formula**) | The whole row: the Variable's default across every period. |
+| Right-click a row label and choose **Edit formula** | The whole row. |
+| Right-click a parent row and choose **Default for \[Dimension\]** | Every child item of that Dimension under the row, unless a child has its own formula. |
+| Click the formula bar | Whatever cell is selected. |
+
+The editor's title shows the formula's address: the Variable name plus a pill for each Dimension it is scoped to. A row-level formula shows **Any Segment**, meaning it is the default for every segment.
+
+<Accordion title="Show the formula bar">
+The formula bar is a strip above the grid that shows the selected cell's formula and address. If it is hidden, open the table's settings menu (the **…** button labeled **Table block settings** in the table header) and choose **Show formula bar**. The same menu offers **Show total columns**, **Pin total columns**, and **Auto-fit all columns**.
+</Accordion>
+
+### Write and reference
+
+- **Autocomplete** suggests Variables, Dimensions, Dimension items, functions, and keywords as you type. Press **Ctrl Space** to open it deliberately. Press **Alt F12** for the syntax and an example of the function under the cursor.
+- **Click to reference.** While the editor is open, click another cell, row label, or period header to insert a reference to it. Clicking the previous month's cell of Revenue inserts `Revenue[-1]`; clicking a period header inserts a relative date such as **Last month**.
+- **Reference with the keyboard.** Press **F2** to enter reference-selection mode, move with the arrow keys, press **Enter** to insert, or **Esc** to cancel.
+- **Filter a reference.** Select a reference chip and choose **+ Add filter** to restrict it to certain Dimension items or dates. Date filters offer presets such as **Last 3 months of actuals**, **Year to date**, **Quarter to date**, and **Custom range**.
+- **Use `this`.** Inside a filter, `this.Department` means "the same Department as the cell being calculated."
+
+### Save, cancel, and fix errors
+
+Press **Enter** to save. In the expanded editor, clicking away also saves. Press **Esc** to discard your changes.
+
+A red status line under the editor reports syntax problems as you type. You can still save an unfinished formula and come back to it; the cell shows a calculation error until the formula is valid. Errored cells use spreadsheet-style codes such as `#DIV/0!`, `#REF!`, `#NAME?`, and `#CIRC!`. Hover the cell for the message, or right-click it and choose **Fix** to hand the cell to Ari. See [Formula errors and troubleshooting](/formulas/formula-reference/formula-errors-and-troubleshooting).
+
+### Defaults, overrides, and inherited formulas
+
+- When you open a cell that inherits its formula, the inherited formula appears as a suggestion. Click it, press **→**, or press **Tab** to adopt it and edit from there. Start typing to replace it entirely.
+- After you save a formula on a child row, cfo.ai may ask **Propagate?** Choose **Yes** to apply the formula to the parent rows too, or **No** to leave it on the child. Press **⌘ Enter** while saving to propagate automatically.
+- Setting a child item's default to its own value leaves the parent's default untouched. Clearing the child's override makes it follow the parent again.
+
+### Actuals and Forecast formulas
+
+Once your workspace has a **Last close** date, a Variable can have one formula for Actuals and another for Forecast. The table's formula column splits into **Actuals Formula** and **Forecast Formula**, and the editor shows one section per range. Right-click either column and choose **Hide column** to hide only that one; the remaining column then offers **Show Actuals column** or **Show Forecast column**. Set Last close in **Settings → General → Date & Time**, or from the Scenario's actions menu.
+
+## Configure and format a table
+
+Most table configuration lives in the right-click menu. Right-click a cell, a row label, or a column header. On macOS, **Control click** works too.
+
+### Format cells, rows, and columns
+
+Choose **Format and display** to open a submenu:
+
+- **Background** with a set of fill colors and **No fill**.
+- **Text style** with **Bold**, **Italic**, **Underline**, and **Strikethrough**.
+- **Indent** and **Outdent** for row labels, useful for statement-style layouts.
+- **Format** with **Auto**, **Number**, **Currency**, **Percentage**, **Integer**, **Multiple**, and **Date**. Choosing **Currency** adds a **Currency** row for the currency code, such as USD, EUR, GBP, or JPY. Choosing **Date** adds a **Date format** row with styles such as `Sep-26`, `2026-09-02`, `September 2026`, and `FY2026`.
+- **Precision** for the number of decimal places.
+- **Variance colors** with **Higher is better** or **Lower is better**, which decides whether a positive variance shows as good or bad.
+- **Reset** to return the row to default formatting.
+
+Format and Precision apply to the Variable, so they follow it onto every table. Background, text style, and indent apply to the row, column, or cell you clicked. To format many rows at once, press **⌘ A** and then use the row menu.
+
+### Other right-click actions
+
+| Action | What it does |
+| --- | --- |
+| **Sort** | **Ascending**, **Descending**, **None**, or **Manual**, which lets you drag rows into your own order. |
+| **Filter** and **Filter out this item** | Show only some Dimension items, or hide one item. **Filter selected items** appears when several are selected. |
+| **Dimension color** | Change the accent color used for a Dimension's pills. |
+| **Display as** | Show Dimension items as **Pill** or **Plain text**. |
+| **Date granularity** | Change the grain of one Date axis without changing the whole table. |
+| **Use as** | Switch a Dimension between **Segmentation** and **Mapping**. |
+| **Show variable name** or **Hide variable name** | Toggle the Variable name on rows that show a Dimension item. |
+| **Expand child rows** or **Collapse child rows** | Open or close a segmented row. **⌘ click** a chevron to expand or collapse every sibling at that level. |
+| **Rename** | Rename a Dimension item you created. |
+| **Remove item**, **Remove item and drill-ins**, **Remove dimension** | Take the item or Dimension off this table. **Remove all drill-in rows** clears every traced input at once. |
+
+### Hide, resize, and reorder
+
+- **Hide a row or column** without removing it: open the table setup panel and use the show/hide toggle on the item. Hidden items keep their sort, filter, and formula settings.
+- **Resize a column** by dragging the right edge of its header or of any cell in it. Double-click the edge to fit the content. Use **Auto-fit all columns** in the table settings menu to size every column at once. Column widths are saved and shared with your team.
+- **Reorder** rows by dragging their grip in the left gutter, and non-date columns by dragging their headers. Formula and setup-panel items also drag.
+- **Resize the table's height** by dragging its bottom edge. Double-click the edge, or press **Enter** while it is focused, to return to fitting the content.
+
+### Compare Scenarios or periods
+
+Select the **Compare** button in the table header. Choose **Scenarios** and tick the Scenarios to show beside the current one, or choose **Time periods** to compare against an earlier period. Pick whether comparisons appear in **Columns** or **Rows**, and whether to group **By scenario** or **By variable**. Select **Reset** to remove the comparison. Time-period comparison needs a Date row or column on the table.
+
+For more on comparisons, see [Create and compare Scenarios](/scenarios/create-and-compare-scenarios).
+
+## Segment a table by a Dimension
+
+Segmenting splits a row or column into one line per Dimension item, so Revenue becomes Revenue by Region.
+
+<Steps>
+  <Step title="Open the segment editor">
+    Hover a row label or column header and select the branch icon labeled **Segment by**, or right-click and choose **Segment by**. A small editor titled **Segment \[item\] by** opens.
+  </Step>
+  <Step title="Add a level">
+    Select **Add** and choose a Dimension. The table updates immediately; there is no separate save step. Add another level to nest one Dimension under another, and drag levels in the editor to reorder them.
+  </Step>
+  <Step title="Remove a level">
+    Hover a level in the editor or in the setup panel and select **Remove level**, or right-click a segmented row and choose **Remove dimension**.
+  </Step>
+</Steps>
+
+A Dimension can segment rows or columns, but not both on the same table. To see how a value breaks down without changing the saved layout, use **Drill in** instead.
+
+## Drill in to a formula's inputs
+
+**Drill in** shows the inputs behind a calculated number as child rows, without changing the table's configuration.
+
+- Hover a row label and select the magnifier icon labeled **Drill in**, or right-click and choose **Drill in**. The row opens with one child row per input, shaded with a hatched background.
+- Drill into a child row to keep tracing. On a Variable backed by connected data, you can drill all the way to the source records.
+- Input rows are editable when they point at an exact cell. Double-click one to open the referenced Variable's formula.
+- Select **Clear drill-in** on the row to close it, or right-click and choose **Remove all drill-in rows**.
+
+Ask **Segment by** how a value is distributed and **Drill in** which inputs produced it. See [Segments and segmentations](/formulas/core-concepts/segments-and-segmentations).
+
+## Dimensions and Dimension items
+
+### Add a Dimension item
+
+On a table segmented by a Dimension, a **+** row labeled **Create \[Dimension\] item** sits at the bottom of the segment. Select it, type the item name, and press **Enter**. You can also right-click a row and choose **Create \[Dimension\] item**, or hover a row's gutter and select **+** to insert a sibling item. An item you create appears on every table segmented by that Dimension.
+
+<Note>
+The create action is unavailable while a filter is active on that Dimension. Clear the filter first.
+</Note>
+
+### Rename or remove an item
+
+Double-click an item label to rename it in place, or right-click and choose **Rename**. Items whose value also appears in connected source data cannot be renamed; the menu explains why. Right-click and choose **Remove item** to take it off the table, or **Filter out this item** to hide it while keeping the rest.
+
+### Control which segments appear
+
+Right-click a Dimension header, open **More settings**, and choose **Dimension settings**. **Show only matching segments** hides combinations with no data, and **Expand to create all segments** shows every combination. For time-bounded Dimensions you can also set **Start** and **End** dates here.
+
+### Map one Dimension to another
+
+There is no separate mapping screen. To reconcile two sets of categories by hand, create a new Dimension for the unified names, then build a table with the source Dimension segmenting the rows and the new Dimension added as a mapping. Type the unified name into each row's cell. Repeat for each source. Ari can also author mappings for you; see [Dimension mappings](/formulas/core-concepts/dimension-mappings).
+
+For advanced cases, right-click a Dimension header and choose **Edit dimension formula** to define its items with a formula.
+
+## Scenarios
+
+The Scenario picker sits at the left of the model pane header. The default Scenario is called **Main Scenario**.
+
+- **Switch** by opening the picker and selecting a Scenario. The URL updates, so you can bookmark a Scenario view.
+- **Create** by selecting **Create scenario** at the bottom of the picker and typing a name. The new Scenario inherits everything from Main and keeps your changes separate.
+- **Manage** by hovering a Scenario in the picker and selecting its actions gear. The menu offers **Version history**, **Last close**, **Share**, **Rename**, and **Delete**. Main Scenario cannot be renamed or deleted, and a Scenario with child Scenarios cannot be deleted.
+- **Merge** by selecting the **Merge** button beside the picker while viewing a Scenario. The dialog explains that merging applies every change in the Scenario to Main and then deletes the Scenario. Review the change preview, then select **Merge scenario**.
+
+To see two Scenarios side by side, use a table's **Compare** control. See [Understand Scenarios](/scenarios/understand-scenarios).
+
+## Version history and undo
+
+Every change to the Model is recorded, whether you or Ari made it.
+
+- Press **⌘ Z** to undo your last change and **⌘ Shift Z** to redo it. These work anywhere in the app except while you are typing in a text field or formula editor.
+- Select **Version history** (the clock icon in the model pane header) to open the timeline. Each entry names who made the change, when, and what it touched. Use **Filter version history** to narrow by person or change type, and **Jump to date** to move through time.
+- Select an entry to view the Model as it was at that moment. A banner reads **Viewing version … Read-only** with **Restore this version** and **Back to current**.
+- Open an entry's actions menu for **Undo this change**, **Redo this change**, **Restore this version**, **Copy link to version**, and, for Ari's changes, **Open conversation**. Undoing a change that later changes depended on prompts you to confirm first.
+
+Restoring a version needs full access to the Scenario.
+
+## Connect data
+
+<Steps>
+  <Step title="Open Integrations">
+    Select **Integrations** in the sidebar. If nothing is connected yet, the integration manager opens directly. Otherwise a popover lists your connections with an **Add** button that opens the manager.
+  </Step>
+  <Step title="Choose a source">
+    Search the directory or browse it by category. The directory sorts by **Relevance** with common sources first, and you can switch between grid and list views. Select a card to start its connect flow and approve access in the browser window that opens. cfo.ai never sees your password.
+  </Step>
+  <Step title="Or upload a CSV">
+    Select **Upload** in the **File-based imports** section. You can drop several files at once. Each file becomes its own connection named after the file, and each file can be up to 50 MB.
+  </Step>
+  <Step title="Watch the status">
+    Each connection shows a status such as **Connecting**, **Syncing**, **Connected**, **Waiting for you**, or **Needs attention**. Data is ready to model only after the initial load finishes.
+  </Step>
+</Steps>
+
+Hover a connection for its actions: **Reconnect** or **Resume** when setup is incomplete, **Update file** to replace a CSV in place, **Rename**, **Manage access**, and **Remove**. For details on each source, see [Connect and sync your data](/integrations/connect-and-sync-data).
+
+## Share a Page
+
+The Page header shows an access badge (**Workspace**, **Restricted**, or **External link on**) and a **Share** button. Select **Share** to invite people or groups as **Can view** or **Can edit**, choose between **Everyone at your workspace** and **Restricted** under **General access**, and create read-only external links with an expiry of 1, 7, or 30 days and an optional password. **Copy page link** copies the ordinary signed-in address without changing anyone's access. See [Share a Page and choose its Scenario](/dashboards/share-pages-and-scenarios).
+
+## Download a Page as a spreadsheet
+
+Select **Download spreadsheet** in the Page header. Each visible Table Block becomes a worksheet, formulas are exported as real cross-sheet formulas, and any inputs the tables depend on land on a **Model inputs** sheet. Large exports run in the background; keep working and download the file when it is ready.
+
+## Workspace and personal settings
+
+Open the account menu at the bottom of the sidebar and select **Settings**. Which sections you see depends on your role.
+
+| Section | What you can do |
+| --- | --- |
+| **General** | Rename the workspace under **Workspace**. Under **Date & Time**, set **Default date granularity** and **Default date range** for new tables, and set **Last close**, the boundary between Actuals and Forecast. Under **Appearance**, choose a color mode and open **Theme studio** for a personal theme. |
+| **Profile** | Your own details. |
+| **People & access** | Select **Invite people**, enter email addresses, choose a role, optionally add groups, Pages, or Scenarios to grant, and add a message. Invitees get an email link and need no password. |
+| **Connections** | The MCP server address for external AI clients, plus **MCP** and **APIs** tabs for connecting other tools. See [Connect the cfo.ai MCP server](/integrations/mcp-server). |
+| **Billing** and **Usage** | Plan, payment, and usage details, when billing is enabled for the workspace. |
+
+The account menu also has an **Appearance** submenu with **Auto**, **Light**, and **Dark**, and you can set **Last close** for the current Scenario from the Scenario picker's actions menu.
+
+## Keyboard shortcuts
+
+Use **Ctrl** in place of **⌘** on Windows and Linux.
+
+| Shortcut | Action |
+| --- | --- |
+| **⌘ Z** / **⌘ Shift Z** | Undo / redo a Model change |
+| **⌘ ?** | Open the Help center |
+| **↑ ↓** | Move through Pages in the sidebar, or blocks on a Page |
+| **→ ←** | Expand or collapse a Page in the sidebar |
+| **Alt ↑ ↓ → ←** | Move or nest the selected Page |
+| **F2** | Rename the selected Page, or start reference selection in a formula |
+| **Shift F10** | Open the selected block's menu |
+| **Enter** | Edit the selected cell; insert the selected formula reference |
+| **Esc** | Cancel editing and return to the table |
+| **Delete** / **Backspace** | Clear the selected cells' own values |
+| **⌘ C** / **⌘ Shift C** / **⌘ V** | Copy formula / copy value / paste |
+| **⌘ A** | Select every cell in the table |
+| **⌘ Enter** | Save a formula and propagate it to parent rows |
+| **Ctrl Space** | Open formula autocomplete |
+| **Alt F12** | Show help for the function under the cursor |
+| **Alt ↓** | Open reference filters in a formula |
+| **⌘ click** a chevron | Expand or collapse every sibling row |
+| **⌘ L** | Mention the selected cell or block in the current chat |
+| **⌘ /** | Start a new chat about the selected cell, block, or Page |
+
+## Related
+
+- [Understand your workspace](/getting-started/understand-your-workspace)
+- [Build and format a Table Block](/dashboards/build-and-format-tables)
+- [Write your first formula](/formulas/get-started/write-your-first-formula)
+- [Create and compare Scenarios](/scenarios/create-and-compare-scenarios)
+- [Glossary and key concepts](/glossary)

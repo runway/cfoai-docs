@@ -23,6 +23,7 @@
         "pages": [
           "getting-started/quickstart",
           "getting-started/understand-your-workspace",
+          "getting-started/build-by-hand",
           "getting-started/build-your-financial-model",
           "getting-started/import-a-spreadsheet-model",
           "glossary",

@@ -1,7 +1,7 @@
 ---
 title: "Workspace and team settings"
 sidebarTitle: "Team and workspace"
-description: "Rename your workspace, set model-wide time defaults and Last close, and look up members and groups."
+description: "Rename your workspace, set model-wide time defaults and Last close, look up members, and invite or remove administrators."
 ---
 
 Your workspace has a few settings that apply model-wide, rather than to any single Variable or Table Block. Ask Ari to change most of these directly.
@@ -12,10 +12,11 @@ Ask Ari to rename your workspace. Renaming regenerates the workspace's URL slug,
 
 ## Time defaults
 
-Ask Ari to set the model's default time settings:
+Ask Ari to set the model's default time settings, or open **Settings → General** and use the **Date & Time** section yourself:
 
-- **Granularity** — the default roll-up grain for new tables, usually month.
-- **Range** — the default start and end date a new table shows.
+- **Default date granularity** — the default roll-up grain for new tables. Month unless you change it.
+- **Default date range** — the default start and end date a new table shows.
+- **Last close** — described below.
 
 These are defaults for new Table Blocks; an existing table's own window (see [Build and format a Table Block](/dashboards/build-and-format-tables)) isn't affected until you change it directly.
 
@@ -23,17 +24,25 @@ These are defaults for new Table Blocks; an existing table's own window (see [Bu
 
 **Last close** is the date your Model computes Actuals against — everything at or before it is Actuals, and everything after is Forecast. Ask Ari to set it after each period closes in your books. Several other workflows, like [building a Headcount page](/headcount/build-a-headcount-page), depend on Last close being set correctly first.
 
-## Team directory and groups
+## Team directory
 
-Ask Ari to look up who is in the workspace, including current team members, their roles, and pending invitations. Ari can also list user groups and the group details your access allows you to see.
+Ask Ari to look up who is in the workspace, including current team members and pending invitations. Email addresses are shown only to people with workspace-wide access-control permission. People who opened a Page through an external link are counted but not identified.
+
+Every member of a workspace is an administrator. There is no lower workspace role today, and there are no user groups. To give someone a report without making them an administrator, share the Page with an external link instead; see [Share a Page](/dashboards/share-pages-and-scenarios).
 
 ## Invite or remove workspace administrators
 
-When you have the required access, Ari can invite someone as a workspace administrator, promote an existing teammate to administrator, or remove a person from the workspace.
+There is no team screen in Settings. Ask Ari, and when you have the required access it can:
 
-An administrator has broad workspace access. If your goal is to share a report without granting administrator access, use the Page's **Share** control instead.
+- **Invite** someone as a workspace administrator. They receive an email invitation.
+- **Promote** an existing member to administrator. This changes their role and sends no invitation.
+- **Remove** a member or cancel a pending invitation. Ari refuses to remove you or the workspace's last administrator.
 
-Ari cannot invite someone with a lower role, create or edit groups, change Page-specific access, or create a share link on your behalf.
+> Invite dana@example.com to the workspace.
+
+> Who has a pending invitation, and can you cancel the one for the old contractor?
+
+Ari cannot change a Page's access or create an external link on your behalf. Use the Page's **Share** control for that.
 
 ## Related
 

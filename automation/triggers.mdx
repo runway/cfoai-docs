@@ -32,6 +32,15 @@ Ask Ari to list your Triggers, then:
 
 You can only see and manage your own Triggers, not another workspace member's.
 
+## Check whether a Trigger ran
+
+Ask Ari to show a Trigger's last run. Two timestamps matter, and they answer different questions:
+
+- **Last dispatch** records that the scheduler attempted or started a run, with its status and any error. It does not mean the work finished.
+- **Last succeeded** is the only proof that a run completed.
+
+If a run is still going when the next one is due, the overlapping run can be skipped, so a missing dispatch is not necessarily a failure. When a Trigger's job is to refresh a data connection, its run succeeds only if the import it started completes; an earlier import on the same connection does not count.
+
 ## What makes a good Trigger prompt
 
 Because a Trigger fires with no conversation around it, write the prompt as if you were asking Ari cold: name the Table Block, Page, or Variable involved, and be specific about what you want back, like "Summarize the variance between Actuals and Forecast for Operating Expense over the last closed month, flag anything over 10%, and send the summary to my Slack direct messages."

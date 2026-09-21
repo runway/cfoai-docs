@@ -34,8 +34,10 @@
         "group": "Work with Ari",
         "pages": [
           "ari/meet-ari",
+          "ari/during-a-conversation",
           "ari/ask-better-questions",
           "ari/read-and-change-your-model",
+          "ari/what-ari-remembers",
           "workspace-settings/file-attachments-in-chat",
           "ari/prompts"
         ]
@@ -160,7 +162,9 @@
       },
       {
         "group": "Headcount",
-        "pages": ["headcount/build-a-headcount-page"]
+        "pages": [
+          "headcount/build-a-headcount-page"
+        ]
       },
       {
         "group": "Workspace settings",

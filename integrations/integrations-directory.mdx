@@ -102,9 +102,25 @@ A separate, direct list of API connections:
 
 Use **Add API** or the search bar for anything not listed.
 
-## How sources stay current
+## How integrations stay current
 
-After a source is connected, cfo.ai manages its initial load and subsequent refreshes through the provider appropriate to that connection. Ask Ari to check the last completed sync and any reported problems before relying on a time-sensitive result.
+Connected integrations refresh once a night, automatically. The refresh starts in the early morning UTC and finishes within a few hours, so your Actuals are fresh by the start of the US workday. Every integration follows the same schedule, whether it is QuickBooks Online, Xero, NetSuite, Google Sheets, or a database.
+
+There is no manual refresh button today. If you need a number sooner than the next nightly run, ask Ari to refresh the connection:
+
+> Refresh QuickBooks and tell me when the import has finished.
+
+Ari starts the import in the background and can tell you when it completes. Before relying on a time-sensitive result, ask Ari when the source last finished syncing and whether it reported any problems.
+
+When you first connect QuickBooks Online or Xero, cfo.ai loads Actuals from January 1 of the previous year through today. Ask Ari which accounting periods are available once the first load completes.
+
+The nightly refresh and asking Ari to refresh a connection work the same on every active plan, including during a trial. Plans differ in how many connections you can hold, not in what a connection does once it is connected.
+
+## API and MCP connections do not sync
+
+The integrations above bring data into your Model on a schedule. API and MCP connections under **Settings → Connections** are different: they are tools Ari calls live when you ask a question. Nothing is stored or scheduled. If Ari writes a number from one of these calls into your Model, it lands as a plain value that stays put until you ask Ari to pull it again.
+
+For example, Stripe is not a synced integration. Connect it as an MCP connector or an API connection, and Ari can look up a balance or a payout when you ask, then write the figure into a Table Block as an editable value.
 
 ## Something look off?
 

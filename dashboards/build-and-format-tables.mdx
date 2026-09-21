@@ -10,7 +10,7 @@ A Table Block has two concerns that you or Ari can change independently: **what 
 
 Ask Ari to set:
 
-- **Variables** — which Variables appear, in what order, each becoming a row.
+- **Variables** — which Variables appear, in what order, each becoming a row. One table can place the same Variable more than once, each placement with its own breakdown and its own default rule for that placement's child rows, so Headcount by Department and Headcount by Employment Type can sit on the same table.
 - **Dimensions and time** — how to segment those Variables by one or more business categories, or by a Date grain such as month or quarter.
 - **Window** — the date range and grain a new table shows. Reconfiguring an existing table's Variables leaves its window alone; change the window through presentation instead.
 - **Transpose** — flip rows and columns, useful for a database-style list of items with attributes across the top instead of a wide row of dates.
@@ -37,6 +37,10 @@ Ask Ari to copy an existing table onto a new or different Page. The original is 
 ## Custom visualizations
 
 When a grid isn't the right shape for what you want to show, like a trend line or a KPI scorecard, ask Ari to build a code block instead. A code block pulls live data out of your Model the same way a Table Block does, but renders it as a chart, scorecard, or interactive control.
+
+## A rule belongs to its Variable
+
+A saved formula rule belongs to the Variable, not to the table you wrote it from. If you give an existing Variable a new default formula while placing it on another table, that rewrites the rule every table reads. Ari reports this: after a write that replaces a shared rule, the result names the rule it replaced, the address the Variable carried it at, and, when the new rule reads its own Variable, the self-reference behind any `#CIRC!` cells. Placing a Variable without a new default leaves its existing rule alone.
 
 ## Inspect formulas and segments
 

@@ -1,23 +1,31 @@
 ---
 title: "Browse the integrations directory"
 sidebarTitle: "Integrations directory"
-description: "Connect the accounting, HR, spreadsheet, and database sources cfo.ai can pull Actuals from, and browse the connectors available to Ari."
+description: "Connect the accounting, HR, spreadsheet, and database sources cfo.ai can pull Actuals from, see what counts toward your plan's integration limit, and browse the connectors available to Ari."
 ---
 
-cfo.ai connects to the systems where your financial and operational data already lives, so your Model stays current without manual entry.
+cfo.ai connects to the systems where your financial and operational data already lives, so your Model stays current without manual entry. There are three ways data reaches Ari, and they behave differently.
 
-## Standard and premium integrations
+|  | Integrations | API / MCP connections | File upload |
+|---|---|---|---|
+| **What it is** | Synced data source | Live call Ari makes on request | One-time data load |
+| **Refreshes** | Nightly, automatic | Never (Ari re-pulls when asked) | Only when you re-upload |
+| **Counts toward plan limit** | Yes | No | No |
 
-Your plan can classify connected sources as standard or premium:
+## What counts toward your plan's integration limit
+
+Only connected integrations count toward your plan's integration limit: the synced sources listed under Accounting and ERP, HR, CRM, Spreadsheets, and Databases below. API connections, MCP connections, and file uploads do not count.
+
+Your plan can classify connected integrations as standard or premium:
 
 - **Standard**: QuickBooks Online, Xero, Rippling, Google Sheets, and many more.
 - **Premium**: NetSuite SuiteAnalytics and all database connections.
 
-File upload is not a billable integration. Check your workspace's Usage or billing settings for the current limits and classification that apply to your plan.
+A workspace can hold one QuickBooks Online connection and one Xero connection. Check your workspace's Usage or billing settings for the current limits and classification that apply to your plan.
 
 ## File upload
 
-**CSV / Raw File Upload** is a manual option for bringing in a raw file directly. Use it when a live connection is not set up yet, or for a one-off or specialized report a system does not sync automatically. File upload is not a billable integration.
+**CSV / Raw File Upload** is a manual option for bringing in a raw file directly. Use it when a live connection is not set up yet, or for a one-off or specialized report a system does not sync automatically. File upload is not a billable integration and does not count toward your plan's integration limit.
 
 An uploaded file is tracked as its own connection, using its filename until you rename it, so ask Ari by that name if you need to check on it later. After upload, ask Ari whether the file has finished loading — ingestion runs in the background, and a model that ends up with fewer rows than the source file isn't necessarily a problem: a query that intentionally scopes the data down looks the same from the outside as one that's missing rows, so ask Ari to explain what the load actually produced before treating a smaller row count as an error.
 
@@ -61,7 +69,7 @@ Use a database connection when your data lives in a system of record that does n
 
 ## Connections for Ari
 
-The integrations above bring data into your Model. Separately, **Settings → Connections** lets an authorized workspace administrator connect external tools and services for Ari to use directly. The **MCP** and **APIs** tabs show available connections and the services already connected for your workspace.
+The integrations above bring data into your Model. Separately, **Settings → Connections** lets an authorized workspace administrator connect external tools and services for Ari to use directly. The **MCP** and **APIs** tabs show available connections and the services already connected for your workspace. These connections do not count toward your plan's integration limit.
 
 ### MCP Connectors
 

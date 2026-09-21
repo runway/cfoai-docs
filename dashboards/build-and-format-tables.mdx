@@ -17,6 +17,10 @@ Ask Ari to set:
 
 Ask Ari to check a table's declaration for problems, like an axis pointing at a Variable that no longer exists, before assuming a blank result means something is wrong with the numbers themselves.
 
+No layout is refused for size. When a new row or column axis uses a Dimension with 1,000 or more items, Ari receives a warning naming the side, the Dimension, its item count, and how many entries the opposite axis calculates for each of them, so you can decide whether a narrower table answers the question better.
+
+A Dimension placed beside the values, such as a Mapping column next to an Amount, shows each row's mapped item in one column rather than splitting into one column per Dimension item. This is the same whether Ari creates the table or reshapes an existing one.
+
 ## How a Table Block is presented
 
 Once a table calculates the right thing, ask Ari to adjust its presentation without touching the calculation:
@@ -39,6 +43,8 @@ Ask Ari to copy an existing table onto a new or different Page. The original is 
 When a grid isn't the right shape for what you want to show, like a trend line or a KPI scorecard, ask Ari to build a code block instead. A code block pulls live data out of your Model the same way a Table Block does, but renders it as a chart, scorecard, or interactive control.
 
 ## A rule belongs to its Variable
+
+Ari can set a row's own rule and the rule its child rows inherit in a single edit, so a department total and the per-employee default beneath it are written together.
 
 A saved formula rule belongs to the Variable, not to the table you wrote it from. If you give an existing Variable a new default formula while placing it on another table, that rewrites the rule every table reads. Ari reports this: after a write that replaces a shared rule, the result names the rule it replaced, the address the Variable carried it at, and, when the new rule reads its own Variable, the self-reference behind any `#CIRC!` cells. Placing a Variable without a new default leaves its existing rule alone.
 

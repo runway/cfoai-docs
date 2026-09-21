@@ -14,6 +14,7 @@ Sign in at [app.cfo.ai](https://app.cfo.ai) on a desktop browser. The app has fo
 
 - **Navigation sidebar** on the left. It holds **New chat**, your chat list, the **Model** section with the current Scenario and its list of Pages, and **Integrations**. Your account menu sits at the bottom of the sidebar.
 - **Model pane header** above the Page. It holds the Scenario picker, **Version history**, and the pane toggle.
+- **Chat pane header**. When the Ari chat is docked beside the Model, its header has a **Collapse chat pane** button showing inward-pointing arrows. The floating popout shows the matching outward-pointing **Expand chat** button.
 - **Page header**. It shows the Page icon and name, a date-range control that applies to every block on the Page, **Download spreadsheet**, the access badge, and **Share**.
 - **Account menu**. Open it from the avatar at the bottom of the sidebar for **Appearance**, **Settings**, **Help**, the workspace switcher under **Workspaces**, and **Log out**.
 
@@ -399,7 +400,7 @@ Restoring a version needs full access to the Scenario.
     Search the directory or browse it by category. The directory sorts by **Relevance** with common sources first, and you can switch between grid and list views. Select a card to start its connect flow and approve access in the browser window that opens. cfo.ai never sees your password.
   </Step>
   <Step title="Or upload a CSV">
-    Select **Upload** in the **File-based imports** section. You can drop several files at once. Each file becomes its own connection named after the file, and each file can be up to 50 MB.
+    Select **Upload** in the **File-based imports** section. You can drop several files at once. Each file becomes its own connection named after the file, and each file can be up to 50 MB. Uploading is not restricted, but cfo.ai processes about five CSV imports per workspace at a time, so a large batch queues and finishes in turn.
   </Step>
   <Step title="Watch the status">
     Each connection shows a status such as **Connecting**, **Syncing**, **Connected**, **Waiting for you**, or **Needs attention**. Data is ready to model only after the initial load finishes.

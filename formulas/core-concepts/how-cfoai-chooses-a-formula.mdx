@@ -11,7 +11,13 @@ A formula must match the current Scenario, applicable Dimensions, selected Dimen
 
 ## Specific formulas override broad formulas
 
-When more than one formula applies, cfo.ai uses the rule that best matches the requested context.
+When more than one formula applies, cfo.ai uses the rule that best matches the requested context. Specificity is measured in a fixed order:
+
+1. An exact condition beats a relative one.
+2. Among relative rules, the one naming more Dimensions wins, so `[Stage in any, Deal ID in any]` beats `[Stage in any]`, which beats `[]`.
+3. Among rules naming the same number of Dimensions, the one pinning more of them to an item wins, so `[Stage = "Won"]` beats `[Stage in any]`.
+4. Among those, a single item beats a set of items, and a set beats an expression.
+5. Only when all of that is equal does the most recently saved rule win.
 
 A common pattern is:
 
@@ -30,6 +36,10 @@ Suppose Payroll has:
 - A Sales formula for Department = Sales
 
 When cfo.ai calculates Sales, it uses the Sales formula. When it calculates Engineering, it uses the Department formula. When Department is not part of the calculation, it uses the default formula.
+
+## Ties fall back to recency
+
+Two rules can rank equally. At a Stage and Deal ID leaf, a parent's `[Stage in any]` rule and a `[Deal ID in any]` rule each name one Dimension and pin none, so whichever was saved later computes the cell, and re-saving either one flips the result. A rule naming both Dimensions wins that cell on its own merits. When you save a rule that ties with another, the write receipt warns and names the rule it ties with.
 
 ## Avoid overlapping exceptions
 

@@ -23,6 +23,10 @@ Use the name shown in cfo.ai. If the name contains spaces or punctuation, wrap i
 
 The formula may be selecting several values and summing them. Review lookups that use `in any`, sets, or `where`. Use an explicit aggregation when the intended result is an average, median, minimum, maximum, count, standard deviation, first value, or last value.
 
+## A rule cannot target the empty member
+
+Rows with no value for a Dimension appear as the empty member. That member cannot carry a rule of its own. Reach those rows through the parent's inheriting rule: a child default on the parent for an immediate child Dimension, or a broad `[]` default.
+
 ## The formula works in one segment but not another
 
 Check whether:
@@ -39,6 +43,20 @@ Check the formula range, Date scope, Date grain, Scenario, and Last close. A for
 ## A date lookup returns no value
 
 Confirm that the Date grain and value format match. A monthly lookup should use `Date.Month` and a value such as `"2026-01"`.
+
+## A saved formula returns zero everywhere
+
+When a formula saves cleanly but every cell reads zero, check the warnings on the write receipt. Ari reports several causes as warnings rather than refusing the write:
+
+- A Dimension pin whose constant matches none of that Dimension's current items. A date value compared against text items is a common example; only the exact spelling of an item reaches it. The warning names the Dimension, its item count, the kind of its items, and an example spelling.
+- A read of an imported Variable in a forecast month, which returns zero unless that Variable has its own Forecast rule.
+- A pin that aggregates a bare source column, such as `max(<column>)`, inside a dated rule. The bare reference inherits the cell's period, so the aggregate sees only that period's source rows. Compare against an absolute lookup over the Dimension, or against a timeless helper Variable that holds the aggregate.
+
+The rule is still saved in each case, so you can correct it and save again.
+
+## Two rules tie, and the result flips when you re-save
+
+When two saved rules on the same Variable rank equally and could both fill a cell, cfo.ai falls back to the most recently saved rule. Re-saving either rule then changes the result. The write receipt warns when this happens, names the rule it ties with, and suggests a rule naming both sets of Dimensions, which outranks either one where they overlap.
 
 ## Ari changed only some formulas
 

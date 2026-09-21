@@ -10,7 +10,7 @@ Integrations bring financial and operating data into your cfo.ai Model. Connect 
 
 Common starting points include:
 
-- Accounting systems such as QuickBooks Online, Xero, or NetSuite.
+- Accounting systems such as QuickBooks Online, Xero, or NetSuite. QuickBooks connections load the profit and loss statement and the balance sheet; Ari builds cash flow from those rather than from a direct QuickBooks cash-flow table.
 - HR and payroll systems such as Rippling, Gusto, BambooHR, or Workday.
 - CRM systems such as HubSpot or Salesforce.
 - Google Sheets or a PostgreSQL-compatible database.
@@ -52,11 +52,19 @@ An uploaded data source is identified by its filename until you rename it. If th
 
 If the file is an existing financial model rather than a source-data export, ask Ari to [import and rebuild the spreadsheet model](/getting-started/import-a-spreadsheet-model) instead of treating the workbook as an ordinary data connection.
 
+## Choose which tables to sync
+
+Some sources ask you to choose which tables to sync before setup can finish. The table picker appears until you save a selection that turns on at least one table you can choose, so a connection that arrives with every table switched off still shows the picker. A selection that turns on no table is rejected, because the connection would have nothing to sync.
+
+Selection is one-time. If you save tables on a connection that is already linked, such as during a re-authorization, cfo.ai starts a sync straight away rather than waiting for the next scheduled refresh.
+
 ## Understand sync status
 
 A connected source is ready only after its background load completes. A linked account, started import, or uploaded file does not by itself mean the resulting data is already available.
 
 If the Model contains fewer rows than the source file, ask Ari which source records were included. A saved query may intentionally filter the source to match your request.
+
+Ari can also read an uploaded file's landed rows directly. An upload appears as a single table named `DATA` in its own schema, holding every line of the file as imported, so Ari can check its grain or show how one record changed from one date to the next.
 
 ## Connections for external tools
 

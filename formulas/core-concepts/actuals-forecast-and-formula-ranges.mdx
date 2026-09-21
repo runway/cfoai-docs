@@ -30,6 +30,10 @@ For a monthly Model, the Date part of the scope looks like:
 
 A formula scoped only by Department cannot be limited to Actuals or Forecast until its scope also includes Date.
 
+## Imported Variables in Forecast
+
+A Variable imported from a connected source reads its source column only through Last close. Forecast periods read zero unless that Variable has its own Forecast rule, so a formula that reads an imported Variable in a forecast month reads zero there. When this happens, the write receipt says so and names the Forecast rule that would read the source rows dated in each forecast period.
+
 ## Combine formula ranges with segments
 
 A formula range can be combined with other Dimensions. For example, Sales can use one Forecast formula while other departments use a broader Forecast formula.

@@ -33,9 +33,13 @@ Inspect the write result:
 
 An atomic write applies all requested changes together or applies none. If a partial write reports rejected items, correct and retry only those unsuccessful items.
 
+## Read the warnings, not only the errors
+
+A write can succeed and still carry `formula_warning` issues. Report them rather than treating an applied write as complete. Current warnings include a Dimension pin whose constant reaches none of that Dimension's items, a read of an imported Variable in forecast months where it returns zero, an aggregate over a bare source column inside a dated rule, and another saved rule that ranks equal to the one just written.
+
 ## Verify calculated behavior
 
-Use `inspect_table_blocks` on the relevant saved table after a material change. Check representative dates, segments, formula origins, and source information.
+Use `inspect_table_blocks` on the relevant saved table after a material change. Check representative dates, segments, formula origins, and source information. A row computed by a rule no node of the table owns at that scope reports its owner and condition under `inherited_from`, and `formula_origins` adds the ranked candidate rules for the row.
 
 Examples:
 

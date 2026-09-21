@@ -19,7 +19,7 @@ You can attach up to **five files per message**. Use the attachment control in t
 
 ## How Ari reads each type
 
-- **Images and PDFs** are made available directly for Ari to inspect.
+- **Images and PDFs** are made available directly for Ari to inspect. Image support depends on the model your workspace uses for Ari; if an image cannot be read, Ari says so before sending the request.
 - **Text files and CSVs** can be included as readable conversation context. Large text content may be shortened before it is included.
 - **Excel workbooks and other binary files** are opened through Ari's secure workspace, where Ari can inspect workbook sheets, formulas, cached values, and other file contents.
 
@@ -37,6 +37,7 @@ Importing a CSV can continue in the background. Ask Ari to confirm that the load
 ## Good to know
 
 - Ari can look up files shared earlier in the same conversation.
+- A file you uploaded has a **Download** button on its tile in the chat transcript, so you can retrieve it later under its original filename.
 - Attachments do not automatically move into a different conversation. Attach the file again if you start a new chat.
 - A damaged, encrypted, or otherwise unreadable file may require a different export or an unprotected copy.
 

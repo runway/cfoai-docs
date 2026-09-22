@@ -32,7 +32,7 @@ These are complete, ready-to-save Skills. Prompt Ari with the instructions below
 | --- | --- | --- |
 | three-statement-buildout | Build a saved page with native Income Statement, Cash Flow Statement, and Balance Sheet tables using the workspace's existing variables, formulas, and mappings. Use when creating or updating the full three-statement model, or when auditing subtotals, cash continuity, and the balance check. | See [instructions](#three-statement-buildout-instructions) below. |
 | forecast-simulator | Build an interactive forecast tool whose scenario ties exactly to the model baseline. Use for what-if pages, scenario explorers, or any page with controls over model variables. | See [instructions](#forecast-simulator-instructions) below. |
-| headcount-from-capacity | Model headcount as a ratio to the business's real driver, not a growth rate. Use for hiring plans, workforce forecasts, personnel cost models, or org plans. | See [instructions](#headcount-from-capacity-instructions) below. |
+| headcount-from-capacity | Model headcount as a ratio to the business activity that sets it, not a growth rate. Use for hiring plans, workforce forecasts, personnel cost models, or org plans. | See [instructions](#headcount-from-capacity-instructions) below. |
 | interactive-profitability-bridge | Build a reusable interactive Canvas visual from the organization's existing income statement, with local preview controls that never write back to the model. Use for what-if profitability views, scenario walkthroughs of the income statement, or margin bridges. | See [instructions](#interactive-profitability-bridge-instructions) below. |
 
 ### `three-statement-buildout` instructions
@@ -189,7 +189,7 @@ These are complete, ready-to-save Skills. Prompt Ari with the instructions below
   Two ways to achieve it, in order of preference:
   
   **A. Re-run the recurrence.** Rebuild the series in component code using the model's own
-  inputs and the scenario driver. At the default driver value this reproduces the model
+  inputs and the scenario control. At the control's default value this reproduces the model
   exactly because it is the same recurrence:
   
       const mwS = [];
@@ -262,9 +262,9 @@ These are complete, ready-to-save Skills. Prompt Ari with the instructions below
   
   ## Structure
   
-      `Headcount per Unit` [Department]  — driver, seeded at the first period
+      `Headcount per Unit` [Department]  — input, seeded at the first period
       `Headcount` [Department] = `Headcount per Unit` * `Total Units`$[Date.Month = this.Date.Month]
-      `Average Salary` [Department]      — driver constants
+      `Average Salary` [Department]      — input constants
       `Personnel Cost` [Department] = `Headcount` * `Average Salary` / 12 * `Payroll Load Multiplier`
   
   `Headcount` needs no parent/child rules — the parent computes correctly as parent-ratio ×

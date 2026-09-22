@@ -3,7 +3,7 @@ title: "Read and explain formulas as an agent"
 description: "Inspect saved Variable formulas and visible Table Block values, then explain their expression, scope, range, and Scenario."
 ---
 
-Use `inspect_variables` with `saved_formulas` when a user asks how a Variable is calculated or why its behavior changes by segment or period.
+Use `inspect_table_blocks` with its `variable` block when a user asks how a Variable is calculated or why its behavior changes by segment or period.
 
 ## Read the saved rules
 
@@ -12,27 +12,47 @@ For example:
 ```json
 {
   "scenario": "Main",
-  "saved_formulas": {
-    "variables": ["Gross Margin"]
-  }
+  "variable": { "target": "Gross Margin" }
 }
 ```
 
-Add `conditions` only when the question requires one exact saved scope. Omit the filter when the user wants the complete set of rules.
+The result lists every formula definition saved on the Variable, with its condition and its Actuals or Forecast range. Add `conditions` only when the question requires one exact saved scope, such as `["[Department = \"Sales\"]"]`. Omit the filter when the user wants the complete set of rules. A Variable with many rules returns them in pages; to read the next page, copy the response's `next.after` into `after` in the same `variable` block, keeping the same `target`.
 
-## Connect rules to visible values
+Use the `dimension` block the same way to read a Dimension's saved definitions, and `items` to list its members.
 
-Use `inspect_table_blocks` for the table that actually shows the result. Request `formula_origins: "all"` when the explanation depends on which rule filled a row or cell.
+### Read several Variables or Dimensions in one call
+
+`target` on the `variable` and `dimension` blocks also takes a list of references. The response holds one entry per reference in the order given, all read at one snapshot, and states each imported source's query once under `sources`; an entry's `source.query_ref` names its key there. A reference that matches nothing is refused in its own entry while the others still answer.
 
 ```json
 {
   "scenario": "Main",
-  "tables": ["Operating Plan"],
-  "formula_origins": "all"
+  "variable": { "target": ["Amount#a4d", "Probability#058"] }
 }
 ```
 
-Use the same requested Scenario for both the saved-formula read and the table inspection. The saved rule explains the intended calculation. The visible table confirms which rule actually applies to the selected period, segment, and Scenario.
+## Connect rules to visible values
+
+Use the `read` block for the table that actually shows the result. Each row and column already carries its formula per range, and a cell that breaks the row's rule says so in the cell. Request `formula_origins: "all"` when the explanation depends on which saved rule the engine ranked first for a row, or `"zeros"` to explain only the rows that show a zero, blank, or error.
+
+```json
+{
+  "scenario": "Main",
+  "read": {
+    "target": "Operating Plan",
+    "rows": ["Gross Margin"],
+    "formula_origins": "all"
+  }
+}
+```
+
+A member row is selected by its path from its Variable or axis Dimension, one bracket per breakdown level, as a readback prints it: `Revenue[West]`, `Revenue[West][Enterprise]`. The member that holds rows with no value displays as **None** and is spelled `empty:None` in a selector, for example `Region[empty:None]`.
+
+Use the same requested Scenario for both the saved-formula read and the table read. The saved rule explains the intended calculation. The visible table confirms which rule actually applies to the selected period, segment, and Scenario. A row computed by a rule saved outside the table names that rule's owner and condition in `inherited_from`.
+
+## Explain one cell's inputs
+
+For a single cell, select one row and one column and add `include_inputs: true`. The result shows one level of the formula's inputs and where each value came from: lookup coordinates, aggregate units, the selected rule, and source dates. Read an input by its own reference to go deeper.
 
 ## Historical reads
 

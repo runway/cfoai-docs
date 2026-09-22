@@ -1,63 +1,149 @@
 ---
 title: "Create and update formulas as an agent"
-description: "Save formulas through visible Table Block targets or table-independent Variable writes, then verify the exact resulting Model values."
+description: "Save formulas through visible Table Block targets with edit_table_blocks, preview a write with dry_run, and verify the exact resulting Model values."
 ---
 
-A saved formula belongs to its Variable. When the user selects a visible row, column, or cell, the saved Table Block provides the target that resolves the correct Variable and scope.
+A saved formula belongs to its Variable. When the user selects a visible row, column, or cell, the saved Table Block provides the target that resolves the correct Variable and scope. Every model formula is written through `edit_table_blocks`.
+
+## Shape a call as one action block
+
+`edit_table_blocks` has several actions: `create`, `update`, `reshape`, `copy`, `delete`, `set_time_rollup`, and `update_calendar`. Fill exactly one block named for the action and put that action's fields inside it. The `scenario` field sits beside the block and applies to it.
 
 ## Write through the saved table
 
-First use `inspect_table_blocks` to obtain the visible row and column references. Then send the related formula edits together using `edit_table_blocks`. Pass the same requested Scenario to the inspection and the write so they resolve the same saved table.
+First read the table with `inspect_table_blocks` to obtain the visible row and column references:
+
+```json
+{ "read": { "target": "Operating Plan" }, "scenario": "Main" }
+```
+
+Then send the related formula edits together in one `update`. Pass the same `scenario` to the read and the write so they resolve the same saved table. A row with no Date scope takes `formula`; a row that runs across time takes `default_formulas` with an `actuals` entry, a `forecast` entry, or both.
 
 ```json
 {
   "scenario": "Main",
-  "table": "Operating Plan",
-  "edits": [
-    {
-      "target": {
-        "kind": "row",
-        "row": "<row reference returned by the table inspection>"
-      },
-      "action": "set_formula",
-      "formula": "Revenue - `Cost of Goods Sold`"
-    }
-  ]
+  "update": {
+    "target": "Operating Plan",
+    "row_updates": [
+      {
+        "rows": ["Gross Profit"],
+        "default_formulas": {
+          "actuals": { "formula": "Revenue - `Cost of Goods Sold`" },
+          "forecast": { "formula": "Revenue - `Cost of Goods Sold`" }
+        }
+      }
+    ]
+  }
 }
 ```
 
-The server derives the Variable, cell address, formula range, and write permissions from the visible target. Copy references from the inspection result instead of inventing IDs, positions, or range identifiers.
+The server derives the Variable, cell address, formula range, and write permissions from the visible target. Copy references from the inspection result, such as `Gross Profit#3f2`, instead of inventing IDs, positions, or range identifiers. Use `clear_formula: true` in place of `formula` to remove the rule the row owns for that range.
 
 ## Create a visible derived row
 
-A new Variable can be defined and placed on a saved Table Block in the same change:
+A new Variable can be defined and placed on an existing saved Table Block in the same change. `structure.insert` names the side, the new Variable, and its rule:
 
 ```json
 {
   "scenario": "Main",
-  "table": "Operating Plan",
-  "edits": [
-    {
-      "target": { "kind": "table" },
-      "action": "insert",
-      "kind": "variable",
-      "name": "Gross Margin",
-      "formula": "iferror(`Gross Profit` / Revenue, 0)"
+  "update": {
+    "target": "Operating Plan",
+    "structure": {
+      "insert": [
+        {
+          "side": "rows",
+          "node": {
+            "variable": "Gross Margin",
+            "default_formulas": {
+              "forecast": { "formula": "iferror(`Gross Profit` / Revenue, 0)" }
+            }
+          }
+        }
+      ]
     }
-  ]
+  }
+}
+```
+
+To start a new table instead, use `create` with the complete `rows` and `columns`:
+
+```json
+{
+  "create": {
+    "name": "Margin analysis",
+    "rows": [
+      {
+        "variable": "Gross Margin",
+        "default_formulas": {
+          "forecast": { "formula": "iferror(`Gross Profit` / Revenue, 0)" }
+        }
+      }
+    ],
+    "columns": [{ "time": "MONTH" }]
+  }
 }
 ```
 
 The saved row makes the calculation visible, inspectable, and available for follow-up.
 
-## Use a table-independent write only when appropriate
+### Create several dependent tables in one call
 
-Use `edit_variables` with `action: "set_values"` when the requested rule has no saved table target. Send related items together and provide the intended Scenario, formula scope, and time range.
+When a build needs more than one table and a later table's formulas name Variables an earlier table declares, put the tables in a `tables` list inside one `create` instead of one call per table. The tables save in list order in one change, so a formula in the second table can name a Variable the first table declares. Two entries that name the same new `page` share it. Each entry carries its own `name`, `page`, `rows`, `columns`, and settings; `scenario` and `dry_run` sit on the request and apply to every entry.
 
-`dry_run: true` validates supported formula writes without applying them. `mode: "atomic"` makes the selected batch succeed together or fail together; the default partial mode can apply valid items and report invalid ones.
+```json
+{
+  "create": {
+    "tables": [
+      {
+        "name": "Workforce assumptions",
+        "page": "Workforce",
+        "rows": [{ "variable": "Hours per Month", "formula": "160" }],
+        "columns": [],
+        "window": { "granularity": "NO_GRANULARITY" }
+      },
+      {
+        "name": "Roster",
+        "page": "Workforce",
+        "rows": [{ "dimension": "Employee", "items": ["E-1", "E-2"] }],
+        "columns": [{ "variable": "Monthly hours", "formula": "`Hours per Month`$" }]
+      }
+    ]
+  }
+}
+```
+
+The response holds one receipt per table, in list order, and every table shares one `change_log_id`. A refusal of any table refuses them all and names the table.
+
+## Save a Variable's rule without a table
+
+When the requested rule has no visible table target, name the Variable in a `variables` entry instead. No table `target` is needed:
+
+```json
+{
+  "scenario": "Main",
+  "update": {
+    "variables": [
+      {
+        "target": "Bookings",
+        "default_formulas": { "forecast": { "formula": "last(`Bookings source`)" } }
+      }
+    ]
+  }
+}
+```
+
+The rule is saved at the Variable with one Date term at the Model's base grain, the same address a plain row on a base-grain table writes. A later `row_updates` write on a table that places the Variable edits this rule instead of adding a rival. The same entry accepts settings such as `data_type`. Member edits on a Dimension still name a table that shows it.
+
+## A rule belongs to its Variable
+
+Giving an existing Variable new `default_formulas` while placing it on another table rewrites the rule every table reads. The receipt says so when the rule it replaced was a formula: it names that formula and the address the Variable carried it at. Writing a value over a plain number, quoted text, date, or `null` states no replaced rule; the committed edit's `previousText` carries the old value instead. Placing a Variable without new defaults leaves its existing rule alone.
+
+## Preview before you write
+
+`dry_run: true` on an `update`, `create`, or `reshape` validates structure, references, and formula syntax without writing, and returns `valid`, `warnings`, and `model_effects`. A table write is atomic on its own: the whole change saves or none of it does.
 
 ## Verify the saved result
 
-Read the affected Table Block after a material change. Check the intended Scenario, representative dates and segments, formula origins, and the actual numeric result.
+Ask for a readback in the same write with `readback.rows` and `readback.columns`, or read the affected Table Block afterward. Check the intended Scenario, representative dates and segments, formula origins, and the actual numeric result.
 
-When a batch reports rejected items, distinguish saved changes from unsuccessful ones and retry only the work that still needs correction.
+When the receipt carries warnings, read them before moving on. They report rules that compute to zero, rules that tie with an existing rule, and shared rules the write replaced. See [Formula errors and troubleshooting](/formulas/formula-reference/formula-errors-and-troubleshooting).

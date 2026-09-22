@@ -17,43 +17,45 @@ Everyone inside the workspace is an administrator and can already open every Pag
   <Step title="Select Share">
     Select **Share** in the Page header. The panel names the Page so you can confirm you are sharing the intended report.
   </Step>
+  <Step title="Choose the Scenario">
+    Use the **Shared scenario** selector on the link to choose the Scenario it
+    shows. This matters when the same Page presents different results in Main
+    and in an alternative Scenario.
+  </Step>
   <Step title="Create the link">
-    Under **External access**, select **Create link**. The new link appears in the list with **Copy external link** beside it.
+    Under **External access**, select **Create link**. Turn on **Require password**
+    when the recipient should enter a password before viewing the Page, and copy
+    and share that password separately from the link.
   </Step>
-  <Step title="Adjust the link settings">
-    Open **Link settings** on the link to change what it shows:
-
-    - **Shared scenario** — the Scenario the link presents. This matters when the same Page reads differently in Main and in an alternative Scenario. A link created for the whole Page shows **All scenarios**.
-    - **Require password** — turn this on when the recipient should enter a password before the Page opens. **Generate password** creates one for you. Send the password separately from the link.
-
-    Select **Save changes**.
-  </Step>
-  <Step title="Send the link">
-    Copy the link and send it to the recipient.
+  <Step title="Copy the link">
+    Select **Copy external link** and send it to the intended recipient.
   </Step>
 </Steps>
 
-## What a link allows
+## Share several Pages through one link
+
+One external link can open more than one Page in the same Scenario, so a board packet with a summary, a profit and loss statement, and a headcount view opens as one link. The Page you share from is the landing page. Ask Ari for a link like this; the **Share** panel's link rows then list every Page the link opens.
+
+> Create a view-only link to the Board summary Page that also opens the Cash forecast and Headcount plan Pages.
+
+Ari returns the link's address. The link works for anyone who holds it until you revoke it in **Share**, and creating it does not change the Model.
+
+## Know what a link allows
 
 - Anyone with the link can **view** the Page. A link never grants editing, and it never makes someone a workspace administrator.
 - The recipient does not need to sign in. There is no setting that requires a sign-in for an external link.
 - A recipient who does sign in keeps the Pages shared with them attached to their account, which is why the app suggests **Sign in to hold on to the pages shared with you** to anonymous viewers.
 - A link can expire. If a recipient sees **This share link has expired**, create a new link.
 
-The panel summarizes the state: **External access is off**, **Anyone with an external link can view**, or **People with an external link and its password can view**.
+When someone needs to collaborate directly instead, ask Ari to invite them to the workspace; see [Workspace and team settings](/workspace-settings/team-and-workspace).
 
 ## Turn a link off
 
-Select **Turn off external link** on the link. cfo.ai asks you to confirm:
-
-- **Also remove access already granted by this link** is checked by default and is recommended for financial information. It removes the access of anyone who opened the Page through that link. Direct invitations to workspace administrators stay unchanged.
-- Clear the box if people who already opened the link should keep their access after the link stops working.
-
-Select **Turn off link**. Create a new link if the Scenario or password should change; a link's settings can also be edited in place under **Link settings**.
+The sharing panel lists active links. Select **Turn off external link** on a link when the recipient should no longer be able to use it. The confirmation has **Also remove access already granted by this link** checked by default, which also removes the access of anyone who opened the Page through that link; clear it to let them keep their access. Create a new link if the required Scenario or password changes. Turning a link off is only possible from the panel, not through Ari.
 
 ## What you cannot share yet
 
-Only Pages have a **Share** control today. Scenarios, conversations, individual Variables, and formulas are not shareable on their own; share the Page that shows them. Ari can tell you where the **Share** control is and who has opened a Page, but you create and turn off links yourself.
+Only Pages have a **Share** control today. Scenarios, conversations, individual Variables, and formulas are not shareable on their own; share the Page that shows them.
 
 ## Related
 

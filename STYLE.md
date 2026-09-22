@@ -35,7 +35,7 @@ Keep Ari, the human interface, and external agents connected to the same Model. 
 
 - Write the product and company name as `cfo.ai`, including at the start of a sentence.
 - Call Ari an AI finance coworker when describing its role. Use concrete examples to explain what that means.
-- Use `Model`, `Scenario`, `Variable`, `Dimension`, `Page`, `Table Block`, and `Database` for their product concepts.
+- Use `Model`, `Scenario`, `Variable`, `Dimension`, `Page`, `Table Block`, `Canvas block`, and `Database` for their product concepts, spelled the way the published pages already spell them.
 - Never use `Runway` for the product or company.
 - Ordinary financial phrases such as `cash runway` remain correct when they describe how long cash will last.
 - Never use `Metric`, `Driver`, or `Property` as a customer-facing name for a Variable.
@@ -51,7 +51,7 @@ Keep Ari, the human interface, and external agents connected to the same Model. 
 ## Truth
 
 - Verify every behavior against the current product or the `runway/cfoai` repository.
-- Do not document a feature flag, experiment, aspiration, or planned behavior as shipped.
+- Do not document a feature flag, experiment, aspiration, or planned behavior as shipped. A flag that is off, targeted to specific workspaces, or limited to cfo.ai staff in production is not shipped.
 - Do not promise unverified work channels, autonomous actions, pricing, privacy controls, or security certifications.
 - If a claim cannot be verified, omit it and open a follow-up issue with the evidence needed.
 
@@ -61,8 +61,9 @@ When the docs and product disagree, verify the customer-facing behavior in `runw
 
 - Product names, modeling concepts, and action labels: `agent_docs/product-sense.md`.
 - Supported formula functions and aliases: `shared/formula-functions.json`.
-- Parser-verified formula syntax: `agent-runtime/src/skills/ari/manuals/build-model/references/grammar-reference.md`.
-- Formula writing and saved-table behavior: `agent-runtime/src/skills/ari/manuals/build-model/references/saving-formulas.md`.
-- Ari's available product tools: `go/apisvc/agents/ari/agent.go`.
+- Parser-verified formula syntax: the generated section of `agent-runtime/src/skills/ari/builtin/build-model/SKILL.md` between the `formula-syntax:start` and `formula-syntax:end` markers, built from `shared/formula-functions.json` by `make formula-functions`.
+- Formula writing and saved-table behavior: `agent_docs/interfaces/formulas.md` and the "Cells: inputs and rules" section of the same `SKILL.md`.
+- Ari's available product tools: `agent-runtime/src/tools/ari-tool-catalog.json`, registered in `go/apisvc/agents/ari/agent.go`.
+- Which features customers have: LaunchDarkly production. A feature is shipped when its flag is on for the fallthrough with no rules and no targets, or has no flag. Frontend flags are listed with their `LD key:` comments in `cfoapp/src/config/launchDarklyFlags.ts`; read state with `ldcli flags get --project default --flag <key> --output json`.
 - File types, size limits, and attachment count: `cfoapp/src/features/AriChat/AriInput/attachments.ts`.
 - In-app customer help: `cfoapp/src/features/GuideEngine/articles/`.

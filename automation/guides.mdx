@@ -8,9 +8,11 @@ A **Guide** is a saved, interactive walkthrough that spotlights parts of your wo
 
 ## Guide modes
 
-- **Tour** — a step-by-step feature or onboarding walkthrough. The default mode, and the only one with a "Skip tour" option.
-- **Walkthrough** — an analysis, like board-meeting prep, without the lighter tour controls.
-- **Explain** — a single on-demand spotlight rather than a multi-step sequence.
+- **Tour** — a step-by-step feature or onboarding walkthrough. The default mode. Its card shows progress, **Back**, **Next**, **Done** on the last step, and **Skip tour**.
+- **Walkthrough** — an analysis, like board-meeting prep, with softer wording: **Continue**, **Done**, and **Exit walkthrough**.
+- **Explain** — a single on-demand spotlight rather than a multi-step sequence, closed with one **Got it** button.
+
+When Ari starts a tour or walkthrough, the chat shows a **Start tour** or **Start walkthrough** button so you choose when it begins; an explanation opens at once.
 
 ## What a step can spotlight
 
@@ -19,15 +21,18 @@ Each step targets one of:
 - A **named** UI element, like a sidebar toggle.
 - A **block** on a Page.
 - A single **cell**, a whole **row**, or a whole **column** on a Table Block, addressed by the Variables and Dimension items that identify it — including a Scenario comparison column.
+- A **Canvas element** — one declared element inside a Canvas block, such as a KPI tile the Canvas source marks with a stable ID.
 - **None** — a centered narration step with no on-screen target, useful for an introduction or a transition between sections.
+
+A step whose target is not on screen is skipped, unless that target lives on another Page, in which case the Guide opens that Page first.
 
 ## Create a Guide
 
-Ask Ari to save a new Guide with a title and its steps in order. For a Guide that targets blocks or cells, Ari uses the Scenario you're currently viewing so the targets and numbers line up when the Guide launches. Give each step a title and body, or richer content combining a heading, a label, and paragraphs.
+Ask Ari to save a new Guide with a title and its steps in order. For a Guide that targets blocks or cells, Ari uses the Scenario you're currently viewing so the targets and numbers line up when the Guide launches. Give each step a title and body, or richer content combining a heading, a label, and paragraphs. A step can carry a short readable key, such as `roster`, so you can ask Ari to start the Guide at that step later.
 
 ## Run a Guide
 
-Ask Ari to start a saved Guide by name. Once running, ask Ari to move to the next or previous step, jump to a specific step, or dismiss it early.
+Ask Ari to start a saved Guide by name, or to start it at a named step. Once running, ask Ari to move to the next or previous step, jump to a specific step, or dismiss it early.
 
 ## Update or remove a Guide
 

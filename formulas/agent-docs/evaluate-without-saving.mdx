@@ -7,40 +7,29 @@ A read-only analysis starts with saved Model content. Inspect existing Table Blo
 
 ## Read a saved Table Block
 
-Use `inspect_table_blocks` with the table that contains the values:
+Use `inspect_table_blocks` with its `read` block and the table that contains the values:
 
 ```json
 {
   "scenario": "Main",
-  "tables": ["Revenue by Customer"],
-  "formula_origins": "all"
-}
-```
-
-Copy row and column references from the response when narrowing a follow-up to a visible row, cell, or subtree.
-
-## Compare or rank existing values
-
-Use the saved table's existing Scenario or time comparison when it already answers the question. For a top-items question, pass the supported `rank` argument to `inspect_table_blocks` with exactly one saved Table Block.
-
-```json
-{
-  "scenario": "Main",
-  "tables": ["Revenue by Customer"],
-  "rank": {
-    "dimension": "Customer",
-    "n": 5,
-    "by": "value",
-    "direction": "desc"
+  "read": {
+    "target": "Revenue by Customer",
+    "formula_origins": "all"
   }
 }
 ```
 
-Historical reads use `as_of_point` against the same saved table and the same target. That keeps the before-and-after comparison tied to one stable artifact.
+Copy row and column references from the response when narrowing a follow-up to a visible row, cell, or subtree: pass them in `rows` and `columns`, and use `depth` to include the members beneath a selected row.
+
+## Compare or rank existing values
+
+Use the saved table's existing Scenario or time comparison when it already answers the question. For a top-items question, read the member rows and rank them from the returned values; the read itself does not sort.
+
+Historical reads use `as_of_point` against the same saved table and the same target, and the `compare` block shows how a table changed since a saved change (`before_change_log_id`). That keeps the before-and-after comparison tied to one stable artifact.
 
 ## Validate without applying a change
 
-When the user asks whether a proposed formula would be accepted, use `dry_run: true` on a supported `edit_table_blocks` or `edit_variables` formula write. The result validates the proposed write without saving it.
+When the user asks whether a proposed formula would be accepted, use `dry_run: true` on the `edit_table_blocks` write that would own the change. The result validates the proposed write without saving it and returns `valid`, `warnings`, and `model_effects`.
 
 A dry run checks the write. It does not create a new calculated series to inspect.
 

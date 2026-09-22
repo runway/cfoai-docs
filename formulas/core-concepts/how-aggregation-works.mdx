@@ -19,11 +19,10 @@ A formula reference can deliberately select several values. For example:
 Revenue[Department in any]
 ```
 
-This selects Revenue across all Department items. A multi-value Variable lookup uses a sum when another aggregation is not stated.
-
-It is clearer to write the intended aggregation when the choice matters:
+This selects Revenue across all Department items. Write the aggregation that turns those values into one result:
 
 ```text
+sum(Revenue[Department in any])
 average(Revenue[Department in any])
 ```
 

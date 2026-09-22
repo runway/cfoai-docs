@@ -1,0 +1,45 @@
+ari/read-and-change-your-model.mdx
+  s_7d4f39b90c2001::t_164af8c42f0236 42
+ari/what-ari-remembers.mdx
+  s_7d4f39b90c2001::t_b74cb5b9ed4f72 26,34
+automation/skills.mdx
+  s_7d4f39b90c2001::t_e949da9db7890b 15
+dashboards/charts-and-custom-visualizations.mdx
+  s_7d4f39b90c2001::t_ffd7e68c00771d 33,35
+dashboards/share-pages-and-scenarios.mdx
+  s_7d4f39b90c2001::t_41e0d643c2216a 48
+getting-started/quickstart.mdx
+  s_7d4f39b90c2001::t_2d4b8e5b748a26 25
+getting-started/understand-your-workspace.mdx
+  s_7d4f39b90c2001::t_9114073a93deb6 32
+integrations/connect-and-sync-data.mdx
+  s_724f60c9b3c5d7::t_a118427afe7969 36
+workspace-settings/billing.mdx
+  s_7d4f39b90c2001::t_81f4501fa0523f 43
+workspace-settings/team-and-workspace.mdx
+  s_7d4f39b90c2001::t_4addd68b1f20d5 31
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "d16406dc71ee39734f2df6af95ba9de5f0bfccfb",
+  "prompts": {},
+  "sessions": {
+    "s_724f60c9b3c5d7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ec814585-6d61-4acc-8ec7-d4508dedb886",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Siqi Chen <blader@gmail.com>"
+    },
+    "s_7d4f39b90c2001": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "96394c7f-1efb-4105-899f-e597c49f5371",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Siqi Chen <blader@gmail.com>"
+    }
+  }
+}

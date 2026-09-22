@@ -13,7 +13,7 @@ Your plan can classify connected sources as standard or premium:
 - **Standard**: QuickBooks Online, Xero, Rippling, Google Sheets, and many more.
 - **Premium**: NetSuite SuiteAnalytics and all database connections.
 
-File upload is not a billable integration. Check your workspace's Usage or billing settings for the current limits and classification that apply to your plan.
+File upload is not a billable integration. Neither are the API and MCP connections under **Settings → Connections**: only the data integrations on this page occupy a slot against your plan's connection limit. Check your workspace's Usage or billing settings for the current limits and classification that apply to your plan.
 
 ## File upload
 
@@ -122,7 +122,7 @@ The nightly refresh and asking Ari to refresh a connection work the same on ever
 
 ## API and MCP connections do not sync
 
-The integrations above bring data into your Model on a schedule. API and MCP connections under **Settings → Connections** are different: they are tools Ari calls live when you ask a question. Nothing is stored or scheduled. If Ari writes a number from one of these calls into your Model, it lands as a plain value that stays put until you ask Ari to pull it again.
+The integrations above bring data into your Model on a schedule. API and MCP connections under **Settings → Connections** are different: they are tools Ari calls live when you ask a question. Nothing is stored or scheduled, and they do not count against the number of connections your plan allows. If Ari writes a number from one of these calls into your Model, it lands as a plain value that stays put until you ask Ari to pull it again.
 
 For example, Stripe is not a synced integration. Connect it as an MCP connector or an API connection, and Ari can look up a balance or a payout when you ask, then write the figure into a Table Block as an editable value.
 

@@ -28,6 +28,16 @@ A visual resolves its data in the Page's Scenario. Use a Table Block when you ne
 
 Ask Ari to change an existing visual, its source values, or its title. Describe the intended result, such as switching from a line chart to stacked bars or narrowing the chart to one customer segment.
 
+## Interactive controls and shared state
+
+A custom visual can carry sliders, toggles, and other controls. Moving one changes your own view of the visual; it is a preview, not a saved change, unless the visual was built to save that value. Ask Ari to save a setting you want to keep.
+
+A control never writes into your Model on its own. To change a saved assumption, edit the Variable or the value in a Table Block, or ask Ari.
+
+## Change a visual you did not build
+
+There is no code editor for a custom visual. Hover the block and use **Select element** to point at the exact chart, number, or control you mean, then **Mention in chat** and describe the change to Ari. A blank block offers **Mention block in chat** so Ari can build it.
+
 ## When to reach for a Table Block instead
 
 Use a Table Block when readers need the underlying numbers in rows and columns, such as a variance report or a detailed departmental view. Use a custom visual when the shape of the story matters more, such as a trend or a single headline measure.

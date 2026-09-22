@@ -1,0 +1,67 @@
+---
+title: "Steer, stop, and approve during a chat"
+sidebarTitle: "During a conversation"
+description: "Stop Ari, queue a follow-up while it works, answer its question forms, approve a plan or a tool call, recover from an interrupted reply, and manage your chats."
+---
+
+A conversation with Ari is not a single question and answer. Ari often works for several minutes, asks for details, proposes a plan, or needs your approval before it calls another service. This page covers the controls you have while that is happening.
+
+## Stop Ari
+
+While Ari is working, the send button becomes a **Stop** button. Select it when Ari is heading in the wrong direction or you want to change the request. Changes Ari already saved stay in place, so check the Page or ask Ari what it completed before you continue.
+
+A background task that Ari delegated has its own **Stop** control on its card in the transcript.
+
+## Send a message while Ari is working
+
+You can type while Ari works. A message sent during a turn is **Queued for after this turn**: Ari finishes what it is doing, then reads your message. Use this to add a detail you forgot or to redirect the next step.
+
+Hover a queued message to edit or delete it before Ari reaches it. Two kinds of queued message cannot be edited, only deleted: a plan approval and a set of answers to Ari's questions.
+
+## Answer Ari's questions
+
+When Ari needs a few details before it can continue, it asks them as a short form in the chat. Fill in the answers you know and select **Dismiss** on any question you would rather not answer; Ari continues without it and the transcript marks that question as **Declined**. **Undo** restores a dismissed question before you send.
+
+Your answers appear in the transcript as a record of the form, each question above the answer you gave.
+
+## Approve a plan
+
+For a larger piece of work, Ari may present a plan with the assumptions it intends to use. Each assumption offers Ari's suggested choices plus **Other**, where you type your own value. Select **Build it** to start; the plan is sent back to Ari as a message that lists the assumptions you selected, so the record of what you approved stays in the conversation.
+
+Ari cannot start until every assumption that it marked as required has a value.
+
+## Approve a tool call
+
+When Ari wants to call a connected external service, such as an MCP connector or an API connection from **Settings → Connections**, it pauses and shows the call for approval. Choose one of:
+
+- **Approve** to run this one call.
+- **Always allow** to let Ari run this tool without asking again for the whole workspace. Only someone who can manage workspace settings sees this option.
+- **Decline** to skip the call. Ari continues without it.
+
+Anyone in the chat can approve or decline the single call. After you choose, Ari continues on its own; you do not need to send another message.
+
+## When a reply is interrupted
+
+If Ari's reply is cut off, the transcript shows **Ari stopped before finishing** with a **Retry** button. Select it to have Ari pick the work back up. If your connection drops, the chat says **No internet connection. Reconnect to continue with Ari.** If the workspace runs out of AI usage mid-turn and has auto-reload on, the chat tells you usage is being added and Ari continues in a moment.
+
+## Manage your chats
+
+The chat sidebar lists your conversations under **My sessions**, and any conversation someone else opened for you under **Shared with me**. Filter the list by **Active**, **Archived**, or **All**.
+
+Open a conversation's menu to **Archive chat**, which hides it from the active list without deleting anything, or **Unarchive chat** to bring it back. A conversation you have not sent anything in yet offers **Discard chat** instead. You can also rename a conversation inline.
+
+A conversation shared with you is read-only: the chat says **You can view this shared conversation, but can't send messages.** Start your own chat to ask Ari about what you see.
+
+## Keyboard shortcuts
+
+| Shortcut | What it does |
+|---|---|
+| **⌘ /** (Ctrl+/ on Windows and Linux) | Start a new chat |
+| **⌘ L** (Ctrl+L on Windows and Linux) | Mention the selected cell or block in the current chat |
+| **Enter** | Send, or queue the message if Ari is working |
+
+## Related
+
+- [Meet Ari](/ari/meet-ari)
+- [What Ari remembers](/ari/what-ari-remembers)
+- [Attach files to a chat message](/workspace-settings/file-attachments-in-chat)

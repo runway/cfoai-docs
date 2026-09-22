@@ -18,6 +18,8 @@ Common starting points include:
 
 Available sources and plan entitlements can vary. Ask Ari to check the catalog for the system you use.
 
+A file used as a data source must be a CSV with a `.csv` extension, up to 50 MB. An Excel workbook is not accepted as a data source: attach it to a chat message for Ari to read, or ask Ari to [import it as a model](/getting-started/import-a-spreadsheet-model).
+
 ## Connect a business system
 
 <Steps>
@@ -31,7 +33,7 @@ Available sources and plan entitlements can vary. Ask Ari to check the catalog f
     Ari opens or links you to the connection flow. Complete the sign-in and approval in your browser. Ari cannot enter your password or approve access for you.
   </Step>
   <Step title="Choose the tables to sync, when asked">
-    Some sources, such as Shopify or your own database, show a table picker after you sign in. It reads **Choose which tables to sync**; only the tables you tick are imported, and the selection cannot be changed later. When cfo.ai knows the source well, the recommended tables are pre-selected. For Shopify that is the order, refund, fulfillment, customer, product, gift card, and shop tables, while the slow `transaction` table stays off unless you tick it. Select **Sync N tables** to start the import.
+    Some sources, such as Shopify or your own database, show a table picker after you sign in. It reads **Choose which tables to sync**; only the tables you tick are imported, you can select up to 100 per connection, and the selection cannot be changed later, so include every table you expect to need. When cfo.ai knows the source well, the recommended tables are pre-selected. For Shopify that is the order, refund, fulfillment, customer, product, gift card, and shop tables, while the slow `transaction` table stays off unless you tick it. Select **Sync N tables** to start the import.
   </Step>
   <Step title="Wait for the initial load">
     cfo.ai starts loading the connected data after the source links. The import can continue in the background while you work on something else.
@@ -40,6 +42,8 @@ Available sources and plan entitlements can vary. Ask Ari to check the catalog f
     Ask Ari whether the connection has finished, when data was last loaded, and which information is ready for analysis.
 
     > Check whether QuickBooks finished syncing and tell me which accounting periods are available.
+
+    If a past period was wrong at the source and you have corrected it there, ask Ari to re-import the connection's full history. The routine refresh covers recent periods only.
 
   </Step>
 </Steps>

@@ -1,21 +1,21 @@
 ---
 title: "Share a Page and choose its Scenario"
 sidebarTitle: "Share Pages"
-description: "Create a read-only Page share link, choose the Scenario it shows, add a password when needed, and manage existing links."
+description: "Create a read-only external link to a Page, choose the Scenario it shows, add a password when needed, and turn a link off."
 ---
 
-Use a Page's **Share** control when you want someone else to view a report, dashboard, or analysis. Share links are read-only and can open without requiring the recipient to sign in.
+Use a Page's **Share** control when you want someone outside the workspace to view a report, dashboard, or analysis. External links are read-only and open without a sign-in, so the recipient sees the Page as it is when they open it, in the Scenario you chose.
 
-## Create a Page share link
+Everyone inside the workspace is an administrator and can already open every Page, so sharing is for people outside it: an investor, a board member, an accountant, or a teammate who does not need a workspace seat.
+
+## Create an external link
 
 <Steps>
   <Step title="Open the Page">
-    Navigate to the Page you want to share and confirm that you have permission
-    to manage its access.
+    Navigate to the Page you want to share.
   </Step>
-  <Step title="Choose Share">
-    Open the Page's **Share** control. The sharing panel identifies the Page so
-    you can confirm you are sharing the intended report.
+  <Step title="Select Share">
+    Select **Share** in the Page header. The panel names the Page so you can confirm you are sharing the intended report.
   </Step>
   <Step title="Choose the Scenario">
     Use the **Shared scenario** selector on the link to choose the Scenario it
@@ -42,13 +42,20 @@ Ari returns the link's address. The link works for anyone who holds it until you
 
 ## Know what a link allows
 
-A Page share link grants viewing access. It does not give the recipient permission to edit the Model or become a workspace administrator.
+- Anyone with the link can **view** the Page. A link never grants editing, and it never makes someone a workspace administrator.
+- The recipient does not need to sign in. There is no setting that requires a sign-in for an external link.
+- A recipient who does sign in keeps the Pages shared with them attached to their account, which is why the app suggests **Sign in to hold on to the pages shared with you** to anonymous viewers.
+- A link stays active until you turn it off in the sharing panel.
 
-Everyone inside the workspace can already open every Page, so sharing is for people outside it. When someone needs to collaborate directly, ask Ari to invite them to the workspace; see [Workspace and team settings](/workspace-settings/team-and-workspace).
+When someone needs to collaborate directly instead, ask Ari to invite them to the workspace; see [Workspace and team settings](/workspace-settings/team-and-workspace).
 
-## Manage existing links
+## Turn a link off
 
 The sharing panel lists active links. Select **Turn off external link** on a link when the recipient should no longer be able to use it. The confirmation has **Also remove access already granted by this link** checked by default, which also removes the access of anyone who opened the Page through that link; clear it to let them keep their access. Create a new link if the required Scenario or password changes. Turning a link off is only possible from the panel, not through Ari.
+
+## What you cannot share yet
+
+Only Pages have a **Share** control today. Scenarios, conversations, individual Variables, and formulas are not shareable on their own; share the Page that shows them.
 
 ## Related
 

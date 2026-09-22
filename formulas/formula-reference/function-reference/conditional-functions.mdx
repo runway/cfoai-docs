@@ -49,8 +49,6 @@ iferror(`Gross Profit` / Revenue, 0)
 
 If Revenue is zero, the division creates a cell-level error and `iferror` returns `0` instead.
 
-`iferror` also catches a circular reference. When the first expression reads a value that depends on the cell being calculated, that read produces `#CIRC!`, and `iferror` returns the fallback instead of leaving the error in the cell. A Variable whose formula reads itself, such as `iferror(Balance + 1, 7)` saved on `Balance`, shows `7`. The same applies when the circular read sits inside a nested condition or an aggregate in the first argument.
-
 You can also use it with date calculations:
 
 ```text

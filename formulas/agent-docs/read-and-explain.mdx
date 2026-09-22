@@ -16,7 +16,7 @@ For example:
 }
 ```
 
-The result lists every formula definition saved on the Variable, with its condition and its Actuals or Forecast range. Add `conditions` only when the question requires one exact saved scope, such as `["[Department = \"Sales\"]"]`. Omit the filter when the user wants the complete set of rules. A Variable with many rules pages; copy `next.after` into `after` with the same target.
+The result lists every formula definition saved on the Variable, with its condition and its Actuals or Forecast range. Add `conditions` only when the question requires one exact saved scope, such as `["[Department = \"Sales\"]"]`. Omit the filter when the user wants the complete set of rules. A Variable with many rules returns them in pages; to read the next page, copy the response's `next.after` into `after` in the same `variable` block, keeping the same `target`.
 
 Use the `dimension` block the same way to read a Dimension's saved definitions, and `items` to list its members.
 

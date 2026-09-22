@@ -53,7 +53,7 @@ A formula range needs the Model's Date grain. In a monthly Model:
 [Department = "Sales", Date.Month in any]
 ```
 
-For a table-independent `edit_variables` write, pair the condition with the requested `period`, such as `"forecast"`, when the rule belongs to that formula range.
+For a rule saved on the Variable with no table named, an `edit_table_blocks` `update` with a `variables` entry, put the rule under `default_formulas.actuals` or `default_formulas.forecast` when it belongs to that formula range.
 
 ## Exact versus broader scope
 
@@ -64,13 +64,7 @@ A condition without `$` can continue to match a richer cell address. A condition
 $[Department = "Sales"]
 ```
 
-For a table-independent write, pass the exact condition directly in the supported `condition` field:
-
-```json
-{
-  "condition": "$[Department = \"Sales\"]"
-}
-```
+In a saved table, the exact form is what a cell-level write produces: a `cell_updates` entry on one cell saves an exact-address rule, while a `row_updates` entry saves the row's own relative rule. In an expression, the same `$` marks an absolute reference.
 
 The leading `$` is part of the condition grammar. In an expression, an absolute Variable reference instead places `$` after its name: `Revenue$[Department = "Sales"]`.
 

@@ -30,6 +30,9 @@ Available sources and plan entitlements can vary. Ask Ari to check the catalog f
   <Step title="Approve the connection">
     Ari opens or links you to the connection flow. Complete the sign-in and approval in your browser. Ari cannot enter your password or approve access for you.
   </Step>
+  <Step title="Choose the tables to sync, when asked">
+    Some sources, such as Shopify or your own database, show a table picker after you sign in. It reads **Choose which tables to sync**; only the tables you tick are imported, and the selection cannot be changed later. When cfo.ai knows the source well, the recommended tables are pre-selected. For Shopify that is the order, refund, fulfillment, customer, product, gift card, and shop tables, while the slow `transaction` table stays off unless you tick it. Select **Sync N tables** to start the import.
+  </Step>
   <Step title="Wait for the initial load">
     cfo.ai starts loading the connected data after the source links. The import can continue in the background while you work on something else.
   </Step>
@@ -41,6 +44,16 @@ Available sources and plan entitlements can vary. Ask Ari to check the catalog f
   </Step>
 </Steps>
 
+## Connect from the sidebar instead
+
+You can also start without Ari. Select **Connections** in the sidebar, then **Add**. The connection manager opens with three tabs:
+
+- **Integrations** lists the business systems cfo.ai can import from, with a **Connect** button on each card and an **Upload** button for CSV files.
+- **MCP** lists MCP servers Ari can call, such as Linear or Notion, plus **Add server** for one that is not listed.
+- **API** lists other services' APIs Ari can reach, such as Stripe, plus **Add API**.
+
+The same popover shows each connection's status and its actions. See [Connect data by hand](/getting-started/build-by-hand#connect-data) for the click paths.
+
 ## Upload a file
 
 If you attach a CSV in Ari chat, choose whether it should become a data source or stay attached only to the conversation.
@@ -48,7 +61,9 @@ If you attach a CSV in Ari chat, choose whether it should become a data source o
 - **Use as a data source** when the file's rows should become available in the Model.
 - **Use in chat only** when Ari should read or summarize the file without importing it.
 
-An uploaded data source is identified by its filename until you rename it. If the same filename already backs a connection, cfo.ai asks for confirmation before replacing it.
+An uploaded data source is identified by its filename until you rename it. If the same filename already backs a connection, cfo.ai asks for confirmation before replacing it. Each file can be up to 50 MB.
+
+cfo.ai reads each column's type from its values. A column whose header is exactly `yyyyMMdd` is read as a date in that compact form, such as `20260131`, instead of as a number; some point-of-sale exports use this header.
 
 If the file is an existing financial model rather than a source-data export, ask Ari to [import and rebuild the spreadsheet model](/getting-started/import-a-spreadsheet-model) instead of treating the workbook as an ordinary data connection.
 
@@ -59,6 +74,12 @@ A connected source is ready only after its background load completes. A linked a
 After the first load, connected integrations refresh once a night, automatically; there is no manual refresh button, so ask Ari to refresh a connection if you need newer data sooner. File uploads never refresh on their own. See [how integrations stay current](/integrations/integrations-directory#how-integrations-stay-current).
 
 If the Model contains fewer rows than the source file, ask Ari which source records were included. A saved query may intentionally filter the source to match your request.
+
+## Reconnect a source that lost access
+
+When an accounting system such as QuickBooks Online or Xero revokes cfo.ai's access, for example after a password change or an expired authorization, the connection's status changes to **Reconnect required** after the next nightly refresh fails, and the connection shows a **Reconnect** action. Select it and sign in again.
+
+If the provider's screen says you are already connected and offers only **Finish**, choose **Relink integration** there instead. **Finish** keeps the old authorization, and cfo.ai reports that the source **was not reconnected** with a **Try again** button.
 
 ## Connections for external tools
 

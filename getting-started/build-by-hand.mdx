@@ -10,12 +10,12 @@ You and Ari edit the same Model, so anything you build here is visible to Ari an
 
 ## Find your way around
 
-Sign in at [app.cfo.ai](https://app.cfo.ai) on a desktop browser. The app has four areas you will use throughout this guide.
+Sign in at [app.cfo.ai](https://app.cfo.ai). The workspace also opens in a phone browser, but the click paths below assume a desktop screen. The app has four areas you will use throughout this guide.
 
-- **Navigation sidebar** on the left. It holds **New chat**, your chat list, the **Model** section with the current Scenario and its list of Pages, and **Integrations**. Your account menu sits at the bottom of the sidebar.
+- **Navigation sidebar** on the left. It holds **New chat**, your chat list, the **Model** section with the current Scenario and its list of Pages, and **Connections**. Your account menu sits at the bottom of the sidebar.
 - **Model pane header** above the Page. It holds the Scenario picker, **Version history**, and the pane toggle.
 - **Page header**. It shows the Page icon and name, a date-range control that applies to every block on the Page, **Download spreadsheet**, the access badge, and **Share**.
-- **Account menu**. Open it from the avatar at the bottom of the sidebar for **Appearance**, **Settings**, **Help**, the workspace switcher under **Workspaces**, and **Log out**.
+- **Account menu**. Open it from the avatar at the bottom of the sidebar for **Appearance**, **Settings**, **Help center**, **Manage memories**, **Manage triggers** (administrators only), the workspace switcher under **Workspaces**, and **Log out**.
 
 <Tip>
 Press **⌘ ?** (**Ctrl ?** on Windows and Linux) at any time to open the Help center, which includes short interactive walkthroughs and the keyboard shortcut list.
@@ -93,7 +93,7 @@ You can add to a table from the setup panel or from the grid itself.
 - In the grid, use the pinned **Add row** at the bottom of the table or the **+** at the right end of the column headers.
 - Hover the left gutter beside a row and select the **+** to insert a row directly below it. Right-click a row or column header for **Insert above**, **Insert below**, **Insert left**, or **Insert right**.
 
-Every path opens the same search field, with the placeholder **Create or search**. Type a name. Matching Variables and Dimensions appear as you type; select one to add it. Selecting an existing Dimension may ask whether to add it as a segmentation or a mapping. See [Segment a table by a Dimension](#segment-a-table-by-a-dimension).
+Every path opens the same search field, with the placeholder **Create or search**. Type a name. Matching Variables and Dimensions appear as you type; select one to add it. Selecting an existing Dimension asks how the table should use it: **List dimension items** splits the axis by the Dimension's items, and **Add as mapping** shows the Dimension's value in each cell. See [Segment a table by a Dimension](#segment-a-table-by-a-dimension).
 
 ### Create a Variable
 
@@ -111,10 +111,10 @@ Variables are shared across your whole Model. A Variable you create on one table
 
 In the same search field, type a name and select **Create dimension: \[name\]**. cfo.ai then asks how the table should use it:
 
-- **Segmentation** splits the axis by the Dimension's items, one row or column per item.
-- **Mapping** shows the Dimension's value in each cell instead, the way a "Department" column in a list of employees would.
+- **List dimension items** splits the axis by the Dimension's items, one row or column per item. This is a segmentation.
+- **Add as mapping** shows the Dimension's value in each cell instead, the way a "Department" column in a list of employees would.
 
-You can change this later by right-clicking the Dimension's header and choosing **Use as**.
+You can change this later by right-clicking the Dimension's header and choosing **Use as**, then **Segmentation** or **Mapping**.
 
 ### Set the time window
 
@@ -133,13 +133,16 @@ Cells that hold their own value or formula show a dashed underline. Cells withou
 
 <Steps>
   <Step title="Type a value">
-    Select a cell and start typing, or press **Enter** to open it. The first key you press replaces the cell's content. Press **Enter** or click elsewhere to save, or press **Esc** to cancel. The new value appears immediately while cfo.ai recalculates anything that depends on it.
+    Select a cell and start typing, or press **Enter** to open it. The first key you press replaces the cell's content. Type numbers the way you would in a spreadsheet: `1,000`, `$1,250.75`, `50%`, `(500)` for a negative, and `1e3` all save as the number they mean. A currency symbol or a percent sign also sets the cell's format to **Currency** or **Percentage**. The new value appears immediately while cfo.ai recalculates anything that depends on it.
+  </Step>
+  <Step title="Save and move">
+    Press **Enter** to save and move down one cell, **Shift Enter** to save and move up, **Tab** to save and move right, or **Shift Tab** to save and move left. **⌘ Enter** saves and stays on the cell, and **Alt Enter** starts a new line inside it. Click elsewhere to save, or press **Esc** to cancel.
   </Step>
   <Step title="Clear a value">
     Select one or more cells and press **Delete** or **Backspace**. The cells return to whatever the row's default formula produces.
   </Step>
-  <Step title="Copy and paste">
-    **⌘ C** copies the selected cell's formula; **⌘ Shift C** copies its displayed value. **⌘ V** pastes into the selected cell or range, so one copied cell can fill a whole row, and you can paste a run of values from a spreadsheet across several months. Right-click a cell for **Copy value**, **Copy formula**, and **Paste**.
+  <Step title="Copy, cut, and paste">
+    Select one cell or a range. **⌘ C** copies the selection as a block, **⌘ X** cuts it so the next paste moves it, **⌘ V** pastes, and **⌘ Shift V** pastes values only, without the formulas. One copied cell can fill a whole row, and you can paste a run of values from a spreadsheet across several months. To copy the displayed value of a cell, press **⌃ ⌘ C** on macOS or **Ctrl Alt C** on Windows and Linux. Right-click a cell for **Copy value**, **Copy formula**, and **Paste**.
   </Step>
   <Step title="Fill across cells">
     Drag the small handle at the corner of a selected cell across neighboring cells to copy its formula into them. References adjust relative to each destination.
@@ -171,6 +174,7 @@ You can open the editor from several places. Where you open it decides what the 
 | Hover a row label and select the **fx** icon (**Edit variable formula**) | The whole row: the Variable's default across every period. |
 | Right-click a row label and choose **Edit formula** | The whole row. |
 | Right-click a parent row and choose **Default for \[Dimension\]** | Every child item of that Dimension under the row, unless a child has its own formula. |
+| Right-click a Dimension's section header, such as the **Stage** label above its rows, and choose **Default for every Stage** | Every member of that level. On a nested breakdown the menu offers one entry per level, such as **Default for every Owner** and **Default for every Deal**. |
 | Click the formula bar | Whatever cell is selected. |
 
 The editor's title shows the formula's address: the Variable name plus a pill for each Dimension it is scoped to. A row-level formula shows **Any Segment**, meaning it is the default for every segment.
@@ -182,8 +186,8 @@ The formula bar is a strip above the grid that shows the selected cell's formula
 ### Write and reference
 
 - **Autocomplete** suggests Variables, Dimensions, Dimension items, functions, and keywords as you type. Press **Ctrl Space** to open it deliberately. Press **Alt F12** for the syntax and an example of the function under the cursor.
-- **Click to reference.** While the editor is open, click another cell, row label, or period header to insert a reference to it. Clicking the previous month's cell of Revenue inserts `Revenue[-1]`; clicking a period header inserts a relative date such as **Last month**.
-- **Reference with the keyboard.** Press **F2** to enter reference-selection mode, move with the arrow keys, press **Enter** to insert, or **Esc** to cancel.
+- **Click to reference.** While the editor is open and the caret sits where a reference belongs, such as after an operator, click another cell, row label, or period header to insert a reference to it. Clicking the previous month's cell of Revenue inserts `Revenue[-1]`; clicking a period header inserts a relative date such as **Last month**. A click while the caret sits inside a name, a string, or a comment edits the text instead. Double-click a cell you just clicked to withdraw the reference the first click inserted.
+- **Point with the arrow keys.** With the caret in the same position, press an arrow key to point at the neighboring cell and insert its reference; keep pressing to move the pointer, the way a spreadsheet does. Each reference in the formula and the cells it points at share a color, so you can see what the formula reads. **F2** also starts reference selection; press **Enter** to keep the reference or **Esc** to cancel.
 - **Filter a reference.** Select a reference chip and choose **+ Add filter** to restrict it to certain Dimension items or dates. Date filters offer presets such as **Last 3 months of actuals**, **Year to date**, **Quarter to date**, and **Custom range**.
 - **Use `this`.** Inside a filter, `this.Department` means "the same Department as the cell being calculated."
 
@@ -234,6 +238,7 @@ Format and Precision apply to the Variable, so they follow it onto every table. 
 | **Show variable name** or **Hide variable name** | Toggle the Variable name on rows that show a Dimension item. |
 | **Expand child rows** or **Collapse child rows** | Open or close a segmented row. **⌘ click** a chevron to expand or collapse every sibling at that level. |
 | **Rename** | Rename a Dimension item you created. |
+| **Mention in chat** | Drop a reference to the row, column, item, or cell into the current Ari chat, so Ari knows exactly which number you mean. On a cell the row reads **Mention cell in chat**. |
 | **Remove item**, **Remove item and drill-ins**, **Remove dimension** | Take the item or Dimension off this table. **Remove all drill-in rows** clears every traced input at once. |
 
 ### Hide, resize, and reorder
@@ -312,7 +317,7 @@ Canvas blocks have no manual editor. Hover the block and use **Select element** 
 These settings change how cfo.ai looks for you and never affect your teammates.
 
 - Open the account menu and use **Appearance** to choose **Auto**, **Light**, or **Dark**.
-- Open **Settings → General → Appearance** and select **Theme studio** to pick a built-in theme or create a personal one. See [Set your personal theme](/workspace-settings/personal-theme).
+- Open **Settings → General → Appearance**. **Color mode** offers the same **Auto**, **Light**, and **Dark** choices. **Theme** lists the built-in themes, such as **Warm paper** and **Prism**, plus **Custom**. Choose **Custom**, describe the look you want in the **Describe your theme** field, and select **Personalize** to have Ari build the theme. See [Set your personal theme](/workspace-settings/personal-theme).
 
 ## Segment a table by a Dimension
 
@@ -323,7 +328,7 @@ Segmenting splits a row or column into one line per Dimension item, so Revenue b
     Hover a row label or column header and select the branch icon labeled **Segment by**, or right-click and choose **Segment by**. A small editor titled **Segment \[item\] by** opens.
   </Step>
   <Step title="Add a level">
-    Select **Add** and choose a Dimension. The table updates immediately; there is no separate save step. Add another level to nest one Dimension under another, and drag levels in the editor to reorder them.
+    Select **Add** and choose a Dimension, or type a new name and select **Create dimension: \[name\]** to create it in place. The table updates immediately; there is no separate save step. Add another level to nest one Dimension under another, and drag levels in the editor to reorder them.
   </Step>
   <Step title="Remove a level">
     Hover a level in the editor or in the setup panel and select **Remove level**, or right-click a segmented row and choose **Remove dimension**.
@@ -392,29 +397,29 @@ Restoring a version needs full access to the Scenario.
 ## Connect data
 
 <Steps>
-  <Step title="Open Integrations">
-    Select **Integrations** in the sidebar. If nothing is connected yet, the integration manager opens directly. Otherwise a popover lists your connections with an **Add** button that opens the manager.
+  <Step title="Open Connections">
+    Select **Connections** in the sidebar. A popover lists your connections with an **Add** button that opens the connection manager. The manager has three tabs: **Integrations** for business systems and file uploads, **MCP** for MCP servers Ari can call, and **API** for other services' APIs.
   </Step>
   <Step title="Choose a source">
-    Search the directory or browse it by category. The directory sorts by **Relevance** with common sources first, and you can switch between grid and list views. Select a card to start its connect flow and approve access in the browser window that opens. cfo.ai never sees your password.
+    On the **Integrations** tab, search the directory or browse it by category. The directory sorts by **Relevance** with common sources first, and you can switch between grid and list views. Select a card's **Connect** button to start its connect flow and approve access in the browser window that opens. cfo.ai never sees your password.
   </Step>
   <Step title="Or upload a CSV">
-    Select **Upload** in the **File-based imports** section. You can drop several files at once. Each file becomes its own connection named after the file, and each file can be up to 50 MB.
+    Select **Upload** at the top of the **Integrations** tab. You can drop several files at once. Each file becomes its own connection named after the file, and each file can be up to 50 MB.
   </Step>
   <Step title="Watch the status">
-    Each connection shows a status such as **Connecting**, **Syncing**, **Connected**, **Waiting for you**, or **Needs attention**. Data is ready to model only after the initial load finishes.
+    Each connection shows a status such as **Connecting**, **Syncing**, **Connected**, **Waiting for you**, **Needs attention**, or **Reconnect required**. Data is ready to model only after the initial load finishes.
   </Step>
 </Steps>
 
-Hover a connection for its actions: **Reconnect** or **Resume** when setup is incomplete, **Update file** to replace a CSV in place, **Rename**, **Manage access**, and **Remove**. For details on each source, see [Connect and sync your data](/integrations/connect-and-sync-data).
+Hover a connection for its actions: **Reconnect** or **Resume** when setup is incomplete or the source revoked access, **Update file** to replace a CSV in place, **Rename**, and **Remove**. An MCP server or API connection offers **Manage** and **Disconnect** instead. For details on each source, see [Connect and sync your data](/integrations/connect-and-sync-data).
 
 ## Share a Page
 
-The Page header shows an access badge (**Workspace**, **Restricted**, or **External link on**) and a **Share** button. Select **Share** to invite people or groups as **Can view** or **Can edit**, choose between **Everyone at your workspace** and **Restricted** under **General access**, and create read-only external links with an expiry of 1, 7, or 30 days and an optional password. **Copy page link** copies the ordinary signed-in address without changing anyone's access. See [Share a Page and choose its Scenario](/dashboards/share-pages-and-scenarios).
+The Page header shows an access badge (**Private**, **Shared**, or **Workspace**) and a **Share** button. Select **Share** to invite people by name or email as **Can view** or **Can edit**, choose between **Everyone at \[your workspace\]** and **Restricted** under **General access**, and select **Create link** under **External access** for a read-only external link with an optional **Require password** setting. **Copy link** copies the ordinary signed-in address without changing anyone's access. See [Share a Page and choose its Scenario](/dashboards/share-pages-and-scenarios).
 
 ## Download a Page as a spreadsheet
 
-Select **Download spreadsheet** in the Page header. Each visible Table Block becomes a worksheet, formulas are exported as real cross-sheet formulas, and any inputs the tables depend on land on a **Model inputs** sheet. Large exports run in the background; keep working and download the file when it is ready.
+Select **Download spreadsheet** in the Page header. Each visible Table Block becomes a worksheet, formulas are exported as real cross-sheet formulas, and any inputs the tables depend on land on a **Model inputs** sheet. The export runs in the background; keep working and download the file when it is ready.
 
 ## Workspace and personal settings
 
@@ -422,11 +427,14 @@ Open the account menu at the bottom of the sidebar and select **Settings**. Whic
 
 | Section | What you can do |
 | --- | --- |
-| **General** | Rename the workspace under **Workspace**. Under **Date & Time**, set **Default date granularity** and **Default date range** for new tables, and set **Last close**, the boundary between Actuals and Forecast. Under **Appearance**, choose a color mode and open **Theme studio** for a personal theme. |
+| **General** | Rename the workspace under **Workspace**. Under **Date & Time**, set **Default date granularity** and **Default date range** for new tables, and set **Last close**, the boundary between Actuals and Forecast. Under **Appearance**, choose a **Color mode** and a **Theme**, including a **Custom** theme Ari builds from your description. |
 | **Profile** | Your own details. |
-| **People & access** | Select **Invite people**, enter email addresses, choose a role, optionally add groups, Pages, or Scenarios to grant, and add a message. Invitees get an email link and need no password. |
-| **Connections** | The MCP server address for external AI clients, plus **MCP** and **APIs** tabs for connecting other tools. See [Connect the cfo.ai MCP server](/integrations/mcp-server). |
+| **Ari** | Under **Sound**, turn on **Play sound when Ari is done** and pick a volume and a sound. Under **Slack**, select **Add to Slack** to talk to Ari from Slack. |
+| **Connections** | **Connect via MCP** holds the cfo.ai MCP server address for external AI clients (**Copy cfo.ai MCP URL**). **Add connections** has **MCP** and **APIs** tabs for connecting other services' tools. See [Connect the cfo.ai MCP server](/integrations/mcp-server). |
+| **Skills** | Save reusable workflows for Ari. **Build with Ari** starts a chat that writes the Skill with you; **Write manually** opens a form. See [Save a workflow as a Skill](/automation/skills). |
 | **Billing** and **Usage** | Plan, payment, and usage details, when billing is enabled for the workspace. |
+
+To invite a teammate to a Page, use the Page's **Share** control and enter their name or email. Ari can also invite a workspace administrator; see [Workspace and team settings](/workspace-settings/team-and-workspace).
 
 The account menu also has an **Appearance** submenu with **Auto**, **Light**, and **Dark**, and you can set **Last close** for the current Scenario from the Scenario picker's actions menu.
 
@@ -443,12 +451,17 @@ Use **Ctrl** in place of **⌘** on Windows and Linux.
 | **Alt ↑ ↓ → ←** | Move or nest the selected Page |
 | **F2** | Rename the selected Page, or start reference selection in a formula |
 | **Shift F10** | Open the selected block's menu |
-| **Enter** | Edit the selected cell; insert the selected formula reference |
+| **Enter** | Edit the selected cell; save and move down; insert the selected formula reference |
+| **Shift Enter** | Save and move up |
+| **Tab** / **Shift Tab** | Save and move right / left |
+| **⌘ Enter** | Save and stay on the cell; in the row formula editor, save and propagate to parent rows |
+| **Alt Enter** | New line inside the cell |
 | **Esc** | Cancel editing and return to the table |
 | **Delete** / **Backspace** | Clear the selected cells' own values |
-| **⌘ C** / **⌘ Shift C** / **⌘ V** | Copy formula / copy value / paste |
+| **⌘ C** / **⌘ X** / **⌘ V** | Copy the selected cells / cut them / paste |
+| **⌘ Shift V** | Paste values only |
+| **⌃ ⌘ C** (**Ctrl Alt C** on Windows and Linux) | Copy the displayed value |
 | **⌘ A** | Select every cell in the table |
-| **⌘ Enter** | Save a formula and propagate it to parent rows |
 | **Ctrl Space** | Open formula autocomplete |
 | **Alt F12** | Show help for the function under the cursor |
 | **Alt ↓** | Open reference filters in a formula |

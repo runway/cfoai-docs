@@ -23,11 +23,11 @@ A rule for Actuals or Forecast needs Date in its condition at the Model's base g
 [Department = "Sales", Date.Month in any]
 ```
 
-For a table-independent formula, use `edit_variables` with `action: "set_values"`, the Date-aware condition, and `period: "actuals"` or `period: "forecast"`.
+The range is chosen by where the formula sits: `default_formulas.actuals` or `default_formulas.forecast` on a row, a column, or a `variables` entry in `edit_table_blocks`. A rule saved through a `variables` entry with no table named gets one Date term at the Model's base grain automatically.
 
 ## Read Last close when it matters
 
-Use `inspect_dimensions` to inspect the Date Dimension and its time settings when you need to confirm Last close. The boundary affects which dates count as Actuals and which belong to Forecast.
+Every table `read` returns the Scenario's `calendar`, including `last_close`, its default `granularity`, and its default range. Read it when you need to confirm Last close; the boundary affects which dates count as Actuals and which belong to Forecast. `edit_table_blocks` `update_calendar` changes these settings for the Scenario.
 
 If Last close is missing, explain the missing workspace setting before trying to build a range-dependent result.
 

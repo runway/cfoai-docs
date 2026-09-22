@@ -7,30 +7,33 @@ Formulas belong to saved Variables, and calculated values appear in saved Table 
 
 ## Match the tool to the question
 
-- Use `inspect_variables` with `saved_formulas` to read the rules attached to a Variable.
-- Use `inspect_table_blocks` to inspect saved values, visible row and column references, formula origins, and source information.
-- Use `edit_table_blocks` when the user wants to create or update a formula on a visible row, column, or cell.
-- Use `edit_variables` with `action: "set_values"` for a genuinely Model-wide or table-independent formula.
-- Use `dry_run: true` on a supported write when the user asks for validation without a saved change.
+Two tools cover formula work. Each takes one action block named for the action.
+
+- Use `inspect_table_blocks` with its `variable` block to read the rules saved on a Variable, and with its `dimension` block for a Dimension.
+- Use `inspect_table_blocks` with its `read` block to inspect saved values, visible row and column references, formula origins, and source information.
+- Use `edit_table_blocks` with `update` when the user wants to create or update a formula on a visible row, column, or cell, and with `create` for a new table.
+- Use `dry_run: true` on the write when the user asks for validation without a saved change.
+
+A Variable's own rule can also be saved with no table named: `edit_table_blocks` `update` with a `variables` entry that names the Variable and carries `default_formulas`. The rule is saved at the Variable with one Date term at the Model's base grain, the same address a plain row on a base-grain table writes, so a later table edit changes the same rule instead of adding a rival. The same entry carries settings such as `data_type`.
 
 A question that can be answered from existing values stays read-only. A new calculated result requires a visible, saved Model rule and the user's authorization to create it.
 
 ## Start from the visible artifact
 
-Inspect the relevant Table Block once, reuse its returned row and column references, and send related edits together. The server derives the actual Variable, formula scope, time range, and write permissions from that visible target.
+Read the relevant Table Block once, reuse its returned row and column references, and send related edits together. The server derives the actual Variable, formula scope, time range, and write permissions from that visible target.
 
-When the work has no table target, inspect the existing Variables and Dimensions first. Reuse their returned grammar references when composing a formula.
+When the work has no table target yet, read the existing Variables and Dimensions first. Reuse their returned references, such as `Revenue#3f2`, when composing a formula.
 
 Write expressions with readable Variable names. Use backticks for names containing spaces, punctuation, operators, or reserved words, and use the returned short disambiguator only when names collide.
 
 ## Respect scenario context
 
-Formulas are Scenario-scoped. Use the current Scenario or the Scenario the user requested. If a write could reasonably target more than one Scenario, resolve that choice before changing the Model.
+Formulas are Scenario-scoped. Use the current Scenario or the Scenario the user requested, and pass it as `scenario` beside the action block. If a write could reasonably target more than one Scenario, resolve that choice before changing the Model.
 
 ## Separate condition and expression
 
-The condition determines where the formula applies. The expression determines what it calculates. For a visible table edit, the server derives the condition from the selected target. For a headless rule, provide the intended condition, segments, period, or grain directly.
+The condition determines where the formula applies. The expression determines what it calculates. For a visible table edit, the server derives the condition from the selected target: a row's own rule, a `child_defaults` rule for the members beneath it, or one cell.
 
 ## Verify outcomes
 
-A syntactically valid formula can still express the wrong business rule. After a material write, inspect the saved Table Block and compare representative periods and segments with the user's intent.
+A syntactically valid formula can still express the wrong business rule. After a material write, read the receipt's warnings and the saved Table Block, and compare representative periods and segments with the user's intent.

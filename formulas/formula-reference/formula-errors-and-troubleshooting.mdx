@@ -44,6 +44,21 @@ Confirm that the Date grain and value format match. A monthly lookup should use 
 
 Depending on the operation, a batch can apply valid changes while rejecting invalid ones, or reject the whole batch when all changes must succeed together. Ask Ari which changes were applied, fix the reported issue, and verify the resulting values.
 
+## Ari saved the formula but reported a warning
+
+When Ari saves a rule through a table, the receipt can carry warnings about rules that saved correctly but will not do what the wording suggests. Ask Ari to read them back if a number looks wrong right after a change. The common ones are:
+
+- **An imported Variable read in Forecast months.** A Variable loaded from a connection has values only through **Last close**. A rule that reads it in Forecast months reads 0 there. The warning names the Variable and the Forecast rule that would read the source rows dated in each month instead.
+- **A constant that matches no Dimension item.** A condition such as `synced_month = date(2026, 7, 1)` saves, but when the Dimension's items are text it matches nothing and every cell it reaches reads 0. The warning says the condition selects none of the Dimension's items, states the items' kind, and shows one or two of them so you can match the exact spelling.
+- **Two rules that tie.** Two saved rules that name the same number of Dimensions and pin the same number of items compete for the same cells, and the more recently saved one wins. Saving either again flips the result. The warning names the rule the new one ties with.
+- **A shared rule that was replaced.** A rule belongs to its Variable, so giving a Variable a new default while placing it on another table rewrites the rule every table reads. The warning names the rule it replaced. See [A rule belongs to its Variable](/dashboards/build-and-format-tables#a-rule-belongs-to-its-variable).
+
+One case is refused instead of warned: a numeric aggregate such as `sum` or `max` over a text or date operand, for example `max(synced_month$)` on a date Dimension. Use `first`, `last`, or `count` for a value that is not a number.
+
+## A table axis has thousands of items
+
+Placing a Dimension with more than about 1,000 items on a table's rows or columns is allowed, but the write reports how many items the axis carries and that every entry on the other axis is calculated for each of them. Use a filter to show the items you need when the table becomes slow.
+
 ## A division returns an error
 
 Division by zero produces a calculation error. Guard the divisor or provide a fallback:

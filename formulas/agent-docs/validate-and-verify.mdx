@@ -9,8 +9,8 @@ Validation checks formula syntax and semantic references before a write. Verific
 
 Use `dry_run: true` with the write that would own the actual change:
 
-- Use `edit_table_blocks` for a visible saved table target.
-- Use `edit_variables` with `action: "set_values"` for a table-independent formula.
+- Use `edit_table_blocks` `update` for a visible saved table target.
+- Use `edit_table_blocks` `update` with a `variables` entry, and no table `target`, for a rule saved on the Variable itself.
 
 Validation checks:
 
@@ -24,14 +24,13 @@ Correct reported errors before applying the same intended change.
 
 ## Read after writing
 
-Inspect the write result:
+Inspect the write result. A table write applies all requested changes together or applies none, and its receipt reports:
 
-- Attempted count
-- Applied count
-- Rejected count
-- Per-item expression or condition errors
+- Each row and column touched, with the formula it now carries per range.
+- `formula_warning` issues for rules that saved but need attention: an imported Variable read in Forecast months, a constant that matches no Dimension item, a tie with an existing rule, or a shared rule the write replaced.
+- A refusal, with the field that caused it, when nothing was saved.
 
-An atomic write applies all requested changes together or applies none. If a partial write reports rejected items, correct and retry only those unsuccessful items.
+Ask for a readback in the same call with `readback.rows` and `readback.columns` to see the calculated values without a second read.
 
 ## Verify calculated behavior
 

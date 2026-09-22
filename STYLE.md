@@ -35,7 +35,7 @@ Keep Ari, the human interface, and external agents connected to the same Model. 
 
 - Write the product and company name as `cfo.ai`, including at the start of a sentence.
 - Call Ari an AI finance coworker when describing its role. Use concrete examples to explain what that means.
-- Use `Model`, `Scenario`, `Variable`, `Dimension`, `Page`, `Table block`, and `Canvas block` for their product concepts, with the casing `agent_docs/product-sense.md` uses. `Database` is not a product concept; say source or connection.
+- Use `Model`, `Scenario`, `Variable`, `Dimension`, `Page`, `Table Block`, `Canvas block`, and `Database` for their product concepts, spelled the way the published pages already spell them.
 - Never use `Runway` for the product or company.
 - Ordinary financial phrases such as `cash runway` remain correct when they describe how long cash will last.
 - Never use `Metric`, `Driver`, or `Property` as a customer-facing name for a Variable.

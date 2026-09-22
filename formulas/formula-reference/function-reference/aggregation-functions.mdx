@@ -45,7 +45,7 @@ count(Orders[Department in any])
 
 ## first and last
 
-Return the first or last value in the selected series order, or null when the series is empty.
+Return the first or last value in the selected series order, or null when the series is empty. Over an imported record's rows, `first` and `last` order the rows by the source's preferred time column, so `last` is the row with the latest date there; rows on one date keep their source order.
 
 ```text
 first(Revenue[Date.Month in any])

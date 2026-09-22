@@ -27,7 +27,8 @@ Correct reported errors before applying the same intended change.
 Inspect the write result. A table write applies all requested changes together or applies none, and its receipt reports:
 
 - Each row and column touched, with the formula it now carries per range.
-- `formula_warning` issues for rules that saved but need attention: an imported Variable read in Forecast months, a constant that matches no Dimension item, a tie with an existing rule, or a shared rule the write replaced.
+- `formula_warning` issues for rules that saved but need attention: an imported Variable read in Forecast months, a constant that matches no Dimension item, a tie with an existing rule, or a shared formula the write replaced.
+- One `read_note` per imported source that the written rules read, stating where that source's rows sit on the calendar and which rules read it. It describes the read the rules asked for, not a problem to fix.
 - A refusal, with the field that caused it, when nothing was saved.
 
 Ask for a readback in the same call with `readback.rows` and `readback.columns` to see the calculated values without a second read.

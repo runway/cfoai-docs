@@ -76,7 +76,7 @@ Writes apply to the selected live workspace. Use a Scenario when you want an ext
 
 ## What the connection exposes
 
-The server publishes Ari's public workspace tools, such as `inspect_table_blocks`, `edit_table_blocks`, `inspect_pages`, `edit_pages`, `inspect_scenarios`, `edit_scenarios`, `edit_dimension_mappings`, `inspect_integrations`, `edit_integrations`, `inspect_skills`, `edit_triggers`, and `inspect_documentation`, plus `list_orgs`. Tools that only make sense inside the cfo.ai app, such as the ones that ask you a question in chat or play a Guide, are not published.
+The server publishes Ari's public workspace tools, such as `inspect_table_blocks`, `edit_table_blocks`, `inspect_pages`, `edit_pages`, `inspect_canvas_library`, `edit_canvas_blocks`, `inspect_scenarios`, `edit_scenarios`, `edit_dimension_mappings`, `inspect_integrations`, `edit_integrations`, `inspect_skills`, `edit_triggers`, and `inspect_documentation`, plus `list_orgs`. Tools that only make sense inside the cfo.ai app, such as the ones that ask you a question in chat or play a Guide, are not published.
 
 A tool with several actions takes exactly one block named for the action, for example `{"read": {"target": "Operating Plan"}}` for `inspect_table_blocks`. The [agent instructions](/agent-instructions) show the shape.
 

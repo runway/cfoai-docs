@@ -63,6 +63,7 @@ The important mental model is:
 - `inspect_pages`, `inspect_table_blocks`, `inspect_dimension_mappings`, and `inspect_scenarios` read the existing Model.
 - `edit_table_blocks` creates and changes visible saved tables, including their Variables, Dimensions, and formulas. Every model formula is written through it.
 - `edit_pages`, `edit_dimension_mappings`, and `edit_scenarios` change Pages, Dimension mappings, and Scenarios.
+- `inspect_canvas_library` and `edit_canvas_blocks` read the Canvas component library and create or update Canvas blocks, the charts and custom visuals on a Page.
 - Write operations apply to the user's live Model and must match the user's request and workspace access.
 
 ## Shape each call as one action block
@@ -89,7 +90,9 @@ and set a row's formula with `edit_table_blocks`:
 }
 ```
 
-A row on a dated table takes `default_formulas` with `actuals`, `forecast`, or both; a row on a timeless table takes `formula`. Fields that every action accepts, such as `scenario`, sit beside the block. Copy names and `Name#hex` references from an inspection result instead of inventing IDs. See [Create and update formulas as an agent](/formulas/agent-docs/create-and-update) for the full shapes.
+A row on a dated table takes `default_formulas` with `actuals`, `forecast`, or both; a row on a timeless table takes `formula`. Several dependent tables can go in one `create` as a `tables` list. Fields that every action accepts, such as `scenario`, sit beside the block. Copy names and `Name#hex` references from an inspection result instead of inventing IDs. See [Create and update formulas as an agent](/formulas/agent-docs/create-and-update) for the full shapes.
+
+A Canvas block is named in the call that makes it: `edit_canvas_blocks` `create` requires `page`, `title`, and `source`. The reference the receipt prints, such as `Pipeline by stage#a74`, keeps naming the block in later `edit_pages` calls even after a rename. Before writing a Canvas block, call `inspect_canvas_library` with a `list` block whose `query` is a few search words, such as `"slider chart kpi"`; an entry matches when any one word appears in its title, description, tags, or aliases. Then `read` the entries you plan to use.
 
 ## Troubleshoot access
 

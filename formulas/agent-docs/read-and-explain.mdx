@@ -20,6 +20,17 @@ The result lists every formula definition saved on the Variable, with its condit
 
 Use the `dimension` block the same way to read a Dimension's saved definitions, and `items` to list its members.
 
+### Read several Variables or Dimensions in one call
+
+`target` on the `variable` and `dimension` blocks also takes a list of references. The response holds one entry per reference in the order given, all read at one snapshot, and states each imported source's query once under `sources`; an entry's `source.query_ref` names its key there. A reference that matches nothing is refused in its own entry while the others still answer.
+
+```json
+{
+  "scenario": "Main",
+  "variable": { "target": ["Amount#a4d", "Probability#058"] }
+}
+```
+
 ## Connect rules to visible values
 
 Use the `read` block for the table that actually shows the result. Each row and column already carries its formula per range, and a cell that breaks the row's rule says so in the cell. Request `formula_origins: "all"` when the explanation depends on which saved rule the engine ranked first for a row, or `"zeros"` to explain only the rows that show a zero, blank, or error.
@@ -34,6 +45,8 @@ Use the `read` block for the table that actually shows the result. Each row and 
   }
 }
 ```
+
+A member row is selected by its path from its Variable or axis Dimension, one bracket per breakdown level, as a readback prints it: `Revenue[West]`, `Revenue[West][Enterprise]`. The member that holds rows with no value displays as **None** and is spelled `empty:None` in a selector, for example `Region[empty:None]`.
 
 Use the same requested Scenario for both the saved-formula read and the table read. The saved rule explains the intended calculation. The visible table confirms which rule actually applies to the selected period, segment, and Scenario. A row computed by a rule saved outside the table names that rule's owner and condition in `inherited_from`.
 

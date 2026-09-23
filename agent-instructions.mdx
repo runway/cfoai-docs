@@ -92,7 +92,9 @@ and set a row's formula with `edit_table_blocks`:
 
 A row on a dated table takes `default_formulas` with `actuals`, `forecast`, or both; a row on a timeless table takes `formula`. Several dependent tables can go in one `create` as a `tables` list. Fields that every action accepts, such as `scenario`, sit beside the block. Copy names and `Name#hex` references from an inspection result instead of inventing IDs. See [Create and update formulas as an agent](/formulas/agent-docs/create-and-update) for the full shapes.
 
-A Canvas block is named in the call that makes it: `edit_canvas_blocks` `create` requires `page`, `title`, and `source`. The reference the receipt prints, such as `Pipeline by stage#a74`, keeps naming the block in later `edit_pages` calls even after a rename. Before writing a Canvas block, call `inspect_canvas_library` with a `list` block whose `query` is a few search words, such as `"slider chart kpi"`; an entry matches when any one word appears in its title, description, tags, or aliases. Then `read` the entries you plan to use.
+A Canvas block is named in the call that makes it: `edit_canvas_blocks` `create` requires `page`, `title`, and `source`. The reference the receipt prints, such as `Pipeline by stage#a74`, keeps naming the block in later `edit_pages` calls even after a rename. Before writing a Canvas block, call `inspect_canvas_library` with a `list` block whose `query` is a few search words, such as `"slider chart kpi"`; an entry matches when any one word appears in its title, description, tags, or aliases. Then `read` the entries you plan to use. One `read` takes up to 16 targets, so a template and the components it needs come back in one call. A Canvas write that no browser rendered returns a `render_unverified` warning naming `validate_code_blocks`, the tool that renders saved blocks in a browser and reports errors and a screenshot; a write sent with `validate: true` carries that browser result under `validation` instead.
+
+In `edit_pages`, every block action names its page with `page`; `reorder_blocks` also still takes the page it arranges as `target`.
 
 ## Troubleshoot access
 

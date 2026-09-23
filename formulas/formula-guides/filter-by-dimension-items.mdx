@@ -15,13 +15,13 @@ This changes Department to Sales while other dimensions continue to follow the c
 
 ## Select several items
 
-Use a set:
+Use a set. The lookup then selects several values, so write the aggregation that turns them into one result:
 
 ```text
-Revenue[Department in {"Engineering", "Product", "Design"}]
+sum(Revenue[Department in {"Engineering", "Product", "Design"}])
 ```
 
-A multi-value lookup is summed when no aggregation function is written. Add the intended function when another behavior is clearer:
+Choose the function that matches the question. An average of the three departments is:
 
 ```text
 average(Revenue[Department in {"Engineering", "Product", "Design"}])
@@ -30,16 +30,16 @@ average(Revenue[Department in {"Engineering", "Product", "Design"}])
 ## Exclude selected items
 
 ```text
-Revenue[Department not in {"Engineering"}]
+sum(Revenue[Department not in {"Engineering"}])
 ```
 
 ## Select every item
 
 ```text
-Revenue[Department in any]
+sum(Revenue[Department in any])
 ```
 
-This is useful for totals, averages, and percent-of-total calculations.
+This is useful for totals, averages, and percent-of-total calculations. See [How aggregation works](/formulas/core-concepts/how-aggregation-works) for how several selected values become one result.
 
 ## Filter with an expression
 

@@ -20,6 +20,8 @@ The result lists every formula definition saved on the Variable, with its condit
 
 Use the `dimension` block the same way to read a Dimension's saved definitions, and `items` to list its members.
 
+For a Variable or Dimension read from an imported source, the entry's `source_default` also states `order`, such as `last by MONTH` or `last by source order`. It says how a column that shows one row per record picks that row when a record has several: the latest row by the source's date column when the source has one, or the last row in source order when it has none. A column that sums its rows has no `order`.
+
 ### Read several Variables or Dimensions in one call
 
 `target` on the `variable` and `dimension` blocks also takes a list of references. The response holds one entry per reference in the order given, all read at one snapshot, and states each imported source's query once under `sources`; an entry's `source.query_ref` names its key there. A reference that matches nothing is refused in its own entry while the others still answer.

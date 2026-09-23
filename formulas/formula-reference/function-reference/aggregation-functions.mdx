@@ -35,6 +35,8 @@ min(Revenue[Department in any])
 max(Revenue[Department in any])
 ```
 
+Over a Variable that holds dates, a single-argument `min` or `max` returns the earliest or latest date, so ``max(`Observed On`[Employee in any])`` gives the newest observation. When a group mixes numbers and dates, the numbers decide. With several arguments, `min` and `max` compare numbers only.
+
 ## count
 
 Counts non-empty values of any type. It behaves like Excel `COUNTA`, not Excel `COUNT`.

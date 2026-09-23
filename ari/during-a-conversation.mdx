@@ -1,7 +1,7 @@
 ---
 title: "Steer, stop, and approve during a chat"
 sidebarTitle: "During a conversation"
-description: "Stop Ari, queue a follow-up while it works, answer its question forms, approve a plan or a tool call, recover from an interrupted reply, and manage your chats."
+description: "Stop Ari, queue a follow-up while it works, answer its question forms, approve a plan or a tool call, reply to part of an answer, recover from an interrupted reply, and manage your chats."
 ---
 
 A conversation with Ari is not a single question and answer. Ari often works for several minutes, asks for details, proposes a plan, or needs your approval before it calls another service. This page covers the controls you have while that is happening.
@@ -30,6 +30,14 @@ For a larger piece of work, Ari may present a plan with the assumptions it inten
 
 Ari cannot start until every assumption that it marked as required has a value.
 
+While Ari works through a plan, its plan card in the transcript lists the steps with a progress count such as **2/5**. When Ari recorded the decisions the plan rests on, an **Assumptions** group under the steps names each one with the choice Ari made, so you can check them without reading the whole transcript.
+
+## Reply to part of an answer
+
+Ari's answers can run to several paragraphs, a list, or a table. To ask about one part of an answer, select the words in that answer instead of retyping them. A **Reply** control appears above the selection. Select it, or press **⌘ L** (Ctrl+L on Windows and Linux), and the quoted passage lands in the chat input as an excerpt block beside any attached files. Type your question and send it. The sent message shows the excerpt above what you typed, and Ari reads the quote as an attributed excerpt of its own words.
+
+A message can carry up to five excerpts of up to 2,000 characters each. Send stays off until you write something to go with them, because a bare quote gives Ari nothing to act on. Click an excerpt, in the input or in the transcript, to scroll to the original words and highlight them. Reply is not offered while the answer is still streaming, when the selection spans two answers, or in a read-only chat.
+
 ## Approve a tool call
 
 When Ari wants to call a connected external service, such as an MCP connector or an API connection from **Settings → Connections**, it pauses and shows the call for approval. Choose one of:
@@ -57,7 +65,7 @@ A conversation shared with you is read-only: the chat says **You can view this s
 | Shortcut | What it does |
 |---|---|
 | **⌘ /** (Ctrl+/ on Windows and Linux) | Start a new chat |
-| **⌘ L** (Ctrl+L on Windows and Linux) | Mention the selected cell or block in the current chat |
+| **⌘ L** (Ctrl+L on Windows and Linux) | Mention the selected cell or block in the current chat, or reply to the text you selected in an Ari answer |
 | **Enter** | Send, or queue the message if Ari is working |
 
 ## Related

@@ -134,6 +134,50 @@ When the requested rule has no visible table target, name the Variable in a `var
 
 The rule is saved at the Variable with one Date term at the Model's base grain, the same address a plain row on a base-grain table writes. A later `row_updates` write on a table that places the Variable edits this rule instead of adding a rival. The same entry accepts settings such as `data_type`. Member edits on a Dimension still name a table that shows it.
 
+## Filter the members an axis shows
+
+`members` on a `row_updates` or `column_updates` entry is the saved member filter of the selected axis, in one of two forms. A list of member names replaces the filter and may name `empty:None`, the rows with no value; `[]` clears it. A string is a condition on the Dimension, evaluated over its members to narrow the current saved selection, so a member the saved list already leaves out stays out. `Region not in {"West"}` keeps every named member but West; the empty member has no value, so a comparison on it is unknown, and a null check inside `where` is what keeps it: `Region where (Region = null or not (Region in {"West"}))`. A member row such as `Total[West]` names its axis. `hidden` on the same entry hides or shows the saved axis the selection belongs to, so `hidden: true` on a member row hides every member of that level.
+
+## Set where a source's rows sit on the calendar
+
+Where an imported source's rows sit on the calendar is one fact about the source, and a `sources` entry on `update` or `create` states it once. The `target` is the query reference a read prints under `sources`, and `preferred_time_property` is one of the source's date columns. The write saves that column on every Variable and Dimension of the source in the same change; a `variables` or `dimensions` entry in the same request that sets its own `preferred_time_property` wins for that property. A column that is not a date column of the source is refused, naming the columns that are. An `update` that carries only `sources` needs no table target.
+
+```json
+{
+  "update": {
+    "sources": [{ "target": "CRM Deals Monthly Export", "preferred_time_property": "synced_month" }]
+  }
+}
+```
+
+## Declare a mapping in the create that reads it
+
+A `create` whose rules read a mapped Dimension can declare the mapping in the same call instead of calling `edit_dimension_mappings` first. A `dimensions` entry takes `keys`, `items`, and `catch_all` as `edit_dimension_mappings` `map` takes them. The mapping is written in the same change before the rows, so a rule such as `` sum(`Income Statement Amount`[`P&L Line` = "Revenue"]) `` resolves in this call, and the table, the Dimension, its items, and its rows commit together. The receipt's `items` entry for the Dimension carries the mapping's facts: `keys`, `rows_created`, `rows_updated`, `target_items`, and `catch_all`. A refusal on either side saves nothing.
+
+```json
+{
+  "create": {
+    "name": "Historical P&L",
+    "page": "P&L",
+    "dimensions": [
+      {
+        "target": "P&L Line",
+        "keys": ["GL Account Name"],
+        "items": { "4000 - Subscription Revenue": "Revenue", "5000 - Hosting Costs": "Cost of Revenue" },
+        "catch_all": "Unclassified"
+      }
+    ],
+    "rows": [
+      {
+        "variable": "Total Revenue",
+        "default_formulas": { "actuals": { "formula": "sum(`Income Statement Amount`[`P&L Line` = \"Revenue\"])" } }
+      }
+    ],
+    "columns": [{ "time": "MONTH" }]
+  }
+}
+```
+
 ## A rule belongs to its Variable
 
 Giving an existing Variable new `default_formulas` while placing it on another table rewrites the rule every table reads. The receipt says so when the rule it replaced was a formula: it names that formula and the address the Variable carried it at. Writing a value over a plain number, quoted text, date, or `null` states no replaced rule; the committed edit's `previousText` carries the old value instead. Placing a Variable without new defaults leaves its existing rule alone.

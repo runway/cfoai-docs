@@ -85,15 +85,15 @@ If the Model contains fewer rows than the source file, ask Ari which source reco
 
 ## Reconnect a source that lost access
 
-When an accounting system such as QuickBooks Online or Xero revokes cfo.ai's access, for example after a password change or an expired authorization, the connection's status changes to **Reconnect required** after the next nightly refresh fails, and the connection shows a **Reconnect** action. Select it and sign in again to the company or organisation the connection already holds.
+When an accounting system such as QuickBooks Online or Xero revokes cfo.ai's access, for example after a password change or an expired authorization, the connection's status changes to **Reconnect required** after the next nightly refresh fails, and the connection shows a **Reconnect** action. Select it and sign in again to the company or organization the connection already holds.
 
-A connection that is healthy or still syncing does not offer **Reconnect**. Signing in again cannot help it, so cfo.ai offers the action only when setup is incomplete, the source revoked access, or a sync failed.
+A connection that is healthy or still syncing does not offer **Reconnect**. Signing in again cannot help it, so cfo.ai offers the action only when the source revoked access or when a sync failed and the connection needs attention. A connection whose setup never finished offers **Resume** instead.
 
-If the provider's screen says you are already connected, its main button may read **Finish**; choose **Relink integration** there instead. **Finish** keeps the current authorization, and cfo.ai reports that the source **was not reconnected**, names the organisation to sign in to, and offers **Try again**. For Xero, if the consent screen lists your organisation as already connected, disconnect the cfo.ai app under **Connected apps** in Xero, then try again; the card names the app as Xero lists it.
+If the provider's screen says you are already connected, its main button may read **Finish**; choose **Relink integration** there instead. **Finish** keeps the current authorization, and cfo.ai reports that the source **was not reconnected**, names the organization to sign in to, and offers **Try again**. For Xero, if the consent screen lists your organization as already connected, disconnect the cfo.ai app under **Connected apps** in Xero, then try again; the card names the app as Xero lists it.
 
 ## When a sync fails
 
-A source that syncs through Fivetran, such as NetSuite, HubSpot, Salesforce, Google Sheets, or a database, stays connected when a sync fails on the provider's side. cfo.ai retries the sync on the next nightly run, and you can ask Ari to retry it now. The connection changes to **Reconnect required** only when the provider asks for a new authorization, which **Reconnect** can supply.
+A source that syncs through Fivetran, such as NetSuite, HubSpot, Salesforce, Google Sheets, or a database, stays connected when a sync fails on the provider's side. The connection shows that it needs attention and still offers **Reconnect**, which re-runs the provider's setup checks, but its status changes to **Reconnect required** only when the provider asks for a new authorization. cfo.ai retries the sync on the next nightly run, and you can ask Ari to retry it now.
 
 ## Connections for external tools
 

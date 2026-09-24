@@ -37,6 +37,8 @@ A file used as a data source must be a CSV with a `.csv` extension, up to 50 MB.
   </Step>
   <Step title="Wait for the initial load">
     cfo.ai starts loading the connected data after the source links. The import can continue in the background while you work on something else.
+
+    An HR or payroll system such as Gusto may still be running its own first sync when cfo.ai's load begins. cfo.ai then waits and retries automatically about ten minutes later, up to twice, and Ari can tell you that it is waiting on the provider.
   </Step>
   <Step title="Check what arrived">
     Ask Ari whether the connection has finished, when data was last loaded, and which information is ready for analysis.
@@ -57,6 +59,8 @@ You can also start without Ari. Select **Connections** in the sidebar, then **Ad
 - **API** lists other services' APIs Ari can reach, such as Stripe, plus **Add API**.
 
 The same popover shows each connection's status and its actions. See [Connect data by hand](/getting-started/build-by-hand#connect-data) for the click paths.
+
+A connection you start here still reports to you in chat. While your workspace is new, before any connection has completed a first sync, cfo.ai ties the new connection to your most recent chat, so Ari announces there when the link completes and when the first sync finishes or fails. After that, the result of a background sync, such as data that is ready to model or a first sync that failed, is still delivered to the chat you used most recently.
 
 ## Upload a file
 
@@ -81,9 +85,15 @@ If the Model contains fewer rows than the source file, ask Ari which source reco
 
 ## Reconnect a source that lost access
 
-When an accounting system such as QuickBooks Online or Xero revokes cfo.ai's access, for example after a password change or an expired authorization, the connection's status changes to **Reconnect required** after the next nightly refresh fails, and the connection shows a **Reconnect** action. Select it and sign in again.
+When an accounting system such as QuickBooks Online or Xero revokes cfo.ai's access, for example after a password change or an expired authorization, the connection's status changes to **Reconnect required** after the next nightly refresh fails, and the connection shows a **Reconnect** action. Select it and sign in again to the company or organisation the connection already holds.
 
-If the provider's screen says you are already connected, its main button may read **Finish**; choose **Relink integration** there instead. **Finish** keeps the old authorization, and cfo.ai reports that the source **was not reconnected** with a **Try again** button.
+A connection that is healthy or still syncing does not offer **Reconnect**. Signing in again cannot help it, so cfo.ai offers the action only when setup is incomplete, the source revoked access, or a sync failed.
+
+If the provider's screen says you are already connected, its main button may read **Finish**; choose **Relink integration** there instead. **Finish** keeps the current authorization, and cfo.ai reports that the source **was not reconnected**, names the organisation to sign in to, and offers **Try again**. For Xero, if the consent screen lists your organisation as already connected, disconnect the cfo.ai app under **Connected apps** in Xero, then try again; the card names the app as Xero lists it.
+
+## When a sync fails
+
+A source that syncs through Fivetran, such as NetSuite, HubSpot, Salesforce, Google Sheets, or a database, stays connected when a sync fails on the provider's side. cfo.ai retries the sync on the next nightly run, and you can ask Ari to retry it now. The connection changes to **Reconnect required** only when the provider asks for a new authorization, which **Reconnect** can supply.
 
 ## Connections for external tools
 

@@ -18,7 +18,7 @@ Sign in at [app.cfo.ai](https://app.cfo.ai). The workspace also opens in a phone
 - **Account menu**. Open it from the avatar at the bottom of the sidebar for **Appearance**, **Settings**, **Help center**, **Manage memories**, **Manage triggers** (administrators only), the workspace switcher under **Workspaces**, and **Log out**.
 
 <Tip>
-Press **⌘ ?** (**Ctrl ?** on Windows and Linux) at any time to open the Help center, which includes short interactive walkthroughs and the keyboard shortcut list. Under **Additional resources**, **Ask a human** opens a form that sends your message straight to the cfo.ai team, with up to three PNG, JPG, or WebP screenshots of 5 MB or less. Press **⌘ Enter** (**Ctrl Enter**) to send it.
+Press **⌘ ?** (**Ctrl ?** on Windows and Linux) at any time to open the Help center, which includes short interactive walkthroughs and the keyboard shortcut list. **Ask a human**, the last entry in the **Getting started** section at the top, opens a form that sends your message straight to the cfo.ai team, with up to three PNG, JPG, or WebP screenshots of 5 MB or less. Press **⌘ Enter** (**Ctrl Enter**) to send it. **Additional resources** at the bottom links to **cfo.ai Docs** and **System status**.
 </Tip>
 
 ## Pages
@@ -202,6 +202,10 @@ A red status line under the editor reports syntax problems as you type. You can 
 - When you open a cell that inherits its formula, the inherited formula appears as a suggestion. Click it, press **→**, or press **Tab** to adopt it and edit from there. Start typing to replace it entirely.
 - After you save a formula on a child row, cfo.ai may ask **Propagate?** Choose **Yes** to apply the formula to the parent rows too, or **No** to leave it on the child. Press **⌘ Enter** while saving to propagate automatically.
 - Setting a child item's default to its own value leaves the parent's default untouched. Clearing the child's override makes it follow the parent again.
+
+### Show or hide the formula columns
+
+The formula columns start hidden. Rest the pointer on the **fx** button (**Show formulas**) at the top of the row-name column to peek at them: the formula columns slide out over the table, stay while the pointer is on them, and slide away when it leaves. Click the button to keep them; the month columns move over to make room, and the choice is saved for this browser. Click it again (**Hide formulas**) to hide them.
 
 ### Actuals and Forecast formulas
 
@@ -413,7 +417,7 @@ Restoring a version needs full access to the Scenario.
   </Step>
 </Steps>
 
-Hover a connection for its actions: **Reconnect** or **Resume** when setup is incomplete or the source revoked access, **Update file** to replace a CSV in place, **Rename**, and **Remove**. An MCP server or API connection offers **Manage** and **Disconnect** instead. For details on each source, see [Connect and sync your data](/integrations/connect-and-sync-data).
+Hover a connection for its actions: **Resume** when setup is incomplete, **Reconnect** when the source revoked access or a sync failed, **Update file** to replace a CSV in place, **Rename**, and **Remove**. A connection that is healthy or still syncing does not offer **Reconnect**, because signing in again cannot help it. A first sync that is queued but not yet running reads **Syncing**. An MCP server or API connection offers **Manage** and **Disconnect** instead. For details on each source, see [Connect and sync your data](/integrations/connect-and-sync-data).
 
 ## Share a Page
 

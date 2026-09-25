@@ -18,7 +18,7 @@ Sign in at [app.cfo.ai](https://app.cfo.ai). The workspace also opens in a phone
 - **Account menu**. Open it from the avatar at the bottom of the sidebar for **Appearance**, **Settings**, **Help center**, **Manage memories**, **Manage triggers** (administrators only), the workspace switcher under **Workspaces**, and **Log out**.
 
 <Tip>
-Press **⌘ ?** (**Ctrl ?** on Windows and Linux) at any time to open the Help center, which includes short interactive walkthroughs and the keyboard shortcut list. Under **Additional resources**, **Ask a human** opens a form that sends your message straight to the cfo.ai team, with up to three PNG, JPG, or WebP screenshots of 5 MB or less. Press **⌘ Enter** (**Ctrl Enter**) to send it.
+Press **⌘ ?** (**Ctrl ?** on Windows and Linux) at any time to open the Help center, which includes short interactive walkthroughs and the keyboard shortcut list. **Ask a human**, the last entry in the **Getting started** section at the top, opens a form that sends your message straight to the cfo.ai team, with up to three PNG, JPG, or WebP screenshots of 5 MB or less. Press **⌘ Enter** (**Ctrl Enter**) to send it. **Additional resources** at the bottom links to **cfo.ai Docs** and **System status**.
 </Tip>
 
 ## Pages
@@ -44,7 +44,7 @@ A Page is a dashboard of blocks. Pages nest, so a top-level Page can hold subpag
 
 ### Delete a Page
 
-Hover the Page row in the sidebar and select **Delete page**. There is no confirmation step, so make sure you have the right Page. Deleting a Page removes its blocks. Its subpages move up to sit beside it rather than being deleted.
+Hover the Page row in the sidebar and select **Delete page**. There is no confirmation step unless one of the Page's tables is the home of a Variable or Dimension that other content reads (see [Move, duplicate, or delete a block](#move-duplicate-or-delete-a-block)), so make sure you have the right Page. Deleting a Page removes its blocks. Its subpages move up to sit beside it rather than being deleted.
 
 ## Blocks
 
@@ -66,10 +66,12 @@ Blocks stack top to bottom on a Page. You can add three kinds yourself.
 
 Hover the left edge of a block to reveal its grabber (a six-dot handle). Drag the grabber to reorder blocks on the Page. Click it to open the **Block menu**, which offers:
 
-- **Mention in chat** and **Explain with Ari**, which hand the block to Ari.
+- **Mention table in chat**, **Mention text in chat**, or **Mention canvas in chat**, named for the block type, and **Explain with Ari**, which hand the block to Ari. A Canvas block's own hover toolbar keeps the shorter **Mention in chat**.
 - **Duplicate block**.
 - **Move to page**, with a list of Pages you can edit plus **New page**.
 - **Delete block**.
+
+If the block is the home of a Variable or Dimension that other content reads, cfo.ai asks before deleting it. A dialog titled **Delete variable or dimension?** counts what would break, such as **Deleting Revenue will break 2 formulas, 1 block, 1 canvas block.** A Canvas block counts when one of its datasets reads the Variable. Choose **Cancel** to keep everything, or **Delete anyway** to delete the block and the Variable or Dimension together. Deleting a Page whose tables are the home of such a Variable or Dimension asks the same question.
 
 Clicking the grabber also selects the block. While a block is selected, **Shift F10** opens the same menu, **↑** and **↓** move between blocks, **Enter** enters the block, and **Esc** returns to it.
 
@@ -172,7 +174,7 @@ You can open the editor from several places. Where you open it decides what the 
 | --- | --- |
 | Double-click a cell, or select it and press **Enter** | That one cell. |
 | Hover a row label and select the **fx** icon (**Edit variable formula**) | The whole row: the Variable's default across every period. |
-| Right-click a row label and choose **Edit formula** | The whole row. |
+| Right-click a row label and choose **Edit formula for \[Variable\]** | The whole row. |
 | Right-click a parent row and choose **Default for \[Dimension\]** | Every child item of that Dimension under the row, unless a child has its own formula. |
 | Right-click a Dimension's section header, such as the **Stage** label above its rows, and choose **Default for every Stage** | Every member of that level. On a nested breakdown the menu offers one entry per level, such as **Default for every Owner** and **Default for every Deal**. |
 | Click the formula bar | Whatever cell is selected. |
@@ -202,6 +204,10 @@ A red status line under the editor reports syntax problems as you type. You can 
 - When you open a cell that inherits its formula, the inherited formula appears as a suggestion. Click it, press **→**, or press **Tab** to adopt it and edit from there. Start typing to replace it entirely.
 - After you save a formula on a child row, cfo.ai may ask **Propagate?** Choose **Yes** to apply the formula to the parent rows too, or **No** to leave it on the child. Press **⌘ Enter** while saving to propagate automatically.
 - Setting a child item's default to its own value leaves the parent's default untouched. Clearing the child's override makes it follow the parent again.
+
+### Show or hide the formula columns
+
+The formula columns start hidden. Rest the pointer on the **fx** button (**Show formulas**) at the top of the row-name column to peek at them: the formula columns slide out over the table, stay while the pointer is on them, and slide away when it leaves. Click the button to keep them; the time columns move over to make room, and the choice is saved for this browser. Click it again (**Hide formulas**) to hide them.
 
 ### Actuals and Forecast formulas
 
@@ -234,7 +240,7 @@ Format and Precision apply to the Variable, so they follow it onto every table. 
 | **Dimension color** | Change the accent color used for a Dimension's pills. |
 | **Display as** | Show Dimension items as **Pill** or **Plain text**. |
 | **Date granularity** | Change the grain of one Date axis without changing the whole table. |
-| **Pin column** or **Unpin column** | Keep a column beside the row names while the other columns scroll. Right-click the column's header; a Date column and the columns grouped under it offer no **Pin column**. A solid line marks the last pinned column, and pins are saved with the table, so they hold after a reload and for everyone who opens it. |
+| **Pin column** or **Unpin column** | Keep a column beside the row names while the other columns scroll. Right-click the column's header; the entry sits directly above **Format and display**. A Date column and the columns grouped under it offer no **Pin column**. A pin is part of the table's layout, so only someone who can edit the table sees the entry, and a read-only table offers no way to pin. A solid line marks the last pinned column, and pins are saved with the table, so they hold after a reload and for everyone who opens it. |
 | **Use as** | Switch a Dimension between **Segmentation** and **Mapping**. |
 | **Show variable name** or **Hide variable name** | Toggle the Variable name on rows that show a Dimension item. |
 | **Expand child rows** or **Collapse child rows** | Open or close a segmented row. **⌘ click** a chevron to expand or collapse every sibling at that level. |
@@ -247,7 +253,7 @@ Format and Precision apply to the Variable, so they follow it onto every table. 
 - **Hide a row or column** without removing it: open the table setup panel and use the show/hide toggle on the item. Hidden items keep their sort, filter, and formula settings.
 - **Resize a column** by dragging the right edge of its header or of any cell in it. Double-click the edge to fit the content. Use **Auto-fit all columns** in the table settings menu to size every column at once. Column widths are saved and shared with your team.
 - **Reorder** rows by dragging their grip in the left gutter, and non-date columns by dragging their headers. Formula and setup-panel items also drag.
-- **Pin a column** by dragging its header left into the pinned area beside the row names, or right-click the header and choose **Pin column**. Pins are saved with the table.
+- **Pin a column** by dragging its header left into the pinned area beside the row names, or right-click the header and choose **Pin column**. Pins are saved with the table and need edit access to it; a read-only table offers neither path.
 - **Resize the table's height** by dragging its bottom edge. Double-click the edge, or press **Enter** while it is focused, to return to fitting the content.
 
 ### Compare Scenarios or periods
@@ -413,7 +419,7 @@ Restoring a version needs full access to the Scenario.
   </Step>
 </Steps>
 
-Hover a connection for its actions: **Reconnect** or **Resume** when setup is incomplete or the source revoked access, **Update file** to replace a CSV in place, **Rename**, and **Remove**. An MCP server or API connection offers **Manage** and **Disconnect** instead. For details on each source, see [Connect and sync your data](/integrations/connect-and-sync-data).
+Hover a connection for its actions: **Resume** when setup never finished, **Reconnect** when the source revoked access or when a sync failed and the connection needs attention, **Update file** to replace a CSV in place, **Rename**, and **Remove**. A connection that is healthy or still syncing does not offer **Reconnect**, because signing in again cannot help it. A first sync that is queued but not yet running reads **Syncing**. An MCP server or API connection offers **Manage** and **Disconnect** instead. For details on each source, see [Connect and sync your data](/integrations/connect-and-sync-data).
 
 ## Share a Page
 

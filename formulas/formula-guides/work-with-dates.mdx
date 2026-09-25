@@ -92,7 +92,7 @@ date(year(Date.Month), 12, 31)
 
 ## Formula ranges
 
-Actuals and Forecast also depend on Date. A formula assigned to a formula range must include the Model's Date grain in its scope.
+Actuals and Forecast are formula ranges. **Last close** is the boundary between them: Actuals covers the closed periods and Forecast the later ones, so a Variable can carry one rule for Actuals and another for Forecast.
 
 ## Related
 

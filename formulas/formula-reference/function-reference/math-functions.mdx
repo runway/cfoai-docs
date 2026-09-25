@@ -57,4 +57,4 @@ Rounds a number to the requested number of digits.
 round(Forecast, 2)
 ```
 
-This follows Excel `ROUND` behavior.
+This follows Excel `ROUND` behavior. A negative digit count rounds to the left of the decimal point, so `round(Forecast, -3)` rounds to the nearest thousand.

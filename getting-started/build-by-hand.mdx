@@ -44,7 +44,7 @@ A Page is a dashboard of blocks. Pages nest, so a top-level Page can hold subpag
 
 ### Delete a Page
 
-Hover the Page row in the sidebar and select **Delete page**. There is no confirmation step, so make sure you have the right Page. Deleting a Page removes its blocks. Its subpages move up to sit beside it rather than being deleted.
+Hover the Page row in the sidebar and select **Delete page**. There is no confirmation step unless one of the Page's tables is the home of a Variable or Dimension that other content reads (see [Move, duplicate, or delete a block](#move-duplicate-or-delete-a-block)), so make sure you have the right Page. Deleting a Page removes its blocks. Its subpages move up to sit beside it rather than being deleted.
 
 ## Blocks
 
@@ -66,10 +66,12 @@ Blocks stack top to bottom on a Page. You can add three kinds yourself.
 
 Hover the left edge of a block to reveal its grabber (a six-dot handle). Drag the grabber to reorder blocks on the Page. Click it to open the **Block menu**, which offers:
 
-- **Mention in chat** and **Explain with Ari**, which hand the block to Ari.
+- **Mention table in chat** (or **Mention text in chat** / **Mention canvas in chat**, named for the block type) and **Explain with Ari**, which hand the block to Ari.
 - **Duplicate block**.
 - **Move to page**, with a list of Pages you can edit plus **New page**.
 - **Delete block**.
+
+If the block is the home of a Variable or Dimension that other content reads, cfo.ai asks before deleting it. A dialog titled **Delete variable or dimension?** counts what would break, such as **Deleting Revenue will break 2 formulas, 1 block, 1 canvas block.** A Canvas block counts when one of its datasets reads the Variable. Choose **Cancel** to keep everything, or **Delete anyway** to delete the block and the Variable together. Deleting a Page whose tables are the home of such a Variable asks the same question.
 
 Clicking the grabber also selects the block. While a block is selected, **Shift F10** opens the same menu, **↑** and **↓** move between blocks, **Enter** enters the block, and **Esc** returns to it.
 
@@ -238,7 +240,7 @@ Format and Precision apply to the Variable, so they follow it onto every table. 
 | **Dimension color** | Change the accent color used for a Dimension's pills. |
 | **Display as** | Show Dimension items as **Pill** or **Plain text**. |
 | **Date granularity** | Change the grain of one Date axis without changing the whole table. |
-| **Pin column** or **Unpin column** | Keep a column beside the row names while the other columns scroll. Right-click the column's header; a Date column and the columns grouped under it offer no **Pin column**. A solid line marks the last pinned column, and pins are saved with the table, so they hold after a reload and for everyone who opens it. |
+| **Pin column** or **Unpin column** | Keep a column beside the row names while the other columns scroll. Right-click the column's header; the entry sits directly above **Format and display**. A Date column and the columns grouped under it offer no **Pin column**. A pin is part of the table's layout, so only someone who can edit the table sees the entry, and a read-only table offers no way to pin. A solid line marks the last pinned column, and pins are saved with the table, so they hold after a reload and for everyone who opens it. |
 | **Use as** | Switch a Dimension between **Segmentation** and **Mapping**. |
 | **Show variable name** or **Hide variable name** | Toggle the Variable name on rows that show a Dimension item. |
 | **Expand child rows** or **Collapse child rows** | Open or close a segmented row. **⌘ click** a chevron to expand or collapse every sibling at that level. |
@@ -251,7 +253,7 @@ Format and Precision apply to the Variable, so they follow it onto every table. 
 - **Hide a row or column** without removing it: open the table setup panel and use the show/hide toggle on the item. Hidden items keep their sort, filter, and formula settings.
 - **Resize a column** by dragging the right edge of its header or of any cell in it. Double-click the edge to fit the content. Use **Auto-fit all columns** in the table settings menu to size every column at once. Column widths are saved and shared with your team.
 - **Reorder** rows by dragging their grip in the left gutter, and non-date columns by dragging their headers. Formula and setup-panel items also drag.
-- **Pin a column** by dragging its header left into the pinned area beside the row names, or right-click the header and choose **Pin column**. Pins are saved with the table.
+- **Pin a column** by dragging its header left into the pinned area beside the row names, or right-click the header and choose **Pin column**. Pins are saved with the table and need edit access to it; a read-only table offers neither path.
 - **Resize the table's height** by dragging its bottom edge. Double-click the edge, or press **Enter** while it is focused, to return to fitting the content.
 
 ### Compare Scenarios or periods

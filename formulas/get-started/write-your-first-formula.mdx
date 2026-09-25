@@ -12,9 +12,9 @@ You need a target Variable and the Variables it will reference. In this example:
 - Target Variable: Gross Profit
 - Referenced Variables: Revenue and Cost of Goods Sold
 
-## 1. Open the target Variable
+## 1. Open the target Variable's formula
 
-Open **Gross Profit** and go to its formula editor. The formula belongs to Gross Profit because that is the value it calculates.
+On a Table Block that shows **Gross Profit**, hover its row label and select the **fx** icon (**Edit variable formula**), or right-click the row label and choose **Edit formula**. The editor's title shows **Gross Profit** and **Any Segment**, because a row-level formula is the Variable's default. The formula belongs to Gross Profit because that is the value it calculates.
 
 ## 2. Enter the calculation
 
@@ -28,7 +28,7 @@ Use the Variable names shown in cfo.ai. Wrap names that contain spaces, punctuat
 
 ## 3. Choose where it applies
 
-For a first formula, use the broadest appropriate scope so it acts as the default calculation for the Variable.
+For a first formula, open the editor from the row label so the formula is the Variable's default across every period and segment. Opening it from one cell instead saves a formula for that cell only.
 
 You can add a more specific formula later for a Dimension, a segment, Actuals, or Forecast.
 
@@ -41,7 +41,7 @@ Before saving, confirm that:
 - The formula applies in the intended Scenario.
 - The scope is not more specific than you need
 
-cfo.ai validates the syntax and Variable references when the formula is saved.
+A red status line under the editor reports syntax problems as you type. You can still save an unfinished formula; the cells show an error code such as `#NAME?` until it is fixed.
 
 ## 5. Review the result
 

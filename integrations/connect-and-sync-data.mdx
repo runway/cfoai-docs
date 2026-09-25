@@ -62,6 +62,12 @@ The same popover shows each connection's status and its actions. See [Connect da
 
 A connection you start here still reports to you in chat. While your workspace is new, before any connection has completed a first sync, cfo.ai ties the new connection to your most recent chat, so Ari announces there when the link completes and when the first sync finishes or fails. After that, the result of a background sync, such as data that is ready to model or a first sync that failed, is still delivered to the chat you used most recently.
 
+## Finish a connection you started earlier
+
+If the source's sign-in window closes before you finish authorizing, for example because a pop-up was blocked or you are not the company's administrator, the connection card says **QuickBooks Online was not connected** (with the name of the source you chose) and explains that the window closed before authorization finished. Select **Try again** to reopen the sign-in on the same pending connection, or **Close**. Trying again does not create a second connection.
+
+Connecting the same source again later continues the unfinished connection instead of starting a new one, whichever door you use: **Connect** on the source's card, **Resume** on the connection, a connect link, or asking Ari. This applies while no connection to that source is linked yet and the earlier one is still pending, partly linked, or failed because its link expired. A connection that lost access and reads **Reconnect required** is not picked up this way; use **Reconnect** on it. Continuing a connection someone else started needs edit access to that connection. When you continue a connection from a chat, that chat is the one Ari reports to when the link completes and the first sync finishes.
+
 ## Upload a file
 
 If you attach a CSV in Ari chat, choose whether it should become a data source or stay attached only to the conversation.
@@ -72,6 +78,8 @@ If you attach a CSV in Ari chat, choose whether it should become a data source o
 An uploaded data source is identified by its filename until you rename it. If the same filename already backs a connection, cfo.ai asks for confirmation before replacing it. Each file can be up to 50 MB.
 
 cfo.ai reads each column's type from its values. A column whose header is exactly `yyyyMMdd` is read as a date in that compact form, such as `20260131`, instead of as a number; some point-of-sale exports use this header.
+
+A column named `Date` does not place the file's rows on the calendar by itself. Tell Ari which column dates the rows, such as an invoice date or a period column, and Ari saves it as the source's time column; `first` and `last` over the source's rows then order by that column.
 
 If the file is an existing financial model rather than a source-data export, ask Ari to [import and rebuild the spreadsheet model](/getting-started/import-a-spreadsheet-model) instead of treating the workbook as an ordinary data connection.
 

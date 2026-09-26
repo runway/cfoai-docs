@@ -49,6 +49,8 @@ count(Orders[Department in any])
 
 Return the first or last value in the selected series order, or null when the series is empty. Over an imported record's rows, `first` and `last` order the rows by the source's preferred time column. `last` returns the value of the row with the latest date there, and rows on one date keep their source order.
 
+A rule that reads an imported source column directly, with no aggregation function around the reference, reads it as `last`: the row with the latest date by the preferred time column, or the last row in source order when the source has no date column. That is the same row an imported Dimension's generated default picks. Wrap the reference in `first(...)`, `sum(...)`, or another aggregation to choose a different one.
+
 ```text
 first(Revenue[Date.Month in any])
 last(Revenue[Date.Month in any])

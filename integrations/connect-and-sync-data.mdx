@@ -81,6 +81,8 @@ cfo.ai reads each column's type from its values. A column whose header is exactl
 
 A column named `Date` does not place the file's rows on the calendar by itself. Tell Ari which column dates the rows, such as an invoice date or a period column, and Ari saves it as the source's preferred time column; `first` and `last` over the source's rows then order by that column.
 
+An imported source with no date column at all cannot be laid out by period. A Table Block that shows one of its Variables by month stops calculating and reports that the source **has no date column to read it by**, naming the source. Add a date column at the source and sync again, or tell Ari which existing column dates the rows. A read that does not depend on Date, such as `last` over the source's rows in a table with no Date axis, still answers. See [A table cannot date an imported source](/formulas/formula-reference/formula-errors-and-troubleshooting#a-table-cannot-date-an-imported-source).
+
 If the file is an existing financial model rather than a source-data export, ask Ari to [import and rebuild the spreadsheet model](/getting-started/import-a-spreadsheet-model) instead of treating the workbook as an ordinary data connection.
 
 ## Understand sync status
@@ -97,11 +99,15 @@ When an accounting system such as QuickBooks Online or Xero revokes cfo.ai's acc
 
 A connection that is healthy or still syncing does not offer **Reconnect**. Signing in again cannot help it, so cfo.ai offers the action only when the source revoked access or when a sync failed and the connection needs attention. A connection whose setup never finished offers **Resume** instead.
 
+Asking Ari to connect a source never re-authenticates an existing connection; reconnecting is a separate action that names the connection. If you ask Ari to connect NetSuite while a NetSuite connection already needs re-authentication and you do not say which company you mean, Ari asks whether you want another company connected or that connection reconnected. Name the company to add a second connection, or name the connection to reconnect it. When your plan's connection limit is reached, Ari's refusal names the connection that needs re-authentication so you can reconnect it instead of adding another.
+
 If the provider's screen says you are already connected, its main button may read **Finish**; choose **Relink integration** there instead. **Finish** keeps the current authorization, and cfo.ai reports that the source **was not reconnected**, names the organization to sign in to, and offers **Try again**. For Xero, if the consent screen lists your organization as already connected, disconnect the cfo.ai app under **Connected apps** in Xero, then try again; the card names the app as Xero lists it.
 
 ## When a sync fails
 
 A source that syncs through Fivetran, such as NetSuite, HubSpot, Salesforce, Google Sheets, or a database, stays connected when a sync fails on the provider's side. The connection shows that it needs attention and still offers **Reconnect**, which re-runs the provider's setup checks, but its status changes to **Reconnect required** only when the provider asks for a new authorization. cfo.ai retries the sync on the next nightly run, and you can ask Ari to retry it now.
+
+A NetSuite connection also checks, before every sync, that NetSuite still shares the tables the financial statements need, and shows **Access missing** when one is hidden. See [NetSuite table access](/integrations/integrations-directory#accounting-and-erp).
 
 ## Connections for external tools
 

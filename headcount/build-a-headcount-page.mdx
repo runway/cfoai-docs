@@ -1,40 +1,42 @@
 ---
 title: "Build a Headcount page"
 sidebarTitle: "Build a Headcount page"
-description: "Turn an HR integration's employee data into a Headcount page with payroll formulas already built."
+description: "Turn an HR system's employee records into a roster table and a monthly headcount and payroll table that Ari builds from the same records."
 ---
 
-Once an HR system like Rippling is connected, ask Ari to build a **Headcount page**: a dashboard with an employee-detail table and a department-summary table, backed by payroll formulas Ari creates for you.
+Once an HR or payroll system such as Rippling is connected, or an employee roster is uploaded as a CSV, ask Ari to build a **Headcount page**. Ari builds two tables from the same records, with the formulas behind them, so the page answers who is employed each month and what they cost.
 
 ## What Ari needs
 
-Ari resolves the integration's fields to the Variables and Dimensions it needs. At minimum:
+Ari reads the connection's fields and resolves them to the Variables and Dimensions the page needs:
 
-- **Employee name** — the row axis for the employee-detail table.
-- **Department** — the row axis for the department-summary table, and the segment payroll formulas split by.
-- **Pay rate** — assumed annual unless you also give a pay period.
-- **Start date** and **termination date** — required so the active-employee payroll formula knows who's currently employed.
+- **Employee ID** — the identity of each person. Two people with the same name stay two people.
+- **Start date** and **termination date** — who is employed in each month. An empty termination date means the employment is still open.
+- **Pay** and how it is paid — annual, monthly, or hourly. Hourly pay needs an hours assumption, which Ari keeps as an editable input.
+- **Department** — how the monthly table rolls people up.
 
-Optionally, Ari can also bring in job title, employment type, employment status, pay period, pay currency, work location, and country.
-
-## Pay period handling
-
-If pay rates aren't all annual, give Ari a pay period mapping, like Annual to 12 months, Monthly to 1, and Weekly to about 0.23. Ari creates a **Pay Period Months** Variable from that mapping and uses it to derive each employee's per-period cost correctly, instead of assuming everyone is paid annually.
-
-## Before you start
-
-Ari needs your workspace's **Last close** date set before it can build the active-employee payroll formula. See [Actuals, Forecast, and formula ranges](/formulas/core-concepts/actuals-forecast-and-formula-ranges). If Last close is not set, Ari can explain the required workspace setting.
+Job title, employment type, location, pay currency, and other attributes come along when the source has them.
 
 ## What you get
 
-Ask Ari to name the new Page, or accept the "Headcount" default. Ari creates any calculated Variables and formulas it needs, then adds:
+- A **roster**: a record table with one row per Employee ID and each attribute in its own column. It shows each person's latest values.
+- A **monthly table**: headcount and payroll cost by period, rolled up by department. Each month reads that month's own records, so a raise or a department transfer shows in the month it happened.
 
-- An **employee-detail table**, one row per employee.
-- A **department-summary table**, rolling headcount and payroll cost up by department.
+Ask Ari to name the new Page, or accept the default. From there, treat it like any other Page: ask Ari to add comparisons, reformat it, or build a Scenario to model a hiring plan against it.
 
-From there, treat the Headcount page like any other: ask Ari to add comparisons, reformat it, or build a Scenario to model a hiring plan against it.
+## How Ari counts and pays
+
+- A month's headcount counts anyone employed at any point in the month, so the start month and the termination month both count. If your reporting uses another convention, such as month-end headcount, say so and Ari applies it.
+- Annual pay divided by twelve is a full month at unchanged pay, and a monthly rate is a month's pay as it stands. Partial months follow the employment dates.
+- Loaded cost such as taxes and benefits comes from the records when they carry it, and otherwise from an assumption Ari states in the Model, where you can edit it.
+- Hires, departures, and attrition that are not in the records are planning assumptions. Ari keeps them as editable inputs, separate from the people in the source.
+
+## Before you plan against it
+
+**Last close** separates Actuals from Forecast in every table, including this one. Set it before you plan hiring against the page so the months in your books read the records and the later months read your plan. See [Actuals, Forecast, and formula ranges](/formulas/core-concepts/actuals-forecast-and-formula-ranges).
 
 ## Related
 
 - [Understand Scenarios](/scenarios/understand-scenarios)
 - [Build and format a Table Block](/dashboards/build-and-format-tables)
+- [Browse the integrations directory](/integrations/integrations-directory#hr)

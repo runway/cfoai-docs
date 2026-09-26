@@ -28,7 +28,7 @@ Connected source data is shared. A Scenario changes the Model rules, values, and
 
 Before merging a Scenario, ask Ari what would change. Ari can inspect the saved change summary and explain which Variables, formulas, values, Pages, or tables differ from Main.
 
-Merging applies the Scenario's changes to Main and removes the merged Scenario. Review the affected changes before approving the merge.
+Merging applies the Scenario's changes to the Scenario it branched from, which is Main for a Scenario Ari created, and removes the merged Scenario. Review the affected changes before approving the merge. Undoing the merge from the version history brings the merged Scenario back.
 
 ## Snapshots preserve a point in time
 
@@ -38,13 +38,13 @@ Use a Snapshot to preserve a submitted budget, board-reporting baseline, or the 
 
 ## Review and reverse changes
 
-cfo.ai keeps a changelog of every write to a Scenario. You can:
+cfo.ai keeps a version history of every write to a Scenario. Open it with the **Version history** control in the Model pane header. Each entry's actions menu offers:
 
-- **Undo** a specific change or a related batch of changes.
-- **Redo** a change you undid.
-- **Revert** a Scenario to an earlier point in its history. This rolls back later changes, so review the impact first.
+- **Undo this change** for a specific change or a related batch of changes. An entry the Scenario inherited from Main cannot be undone from the child.
+- **Redo this change** on an entry you undid.
+- **Restore this version** to return the Scenario to an earlier point in its history. This rolls back every later change, so review the impact first. The restore itself becomes a history entry you can undo. Ari calls the same action a revert.
 
-Ask Ari to show you the changelog, or to explain what changed between two points in time, before deciding to undo or revert.
+Ask Ari to show you the history, or to explain what changed between two points in time, before deciding to undo or restore.
 
 ## Next steps
 

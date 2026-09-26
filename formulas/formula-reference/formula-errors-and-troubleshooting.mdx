@@ -59,6 +59,16 @@ One case is refused instead of warned: a numeric aggregate such as `sum` or `max
 
 Placing a Dimension with more than about 1,000 items on a table's rows or columns is allowed, but the write reports how many items the axis carries and that every entry on the other axis is calculated for each of them. Use a filter to show the items you need when the table becomes slow.
 
+## A table cannot date an imported source
+
+A Table Block that shows a Variable from an imported source by period needs to know which of the source's columns dates its rows: a date column the source contributes to the Model's Date, or a date column saved as the preferred time column of the Variables read from it. When the source has neither, the table stops calculating and reports:
+
+```text
+Source "Payroll" (6077cf1b-…) has no date column to read it by. Give the source a date column, or set one of its date columns as the preferred time property ("Dated by") of the variables read from it.
+```
+
+Tell Ari which column dates the rows, and Ari saves it as the source's preferred time column, or add a date column at the source and sync again. A read that does not depend on Date still answers, such as `last` over the source's rows in a table with no Date axis. Ari receives the same message when it reads the table, so it can name the source to fix.
+
 ## A division returns an error
 
 Division by zero produces a calculation error. Guard the divisor or provide a fallback:

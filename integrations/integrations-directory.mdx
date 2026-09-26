@@ -29,11 +29,14 @@ This is for bringing a file's data into your Model as Actuals. To attach a file 
 
 - **QuickBooks Online** (Standard)
 - **Xero** (Standard)
+- **Rillet** — connects with a Rillet API key; a workspace holds one Rillet connection.
 - **NetSuite SuiteAnalytics** (via Fivetran, Premium)
 
 Use an accounting or ERP integration when you want Actuals to update automatically each time your books close. QuickBooks Online connections load the profit and loss statement and the balance sheet; Ari builds cash flow from those.
 
-When you connect or re-link NetSuite, cfo.ai checks that NetSuite shares the tables the income statement and balance sheet need. If one is missing, the connection shows a setup warning that names the tables and asks your NetSuite administrator to grant the connection's role access to them, or to switch the connection to the Data Warehouse Integrator role, and then to contact cfo.ai support to refresh the table list and re-sync. Ari sees the same warning when it inspects the connection.
+cfo.ai checks that NetSuite shares the tables the income statement and balance sheet need when the connection first finishes setup, and again before every sync, whether the nightly refresh or one you ask Ari for. If a table is missing, the connection's row on the **Integrations** tab of the connection manager carries an **Access missing** badge, and its warning reads: **NetSuite isn't sharing some tables cfo.ai needs for your financial statements. Have your NetSuite admin create an access token for the Data Warehouse Integrator role, then reconnect NetSuite with that token. Changing only the role ID won't work. Missing tables: …**
+
+A NetSuite access token belongs to one role, so entering a different role ID in the connection form changes nothing; the connection needs a token issued for the Data Warehouse Integrator role. Once that token is in place, the next sync asks NetSuite for its table list again, syncs the tables it finds, and clears the warning in the same run. While the warning stands, a sync that brings back no statement rows reports the missing access, with the next step **Grant access to the missing source tables to continue**, rather than an empty source. Ari sees the same warning when it inspects the connection. It can start a sync to re-check, but it does not rewrite the connection's saved queries to work around the gap.
 
 ## HR
 

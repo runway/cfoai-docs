@@ -38,7 +38,7 @@ A file used as a data source must be a CSV with a `.csv` extension, up to 50 MB.
   <Step title="Wait for the initial load">
     cfo.ai starts loading the connected data after the source links. The import can continue in the background while you work on something else.
 
-    A source may still be running its own first sync when cfo.ai's load begins: an HR or payroll system such as Gusto, or a source that syncs through Fivetran, such as Stripe, whose first sync copies the account's whole history and can take hours. cfo.ai then checks again every ten minutes until the provider's first sync finishes or fails, loads the data as soon as it completes, and gives up only when the provider reports a failed or paused sync. Ari can tell you that it is waiting on the provider.
+    A source may still be running its own first sync when cfo.ai's load begins: an HR or payroll system such as Gusto, or a source that syncs through Fivetran, such as HubSpot, Salesforce, or a database, whose first sync copies the account's whole history and can take hours. cfo.ai then checks again every ten minutes until the provider's first sync finishes or fails, loads the data as soon as it completes, and gives up only when the provider reports a failed or paused sync. Ari can tell you that it is waiting on the provider.
   </Step>
   <Step title="Check what arrived">
     Ask Ari whether the connection has finished, when data was last loaded, and which information is ready for analysis.

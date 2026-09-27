@@ -186,7 +186,7 @@ A `create` whose rules read a mapped Dimension can declare the mapping in the sa
 
 ## Set a table's window and grain
 
-`window` on a `create`, or on an `update`'s settings, takes `type: "ABSOLUTE"` with `start` and `end`. Both accept a plain calendar date such as `2026-02-01` as well as a full timestamp, and create and update save the same window for either spelling. `{"inherit": true}` clears the table's own window. `update` with `grain` moves the table's Date columns to that grain, so a monthly table asked for `QUARTER` shows quarter columns and the receipt reports the moved Date column; a table whose Date header shows two grains at once, such as Year above Month, is refused a new grain.
+`window` is the table's own date range and grain. On a `create` it holds `start`, `end`, and `granularity`: a dated table names its grain, such as `MONTH`, and a timeless table names `NO_GRANULARITY`, as the example above does. On an `update`'s settings the range is `{"type": "ABSOLUTE", "start": …, "end": …}`. `start` and `end` accept a plain calendar date such as `2026-02-01` as well as a full timestamp, and create and update save the same window for either spelling. `{"inherit": true}` clears the table's own window. `update` with `grain` moves the table's Date columns to that grain, so a monthly table asked for `QUARTER` shows quarter columns and the receipt reports the moved Date column; a table whose Date header shows two grains at once, such as Year above Month, is refused a new grain.
 
 A `values` write names each Date column by the start of its period at the table's grain. On a table with yearly columns, `2024-01` writes the 2024 cell; `2024-02` is refused as a date inside a YEAR period, and the refusal names the spelling that works.
 

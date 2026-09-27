@@ -1,0 +1,29 @@
+ari/meet-ari.mdx
+  s_b848cda643cf79::t_7c3770a7575d62 68-71
+workspace-settings/file-attachments-in-chat.mdx
+  s_43132d46004c95::t_63df2a65199946 45
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "b289eef572be17bcf560089f96ea5ca35aac01f9",
+  "prompts": {},
+  "sessions": {
+    "s_43132d46004c95": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ed53dafc-6364-46ed-a093-f235e9a5e1cd",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Siqi Chen <blader@gmail.com>"
+    },
+    "s_b848cda643cf79": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a384ece5-b9ac-402d-a611-aacded3c7bea",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Siqi Chen <blader@gmail.com>"
+    }
+  }
+}

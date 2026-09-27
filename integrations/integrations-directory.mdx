@@ -32,7 +32,7 @@ This is for bringing a file's data into your Model as Actuals. To attach a file 
 - **Rillet** — connects with a Rillet API key; a workspace holds one Rillet connection.
 - **NetSuite SuiteAnalytics** (via Fivetran, Premium)
 
-Use an accounting or ERP integration when you want Actuals to update automatically each time your books close. QuickBooks Online connections load the profit and loss statement and the balance sheet; Ari builds cash flow from those.
+Use an accounting or ERP integration when you want Actuals to update automatically each time your books close. QuickBooks Online connections load the profit and loss statement and the balance sheet; Ari builds cash flow from those. Each report loads one row per line as QuickBooks prints it, and a subtotal row is marked as one, so Ari's queries total the detail rows only and do not count a subtotal twice.
 
 cfo.ai checks that NetSuite shares the tables the income statement and balance sheet need when the connection first finishes setup, and again before every sync, whether the nightly refresh or one you ask Ari for. If a table is missing, the connection's row on the **Integrations** tab of the connection manager carries an **Access missing** badge, and its warning reads: **NetSuite isn't sharing some tables cfo.ai needs for your financial statements. Have your NetSuite admin create an access token for the Data Warehouse Integrator role, then reconnect NetSuite with that token. Changing only the role ID won't work. Missing tables: …**
 

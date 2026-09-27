@@ -38,7 +38,7 @@ A file used as a data source must be a CSV with a `.csv` extension, up to 50 MB.
   <Step title="Wait for the initial load">
     cfo.ai starts loading the connected data after the source links. The import can continue in the background while you work on something else.
 
-    An HR or payroll system such as Gusto may still be running its own first sync when cfo.ai's load begins. cfo.ai then waits and retries automatically about ten minutes later, up to twice, and Ari can tell you that it is waiting on the provider.
+    A source may still be running its own first sync when cfo.ai's load begins: an HR or payroll system such as Gusto, or a source that syncs through Fivetran, such as Stripe, whose first sync copies the account's whole history and can take hours. cfo.ai then checks again every ten minutes until the provider's first sync finishes or fails, loads the data as soon as it completes, and gives up only when the provider reports a failed or paused sync. Ari can tell you that it is waiting on the provider.
   </Step>
   <Step title="Check what arrived">
     Ask Ari whether the connection has finished, when data was last loaded, and which information is ready for analysis.
@@ -55,7 +55,7 @@ A file used as a data source must be a CSV with a `.csv` extension, up to 50 MB.
 You can also start without Ari. Select **Connections** in the sidebar, then **Add**. The connection manager opens with three tabs:
 
 - **Integrations** lists the business systems cfo.ai can import from, with a **Connect** button on each card and an **Upload** button for CSV files.
-- **MCP** lists MCP servers Ari can call, such as Linear or Notion, plus **Add server** for one that is not listed.
+- **MCP** lists MCP servers Ari can call, such as Linear or Notion, plus **Add server** for one that is not listed. Ari sees each connected server's name and status at the start of every message, so it knows to read a bank balance from a connected Mercury server without being told.
 - **API** lists other services' APIs Ari can reach, such as Stripe, plus **Add API**.
 
 The same popover shows each connection's status and its actions. See [Connect data by hand](/getting-started/build-by-hand#connect-data) for the click paths.
@@ -77,7 +77,7 @@ If you attach a CSV in Ari chat, choose whether it should become a data source o
 
 An uploaded data source is identified by its filename until you rename it. If the same filename already backs a connection, cfo.ai asks for confirmation before replacing it. Each file can be up to 50 MB.
 
-cfo.ai reads each column's type from its values. A column whose header is exactly `yyyyMMdd` is read as a date in that compact form, such as `20260131`, instead of as a number; some point-of-sale exports use this header.
+cfo.ai reads each column's type from its values. Dates are decided for a whole column at once: cfo.ai reads every value in the column and picks the one day and month order that reads them all, so a column holding `13/04/2026` is read day-first throughout, and a column whose values all read either way is read month-first. A column that needs both orders is not a date column. Dates may carry a clock, such as `2026-09-25 00:56`, and then load as timestamps rather than text. Plain digit strings such as `2024` or `20240229` stay numbers; only a column whose header is exactly `yyyyMMdd` is read as a date in that compact form, such as `20260131`. Some point-of-sale exports use this header.
 
 A column named `Date` does not place the file's rows on the calendar by itself. Tell Ari which column dates the rows, such as an invoice date or a period column, and Ari saves it as the source's preferred time column; `first` and `last` over the source's rows then order by that column.
 
@@ -91,7 +91,9 @@ A connected source is ready only after its background load completes. A linked a
 
 After the first load, connected integrations refresh once a night, automatically; there is no manual refresh button, so ask Ari to refresh a connection if you need newer data sooner. File uploads never refresh on their own. See [how integrations stay current](/integrations/integrations-directory#how-integrations-stay-current).
 
-If the Model contains fewer rows than the source file, ask Ari which source records were included. A saved query may intentionally filter the source to match your request.
+If the Model contains fewer rows than the source file, ask Ari which source records were included. A saved query may intentionally filter the source to match your request. When a connection's saved queries return no rows although the source holds data, for example because a query joins through an empty report table, Ari can hand the connection to a background worker that repairs the queries.
+
+Each column a query returns loads into the Model as a Variable or a Dimension. cfo.ai guesses the role when the column first loads: a numeric column becomes a summed Variable unless its name ends in "id". If a code such as an account number loaded as a summed Variable, ask Ari to load it as a Dimension instead. Ari switches the role in place, so formulas, tables, and filters that already point at the column keep working, and every later load keeps the new role.
 
 ## Reconnect a source that lost access
 

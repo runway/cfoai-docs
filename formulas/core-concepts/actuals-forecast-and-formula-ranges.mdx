@@ -20,7 +20,7 @@ The imported data supports Actuals. The planning formula applies in Forecast.
 
 ## Formula ranges depend on Date
 
-A formula range is a boundary on the Date Dimension. A range-specific formula must include the Model's Date grain, which is commonly monthly.
+A formula range is a boundary on the Date Dimension, so a range-specific formula must be segmented by Date. A rule saved on a table row that runs across time carries that Date term already; a rule saved on the Variable without a table gets one Date term at the Model's base grain, which is commonly monthly.
 
 For a monthly Model, the Date part of the scope looks like:
 
@@ -28,7 +28,7 @@ For a monthly Model, the Date part of the scope looks like:
 [Date.Month in any]
 ```
 
-A formula scoped only by Department cannot be limited to Actuals or Forecast until its scope also includes Date.
+A formula scoped only by Department cannot be limited to Actuals or Forecast until its scope also includes Date. Asking for a range on a condition with no Date term is refused, because the range would otherwise be silently ignored.
 
 ## Combine formula ranges with segments
 

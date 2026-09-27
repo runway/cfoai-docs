@@ -24,6 +24,8 @@ An editable Scenario automatically inherits updates from Main while keeping its 
 
 Connected source data is shared. A Scenario changes the Model rules, values, and presentation that differ from Main; it does not create a private copy of an integration.
 
+A Scenario stores only the values that differ from the Scenario it branched from. If you ask Ari to set a value that the Scenario already inherits, nothing is saved: Ari reports that the cell keeps following Main and changes when Main changes. Give the Scenario a different value when you want it to hold still while Main moves.
+
 ## What a Scenario would merge in
 
 Before merging a Scenario, ask Ari what would change. Ari can inspect the saved change summary and explain which Variables, formulas, values, Pages, or tables differ from Main.

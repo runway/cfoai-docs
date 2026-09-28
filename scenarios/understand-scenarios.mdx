@@ -22,7 +22,7 @@ Child Scenarios are useful for:
 
 An editable Scenario automatically inherits updates from Main while keeping its own changes. For example, refreshed accounting data can appear in both Main and your hiring-plan Scenario, while the alternative hiring assumption remains specific to the Scenario.
 
-Connected source data is shared. A Scenario changes the Model rules, values, and presentation that differ from Main; it does not create a private copy of an integration.
+Connected source data is shared, except with a Snapshot, which stops receiving integration updates. A Scenario changes the Model rules, values, and presentation that differ from Main; it does not create a private copy of an integration.
 
 ## What a Scenario would merge in
 
@@ -32,7 +32,7 @@ Merging applies the Scenario's changes to Main and removes the merged Scenario. 
 
 ## Snapshots preserve a point in time
 
-A **Snapshot** pins Main or an editable Scenario to a specific point in its history. After that point, the Snapshot stops picking up changes from its source, including new integration syncs.
+A **Snapshot** pins Main or an editable Scenario to a specific point in its history. New integration data stops flowing into it. When QuickBooks or another source syncs after that point, Main updates and the Snapshot keeps the numbers it had. Later changes to its source Scenario stay out of it too.
 
 Use a Snapshot to preserve a submitted budget, board-reporting baseline, or the plan your team approved at a particular date.
 

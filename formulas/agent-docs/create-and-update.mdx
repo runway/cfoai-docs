@@ -65,7 +65,7 @@ A new Variable can be defined and placed on an existing saved Table Block in the
 }
 ```
 
-`structure` applies inserts first, then moves, then removals. A move or a later insert can therefore anchor `before` or `after` a node the same update inserts, named plainly or as `Name#hex`, and an insert can take the place of a node the same update removes. An anchor that names a saved node the same update moves lands at that node's original position. A `default_formulas` rule in the same request may use a name a `variables` entry in that request gives an object, the old name or the new one.
+`structure` applies inserts first, then moves, then removals. A move or a later insert can therefore anchor `before` or `after` a node the same update inserts, named plainly or as `Name#hex`, and an insert can take the place of a node the same update removes. An anchor that names a saved node the same update moves lands at that node's original position. When a `variables` entry in the same request renames an object, a `default_formulas` rule in that request may refer to the object by either its old name or its new one.
 
 To start a new table instead, use `create` with the complete `rows` and `columns`:
 

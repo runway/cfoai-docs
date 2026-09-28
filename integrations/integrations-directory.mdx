@@ -33,6 +33,8 @@ This is for bringing a file's data into your Model as Actuals. To attach a file 
 
 Use an accounting or ERP integration when you want Actuals to update automatically each time your books close. QuickBooks Online connections load the profit and loss statement and the balance sheet; Ari builds cash flow from those.
 
+A workspace holds one QuickBooks Online company and one Xero organisation at a time. Connecting a second one reports that the integration's connection limit is reached. If you run more than one legal entity and want the group in a single Model now, export the second entity's ledger and bring it in through **CSV / Raw File Upload**, then give the Model an Entity Dimension so you can report on each entity and on the group. [Dimension mappings](/formulas/core-concepts/dimension-mappings) covers landing two entities' account structures in one reporting structure. Ask Ari what your own workspace allows before you plan around the limit.
+
 When you connect or re-link NetSuite, cfo.ai checks that NetSuite shares the tables the income statement and balance sheet need. If one is missing, the connection shows a setup warning that names the tables and asks your NetSuite administrator to grant the connection's role access to them, or to switch the connection to the Data Warehouse Integrator role, and then to contact cfo.ai support to refresh the table list and re-sync. Ari sees the same warning when it inspects the connection.
 
 ## HR
@@ -129,6 +131,8 @@ The nightly refresh and asking Ari to refresh a connection work the same on ever
 The integrations above bring data into your Model on a schedule. API and MCP connections under **Settings → Connections** are different: they are tools Ari calls live when you ask a question. Nothing is stored or scheduled. If Ari writes a number from one of these calls into your Model, it lands as a plain value that stays put until you ask Ari to pull it again.
 
 For example, Stripe is not a synced integration. Connect it as an MCP connector or an API connection, and Ari can look up a balance or a payout when you ask, then write the figure into a Table Block as an editable value.
+
+API and MCP connections also do not use a plan integration slot. Only the integrations above, the ones that import data into your Model, count toward the standard and premium limits your plan sets, so you can add API and MCP connections without spending an integration you would rather give to your accounting or payroll system. An integration that is paused or needs attention still holds its slot until you remove the connection.
 
 ## Something look off?
 

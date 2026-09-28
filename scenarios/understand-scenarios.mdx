@@ -32,13 +32,17 @@ Merging applies the Scenario's changes to Main and removes the merged Scenario. 
 
 ## Snapshots preserve a point in time
 
-A **Snapshot** pins Main or an editable Scenario to a specific point in its history. New integration data stops flowing into it. When QuickBooks or another source syncs after that point, Main updates and the Snapshot keeps the numbers it had. Later changes to its source Scenario stay out of it too.
+A **Snapshot** pins Main or an editable Scenario to a specific point in its history. After that point, nothing from the source flows into it:
+
+- **Integration updates.** When QuickBooks or another source syncs, Main updates and the Snapshot keeps the numbers it had.
+- **Edits to the source.** A formula, assumption, or hard-coded value someone changes in Main later stays out of the Snapshot.
+- **Table setup.** Later changes to a Table Block's settings or column widths in the source do not carry over.
 
 Use a Snapshot to preserve a submitted budget, board-reporting baseline, or the plan your team approved at a particular date.
 
 To create one, ask Ari and name the Scenario to preserve.
 
-Keep these limits in mind:
+A Snapshot also has these limits:
 
 - **A Snapshot is not read-only.** You and Ari can still type hard-coded values over its numbers, and those edits save. Treat a Snapshot as a copy your team agrees not to touch.
 - **A Snapshot cannot be merged** into Main.

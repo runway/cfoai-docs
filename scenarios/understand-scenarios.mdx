@@ -1,7 +1,7 @@
 ---
 title: "Understand Scenarios"
 sidebarTitle: "Understand Scenarios"
-description: "Understand Main, editable Scenarios, automatic inheritance, read-only Snapshots, comparisons, and Scenario history."
+description: "Understand Main, editable Scenarios, automatic inheritance, Snapshots, comparisons, and Scenario history."
 ---
 
 A Scenario lets you explore a different version of your Model without changing Main. Use one when a pricing decision, hiring plan, financing event, or other assumption needs its own saved alternative.
@@ -32,9 +32,17 @@ Merging applies the Scenario's changes to Main and removes the merged Scenario. 
 
 ## Snapshots preserve a point in time
 
-A **Snapshot** freezes Main or an editable Scenario at a specific point in its history. It is read-only and cannot be merged.
+A **Snapshot** pins Main or an editable Scenario to a specific point in its history. After that point, the Snapshot stops picking up changes from its source, including new integration syncs.
 
 Use a Snapshot to preserve a submitted budget, board-reporting baseline, or the plan your team approved at a particular date.
+
+To create one, ask Ari and name the Scenario to preserve.
+
+Keep these limits in mind:
+
+- **A Snapshot is not read-only.** You and Ari can still edit values in it, and those edits save. Treat a Snapshot as a copy your team agrees not to touch.
+- **A Snapshot cannot be merged** into Main.
+- **A Snapshot cannot be reverted** to an earlier point, and you cannot take a Snapshot of another Snapshot.
 
 ## Review and reverse changes
 

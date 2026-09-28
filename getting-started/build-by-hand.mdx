@@ -13,7 +13,7 @@ You and Ari edit the same Model, so anything you build here is visible to Ari an
 Sign in at [app.cfo.ai](https://app.cfo.ai). The workspace also opens in a phone browser, but the click paths below assume a desktop screen. The app has four areas you will use throughout this guide.
 
 - **Navigation sidebar** on the left. It holds **New chat**, your chat list, the **Model** section with the current Scenario and its list of Pages, and **Connections**. Your account menu sits at the bottom of the sidebar.
-- **Page header** above the Page. It shows the Page icon and name, a date-range control that applies to every block on the Page, the access badge, **Share**, **Version history**, and **New chat**.
+- **Page header** above the Page. It shows the Page icon and name, a date-range control that applies to every block on the Page, the access badge, **Share**, **Version history**, and **New chat**. The date-range control appears only when the Page holds something it can change: a table, a chart, or a Canvas block with data. A Page of text and data-free Canvas blocks shows no control.
 - **Account menu**. Open it from the avatar at the bottom of the sidebar for **Appearance**, **Settings**, **Help center**, **Manage memories**, **Manage triggers** (administrators only), the workspace switcher under **Workspaces**, and **Log out**.
 
 <Tip>
@@ -94,7 +94,7 @@ You can add to a table from the setup panel or from the grid itself.
 - In the grid, use the pinned **Add row** at the bottom of the table or the **+** at the right end of the column headers.
 - Hover the left gutter beside a row and select the **+** to insert a row directly below it. Right-click a row or column header for **Insert above**, **Insert below**, **Insert left**, or **Insert right**.
 
-Every path opens the same search field, with the placeholder **Create or search**. Type a name. Matching Variables and Dimensions appear as you type; select one to add it. Selecting an existing Dimension asks how the table should use it: **List dimension items** splits the axis by the Dimension's items, and **Add as mapping** shows the Dimension's value in each cell. See [Segment a table by a Dimension](#segment-a-table-by-a-dimension).
+Every path opens the same search field, with the placeholder **Create or search**. Type a name. Matching Variables and Dimensions appear as you type; select one to add it. Press Escape or click outside the panel to close it without adding anything. On a touch screen, the panel adds a **Close** button at the right end of its toolbar, and a tap outside the panel closes it. Selecting an existing Dimension asks how the table should use it: **List dimension items** splits the axis by the Dimension's items, and **Add as mapping** shows the Dimension's value in each cell. See [Segment a table by a Dimension](#segment-a-table-by-a-dimension).
 
 ### Create a Variable
 
@@ -395,7 +395,7 @@ To see two Scenarios side by side, use a table's **Compare** control. See [Under
 Every change to the Model is recorded, whether you or Ari made it.
 
 - Press **⌘ Z** to undo your last change and **⌘ Shift Z** to redo it. These work anywhere in the app except while you are typing in a text field or formula editor.
-- Select **Version history** (the clock icon in the Page header) to open the timeline. Each entry names who made the change, when, and what it touched. Use **Filter version history** to narrow by person or change type, and **Jump to date** to move through time.
+- Select **Version history** (the clock icon in the Page header) to open the timeline. Each entry names who made the change, when, and what it touched, Canvas blocks included: a Canvas block entry names the block and its Page, and an edit shows what changed, such as the title or the dataset names, as before and after values. Use **Filter version history** to narrow by person or change type, and **Jump to date** to move through time.
 - Select an entry to view the Model as it was at that moment. A banner reads **Viewing version … Read-only** with **Restore this version** and **Back to current**.
 - Open an entry's actions menu for **Undo this change**, **Redo this change**, **Restore this version**, and **Copy link to version**. Undoing a change that later changes depended on prompts you to confirm first.
 

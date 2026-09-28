@@ -38,6 +38,8 @@ A visual takes its colors from the app theme, so it follows your light or dark m
 
 Ask Ari to change an existing visual, its source values, or its title. Describe the intended result, such as switching from a line chart to stacked bars or narrowing the chart to one customer segment.
 
+A visual finds each series by the Variable's display name. If you rename a Variable a visual reads, ask Ari to update the visual in the same request: Ari's rename result names each Canvas block whose code still uses the old name, so it can fix the lookup instead of leaving the visual empty.
+
 ## Interactive controls and shared state
 
 A custom visual can carry sliders, toggles, and other controls. Moving one changes your own view of the visual; it is a preview, not a saved change, unless the visual was built to save that value. Ask Ari to save a setting you want to keep.

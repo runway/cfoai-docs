@@ -65,6 +65,8 @@ A new Variable can be defined and placed on an existing saved Table Block in the
 }
 ```
 
+`structure` applies inserts first, then moves, then removals. A move or a later insert can therefore anchor `before` or `after` a node the same update inserts, named plainly or as `Name#hex`, and an insert can take the place of a node the same update removes. An anchor that names a saved node the same update moves lands at that node's original position. A `default_formulas` rule in the same request may use a name a `variables` entry in that request gives an object, the old name or the new one.
+
 To start a new table instead, use `create` with the complete `rows` and `columns`:
 
 ```json
@@ -112,7 +114,11 @@ When a build needs more than one table and a later table's formulas name Variabl
 }
 ```
 
-The response holds one receipt per table, in list order, and every table shares one `change_log_id`. A refusal of any table refuses them all and names the table.
+The response holds one receipt per table, in list order, and every table shares one `change_log_id`. A refusal of any table refuses them all and names the table. When an earlier table renames a Variable through `variables`, a later table's formula may use either the old name or the new one.
+
+### Write cells on rows, columns, or members the same call creates
+
+`values` and `cell_updates` may name rows, columns, and members that the same request creates: in a `create`, including each `tables` entry, and in an `update` that inserts nodes through `structure` or adds members through `add_dimension_items`. Those cells resolve against the saved layout after it is written, so a literal value, a cell formula, `clear_formula`, or a `format` on a new row or member saves in the same change. The receipt counts them under `changed.cells` and lists their rule statements without a calculated readback. A cell on a row, column, or member that already existed still resolves through the calculated table and needs an exact inspected reference.
 
 ## Save a Variable's rule without a table
 
@@ -158,7 +164,7 @@ Where an imported source's rows sit on the calendar is one fact about the source
 
 ## Declare a mapping in the create that reads it
 
-A `create` whose rules read a mapped Dimension can declare the mapping in the same call instead of calling `edit_dimension_mappings` first. A `dimensions` entry takes `keys`, `items`, and `catch_all` as `edit_dimension_mappings` `map` takes them. The mapping is written in the same change before the rows, so a rule such as `` sum(`Income Statement Amount`[`P&L Line` = "Revenue"]) `` resolves in this call, and the table, the Dimension, its items, and its rows commit together. The receipt's `items` entry for the Dimension carries the mapping's facts: `keys`, `rows_created`, `rows_updated`, `target_items`, and `catch_all`. A refusal on either side saves nothing.
+A `create` whose rules read a mapped Dimension can declare the mapping in the same call instead of calling `edit_dimension_mappings` first. A `dimensions` entry takes `keys`, `items`, and `catch_all` as `edit_dimension_mappings` `map` takes them. A mapping whose keys already exist is written in the same change before the rows, so a rule such as `` sum(`Income Statement Amount`[`P&L Line` = "Revenue"]) `` resolves in this call, and the table, the Dimension, its items, and its rows commit together. A mapping keyed on a Dimension the same create declares, such as a `Department` lookup keyed on an `Employee ID` the rows list, waits until the create has written its own Dimensions and is then written before the layout compiles; `default_formulas` can read the mapped target, while a node `formula` that reads it is refused because the target does not exist yet when node formulas are checked. The receipt's `items` entry for the Dimension carries the mapping's facts: `keys`, `rows_created`, `rows_updated`, `target_items`, and `catch_all`. A refusal on either side saves nothing.
 
 ```json
 {
@@ -198,6 +204,8 @@ A Scenario stores only what differs from the Scenario it branched from. A cell w
 
 `delete` with a `target` alone removes the whole table and the objects homed there. `delete` with a `variables` or `dimensions` list removes only the listed objects. When other formulas, blocks, or settings still read one of them, the delete is refused and lists what reads it, until `force: true` accepts that those references break. `force` on the delete covers every listed entry; `force` on one entry covers that entry alone, so a call can force some entries and not others. `update` entries do not take `force`.
 
+A forced delete of a Dimension also deletes every rule whose condition names it, such as `[Region in any]` or `[Region = "West"]`, in the Scenario you write to and in every unlocked Scenario that inherits from it. A formula that names the Dimension only in its expression stays and shows the broken reference. A locked Snapshot keeps the Dimension and its rules.
+
 ## A rule belongs to its Variable
 
 Giving an existing Variable new `default_formulas` while placing it on another table rewrites the rule every table reads. The receipt says so when the rule it replaced was a formula: it names that formula and the address the Variable carried it at. Writing a value over a plain number, quoted text, date, or `null` states no replaced rule; the committed edit's `previousText` carries the old value instead. Placing a Variable without new defaults leaves its existing rule alone.
@@ -210,4 +218,4 @@ Giving an existing Variable new `default_formulas` while placing it on another t
 
 Ask for a readback in the same write with `readback.rows` and `readback.columns`, or read the affected Table Block afterward. Check the intended Scenario, representative dates and segments, formula origins, and the actual numeric result.
 
-When the receipt carries warnings, read them before moving on. They report rules that compute to zero, rules that tie with an existing rule, and shared rules the write replaced. See [Formula errors and troubleshooting](/formulas/formula-reference/formula-errors-and-troubleshooting).
+When the receipt carries warnings, read them before moving on. They report rules that compute to zero, rules that tie with an existing rule, and shared rules the write replaced. A rule saved on a member row that the rows above it do not read is named too: the receipt states each parent row and the Dimensions its own rule leaves out, so a total that stays unchanged after the write is explained. A mapping key value that is not an item of the key Dimension saves but is reported, because no record matches it until the Dimension has that item. See [Formula errors and troubleshooting](/formulas/formula-reference/formula-errors-and-troubleshooting).

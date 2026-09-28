@@ -31,6 +31,7 @@ This is for bringing a file's data into your Model as Actuals. To attach a file 
 - **Xero** (Standard)
 - **Rillet** — connects with a Rillet API key; a workspace holds one Rillet connection.
 - **NetSuite SuiteAnalytics** (via Fivetran, Premium)
+- **Stripe** (via Fivetran) — billing and payments data such as customers, charges, invoices, subscriptions, and payouts. A separate **Stripe test mode** card connects a test-mode account the same way.
 
 Use an accounting or ERP integration when you want Actuals to update automatically each time your books close. QuickBooks Online connections load the profit and loss statement and the balance sheet; Ari builds cash flow from those. Each report loads one row per line as QuickBooks prints it, and a subtotal row is marked as one, so Ari's queries total the detail rows only and do not count a subtotal twice.
 
@@ -45,6 +46,8 @@ A NetSuite access token belongs to one role, so entering a different role ID in 
 Connect Rippling to bring headcount, compensation, and other people data into your Model alongside your financials. cfo.ai's catalog also lists a much longer roster of HR and payroll systems available to connect (via Merge), including BambooHR, Gusto, Workday, ADP Workforce Now, Paychex, Paycor, Justworks, TriNet, UKG Pro, Deel, Personio, Hibob, and dozens more. If your HR system is not Rippling, ask Ari to check whether it is in the catalog before assuming you need a file upload or manual entry instead.
 
 A new Rippling connection syncs the seven tables cfo.ai's daily employee roster reads: workers, users, worker details, departments, teams, team membership, and work locations. There is no table picker for Rippling. Rippling connections made earlier keep the tables they already sync. A numeric roster column such as pay rate reads, in each period, each employee's latest value in that period; a period with no sync carries the previous value forward, and an explicit zero replaces it. Department and company totals add each employee's latest value once.
+
+A payroll system connected through Merge shares its payroll and benefits data table by table, and access to each table is a setting on the Merge side. When one table is refused, the sync still loads the tables it did receive, and the completed sync records which table was refused and why. Ask Ari when payroll history looks empty: it can tell you whether the data is missing because access to it was not granted.
 
 ## CRM
 
@@ -123,7 +126,7 @@ There is no manual refresh button today. If you need a number sooner than the ne
 
 Ari starts the import in the background and can tell you when it completes. Before relying on a time-sensitive result, ask Ari when the source last finished syncing and whether it reported any problems.
 
-When you first connect QuickBooks Online or Xero, cfo.ai loads Actuals from January 1 of the previous year through today. Ask Ari which accounting periods are available once the first load completes.
+When you first connect QuickBooks Online or Xero, cfo.ai loads Actuals from January 1 of the previous year through today. Every later sync of that connection, including a full-history sync you ask Ari for, requests the same window, and Ari can see the date the window starts on the connection. Ask Ari which accounting periods are available once the first load completes, or how far back a connection's history reaches before you ask for older periods.
 
 The nightly refresh and asking Ari to refresh a connection work the same on every active plan, including during a trial. Plans differ in how many connections you can hold, not in what a connection does once it is connected.
 
@@ -131,7 +134,7 @@ The nightly refresh and asking Ari to refresh a connection work the same on ever
 
 The integrations above bring data into your Model on a schedule. API and MCP connections under **Settings → Connections** are different: they are tools Ari calls live when you ask a question. Nothing is stored or scheduled. If Ari writes a number from one of these calls into your Model, it lands as a plain value that stays put until you ask Ari to pull it again.
 
-For example, Stripe is not a synced integration. Connect it as an MCP connector or an API connection, and Ari can look up a balance or a payout when you ask, then write the figure into a Table Block as an editable value.
+Stripe is an example of a service that can be connected either way. Connected as an integration through Fivetran, its customers, charges, invoices, subscriptions, and payouts land in your Model and refresh on the nightly schedule. Connected as an MCP connector or an API connection, Ari can look up a balance or a payout when you ask, then write the figure into a Table Block as an editable value.
 
 ## Something look off?
 

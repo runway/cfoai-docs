@@ -1,7 +1,7 @@
 ---
 title: "Understand Scenarios"
 sidebarTitle: "Understand Scenarios"
-description: "Understand Main, editable Scenarios, automatic inheritance, read-only Snapshots, comparisons, and Scenario history."
+description: "Understand Main, editable Scenarios, automatic inheritance, Snapshots, comparisons, and Scenario history."
 ---
 
 A Scenario lets you explore a different version of your Model without changing Main. Use one when a pricing decision, hiring plan, financing event, or other assumption needs its own saved alternative.
@@ -22,7 +22,7 @@ Child Scenarios are useful for:
 
 An editable Scenario automatically inherits updates from Main while keeping its own changes. For example, refreshed accounting data can appear in both Main and your hiring-plan Scenario, while the alternative hiring assumption remains specific to the Scenario.
 
-Connected source data is shared. A Scenario changes the Model rules, values, and presentation that differ from Main; it does not create a private copy of an integration.
+Connected source data is shared, except with a Snapshot, which stops receiving integration updates. A Scenario changes the Model rules, values, and presentation that differ from Main; it does not create a private copy of an integration.
 
 A Scenario stores only the values that differ from the Scenario it branched from. If you ask Ari to set a value that the Scenario already inherits, nothing is saved: Ari reports that the cell keeps following Main and changes when Main changes. Give the Scenario a different value when you want it to hold still while Main moves.
 
@@ -34,9 +34,21 @@ Merging applies the Scenario's changes to Main, the Scenario it branched from, a
 
 ## Snapshots preserve a point in time
 
-A **Snapshot** freezes Main or an editable Scenario at a specific point in its history. It is read-only and cannot be merged.
+A **Snapshot** pins Main or an editable Scenario to a specific point in its history. After that point, nothing from the source flows into it:
+
+- **Integration updates.** When QuickBooks or another source syncs, Main updates and the Snapshot keeps the numbers it had.
+- **Edits to the source.** A formula, assumption, or hard-coded value someone changes in Main later stays out of the Snapshot.
+- **Table setup.** Later changes to a Table Block's settings or column widths in the source do not carry over.
 
 Use a Snapshot to preserve a submitted budget, board-reporting baseline, or the plan your team approved at a particular date.
+
+To create one, ask Ari and name the Scenario to preserve.
+
+A Snapshot also has these limits:
+
+- **A Snapshot is not read-only.** You and Ari can still type hard-coded values over its numbers, and those edits save. Treat a Snapshot as a copy your team agrees not to touch.
+- **A Snapshot cannot be merged** into Main.
+- **A Snapshot cannot be reverted** to an earlier point, and you cannot take a Snapshot of another Snapshot.
 
 ## Review and reverse changes
 

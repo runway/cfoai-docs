@@ -5,6 +5,12 @@ description: "Inspect saved Variable formulas and visible Table Block values, th
 
 Use `inspect_table_blocks` with its `variable` block when a user asks how a Variable is calculated or why its behavior changes by segment or period.
 
+## List the saved tables
+
+`inspect_table_blocks` `list` without a `target` returns one summary per table: its name, ref, and Page, plus `summary` with the top-level `rows` and `columns` counts, `first_rows`, and the saved `window`. `limit` (default 100, at most 500) and `after` page through them. Name the tables you want in `target`, one or a list, to receive each in full: layout, signature, presentation, and the home table of each Variable and Dimension it shows. A name that matches nothing is reported under `unresolved` beside the tables that did match.
+
+A `read` compares Scenarios in one call when `comparison` is an object, such as `{"scenarios": ["Budget", "Upside"], "measures": ["VALUE", "DELTA"]}`. The result carries one column per Scenario beside the selected one, labeled with the Scenario's name. Nothing is saved; `"saved"` and `"none"` work as before. An unknown Scenario name is refused with the closest names.
+
 ## Read the saved rules
 
 For example:

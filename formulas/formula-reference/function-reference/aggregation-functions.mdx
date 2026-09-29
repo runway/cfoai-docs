@@ -47,7 +47,7 @@ count(Orders[Department in any])
 
 ## first and last
 
-Return the first or last value in the selected series order, or null when the series is empty. Over an imported record's rows, `first` and `last` order the rows by the source's preferred time column. `last` returns the value of the row with the latest date there, and rows on one date keep their source order.
+Return the first or last value in the selected series order, or null when the series is empty. Over an imported record's rows, `first` and `last` order the rows by the source's preferred time column. `last` returns the value of the row with the latest date there, both skip rows whose value is empty, and rows that share one date have no guaranteed order.
 
 A rule that references the imported source column itself, rather than the Variable loaded from it, with no aggregation function around the reference, reads it as `last`: the row with the latest date by the preferred time column, or the last row in source order when the source has no date column. That is the same row an imported Dimension's generated default picks. A Variable loaded from the source keeps its own aggregation, so an amount column that loaded as a summed Variable still sums when a formula names the Variable. Wrap a column reference in `first(...)`, `sum(...)`, or another aggregation to choose a different one.
 

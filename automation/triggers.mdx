@@ -13,7 +13,7 @@ Ask Ari to schedule one, giving it:
 - **A name** you'll recognize later.
 - **A prompt** — phrased as a normal request, since it runs unattended and has to stand on its own without the rest of your conversation for context.
 - **A schedule**, including your timezone when you specify a local time. Ari converts it to the schedule format it stores internally.
-- **A delivery destination**: your Slack direct messages or your verified email address. Ari asks you to choose before it creates or updates a Trigger.
+- **Where the result goes**, if anywhere outside cfo.ai. Each run is its own conversation in the Trigger's history, and Ari saves a summary to memory, so you can ask about the last run in chat. Ari emails you or messages you on Slack only when the prompt names that channel, such as "send the summary to my Slack direct messages". If you ask to be sent an update without naming a channel, Ari asks you to choose one before it creates the Trigger.
 
 A Trigger starts enabled as soon as you create it.
 
@@ -49,7 +49,7 @@ If a run is still going when the next one is due, the overlapping run can be ski
 
 Because a Trigger fires with no conversation around it, write the prompt as if you were asking Ari cold: name the Table Block, Page, or Variable involved, and be specific about what you want back, like "Summarize the variance between Actuals and Forecast for Operating Expense over the last closed month, flag anything over 10%, and send the summary to my Slack direct messages."
 
-Ari can deliver results only to your own Slack direct messages or verified email. It cannot post a scheduled update to a shared Slack channel or message another person. It also cannot complete work that requires your approval during the run, such as merging or deleting a Scenario.
+Ari can deliver results outside cfo.ai only to your own Slack direct messages or verified email, and only when the prompt names that channel. It cannot post a scheduled update to a shared Slack channel or message another person. It also cannot complete work that requires your approval during the run, such as merging or deleting a Scenario.
 
 ## Related
 

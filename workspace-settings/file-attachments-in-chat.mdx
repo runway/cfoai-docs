@@ -20,7 +20,7 @@ You can attach up to **five files per message**. Use the attachment control in t
 ## How Ari reads each type
 
 - **Images and PDFs** are made available directly for Ari to inspect.
-- **Text files and CSVs** can be included as readable conversation context. Large text content may be shortened before it is included.
+- **Text files and CSVs** up to 64 KB are included as readable conversation context. A larger text file, and an HTML file of any size, is opened through Ari's secure workspace instead, like a workbook.
 - **Excel workbooks and other binary files** are opened through Ari's secure workspace, where Ari can inspect workbook sheets, formulas, cached values, and other file contents.
 
 If a workbook is large, tell Ari which sheet, date range, or business question matters most.
@@ -36,12 +36,12 @@ Importing a CSV can continue in the background. Ask Ari to confirm that the load
 
 ## Download a file you attached
 
-Each attached file shows as a tile in the conversation with its name and file type. Select the tile's **Download** button to get the file back, for example to hand a colleague the workbook a decision was based on. A file Ari produces for you appears as a card that downloads when you select it.
+Each attached file shows as a tile in the conversation with its name and file type. Select the tile's **Download** button to get the file back, for example to hand a colleague the workbook a decision was based on. A file Ari produces for you appears as a card that downloads when you select it. When Ari exports a Page to Excel, the finished workbook is saved in the chat the same way.
 
 ## Good to know
 
-- Ari can look up files shared earlier in the same conversation.
-- Attachments do not automatically move into a different conversation. Attach the file again if you start a new chat.
+- Ari can look up files shared earlier in the same conversation. In a long chat Ari lists them a page at a time, newest first and grouped by the message that attached them.
+- Files you uploaded do not move into a different conversation. Attach the file again if you start a new chat. Files Ari produced for you are different: in a later chat, Ari can list the newest 25 files it delivered in your other chats and open them again.
 - Archiving a chat hides it from the chat list; its messages and attached files stay stored. See [Your chats](/ari/meet-ari#your-chats).
 - If a conversation grows too large for Ari to read in one request, the chat says **This request is too large for Ari to continue. Start a new chat with a shorter request or fewer attachments.** Start a new chat and attach only the files the new request needs. See [When a reply is interrupted](/ari/during-a-conversation#when-a-reply-is-interrupted).
 - A damaged, encrypted, or otherwise unreadable file may require a different export or an unprotected copy.

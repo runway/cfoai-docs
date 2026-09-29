@@ -53,7 +53,7 @@ When Ari saves a rule through a table, the receipt can carry warnings about rule
 - **Two rules that tie.** Two saved rules that name the same number of Dimensions and pin the same number of items compete for the same cells, and the more recently saved one wins. Saving either again flips the result. The warning names the rule the new one ties with.
 - **A shared rule that was replaced.** A rule belongs to its Variable, so giving a Variable a new default while placing it on another table rewrites the rule every table reads. The warning names the rule it replaced. See [A rule belongs to its Variable](/dashboards/build-and-format-tables#a-rule-belongs-to-its-variable).
 
-One case is refused instead of warned: a numeric aggregate such as `sum` or `max` over a text or date operand, for example `max(synced_month$)` on a date Dimension. Use `first`, `last`, or `count` for a value that is not a number.
+One case is refused instead of warned: a numeric aggregate such as `sum` or `avg` over a text or date operand, or `min` or `max` over text. A single-argument `min` or `max` over a date Variable or Dimension, such as `max(synced_month$)`, saves and returns the earliest or latest date. Use `first`, `last`, or `count` for a text value.
 
 ## A table axis has thousands of items
 
@@ -68,6 +68,10 @@ Source "Payroll" (6077cf1b-…) has no date column to read it by. Give the sourc
 ```
 
 Tell Ari which column dates the rows, and Ari saves it as the source's preferred time column, or add a date column at the source and sync again. A read that does not depend on Date still answers, such as `last` over the source's rows in a table with no Date axis. Ari receives the same message when it reads the table, so it can name the source to fix.
+
+## A lookup returns #VALUE!
+
+A lookup meant to return one cell, such as `Amount[Bucket = "true"]`, matched more than one cell, for example because a text item and a true/false item compare as equal. The cell shows `#VALUE!` with the message **Scalar lookup matched more than one cell**, and other cells keep calculating. Wrap the lookup in `iferror(...)` to supply a fallback, or narrow the condition so it names one cell.
 
 ## A division returns an error
 

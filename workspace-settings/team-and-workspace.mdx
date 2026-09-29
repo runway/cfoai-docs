@@ -8,14 +8,14 @@ Your workspace has a few settings that apply model-wide, rather than to any sing
 
 ## Rename the workspace
 
-Ask Ari to rename your workspace. Renaming regenerates the workspace's URL slug, so any link built from the old slug changes along with it.
+Ask Ari to rename your workspace, or open **Settings → General** and edit **Name** under **Workspace**. The field unlocks when you hold workspace-wide access-control permission; otherwise it reads **Only admins can change the name.** Renaming regenerates the workspace's URL slug, so any link built from the old slug changes along with it.
 
 ## Time defaults
 
 Ask Ari to set the model's default time settings, or open **Settings → General** and use the **Date & Time** section yourself:
 
 - **Default date granularity** — the default roll-up grain for new tables. Month unless you change it.
-- **Default date range** — the default start and end date a new table shows.
+- **Default date range** — the default start and end date a new table shows. A new workspace starts with two calendar years around today: January 1 of the year that contains the date six months ago through December 31 of the year that contains the date six months ahead. A table saved without a range of its own shows the same window.
 - **Last close** — described below.
 
 These are defaults for new Table Blocks; an existing table's own window (see [Build and format a Table Block](/dashboards/build-and-format-tables)) isn't affected until you change it directly.
@@ -34,7 +34,7 @@ To give someone a report without making them an administrator, share the Page wi
 
 There is no team screen in Settings. Ask Ari, and when you have the required access it can:
 
-- **Invite** someone as a workspace administrator. They receive an email invitation.
+- **Invite** someone as a workspace administrator. They receive an email invitation. Ari can carry a handoff with it: a note of up to 600 characters on why they are invited and what to look at, the Page to start on, up to three questions they can send to Ari with one click, and a saved Guide. The email link opens that Page. On their first visit, the chat opens with a card headed **Note from** you, a **Take the tour** button when a Guide is attached, an **Open** button for the start Page when they are elsewhere, and the questions below the composer; selecting a question fills the composer without sending. The greeting ends when they pick a question or dismiss the card, and it expires 14 days after they join.
 - **Promote** an existing member to administrator. This changes their role and sends no invitation.
 - **Remove** a member or cancel a pending invitation. Ari refuses to remove you or the workspace's last administrator.
 

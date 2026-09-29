@@ -60,7 +60,8 @@ The important mental model is:
 
 - A workspace contains a financial Model, Pages, Scenarios, Variables, Dimensions, and connected data.
 - Main is the primary working Scenario. Use a different Scenario when the user wants a saved alternative.
-- `inspect_pages`, `inspect_table_blocks`, `inspect_dimension_mappings`, and `inspect_scenarios` read the existing Model.
+- `inspect_pages`, `inspect_table_blocks`, `inspect_dimension_mappings`, and `inspect_scenarios` read the existing Model. `inspect_table_blocks` `list` returns a summary per table and the full layout only for tables named in `target`; its `read` compares several Scenarios in one call when `comparison` is an object naming them. `inspect_pages` `read` with `include_text` returns each text block as Markdown, the form `edit_pages` `add_text` and `update_text` take, and `contains` returns only the text blocks whose text holds a phrase, ignoring case.
+- `inspect_integrations` `catalog` returns counts per category and the connected entries unless `query` or `category` narrows it, and an `ingestion` read lists each saved query's row count without its SQL unless `query` names one or `*`.
 - `edit_table_blocks` creates and changes visible saved tables, including their Variables, Dimensions, and formulas. Every model formula is written through it.
 - `edit_pages`, `edit_dimension_mappings`, and `edit_scenarios` change Pages, Dimension mappings, and Scenarios.
 - `inspect_canvas_library` and `edit_canvas_blocks` read the Canvas component library and create or update Canvas blocks, the charts and custom visuals on a Page.

@@ -12,6 +12,7 @@ Ask Ari to set:
 
 - **Variables** — which Variables appear, in what order, each becoming a row. One table can place the same Variable more than once, each placement with its own breakdown and its own default rule for that placement's child rows, so Headcount by Department and Headcount by Employment Type can sit on the same table.
 - **Dimensions and time** — how to segment those Variables by one or more business categories, or by a Date grain such as month or quarter.
+- **Row filters** — keep only the rows whose field value matches, such as the employees whose Employment Status is Active. The condition is saved with the table and evaluated at every calculation, so it follows the data instead of freezing a list of names. In the app the same filter shows as a funnel on the field's column header.
 - **Window** — the date range and grain a new table shows. Reconfiguring an existing table's Variables leaves its window alone; change the window through presentation instead.
 - **Transpose** — flip rows and columns, useful for a database-style list of items with attributes across the top instead of a wide row of dates.
 
@@ -24,6 +25,7 @@ Once a table calculates the right thing, ask Ari to adjust its presentation with
 - **Rename** the block's title.
 - **Columns** — widths and whether the formula column is visible. Pinning a column so it stays beside the row names is a by-hand action from the column header; see [Work without Ari](/getting-started/build-by-hand#hide-resize-and-reorder).
 - **Visibility** — hide or show specific rows or columns without deleting them.
+- **Dimension headers** — hide or show the row that names each Dimension level above its items, so a nested statement reads like a finance statement without changing a value. In the app the setting is **Show dimension headers** in the table's settings menu.
 - **Window** — change the shown date range or grain on an existing table.
 - **Comparison** — show another Scenario, or an earlier period, alongside the baseline. See [Create and compare Scenarios](/scenarios/create-and-compare-scenarios).
 - **Sort** — order an axis ascending, descending, or in a manual order you specify.
@@ -36,7 +38,7 @@ Ask Ari to copy an existing table onto a new or different Page. The original is 
 
 ## Custom visualizations
 
-When a grid isn't the right shape for what you want to show, like a trend line or a KPI scorecard, ask Ari to build a code block instead. A code block pulls live data out of your Model the same way a Table Block does, but renders it as a chart, scorecard, or interactive control.
+When a grid isn't the right shape for what you want to show, like a trend line or a KPI scorecard, ask Ari to build a Canvas block instead. A Canvas block pulls live data out of your Model the same way a Table Block does, but renders it as a chart, scorecard, or interactive control.
 
 ## A rule belongs to its Variable
 

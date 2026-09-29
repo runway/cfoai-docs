@@ -14,7 +14,7 @@ While Ari is working, the send button becomes a **Stop** button. Select it when 
 
 A message you send while Ari is idle starts a turn at once. It appears in the chat as a sent message, and the composer keeps focus, so you can type your next message while Ari works. Until Ari's first step shows, a **Thinking…** row holds the turn's place under your message; Ari's first reasoning or action replaces it.
 
-You can type while Ari works. A message sent during a turn is **Queued for after this turn**: Ari finishes what it is doing, then reads your message. Use this to add a detail you forgot or to redirect the next step.
+You can type while Ari works. A message sent with **⌥ Enter** (**Alt+Enter** on Windows and Linux) during a turn is **Queued for after this turn**: Ari finishes what it is doing, then reads your message. Use this to add a detail you forgot or to redirect the next step. Hover the queued message and select **Steer now** to send it into the running turn instead; a message sent with **Enter** steers and reads **Sending to the current turn** while Ari finishes its current step.
 
 Hover a queued message to edit or delete it before Ari reaches it. Two kinds of queued message cannot be edited, only deleted: a plan approval and a set of answers to Ari's questions. A message that started a turn cannot be edited or deleted; it is already on its way to Ari.
 
@@ -24,9 +24,11 @@ Ari's reasoning and the actions it takes collect in an **Activity** group under 
 
 ## Watch Ari edit the page
 
-When Ari edits a table you are looking at, it replays each edit on the page: a caption moves to the target, the editor opens, the new value or formula is typed in, and the changed cells are highlighted. The caption's first line is Ari's own note for the change, such as **Setting upside churn assumptions**. Its second line says what changed: `Churn [Starter] 5% → 4%` for a value that replaced a value, `set to 4%` for a new value, `cleared (was $15,000)` for a removed one, or the new formula followed by `(was …)`. Filling many cells with one rule reads `Filling 24 cells in Revenue with …`. While a change is still running, the caption shows the note alone and adds **Still working** after about eight seconds.
+When Ari edits a table you are looking at, it replays each edit on the page: a caption moves to the target, the editor opens, the new value or formula is typed in, and the changed cells are highlighted. The caption leads with the change itself, in bold. A value that replaced a value reads `Churn [Starter] 5% → 4%`, a new value `set to 4%`, a removed one `cleared (was $15,000)`, and a formula shows the new formula followed by `(was …)`. A saved setting is spelled out, such as **Setting Deals to percent format, 1 decimal place**, **Grouping dates by month in the table Sales plan**, or **Adding East, West to Region and removing North**. Filling many cells with one rule reads `Filling 24 cells in Revenue with …`.
 
-The first edit of each kind in a turn plays at full speed with a short explanation; repeated edits of the same kind play at twice the speed. Rest the pointer on the caption to pause the playback. If your system asks for reduced motion, the captions and highlights appear without movement.
+Under the change, the first caption of each tool call carries Ari's own reason for the call, such as **Creating the Global Levers table**. Later captions from the same call leave the reason out, and a reason that only repeats the change is not shown. A third, lighter line can add a hint about where the same setting lives in the app, such as **A variable's right-click menu includes formatting and calculation options.** While a call is still running and has saved nothing yet, the caption shows Ari's reason alone and adds **Still working** after about eight seconds.
+
+The first edit of each kind in a turn plays at full speed with a short explanation; repeated edits of the same kind play at twice the speed. When Ari types over an existing formula, the part that stays the same is kept in place rather than retyped. Rest the pointer on the caption to pause the playback. If your system asks for reduced motion, the captions and highlights appear without movement.
 
 ## Answer Ari's questions
 
@@ -72,13 +74,16 @@ Open a conversation's menu to **Archive chat**, which hides it from the active l
 
 A conversation shared with you is read-only: the chat says **You can view this shared conversation, but can't send messages.** Start your own chat to ask Ari about what you see.
 
+A new chat exists only in your browser until you send its first message. If you reload the page on an unsent new chat, or follow a link to a chat that no longer exists, cfo.ai opens your current new chat in its place and keeps any text you had typed.
+
 ## Keyboard shortcuts
 
 | Shortcut | What it does |
 |---|---|
 | **⌘ /** (Ctrl+/ on Windows and Linux) | Start a new chat |
 | **⌘ L** (Ctrl+L on Windows and Linux) | Mention the selected cell or block in the current chat, or reply to the text you selected in an Ari answer |
-| **Enter** | Send, or queue the message if Ari is working |
+| **Enter** | Send, or steer the running turn while Ari is working |
+| **⌥ Enter** (Alt+Enter on Windows and Linux) | Queue the message for after the running turn |
 
 ## Related
 

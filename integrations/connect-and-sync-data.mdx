@@ -34,6 +34,8 @@ A file used as a data source must be a CSV with a `.csv` extension, up to 50 MB.
   </Step>
   <Step title="Choose the tables to sync, when asked">
     Some sources, such as Shopify or your own database, show a table picker after you sign in. It reads **Choose which tables to sync**; only the tables you tick are imported, you can select up to 100 per connection, and the selection cannot be changed later, so include every table you expect to need. When cfo.ai knows the source well, the recommended tables are pre-selected. For Shopify that is the order, refund, fulfillment, customer, product, gift card, and shop tables, while the slow `transaction` table stays off unless you tick it. Select **Sync N tables** to start the import.
+
+    NetSuite shows a picker of its own. Its eight core tables are locked on, and five tables that exist only when a NetSuite feature is turned on, for Multiple Currencies, Multiple Calendars, and Multi-Book Accounting, can be unchecked. The picker reads **Locked tables are always synced. Uncheck any other table your account doesn't have, such as one for a feature that is turned off. The selection cannot be changed later.** A table you uncheck is left out of the table-access check, so it never raises an **Access missing** warning.
   </Step>
   <Step title="Wait for the initial load">
     cfo.ai starts loading the connected data after the source links. The import can continue in the background while you work on something else.
@@ -45,17 +47,17 @@ A file used as a data source must be a CSV with a `.csv` extension, up to 50 MB.
 
     > Check whether QuickBooks finished syncing and tell me which accounting periods are available.
 
-    If a past period was wrong at the source and you have corrected it there, ask Ari to re-import the connection's full history. The routine refresh covers recent periods only.
+    If a past period was wrong at the source and you have corrected it there, ask Ari to re-import the connection's full history. The routine refresh covers recent periods only. A source that syncs through Fivetran, such as NetSuite, HubSpot, Salesforce, Google Sheets, or a database, has no full-history re-import: Fivetran keeps the sync position itself, and only a re-sync run by the cfo.ai team reconciles it. Ari explains this and escalates instead of retrying.
 
   </Step>
 </Steps>
 
 ## Connect from the sidebar instead
 
-You can also start without Ari. Select **Connections** in the sidebar, then **Add**. The connection manager opens with three tabs:
+You can also start without Ari. Select **Connections** in the sidebar, then **Add**. The connection manager opens with the cursor in **Search integrations**, so you can type a name at once, and shows three tabs:
 
 - **Integrations** lists the business systems cfo.ai can import from, with a **Connect** button on each card and an **Upload** button for CSV files.
-- **MCP** lists MCP servers Ari can call, such as Linear or Notion, plus **Add server** for one that is not listed. Ari sees each connected server's name and status at the start of every message, so it knows to read a bank balance from a connected Mercury server without being told.
+- **MCP** lists MCP servers Ari can call, such as Linear or Notion, plus **Add server** for one that is not listed. Ari sees each connected server's name and status at the start of every message, so it knows to read a bank balance from a connected Mercury server without being told. Connecting a server opens its sign-in in a popup; when the sign-in finishes, the popup reads **MCP login sent to cfo.ai. You can close this window.** The server stays in its connecting state until the sign-in completes, you confirm **Stop connecting?**, or five minutes pass. A sign-in that cannot complete reads **MCP login was not completed. Try connecting again and approve access in the login window.**
 - **API** lists other services' APIs Ari can reach, such as Stripe, plus **Add API**.
 
 The same popover shows each connection's status and its actions. See [Connect data by hand](/getting-started/build-by-hand#connect-data) for the click paths.
@@ -91,9 +93,11 @@ A connected source is ready only after its background load completes. A linked a
 
 After the first load, connected integrations refresh once a night, automatically; there is no manual refresh button, so ask Ari to refresh a connection if you need newer data sooner. File uploads never refresh on their own. See [how integrations stay current](/integrations/integrations-directory#how-integrations-stay-current).
 
+A scheduled refresh that returns exactly the same rows for a saved query as the previous run is silent: Ari says nothing about it in the chat. When the result differs, Ari's report states the difference: the new row count against the previous one, or the same row count with different values in at least one row. cfo.ai records the counts and a fingerprint of the result, not which rows changed, so ask Ari to compare the periods you care about against the source.
+
 If the Model contains fewer rows than the source file, ask Ari which source records were included. A saved query may intentionally filter the source to match your request. When a connection's saved queries return no rows although the source holds data, for example because a query joins through an empty report table, Ari can hand the connection to a background worker that repairs the queries.
 
-Each column a query returns loads into the Model as a Variable or a Dimension. cfo.ai guesses the role when the column first loads: a numeric column becomes a summed Variable unless its name ends in "id". If a code such as an account number loaded as a summed Variable, ask Ari to load it as a Dimension instead. Ari switches the role in place, so formulas, tables, and filters that already point at the column keep working, and every later load keeps the new role.
+Each column a query returns loads into the Model as a Variable or a Dimension. cfo.ai guesses the role when the column first loads: a numeric column becomes a summed Variable unless the last word of its name is `id`, such as `deal_id`, `Customer ID`, or `dealId`; `amount_paid` and `userid` are Variables. If a code such as an account number loaded as a summed Variable, ask Ari to load it as a Dimension instead. Ari switches the role in place, so formulas, tables, and filters that already point at the column keep working, and every later load keeps the new role.
 
 ## Reconnect a source that lost access
 

@@ -13,11 +13,11 @@ You and Ari edit the same Model, so anything you build here is visible to Ari an
 Sign in at [app.cfo.ai](https://app.cfo.ai). The workspace also opens in a phone browser, but the click paths below assume a desktop screen. The app has four areas you will use throughout this guide.
 
 - **Navigation sidebar** on the left. It holds **New chat**, your chat list, the **Model** section with the current Scenario and its list of Pages, and **Connections**. Your account menu sits at the bottom of the sidebar.
-- **Page header** above the Page. It shows the Page icon and name, a date-range control that applies to every block on the Page, the access badge, **Share**, **Version history**, and **New chat**.
+- **Page header** above the Page. It shows the Page icon and name, a date-range control that applies to every block on the Page, **Download spreadsheet**, the access badge, **Share**, **Version history**, and **New chat**. The date-range control appears only when the Page holds something it can change: a table, a chart, or a Canvas block with data. A Page of text and data-free Canvas blocks shows no control.
 - **Account menu**. Open it from the avatar at the bottom of the sidebar for **Appearance**, **Settings**, **Help center**, **Manage memories**, **Manage triggers** (administrators only), the workspace switcher under **Workspaces**, and **Log out**.
 
 <Tip>
-Press **⌘ ?** (**Ctrl ?** on Windows and Linux) at any time to open the Help center, which includes short interactive walkthroughs and the keyboard shortcut list. **Ask a human**, the last entry in the **Getting started** section at the top, opens a form that sends your message straight to the cfo.ai team, with up to three PNG, JPG, or WebP screenshots of 5 MB or less. Press **⌘ Enter** (**Ctrl Enter**) to send it. **Additional resources** at the bottom links to **cfo.ai Docs** and **System status**.
+Press **⌘ ?** (**Ctrl ?** on Windows and Linux) at any time to open the Help center, which includes short interactive walkthroughs and the keyboard shortcut list. **Ask a human**, the last entry in the **Getting started** section at the top, opens a form that sends your message, up to 4,000 characters, straight to the cfo.ai team, with up to three PNG, JPG, or WebP screenshots of 5 MB or less. Press **⌘ Enter** (**Ctrl Enter**) to send it. **Additional resources** at the bottom links to **cfo.ai Docs** and **System status**.
 </Tip>
 
 ## Pages
@@ -74,6 +74,10 @@ If the block is the home of a Variable or Dimension that other content reads, cf
 
 Clicking the grabber also selects the block. While a block is selected, **Shift F10** opens the same menu, **↑** and **↓** move between blocks, **Enter** enters the block, and **Esc** returns to it.
 
+### Download a Page as a spreadsheet
+
+Select **Download spreadsheet** in the Page header. Each visible Table Block becomes a worksheet with its formulas and the Model inputs they read; text, charts, and Canvas blocks are left out. The export runs in the background, and the button reads **Spreadsheet queued** and then **Preparing spreadsheet** until the file downloads. You can also ask Ari to export the Page. Ari saves the finished workbook as a file in the chat, where you can download it and Ari can open it again later.
+
 ## Build a Table Block
 
 A new Table Block is blank. Its heading reads **Build your table**, and the hint says to add a row below or a column above. Rows are usually Variables, columns are usually time, and either axis can be segmented by a Dimension.
@@ -94,7 +98,7 @@ You can add to a table from the setup panel or from the grid itself.
 - In the grid, use the pinned **Add row** at the bottom of the table or the **+** at the right end of the column headers.
 - Hover the left gutter beside a row and select the **+** to insert a row directly below it. Right-click a row or column header for **Insert above**, **Insert below**, **Insert left**, or **Insert right**.
 
-Every path opens the same search field, with the placeholder **Create or search**. Type a name. Matching Variables and Dimensions appear as you type; select one to add it. Selecting an existing Dimension asks how the table should use it: **List dimension items** splits the axis by the Dimension's items, and **Add as mapping** shows the Dimension's value in each cell. See [Segment a table by a Dimension](#segment-a-table-by-a-dimension).
+Every path opens the same search field, with the placeholder **Create or search**. Type a name. Matching Variables and Dimensions appear as you type; select one to add it. Press **Esc** or click outside the panel to close it without adding anything. On a touch screen, the panel adds a **Close** button at the right end of its toolbar, and a tap outside the panel closes it. Selecting an existing Dimension asks how the table should use it: **List dimension items** splits the axis by the Dimension's items, and **Add as mapping** shows the Dimension's value in each cell. See [Segment a table by a Dimension](#segment-a-table-by-a-dimension).
 
 ### Create a Variable
 
@@ -122,7 +126,7 @@ You can change this later by right-clicking the Dimension's header and choosing 
 The table header has two controls for time.
 
 - The **date range** button sets the first and last period the table shows. Selecting a complete range updates the table immediately. Choose **Today** to jump to the current period.
-- The **granularity** button sets the grain: **Daily**, **Weekly**, **Monthly**, **Quarterly**, **Half-yearly**, or **Yearly**. It reads **Mixed** when the table's Date axes disagree.
+- The **granularity** button sets the grain: **Daily**, **Weekly**, **Monthly**, **Quarterly**, **Half-yearly**, or **Yearly**. It reads **Mixed** when the table's Date axes disagree. With no grain set (**Raw**), the date range picker opens in month view; switch its calendar to day view when you need a single day.
 
 The Page header has its own date-range control. Changing it updates every Table Block on the Page at once. A later change on an individual table stays local to that table.
 
@@ -134,7 +138,7 @@ Cells that hold their own value or formula show a dashed underline. Cells withou
 
 <Steps>
   <Step title="Type a value">
-    Select a cell and start typing, or press **Enter** to open it. The first key you press replaces the cell's content. Type numbers the way you would in a spreadsheet: `1,000`, `$1,250.75`, `50%`, `(500)` for a negative, and `1e3` all save as the number they mean. A currency symbol or a percent sign also sets the cell's format to **Currency** or **Percentage**. The new value appears immediately while cfo.ai recalculates anything that depends on it.
+    Select a cell and start typing, or press **Enter** to open it. The first key you press replaces the cell's content. Type numbers the way you would in a spreadsheet: `1,000`, `$1,250.75`, `50%`, `(500)` for a negative, and `1e3` all save as the number they mean. A currency symbol or a percent sign also sets the cell's format to **Currency** or **Percentage**, and the symbol can follow the number, as in `1,000.2 €`. A lone `-`, the accounting dash, saves as `0`. Text with leading zeros, such as the ZIP code `06825`, stays text. The new value appears immediately while cfo.ai recalculates anything that depends on it.
   </Step>
   <Step title="Save and move">
     Press **Enter** to save and move down one cell, **Shift Enter** to save and move up, **Tab** to save and move right, or **Shift Tab** to save and move left. **⌘ Enter** saves and stays on the cell, and **Alt Enter** starts a new line inside it. Click elsewhere to save, or press **Esc** to cancel.
@@ -181,7 +185,7 @@ You can open the editor from several places. Where you open it decides what the 
 The editor's title shows the formula's address: the Variable name plus a pill for each Dimension it is scoped to. A row-level formula shows **Any Segment**, meaning it is the default for every segment.
 
 <Accordion title="Show the formula bar">
-The formula bar is a strip above the grid that shows the selected cell's formula and address. If it is hidden, open the table's settings menu (the **…** button labeled **Table block settings** in the table header) and choose **Show formula bar**. The same menu offers **Show total columns**, **Pin total columns**, and **Auto-fit all columns**.
+The formula bar is a strip above the grid that shows the selected cell's formula and address. If it is hidden, open the table's settings menu (the **…** button labeled **Table block settings** in the table header) and choose **Show formula bar**. The same menu offers **Show total columns**, **Pin total columns**, **Show dimension headers**, and **Auto-fit all columns**. **Show dimension headers** is checked by default. Uncheck it to hide the row that names each Dimension above its items, so a nested statement reads like a finance statement; the items keep their indentation and values. The choice is saved with the table for everyone who opens it. While the headers are hidden, the **Default for every …** entry that lived on the header row has no row to sit on; a parent row's menu still edits its immediate children's default.
 </Accordion>
 
 ### Write and reference
@@ -235,7 +239,7 @@ Format and Precision apply to the Variable, so they follow it onto every table. 
 | Action | What it does |
 | --- | --- |
 | **Sort** | **Ascending**, **Descending**, **None**, or **Manual**, which lets you drag rows into your own order. |
-| **Filter** and **Filter out this item** | Show only some Dimension items, or hide one item. **Filter selected items** appears when several are selected. |
+| **Filter** and **Filter out this item** | Show only some Dimension items, or hide one item. **Filter selected items** appears when several are selected. On a field column (a Dimension added as a mapping, such as Employment Status on an employee roster), **Filter** opens a checklist titled **Show rows where Employment Status is**: tick the values to keep, or choose **Any value** to clear it. The filter is saved with the table and follows the field's values as they change, so a roster filtered to Active keeps hiding people whose status changes. A funnel icon leads the filtered column's header; rest the pointer on it to read the filter, such as **Filtered: Employment Status is Active**, and click it to change or clear it. Filters on two fields combine. Read-only viewers see the funnel but cannot open the picker. Ari can set the same filter. |
 | **Dimension color** | Change the accent color used for a Dimension's pills. |
 | **Display as** | Show Dimension items as **Pill** or **Plain text**. |
 | **Date granularity** | Change the grain of one Date axis without changing the whole table. |
@@ -386,7 +390,7 @@ The Scenario picker is the **Main Scenario** control in the sidebar's **Model** 
 - **Switch** by opening the picker and selecting a Scenario. The URL updates, so you can bookmark a Scenario view.
 - **Create** by selecting **Create scenario** at the bottom of the picker and typing a name. The new Scenario inherits everything from Main and keeps your changes separate.
 - **Manage** by hovering a Scenario in the picker and selecting its actions gear. The menu offers **Version history**, **Last close**, **Share**, **Rename**, and **Delete**. Main Scenario cannot be renamed or deleted, and a Scenario with child Scenarios cannot be deleted.
-- **Merge** by selecting the **Merge** button beside the picker while viewing a Scenario. The dialog explains that merging applies every change in the Scenario to Main and then deletes the Scenario. Review the change preview, then select **Merge scenario**.
+- **Merge** by selecting the **Merge** button at the right edge of the Scenario row in the sidebar, or after the Page name in the Page header while a chat is open. The button appears for a Scenario you may merge and stays greyed out until the Scenario differs from Main; its tooltip reads **Checking for changes…**, then **No changes to merge** or **Merge all changes into Main Scenario**. The dialog lists the changed Pages, with the Page you are on first and marked **this page**, and groups changes that belong to no Page, such as Variables and formulas, under **Across the model**. Its confirm button counts them, such as **Merge 10 changes**. Merging applies every change to Main and then deletes the merged Scenario.
 
 To see two Scenarios side by side, use a table's **Compare** control. See [Understand Scenarios](/scenarios/understand-scenarios).
 
@@ -395,7 +399,7 @@ To see two Scenarios side by side, use a table's **Compare** control. See [Under
 Every change to the Model is recorded, whether you or Ari made it.
 
 - Press **⌘ Z** to undo your last change and **⌘ Shift Z** to redo it. These work anywhere in the app except while you are typing in a text field or formula editor.
-- Select **Version history** (the clock icon in the Page header) to open the timeline. Each entry names who made the change, when, and what it touched. Use **Filter version history** to narrow by person or change type, and **Jump to date** to move through time.
+- Select **Version history** (the clock icon in the Page header) to open the timeline. Each entry names who made the change, when, and what it touched, Canvas blocks included: a Canvas block entry names the block and its Page, and an edit shows what changed, such as the title or the dataset names, as before and after values. Use **Filter version history** to narrow by person or change type, and **Jump to date** to move through time.
 - Select an entry to view the Model as it was at that moment. A banner reads **Viewing version … Read-only** with **Restore this version** and **Back to current**.
 - Open an entry's actions menu for **Undo this change**, **Redo this change**, **Restore this version**, and **Copy link to version**. Undoing a change that later changes depended on prompts you to confirm first.
 
@@ -430,7 +434,7 @@ Open the account menu at the bottom of the sidebar and select **Settings**. Whic
 
 | Section | What you can do |
 | --- | --- |
-| **General** | Rename the workspace under **Workspace**. Under **Date & Time**, set **Default date granularity** and **Default date range** for new tables, and set **Last close**, the boundary between Actuals and Forecast. Under **Appearance**, choose a **Color mode** and a **Theme**, including a **Custom** theme Ari builds from your description. |
+| **General** | Rename the workspace under **Workspace**; the **Name** field unlocks when you hold workspace-wide access-control permission, and otherwise reads **Only admins can change the name.** Under **Date & Time**, set **Default date granularity** and **Default date range** for new tables, and set **Last close**, the boundary between Actuals and Forecast. Under **Appearance**, choose a **Color mode** and a **Theme**, including a **Custom** theme Ari builds from your description. |
 | **Profile** | Your own details. |
 | **Ari** | Under **Sound**, turn on **Play sound when Ari is done** and pick a volume and a sound. Under **Slack**, select **Add to Slack** to talk to Ari from Slack. |
 | **Connections** | **Connect via MCP** holds the cfo.ai MCP server address for external AI clients (**Copy cfo.ai MCP URL**). **Add connections** has **MCP** and **APIs** tabs for connecting other services' tools. See [Connect the cfo.ai MCP server](/integrations/mcp-server). |

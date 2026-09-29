@@ -26,7 +26,7 @@ These concepts describe how cfo.ai turns source data and business assumptions in
   </Card>
 
   <Card title="Database" icon="database">
-    A structured collection of source records organized into rows and columns.
+    A source you connect from the **Databases & Warehouses** category of the connection manager, such as a PostgreSQL database, so its tables can be queried into your Model.
   </Card>
 </CardGroup>
 
@@ -34,7 +34,7 @@ These concepts describe how cfo.ai turns source data and business assumptions in
 
 <CardGroup cols={1}>
   <Card title="Page" icon="file-lines">
-    A canvas that organizes related Table Blocks, charts, and written context into a report or working view.
+    A surface that organizes related Table Blocks, Canvas blocks, and written context into a report or working view.
   </Card>
 
   <Card title="Table Block" icon="table-cells">
@@ -86,7 +86,7 @@ These concepts describe how cfo.ai turns source data and business assumptions in
   </Card>
 
   <Card title="Version history" icon="clock-rotate-left">
-    A record of every write made to a Scenario. You can ask Ari to show the changelog or explain what changed between two points in time.
+    A record of the changes made to a Scenario, including the changes it inherited from Main. Open it with **Version history** in the Page header, or ask Ari to show the history or explain what changed between two points in time.
   </Card>
 </CardGroup>
 
@@ -98,10 +98,10 @@ These concepts describe how cfo.ai turns source data and business assumptions in
   </Card>
 
   <Card title="Trigger" icon="clock">
-    A scheduled instruction that asks Ari to run a recurring task at the time you choose.
+    A scheduled instruction that asks Ari to run a recurring task at the time you choose. The schedule is fixed in UTC, and each run is its own conversation in the Trigger's history.
   </Card>
 
   <Card title="Guide" icon="route">
-    An interactive walkthrough that highlights Pages, blocks, or cells and explains what someone should notice.
+    An interactive walkthrough that moves through Pages and highlights blocks, rows, columns, cells, or elements of a Canvas block, explaining what someone should notice.
   </Card>
 </CardGroup>

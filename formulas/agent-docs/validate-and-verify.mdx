@@ -31,7 +31,7 @@ Inspect the write result. A table write applies all requested changes together o
 - One `read_note` per imported source that the written rules read, stating where that source's rows sit on the calendar and which rules read it. It describes the read the rules asked for, not a problem to fix.
 - A refusal, with the field that caused it, when nothing was saved.
 
-Ask for a readback in the same call with `readback.rows` and `readback.columns` to see the calculated values without a second read.
+Ask for a readback in the same call with `readback.rows` and `readback.columns` to see the calculated values without a second read. Add `readback.also`, up to three other saved tables with their own `rows` and `columns`, to read downstream tables at the same change; they return under `readback_also`.
 
 ## Verify calculated behavior
 

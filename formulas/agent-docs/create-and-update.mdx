@@ -65,6 +65,10 @@ A new Variable can be defined and placed on an existing saved Table Block in the
 }
 ```
 
+`structure` applies inserts first, then moves, then removals. A move or a later insert can therefore anchor `before` or `after` a node the same update inserts, named plainly or as `Name#hex`, and an insert can take the place of a node the same update removes. An anchor that names a saved node the same update moves lands at that node's original position. When a `variables` entry in the same request renames an object, a `default_formulas` rule in that request may refer to the object by either its old name or its new one. After a rename in an earlier call, a formula that still uses the old name saves against the renamed Variable, and the receipt warns, for example, "Headcount was renamed to `Team size`; this formula now reads `Team size`." When several objects were renamed from that name, the write is refused and names each current one.
+
+A `variable` node on `create`, or on a `structure.insert` node, takes an optional `rollup` of `SUM`, `LAST`, or `AVERAGE`. The save writes that rollup for Actuals and Forecast at every Date grain coarser than the base grain, such as quarter, half-year, and year on a monthly Model, in the same change that creates the Variable; `set_time_rollup` changes it later.
+
 To start a new table instead, use `create` with the complete `rows` and `columns`:
 
 ```json
@@ -112,7 +116,13 @@ When a build needs more than one table and a later table's formulas name Variabl
 }
 ```
 
-The response holds one receipt per table, in list order, and every table shares one `change_log_id`. A refusal of any table refuses them all and names the table.
+The response holds one receipt per table, in list order, and every table shares one `change_log_id`. A refusal of any table refuses them all and names the table. When an earlier table renames a Variable through `variables`, a later table's formula may use either the old name or the new one.
+
+### Write cells on rows, columns, or members the same call creates
+
+`values` and `cell_updates` may name rows, columns, and members that the same request creates: in a `create`, including each `tables` entry, and in an `update` that inserts nodes through `structure` or adds members through `add_dimension_items`. Those cells resolve against the saved layout after it is written, so a literal value, a cell formula, `clear_formula`, or a `format` on a new row or member saves in the same change. The receipt counts them under `changed.cells` and lists their rule statements without a calculated readback. A cell on a row, column, or member that already existed still resolves through the calculated table and needs an exact inspected reference.
+
+A `null` entry in a `values` grid is padding: the cell is skipped and keeps whatever rule it has, and a grid of only nulls writes nothing. To remove a saved value, use `clear_formula` in `cell_updates`.
 
 ## Save a Variable's rule without a table
 
@@ -136,7 +146,7 @@ The rule is saved at the Variable with one Date term at the Model's base grain, 
 
 ## Filter the members an axis shows
 
-`members` on a `row_updates` or `column_updates` entry is the saved member filter of the selected axis, in one of two forms. A list of member names replaces the filter and may name `empty:None`, the rows with no value; `[]` clears it. A string is a condition on the Dimension, evaluated over its members to narrow the current saved selection, so a member the saved list already leaves out stays out. `Region not in {"West"}` keeps every named member but West; the empty member has no value, so a comparison on it is unknown, and a null check inside `where` is what keeps it: `Region where (Region = null or not (Region in {"West"}))`. A member row such as `Total[West]` names its axis. `hidden` on the same entry hides or shows the saved axis the selection belongs to, so `hidden: true` on a member row hides every member of that level.
+`members` on a `row_updates` or `column_updates` entry is the saved member filter of the selected axis, in one of two forms. A list of member names replaces the filter and may name `empty:None`, the rows with no value; `[]` clears it. A string is a live condition the table evaluates at every calculation; it narrows the current saved selection, so a member the saved list already leaves out stays out. The condition may read a Dimension mapped from the axis, such as `Employee where Status = "Active"`, and the app shows it as a funnel on that field's column, where a person can change or clear it. `Region not in {"West"}` keeps every named member but West; the empty member has no value, so a comparison on it is unknown, and a null check inside `where` is what keeps it: `Region where (Region = null or not (Region in {"West"}))`. A member row such as `Total[West]` names its axis. `hidden` on the same entry hides or shows the saved axis the selection belongs to, so `hidden: true` on a member row hides every member of that level.
 
 ## Edit an address that holds several saved rules
 
@@ -158,7 +168,7 @@ Where an imported source's rows sit on the calendar is one fact about the source
 
 ## Declare a mapping in the create that reads it
 
-A `create` whose rules read a mapped Dimension can declare the mapping in the same call instead of calling `edit_dimension_mappings` first. A `dimensions` entry takes `keys`, `items`, and `catch_all` as `edit_dimension_mappings` `map` takes them. The mapping is written in the same change before the rows, so a rule such as `` sum(`Income Statement Amount`[`P&L Line` = "Revenue"]) `` resolves in this call, and the table, the Dimension, its items, and its rows commit together. The receipt's `items` entry for the Dimension carries the mapping's facts: `keys`, `rows_created`, `rows_updated`, `target_items`, and `catch_all`. A refusal on either side saves nothing.
+A `create` whose rules read a mapped Dimension can declare the mapping in the same call instead of calling `edit_dimension_mappings` first. A `dimensions` entry takes `keys`, `items`, and `catch_all` as `edit_dimension_mappings` `map` takes them. A mapping whose keys already exist is written in the same change before the rows, so a rule such as `` sum(`Income Statement Amount`[`P&L Line` = "Revenue"]) `` resolves in this call, and the table, the Dimension, its items, and its rows commit together. A mapping keyed on a Dimension the same create declares, such as a `Department` lookup keyed on an `Employee ID` the rows list, waits until the create has written its own Dimensions and is then written before the layout compiles; `default_formulas` can read the mapped target, while a node `formula` that reads it is refused because the target does not exist yet when node formulas are checked. The receipt's `items` entry for the Dimension carries the mapping's facts: `keys`, `rows_created`, `rows_updated`, `target_items`, and `catch_all`. A refusal on either side saves nothing.
 
 ```json
 {
@@ -194,13 +204,19 @@ A `values` write names each Date column by the start of its period at the table'
 
 A Scenario stores only what differs from the Scenario it branched from. A cell write in a child Scenario that repeats the value the cell already reads from its parent stores nothing: the edit's outcome is `unchanged`, and a `formula_warning` says the Scenario already reads this value from its parent, so the cell keeps following the parent and changes when the parent changes. A different value is saved as the Scenario's own and holds through the parent's later edits.
 
+A Variable or Dimension created in a Scenario other than Main exists only there. The receipt warns, for example, `Gross Margin was created in Upside and exists only in that scenario; Main and the other scenarios do not see it.` Inserting a Variable or Dimension by reference when it lives in another Scenario is refused, and the refusal names the Scenario that holds it.
+
 ## Delete a Variable or Dimension
 
 `delete` with a `target` alone removes the whole table and the objects homed there. `delete` with a `variables` or `dimensions` list removes only the listed objects. When other formulas, blocks, or settings still read one of them, the delete is refused and lists what reads it, until `force: true` accepts that those references break. `force` on the delete covers every listed entry; `force` on one entry covers that entry alone, so a call can force some entries and not others. `update` entries do not take `force`.
 
+A forced delete of a Dimension also deletes every rule whose condition names it, such as `[Region in any]` or `[Region = "West"]`, in the Scenario you write to and in every unlocked Scenario that inherits from it. A formula that names the Dimension only in its expression stays and shows the broken reference. A locked Snapshot keeps the Dimension and its rules.
+
 ## A rule belongs to its Variable
 
 Giving an existing Variable new `default_formulas` while placing it on another table rewrites the rule every table reads. The receipt says so when the rule it replaced was a formula: it names that formula and the address the Variable carried it at. Writing a value over a plain number, quoted text, date, or `null` states no replaced rule; the committed edit's `previousText` carries the old value instead. Placing a Variable without new defaults leaves its existing rule alone.
+
+When a write is refused, each named row's `rules` lists the same `available_actions` a read with `include_edit_rules: true` returns, such as `default_formulas.forecast` with the rule the row owns, so the retry can be shaped without another read. A refusal that names a member row the table does not hold says which Dimension the reached level lists, such as `The members under Billings[AMA] are Schedule Line values`, and, when no saved row shares the name, lists the closest saved rows.
 
 ## Preview before you write
 
@@ -208,6 +224,6 @@ Giving an existing Variable new `default_formulas` while placing it on another t
 
 ## Verify the saved result
 
-Ask for a readback in the same write with `readback.rows` and `readback.columns`, or read the affected Table Block afterward. Check the intended Scenario, representative dates and segments, formula origins, and the actual numeric result.
+Ask for a readback in the same write with `readback.rows` and `readback.columns`, or read the affected Table Block afterward. `readback.also` names up to three other saved tables, each with its own `rows` and `columns`, and the receipt returns them under `readback_also`, read at the same change as the edit, so a downstream cash table can be checked without a second read; when `also` is present, the readback's own `rows` and `columns` may be omitted. A `create` receipt returns the first six top-level rows and counts the rest in `rows_omitted`; `readback_selector.rows` names them in table order, ready to pass to a `readback` or a read. Check the intended Scenario, representative dates and segments, formula origins, and the actual numeric result.
 
-When the receipt carries warnings, read them before moving on. They report rules that compute to zero, rules that tie with an existing rule, and shared rules the write replaced. See [Formula errors and troubleshooting](/formulas/formula-reference/formula-errors-and-troubleshooting).
+When the receipt carries warnings, read them before moving on. They report rules that compute to zero, rules that tie with an existing rule, and shared rules the write replaced; when one write replaces several rules, one warning lists them all and explains once that a rule belongs to its Variable. A rule saved on a member row or cell that the rows above it do not read is named too: the receipt states each parent row and the Dimensions its own rule leaves out, on the edited table and on every other table you can read that totals the Variable, so a total that stays unchanged after the write is explained. A mapping key value that is not an item of the key Dimension saves but is reported, because no record matches it until the Dimension has that item. See [Formula errors and troubleshooting](/formulas/formula-reference/formula-errors-and-troubleshooting).

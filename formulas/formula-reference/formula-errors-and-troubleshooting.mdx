@@ -38,7 +38,7 @@ Check the formula range, Date scope, Date grain, Scenario, and Last close. A for
 
 ## A cell with no rule reads 0
 
-A Variable cell that has no formula and no entered or imported value reads `0`, whatever the Variable's type. An End Date nobody entered is `0`, not empty, so a test such as `` `End Date` = null `` is false there; compare with a date or a count instead. A blank imported number is null in the source, so `last(<column>)` over blank rows reads null while a summed Variable over the same rows reads `0`.
+A Variable cell that has no formula and no entered or imported value reads `0`, whatever the Variable's type. An End Date nobody entered is `0`, not empty, so a test such as `` `End Date` = null `` is false there. Give every row a value, such as a far-future end date for current staff, so the test compares real dates. A blank imported number is null in the source, so `last(<column>)` over blank rows reads null while a summed Variable over the same rows reads `0`.
 
 ## A date lookup returns no value
 

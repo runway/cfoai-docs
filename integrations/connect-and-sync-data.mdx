@@ -54,10 +54,10 @@ A file used as a data source must be a CSV with a `.csv` extension, up to 50 MB.
 
 ## Connect from the sidebar instead
 
-You can also start without Ari. Select **Connections** in the sidebar, then **Add**. The connection manager opens with the cursor in **Search integrations**, so you can type a name at once, and three tabs:
+You can also start without Ari. Select **Connections** in the sidebar, then **Add**. The connection manager opens with the cursor in **Search integrations**, so you can type a name at once, and shows three tabs:
 
 - **Integrations** lists the business systems cfo.ai can import from, with a **Connect** button on each card and an **Upload** button for CSV files.
-- **MCP** lists MCP servers Ari can call, such as Linear or Notion, plus **Add server** for one that is not listed. Ari sees each connected server's name and status at the start of every message, so it knows to read a bank balance from a connected Mercury server without being told. Connecting a server opens its sign-in in a popup; when the sign-in finishes, the popup reads **MCP login sent to cfo.ai. You can close this window.** The card keeps reading connecting until the sign-in completes, you select **Stop connecting**, or five minutes pass. A sign-in that cannot complete reads **MCP login was not completed. Try connecting again and approve access in the login window.**
+- **MCP** lists MCP servers Ari can call, such as Linear or Notion, plus **Add server** for one that is not listed. Ari sees each connected server's name and status at the start of every message, so it knows to read a bank balance from a connected Mercury server without being told. Connecting a server opens its sign-in in a popup; when the sign-in finishes, the popup reads **MCP login sent to cfo.ai. You can close this window.** The server stays in its connecting state until the sign-in completes, you confirm **Stop connecting?**, or five minutes pass. A sign-in that cannot complete reads **MCP login was not completed. Try connecting again and approve access in the login window.**
 - **API** lists other services' APIs Ari can reach, such as Stripe, plus **Add API**.
 
 The same popover shows each connection's status and its actions. See [Connect data by hand](/getting-started/build-by-hand#connect-data) for the click paths.

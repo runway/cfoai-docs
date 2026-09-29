@@ -10,7 +10,7 @@ A Scenario lets you explore a different version of your Model without changing M
 
 Every Model has one **Main** Scenario. Main holds the numbers your team treats as the current plan, and it's what most Pages show by default.
 
-An editable Scenario branches from Main. Changes you make in that Scenario, such as updating a formula or adjusting a headcount assumption, apply there until you decide whether to merge them into the Scenario it branched from, usually Main.
+An editable Scenario branches from Main. Changes you make in that Scenario, such as updating a formula or adjusting a headcount assumption, apply there until you decide whether to merge them into Main.
 
 Child Scenarios are useful for:
 
@@ -30,9 +30,9 @@ A Scenario stores only the values that differ from the Scenario it branched from
 
 Before merging a Scenario, ask Ari what would change. Ari can inspect the saved change summary and explain which Variables, formulas, values, Pages, or tables differ from Main.
 
-Merging applies the Scenario's changes to the Scenario it branched from, usually Main, and removes the merged Scenario. Review the affected changes before approving the merge. Undoing the merge from the version history brings the merged Scenario back.
+Merging applies the Scenario's changes to Main, the Scenario it branched from, and removes the merged Scenario. Review the affected changes before approving the merge. Undoing the merge from the version history brings the merged Scenario back.
 
-You can start the merge yourself with the **Merge** button beside the Scenario picker in the sidebar, or after the Page name in the Page header while a chat is open. It stays greyed out until the Scenario differs from its parent. The dialog lists the changed Pages, with the Page you are on first and marked **this page**, groups changes that belong to no Page under **Across the model**, and counts them on its confirm button, such as **Merge 10 changes**.
+You can start the merge yourself with the **Merge** button beside the Scenario picker in the sidebar, or after the Page name in the Page header while a chat is open. It stays greyed out until the Scenario differs from Main. The dialog lists the changed Pages, with the Page you are on first and marked **this page**, groups changes that belong to no Page under **Across the model**, and counts them on its confirm button, such as **Merge 10 changes**.
 
 ## Snapshots preserve a point in time
 

@@ -36,6 +36,10 @@ Check whether:
 
 Check the formula range, Date scope, Date grain, Scenario, and Last close. A formula assigned to Actuals or Forecast must include Date in its scope.
 
+## A cell with no rule reads 0
+
+A Variable cell that has no formula and no entered or imported value reads `0`, whatever the Variable's type. An End Date nobody entered is `0`, not empty, so a test such as `` `End Date` = null `` is false there; compare with a date or a count instead. A blank imported number is null in the source, so `last(<column>)` over blank rows reads null while a summed Variable over the same rows reads `0`.
+
 ## A date lookup returns no value
 
 Confirm that the Date grain and value format match. A monthly lookup should use `Date.Month` and a value such as `"2026-01"`.

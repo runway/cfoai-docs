@@ -184,6 +184,20 @@ A `create` whose rules read a mapped Dimension can declare the mapping in the sa
 }
 ```
 
+## Set a table's window and grain
+
+`window` is the table's own date range and grain. On a `create` it holds `start`, `end`, and `granularity`: a dated table names its grain, such as `MONTH`, and a timeless table names `NO_GRANULARITY`, as the example above does. On an `update`'s settings the range is `{"type": "ABSOLUTE", "start": …, "end": …}`. `start` and `end` accept a plain calendar date such as `2026-02-01` as well as a full timestamp, and create and update save the same window for either spelling. `{"inherit": true}` clears the table's own window. `update` with `grain` moves the table's Date columns to that grain, so a monthly table asked for `QUARTER` shows quarter columns and the receipt reports the moved Date column; a table whose Date header shows two grains at once, such as Year above Month, is refused a new grain.
+
+A `values` write names each Date column by the start of its period at the table's grain. On a table with yearly columns, `2024-01` writes the 2024 cell; `2024-02` is refused as a date inside a YEAR period, and the refusal names the spelling that works.
+
+## Write in a Scenario
+
+A Scenario stores only what differs from the Scenario it branched from. A cell write in a child Scenario that repeats the value the cell already reads from its parent stores nothing: the edit's outcome is `unchanged`, and a `formula_warning` says the Scenario already reads this value from its parent, so the cell keeps following the parent and changes when the parent changes. A different value is saved as the Scenario's own and holds through the parent's later edits.
+
+## Delete a Variable or Dimension
+
+`delete` with a `target` alone removes the whole table and the objects homed there. `delete` with a `variables` or `dimensions` list removes only the listed objects. When other formulas, blocks, or settings still read one of them, the delete is refused and lists what reads it, until `force: true` accepts that those references break. `force` on the delete covers every listed entry; `force` on one entry covers that entry alone, so a call can force some entries and not others. `update` entries do not take `force`.
+
 ## A rule belongs to its Variable
 
 Giving an existing Variable new `default_formulas` while placing it on another table rewrites the rule every table reads. The receipt says so when the rule it replaced was a formula: it names that formula and the address the Variable carried it at. Writing a value over a plain number, quoted text, date, or `null` states no replaced rule; the committed edit's `previousText` carries the old value instead. Placing a Variable without new defaults leaves its existing rule alone.

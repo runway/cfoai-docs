@@ -48,9 +48,13 @@ Use the `read` block for the table that actually shows the result. Each row and 
 }
 ```
 
-A member row is selected by its path from its Variable or axis Dimension, one bracket per breakdown level, as a readback prints it: `Revenue[West]`, `Revenue[West][Enterprise]`. The member that holds rows with no value displays as **None** and is spelled `empty:None` in a selector, for example `Region[empty:None]`.
+A member row is selected by its path from its Variable or axis Dimension, one bracket per breakdown level, as a readback prints it: `Revenue[West]`, `Revenue[West][Enterprise]`. The member that holds rows with no value displays as **None** and is spelled `empty:None` in a selector, for example `Region[empty:None]`. A text member is printed as written, even when it contains a colon: the read's `member` field, the `members` list in a receipt, and a row reference such as `Cash Step[Expected in: open invoice #483]#c00` all spell it `Expected in: open invoice #483`, and a formula matches that exact spelling.
 
 Use the same requested Scenario for both the saved-formula read and the table read. The saved rule explains the intended calculation. The visible table confirms which rule actually applies to the selected period, segment, and Scenario. A row computed by a rule saved outside the table names that rule's owner and condition in `inherited_from`.
+
+## When the table cannot calculate
+
+When the calculation service cannot compute a table, `read` still returns the saved configuration: the rows, their default formulas and formatting, and the saved column axes. Each axis entry is marked `axis: true` and carries its dimension, grain, and writability, for example `{"ref": "Date#10b", "axis": true, "dimension": "Date", "grain": "MONTH", "writable": true}`, so an empty `columns` list never stands in for a Date axis that exists. No cells are delivered. The result carries a `calculation_unavailable` issue; when the calculation service explained the failure, the issue's message ends with `The calculation service reported <code>: <message>`, such as `table_config/external_column_not_mapped: external column Class L1 is not mapped in table …`, so the cause can be named instead of guessed.
 
 ## Explain one cell's inputs
 

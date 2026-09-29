@@ -12,9 +12,21 @@ While Ari is working, the send button becomes a **Stop** button. Select it when 
 
 ## Send a message while Ari is working
 
+A message you send while Ari is idle starts a turn at once. It appears in the chat as a sent message, and the composer keeps focus, so you can type your next message while Ari works. Until Ari's first step shows, a **Thinking…** row holds the turn's place under your message; Ari's first reasoning or action replaces it.
+
 You can type while Ari works. A message sent during a turn is **Queued for after this turn**: Ari finishes what it is doing, then reads your message. Use this to add a detail you forgot or to redirect the next step.
 
-Hover a queued message to edit or delete it before Ari reaches it. Two kinds of queued message cannot be edited, only deleted: a plan approval and a set of answers to Ari's questions.
+Hover a queued message to edit or delete it before Ari reaches it. Two kinds of queued message cannot be edited, only deleted: a plan approval and a set of answers to Ari's questions. A message that started a turn cannot be edited or deleted; it is already on its way to Ari.
+
+## Follow Ari's activity
+
+Ari's reasoning and the actions it takes collect in an **Activity** group under your message. The group opens while Ari works and stays open as long as it is on your screen, so the rows never vanish while you read them. Once you scroll past it, it collapses out of view and stays collapsed when you scroll back. Your own click to open or close a group always wins, and groups loaded from an earlier conversation start collapsed.
+
+## Watch Ari edit the page
+
+When Ari edits a table you are looking at, it replays each edit on the page: a caption moves to the target, the editor opens, the new value or formula is typed in, and the changed cells are highlighted. The caption's first line is Ari's own note for the change, such as **Setting upside churn assumptions**. Its second line says what changed: `Churn [Starter] 5% → 4%` for a value that replaced a value, `set to 4%` for a new value, `cleared (was $15,000)` for a removed one, or the new formula followed by `(was …)`. Filling many cells with one rule reads `Filling 24 cells in Revenue with …`. While a change is still running, the caption shows the note alone and adds **Still working** after about eight seconds.
+
+The first edit of each kind in a turn plays at full speed with a short explanation; repeated edits of the same kind play at twice the speed. Rest the pointer on the caption to pause the playback. If your system asks for reduced motion, the captions and highlights appear without movement.
 
 ## Answer Ari's questions
 
@@ -54,7 +66,7 @@ A very long conversation can outgrow what Ari can read in one request. The chat 
 
 ## Manage your chats
 
-The chat sidebar lists your conversations under **My sessions**, and any conversation someone else opened for you under **Shared with me**. Filter the list by **Active**, **Archived**, or **All**.
+The chat sidebar lists your conversations under **My sessions**, and any conversation someone else opened for you under **Shared with me**. Filter the list by **Active**, **Archived**, or **All**. Both sections keep their order, newest activity first, when you open a chat; a chat moves up only when something happens in it.
 
 Open a conversation's menu to **Archive chat**, which hides it from the active list without deleting anything, or **Unarchive chat** to bring it back. A conversation you have not sent anything in yet offers **Discard chat** instead. You can also rename a conversation inline.
 

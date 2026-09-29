@@ -20,7 +20,17 @@ Ask Ari for any of:
 
 A custom visual reads from named Model data views using the same Variables and Dimensions you would use to build a Table Block. The chart updates as its underlying Model values change.
 
+A visual receives each Variable's own kind of value: numbers, text such as a customer code or a currency, dates, and true/false values. A table of labels or invoice dates can drive a visual directly, without a numeric stand-in. An empty cell or a calculation error reaches the visual as no value.
+
 A visual resolves its data in the Page's Scenario. Use a Table Block when you need a saved side-by-side Scenario comparison. See [Create and compare Scenarios](/scenarios/create-and-compare-scenarios).
+
+## Start from a template
+
+The **Browse Canvas block library** button in the chat composer opens the Canvas library. Select as many templates as you want; they join your message as chips. Each template is a recipe: some build one Canvas block, others a whole decision Page with its own assumptions and walkthrough. Your words decide what Ari builds from them, each on its own or one combined result whose parts read the same Model inputs, share one set of assumptions, and have one walkthrough. If a selected template is no longer available, the chat tells you which one instead of failing.
+
+## Colors
+
+A visual takes its colors from the app theme, so it follows your light or dark mode. If you ask for a fixed color, such as a brand hex code, Ari can use it. A fixed color keeps its value in both modes. When Ari saves the block, the save result names the fixed color and says that it will not follow the mode, so Ari can warn you if the result would be hard to read in one of them.
 
 <span id="update-a-code-block" />
 

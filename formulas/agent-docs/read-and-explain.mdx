@@ -52,6 +52,19 @@ A member row is selected by its path from its Variable or axis Dimension, one br
 
 Use the same requested Scenario for both the saved-formula read and the table read. The saved rule explains the intended calculation. The visible table confirms which rule actually applies to the selected period, segment, and Scenario. A row computed by a rule saved outside the table names that rule's owner and condition in `inherited_from`.
 
+## Read a monthly table by quarter or year
+
+`read` takes `grain: "QUARTER"` or `"YEAR"` to read a table's Date periods at a coarser grain than the saved table's own, without changing the table. Each period holds what the Model calculates at that grain: the Variable's time rollup (its base periods summed, closed, or averaged) or a timeless formula recomputed there; a Variable with neither reads blank. The period columns come back `writable: false`, because their refs spell the date each period starts and would name the saved month column in a write. A table with no Date axis, or one already at that grain or coarser, refuses with the reason. Continuation cursors carry the grain.
+
+```json
+{
+  "scenario": "Main",
+  "read": { "target": "Operating Plan", "rows": ["Bookings"], "grain": "YEAR" }
+}
+```
+
+A period selector can also be spelled the way people write it, and it is read under each column's own grain: `2027` or `FY2027` selects a year column, `Q3 2026` or `2026 Q3` a quarter column, and `Mar 2026` a month column. `2027` never selects January of a monthly axis. The stored spelling, such as `2027-01`, still works everywhere.
+
 ## When the table cannot calculate
 
 When the calculation service cannot compute a table, `read` still returns the saved configuration: the rows, their default formulas and formatting, and the saved column axes. Each axis entry is marked `axis: true` and carries its dimension, grain, and writability, for example `{"ref": "Date#10b", "axis": true, "dimension": "Date", "grain": "MONTH", "writable": true}`, so an empty `columns` list never stands in for a Date axis that exists. No cells are delivered. The result carries a `calculation_unavailable` issue; when the calculation service explained the failure, the issue's message ends with `The calculation service reported <code>: <message>`, such as `table_config/external_column_not_mapped: external column Class L1 is not mapped in table …`, so the cause can be named instead of guessed.

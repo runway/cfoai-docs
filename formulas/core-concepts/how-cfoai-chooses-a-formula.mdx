@@ -31,6 +31,16 @@ Suppose Payroll has:
 
 When cfo.ai calculates Sales, it uses the Sales formula. When it calculates Engineering, it uses the Department formula. When Department is not part of the calculation, it uses the default formula.
 
+## Breakdown totals add up the rows beneath them
+
+When a table breaks a Variable down, for example Revenue by Product, then Customer, then Line, one rule governs all of its lines: a rule for every product, every customer, and every line at once. Ari writes it as the deepest level's default when it builds the table. When that rule exists, the save gives every level above the lines its own default that sums the level directly beneath it: each customer row adds its lines, each product row adds its customers, and the Revenue row adds its products. These are ordinary saved formulas you can open from the row: the customer row's rule sums Revenue over its lines, and the product row's rule sums Revenue over its customers.
+
+Because each level sums the rows shown beneath it, a value you set on any row reaches every total above it. Setting one line to 0 under one customer lowers that customer's total, the product's total, and the grand total. A line that appears under two customers is counted under each of them.
+
+When a sum is the wrong arithmetic, write the parent's own formula. A ratio such as revenue per customer takes one rule of its own, and that rule replaces the default sum at its level. Editing a generated default the same way keeps your version. Removing a level from the table removes that level's default, and the level above then sums the next level that still exists.
+
+The totals are written only under a rule that covers every line. A default you write for one parent's children by hand, such as **Default for every Customer** from the Customer header under one product, applies to that product's customers alone and writes no totals; the parent rows keep their own rule, or show 0 until one is written. Ask Ari to write the line rule for the whole breakdown when the totals should add up.
+
 ## Avoid overlapping exceptions
 
 Several highly specific formulas can make a model difficult to reason about. Prefer one clear default and add overrides only for real differences in business logic.

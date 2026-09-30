@@ -10,7 +10,7 @@ You and Ari edit the same Model, so anything you build here is visible to Ari an
 
 ## Find your way around
 
-Sign in at [app.cfo.ai](https://app.cfo.ai). The workspace also opens in a phone browser, but the click paths below assume a desktop screen. The app has four areas you will use throughout this guide.
+Sign in at [app.cfo.ai](https://app.cfo.ai). The click paths below assume a desktop browser. A phone browser opens the same workspace in a read-only presentation for reading and asking Ari; see [Use cfo.ai on a phone](/getting-started/understand-your-workspace#use-cfoai-on-a-phone). The app has four areas you will use throughout this guide.
 
 - **Navigation sidebar** on the left. It holds **New chat**, your chat list, the **Model** section with the current Scenario and its list of Pages, and **Connections**. Your account menu sits at the bottom of the sidebar.
 - **Page header** above the Page. It shows the Page icon and name, a date-range control that applies to every block on the Page, the access badge, **Share**, **Version history**, and **New chat**.
@@ -52,7 +52,7 @@ Blocks stack top to bottom on a Page. You can add three kinds yourself.
 | Block | What it holds | How you edit it |
 | --- | --- | --- |
 | **Table block** | A live grid of Variables and Dimensions across time. | Directly, as described in the rest of this guide. |
-| **Text block** | Notes, narrative, and headings beside your numbers. | Click into it and type. Select text to see the formatting menu. |
+| **Text block** | Notes, narrative, and headings beside your numbers. | Click into it and type. Select text to see the formatting menu. A link to another Page in the workspace, such as one Ari wrote, opens that Page in the app; **⌘**-click (**Ctrl**-click), **Shift**-click, or **Open link in new tab** opens it in a new tab. |
 | **Canvas block** | A custom visual or interactive tool. | Ask Ari. A blank Canvas block offers **Mention block in chat** so Ari can build it; there is no code editor in the app. |
 
 ### Add a block
@@ -157,6 +157,20 @@ Some cells open a specialized editor instead of a text field.
 
 Select several cells to see **Count**, **Sum**, and the average in a footer beneath the table. **⌘ A** selects the whole table.
 
+### When a change is not saved
+
+A cell edit saves in the background after the editor closes. When the server refuses it, the cell returns to its old value and a notice says why, with what to do next:
+
+| Notice | What it means |
+| --- | --- |
+| **These cells come from an integration. Change the value in the source system.** | The cells read a column imported from a connection, such as a pay rate from Rippling. Only the source can change them. |
+| **These cells don't all take the same formula. Edit one cell at a time.** | The selection spans cells with different rules, such as Actuals read from an integration and Forecast from a formula. |
+| **Each of these cells holds one item. Pick one from the list.** | The column is a Dimension used as a mapping, and the value is not one of its items. |
+| **The table changed while you were editing. Check the cells, then try again.** | Someone else, or Ari, changed the table after you opened it. |
+| **You can't edit this table. Ask a page owner for edit access.** | You can read the Page but not edit it. |
+
+The notice is titled for the action you took: **Could not save "…"** for a dropdown or date pick, **Could not save the formula** for the editors (which reopen your draft), **Could not paste**, **Could not fill the cells**, **The cells could not be cleared**, or **Could not update the parent rows**. A lost connection shows the title with **Check the cells, then try again.**
+
 <Tip>
 A solid blue vertical line marks the boundary between Actuals and Forecast columns once your workspace has a **Last close** date. Cells to the left are Actuals; cells to the right are Forecast.
 </Tip>
@@ -203,6 +217,7 @@ A red status line under the editor reports syntax problems as you type. You can 
 - When you open a cell that inherits its formula, the inherited formula appears as a suggestion. Click it, press **→**, or press **Tab** to adopt it and edit from there. Start typing to replace it entirely.
 - After you save a formula on a child row, cfo.ai may ask **Propagate?** Choose **Yes** to apply the formula to the parent rows too, or **No** to leave it on the child. Press **⌘ Enter** while saving to propagate automatically.
 - Setting a child item's default to its own value leaves the parent's default untouched. Clearing the child's override makes it follow the parent again.
+- When one rule governs every line of a breakdown, as when Ari builds it, each parent row sums the rows beneath it by default, so a value you set on a child row reaches every total above it. A **Default for every …** entry taken from a header under one parent row covers that parent's children alone and writes no totals. See [Breakdown totals add up the rows beneath them](/formulas/core-concepts/how-cfoai-chooses-a-formula#breakdown-totals-add-up-the-rows-beneath-them).
 
 ### Show or hide the formula columns
 
@@ -414,11 +429,11 @@ Restoring a version needs full access to the Scenario.
     Select **Upload** at the top of the **Integrations** tab. You can drop several files at once. Each file becomes its own connection named after the file, and each file can be up to 50 MB.
   </Step>
   <Step title="Watch the status">
-    Each connection shows a status such as **Connecting**, **Syncing**, **Connected**, **Waiting for you**, **Needs attention**, or **Reconnect required**. Data is ready to model only after the initial load finishes.
+    Each connection shows a status such as **Connecting**, **Syncing**, **Connected**, **Setup not finished**, **Needs attention**, or **Reconnect required**. Data is ready to model only after the initial load finishes.
   </Step>
 </Steps>
 
-Hover a connection for its actions: **Resume** when setup never finished, **Reconnect** when the source revoked access or when a sync failed and the connection needs attention, **Update file** to replace a CSV in place, **Rename**, and **Remove**. A connection that is healthy or still syncing does not offer **Reconnect**, because signing in again cannot help it. A first sync that is queued but not yet running reads **Syncing**. An MCP server or API connection offers **Manage** and **Disconnect** instead. For details on each source, see [Connect and sync your data](/integrations/connect-and-sync-data).
+Hover a connection for its actions: **Finish setup** when setup never finished, **Reconnect** when the source revoked access or when a sync failed and the connection needs attention, **Update file** to replace a CSV in place, **Rename**, and **Remove**. A connection that is healthy or still syncing does not offer **Reconnect**, because signing in again cannot help it. A first sync that is queued but not yet running reads **Syncing**. An MCP server or API connection offers **Manage** and **Disconnect** instead. For details on each source, see [Connect and sync your data](/integrations/connect-and-sync-data).
 
 ## Share a Page
 

@@ -42,6 +42,10 @@ When a grid isn't the right shape for what you want to show, like a trend line o
 
 A saved formula rule belongs to the Variable, not to the table you wrote it from. If you give an existing Variable a new default formula while placing it on another table, that rewrites the rule every table reads. Ari reports this: after a write that replaces a shared rule, the result names the rule it replaced, the address the Variable carried it at, and, when the new rule reads its own Variable, the self-reference behind any `#CIRC!` cells. Placing a Variable without a new default leaves its existing rule alone.
 
+## Totals add up the rows beneath them
+
+When Ari breaks a Variable down by one or more Dimensions and writes one rule for its lines, each parent row sums the rows directly beneath it by default, so every total equals what you see under it and a value you change on any child row reaches every total above it. Write a parent's own formula only when a sum is the wrong arithmetic, such as a ratio. See [How cfo.ai chooses a formula](/formulas/core-concepts/how-cfoai-chooses-a-formula#breakdown-totals-add-up-the-rows-beneath-them).
+
 ## Inspect formulas and segments
 
 Use **Segment by** to expose a Variable's values by another Dimension. Use **Drill in** when you want to see the formula inputs behind a calculated result.

@@ -14,6 +14,11 @@ A formula you type in a table always saves, even when it is unfinished; the cell
 - A Variable that does not exist in the selected Scenario.
 - An unsupported number of function arguments
 - A formula range on a formula without Date scope.
+- A name that matches an existing Variable only without regard to case. Formula names match case exactly, so a formula naming `` `Deferred revenue` `` when the Variable is `Deferred Revenue` is refused, and the refusal names the Variable it matches.
+
+## A table edit was not saved
+
+A value or formula you type into a table saves after the editor closes. When the server refuses it, the cell returns to its old value and a notice says why and what to do next, for example **These cells come from an integration. Change the value in the source system.** See [When a change is not saved](/getting-started/build-by-hand#when-a-change-is-not-saved) for every notice.
 
 ## A Variable cannot be found
 
@@ -52,6 +57,12 @@ When Ari saves a rule through a table, the receipt can carry warnings about rule
 - **A constant that matches no Dimension item.** A condition such as `synced_month = date(2026, 7, 1)` saves, but when the Dimension's items are text it matches nothing and every cell it reaches reads 0. The warning says the condition selects none of the Dimension's items, states the items' kind, and shows one or two of them so you can match the exact spelling. When a set such as `Step in {"Committed out", "Expected in"}` names some items that exist and some that do not, the warning names each value that matches nothing. A Dimension whose items were added by hand, with no source table behind it, is checked the same way.
 - **Two rules that tie.** Two saved rules that name the same number of Dimensions and pin the same number of items compete for the same cells, and the more recently saved one wins. Saving either again flips the result. The warning names the rule the new one ties with.
 - **A shared rule that was replaced.** A rule belongs to its Variable, so giving a Variable a new default while placing it on another table rewrites the rule every table reads. The warning names the rule it replaced. See [A rule belongs to its Variable](/dashboards/build-and-format-tables#a-rule-belongs-to-its-variable).
+- **A read that lands on the generated zero.** A plain reference keeps every coordinate of the cell it runs in, Date included. A monthly Payroll rule that reads `` `Annual Wage` `` reads it at Employee × Date.Month, and an input saved once per employee with no Date is not there, so the read gets 0 in every month. The warning names the read, where it landed, and the absolute spelling that reaches the input, such as `` `Annual Wage`$[Employee = this.Employee] ``.
+- **What the first Forecast month read.** When the written rule reads a prior period, an imported source, or a Variable with no value there, the receipt adds a note stating what the rule computed in the first Forecast month and what each read returned, for example "First forecast month: `Headcount`'s rule computes 3 in 2026-09 (Last close 2026-08-31). There it read `Headcount` (offset -1 month) = 0 (no rule or input there: the generated zero); `Hires` = 3 (a rule or input)." A roll-forward that starts from an empty last Actuals month shows up here instead of several steps later.
+- **A rule saved at a coarser grain.** A default written through a table whose periods are years, in a monthly Model, is saved at year grain. The warning says the year cells compute it whatever their month cells hold, and that the month cells do not read it.
+- **Which Scenario the write used.** When the call named no Scenario, the receipt says which one it used, the one you were viewing, because that can change between turns.
+
+A receipt also states rules the save wrote for you: the time rollup a new monthly row gets (`SUM`, or `LAST` for a balance), and the level defaults that make a breakdown's totals add up the rows beneath them. See [How aggregation works](/formulas/core-concepts/how-aggregation-works#default-time-rollup) and [Breakdown totals add up the rows beneath them](/formulas/core-concepts/how-cfoai-chooses-a-formula#breakdown-totals-add-up-the-rows-beneath-them).
 
 One case is refused instead of warned: a numeric aggregate such as `sum` or `max` over a text or date operand, for example `max(synced_month$)` on a date Dimension. Use `first`, `last`, or `count` for a value that is not a number.
 

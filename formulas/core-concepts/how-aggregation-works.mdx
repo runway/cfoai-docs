@@ -11,6 +11,19 @@ A Variable has a default method for combining source records into a Model value.
 
 Balances, ratios, headcount, and other point-in-time results can require a different time rollup. For example, a quarter-end cash balance should show the closing balance rather than adding three monthly balances together.
 
+### Default time rollup
+
+A rule written for months governs only month cells. Quarter, half-year, and year cells read the Variable's **time rollup**, a rule of its own at each coarser grain. When Ari adds a new row to a table whose periods are at the Model's base grain, the save writes that rollup for Actuals and Forecast without a separate step:
+
+| The new Variable | Default rollup |
+| --- | --- |
+| A number with no aggregation, or one aggregated by `sum` or `count` | `SUM`: the base periods added, right for a flow such as revenue |
+| A number aggregated by `last`, such as a cash balance | `LAST`: the closing base period |
+| A number with any other aggregation, such as `average` or `median` | None. Its quarter and year cells stay blank until you ask Ari for a rollup |
+| A percentage, text, a date, a boolean, or a rule written without Date | None. A rule with no Date recomputes at every grain, so a ratio written that way stays a ratio in its quarters and years |
+
+Ask Ari for `LAST` or `AVERAGE` when the default does not fit, or ask it to change a saved Variable's rollup later. A ratio row created as a plain number gets `SUM`, so its year cell adds up monthly ratios until you tell Ari it is a percentage or a ratio.
+
 ## 2. Multi-value references
 
 A formula reference can deliberately select several values. For example:

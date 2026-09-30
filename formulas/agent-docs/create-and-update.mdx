@@ -114,6 +114,26 @@ When a build needs more than one table and a later table's formulas name Variabl
 
 The response holds one receipt per table, in list order, and every table shares one `change_log_id`. A refusal of any table refuses them all and names the table.
 
+### A new dated row gets a time rollup
+
+A rule on a month row governs month cells only; quarter, half-year, and year cells read the Variable's time rollup. A `create` or `insert` row may name `rollup` (`SUM`, `LAST`, or `AVERAGE`). When it names none and the table's periods are at the Model's base grain, the save writes the rollup the request implies, at every grain coarser than the base, for Actuals and Forecast: `SUM` for a number with no aggregation or with `SUM` or `COUNT`, `LAST` for `aggregation_function: LAST`, and none for a timeless `formula`, `format: PERCENTAGE`, a non-number, or any other aggregation. A row created on a table whose periods are quarters or years, or on a table without Date, gets no implied rollup. The receipt states them in one `default_rollup` issue and does not list them as `rollups` or count them as `default_formulas`. A ratio row created without `format: PERCENTAGE` gets `SUM`, so its year cell adds monthly ratios; `set_time_rollup` or a named `rollup` corrects it.
+
+A `default_formulas` rule written through a table whose periods are coarser than the base grain, such as a yearly table in a monthly Model, is saved at that coarser grain, and the receipt warns: the year cells compute the rule whatever their month cells hold, and the month cells do not read it. Write the rule on a row of a base-grain table, or in a `variables` entry, when it should govern the base periods.
+
+### A breakdown's totals are written for you
+
+When a table breaks a Variable down, `child_defaults` on the deepest axis row is the rule for the lines, saved on the line's full path. The save then gives every coarser level the tables show a default that sums the level beneath it, one ordinary rule per level, and the receipt lists them: "Revenue's level defaults, which add up its [Customer, Line, Product] lines at each level the tables show: saved Revenue[Customer, Product], Revenue[Product] and Revenue." A value set on any row reaches every total above it. A rule an author writes at a level replaces the default there, and a default edited into other text stays with its author. The sums exist only while a line rule claims the lines: clearing the line rule removes the sums left in its range. See [How cfo.ai chooses a formula](/formulas/core-concepts/how-cfoai-chooses-a-formula#breakdown-totals-add-up-the-rows-beneath-them).
+
+### Add members and write their values in one call
+
+An `update` adds the members that `dimensions[].add_items` or `replace_items` names before it resolves `values` and `cell_updates`, so one call can add `E9` to Entity and write `["E9", 42]` in `values`. A `create`, or an update that adds rows, can also fill a Mapping column on the rows it adds: a Department cell on a new employee row saves the one quoted item, `"Sales"`, a new item joins the Dimension's list, and a value that is not one item is refused before anything saves, naming the cell. Cells of one lookup save in one mapping write, so filling 400 Departments costs about the same as filling one.
+
+When a write changes a shared mapping row, the receipt's `shared_mapping_changed` notice names the first changed row and its item before and after, and counts the rest: "The shared mapping changed: EMP-001's Department moved from Engineering to Operations, and 3 more rows changed. Other tables and periods that use it can also change." A first assignment reads "is now Sales", and a cleared cell "was cleared; it was Sales". Every table that reads the mapping is recalculated in the background after the call returns; `inspect_dimension_mappings` lists them.
+
+### A timeless formula on a dated row is refused the same way everywhere
+
+`formula` and `clear_formula` write a Variable's timeless rule. A `create` writes it for a Variable it makes, and an `update` writes it on an undated row or column. A dated row's rules are `default_formulas.actuals` and `default_formulas.forecast`, which create and update both accept; create and update refuse a timeless `formula` on a dated row with the same sentence. A `child_defaults` clear on create goes to the same planner an update uses, so a child that owns no rule reports `unchanged`.
+
 ## Save a Variable's rule without a table
 
 When the requested rule has no visible table target, name the Variable in a `variables` entry instead. No table `target` is needed:
@@ -192,6 +212,8 @@ A `values` write names each Date column by the start of its period at the table'
 
 ## Write in a Scenario
 
+`scenario` defaults to the Scenario the person is viewing, which can change between turns. When a call that saved something omits it, the receipt says which Scenario the write used: a table receipt carries a `scenario_warning` issue and an `edit_variables` receipt carries a warning, such as "No scenario was named, so this call used `Breakeven Plan#4c1`, the scenario the person is viewing. The scenario in view can change between turns." When nothing is in view the sentence names Main. A refusal, a dry run, or a call that saved nothing carries no sentence.
+
 A Scenario stores only what differs from the Scenario it branched from. A cell write in a child Scenario that repeats the value the cell already reads from its parent stores nothing: the edit's outcome is `unchanged`, and a `formula_warning` says the Scenario already reads this value from its parent, so the cell keeps following the parent and changes when the parent changes. A different value is saved as the Scenario's own and holds through the parent's later edits.
 
 ## Delete a Variable or Dimension
@@ -199,6 +221,10 @@ A Scenario stores only what differs from the Scenario it branched from. A cell w
 `delete` with a `target` alone removes the whole table and the objects homed there. `delete` with a `variables` or `dimensions` list removes only the listed objects. When other formulas, blocks, or settings still read one of them, the delete is refused and lists what reads it, until `force: true` accepts that those references break. `force` on the delete covers every listed entry; `force` on one entry covers that entry alone, so a call can force some entries and not others. `update` entries do not take `force`.
 
 ## A rule belongs to its Variable
+
+A create row that names an existing Variable reuses it, and rows match names without regard to case, so `Deferred revenue` reuses `Deferred Revenue`. The receipt's `items` entry for a reused object carries `home`, the table it was first created on, when that table exists and is readable, and `rule: "replaced"` when this create replaced a rule the object already had, in Main or in the Scenario being edited.
+
+Formula names match case exactly. A formula that names `` `Deferred revenue` `` when only `Deferred Revenue` exists is refused with the object it matches: "`` `Deferred revenue` `` matches the existing `` `Deferred Revenue` `` (names match without case); formula names match case exactly, …". A reference field and formula text accept the same spelling of a namesake: the short suffix a readback prints, such as `Currency#3` beside `Currency#8`, names the object it prints for, and a suffix of three or more hex digits is checked against the object's retained identity, so a reference issued for a deleted object never moves to a new namesake. A backticked name that no object carries, such as `` `Amount#3c2` ``, reads as the reference it quotes. In a table row or column, backticks still mark a literal new name.
 
 Giving an existing Variable new `default_formulas` while placing it on another table rewrites the rule every table reads. The receipt says so when the rule it replaced was a formula: it names that formula and the address the Variable carried it at. Writing a value over a plain number, quoted text, date, or `null` states no replaced rule; the committed edit's `previousText` carries the old value instead. Placing a Variable without new defaults leaves its existing rule alone.
 

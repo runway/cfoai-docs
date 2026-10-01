@@ -35,6 +35,8 @@ Inspect the write result. A table write applies all requested changes together o
 
 Ask for a readback in the same call with `readback.rows` and `readback.columns` to see the calculated values without a second read.
 
+A call that repeats an earlier call exactly, after the earlier result already answered it, is refused by the runtime with the code `repeated_no_progress` and `state_changed: "no"`. The refusal is a result to act on, not a transport failure: change the request, or use what the earlier result returned.
+
 ## Verify calculated behavior
 
 Use `inspect_table_blocks` on the relevant saved table after a material change. Check representative dates, segments, formula origins, and source information.

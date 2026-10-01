@@ -16,6 +16,10 @@ A formula you type in a table always saves, even when it is unfinished; the cell
 - A formula range on a formula without Date scope.
 - A name that matches an existing Variable only without regard to case. Formula names match case exactly, so a formula naming `` `Deferred revenue` `` when the Variable is `Deferred Revenue` is refused, and the refusal names the Variable it matches.
 
+## A Dimension's member list cannot take a formula
+
+A table axis that only lists a Dimension's members has no calculated value, so a formula written to it has nothing to edit. Ari reports this as a reason rather than an error: edit the Dimension's membership instead, or write the rule on the Variable the breakdown belongs to. A Dimension whose members a formula generates from a connected source is written by a person from the Dimension's row-header menu, **More settings**, then **Edit dimension formula**.
+
 ## A table edit was not saved
 
 A value or formula you type into a table saves after the editor closes. When the server refuses it, the cell returns to its old value and a notice says why and what to do next, for example **These cells come from an integration. Change the value in the source system.** See [When a change is not saved](/getting-started/build-by-hand#when-a-change-is-not-saved) for every notice.

@@ -50,6 +50,8 @@ Use the `read` block for the table that actually shows the result. Each row and 
 
 A member row is selected by its path from its Variable or axis Dimension, one bracket per breakdown level, as a readback prints it: `Revenue[West]`, `Revenue[West][Enterprise]`. The member that holds rows with no value displays as **None** and is spelled `empty:None` in a selector, for example `Region[empty:None]`. A text member is printed as written, even when it contains a colon: the read's `member` field, the `members` list in a receipt, and a row reference such as `Cash Step[Expected in: open invoice #483]#c00` all spell it `Expected in: open invoice #483`, and a formula matches that exact spelling.
 
+Each rendered target's rules say whether `formula` and `clear_formula` can be written there. A target whose cells the direct writer would refuse, such as cells read from an integration or cells whose provenance the read cannot establish, does not advertise those actions; its rule carries a `readOnlyReason` instead, so a write is not attempted where it would fail. Dated Actuals and Forecast defaults keep their own writability.
+
 Use the same requested Scenario for both the saved-formula read and the table read. The saved rule explains the intended calculation. The visible table confirms which rule actually applies to the selected period, segment, and Scenario. A row computed by a rule saved outside the table names that rule's owner and condition in `inherited_from`.
 
 ## Read a monthly table by quarter or year

@@ -44,6 +44,16 @@ if(Revenue > 100, "high", if(Revenue > 50, "medium", "low"))
 
 Nested conditions are useful for a small number of clear outcomes. If the formula becomes difficult to read, consider separating the logic into Variables or using dimension-based formulas.
 
+## Test for an empty value
+
+`null` is the empty value. A date or text Variable that nobody entered and no rule covers reads `null`, so `= null` asks whether a value is missing:
+
+```text
+if(`End Date` = null, 1, 0)
+```
+
+Aside from `= null`, a comparison against a real value in which either side is empty is itself empty, so `if` takes its false branch: `` `End Date` < date(2030, 1, 1) `` is not true for a person with no end date. A number Variable with no value reads 0, not `null`.
+
 ## Handle calculation errors
 
 Use a condition when the fallback is part of the business rule:

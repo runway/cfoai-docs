@@ -19,6 +19,10 @@ A named category used to group, filter, or segment Variables. Examples include D
 
 One entry within a Dimension, such as Sales within Department or West within Region.
 
+## Empty value
+
+The value of a cell that holds nothing, written `null` in a formula. A date or text Variable that no rule or input covers reads it, and so does an ordinary comparison such as `<` or `=` against a real value when either side is empty. The one comparison that does not propagate it is `= null`, which tests whether a value is empty and returns true or false. A number Variable with no value reads 0 instead.
+
 ## Expression
 
 The part of a formula that describes what to calculate.

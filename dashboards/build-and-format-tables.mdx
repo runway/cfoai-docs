@@ -13,7 +13,7 @@ Ask Ari to set:
 - **Variables** — which Variables appear, in what order, each becoming a row. One table can place the same Variable more than once, each placement with its own breakdown and its own default rule for that placement's child rows, so Headcount by Department and Headcount by Employment Type can sit on the same table.
 - **Dimensions and time** — how to segment those Variables by one or more business categories, or by a Date grain such as month or quarter.
 - **Window** — the date range and grain a new table shows. Reconfiguring an existing table's Variables leaves its window alone; change the window through presentation instead.
-- **Transpose** — flip rows and columns, useful for a database-style list of items with attributes across the top instead of a wide row of dates.
+- **Orientation** — flip rows and columns, useful for a database-style list of items with attributes across the top instead of a wide row of dates. There is no separate transpose command; Ari reshapes the table by moving its Variables and Dimensions between rows and columns.
 
 Ask Ari to check a table's declaration for problems, like an axis pointing at a Variable that no longer exists, before assuming a blank result means something is wrong with the numbers themselves.
 
@@ -28,7 +28,7 @@ Once a table calculates the right thing, ask Ari to adjust its presentation with
 - **Comparison** — show another Scenario, or an earlier period, alongside the baseline. See [Create and compare Scenarios](/scenarios/create-and-compare-scenarios).
 - **Sort** — order an axis ascending, descending, or in a manual order you specify.
 - **Formatting** — fill color, bold, italic, underline, strikethrough, and row indent, applied to a whole row, a whole column, or a specific cell.
-- **Transpose** — layout only, the same table read the other way.
+- **Orientation** — the same table read the other way, by moving an axis between rows and columns; the grain of every cell stays the same.
 
 ## Copy a Table Block
 
@@ -45,6 +45,10 @@ A saved formula rule belongs to the Variable, not to the table you wrote it from
 ## Totals add up the rows beneath them
 
 When Ari breaks a Variable down by one or more Dimensions and writes one rule for its lines, each parent row sums the rows directly beneath it by default, so every total equals what you see under it and a value you change on any child row reaches every total above it. Write a parent's own formula only when a sum is the wrong arithmetic, such as a ratio. See [How cfo.ai chooses a formula](/formulas/core-concepts/how-cfoai-chooses-a-formula#breakdown-totals-add-up-the-rows-beneath-them).
+
+## See where a Dimension value comes from
+
+When a table column shows a Dimension whose values an integration supplies, selecting a cell opens the item picker with a row above the list. It reads **Source** and names the query the value comes from, or **Overrides source** when someone picked a different value for that row and saved it. **View source** closes the picker and opens that query's connection in the connection manager. When cfo.ai cannot name the query, the row reads **Integration** and has no link. You can still pick another value; the same editing permissions and source checks apply.
 
 ## Inspect formulas and segments
 

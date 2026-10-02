@@ -14,7 +14,7 @@ If you are familiar with business intelligence or dimensional modeling, cfo.ai u
 | Dimension entry           | Dimension item                                       |
 | Group by, slice, or dice  | Segment by and filtering                             |
 | Grain                     | The Dimensions and Date granularity used for a value |
-| Cube cell                 | A Variable value at a segment, date, and scenario    |
+| Cube cell                 | A Variable's value at one cell address, in a Scenario |
 
 ## Variables are the values being measured
 
@@ -28,13 +28,13 @@ For example:
 
 > Revenue = 100,000 at Department = Sales, Region = West, Date = January 2026, Scenario = Plan
 
-Revenue is the Variable. Department, Region, and Date identify the cell address. Plan provides Scenario context.
+Revenue is the Variable. Revenue, Sales, West, and January 2026 together identify the cell address. Plan provides Scenario context.
 
 ## Grain explains what one value represents
 
 Revenue by month has a different grain from Revenue by day. Revenue by Department and month has a different grain from company-wide Revenue by month.
 
-Formulas recalculate at the requested grain. A margin shown by Department is calculated for each department rather than taking a company-wide margin and dividing it afterward.
+Each cell runs its own formula with its own inputs. A margin shown by Department is calculated from each department's revenue and cost, not derived from the company-wide margin. A parent's value comes from its own saved rule. When Ari breaks a Variable down, that rule is a default that sums the rows beneath the parent, and you can replace it with a ratio or any other arithmetic; see [Breakdown totals add up the rows beneath them](/formulas/core-concepts/how-cfoai-chooses-a-formula#breakdown-totals-add-up-the-rows-beneath-them). Time works differently: a monthly rule does not become a quarterly rule on its own, so quarter and year values use the Variable's time rollup.
 
 ## You do not need a data-warehouse design
 

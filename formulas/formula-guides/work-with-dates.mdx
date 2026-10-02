@@ -43,6 +43,20 @@ Revenue[Date.Quarter = "2026-Q1"]
 Revenue[Date.Year = "2026"]
 ```
 
+## Look up a timestamp by date
+
+A Dimension filled from a source can hold timestamps rather than plain dates, such as one member per sync at `2026-07-01 00:00:00+00`. A lookup key written as a date, whether `date(2026, 7, 1)` or a date Variable, selects the member at midnight of that day when every member of the Dimension comes from its source rows:
+
+```text
+amount_usd$[synced_month = `Snapshot Month`$]
+```
+
+The same date in a rule's condition, `[synced_month = date(2026, 7, 1)]`, never matches a timestamp member. Date text such as `"2026-07-01"` reaches the member at that instant in both places. See [A date lookup returns no value](/formulas/formula-reference/formula-errors-and-troubleshooting#a-date-lookup-returns-no-value).
+
+## Test for a missing date
+
+A date Variable nobody entered reads an empty value, not 0, so `` `End Date` = null `` is true where no end date exists. See [Test for an empty value](/formulas/formula-guides/use-conditional-logic#test-for-an-empty-value).
+
 ## Select a time window
 
 Use an inclusive range when a calculation spans several periods:

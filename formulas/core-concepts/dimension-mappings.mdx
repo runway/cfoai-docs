@@ -14,9 +14,11 @@ Mappings only go one way: pick the shared, canonical Dimension as the **target**
 
 Ask Ari to map specific items, for example, "Map account 5001 to COGS and 6001 to Payroll." A rule for an item that already has a mapping updates that item's existing rule.
 
+Mapping rules have no effective dates: a rule applies in every period. A Dimension whose items come from a formula cannot also be a mapping target, and a mapping always names fixed items; it cannot compute the target item. Ari can also declare a mapping inside the same request that creates the table whose formulas read it, so the table, the Dimension, and its rows save together.
+
 ## When a plain pair isn't enough
 
-Some rows need a real condition instead of a simple equality, like a set of accounts ("8001 or 8002 maps to Other Income") or a rule that spans more than one key at once. Ask Ari to write these as a condition instead of a pair; Ari carries this through into the same formula-style logic used elsewhere in the Model.
+Some rows need a real condition instead of a simple equality, like a set of accounts ("8001 or 8002 maps to Other Income"). Ask Ari to write these as a condition instead of a pair; Ari carries this through into the same formula-style logic used elsewhere in the Model. A rule that spans more than one key at once, such as Account together with Company, needs no condition: Ari matches the pair of items directly.
 
 ## Set a catch-all
 
@@ -29,9 +31,24 @@ Ask Ari to:
 - **Unmap** specific rows, leaving the rest of the lookup untouched.
 - Remove an entire lookup when a source stops feeding into a target altogether.
 
+Removing rows or a lookup keeps the Dimension items themselves; only the assignments go. Each mapping change saves every row it names or none of them.
+
 ## See what's already mapped
 
-Ask Ari to read a target Dimension's mappings. It reports every lookup feeding that target, each with its keys, row count, and the pairs, ready to hand back for an edit. It also lists which Table Blocks display the mapping, so you can see where a change would show up.
+Ask Ari to read a target Dimension's mappings. It reports every lookup feeding that target, each with its keys, row count, and the pairs, ready to hand back for an edit. It also lists every visible table the mapping affects, whether the table shows the mapped items, groups by them, or calculates from them, so you can see where a change would show up. Long lookups come back in pages.
+
+## Change a mapped item in a table
+
+In a Table Block whose column shows a mapped Dimension, selecting a cell opens a picker with a **Search \[Dimension] items** field. Picking an item saves that row's assignment in the mapping, so every table that reads the mapping changes with it. The table cannot create a lookup, set a catch-all, or remove rows; ask Ari for those.
+
+## Share one Dimension across accounting sources
+
+Two accounting sources often carry the same categories, such as Entity and Currency on QuickBooks Online, Xero, and Rillet statements, or Vendor on two general-ledger queries. When a new accounting query publishes for the first time, cfo.ai joins each of its text or number Dimension columns to an existing Dimension when exactly one compatible target exists: the same provider, integration, column name, type, and aggregation. It does not matter whether a built-in template, Ari, or you wrote the query's SQL. Later syncs never regroup, so a Dimension that stayed separate stays separate, and dates and amounts are never combined.
+
+Ask Ari to combine or split Dimensions yourself:
+
+- **Combine** unions compatible source Dimensions into one target, keeps each item's exact label, and rewrites the formulas and table axes that read the others. It needs matching types and aggregation; dates, amounts, and a reference that cannot be rewritten safely are refused, and nothing is saved on a refusal.
+- **Split** turns a combined Dimension back into one Dimension per source column. The original keeps its first source. Amount formulas stay as they are, so a breakdown may no longer add up to its parent total; Ari warns about that.
 
 ## Related
 

@@ -29,12 +29,16 @@ This is for bringing a file's data into your Model as Actuals. To attach a file 
 
 - **QuickBooks Online** (Standard)
 - **Xero** (Standard)
-- **Rillet** — connects with a Rillet API key; a workspace holds one Rillet connection.
+- **Rillet** — connects with a Rillet API key; a workspace holds one Rillet connection. Besides the ledger, it syncs customers, contracts, and invoices as their own tables, so Ari can query bookings and billing beside the accounting data. Its income statement and balance sheet land one row set per subsidiary, with **Entity** naming the subsidiary and **Currency** taken from each row, so a Model can report by subsidiary. Adding the subsidiaries up does not reproduce Rillet's consolidated view, because Rillet applies intercompany eliminations only there.
 - **NetSuite SuiteAnalytics** (via Fivetran, Premium)
 
 Use an accounting or ERP integration when you want Actuals to update automatically each time your books close. QuickBooks Online connections load the profit and loss statement and the balance sheet; Ari builds cash flow from those. Each report loads one row per line as QuickBooks prints it, and a subtotal row is marked as one, so Ari's queries total the detail rows only and do not count a subtotal twice.
 
+A QuickBooks Online full-history load also fetches the balance sheet for the month before the history window begins, so the first month of Actuals can show how each balance changed. A Xero read that Xero refuses with a temporary error is retried a few times before the load reports a failure, and so is a QuickBooks Online read that fails because the provider was still refreshing the company's access token.
+
 A workspace holds one QuickBooks Online company and one Xero organisation at a time. Connecting a second one reports that the integration's connection limit is reached. If you run more than one legal entity and want the group in a single Model now, export the second entity's ledger and bring it in through **CSV / Raw File Upload**, then give the Model an Entity Dimension so you can report on each entity and on the group. [Dimension mappings](/formulas/core-concepts/dimension-mappings) covers landing two entities' account structures in one reporting structure. Ask Ari what your own workspace allows before you plan around the limit.
+
+Statements from QuickBooks Online, Xero, and Rillet carry **Entity** and **Currency** columns, and an accounting query's compatible Dimensions join the ones an earlier query created on its first sync, so two sources share one Entity rather than two. See [Share one Dimension across accounting sources](/formulas/core-concepts/dimension-mappings#share-one-dimension-across-accounting-sources).
 
 cfo.ai checks that NetSuite shares the tables the income statement and balance sheet need when the connection first finishes setup, and again before every sync, whether the nightly refresh or one you ask Ari for. If a table is missing, the connection's row on the **Integrations** tab of the connection manager carries an **Access missing** badge, and its warning reads: **NetSuite isn't sharing some tables cfo.ai needs for your financial statements. Have your NetSuite admin create an access token for the Data Warehouse Integrator role, then reconnect NetSuite with that token. Changing only the role ID won't work. Missing tables: …**
 
@@ -46,6 +50,8 @@ A NetSuite access token belongs to one role, so entering a different role ID in 
 
 Connect Rippling to bring headcount, compensation, and other people data into your Model alongside your financials. cfo.ai's catalog also lists a much longer roster of HR and payroll systems available to connect (via Merge), including BambooHR, Gusto, Workday, ADP Workforce Now, Paychex, Paycor, Justworks, TriNet, UKG Pro, Deel, Personio, Hibob, and dozens more. If your HR system is not Rippling, ask Ari to check whether it is in the catalog before assuming you need a file upload or manual entry instead.
 
+A payroll system connected via Merge, such as Gusto, loads benefits and pay groups separately from payroll, so a payroll row the warehouse refuses no longer discards the benefits that loaded with it; the sync reports the benefit rows it wrote and why payroll was not written. Gusto pay stubs that arrive without a parent payroll run are kept.
+
 A new Rippling connection syncs the seven tables cfo.ai's daily employee roster reads: workers, users, worker details, departments, teams, team membership, and work locations. There is no table picker for Rippling. Rippling connections made earlier keep the tables they already sync. A numeric roster column such as pay rate reads, in each period, each employee's latest value in that period; a period with no sync carries the previous value forward, and an explicit zero replaces it. Department and company totals add each employee's latest value once.
 
 ## CRM
@@ -55,11 +61,14 @@ A new Rippling connection syncs the seven tables cfo.ai's daily employee roster 
 
 Connect a CRM when Bookings, pipeline, or customer data needs to feed your Model directly, rather than being re-entered from a report export.
 
-## Spreadsheets
+A HubSpot connection syncs a fixed set of 20 tables: deals, deal pipelines and their stages, owners, contacts, companies, line items, products, and invoices; the links between deals, contacts, companies, line items, and invoices; and the property histories of line items, products, and invoices, so Ari can attribute a deal to its contact or company and reconcile invoices against deals. A table HubSpot does not expose is skipped. Every sync reapplies that set, so a table someone enabled in Fivetran outside it stops syncing, and a deal still loads when the account has no deal type field.
 
-- **Google Sheets** (via Fivetran, Standard)
+## Spreadsheets and files
 
-Use a Google Sheets connection when a Variable is still maintained in a spreadsheet outside your other systems.
+- **Google Sheets** (Standard)
+- **Google Drive**
+
+Use a Google Sheets connection when a Variable is still maintained in a spreadsheet outside your other systems. You sign in with Google and pick one spreadsheet in Google's file picker; cfo.ai reads only the files you pick and keeps no copy of the files themselves; the data Ari imports from a file is stored in your Model like any other import. **Google Drive** works the same way for one Google Sheet, Excel workbook, or CSV file. Ari imports the file as it would an upload, and the connection re-reads it on the nightly refresh and when you ask Ari to refresh it; a file over 10 MB is not imported until it is made smaller. Every Google Sheets connection in a workspace shares one plan slot, while each Google Drive connection takes a slot of its own; your workspace's Usage settings show which class your plan gives each. See [Connect a Google Sheet or Drive file](/integrations/connect-and-sync-data#connect-a-google-sheet-or-drive-file).
 
 ## Databases
 
@@ -74,7 +83,7 @@ The connectors shown in your workspace's catalog can differ from this list depen
 
 ## Connections for Ari
 
-The integrations above bring data into your Model. Separately, **Settings → Connections** lets an authorized workspace administrator connect external tools and services for Ari to use directly. The **MCP** and **APIs** tabs show available connections and the services already connected for your workspace.
+The integrations above bring data into your Model. Separately, **Settings → Connections** lets an authorized workspace administrator connect external tools and services for Ari to use directly. The **MCP** and **APIs** tabs show available connections and the services already connected for your workspace. Ari can also prepare one of these connections for you in chat; see [Ask Ari to connect an MCP server or API](/integrations/connect-and-sync-data#ask-ari-to-connect-an-mcp-server-or-api).
 
 ### MCP Connectors
 
@@ -90,7 +99,7 @@ Browsable by category:
 - **Productivity & Docs** — Notion, Linear, Atlassian (Jira and Confluence), Airtable, monday.com
 - **Data & Analytics** — Supabase and ThoughtSpot
 
-If you do not see what you need, use **Add server** or the search bar to look for others.
+If you do not see what you need, use **Add server** or the search bar to look for others. **Add server** opens the **Add MCP server** dialog, which takes a **Name** and the **MCP URL**; under **Advanced**, its **Authentication** choice is **OAuth**, **Bearer token**, or **API key header** with a **Header name** such as `X-API-Key`. Connections made from this catalog or the API list show the company's logo on the Variables, Dimensions, and tables they produce. A server or API you add by address shows its company's logo too when the address is a public company domain; a private or local address keeps a generic mark.
 
 For how to connect cfo.ai's own MCP server to Claude Code, see the [MCP Server](/integrations/mcp-server) page.
 
@@ -113,11 +122,11 @@ A separate, direct list of API connections:
 - Frankfurter — FX rates, no key needed
 - U.S. Treasury Fiscal Data — no key needed
 
-Use **Add API** or the search bar for anything not listed.
+Use **Add API** or the search bar for anything not listed. **Add API** takes an OpenAPI document, version 3.0 or 3.1. When the document cannot be used, the connection reports the stage that failed and a short reason, such as a required field that is missing, a reference that does not resolve, or an unsupported version field, and a workspace administrator can ask Ari for the ten most recent setup attempts.
 
 ## How integrations stay current
 
-Connected integrations refresh once a night, automatically. The refresh starts in the early morning UTC and finishes within a few hours, so your Actuals are fresh by the start of the US workday. Every integration follows the same schedule, whether it is QuickBooks Online, Xero, NetSuite, Google Sheets, or a database.
+Connected integrations refresh once a night, automatically. The refresh starts in the early morning UTC and finishes within a few hours, so your Actuals are fresh by the start of the US workday. Every integration follows the same schedule, whether it is QuickBooks Online, Xero, NetSuite, Google Sheets, or a database. A connection's **last loaded** time counts successful loads only; a refresh that failed does not move it.
 
 There is no manual refresh button today. If you need a number sooner than the next nightly run, ask Ari to refresh the connection:
 

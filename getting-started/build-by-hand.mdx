@@ -12,8 +12,8 @@ You and Ari edit the same Model, so anything you build here is visible to Ari an
 
 Sign in at [app.cfo.ai](https://app.cfo.ai). The click paths below assume a desktop browser. A phone browser opens the same workspace in a read-only presentation for reading and asking Ari; see [Use cfo.ai on a phone](/getting-started/understand-your-workspace#use-cfoai-on-a-phone). The app has four areas you will use throughout this guide.
 
-- **Navigation sidebar** on the left. It holds **New chat**, your chat list, the **Model** section with the current Scenario and its list of Pages, and **Connections**. Your account menu sits at the bottom of the sidebar.
-- **Page header** above the Page. It shows the Page icon and name, a date-range control that applies to every block on the Page, the access badge, **Share**, **Version history**, and **New chat**.
+- **Navigation sidebar** on the left. It holds the **Search** field (see [Search your workspace](/getting-started/understand-your-workspace#search-your-workspace)), **New chat**, your chat list, the **Model** section with the current Scenario and its list of Pages, and **Connections**. Your account menu sits at the bottom of the sidebar. The **Model** section appears once the workspace has its first Page; in a new workspace, Ari creates it.
+- **Page header** above the Page. It shows the Page icon and name, a date-range control that applies to every block on the Page, **Download spreadsheet**, the access badge, **Share**, **Version history**, and **New chat**. The date-range control appears only when the Page holds a table, a chart, or a Canvas block with data.
 - **Account menu**. Open it from the avatar at the bottom of the sidebar for **Appearance**, **Settings**, **Help center**, **Manage memories**, **Manage triggers** (administrators only), the workspace switcher under **Workspaces**, and **Log out**.
 
 <Tip>
@@ -28,7 +28,7 @@ A Page is a dashboard of blocks. Pages nest, so a top-level Page can hold subpag
 
 <Steps>
   <Step title="Create a Page">
-    In the sidebar's **Pages** section, select the **+** button labeled **New page**. cfo.ai creates a Page named "New Page" and opens it. To create a subpage, hover a Page row and select its **New subpage** button.
+    In the sidebar's **Model** section, select the **+** button labeled **New page**. cfo.ai creates a Page named "New Page" and opens it. To create a subpage, hover a Page row and select its **New subpage** button. A workspace that has never had a Page shows no **Model** section yet; its first Page comes from Ari, or from the **Create page** button in the empty model pane that a chat's **Expand model pane** button opens. The **Model** section appears as soon as that Page exists.
   </Step>
   <Step title="Rename the Page">
     Double-click the Page row in the sidebar, or select it and press **F2**. You can also click the Page name in the Page header and type. Press **Enter** to save or **Esc** to cancel.
@@ -227,6 +227,8 @@ The formula columns start hidden. Rest the pointer on the **fx** button (**Show 
 
 Once your workspace has a **Last close** date, a Variable can have one formula for Actuals and another for Forecast. The table's formula column splits into **Actuals Formula** and **Forecast Formula**, and the editor shows one section per range. Right-click either column and choose **Hide column** to hide only that one; the remaining column then offers **Show Actuals column** or **Show Forecast column**. Set Last close in **Settings → General → Date & Time**, or from the Scenario's actions menu.
 
+A range that has no formula of its own shows the formula it inherits, dimmed, with the notice **Inherited from Actuals formula** (or **Forecast**) and an **Edit source formula** action that opens the owning range. A formula the range owns opens at full strength and edits in place, so saving it updates that formula instead of creating a second copy.
+
 ## Configure and format a table
 
 Most table configuration lives in the right-click menu. Right-click a cell, a row label, or a column header. On macOS, **Control click** works too.
@@ -392,7 +394,7 @@ Right-click a Dimension header, open **More settings**, and choose **Dimension s
 
 There is no separate mapping screen. To reconcile two sets of categories by hand, create a new Dimension for the unified names, then build a table with the source Dimension segmenting the rows and the new Dimension added as a mapping. Type the unified name into each row's cell. Repeat for each source. Ari can also author mappings for you; see [Dimension mappings](/formulas/core-concepts/dimension-mappings).
 
-For advanced cases, right-click a Dimension header and choose **Edit dimension formula** to define its items with a formula.
+For advanced cases, right-click a Dimension header, open **More settings**, and choose **Edit dimension formula** to define its items with a formula.
 
 ## Scenarios
 
@@ -400,6 +402,7 @@ The Scenario picker is the **Main Scenario** control in the sidebar's **Model** 
 
 - **Switch** by opening the picker and selecting a Scenario. The URL updates, so you can bookmark a Scenario view.
 - **Create** by selecting **Create scenario** at the bottom of the picker and typing a name. The new Scenario inherits everything from Main and keeps your changes separate.
+- **Take a Snapshot** by selecting **Take snapshot** above **Create scenario** while viewing Main or an editable Scenario. The **Take snapshot** dialog suggests the name **\[Scenario] snapshot**, explains that it **Pins \[Scenario] at its latest saved version** and that later changes and integration syncs stop flowing into it, and saves with **Create snapshot**. A Snapshot's picker entry offers no further snapshot. Both actions need permission to create Scenarios and are not offered on a phone.
 - **Manage** by hovering a Scenario in the picker and selecting its actions gear. The menu offers **Version history**, **Last close**, **Share**, **Rename**, and **Delete**. Main Scenario cannot be renamed or deleted, and a Scenario with child Scenarios cannot be deleted.
 - **Merge** by selecting the **Merge** button beside the picker while viewing a Scenario. The dialog explains that merging applies every change in the Scenario to Main and then deletes the Scenario. Review the change preview, then select **Merge scenario**.
 
@@ -410,9 +413,9 @@ To see two Scenarios side by side, use a table's **Compare** control. See [Under
 Every change to the Model is recorded, whether you or Ari made it.
 
 - Press **⌘ Z** to undo your last change and **⌘ Shift Z** to redo it. These work anywhere in the app except while you are typing in a text field or formula editor.
-- Select **Version history** (the clock icon in the Page header) to open the timeline. Each entry names who made the change, when, and what it touched. Use **Filter version history** to narrow by person or change type, and **Jump to date** to move through time.
+- Select **Version history** (the clock icon in the Page header) to open the timeline. Each entry names who made the change, when, and what it touched. A formula entry names the Variable and, for a rule with a condition, the condition and its reach: **includes additional dimensions** when the rule also covers cells that carry more Dimensions, or **exact grain** for a rule that matches exactly the Dimensions it names (Ari's receipts call the same reach `this grain only`). Use **Filter version history** to narrow by person or change type, and **Jump to date** to move through time.
 - Select an entry to view the Model as it was at that moment. A banner reads **Viewing version … Read-only** with **Restore this version** and **Back to current**.
-- Open an entry's actions menu for **Undo this change**, **Redo this change**, **Restore this version**, and **Copy link to version**. Undoing a change that later changes depended on prompts you to confirm first.
+- Open an entry's actions menu for **Undo this change**, **Redo this change**, **Restore this version**, **Take snapshot here**, and **Copy link to version**. Undoing a change that later changes depended on prompts you to confirm first. **Take snapshot here** opens the same dialog as the Scenario picker and pins the new Snapshot at that entry's version instead of the latest one.
 
 Restoring a version needs full access to the Scenario.
 
@@ -420,7 +423,7 @@ Restoring a version needs full access to the Scenario.
 
 <Steps>
   <Step title="Open Connections">
-    Select **Connections** in the sidebar. A popover lists your connections with an **Add** button that opens the connection manager. The manager has three tabs: **Integrations** for business systems and file uploads, **MCP** for MCP servers Ari can call, and **API** for other services' APIs.
+    Select **Connections** in the sidebar. A popover lists your connections with an **Add** button that opens the connection manager. The manager has three tabs: **Integrations** for business systems and file uploads, **MCP** for MCP servers Ari can call, and **API** for other services' APIs. On the **MCP** tab, **Add server** opens the **Add MCP server** dialog with a **Name** and the **MCP URL**; its **Advanced** section has an **Authentication** choice of **OAuth**, **Bearer token**, or **API key header**, which takes a **Header name** such as `X-API-Key` and the key.
   </Step>
   <Step title="Choose a source">
     On the **Integrations** tab, search the directory or browse it by category. The directory sorts by **Relevance** with common sources first, and you can switch between grid and list views. Select a card's **Connect** button to start its connect flow and approve access in the browser window that opens. cfo.ai never sees your password.
@@ -434,6 +437,12 @@ Restoring a version needs full access to the Scenario.
 </Steps>
 
 Hover a connection for its actions: **Finish setup** when setup never finished, **Reconnect** when the source revoked access or when a sync failed and the connection needs attention, **Update file** to replace a CSV in place, **Rename**, and **Remove**. A connection that is healthy or still syncing does not offer **Reconnect**, because signing in again cannot help it. A first sync that is queued but not yet running reads **Syncing**. An MCP server or API connection offers **Manage** and **Disconnect** instead. For details on each source, see [Connect and sync your data](/integrations/connect-and-sync-data).
+
+## Download a Page as a spreadsheet
+
+Select **Download spreadsheet** in the Page header. Each visible Table Block becomes a worksheet with its formulas and the Model inputs they read on a **Model inputs** sheet; text, charts, and Canvas blocks are left out. The export runs in the background, and the button reads **Spreadsheet queued** and then **Preparing spreadsheet** until the file downloads. When the Scenario you are viewing is also one that a table compares against, the export leaves the viewed Scenario out of that table's comparison columns, because the sheet already shows the viewed Scenario as its own column.
+
+You can also ask Ari to export one Page, or several Pages in one workbook: Ari saves the finished workbook as a file in the chat, where you can download it and Ari can open it again later. A workbook that covers several Pages keeps its formulas linked across the sheets and shares one **Model inputs** sheet. If an export fails, Ari can say which step and which table, Scenario, Variable, or period stopped it, and whether trying again can help.
 
 ## Share a Page
 
@@ -463,6 +472,7 @@ Use **Ctrl** in place of **⌘** on Windows and Linux.
 | Shortcut | Action |
 | --- | --- |
 | **⌘ Z** / **⌘ Shift Z** | Undo / redo a Model change |
+| **⌘ K** | Open or close workspace search |
 | **⌘ ?** | Open the Help center |
 | **↑ ↓** | Move through Pages in the sidebar, or blocks on a Page |
 | **→ ←** | Expand or collapse a Page in the sidebar |

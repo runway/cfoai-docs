@@ -13,12 +13,12 @@ Common starting points include:
 - Accounting systems such as QuickBooks Online, Xero, or NetSuite.
 - HR and payroll systems such as Rippling, Gusto, BambooHR, or Workday.
 - CRM systems such as HubSpot or Salesforce.
-- Google Sheets or a PostgreSQL-compatible database.
+- A Google Sheet, a file in Google Drive, or a PostgreSQL-compatible database.
 - A CSV or another supported file-upload flow for a source that is not connected directly.
 
 Available sources and plan entitlements can vary. Ask Ari to check the catalog for the system you use.
 
-A file used as a data source must be a CSV with a `.csv` extension, up to 50 MB. An Excel workbook is not accepted as a data source: attach it to a chat message for Ari to read, or ask Ari to [import it as a model](/getting-started/import-a-spreadsheet-model).
+A file you upload as a data source must be a CSV with a `.csv` extension, up to 50 MB. An uploaded Excel workbook is not accepted as a data source: attach it to a chat message for Ari to read, ask Ari to [import it as a model](/getting-started/import-a-spreadsheet-model), or connect it through [Google Drive](#connect-a-google-sheet-or-drive-file), which imports a workbook the way Ari imports an upload.
 
 ## Connect a business system
 
@@ -55,12 +55,20 @@ A file used as a data source must be a CSV with a `.csv` extension, up to 50 MB.
 You can also start without Ari. Select **Connections** in the sidebar, then **Add**. The connection manager opens with three tabs:
 
 - **Integrations** lists the business systems cfo.ai can import from, with a **Connect** button on each card and an **Upload** button for CSV files.
-- **MCP** lists MCP servers Ari can call, such as Linear or Notion, plus **Add server** for one that is not listed. Ari sees each connected server's name and status at the start of every message, so it knows to read a bank balance from a connected Mercury server without being told.
+- **MCP** lists MCP servers Ari can call, such as Linear or Notion, plus **Add server** for one that is not listed. The **Add MCP server** dialog takes a **Name** and the **MCP URL**; its **Advanced** section has an **Authentication** choice of **OAuth**, **Bearer token**, or **API key header**, the last with a **Header name** such as `X-API-Key` and the key. A server that refuses Ari because it needs a sign-in says so: **This MCP server requires sign-in. Disconnect it and add it again with OAuth or a bearer token.** Ari sees each connected server's name and status at the start of every message, so it knows to read a bank balance from a connected Mercury server without being told.
 - **API** lists other services' APIs Ari can reach, such as Stripe, plus **Add API**.
 
 The same popover shows each connection's status and its actions. See [Connect data by hand](/getting-started/build-by-hand#connect-data) for the click paths.
 
 A connection you start here still reports to you in chat. While your workspace is new, before any connection has completed a first sync, cfo.ai ties the new connection to your most recent chat, so Ari announces there when the link completes and when the first sync finishes or fails. After that, the result of a background sync, such as data that is ready to model or a first sync that failed, is still delivered to the chat you used most recently.
+
+## Ask Ari to connect an MCP server or API
+
+A workspace administrator can also have Ari set up an MCP server or an API from the chat, for example "Connect PostHog's MCP server." Ari reads the provider's official documentation, then posts a card headed **Connect [service]** with the service's logo, its address, how it signs in, and a **Provider documentation** link. In this chat flow an MCP server signs in with OAuth or a **Bearer token**; a server that needs an API key header is added from the **Add MCP server** dialog instead. An API uses a **Bearer API key**, a named header, an **API key as Basic username**, or **No authentication**. The card carries no credentials, and Ari never asks for a key in the chat.
+
+Select **Connect**. A service that uses OAuth opens its sign-in window; one that takes a token or key shows a secure field on the card, and what you type there goes to cfo.ai's connection service, not to Ari or into the conversation. The card reads **Connecting…**, then **Checking connection…** while cfo.ai confirms that the server's tools answer or that the API's endpoints loaded, then **Connected** for a server or **API saved** for an API. On a failure it offers **Retry**, and a retry keeps a connection that was already saved; **Cancel** stops the setup. A member who cannot manage connections sees **A workspace admin must connect this service.**
+
+Once the card completes, Ari continues in the same chat: it checks the connection's tools or endpoints and, for an API, verifies the key with a documented read before relying on it. **API saved** means the definition parsed, not that the key works. An OAuth provider that needs a preregistered app, and an API that signs in with a username and password or with a key in the query string, cannot be set up this way; Ari says so instead of collecting the secret.
 
 ## Finish a connection you started earlier
 
@@ -69,6 +77,17 @@ If the source's sign-in window closes before you finish authorizing, for example
 Connecting the same source again later continues the unfinished connection instead of starting a new one, whichever door you use: **Connect** on the source's card, **Finish setup** on the connection, a connect link, or asking Ari. This applies while no connection to that source is linked yet and the earlier connection's setup never finished: its status reads **Setup not finished**, or it failed because its link expired. The status says only what cfo.ai knows for certain: the setup may have failed, been abandoned, or still be open in a teammate's tab.
 
 If a Fivetran-backed source's table picker loses track of the setup, for example because you finished it in another tab, the page reads **Fivetran setup was interrupted** and offers **Go to cfo.ai**. The connection was saved, so choose **Finish setup** on it to continue. A connection that lost access and reads **Reconnect required** is not picked up this way; use **Reconnect** on it. Continuing a connection someone else started needs edit access to that connection. When you continue a connection from a chat, that chat is the one Ari reports to when the link completes and the first sync finishes.
+
+## Connect a Google Sheet or Drive file
+
+**Google Sheets** and **Google Drive** are listed under **Data upload** on the **Integrations** tab. Select **Connect** on the card: a Google sign-in opens, then Google's own file picker, where you choose one file. The Google Sheets picker shows spreadsheets; the Google Drive picker also shows Excel workbooks and CSV files. The card reports **Opening Google authentication…**, **Choosing in Google…**, **Completing connection…**, and then **Connected**. Google grants cfo.ai access to the files you pick and nothing else in your Drive, and you can revoke it from your Google account.
+
+What happens next depends on where you connected:
+
+- **From a chat.** Ari attaches the file to that chat and imports it there, so Ari can ask you about the sheet while it works. The connection row reads **Attached to the chat that connected it. Ari imports it there.** Once that chat has imported the sheet, the row links the Page Ari built and reads **The chat that connected it handles later changes.**
+- **From the connection manager.** Ari imports the file in the background without opening a chat. The row reads **Waiting for the first sync to read this file…**, then **Ari is importing this file…**, then **Imported to \[Page]**, with a link to the Page Ari built, and **Ari updates the model when the file changes.** If Ari stopped partway, the row says so and the next sync tries again.
+
+A Google Sheet is read with every tab, its formulas, cached values, and number formats, and Ari rebuilds it the way it rebuilds an uploaded workbook. Each sync compares the file with the last import and does nothing when it is unchanged; a changed file starts an update of the Model. A file larger than 10 MB shows **This file is too large to import. Make it smaller and the next sync imports it.** One connection reads one file, and the same file cannot be connected twice in a workspace. A Google Sheets or Google Drive connection made earlier through Fivetran keeps syncing as it did.
 
 ## Upload a file
 
@@ -93,7 +112,11 @@ A connected source is ready only after its background load completes. A linked a
 
 After the first load, connected integrations refresh once a night, automatically; there is no manual refresh button, so ask Ari to refresh a connection if you need newer data sooner. File uploads never refresh on their own. See [how integrations stay current](/integrations/integrations-directory#how-integrations-stay-current).
 
-If the Model contains fewer rows than the source file, ask Ari which source records were included. A saved query may intentionally filter the source to match your request. When a connection's saved queries return no rows although the source holds data, for example because a query joins through an empty report table, Ari can hand the connection to a background worker that repairs the queries.
+If the Model contains fewer rows than the source file, ask Ari which source records were included. A saved query may intentionally filter the source to match your request. When a connection's saved queries return no rows although the source holds data, for example because a query joins through an empty report table, Ari can hand the connection to a background worker that repairs the queries. When you ask when a connection last loaded, Ari answers from the last successful load; a failed or canceled refresh does not count.
+
+Ask Ari to remove a saved query you no longer need. Ari first previews what the removal retires, the Variables and Dimensions the query owns and the formulas and tables that read them, and deletes only when you confirm that list; the connection and its other queries stay. A query whose load is still running cannot be removed until it finishes.
+
+When Ari reports that a source finished loading, it names the periods the load covered, such as **January 2025–September 2026**, and says that completion establishes nothing about data outside that range. A table the source finished with some records unavailable is called out as a partial result rather than complete Actuals.
 
 Each column a query returns loads into the Model as a Variable or a Dimension. cfo.ai guesses the role when the column first loads: a numeric column becomes a summed Variable unless its name ends in "id". If a code such as an account number loaded as a summed Variable, ask Ari to load it as a Dimension instead. Ari switches the role in place, so formulas, tables, and filters that already point at the column keep working, and every later load keeps the new role.
 
@@ -109,7 +132,7 @@ If the provider's screen says you are already connected, its main button may rea
 
 ## When a sync fails
 
-A source that syncs through Fivetran, such as NetSuite, HubSpot, Salesforce, Google Sheets, or a database, stays connected when a sync fails on the provider's side. The connection shows that it needs attention and still offers **Reconnect**, which re-runs the provider's setup checks, but its status changes to **Reconnect required** only when the provider asks for a new authorization. cfo.ai retries the sync on the next nightly run, and you can ask Ari to retry it now.
+A source that syncs through Fivetran, such as NetSuite, HubSpot, Salesforce, a database, or a Google Sheets connection made earlier through Fivetran, stays connected when a sync fails on the provider's side. The connection shows that it needs attention and still offers **Reconnect**, which re-runs the provider's setup checks, but its status changes to **Reconnect required** only when the provider asks for a new authorization. cfo.ai retries the sync on the next nightly run, and you can ask Ari to retry it now.
 
 A NetSuite connection also checks, before every sync, that NetSuite still shares the tables the financial statements need, and shows **Access missing** when one is hidden. See [NetSuite table access](/integrations/integrations-directory#accounting-and-erp).
 

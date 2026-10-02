@@ -1,20 +1,20 @@
 ---
 title: "Understand table view grammar"
 sidebarTitle: "Table view grammar"
-description: "Understand the breakdown grammar that shapes a Table Block's rows and columns, so you can describe the layout you want precisely."
+description: "Understand the breakdown notation that describes a Table Block's rows and columns, so you can describe the layout you want precisely."
 ---
 
-When you ask Ari to build or reshape a Table Block (see [Build and format a Table Block](/dashboards/build-and-format-tables)), the shape of its columns is described in a compact grammar called a **breakdown**. You don't need to write this yourself — Ari does — but knowing the shapes helps you describe what you want precisely.
+When you ask Ari to build or reshape a Table Block (see [Build and format a Table Block](/dashboards/build-and-format-tables)), Ari sends the table's `rows` and `columns` as a typed list: each entry names one Variable, one Dimension, the Date axis at a grain, a blank row, or a fork into side-by-side branches, and a Variable entry can carry its own breakdown of Dimension levels. The same shapes have a compact written form called a **breakdown**, which Ari reads in its modeling reference and which the product uses internally. You don't need to write either form yourself, but knowing the shapes helps you describe what you want precisely.
 
 ## The basic forms
 
 - **One Dimension**: `[Department]` splits a row's values across every Department.
 - **A name with spaces**: ``[`Spend Type`]`` — backticks quote a Dimension name that is not a single word.
 - **Nested segmentation**: `[Department, Level]` splits by Department, then splits each Department further by Level.
-- **Side-by-side split**: `[Department, {Level, Owner}]` splits by Department, then forks into two parallel breakdowns — one by Level, one by Owner — under each Department.
-- **A branch condition**: `[Department, {Level[Department = "Engineering"], Owner}]` routes the Level breakdown under Engineering specifically, while Owner applies more broadly.
-- **Filtering to specific items**: `[Region in {East, West}]` keeps only the named items instead of showing every item in the Dimension.
-- **A date grain**: `[Date.Month]` buckets a date Dimension at a chosen grain — Day, Week, Month, Quarter, Half, or Year.
+- **Side-by-side split**: `[Department, {Level, Owner}]` splits by Department, then forks into two parallel breakdowns — one by Level, one by Owner — under each Department. Each path from the top of a breakdown to its end can fork once.
+- **A branch condition**: `[Department, {Level[Department = "Engineering"], Owner}]` routes the Level breakdown under Engineering specifically, while Owner applies more broadly. A branch condition names one item of an earlier Dimension on the same path; a condition over several items is not accepted yet.
+- **Filtering to specific items**: `[Region in {East, West}]` keeps only the named items instead of showing every item in the Dimension. Only a list of items to keep works here; ranges, exclusions, and `where` conditions are not accepted yet.
+- **A date grain**: `[Date.Month]` buckets a date Dimension at a chosen grain — Day, Week, Month, Quarter, Half, or Year. A table has one Date axis.
 
 ## Variables vs. Dimensions as rows
 
@@ -23,15 +23,15 @@ Each row in a table's view is either:
 - A **Variable**, which measures something (Revenue, Headcount, Gross Margin), or
 - A **Dimension used as a mapping**, where each cell shows that Dimension's item for its row and column instead of a number — useful for a database-style list of entities and their attributes.
 
-A Variable row can carry its own breakdown, splitting just that one row differently from the rest of the table.
+A Variable row can carry its own breakdown, splitting just that one row differently from the rest of the table. A mapping row takes no breakdown.
 
-## Transpose
+## Orientation
 
-By default, a view with a measured Variable keeps values on rows and its Dimensions, including time, on columns. A mapping-only view can be easier to read with items down the rows and their attributes across the columns. Ask Ari to transpose the table when that layout better matches the question.
+A view with a measured Variable keeps values on rows and its Dimensions, including time, on columns. A mapping-only view already reads down the rows: source keys on rows and their mapped attributes across the columns. There is no separate transpose action; to flip a table, ask Ari to reshape it by moving the Variables between rows and columns. Moving an axis changes the presentation, not the grain of any cell.
 
 ## When a table comes back empty
 
-An empty result on a table with dates is almost always a **window** problem — the date range or grain the table is set to show — not a breakdown problem. Ask Ari to check the table's window before reworking its breakdown.
+An empty result on a table with dates often means the table's **window**, the date range and grain it is set to show, does not cover the dates that hold values: writing dated values does not move the window, and a wrong window is fixed on the table itself. Two other causes are common: a member whose cells are all empty is hidden when the table hides empty members, and a member outside a formula's condition reads empty. Ask Ari to check the table's window before reworking its breakdown.
 
 ## Related
 

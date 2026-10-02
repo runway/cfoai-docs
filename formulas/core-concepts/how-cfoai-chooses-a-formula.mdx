@@ -41,6 +41,10 @@ When a sum is the wrong arithmetic, write the parent's own formula. A ratio such
 
 The totals are written only under a rule that covers every line. A default you write for one parent's children by hand, such as **Default for every Customer** from the Customer header under one product, applies to that product's customers alone and writes no totals; the parent rows keep their own rule, or show 0 until one is written. Ask Ari to write the line rule for the whole breakdown when the totals should add up.
 
+## A cell no rule covers
+
+When no formula applies to a cell and nothing was entered there, the cell reads a default chosen by the Variable's type: 0 for a number, and an empty value for a date or text Variable. An imported Variable reads its source column in Actuals and the default in Forecast months unless a rule covers them. See [A date or text cell nobody filled in reads empty](/formulas/formula-reference/formula-errors-and-troubleshooting#a-date-or-text-cell-nobody-filled-in-reads-empty).
+
 ## Avoid overlapping exceptions
 
 Several highly specific formulas can make a model difficult to reason about. Prefer one clear default and add overrides only for real differences in business logic.

@@ -134,6 +134,10 @@ When a write changes a shared mapping row, the receipt's `shared_mapping_changed
 
 `formula` and `clear_formula` write a Variable's timeless rule. A `create` writes it for a Variable it makes, and an `update` writes it on an undated row or column. A dated row's rules are `default_formulas.actuals` and `default_formulas.forecast`, which create and update both accept; create and update refuse a timeless `formula` on a dated row with the same sentence. A `child_defaults` clear on create goes to the same planner an update uses, so a child that owns no rule reports `unchanged`.
 
+## A member-list axis has no formula to edit
+
+`formula` and `clear_formula` edit the rule of a calculated value: a Variable, a Dimension shown as a value through its mapping or formula, or the Variable that encloses a Dimension breakdown. An axis that only lists a Dimension's members has no calculated value, so a formula edit aimed at it is refused with a reason instead of a resolution error. The reason says that `dimensions` `add_items`, `remove_items`, `replace_items`, and `rename_items` edit saved membership, that a retained breakdown edits its enclosing Variable's rule, and that a formula which generates a source-linked Dimension's members has no authoring operation in the tool: the person writes it from the Dimension's row-header menu, **More settings**, then **Edit dimension formula**.
+
 ## Save a Variable's rule without a table
 
 When the requested rule has no visible table target, name the Variable in a `variables` entry instead. No table `target` is needed:
@@ -209,6 +213,8 @@ A `create` whose rules read a mapped Dimension can declare the mapping in the sa
 `window` is the table's own date range and grain. On a `create` it holds `start`, `end`, and `granularity`: a dated table names its grain, such as `MONTH`, and a timeless table names `NO_GRANULARITY`, as the example above does. On an `update`'s settings the range is `{"type": "ABSOLUTE", "start": …, "end": …}`. `start` and `end` accept a plain calendar date such as `2026-02-01` as well as a full timestamp, and create and update save the same window for either spelling. `{"inherit": true}` clears the table's own window. `update` with `grain` moves the table's Date columns to that grain, so a monthly table asked for `QUARTER` shows quarter columns and the receipt reports the moved Date column; a table whose Date header shows two grains at once, such as Year above Month, is refused a new grain.
 
 A `values` write names each Date column by the start of its period at the table's grain. On a table with yearly columns, `2024-01` writes the 2024 cell; `2024-02` is refused as a date inside a YEAR period, and the refusal names the spelling that works.
+
+Dated inputs in `values` or `cell_updates`, and the periods a `readback` selects, leave the table's saved display window unchanged. A report that must show a requested start and end needs `window` set on the same call, or the table keeps showing its old range with the new months outside it; a readback of selected months proves those cells, not the displayed range.
 
 ## Write in a Scenario
 

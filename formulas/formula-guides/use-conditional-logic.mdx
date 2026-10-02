@@ -52,7 +52,7 @@ Nested conditions are useful for a small number of clear outcomes. If the formul
 if(`End Date` = null, 1, 0)
 ```
 
-A comparison in which either side is empty is itself empty, so `if` takes its false branch: `` `End Date` < date(2030, 1, 1) `` is not true for a person with no end date. A number Variable with no value reads 0, not `null`.
+Aside from `= null`, a comparison against a real value in which either side is empty is itself empty, so `if` takes its false branch: `` `End Date` < date(2030, 1, 1) `` is not true for a person with no end date. A number Variable with no value reads 0, not `null`.
 
 ## Handle calculation errors
 

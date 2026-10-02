@@ -21,7 +21,7 @@ One entry within a Dimension, such as Sales within Department or West within Reg
 
 ## Empty value
 
-The value of a cell that holds nothing, written `null` in a formula: a date or text Variable that no rule or input covers, or a comparison in which either side is empty. A number Variable with no value reads 0 instead.
+The value of a cell that holds nothing, written `null` in a formula. A date or text Variable that no rule or input covers reads it, and so does an ordinary comparison such as `<` or `=` against a real value when either side is empty. The one comparison that does not propagate it is `= null`, which tests whether a value is empty and returns true or false. A number Variable with no value reads 0 instead.
 
 ## Expression
 

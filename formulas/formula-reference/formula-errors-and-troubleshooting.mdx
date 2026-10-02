@@ -54,7 +54,7 @@ A Dimension filled from a source can hold timestamps rather than plain dates, su
 - As a lookup key, such as `` amount_usd$[synced_month = date(2026, 7, 1)] `` or `` amount_usd$[synced_month = `Snapshot Month`$] ``, a date selects the member at midnight of that day, as long as every member of the Dimension comes from its source rows. A Dimension with its own member list or formula keeps exact matching.
 - In a rule's condition, the part that says which cells the rule applies to, a date never equals a timestamp member, so `[synced_month = date(2026, 7, 1)]` reaches no cell.
 
-Date text such as `"2026-07-01"` reaches the member at that instant in both places, and `` synced_month.Month = startofmonth(`Snapshot Month`$) `` compares two dates.
+Date text such as `"2026-07-01"` reaches the member at that instant in both places, and `` synced_month.Month = startofmonth(`Snapshot Month`$) `` compares two dates, so it is true for every member that falls in the Snapshot Month.
 
 ## Ari changed only some formulas
 

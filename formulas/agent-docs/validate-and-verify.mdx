@@ -27,13 +27,16 @@ Correct reported errors before applying the same intended change.
 Inspect the write result. A table write applies all requested changes together or applies none, and its receipt reports:
 
 - Each row and column touched, with the formula it now carries per range.
-- `formula_warning` issues for rules that saved but need attention: an imported Variable read in Forecast months, a constant that matches no Dimension item, a tie with an existing rule, a shared formula the write replaced, a read that lands on the generated zero because the input lacks one of the read's coordinates, or a default saved at a grain coarser than the Model's base grain. A `create` reports the same cases as `creation_warning`.
+- `formula_warning` issues for rules that saved but need attention: an imported Variable read in Forecast months, a constant that matches no Dimension item, a tie with an existing rule, a shared formula the write replaced, a read that lands on the generated default (0, or null for a date or text Variable) because the input lacks one of the read's coordinates, or a default saved at a grain coarser than the Model's base grain. A `create` reports the same cases as `creation_warning`. A date used as a lookup key against a Dimension of timestamps is not reported when a member sits at that day's midnight, because the engine selects that member; the same date in a condition still is.
 - One `read_note` per imported source that the written rules read, stating where that source's rows sit on the calendar and which rules read it, and one for the first Forecast month when the rule reads a prior period, a source, or a Variable with no value there, stating what the rule computed and what each read returned. A note describes the read the rules asked for, not a problem to fix.
 - A `scenario_warning` naming the Scenario the write used when the call omitted `scenario`.
 - A `default_rollup` issue naming the time rollup each new dated row received, and a statement of the level defaults a breakdown's save wrote or removed.
+- Each default rule's scope: its condition, its range, `Date grain: <grain>` when the rule is dated, and its reach. `includes additional dimensions` means a `[...]` condition also covers cells that carry more business Dimensions, at the same Date grain; `this grain only` means an exact `$[...]` condition. A Month rule never covers Day cells, so a daily forecast needs a Day rule of its own.
 - A refusal, with the field that caused it, when nothing was saved. A refusal that fits no branch of a union names the one field or shape that was wrong, and a refusal from the calculation service names the formula it was checking.
 
 Ask for a readback in the same call with `readback.rows` and `readback.columns` to see the calculated values without a second read.
+
+The receipt arrives before an optional readback can consume the caller's deadline. After the write commits, attribution and readback share one budget of at most 30 seconds that ends two seconds before the caller's deadline. A write whose readback did not finish reports the outcome `committed_with_readback_unavailable` with its saved revision: the change is saved and must not be sent again.
 
 A call that repeats an earlier call exactly, after the earlier result already answered it, is refused by the runtime with the code `repeated_no_progress` and `state_changed: "no"`. The refusal is a result to act on, not a transport failure: change the request, or use what the earlier result returned.
 

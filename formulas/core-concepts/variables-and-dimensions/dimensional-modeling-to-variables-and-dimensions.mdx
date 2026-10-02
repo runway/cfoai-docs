@@ -34,7 +34,7 @@ Revenue is the Variable. Revenue, Sales, West, and January 2026 together identif
 
 Revenue by month has a different grain from Revenue by day. Revenue by Department and month has a different grain from company-wide Revenue by month.
 
-Each cell runs its own formula with its own inputs. A margin shown by Department is calculated from each department's revenue and cost, not derived from the company-wide margin. A parent's value is its own formula, not automatically the sum of the rows below it. Time works differently: a monthly rule does not become a quarterly rule on its own, so quarter and year values use the Variable's time rollup.
+Each cell runs its own formula with its own inputs. A margin shown by Department is calculated from each department's revenue and cost, not derived from the company-wide margin. A parent's value comes from its own saved rule. When Ari breaks a Variable down, that rule is a default that sums the rows beneath the parent, and you can replace it with a ratio or any other arithmetic; see [Breakdown totals add up the rows beneath them](/formulas/core-concepts/how-cfoai-chooses-a-formula#breakdown-totals-add-up-the-rows-beneath-them). Time works differently: a monthly rule does not become a quarterly rule on its own, so quarter and year values use the Variable's time rollup.
 
 ## You do not need a data-warehouse design
 

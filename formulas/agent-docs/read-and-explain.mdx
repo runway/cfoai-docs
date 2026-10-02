@@ -18,6 +18,8 @@ For example:
 
 The result lists every formula definition saved on the Variable, with its condition and its Actuals or Forecast range. Add `conditions` only when the question requires one exact saved scope, such as `["[Department = \"Sales\"]"]`. Omit the filter when the user wants the complete set of rules. A Variable with many rules returns them in pages; to read the next page, copy the response's `next.after` into `after` in the same `variable` block, keeping the same `target`.
 
+Each definition's scope states its `time_grain` when the rule is dated and its reach in words: `includes additional dimensions` for a `[...]` condition that also covers cells carrying more business Dimensions, or `this grain only` for an exact `$[...]` condition. The reach is about Dimensions, not time: a Month rule does not cover Day cells.
+
 Use the `dimension` block the same way to read a Dimension's saved definitions, and `items` to list its members.
 
 For a Variable or Dimension read from an imported source, the entry's `source_default` also states `order`, such as `last by MONTH` or `last by source order`. It says how a column that shows one row per record picks that row when a record has several: the latest row by the source's date column when the source has one, or the last row in source order when it has none. A column that sums its rows has no `order`.
@@ -50,7 +52,7 @@ Use the `read` block for the table that actually shows the result. Each row and 
 
 A member row is selected by its path from its Variable or axis Dimension, one bracket per breakdown level, as a readback prints it: `Revenue[West]`, `Revenue[West][Enterprise]`. The member that holds rows with no value displays as **None** and is spelled `empty:None` in a selector, for example `Region[empty:None]`. A text member is printed as written, even when it contains a colon: the read's `member` field, the `members` list in a receipt, and a row reference such as `Cash Step[Expected in: open invoice #483]#c00` all spell it `Expected in: open invoice #483`, and a formula matches that exact spelling.
 
-Each rendered target's rules say whether `formula` and `clear_formula` can be written there. A target whose cells the direct writer would refuse, such as cells read from an integration or cells whose provenance the read cannot establish, does not advertise those actions; its rule carries a `readOnlyReason` instead, so a write is not attempted where it would fail. Dated Actuals and Forecast defaults keep their own writability.
+Each rendered target's rules say whether `formula` and `clear_formula` can be written there. A target whose cells the direct writer would refuse, such as cells read from an integration or cells whose provenance the read cannot establish, does not advertise those actions; its rule carries a `readOnlyReason` instead, so a write is not attempted where it would fail. The spelling differs by level: a rendered target's rule spells it `readOnlyReason`, while a row or column that cannot be written spells its own reason `read_only_reason` beside `writable: false`. Dated Actuals and Forecast defaults keep their own writability.
 
 Use the same requested Scenario for both the saved-formula read and the table read. The saved rule explains the intended calculation. The visible table confirms which rule actually applies to the selected period, segment, and Scenario. A row computed by a rule saved outside the table names that rule's owner and condition in `inherited_from`.
 

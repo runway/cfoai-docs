@@ -18,7 +18,7 @@ A formula you type in a table always saves, even when it is unfinished; the cell
 
 ## A Dimension's member list cannot take a formula
 
-A table axis that only lists a Dimension's members has no calculated value, so a formula written to it has nothing to edit. Ari reports this as a reason rather than an error: edit the Dimension's membership instead, or write the rule on the Variable the breakdown belongs to. A Dimension whose members a formula generates from a connected source is written by a person from the Dimension's row-header menu, **More settings**, then **Edit dimension formula**.
+A table axis that only lists a Dimension's members has no calculated value, so a formula written to it has nothing to edit. Ari reports this as a reason rather than an error: edit the Dimension's membership instead, or write the rule on the Variable the breakdown belongs to. The formula that generates a Dimension's members from a connected source is written by a person, not by Ari: right-click the Dimension's row header, open **More settings**, and choose **Edit dimension formula**.
 
 ## A table edit was not saved
 
@@ -49,6 +49,13 @@ Check the formula range, Date scope, Date grain, Scenario, and Last close. A for
 
 Confirm that the Date grain and value format match. A monthly lookup should use `Date.Month` and a value such as `"2026-01"`.
 
+A Dimension filled from a source can hold timestamps rather than plain dates, such as one member per sync at `2026-07-01 00:00:00+00`. Where you write a date decides what it matches:
+
+- As a lookup key, such as `` amount_usd$[synced_month = date(2026, 7, 1)] `` or `` amount_usd$[synced_month = `Snapshot Month`$] ``, a date selects the member at midnight of that day, as long as every member of the Dimension comes from its source rows. A Dimension with its own member list or formula keeps exact matching.
+- In a rule's condition, the part that says which cells the rule applies to, a date never equals a timestamp member, so `[synced_month = date(2026, 7, 1)]` reaches no cell.
+
+Date text such as `"2026-07-01"` reaches the member at that instant in both places, and `` synced_month.Month = startofmonth(`Snapshot Month`$) `` compares two dates.
+
 ## Ari changed only some formulas
 
 Depending on the operation, a batch can apply valid changes while rejecting invalid ones, or reject the whole batch when all changes must succeed together. Ask Ari which changes were applied, fix the reported issue, and verify the resulting values.
@@ -57,11 +64,11 @@ Depending on the operation, a batch can apply valid changes while rejecting inva
 
 When Ari saves a rule through a table, the receipt can carry warnings about rules that saved correctly but will not do what the wording suggests. Ask Ari to read them back if a number looks wrong right after a change. The common ones are:
 
-- **An imported Variable read in Forecast months.** A Variable loaded from a connection has values only through **Last close**. A rule that reads it in Forecast months reads 0 there. The warning names the Variable and the rule that reads it, so you can find and move or replace that rule.
-- **A constant that matches no Dimension item.** A condition such as `synced_month = date(2026, 7, 1)` saves, but when the Dimension's items are text it matches nothing and every cell it reaches reads 0. The warning says the condition selects none of the Dimension's items, states the items' kind, and shows one or two of them so you can match the exact spelling. When a set such as `Step in {"Committed out", "Expected in"}` names some items that exist and some that do not, the warning names each value that matches nothing. A Dimension whose items were added by hand, with no source table behind it, is checked the same way.
+- **An imported Variable read in Forecast months.** A Variable loaded from a connection has values only through **Last close**. A rule that reads it in Forecast months reads 0 there, or an empty value when the Variable holds dates or text. The warning names the Variable and the rule that reads it, so you can find and move or replace that rule.
+- **A constant that matches no Dimension item.** A condition such as `Step = "Committed"` saves, but when the item is spelled `Committed out` it matches nothing and every cell it reaches reads 0, or an empty value for a date or text Variable. The warning says the condition selects none of the Dimension's items, states the items' kind and how that kind is matched, and shows one or two of them so you can match the exact spelling. For a Dimension of timestamps it explains that `date(y, m, d)` is a date value and that `[Dimension].Month` is each member's month as a date; a date used as a lookup key at a member's midnight is not warned about, because it selects that member. When a set such as `Step in {"Committed out", "Expected in"}` names some items that exist and some that do not, the warning names each value that matches nothing. A Dimension whose items were added by hand, with no source table behind it, is checked the same way.
 - **Two rules that tie.** Two saved rules that name the same number of Dimensions and pin the same number of items compete for the same cells, and the more recently saved one wins. Saving either again flips the result. The warning names the rule the new one ties with.
 - **A shared rule that was replaced.** A rule belongs to its Variable, so giving a Variable a new default while placing it on another table rewrites the rule every table reads. The warning names the rule it replaced. See [A rule belongs to its Variable](/dashboards/build-and-format-tables#a-rule-belongs-to-its-variable).
-- **A read that lands on the generated zero.** A plain reference keeps every coordinate of the cell it runs in, Date included. A monthly Payroll rule that reads `` `Annual Wage` `` reads it at Employee × Date.Month, and an input saved once per employee with no Date is not there, so the read gets 0 in every month. The warning names the read, where it landed, and the absolute spelling that reaches the input, such as `` `Annual Wage`$[Employee = this.Employee] ``.
+- **A read that lands on the generated default.** A plain reference keeps every coordinate of the cell it runs in, Date included. A monthly Payroll rule that reads `` `Annual Wage` `` reads it at Employee × Date.Month, and an input saved once per employee with no Date is not there, so the read gets 0 in every month, or an empty value for a date or text input. The warning names the read, where it landed, and the absolute spelling that reaches the input, such as `` `Annual Wage`$[Employee = this.Employee] ``.
 - **What the first Forecast month read.** When the written rule reads a prior period, an imported source, or a Variable with no value there, the receipt adds a note stating what the rule computed in the first Forecast month and what each read returned, for example "First forecast month: `Headcount`'s rule computes 3 in 2026-09 (Last close 2026-08-31). There it read `Headcount` (offset -1 month) = 0 (no rule or input there: the generated zero); `Hires` = 3 (a rule or input)." A roll-forward that starts from an empty last Actuals month shows up here instead of several steps later.
 - **A rule saved at a coarser grain.** A default written through a table whose periods are years, in a monthly Model, is saved at year grain. The warning says the year cells compute it whatever their month cells hold, and that the month cells do not read it.
 - **Which Scenario the write used.** When the call named no Scenario, the receipt says which one it used, the one you were viewing, because that can change between turns.
@@ -83,6 +90,17 @@ Source "Payroll" (6077cf1b-…) has no date column to read it by. Give the sourc
 ```
 
 Tell Ari which column dates the rows, and Ari saves it as the source's preferred time column, or add a date column at the source and sync again. A read that does not depend on Date still answers, such as `last` over the source's rows in a table with no Date axis. Ari receives the same message when it reads the table, so it can name the source to fix.
+
+## A date or text cell nobody filled in reads empty
+
+A Variable cell that no rule or input covers reads a default, and the default depends on the Variable's type. A number reads 0, so sums and roll-forwards over a Salary nobody entered keep working. A date or text Variable reads an empty value, written `null` in a formula, so an End Date entered only for people who left is empty for everyone else, and `` if(`End Date` = null, 1, 0) `` marks the people still employed without a placeholder date far in the future.
+
+Two things follow from an empty value:
+
+- A comparison with it, such as `` `End Date` < date(2030, 1, 1) ``, is itself empty, so `if` takes its false branch.
+- A prior-period read such as `` `End Date`[-1] `` is empty where the earlier period was never set.
+
+The default applies per formula range. An imported Variable with no saved rule reads its source column in Actuals and the default in Forecast months. See [Test for an empty value](/formulas/formula-guides/use-conditional-logic#test-for-an-empty-value).
 
 ## A division returns an error
 

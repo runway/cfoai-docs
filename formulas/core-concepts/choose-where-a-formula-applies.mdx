@@ -51,7 +51,7 @@ Use segment formulas for real exceptions. If every department needs the same exp
 
 ## Formula range
 
-A formula can also be limited to a formula range such as Actuals or Forecast. A formula range is a boundary on Date, so a range-specific formula must be segmented by Date; asking for a range on a scope with no Date term is refused. Any Date grain works. For a monthly Model, the Date part of the scope can be:
+A formula can also be limited to a formula range such as Actuals or Forecast. A formula range is a boundary on Date, so a range-specific formula must be segmented by Date; asking for a range on a scope with no Date term is refused. Any Date grain is accepted, and the rule then applies to cells at that grain: a monthly table reads a Month rule, while a rule saved at Year grain computes only the year cells and leaves the months untouched. For a monthly Model, the Date part of the scope can be:
 
 ```text
 [Date.Month in any]

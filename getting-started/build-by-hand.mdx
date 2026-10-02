@@ -394,7 +394,7 @@ Right-click a Dimension header, open **More settings**, and choose **Dimension s
 
 There is no separate mapping screen. To reconcile two sets of categories by hand, create a new Dimension for the unified names, then build a table with the source Dimension segmenting the rows and the new Dimension added as a mapping. Type the unified name into each row's cell. Repeat for each source. Ari can also author mappings for you; see [Dimension mappings](/formulas/core-concepts/dimension-mappings).
 
-For advanced cases, right-click a Dimension header and choose **Edit dimension formula** to define its items with a formula.
+For advanced cases, right-click a Dimension header, open **More settings**, and choose **Edit dimension formula** to define its items with a formula.
 
 ## Scenarios
 
@@ -413,7 +413,7 @@ To see two Scenarios side by side, use a table's **Compare** control. See [Under
 Every change to the Model is recorded, whether you or Ari made it.
 
 - Press **⌘ Z** to undo your last change and **⌘ Shift Z** to redo it. These work anywhere in the app except while you are typing in a text field or formula editor.
-- Select **Version history** (the clock icon in the Page header) to open the timeline. Each entry names who made the change, when, and what it touched. Use **Filter version history** to narrow by person or change type, and **Jump to date** to move through time.
+- Select **Version history** (the clock icon in the Page header) to open the timeline. Each entry names who made the change, when, and what it touched. A formula entry names the Variable and, for a rule with a condition, the condition and its reach: **includes additional dimensions** when the rule also covers cells that carry more Dimensions, or **exact grain** for a rule that matches exactly the Dimensions it names. Use **Filter version history** to narrow by person or change type, and **Jump to date** to move through time.
 - Select an entry to view the Model as it was at that moment. A banner reads **Viewing version … Read-only** with **Restore this version** and **Back to current**.
 - Open an entry's actions menu for **Undo this change**, **Redo this change**, **Restore this version**, **Take snapshot here**, and **Copy link to version**. Undoing a change that later changes depended on prompts you to confirm first. **Take snapshot here** opens the same dialog as the Scenario picker and pins the new Snapshot at that entry's version instead of the latest one.
 
@@ -440,7 +440,7 @@ Hover a connection for its actions: **Finish setup** when setup never finished, 
 
 ## Download a Page as a spreadsheet
 
-Select **Download spreadsheet** in the Page header. Each visible Table Block becomes a worksheet with its formulas and the Model inputs they read on a **Model inputs** sheet; text, charts, and Canvas blocks are left out. The export runs in the background, and the button reads **Spreadsheet queued** and then **Preparing spreadsheet** until the file downloads. Exporting while viewing a Scenario that one of the tables compares against leaves that Scenario out of the comparison columns, since the sheet already shows it.
+Select **Download spreadsheet** in the Page header. Each visible Table Block becomes a worksheet with its formulas and the Model inputs they read on a **Model inputs** sheet; text, charts, and Canvas blocks are left out. The export runs in the background, and the button reads **Spreadsheet queued** and then **Preparing spreadsheet** until the file downloads. When the Scenario you are viewing is also one that a table compares against, the export leaves the viewed Scenario out of that table's comparison columns, because the sheet already shows the viewed Scenario as its own column.
 
 You can also ask Ari to export one Page, or several Pages in one workbook: Ari saves the finished workbook as a file in the chat, where you can download it and Ari can open it again later. A workbook that covers several Pages keeps its formulas linked across the sheets and shares one **Model inputs** sheet. If an export fails, Ari can say which step and which table, Scenario, Variable, or period stopped it, and whether trying again can help.
 

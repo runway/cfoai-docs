@@ -51,7 +51,7 @@ Ask Ari to combine or split Dimensions yourself:
 
 - **Combine** unions compatible source Dimensions into one target, keeps each item's exact label, and rewrites the formulas and table axes that read the others. Nothing is saved on a refusal.
   - It needs matching types and aggregation, and a Dimension that reads its column's first value cannot join one that reads the last value.
-  - Amounts, and a chart, manual segment, or Scenario override that cannot be rewritten safely, are refused.
+  - Amounts are always refused. A chart, manual segment, or Scenario override is refused when it reads a retired Dimension and cannot be rewritten safely.
   - A combined Dimension that reads each source's latest value keeps every source's own filters and dates, so a table filtered to one Entity shows that Entity's latest vendor.
   - Canvas blocks do not stop a combine. Their code and datasets are left as they are, and Ari's receipt lists every Canvas block in the Scenario that may read a retired Dimension so Ari can review and repair them. The list is conservative, because Canvas code can build references dynamically, so a listed block is not proof that it broke.
 - **Split** turns a combined Dimension back into one Dimension per source column. The original keeps its first source. Amount formulas stay as they are, so a breakdown may no longer add up to its parent total; Ari warns about that.

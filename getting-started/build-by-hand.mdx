@@ -326,8 +326,8 @@ To format several Variables at once, press **⌘ A** to select the whole table, 
 
 ### Dimensions and dates
 
-- **Dimension color.** Right-click the Dimension's header and choose **Dimension color** to change the accent color used for its pills wherever the Dimension appears.
-- **Pills or plain text.** Right-click the header and choose **Display as**, then **Pill** or **Plain text**.
+- **Dimension color.** Right-click the Dimension's label row, or choose **[Dimension] dimension settings** from one of its items, then **Format and display** and **Dimension color** to change the accent color used for its pills wherever the Dimension appears.
+- **Pills or plain text.** In the same **Format and display** submenu, choose **Display as**, then **Pill** or **Plain text**.
 - **Date grain on one axis.** Right-click a Date header and choose **Date granularity** to change one axis without changing the whole table.
 - **Date labels on a table.** Right-click a Date header, choose **Format and display**, then **Date format**, and pick a style such as `Sep-26`, `2026-09-02`, `September 2026`, or `FY2026`. This applies to the current table.
 
@@ -403,7 +403,7 @@ The create action is unavailable while a filter is active on that Dimension. Cle
 
 Double-click an item label to rename it in place, or right-click and choose **Rename**. Items whose value also appears in connected source data cannot be renamed; the menu explains why. A rename follows the item everywhere it is stored by name: into the Dimension's mapping assignments and into formulas that compare against it, such as `if(Weather = "Sunny", 1, 0)`, as one change that one undo reverses.
 
-To delete an item you created from every table, right-click it on the Dimension's home table, the table that created the Dimension, and choose **Delete [Weather] item**. Other tables offer only **Filter out this item**, and an item that came from connected data reads **Only items you created can be deleted**. An item nothing else uses is deleted at once, and the **Deleted “Cloudy”** toast offers **Undo**. When a saved formula, filter, or another table still uses the item, a **Delete item?** dialog says it is still used and lists what deleting it everywhere will break; **Delete anyway** deletes the item and leaves those references broken, which **⌘ Z** also reverses. To hide an item on one table while keeping the rest, choose **Filter out this item**.
+To delete an item you created from every table, right-click it on the Dimension's home table, the table that created the Dimension, and choose **Delete [Weather] item**. Other editable tables offer **Filter out this item** instead, and an item that came from connected data reads **Only items you created can be deleted**. An item nothing else uses is deleted at once, and the **Deleted “Cloudy”** toast offers **Undo**. When a saved formula, filter, or another table still uses the item, a **Delete item?** dialog says it is still used and lists what deleting it everywhere will break; **Delete anyway** deletes the item and leaves those references broken, which **⌘ Z** also reverses. To hide an item on one table while keeping the rest, choose **Filter out this item**.
 
 ### Control which segments appear
 

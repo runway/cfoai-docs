@@ -41,13 +41,15 @@ Ask Ari to read a target Dimension's mappings. It reports every lookup feeding t
 
 In a Table Block whose column shows a mapped Dimension, selecting a cell opens a picker with a **Search \[Dimension] items** field. Picking an item saves that row's assignment in the mapping, so every table that reads the mapping changes with it. The table cannot create a lookup, set a catch-all, or remove rows; ask Ari for those.
 
+Renaming a Dimension item, whether you rename it on a table or Ari renames it, also renames it in the mapping's assignments and in formulas that compare against it, in one change that one undo reverses. Ari's rename receipt says how many mapping rows and formulas moved with it.
+
 ## Share one Dimension across accounting sources
 
 Two accounting sources often carry the same categories, such as Entity and Currency on QuickBooks Online, Xero, and Rillet statements, or Vendor on two general-ledger queries. When a new accounting query publishes for the first time, cfo.ai joins each of its text or number Dimension columns to an existing Dimension when exactly one compatible target exists: the same provider, integration, column name, type, and aggregation. It does not matter whether a built-in template, Ari, or you wrote the query's SQL. Later syncs never regroup, so a Dimension that stayed separate stays separate, and dates and amounts are never combined.
 
 Ask Ari to combine or split Dimensions yourself:
 
-- **Combine** unions compatible source Dimensions into one target, keeps each item's exact label, and rewrites the formulas and table axes that read the others. It needs matching types and aggregation; dates, amounts, and a reference that cannot be rewritten safely are refused, and nothing is saved on a refusal.
+- **Combine** unions compatible source Dimensions into one target, keeps each item's exact label, and rewrites the formulas and table axes that read the others. It needs matching types and aggregation, and a Dimension that reads its column's first value cannot join one that reads the last value; amounts and a chart, manual segment, or Scenario override that cannot be rewritten safely are refused, and nothing is saved on a refusal. A combined Dimension that reads each source's latest value keeps every source's own filters and dates, so a table filtered to one Entity shows that Entity's latest vendor. Canvas blocks do not stop a combine: their code and datasets are left as they are, and Ari's receipt lists every Canvas block in the Scenario that may read a retired Dimension so Ari can review and repair them. That list is conservative, because Canvas code can build references dynamically, so a listed block is not proof that it broke.
 - **Split** turns a combined Dimension back into one Dimension per source column. The original keeps its first source. Amount formulas stay as they are, so a breakdown may no longer add up to its parent total; Ari warns about that.
 
 ## Related

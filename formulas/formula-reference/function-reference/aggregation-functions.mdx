@@ -56,7 +56,7 @@ first(Revenue[Date.Month in any])
 last(Revenue[Date.Month in any])
 ```
 
-Both functions accept one expression.
+Both functions also take several arguments, when every argument is a direct source column or a reference to a Variable or Dimension, with no arithmetic around it. The result comes from the one input whose row is latest for `last` or earliest for `first`: a source column is dated by its source's preferred time column, and a Variable or Dimension by the dates of its own cells. Each input keeps its own filters and skips empty values, so a combined `` last(`Vendor A`, `Vendor B`) `` filtered to one Entity shows that Entity's latest vendor. A dated input always beats an undated one. When two inputs tie on the date, `last` takes the later argument and `first` the earlier one. This is how cfo.ai reads a Dimension combined from several accounting sources; see [Share one Dimension across accounting sources](/formulas/core-concepts/dimension-mappings#share-one-dimension-across-accounting-sources).
 
 ## median
 
@@ -81,7 +81,7 @@ Both functions accept one to 10 expressions. Existing formulas using `stddev` or
 
 ## Combine multiple expressions
 
-`sum`, `product`, `average`, `count`, `min`, `max`, `stdev`, and `var` can combine up to 10 expressions:
+`sum`, `product`, `average`, `count`, `min`, `max`, `stdev`, and `var` can combine up to 10 expressions, and `first` and `last` combine any number of direct column or Variable references:
 
 ```text
 sum(Revenue[Region in any], `Other Income`[Region in any])

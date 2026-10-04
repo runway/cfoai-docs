@@ -108,7 +108,7 @@ The default applies per formula range. An imported Variable with no saved rule r
 
 ## The table shows a calculation capacity notice
 
-When the calculation service is out of capacity, the table shows a banner instead of values: **Calculation capacity was full when this calculation ran. We're looking into it — try again in a moment.** or **Calculation results are temporarily busy; this failure is transient. We're looking into it — try again in a moment.** Nothing in the formula is wrong; the table calculates again when you retry. When Ari reads such a table, its result names the failure's category and whether it is transient, so Ari retries only when a retry can help.
+When the calculation service is out of capacity, the table shows a banner instead of values: **Calculation capacity was full when this calculation ran. We're looking into it — try again in a moment.** or **Calculation results are temporarily busy; this failure is transient. We're looking into it — try again in a moment.** Nothing in the formula is wrong. Both of these failures are retryable: the first means the shared calculation capacity was exhausted when the calculation ran, and the second means the results store was busy for a moment, so the table calculates again when you retry. Not every capacity failure is transient: a calculation that ran past its time limit is also reported as a capacity failure, and a retry does not help it. When Ari reads such a table, its result names the failure's category and whether it is transient, so Ari retries only when a retry can help.
 
 ## A year or quarter cell has no time rollup
 

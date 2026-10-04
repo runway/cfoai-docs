@@ -218,7 +218,7 @@ A red status line under the editor reports syntax problems as you type. You can 
 - When you open a cell that inherits its formula, the inherited formula appears as a suggestion. Click it, press **→**, or press **Tab** to adopt it and edit from there. Start typing to replace it entirely.
 - After you save a formula on a child row, cfo.ai may ask **Propagate?** Choose **Yes** to apply the formula to the parent rows too, or **No** to leave it on the child. Press **⌘ Enter** while saving to propagate automatically.
 - Setting a child item's default to its own value leaves the parent's default untouched. Clearing the child's override makes it follow the parent again.
-- When a table breaks a Variable down, each parent row sums the rows beneath it by default, so a value you set on a child row reaches every total above it. This holds whether one rule governs every line, as when Ari builds the breakdown, or you typed the numbers into the bottom rows yourself: on the next save of such a table, the bottom rows get a generated rule of `0` that each typed number overrides, so a blank row counts as 0 and the totals add up. A **Default for every …** entry taken from a header under one parent row covers that parent's children alone and writes no totals. See [Breakdown totals add up the rows beneath them](/formulas/core-concepts/how-cfoai-chooses-a-formula#breakdown-totals-add-up-the-rows-beneath-them).
+- When a table breaks a Variable down, each parent row sums the rows beneath it by default, so a value you set on a child row reaches every total above it. This holds whether one rule governs every line, as when Ari builds the breakdown, or you typed the numbers into the bottom rows of a number Variable yourself: on the next save of such a table, the bottom rows get a generated rule of `0` that each typed number overrides, so a blank row counts as 0 and the totals add up. A text, date, true/false, or ID Variable gets neither the zeros nor the sums, an imported Variable gets no zeros because its bottom rows read the source, and a rule of your own above the lines, such as one on the Variable's row, replaces the generated zeros and sums with its own value. A **Default for every …** entry taken from a header under one parent row covers that parent's children alone and writes no totals. See [Breakdown totals add up the rows beneath them](/formulas/core-concepts/how-cfoai-chooses-a-formula#breakdown-totals-add-up-the-rows-beneath-them).
 
 ### Show or hide the formula columns
 
@@ -451,7 +451,7 @@ Restoring a version needs full access to the Scenario.
     Select **Upload** at the top of the **Integrations** tab. You can drop several files at once. Each file becomes its own connection named after the file, and each file can be up to 50 MB.
   </Step>
   <Step title="Watch the status">
-    Each connection shows a status such as **Connecting**, **Syncing**, **Connected**, **Setup not finished**, **Needs attention**, or **Reconnect required**. Data is ready to model only after the initial load finishes.
+    Each connection shows a status such as **Connecting**, **Syncing**, **Synced** once a data source's load is in, **Connected** for a connection that syncs nothing, such as an MCP server or API, **Setup not finished**, **Needs attention**, or **Reconnect required**. Data is ready to model only after the initial load finishes.
   </Step>
 </Steps>
 

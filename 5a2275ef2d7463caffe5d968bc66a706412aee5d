@@ -1,0 +1,23 @@
+dashboards/share-pages-and-scenarios.mdx
+  s_724f60c9b3c5d7::t_cb08519af093a8 47,51
+getting-started/build-by-hand.mdx
+  s_724f60c9b3c5d7::t_74001b2ccd328f 433
+workspace-settings/team-and-workspace.mdx
+  s_724f60c9b3c5d7::t_dcd1ae28fed882 26,28,34,36
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "5a2275ef2d7463caffe5d968bc66a706412aee5d",
+  "prompts": {},
+  "sessions": {
+    "s_724f60c9b3c5d7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ec814585-6d61-4acc-8ec7-d4508dedb886",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": "Siqi Chen <blader@gmail.com>"
+    }
+  }
+}

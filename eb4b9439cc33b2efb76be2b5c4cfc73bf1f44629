@@ -1,0 +1,19 @@
+STYLE.md
+  s_724f60c9b3c5d7::t_ad0419308229b3 38
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "eb4b9439cc33b2efb76be2b5c4cfc73bf1f44629",
+  "prompts": {},
+  "sessions": {
+    "s_724f60c9b3c5d7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ec814585-6d61-4acc-8ec7-d4508dedb886",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": "Siqi Chen <blader@gmail.com>"
+    }
+  }
+}

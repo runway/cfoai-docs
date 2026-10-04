@@ -24,6 +24,10 @@ A table axis that only lists a Dimension's members has no calculated value, so a
 
 A value or formula you type into a table saves after the editor closes. When the server refuses it, the cell returns to its old value and a notice says why and what to do next, for example **These cells come from an integration. Change the value in the source system.** See [When a change is not saved](/getting-started/build-by-hand#when-a-change-is-not-saved) for every notice.
 
+## A selector follows the wrong thing
+
+A selector in brackets, such as `[-1]` or `[Region = "West"]`, attaches directly to a Variable reference. Written after a closing parenthesis or a number, as in `(Revenue - Cost)[-1]`, the formula editor shows **A selector in [ ] attaches directly to a variable reference, as in Revenue[-1]. Here it follows ')'.** Put the selector on each referenced Variable instead: `Revenue[-1] - Cost[-1]`.
+
 ## A Variable cannot be found
 
 Use the name shown in cfo.ai. If the name contains spaces or punctuation, wrap it in backticks. If several Variables share the name, use the short disambiguator offered by the editor or Ari.
@@ -101,6 +105,14 @@ Two things follow from an empty value:
 - A prior-period read such as `` `End Date`[-1] `` is empty where the earlier period was never set.
 
 The default applies per formula range. An imported Variable with no saved rule reads its source column in Actuals and the default in Forecast months. See [Test for an empty value](/formulas/formula-guides/use-conditional-logic#test-for-an-empty-value).
+
+## The table shows a calculation capacity notice
+
+When the calculation service is out of capacity, the table shows a banner instead of values: **Calculation capacity was full when this calculation ran. We're looking into it — try again in a moment.** or **Calculation results are temporarily busy; this failure is transient. We're looking into it — try again in a moment.** Nothing in the formula is wrong; the table calculates again when you retry. When Ari reads such a table, its result names the failure's category and whether it is transient, so Ari retries only when a retry can help.
+
+## A year or quarter cell has no time rollup
+
+A monthly Variable read by year or quarter shows, in the app, 0 in a period that no rule computes at that grain. When Ari reads the same table by year or quarter, the cell reads `#NO_ROLLUP` with an explanation that the Variable has no time rollup at that grain and that the values are in the table's own periods. Give the Variable a time rollup, or ask Ari to set one, when the year or quarter should add up its months. See [Default time rollup](/formulas/core-concepts/how-aggregation-works#default-time-rollup).
 
 ## A division returns an error
 

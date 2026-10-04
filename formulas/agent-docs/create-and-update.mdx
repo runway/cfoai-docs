@@ -7,7 +7,7 @@ A saved formula belongs to its Variable. When the user selects a visible row, co
 
 ## Shape a call as one action block
 
-`edit_table_blocks` has several actions: `create`, `update`, `reshape`, `copy`, `delete`, `set_time_rollup`, and `update_calendar`. Fill exactly one block named for the action and put that action's fields inside it. The `scenario` field sits beside the block and applies to it.
+`edit_table_blocks` has several actions: `create`, `update`, `reshape`, `copy`, `delete`, `set_time_rollup`, and `update_calendar`. Fill exactly one block named for the action and put that action's fields inside it. The `scenario` field sits beside the block and applies to it; it is also accepted inside the block, and a call that names two different Scenarios in the two places is refused. A field the chosen action does not take is refused with `accepted_fields` listing that action's own fields plus the shared ones.
 
 ## Write through the saved table
 
@@ -212,7 +212,7 @@ A `create` whose rules read a mapped Dimension can declare the mapping in the sa
 
 `window` is the table's own date range and grain. On a `create` it holds `start`, `end`, and `granularity`: a dated table names its grain, such as `MONTH`, and a timeless table names `NO_GRANULARITY`, as the example above does. On an `update`'s settings the range is `{"type": "ABSOLUTE", "start": …, "end": …}`. `start` and `end` accept a plain calendar date such as `2026-02-01` as well as a full timestamp, and create and update save the same window for either spelling. `{"inherit": true}` clears the table's own window. `update` with `grain` moves the table's Date columns to that grain, so a monthly table asked for `QUARTER` shows quarter columns and the receipt reports the moved Date column; a table whose Date header shows two grains at once, such as Year above Month, is refused a new grain.
 
-A `values` write names each Date column by the start of its period at the table's grain. On a table with yearly columns, `2024-01` writes the 2024 cell; `2024-02` is refused as a date inside a YEAR period, and the refusal names the spelling that works.
+A `values` write names each Date column by the start of its period at the table's grain. On a table with yearly columns, `2024-01`, `2024`, `FY2024`, and `2024-01-01` all write the 2024 cell; `2024-02` is refused as a date inside a YEAR period, and the refusal names the spelling that works. A period outside the table's window is refused with the window and the start or end that would hold it, such as "2025-12 is before this table's window 2026-01…2026-12; a window that starts 2025-12-01 holds it", and a call may set `window` and write the new periods together. A whole number such as `2026` also selects a number Dimension item printed `2026.0`, and a row renamed in the same request resolves under either name.
 
 Dated inputs in `values` or `cell_updates`, and the periods a `readback` selects, leave the table's saved display window unchanged. A report that must show a requested start and end needs `window` set on the same call, or the table keeps showing its old range with the new months outside it; a readback of selected months proves those cells, not the displayed range.
 
@@ -224,11 +224,13 @@ A Scenario stores only what differs from the Scenario it branched from. A cell w
 
 ## Delete a Variable or Dimension
 
-`delete` with a `target` alone removes the whole table and the objects homed there. `delete` with a `variables` or `dimensions` list removes only the listed objects. When other formulas, blocks, or settings still read one of them, the delete is refused and lists what reads it, until `force: true` accepts that those references break. `force` on the delete covers every listed entry; `force` on one entry covers that entry alone, so a call can force some entries and not others. `update` entries do not take `force`.
+`delete` with a `target` alone removes the whole table and the objects homed there. `delete` with a `variables` or `dimensions` list removes only the listed objects. When other formulas, blocks, or settings still read one of them, the delete is refused and lists what reads it, until `force: true` accepts that those references break. A refused table delete opens with "Nothing was deleted" and the count of dependents; a completed one carries a `links_end` issue, because links to the table in earlier chat messages no longer open it and a table rebuilt in its place has a different identity. Removing a Dimension item is refused, opening with "Nothing was removed", while a rule, a drill-in, a chart or Canvas condition, a row on another table, or a filter that lists only that item names it; manual sort orders and filters that still list other items drop the item instead. `force` on the delete covers every listed entry; `force` on one entry covers that entry alone, so a call can force some entries and not others. `update` entries do not take `force`.
 
 ## A rule belongs to its Variable
 
 A create row that names an existing Variable reuses it, and rows match names without regard to case, so `Deferred revenue` reuses `Deferred Revenue`. The receipt's `items` entry for a reused object carries `home`, the table it was first created on, when that table exists and is readable, and `rule: "replaced"` when this create replaced a rule the object already had, in Main or in the Scenario being edited.
+
+A stale table reference whose name no longer exists resolves by its suffix when the suffix has at least three hex digits and exactly one table carries it; `inspect_table_blocks` `list` reports the move in a `renamed` note, such as "Vendors#083: no table has that name; its suffix matches the table now named \"Anomalo Vendors\"".
 
 Formula names match case exactly. A formula that names `` `Deferred revenue` `` when only `Deferred Revenue` exists is refused with the object it matches: "`` `Deferred revenue` `` matches the existing `` `Deferred Revenue` `` (names match without case); formula names match case exactly, …". A reference field and formula text accept the same spelling of a namesake: the short suffix a readback prints, such as `Currency#3` beside `Currency#8`, names the object it prints for, and a suffix of three or more hex digits is checked against the object's retained identity, so a reference issued for a deleted object never moves to a new namesake. A backticked name that no object carries, such as `` `Amount#3c2` ``, reads as the reference it quotes. In a table row or column, backticks still mark a literal new name.
 
@@ -240,6 +242,8 @@ Giving an existing Variable new `default_formulas` while placing it on another t
 
 ## Verify the saved result
 
-Ask for a readback in the same write with `readback.rows` and `readback.columns`, or read the affected Table Block afterward. Check the intended Scenario, representative dates and segments, formula origins, and the actual numeric result.
+Ask for a readback in the same write with `readback.rows` and `readback.columns`, or read the affected Table Block afterward; `rows` alone reads every column and `columns` alone every top-level row, and a renamed Variable or Dimension resolves under either name.
+
+An `update`, `reshape`, or `delete` may carry `based_on`, the `as_of` of the table read or the `change_log_id` of the table write it builds on. The edit saves either way; when someone else saved to the table after that point, the receipt adds a `changed_since_read` issue naming each save and who made it, a person by name, "a person in the app", "Ari in another chat", or "an automated process", up to five saves and then a count. Check the intended Scenario, representative dates and segments, formula origins, and the actual numeric result.
 
 When the receipt carries warnings, read them before moving on. They report rules that compute to zero, rules that tie with an existing rule, and shared rules the write replaced. See [Formula errors and troubleshooting](/formulas/formula-reference/formula-errors-and-troubleshooting).

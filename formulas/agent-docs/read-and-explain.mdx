@@ -56,9 +56,11 @@ Each rendered target's rules say whether `formula` and `clear_formula` can be wr
 
 Use the same requested Scenario for both the saved-formula read and the table read. The saved rule explains the intended calculation. The visible table confirms which rule actually applies to the selected period, segment, and Scenario. A row computed by a rule saved outside the table names that rule's owner and condition in `inherited_from`.
 
+A read of a table that compares Scenarios returns every compared Scenario's value when `columns` names periods, one column reference per Scenario and period, each labeled with its Scenario. When a compared Scenario returns no values, the result carries a `comparison_scenario_missing` issue and coverage reads `incomplete`. `comparison: "none"` reads the selected Scenario's own values and formulas, and `formula_origins: "all"` annotates such a read with the rule each cell used.
+
 ## Read a monthly table by quarter or year
 
-`read` takes `grain: "QUARTER"` or `"YEAR"` to read a table's Date periods at a coarser grain than the saved table's own, without changing the table. Each period holds what the Model calculates at that grain: the Variable's time rollup (its base periods summed, closed, or averaged) or a timeless formula recomputed there; a Variable with neither reads blank. The period columns come back `writable: false`, because their refs spell the date each period starts and would name the saved month column in a write. A table with no Date axis, or one already at that grain or coarser, refuses with the reason. Continuation cursors carry the grain.
+`read` takes `grain: "QUARTER"` or `"YEAR"` to read a table's Date periods at a coarser grain than the saved table's own, without changing the table. Each period holds what the Model calculates at that grain: the Variable's time rollup (its base periods summed, closed, or averaged) or a timeless formula recomputed there. A Variable with neither reads `#NO_ROLLUP` in those cells, with one issue explaining that no rule computes it at that grain and that the values are in the table's own periods; the app shows such a cell as 0. A Scenario or time comparison read at a coarser grain still shows 0 there. The period columns come back `writable: false`, because their refs spell the date each period starts and would name the saved month column in a write. A table with no Date axis, or one already at that grain or coarser, refuses with the reason. Continuation cursors carry the grain.
 
 ```json
 {
@@ -71,7 +73,7 @@ A period selector can also be spelled the way people write it, and it is read un
 
 ## When the table cannot calculate
 
-When the calculation service cannot compute a table, `read` still returns the saved configuration: the rows, their default formulas and formatting, and the saved column axes. Each axis entry is marked `axis: true` and carries its dimension, grain, and writability, for example `{"ref": "Date#10b", "axis": true, "dimension": "Date", "grain": "MONTH", "writable": true}`, so an empty `columns` list never stands in for a Date axis that exists. No cells are delivered. The result carries a `calculation_unavailable` issue; when the calculation service explained the failure, the issue's message ends with `The calculation service reported <code>: <message>`, such as `table_config/external_column_not_mapped: external column Class L1 is not mapped in table …`, so the cause can be named instead of guessed.
+When the calculation service cannot compute a table, `read` still returns the saved configuration: the rows, their default formulas and formatting, and the saved column axes. Each axis entry is marked `axis: true` and carries its dimension, grain, and writability, for example `{"ref": "Date#10b", "axis": true, "dimension": "Date", "grain": "MONTH", "writable": true}`, so an empty `columns` list never stands in for a Date axis that exists. No cells are delivered. The result carries a `calculation_unavailable` issue; when the calculation service explained the failure, the issue's message includes `The calculation service reported <code>: <message>`, such as `table_config/external_column_not_mapped: external column Class L1 is not mapped in table …`, so the cause can be named instead of guessed. The issue also carries `category` (`capacity`, `model`, `request`, `dependency`, or `internal`), a `transient` flag, and a sentence stating what that category means, so a retry is chosen only when the failure is transient: a calculation that did not finish within its time limit is `capacity` and not transient, while a service that did not answer is `dependency` and transient.
 
 ## Explain one cell's inputs
 
@@ -79,7 +81,7 @@ For a single cell, select one row and one column and add `include_inputs: true`.
 
 ## Historical reads
 
-Use `as_of_point` when the user asks for the Model as it existed at a previous saved change. Omit it for the current state.
+Use `as_of_point` when the user asks for the Model as it existed at a previous saved change. Omit it for the current state. `inspect_canvas_blocks` takes it too and returns each block's `dataset_layouts`, and `inspect_dimensions` `items` and `bounds` read the source run the Model used at that point.
 
 ## Explain the business meaning
 

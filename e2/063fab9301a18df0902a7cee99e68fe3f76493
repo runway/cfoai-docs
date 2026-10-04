@@ -1,0 +1,47 @@
+agent-instructions.mdx
+  s_df74aef935575e::t_72f45e58b1c9eb 93,95
+ari/during-a-conversation.mdx
+  s_df74aef935575e::t_5458ae7e874247 33-34
+automation/guides.mdx
+  s_df74aef935575e::t_505222df9f248a 15
+automation/triggers.mdx
+  s_df74aef935575e::t_4d8fde2f7d4ff0 52
+dashboards/build-and-format-tables.mdx
+  s_df74aef935575e::t_3aea789f2928dc 47
+dashboards/charts-and-custom-visualizations.mdx
+  s_df74aef935575e::t_a43a51a2703f5a 27-30
+formulas/agent-docs/create-and-update.mdx
+  s_df74aef935575e::t_c87ec47e948ad7 10,215,227,233-234,245-247
+formulas/agent-docs/read-and-explain.mdx
+  s_df74aef935575e::t_fd88c082244067 59-60,63,76,84
+formulas/agent-docs/validate-and-verify.mdx
+  s_df74aef935575e::t_91ee98d1a24576 35,41-42
+formulas/core-concepts/how-cfoai-chooses-a-formula.mdx
+  s_df74aef935575e::t_5236914f3a5da0 36,42
+formulas/formula-reference/formula-errors-and-troubleshooting.mdx
+  s_df74aef935575e::t_1f500cf8c7e2f6 27-30,109-116
+getting-started/build-by-hand.mdx
+  s_df74aef935575e::t_e57e5242d17a58 221,406,458
+getting-started/quickstart.mdx
+  s_df74aef935575e::t_b922f8adff4b7f 13
+integrations/connect-and-sync-data.mdx
+  s_df74aef935575e::t_f0245fb2d0938f 58,90,92,125,131-135
+integrations/integrations-directory.mdx
+  s_df74aef935575e::t_9f975f3ce48519 71,96-97,147
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "e2063fab9301a18df0902a7cee99e68fe3f76493",
+  "prompts": {},
+  "sessions": {
+    "s_df74aef935575e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_df74aef935575e",
+        "model": "unknown"
+      },
+      "human_author": "niteshift-dev[bot] <219592090+niteshift-dev[bot]@users.noreply.github.com>"
+    }
+  }
+}

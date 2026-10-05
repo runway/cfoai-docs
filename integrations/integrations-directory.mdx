@@ -48,7 +48,7 @@ A NetSuite access token belongs to one role, so entering a different role ID in 
 
 - **Rippling** (Standard)
 
-Connect Rippling to bring headcount, compensation, and other people data into your Model alongside your financials. cfo.ai's catalog also lists a much longer roster of HR and payroll systems available to connect (via Merge), including BambooHR, Gusto, Workday, ADP Workforce Now, Paychex, Paycor, Justworks, TriNet, UKG Pro, Deel, Personio, Hibob, and dozens more. If your HR system is not Rippling, ask Ari to check whether it is in the catalog before assuming you need a file upload or manual entry instead.
+Connect Rippling to bring headcount, compensation, and other people data into your Model alongside your financials. cfo.ai's catalog also lists a much longer roster of HR and payroll systems available to connect (via Merge), including BambooHR, Gusto, Workday, ADP Workforce Now, Paychex, Paycor, Justworks, TriNet, UKG Pro, Deel, Personio, Hibob, and dozens more. If your HR system is not Rippling, ask Ari to check whether it is in the catalog before assuming you need a file upload or manual entry instead. Signing in again to a company the workspace already holds through one of these systems is refused: the card reads **[Company] is already connected**, tells you to use that connection instead of adding another, and offers **Reconnect** when the existing connection needs it.
 
 A payroll system connected via Merge, such as Gusto, loads benefits and pay groups separately from payroll, so a payroll row the warehouse refuses no longer discards the benefits that loaded with it; the sync reports the benefit rows it wrote and why payroll was not written. Gusto pay stubs that arrive without a parent payroll run are kept.
 
@@ -136,7 +136,7 @@ There is no manual refresh button today. If you need a number sooner than the ne
 
 Ari starts the import in the background and can tell you when it completes. Before relying on a time-sensitive result, ask Ari when the source last finished syncing and whether it reported any problems.
 
-When you first connect QuickBooks Online or Xero, cfo.ai loads Actuals from January 1 of the previous year through today. Ask Ari which accounting periods are available once the first load completes.
+When you first connect QuickBooks Online or Xero, cfo.ai loads Actuals from January 1 of the previous year through today. Ask Ari which accounting periods are available once the first load completes. For older books, ask Ari for a full-history import that starts at a year you name, 2015 or later; the months it imports stay through later routine refreshes.
 
 The nightly refresh and asking Ari to refresh a connection work the same on every active plan, including during a trial. Plans differ in how many connections you can hold, not in what a connection does once it is connected.
 

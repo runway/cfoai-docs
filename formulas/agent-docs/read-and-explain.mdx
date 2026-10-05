@@ -18,6 +18,8 @@ For example:
 
 The result lists every formula definition saved on the Variable, with its condition and its Actuals or Forecast range. Add `conditions` only when the question requires one exact saved scope, such as `["[Department = \"Sales\"]"]`. Omit the filter when the user wants the complete set of rules. A Variable with many rules returns them in pages; to read the next page, copy the response's `next.after` into `after` in the same `variable` block, keeping the same `target`.
 
+Each `variable` or `dimension` entry also carries `dependents`, what reads the object at that snapshot: `total`, counts for `formulas`, `blocks`, `settings`, and `manual_items`, `inaccessible` for dependents this user cannot read, and `items`, up to 20 descriptions. A `delete` without `force` is refused exactly when `total` is above 0 and deletes at once when it is 0. Omit `target` to list every readable Variable or Dimension in the Scenario as the same entries, in saved order; `next` continues the listing.
+
 Each definition's scope states its `time_grain` when the rule is dated and its reach in words: `includes additional dimensions` for a `[...]` condition that also covers cells carrying more business Dimensions, or `this grain only` for an exact `$[...]` condition. The reach describes Dimension coverage only; time coverage is the separate `time_grain`, so a Month rule does not cover Day cells however far its reach extends.
 
 Use the `dimension` block the same way to read a Dimension's saved definitions, and `items` to list its members.
@@ -81,7 +83,7 @@ For a single cell, select one row and one column and add `include_inputs: true`.
 
 ## Historical reads
 
-Use `as_of_point` when the user asks for the Model as it existed at a previous saved change. Omit it for the current state. `inspect_canvas_blocks` takes it too and returns each block's `dataset_layouts`, and `inspect_dimensions` `items` and `bounds` read the source run the Model used at that point.
+Use `as_of_point` when the user asks for the Model as it existed at a previous saved change. Omit it for the current state. `inspect_canvas_blocks` takes it too and returns each block's `dataset_layouts`, and `inspect_table_blocks` `items` reads the source run the Model used at that point. `bounds` reads current source state and refuses `as_of_point` with "bounds reads current source state; as_of_point applies to items".
 
 ## Explain the business meaning
 

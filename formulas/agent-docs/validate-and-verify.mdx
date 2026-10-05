@@ -32,11 +32,13 @@ Inspect the write result. A table write applies all requested changes together o
 - A `scenario_warning` naming the Scenario the write used when the call omitted `scenario`.
 - A `default_rollup` issue naming the time rollup each new dated row received, and a statement of the level defaults a breakdown's save wrote or removed.
 - Each default rule's scope: its condition, its range, `Date grain: <grain>` when the rule is dated, and its reach. `includes additional dimensions` means a `[...]` condition also covers cells that carry more business Dimensions, at the same Date grain; `this grain only` means an exact `$[...]` condition. A Month rule never covers Day cells, so a daily forecast needs a Day rule of its own.
-- A refusal, with the field that caused it, when nothing was saved. A refusal that fits no branch of a union names the one field or shape that was wrong, and a refusal from the calculation service names the formula it was checking.
+- A refusal, with the field that caused it, when nothing was saved. A receipt whose `status` is `rejected` or `blocked` saved nothing and carries the same `error` object a refusal carries, beside `items[].reason`. A refusal that fits no branch of a union names the one field or shape that was wrong, and a refusal from the calculation service names the formula it was checking.
 
 Ask for a readback in the same call with `readback.rows` and `readback.columns` to see the calculated values without a second read.
 
 The receipt arrives before an optional readback can consume the caller's deadline. After the write commits, attribution and readback share one budget of at most 30 seconds that ends two seconds before the caller's deadline. A write whose readback did not finish reports the outcome `committed_with_readback_unavailable` with its saved revision: the change is saved and must not be sent again.
+
+An `edit_table_blocks` write that does not answer within the runtime's deadline returns a message naming the call's `tool_call_id`. Every changelog entry the write commits records that id in the Scenario the call wrote, and `inspect_history` `changelog` entries carry `tool_call_id`, so the outcome can be read back. The server rolls back a write that has not committed within two minutes of receiving it, so two minutes after the timeout the write has either committed in full or saved nothing.
 
 A call that repeats an earlier call exactly, after the earlier result already answered it, is refused by the runtime with the code `repeated_no_progress` and `state_changed: "no"`. The refusal is a result to act on, not a transport failure: change the request, or use what the earlier result returned.
 

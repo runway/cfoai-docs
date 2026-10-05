@@ -13,7 +13,7 @@ You and Ari edit the same Model, so anything you build here is visible to Ari an
 Sign in at [app.cfo.ai](https://app.cfo.ai). The click paths below assume a desktop browser. A phone browser opens the same workspace in a read-only presentation for reading and asking Ari; see [Use cfo.ai on a phone](/getting-started/understand-your-workspace#use-cfoai-on-a-phone). The app has four areas you will use throughout this guide.
 
 - **Navigation sidebar** on the left. It holds the **Search** field (see [Search your workspace](/getting-started/understand-your-workspace#search-your-workspace)), **New chat**, your chat list, the **Model** section with the current Scenario and its list of Pages, and **Connections**. Your account menu sits at the bottom of the sidebar. The **Model** section appears once the workspace has its first Page; in a new workspace, Ari creates it.
-- **Page header** above the Page. It shows the Page icon and name, a date-range control that applies to every block on the Page, **Download spreadsheet**, the access badge, **Share**, **Version history**, and **New chat**. The date-range control appears only when the Page holds a table, a chart, or a Canvas block with data.
+- **Page header** above the Page. It shows the Page icon and name, a date-range control that applies to every block on the Page, **Download spreadsheet** on a Page that has a Table Block, the access badge, **Share**, **Version history**, and **New chat**. The date-range control appears only when the Page holds a table, a chart, or a Canvas block with data.
 - **Account menu**. Open it from the avatar at the bottom of the sidebar for **Appearance**, **Settings**, **Help center**, **Manage memories**, **Manage triggers** (administrators only), the workspace switcher under **Workspaces**, and **Log out**.
 
 <Tip>
@@ -204,6 +204,7 @@ The formula bar is a strip above the grid that shows the selected cell's formula
 - **Click to reference.** While the editor is open and the caret sits where a reference belongs, such as after an operator, click another cell, row label, or period header to insert a reference to it. Clicking the previous month's cell of Revenue inserts `Revenue[-1]`; clicking a period header inserts a relative date such as **Last month**. A click while the caret sits inside a name, a string, or a comment edits the text instead. Double-click a cell you just clicked to withdraw the reference the first click inserted.
 - **Point with the arrow keys.** With the caret in the same position, press an arrow key to point at the neighboring cell and insert its reference; keep pressing to move the pointer, the way a spreadsheet does. Each reference in the formula and the cells it points at share a color, so you can see what the formula reads. **F2** also starts reference selection; press **Enter** to keep the reference or **Esc** to cancel.
 - **Filter a reference.** Select a reference chip and choose **+ Add filter** to restrict it to certain Dimension items or dates. Date filters offer presets such as **Last 3 months of actuals**, **Year to date**, **Quarter to date**, and **Custom range**.
+- **Point a reference somewhere else.** Select a reference chip to open its panel, then select the reference's name there to search Variables and Dimensions; choosing a result replaces the reference. The **Toggle details** button in the picker shows which table and Page own the highlighted result, with links, so you can find where a Variable is calculated without leaving the editor. The same search inside a filter key, such as Region in `Revenue[Region = "West"]`, lists Dimensions only.
 - **Use `this`.** Inside a filter, `this.Department` means "the same Department as the cell being calculated."
 
 ### Save, cancel, and fix errors
@@ -217,7 +218,7 @@ A red status line under the editor reports syntax problems as you type. You can 
 - When you open a cell that inherits its formula, the inherited formula appears as a suggestion. Click it, press **→**, or press **Tab** to adopt it and edit from there. Start typing to replace it entirely.
 - After you save a formula on a child row, cfo.ai may ask **Propagate?** Choose **Yes** to apply the formula to the parent rows too, or **No** to leave it on the child. Press **⌘ Enter** while saving to propagate automatically.
 - Setting a child item's default to its own value leaves the parent's default untouched. Clearing the child's override makes it follow the parent again.
-- When one rule governs every line of a breakdown, as when Ari builds it, each parent row sums the rows beneath it by default, so a value you set on a child row reaches every total above it. A **Default for every …** entry taken from a header under one parent row covers that parent's children alone and writes no totals. See [Breakdown totals add up the rows beneath them](/formulas/core-concepts/how-cfoai-chooses-a-formula#breakdown-totals-add-up-the-rows-beneath-them).
+- When a table breaks a Variable down, each parent row sums the rows beneath it by default, so a value you set on a child row reaches every total above it. This holds whether one rule governs every line, as when Ari builds the breakdown, or you typed the numbers into the bottom rows of a number Variable yourself: on the next save of such a table, the bottom rows get a generated rule of `0` that each typed number overrides, so a blank row counts as 0 and the totals add up. A text, date, true/false, or ID Variable gets neither the zeros nor the sums, an imported Variable gets no zeros because its bottom rows read the source, and a rule of your own above the lines, such as one on the Variable's row, replaces the generated zeros and sums with its own value. A **Default for every …** entry taken from a header under one parent row covers that parent's children alone and writes no totals. See [Breakdown totals add up the rows beneath them](/formulas/core-concepts/how-cfoai-chooses-a-formula#breakdown-totals-add-up-the-rows-beneath-them).
 
 ### Show or hide the formula columns
 
@@ -249,20 +250,36 @@ Format and Precision apply to the Variable, so they follow it onto every table. 
 
 ### Other right-click actions
 
-| Action | What it does |
+Right-click a Dimension item, such as **Sunny** under Weather, for the actions that change that one item. Right-click the Dimension's own label row, such as the **WEATHER** row above its items, for the actions that change the whole Dimension on this table or everywhere. Every item's menu also ends with **[Weather] dimension settings**, which opens that same Dimension menu, so an item's menu reads the same whatever the table's layout. A trailing **All tables** hint marks an action whose effect reaches every table that shows the Dimension. A read-only table offers neither **Filter out this item** nor **Remove dimension**.
+
+| Item action | What it does |
 | --- | --- |
-| **Sort** | **Ascending**, **Descending**, **None**, or **Manual**, which lets you drag rows into your own order. |
-| **Filter** and **Filter out this item** | Show only some Dimension items, or hide one item. **Filter selected items** appears when several are selected. |
-| **Dimension color** | Change the accent color used for a Dimension's pills. |
-| **Display as** | Show Dimension items as **Pill** or **Plain text**. |
-| **Date granularity** | Change the grain of one Date axis without changing the whole table. |
-| **Pin column** or **Unpin column** | Keep a column beside the row names while the other columns scroll. Right-click the column's header; the entry sits directly above **Format and display**. A Date column and the columns grouped under it offer no **Pin column**. A pin is part of the table's layout, so only someone who can edit the table sees the entry, and a read-only table offers no way to pin. A solid line marks the last pinned column, and pins are saved with the table, so they hold after a reload and for everyone who opens it. |
-| **Use as** | Switch a Dimension between **Segmentation** and **Mapping**. |
-| **Show variable name** or **Hide variable name** | Toggle the Variable name on rows that show a Dimension item. |
+| **Copy** and **Mention in chat** | Copy the value, or drop a reference to the row, column, item, or cell into the current Ari chat, so Ari knows exactly which number you mean. On a cell the row reads **Mention cell in chat**. |
+| **Segment by** and **Drill in** | Break this item down by another Dimension, or show the input rows behind a formula. |
+| **Filter out this item** | Hide this item on this table while keeping the rest. |
 | **Expand child rows** or **Collapse child rows** | Open or close a segmented row. **⌘ click** a chevron to expand or collapse every sibling at that level. Your browser remembers only the rows you opened or closed on this table, so they show the same way after a reload; a row you have not touched, and a row that appears later, starts in its default state. |
-| **Rename** | Rename a Dimension item you created. |
-| **Mention in chat** | Drop a reference to the row, column, item, or cell into the current Ari chat, so Ari knows exactly which number you mean. On a cell the row reads **Mention cell in chat**. |
-| **Remove item**, **Remove item and drill-ins**, **Remove dimension** | Take the item or Dimension off this table. **Remove all drill-in rows** clears every traced input at once. |
+| **Format and display** | Background, text style, indent, format, precision, and variance colors, as described above. |
+| **Rename** | Rename a Dimension item you created. **All tables.** |
+| **Delete [Weather] item** | Delete an item you created from every table. Offered only on the Dimension's home table; see [Rename, delete, or hide an item](#rename-delete-or-hide-an-item). **All tables.** |
+| **[Weather] dimension settings** | Open the Dimension menu below. |
+
+| Dimension action | What it does |
+| --- | --- |
+| **Go to original table** | Open the Dimension's home table, when this table is not it. |
+| **Default for every [Weather]** and **Edit dimension formula** | Edit the formula every item at this level shares, or, on a Dimension whose items a formula or mapping defines, edit that formula. |
+| **Segment by** | Break every item at this level down by another Dimension. |
+| **Filter items** | Show only some of the Dimension's items. |
+| **Sort** | **Ascending**, **Descending**, **None**, or **Manual**, which lets you drag rows into your own order. |
+| **Date granularity** | Change the grain of one Date axis without changing the whole table. |
+| **Use as** | Switch a Dimension between **Segmentation** and **Mapping**. |
+| **Segment generation** | Choose which segments the table shows; see [Control which segments appear](#control-which-segments-appear). |
+| **Format and display** | **Dimension color** changes the accent color used for the Dimension's pills on every table. **Display as** shows its items as **Pill** or **Plain text** on this table. |
+| **Create [Weather] item** | Add an item to the Dimension. **All tables.** |
+| **Insert above** and **Insert below**, or **Insert left** and **Insert right** on a column, and **Insert space** | Add a row, column, or spacer beside this level of the table. |
+| **Pin column** or **Unpin column** | Keep a column beside the row names while the other columns scroll. Right-click the column's header; the entry sits directly above **Format and display**. A Date column and the columns grouped under it offer no **Pin column**. A pin is part of the table's layout, so only someone who can edit the table sees the entry, and a read-only table offers no way to pin. A solid line marks the last pinned column, and pins are saved with the table, so they hold after a reload and for everyone who opens it. |
+| **Remove dimension** or **Delete dimension** | Take the Dimension off this table, or, on its home table, delete it from the model after the same dependency check as a Variable. |
+
+A Variable row's menu keeps **Remove item**, which takes the row off this table. A traced input row offers **Remove item and drill-ins**, **Remove all drill-in rows** to clear every traced input at once, and **Show variable name** or **Hide variable name**. When several rows are selected, the row menu offers **Filter selected items**.
 
 ### Hide, resize, and reorder
 
@@ -309,8 +326,8 @@ To format several Variables at once, press **⌘ A** to select the whole table, 
 
 ### Dimensions and dates
 
-- **Dimension color.** Right-click the Dimension's header and choose **Dimension color** to change the accent color used for its pills wherever the Dimension appears.
-- **Pills or plain text.** Right-click the header and choose **Display as**, then **Pill** or **Plain text**.
+- **Dimension color.** Right-click the Dimension's label row, or choose **[Dimension] dimension settings** from one of its items, then **Format and display** and **Dimension color** to change the accent color used for its pills wherever the Dimension appears.
+- **Pills or plain text.** In the same **Format and display** submenu, choose **Display as**, then **Pill** or **Plain text**.
 - **Date grain on one axis.** Right-click a Date header and choose **Date granularity** to change one axis without changing the whole table.
 - **Date labels on a table.** Right-click a Date header, choose **Format and display**, then **Date format**, and pick a style such as `Sep-26`, `2026-09-02`, `September 2026`, or `FY2026`. This applies to the current table.
 
@@ -382,19 +399,21 @@ On a table segmented by a Dimension, a **+** row labeled **Create \[Dimension\] 
 The create action is unavailable while a filter is active on that Dimension. Clear the filter first.
 </Note>
 
-### Rename or remove an item
+### Rename, delete, or hide an item
 
-Double-click an item label to rename it in place, or right-click and choose **Rename**. Items whose value also appears in connected source data cannot be renamed; the menu explains why. Right-click and choose **Remove item** to take it off the table, or **Filter out this item** to hide it while keeping the rest.
+Double-click an item label to rename it in place, or right-click and choose **Rename**. Items whose value also appears in connected source data cannot be renamed; the menu explains why. A rename follows the item everywhere it is stored by name: into the Dimension's mapping assignments and into formulas that compare against it, such as `if(Weather = "Sunny", 1, 0)`, as one change that one undo reverses.
+
+To delete an item you created from every table, right-click it on the Dimension's home table, the table that created the Dimension, and choose **Delete [Weather] item**. Other editable tables offer **Filter out this item** instead, and an item that came from connected data reads **Only items you created can be deleted**. An item nothing else uses is deleted at once, and the **Deleted “Cloudy”** toast offers **Undo**. When a saved formula, a drill-in, a chart or Canvas condition, a row on another table, or a filter that lists only this item still uses it, a **Delete item?** dialog says it is still used and lists what deleting it everywhere will break; **Delete anyway** deletes the item and leaves those references broken, which **⌘ Z** also reverses. A manual sort order, or a filter that still lists other items, does not block the delete: the item is dropped from them. To hide an item on one table while keeping the rest, choose **Filter out this item**.
 
 ### Control which segments appear
 
-Right-click a Dimension header, open **More settings**, and choose **Dimension settings**. **Show only matching segments** hides combinations with no data, and **Expand to create all segments** shows every combination. For time-bounded Dimensions you can also set **Start** and **End** dates here.
+Right-click the Dimension's label row, or choose **[Weather] dimension settings** from one of its items, and choose **Segment generation**. **Show only matching segments** hides combinations with no data, and **Expand to create all segments** shows every combination. For time-bounded Dimensions you can also set **Start** and **End** dates here.
 
 ### Map one Dimension to another
 
 There is no separate mapping screen. To reconcile two sets of categories by hand, create a new Dimension for the unified names, then build a table with the source Dimension segmenting the rows and the new Dimension added as a mapping. Type the unified name into each row's cell. Repeat for each source. Ari can also author mappings for you; see [Dimension mappings](/formulas/core-concepts/dimension-mappings).
 
-For advanced cases, right-click a Dimension header, open **More settings**, and choose **Edit dimension formula** to define its items with a formula.
+For advanced cases, right-click the Dimension's label row and choose **Edit dimension formula** to define its items with a formula.
 
 ## Scenarios
 
@@ -432,15 +451,15 @@ Restoring a version needs full access to the Scenario.
     Select **Upload** at the top of the **Integrations** tab. You can drop several files at once. Each file becomes its own connection named after the file, and each file can be up to 50 MB.
   </Step>
   <Step title="Watch the status">
-    Each connection shows a status such as **Connecting**, **Syncing**, **Connected**, **Setup not finished**, **Needs attention**, or **Reconnect required**. Data is ready to model only after the initial load finishes.
+    Each connection shows a status such as **Connecting**, **Syncing**, **Synced** once a data source's load is in, **Connected** for a connection that syncs nothing, such as an MCP server or API, **Setup not finished**, **Needs attention**, or **Reconnect required**. Data is ready to model only after the initial load finishes.
   </Step>
 </Steps>
 
-Hover a connection for its actions: **Finish setup** when setup never finished, **Reconnect** when the source revoked access or when a sync failed and the connection needs attention, **Update file** to replace a CSV in place, **Rename**, and **Remove**. A connection that is healthy or still syncing does not offer **Reconnect**, because signing in again cannot help it. A first sync that is queued but not yet running reads **Syncing**. An MCP server or API connection offers **Manage** and **Disconnect** instead. For details on each source, see [Connect and sync your data](/integrations/connect-and-sync-data).
+Hover a connection for its actions: **Finish setup** when setup never finished, **Reconnect** when the source revoked access or a failed sync needs a new sign-in, **Retry** when a linked connection's import failed and only the import needs to run again, **Update file** to replace a CSV in place, **Rename**, and **Remove**. A connection that is healthy or still syncing does not offer **Reconnect** or **Retry**, because signing in again cannot help it. See [Retry a failed import](/integrations/connect-and-sync-data#retry-a-failed-import). A first sync that is queued but not yet running reads **Syncing**. An MCP server or API connection offers **Manage** and **Disconnect** instead. For details on each source, see [Connect and sync your data](/integrations/connect-and-sync-data).
 
 ## Download a Page as a spreadsheet
 
-Select **Download spreadsheet** in the Page header. Each visible Table Block becomes a worksheet with its formulas and the Model inputs they read on a **Model inputs** sheet; text, charts, and Canvas blocks are left out. The export runs in the background, and the button reads **Spreadsheet queued** and then **Preparing spreadsheet** until the file downloads. When the Scenario you are viewing is also one that a table compares against, the export leaves the viewed Scenario out of that table's comparison columns, because the sheet already shows the viewed Scenario as its own column.
+Select **Download spreadsheet** in the Page header; its tooltip reads **Download tables as a spreadsheet**. The button appears only on a Page that has a Table Block, because a workbook holds tables, so a Page of text, charts, or Canvas blocks offers no download. Each visible Table Block becomes a worksheet with its formulas and the Model inputs they read on a **Model inputs** sheet; text, charts, and Canvas blocks are left out. The export runs in the background, and the button reads **Spreadsheet queued** and then **Preparing spreadsheet** until the file downloads. If the Page's last table is removed while a download is still being accepted, the download stops with **Add a table to this page before downloading a spreadsheet.** When the Scenario you are viewing is also one that a table compares against, the export leaves the viewed Scenario out of that table's comparison columns, because the sheet already shows the viewed Scenario as its own column.
 
 You can also ask Ari to export one Page, or several Pages in one workbook: Ari saves the finished workbook as a file in the chat, where you can download it and Ari can open it again later. A workbook that covers several Pages keeps its formulas linked across the sheets and shares one **Model inputs** sheet. If an export fails, Ari can say which step and which table, Scenario, Variable, or period stopped it, and whether trying again can help.
 

@@ -24,6 +24,10 @@ A visual receives each Variable's own kind of value: numbers, text such as a cus
 
 A visual resolves its data in the Page's Scenario. Use a Table Block when you need a saved side-by-side Scenario comparison. See [Create and compare Scenarios](/scenarios/create-and-compare-scenarios).
 
+A button inside a visual can do a few things when you click it: open another Page or block in your workspace, including a Page or block Ari named in a chat; prepare a draft message for Ari that you review before sending; or start a new chat that sends its message at once, for example to ask Ari to present a saved Guide. That new chat opens even when the Page has not finished loading the block's name; in that case the message goes without a reference to the block.
+
+When Ari checks a visual it built, it renders the block once per light and dark theme at a width of 1200 px with the block's saved state, and reads the errors and warnings from those renders. It does not click buttons, type into inputs, follow links, or launch Guides, so what those do is not checked, and neither is the layout at other widths.
+
 ## Start from a template
 
 The **Browse Canvas block library** button in the chat composer opens the Canvas library. Select as many templates as you want; they join your message as chips. Each template is a recipe: some build one Canvas block, others a whole decision Page with its own assumptions and walkthrough. Your words decide what Ari builds from them, each on its own or one combined result whose parts read the same Model inputs, share one set of assumptions, and have one walkthrough. If a selected template is no longer available, the chat tells you which one instead of failing.

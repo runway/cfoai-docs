@@ -68,7 +68,7 @@ A HubSpot connection syncs a fixed set of 20 tables: deals, deal pipelines and t
 - **Google Sheets** (Standard)
 - **Google Drive**
 
-Use a Google Sheets connection when a Variable is still maintained in a spreadsheet outside your other systems. You sign in with Google and pick one spreadsheet in Google's file picker; cfo.ai reads only the files you pick and keeps no copy of the files themselves; the data Ari imports from a file is stored in your Model like any other import. **Google Drive** works the same way for one Google Sheet, Excel workbook, or CSV file. Ari imports the file as it would an upload, and the connection re-reads it on the nightly refresh and when you ask Ari to refresh it; a file over 10 MB is not imported until it is made smaller. Every Google Sheets connection in a workspace shares one plan slot, while each Google Drive connection takes a slot of its own; your workspace's Usage settings show which class your plan gives each. See [Connect a Google Sheet or Drive file](/integrations/connect-and-sync-data#connect-a-google-sheet-or-drive-file).
+Use a Google Sheets connection when a Variable is still maintained in a spreadsheet outside your other systems. You sign in with Google and pick one spreadsheet in Google's file picker; cfo.ai reads only the files you pick and keeps no copy of the files themselves; the data Ari imports from a file is stored in your Model like any other import. **Google Drive** works the same way for one Google Sheet, Excel workbook, or CSV file. Ari imports the file as it would an upload, and the connection re-reads it on the nightly refresh and when you ask Ari to refresh it. A Google Sheet is read as an Excel workbook of up to 50 MB; an Excel or CSV file stored in Drive is read up to 10 MB, and a larger one is not imported until it is made smaller. Every Google Sheets connection in a workspace shares one plan slot, while each Google Drive connection takes a slot of its own; your workspace's Usage settings show which class your plan gives each. See [Connect a Google Sheet or Drive file](/integrations/connect-and-sync-data#connect-a-google-sheet-or-drive-file).
 
 ## Databases
 
@@ -98,6 +98,8 @@ Browsable by category:
 - **CRM & Sales** — Intercom, Close, and Attio
 - **Productivity & Docs** — Notion, Linear, Atlassian (Jira and Confluence), Airtable, monday.com
 - **Data & Analytics** — Supabase and ThoughtSpot
+
+Rippling also offers a remote MCP server at `mcpgateway.rippling.com`. Add it with **Add server**; the dialog shows a **Rippling setup** note with what Rippling requires before its tools return data: copy the server URL from **IT → My IT → MCP connectors → Rippling MCP**, have a Rippling admin assign you access under **IT → MCP Gateway → Rippling MCP → Access assignments**, and hold an active Rippling AI trial or subscription. The same note appears beside the server's tool-loading error and on Ari's connect card.
 
 If you do not see what you need, use **Add server** or the search bar to look for others. **Add server** opens the **Add MCP server** dialog, which takes a **Name** and the **MCP URL**; under **Advanced**, its **Authentication** choice is **OAuth**, **Bearer token**, or **API key header** with a **Header name** such as `X-API-Key`. Connections made from this catalog or the API list show the company's logo on the Variables, Dimensions, and tables they produce. A server or API you add by address shows its company's logo too when the address is a public company domain; a private or local address keeps a generic mark.
 
@@ -142,7 +144,7 @@ The nightly refresh and asking Ari to refresh a connection work the same on ever
 
 The integrations above bring data into your Model on a schedule. API and MCP connections under **Settings → Connections** are different: they are tools Ari calls live when you ask a question. Nothing is stored or scheduled. If Ari writes a number from one of these calls into your Model, it lands as a plain value that stays put until you ask Ari to pull it again.
 
-For example, Stripe is not a synced integration. Connect it as an MCP connector or an API connection, and Ari can look up a balance or a payout when you ask, then write the figure into a Table Block as an editable value.
+Stripe is an example of a source you can use both ways. The **Integrations** tab lists **Stripe** and **Stripe Sandbox**, which sync Stripe data into your Model on a schedule like any other integration. Connected as an MCP connector or an API connection instead, Stripe becomes a tool: Ari can look up a balance or a payout when you ask, then write the figure into a Table Block as an editable value.
 
 API and MCP connections also do not use a plan integration slot. Only the integrations above, the ones that import data into your Model, count toward the standard and premium limits your plan sets, so you can add API and MCP connections without spending an integration you would rather give to your accounting or payroll system. An integration that is paused or needs attention still holds its slot until you remove the connection.
 

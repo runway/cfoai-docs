@@ -79,6 +79,8 @@ Use a Google Sheets connection when a Variable is still maintained in a spreadsh
 
 Use a database connection when your data lives in a system of record that does not have a dedicated integration above, but is reachable through one of these PostgreSQL-compatible sources.
 
+A cloud data warehouse is not one of them. Snowflake, BigQuery, Redshift, and Databricks are not sources you can connect today. To model curated warehouse datasets now, land them in a PostgreSQL-compatible database cfo.ai can read, or export them and bring them in through **CSV / Raw File Upload**.
+
 The connectors shown in your workspace's catalog can differ from this list depending on your plan and rollout. Ask Ari to check the catalog for a specific system.
 
 ## Connections for Ari

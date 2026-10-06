@@ -46,6 +46,8 @@ A call that repeats an earlier call exactly, after the earlier result already an
 
 Use `inspect_table_blocks` on the relevant saved table after a material change. Check representative dates, segments, formula origins, and source information.
 
+Every `read` result carries `calculation.source`, which says how its values were obtained: `cached`, `promoted`, `derived`, `seeded`, `full`, or `recalculated`. When a value disagrees with what the user sees, with another read, or with arithmetic you can check, and the source is anything but `full` or `recalculated`, read once more with `recalculate: true`. That read calculates the table from scratch, ignoring every cached or reused result, makes the fresh result the cached one so the page shows it too, and reports in `recalculated` whether the cached result differed and how many cells. It needs `comparison: none`, costs a full calculation, and is not for routine reads.
+
 Examples:
 
 - Compare Gross Profit with Revenue minus Cost of Goods Sold

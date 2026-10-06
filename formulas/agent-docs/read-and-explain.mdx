@@ -79,7 +79,9 @@ When the calculation service cannot compute a table, `read` still returns the sa
 
 ## Explain one cell's inputs
 
-For a single cell, select one row and one column and add `include_inputs: true`. The result shows one level of the formula's inputs and where each value came from: lookup coordinates, aggregate units, the selected rule, and source dates. Read an input by its own reference to go deeper.
+For a single cell, select one row and one column and add `include_inputs: true`. The result shows one level of the formula's inputs and where each value came from: lookup coordinates, aggregate units, the selected rule, and source dates. Read an input by its own reference to go deeper. `include_inputs` and `recalculate` need `comparison: none`; on a time or Scenario comparison the read answers with an invalid-input refusal that names the option, not a tool error.
+
+Every `read` also reports `calculation.source`: `cached`, `promoted`, `derived`, `seeded`, `full`, or `recalculated`. A doubted value from anything but `full` or `recalculated` is worth one read with `recalculate: true`, which is described in [Validate and verify](/formulas/agent-docs/validate-and-verify#verify-calculated-behavior).
 
 ## Historical reads
 

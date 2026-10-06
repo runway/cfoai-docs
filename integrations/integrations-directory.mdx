@@ -40,7 +40,7 @@ A workspace holds one QuickBooks Online company and one Xero organisation at a t
 
 Statements from QuickBooks Online, Xero, and Rillet carry **Entity** and **Currency** columns, and an accounting query's compatible Dimensions join the ones an earlier query created on its first sync, so two sources share one Entity rather than two. See [Share one Dimension across accounting sources](/formulas/core-concepts/dimension-mappings#share-one-dimension-across-accounting-sources).
 
-cfo.ai checks that NetSuite shares the tables the income statement and balance sheet need when the connection first finishes setup, and again before every sync, whether the nightly refresh or one you ask Ari for. If a table is missing, the connection's row on the **Integrations** tab of the connection manager carries an **Access missing** badge, and its warning reads: **NetSuite isn't sharing some tables cfo.ai needs for your financial statements. Have your NetSuite admin create an access token for the Data Warehouse Integrator role, then reconnect NetSuite with that token. Changing only the role ID won't work. Missing tables: …**
+cfo.ai checks that NetSuite shares the tables the income statement and balance sheet need when the connection first finishes setup, and again before every sync, whether the nightly refresh or one you ask Ari for. If a table is missing, the connection reads **Missing access in NetSuite SuiteAnalytics**, with a red triangle on its sidebar row, and its warning reads: **NetSuite isn't sharing some tables cfo.ai needs for your financial statements. Have your NetSuite admin create an access token for the Data Warehouse Integrator role, then reconnect NetSuite with that token. Changing only the role ID won't work. Missing tables: …**
 
 A NetSuite access token belongs to one role, so entering a different role ID in the connection form changes nothing; the connection needs a token issued for the Data Warehouse Integrator role. Once that token is in place, the next sync asks NetSuite for its table list again, syncs the tables it finds, and clears the warning in the same run. While the warning stands, a sync that brings back no statement rows reports the missing access, with the next step **Grant access to the missing source tables to continue**, rather than an empty source. Ari sees the same warning when it inspects the connection. It can start a sync to re-check, but it does not rewrite the connection's saved queries to work around the gap.
 
@@ -101,9 +101,9 @@ Browsable by category:
 - **Productivity & Docs** — Notion, Linear, Atlassian (Jira and Confluence), Airtable, monday.com
 - **Data & Analytics** — Supabase and ThoughtSpot
 
-Rippling also offers a remote MCP server at `mcpgateway.rippling.com`. Add it with **Add server**; the dialog shows a **Rippling setup** note with what Rippling requires before its tools return data: copy the server URL from **IT → My IT → MCP connectors → Rippling MCP**, have a Rippling admin assign you access under **IT → MCP Gateway → Rippling MCP → Access assignments**, and hold an active Rippling AI trial or subscription. The same note appears beside the server's tool-loading error and on Ari's connect card.
+Rippling also offers a remote MCP server at `mcpgateway.rippling.com`. Add it with **Add manually**; the **Add MCP server** dialog shows a **Rippling setup** note with what Rippling requires before its tools return data: copy the server URL from **IT → My IT → MCP connectors → Rippling MCP**, have a Rippling admin assign you access under **IT → MCP Gateway → Rippling MCP → Access assignments**, and hold an active Rippling AI trial or subscription. The same note appears beside the server's tool-loading error and on Ari's connect card.
 
-If you do not see what you need, use **Add server** or the search bar to look for others. **Add server** opens the **Add MCP server** dialog, which takes a **Name** and the **MCP URL**; under **Advanced**, its **Authentication** choice is **OAuth**, **Bearer token**, or **API key header** with a **Header name** such as `X-API-Key`. Connections made from this catalog or the API list show the company's logo on the Variables, Dimensions, and tables they produce. A server or API you add by address shows its company's logo too when the address is a public company domain; a private or local address keeps a generic mark.
+If you do not see what you need, use the search bar to look for others, **Add with Ari** to have Ari research and connect the provider in a chat, or **Add manually**. **Add manually** opens the **Add MCP server** dialog, which takes a **Name** and the **MCP URL**; under **Advanced**, its **Authentication** choice is **OAuth**, **Bearer token**, or **API key header** with a **Header name** such as `X-API-Key`. Connections made from this catalog or the API list show the company's logo on the Variables, Dimensions, and tables they produce. A server or API you add by address shows its company's logo too when the address is a public company domain; a private or local address keeps a generic mark.
 
 For how to connect cfo.ai's own MCP server to Claude Code, see the [MCP Server](/integrations/mcp-server) page.
 
@@ -126,11 +126,17 @@ A separate, direct list of API connections:
 - Frankfurter — FX rates, no key needed
 - U.S. Treasury Fiscal Data — no key needed
 
-Use **Add API** or the search bar for anything not listed. **Add API** takes an OpenAPI document, version 3.0 or 3.1. When the document cannot be used, the connection reports the stage that failed and a short reason, such as a required field that is missing, a reference that does not resolve, or an unsupported version field, and a workspace administrator can ask Ari for the ten most recent setup attempts.
+Use the search bar, **Add with Ari**, or **Add manually** for anything not listed. **Add manually** opens the **Add API** dialog, which takes a **Display name**, an **API key**, and an **OpenAPI specification**, version 3.0 or 3.1. When the document cannot be used, the connection reports the stage that failed and a short reason, such as a required field that is missing, a reference that does not resolve, or an unsupported version field, and a workspace administrator can ask Ari for the ten most recent setup attempts.
 
 ## How integrations stay current
 
-Connected integrations refresh once a night, automatically. The refresh starts in the early morning UTC and finishes within a few hours, so your Actuals are fresh by the start of the US workday. Every integration follows the same schedule, whether it is QuickBooks Online, Xero, NetSuite, Google Sheets, or a database. A connection's **last loaded** time counts successful loads only; a refresh that failed does not move it.
+Connected integrations refresh once a day, automatically. By default every integration, whether it is QuickBooks Online, Xero, NetSuite, Google Sheets, or a database, refreshes in one shared nightly run that starts at 02:00 UTC and finishes within a few hours, so your Actuals are fresh by the start of the US workday.
+
+A source that publishes its daily data after that run lands a day late on every refresh. Ask Ari to move that connection's refresh to a time of day instead:
+
+> Refresh QuickBooks at 6:30 AM Pacific every day.
+
+Ari saves the time and its time zone on the connection. From the next nightly run, the connection starts its own refresh at that time and reruns its saved queries when the refresh finishes, once per calendar day in that time zone, and the other connections keep the shared run. A change applies from the first nightly run after it, so a time set this morning takes effect tomorrow. Ask Ari to clear the time to return the connection to the shared run. A file upload has no scheduled refresh, so it cannot take a time. Ari reports each connection's refresh time when you ask about your connections. A connection's **last loaded** time counts successful loads only; a refresh that failed does not move it.
 
 There is no manual refresh button today. If you need a number sooner than the next nightly run, ask Ari to refresh the connection:
 

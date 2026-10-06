@@ -22,7 +22,7 @@ A custom visual reads from named Model data views using the same Variables and D
 
 A visual receives each Variable's own kind of value: numbers, text such as a customer code or a currency, dates, and true/false values. A table of labels or invoice dates can drive a visual directly, without a numeric stand-in. An empty cell or a calculation error reaches the visual as no value.
 
-A visual resolves its data in the Page's Scenario. Use a Table Block when you need a saved side-by-side Scenario comparison. See [Create and compare Scenarios](/scenarios/create-and-compare-scenarios).
+A visual resolves its data in the Page's Scenario unless one of its data views names another saved Scenario. A Canvas block can read up to three Scenarios, so one block can chart Main, an Upside, and a Downside side by side; Ari's **Scenario comparison** template is built this way. Every read of another Scenario checks that the viewer can read that Scenario; a viewer who cannot gets no data for that view. A Table Block offers a saved side-by-side comparison too. See [Create and compare Scenarios](/scenarios/create-and-compare-scenarios).
 
 A button inside a visual can do a few things when you click it: open another Page or block in your workspace, including a Page or block Ari named in a chat; prepare a draft message for Ari that you review before sending; or start a new chat that sends its message at once, for example to ask Ari to present a saved Guide. That new chat opens even when the Page has not finished loading the block's name; in that case the message goes without a reference to the block.
 

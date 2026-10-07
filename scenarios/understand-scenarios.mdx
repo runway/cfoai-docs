@@ -32,6 +32,8 @@ Before merging a Scenario, ask Ari what would change. Ari can inspect the saved 
 
 Merging applies the Scenario's changes to Main, the Scenario it branched from, and removes the merged Scenario. Review the affected changes before approving the merge. Undoing the merge from the version history brings the merged Scenario back.
 
+A Scenario that has an editable child Scenario of its own cannot be merged. The refusal reads **scenario cannot be merged while it has 1 child scenario** and names the child; merge or delete that child first. A Snapshot taken from the Scenario does not block the merge: after its source Scenario is merged away, the Snapshot stays readable at the version it was pinned to, with the edits typed into it, and undo or redo of the merge keeps it readable too.
+
 ## Snapshots preserve a point in time
 
 A **Snapshot** pins Main or an editable Scenario to a specific point in its history. After that point, nothing from the source flows into it:

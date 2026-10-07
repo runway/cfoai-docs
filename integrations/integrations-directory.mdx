@@ -136,6 +136,8 @@ A source that publishes its daily data after that run lands a day late on every 
 
 > Refresh QuickBooks at 6:30 AM Pacific every day.
 
+A refresh in which one table fails still finishes: the other tables load, the connection reads **Partly synced**, and the failed table is read again on the next refresh; see [When a sync fails](/integrations/connect-and-sync-data#when-a-sync-fails).
+
 Ari saves the time and its time zone on the connection. From the next nightly run, the connection starts its own refresh at that time and reruns its saved queries when the refresh finishes, once per calendar day in that time zone, and the other connections keep the shared run. A change applies from the first nightly run after it, so a time set this morning takes effect tomorrow. Ask Ari to clear the time to return the connection to the shared run. A file upload has no scheduled refresh, so it cannot take a time. Ari reports each connection's refresh time when you ask about your connections. A connection's **last loaded** time counts successful loads only; a refresh that failed does not move it.
 
 There is no manual refresh button today. If you need a number sooner than the next nightly run, ask Ari to refresh the connection:

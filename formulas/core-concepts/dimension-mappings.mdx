@@ -45,7 +45,7 @@ Renaming a Dimension item, whether you rename it on a table or Ari renames it, a
 
 ## Share one Dimension across accounting sources
 
-Two accounting sources often carry the same categories, such as Entity and Currency on QuickBooks Online, Xero, and Rillet statements, or Vendor on two general-ledger queries. When a new accounting query publishes for the first time, cfo.ai joins each of its text or number Dimension columns to an existing Dimension when exactly one compatible target exists: the same provider, integration, column name, type, and aggregation. It does not matter whether a built-in template, Ari, or you wrote the query's SQL. Later syncs never regroup, so a Dimension that stayed separate stays separate, and dates and amounts are never combined.
+Two accounting sources often carry the same categories, such as Entity and Currency on QuickBooks Online, Xero, and Rillet statements, or Vendor on two general-ledger queries. When a new accounting query publishes for the first time, cfo.ai joins each of its text or number Dimension columns to an existing compatible Dimension: the same provider, integration, column name, type, and aggregation. When several qualify, it joins the one that the most sources already feed; when two are tied on that count, it joins the older one. So a Currency Dimension shared by three queries wins over a standalone one from one query, and when you split a Dimension by hand, every piece still qualifies and the same rule picks among them. It does not matter whether a built-in template, Ari, or you wrote the query's SQL. Later syncs never regroup, so a Dimension that stayed separate stays separate, and dates and amounts are never combined.
 
 Ask Ari to combine or split Dimensions yourself:
 

@@ -32,7 +32,7 @@ For how to frame the question itself — the decision, the period, the level of 
 
 | Ari prompts | Ari results |
 | --- | --- |
-| "Show me revenue by month as a line." | A line chart of Revenue across months, on the current Page, resolved in that Page's Scenario. |
+| "Show me revenue by month as a line." | A line chart of Revenue across months, on the current Page, resolved in the Scenario you are viewing. |
 | "Plot revenue and expenses on the same chart." | One line chart with two series and a legend, sharing a time axis. |
 | "Show cumulative cash collected this year as an area chart." | An area chart, where the filled magnitude is the point rather than the month-to-month wiggle. |
 | "Compare this year against last year on one chart." | Two series on the same time axis so the shapes sit on top of each other. |
@@ -71,7 +71,7 @@ For how to frame the question itself — the decision, the period, the level of 
 
 | Ari prompts | Ari results |
 | --- | --- |
-| "Show our sales funnel from lead to closed won." | A funnel chart with each stage's volume and the fall-off between stages. |
+| "Show our sales funnel from lead to closed won." | A funnel chart with each stage's volume, in order. |
 | "Where are we losing the most deals?" | The stage-to-stage conversion, with the weakest step identified. |
 | "Show the funnel for enterprise only." | The same funnel filtered to that segment. |
 
@@ -82,7 +82,7 @@ For how to frame the question itself — the decision, the period, the level of 
 | "Add a scorecard for current-quarter Revenue against target." | A card with the headline number and its delta against target. |
 | "Give me a row of our five key numbers with change since last month." | A scorecard grid: each figure with its own delta, formatted in its own currency and precision. |
 | "Show how close we are to our annual revenue target." | A gauge, or a headline figure with progress against the target. |
-| "Add a one-line summary above this chart saying what it shows." | A short written explanation as part of the same visual, not a separate block. |
+| "Add a one-line summary above this chart saying what it shows." | A short subtitle on the chart saying what it shows. |
 
 <Note>
   A delta is colored by business meaning, not by sign. A cost coming in under plan reads as good news even though the number is negative.
@@ -93,9 +93,9 @@ For how to frame the question itself — the decision, the period, the level of 
 | Ari prompts | Ari results |
 | --- | --- |
 | "Put a slider on this so I can try different hiring dates." | A control wired to that assumption, with the outcome updating as you move it. |
-| "Let me toggle between monthly and quarterly on this chart." | A control that switches the view, remembered for that Page and Scenario. |
+| "Let me toggle between monthly and quarterly on this chart." | A control that switches between two saved views of the data, remembered for that block in that Scenario. |
 | "Let me try different growth rates and see the effect on cash." | An input and a live preview of the result. |
-| "I like this version — save it." | The change committed. Until you commit, a control changes only your local preview. |
+| "I like this version — save it." | The control's setting saved for that block. Until you save it, a control changes only your local preview, and saving a control setting never changes a Model value. |
 
 <Note>
   A visual reads your Model but cannot write to it. Moving a slider previews an outcome; it does not change a saved assumption. To change the Model itself, ask Ari to update the Variable or formula, or edit the value in a Table Block.
@@ -105,7 +105,7 @@ For how to frame the question itself — the decision, the period, the level of 
 
 | Ari prompts | Ari results |
 | --- | --- |
-| "Show this weekly." | The series recalculated weekly. You can ask for daily, weekly, monthly, quarterly, half-year, or yearly. |
+| "Show this weekly." | The series recalculated weekly. You can ask for daily, weekly, monthly, quarterly, half-yearly, or yearly. |
 | "Drop the time axis and show the total by product." | A single-snapshot categorical chart with no date axis. |
 | "Only show the last 12 months." | The window narrowed, with the values recalculated for it. |
 | "Start the axis at zero." | Explicit axis bounds, overriding the default fit. |
@@ -137,11 +137,11 @@ For how to frame the question itself — the decision, the period, the level of 
 | Ari prompts | Ari results |
 | --- | --- |
 | "Build an operating expense table by department for the last six months." | A Table Block with departments as rows and months as columns, reading live Model values. |
-| "Add a column comparing Actuals with Forecast and show the variance." | A variance column added to the existing Table Block. |
+| "Add a column comparing Actuals with Forecast and show the variance." | A variance Variable, actual minus plan for the same period, added to the Table Block. Built-in comparison columns compare Scenarios or periods, never both. |
 | "Add a Variable for average contract value." | A new Variable with its formula, placed where the rest of the Model can reference it. |
 | "Break revenue out by region." | A Dimension applied to Revenue, so it resolves per region and rolls up to the total. |
 | "Which formula applies to this cell?" | The formula that resolves there, and why that one rather than another. |
-| "Draft the formula and check whether it is valid, but wait before applying it." | A validated formula and nothing saved, so you can review it first. |
+| "Draft the formula and check whether it is valid, but wait before applying it." | A syntax and reference check with nothing saved, so you can review it first; the check does not calculate values. |
 | "Why is this row blank?" | The reason the value doesn't resolve — a missing mapping, a formula range, or a Dimension that doesn't apply — rather than a silent zero. |
 | "Build a 12-month revenue forecast by customer segment and label any assumptions you make." | The Variables, Dimensions, and formulas behind the forecast, with each assumption named so you can change it. |
 | "Build a headcount plan by department with loaded payroll cost." | Employee and department tables, compensation, start dates, and planned hires across time. |
@@ -154,13 +154,13 @@ For how to frame the question itself — the decision, the period, the level of 
 | --- | --- |
 | "Can we hire three engineers in September? Build a hiring Scenario and show the effect on payroll and cash." | A Scenario with the hires modeled and the effect on each outcome. |
 | "What's different between this Scenario and Main?" | A summary of what actually changed, not a rebuild. |
-| "Is this Scenario ready to merge into Main?" | What merging would change, and a confirmation step you press yourself before anything moves. |
-| "Connect QuickBooks Online so we can build a monthly profit and loss statement." | A link into the connection flow for you to approve. Ari cannot sign in on your behalf. |
+| "Is this Scenario ready to merge into Main?" | What merging would change. Ask to confirm first and Ari adds a **Merge** button you press yourself; otherwise Ari can merge directly, and you can undo the merge from the version history. |
+| "Connect QuickBooks Online so we can build a monthly profit and loss statement." | A card that opens the connection setup for you to sign in and approve. Ari cannot sign in on your behalf. |
 | "Did the sync finish, and which periods are available?" | The connection's load status, when it last loaded, and what's ready to use. |
 | "Why did software spend increase last month? Break it down by vendor." | The breakdown, the largest contributors, and the source records behind them. |
-| "Undo that last change." | The change reverted, at the smallest scope that matches what you asked. |
-| "Every Monday, summarize last week's cash activity and send it to my Slack direct messages." | A named Trigger on that schedule, delivering to your own Slack direct messages or verified email. |
-| "Save this as our monthly close process." | A Skill with a trigger condition and instructions, which Ari activates on its own next time. |
+| "Undo that last change." | The most recent change reverted as a whole; undo works on whole changes, not single fields. |
+| "Every Monday, summarize last week's cash activity and send it to my Slack direct messages." | A named Trigger on that schedule, delivering to your own Slack direct messages or verified email. Schedules run on UTC time. |
+| "Save this as our monthly close process." | A Skill with a description of when it applies and the instructions to follow, which Ari picks up on its own next time. |
 | "Build a Guide walking a new analyst through this Page." | A saved Guide whose steps spotlight specific blocks, rows, or cells. |
 
 ## Related

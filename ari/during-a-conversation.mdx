@@ -14,7 +14,7 @@ While Ari is working, the send button becomes a **Stop** button. Select it when 
 
 A message you send while Ari is idle starts a turn at once. It appears in the chat as a sent message, and the composer keeps focus, so you can type your next message while Ari works. Until Ari's first step shows, a **Thinking…** row holds the turn's place under your message; Ari's first reasoning or action replaces it.
 
-You can type while Ari works. A message sent during a turn is **Queued for after this turn**: Ari finishes what it is doing, then reads your message. Use this to add a detail you forgot or to redirect the next step.
+You can type while Ari works. A message sent during a turn is **Queued for after this turn**: Ari finishes what it is doing, then reads your message. Use this to add a detail you forgot or to redirect the next step. You can attach a file while Ari works too, including a screenshot you paste or drop into the composer, and send it with or without text; the same five-file limit applies.
 
 Hover a queued message to edit or delete it before Ari reaches it. Two kinds of queued message cannot be edited, only deleted: a plan approval and a set of answers to Ari's questions. A message that started a turn cannot be edited or deleted; it is already on its way to Ari.
 
@@ -64,7 +64,7 @@ Anyone in the chat can approve or decline the single call. After you choose, Ari
 
 ## When a reply is interrupted
 
-If Ari's reply is cut off, the transcript shows **Ari stopped before finishing** with a **Retry** button. Select it to have Ari pick the work back up. If your connection drops, the chat says **No internet connection. Reconnect to continue with Ari.** If the workspace runs out of AI usage mid-turn and has auto-reload on, the chat tells you usage is being added and Ari continues in a moment.
+If Ari's reply is cut off, the transcript shows **Ari stopped before finishing** with a **Retry** button. Select it to have Ari pick the work back up. cfo.ai also tries on its own to continue a reply that was interrupted, for example when the service running Ari restarted. When every attempt fails, the reply ends with **I stopped before finishing this reply. It was interrupted, and repeated attempts to continue it did not finish. Changes I saved before the interruption are kept. Sending the message again starts a new reply.** Anything Ari saved before the interruption is still in the Model. If your connection drops, the chat says **No internet connection. Reconnect to continue with Ari.** If the workspace runs out of AI usage mid-turn and has auto-reload on, the chat tells you usage is being added and Ari continues in a moment.
 
 A very long conversation can outgrow what Ari can read in one request. The chat then says **This request is too large for Ari to continue. Start a new chat with a shorter request or fewer attachments.** and offers no **Retry**, because the same request would fail the same way. Start a new chat with **⌘ /** (Ctrl+/ on Windows and Linux) and restate what you need; attach a file again only if the new request needs it.
 

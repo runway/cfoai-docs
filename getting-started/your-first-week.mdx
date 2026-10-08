@@ -1,28 +1,30 @@
 ---
 title: "Your first week with cfo.ai"
 sidebarTitle: "Your first week"
-description: "Take one short task a day for five days to check your Model, build a Page worth sharing, trace its numbers, test a decision, and set up recurring work."
+description: "Take one short task a day for five days: grow your first Model into a forecast, turn it into a Page worth sharing, test a decision, add more of your data, and let Ari keep watch."
 ---
 
-Your first Model is a starting point. Over the next five days, take one short task a day. Each task teaches you one part of cfo.ai and leaves your Model more accurate than it was.
+Your first Model is a starting point. Over the next five days, take one short task a day. Each day builds on the one before: a forecast you understand, a Page people can read, a decision you can test, more of your real data, and a Model that keeps working when you are not in it.
 
 Each task has a prompt you can paste into Ari, and [Ari prompts](/ari/prompts) has more. Replace the words in brackets with your own. Start a new chat for each day with **⌘ /** (Ctrl+/ on Windows and Linux) so each conversation stays about one task.
 
-If you have not built a first Model yet, start with [Your first 10 minutes](/getting-started/first-10-minutes).
+If you have not built a first Model yet, start with [Your first 10 minutes](/getting-started/first-10-minutes). If its numbers did not match your books, fix that first; see [If something looks wrong](/getting-started/first-10-minutes#if-something-looks-wrong).
 
 <Steps>
-  <Step title="Day 2: Check your actuals against your books">
-    **Why:** you can only trust a forecast that starts from the right history.
+  <Step title="Day 2: Grow your Model into a forecast">
+    **Why:** a forecast is where the Model starts answering questions about the future, and every number in it should be one you can explain.
 
-    > Compare [last month]'s revenue, expenses, and net income in the Model with [QuickBooks / my P&L]. List every account that differs and explain why.
+    > Extend this into a [12]-month forecast. Drive revenue from [new customers, pricing, and churn] and costs from [headcount and our biggest vendors]. Put the assumptions where I can see and change them.
 
-    If you imported a workbook instead, attach it to this new chat again and ask:
+    Ari writes the formulas; the calculation engine does the math. Then pick one forecast number and trace it: right-click the cell, choose **Mention cell in chat**, and ask:
 
-    > Reconcile the rebuilt revenue, payroll, and cash totals to this workbook for every quarter. Explain any difference you cannot resolve.
+    > How is this calculated? Which assumptions move it the most?
 
-    If you started from estimates, connect your accounting system today, then run the first check. See [Connect and sync your data](/integrations/connect-and-sync-data).
+    For a whole table, hover its left edge, click the six-dot handle, and choose **Explain with Ari**. Every change Ari made is listed in [Version history](/getting-started/build-by-hand#version-history-and-undo), the clock icon in the Page header.
 
-    **Done when:** the totals match, or every gap has a reason you agree with.
+    **Done when:** you can name the two or three assumptions that move your forecast the most.
+
+    **Next:** your forecast is right. Tomorrow, make it something other people can read.
 
   </Step>
   <Step title="Day 3: Build a Page you would share">
@@ -40,31 +42,39 @@ If you have not built a first Model yet, start with [Your first 10 minutes](/get
 
     **Done when:** you would send this Page to someone without editing it first.
 
-  </Step>
-  <Step title="Day 4: Trace a number to its source">
-    **Why:** knowing where a number comes from is how you explain it to your team or board.
-
-    - For one number, right-click the cell and choose **Mention cell in chat**, or select it and press **⌘ L** (Ctrl+L). Then ask: "Where does this come from? Show the formula and the source data."
-    - For a whole table, hover the table's left edge, click the six-dot handle, and choose **Explain with Ari**.
-    - To see every change, who made it, and when, open [Version history](/getting-started/build-by-hand#version-history-and-undo), the clock icon in the Page header. You can undo any one change or restore an earlier version from there.
-
-    **Done when:** you can say in one sentence how your largest revenue or cost number is calculated.
+    **Next:** your Page shows one plan. Tomorrow, test another.
 
   </Step>
-  <Step title="Day 5: Test a decision in a Scenario">
-    **Why:** a Scenario lets you try a plan without changing your main Model.
+  <Step title="Day 4: Test a decision in a Scenario">
+    **Why:** a Scenario lets you try a plan without changing your main Model, so you can see what a decision costs before you make it.
 
-    > Create a Scenario called [Hire two engineers in Q1]. [Add two engineers at $X per year starting in January.] Compare cash and cash runway with Main.
+    > Create a Scenario called [Hire two engineers in Q1]. [Add two engineers at $X per year starting in January.] Compare cash and cash runway with Main, and add the comparison to my [board] Page.
 
-    **Done when:** you can see the Scenario next to Main and know what the decision costs.
+    **Done when:** you can say what the decision does to cash runway, and your Page shows it next to Main.
 
     See [Create and compare Scenarios](/scenarios/create-and-compare-scenarios).
 
-  </Step>
-  <Step title="Day 6: Make it repeat">
-    **Why:** the Model keeps working when you are not in it.
+    **Next:** some of your forecast still rests on estimates. Tomorrow, replace one with real data.
 
-    > Every Monday at 8am [your time zone], compare last week's spending with the forecast, flag anything more than 10% off, and send it to my email.
+  </Step>
+  <Step title="Day 5: Replace an estimate with real data">
+    **Why:** every source you connect turns a guess into a number you can trust, and every later answer improves with it.
+
+    Pick the estimate you trust least, such as headcount, pipeline, or a big vendor, and connect the system that holds it:
+
+    > Connect [Gusto / Rippling / HubSpot] and replace the [headcount / pipeline] assumptions with real data. Tell me what changed in the forecast.
+
+    See [Browse the integrations directory](/integrations/integrations-directory) and, for payroll, [Build a Headcount page](/headcount/build-a-headcount-page).
+
+    **Done when:** one assumption in your forecast now comes from a connected source.
+
+    **Next:** your Model now updates from your systems every day. Tomorrow, have Ari tell you what changed.
+
+  </Step>
+  <Step title="Day 6: Let Ari keep watch">
+    **Why:** the Model keeps working when you are not in it, and you hear about what matters without opening the app.
+
+    > On the 5th of every month at 9am [your time zone], compare last month's actuals with the forecast. Explain the three biggest differences, show how cash runway changed, and send me the summary with a link to my [board] Page.
 
     Ari asks where to deliver the result, your Slack direct messages or your email, before it saves the Trigger. See [Schedule recurring work with Triggers](/automation/triggers).
 
@@ -77,12 +87,11 @@ If you have not built a first Model yet, start with [Your first 10 minutes](/get
 
 ## After the first week
 
-Each month, after your books close:
+Connected sources refresh every day on their own. Each month, after your books close:
 
-1. Ask Ari to refresh your connections and confirm the new month arrived.
-2. Ask Ari to compare actuals with the forecast and explain the largest differences.
-3. Update the assumptions that turned out wrong.
-4. Open your shared Page and check it before it goes out.
+1. Read the comparison of actuals and forecast, from your Trigger or by asking Ari.
+2. Update the assumptions that turned out wrong.
+3. Open your shared Page and check it before it goes out.
 
 After your first month, write down what you still do by hand, such as copying numbers into a deck or rebuilding the same table. Ask Ari to take each one over:
 

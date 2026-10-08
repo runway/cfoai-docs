@@ -8,16 +8,6 @@ Your first session has one goal: a Model of your own business that you have chec
 
 That second part matters. Ari builds a closer fit when it starts from your numbers instead of estimates, and every correction you make in the first session carries into later answers.
 
-<Tip>
-  **Stuck? Ask Ari first.** Ari knows how cfo.ai works. Ask it anything, such as "How do I add a Scenario?" or "What should I build next?", before you go looking for help.
-</Tip>
-
-<Note>
-  **Nothing you try is permanent.** Every change, whether you made it or Ari did, is saved in **Version history**, the clock icon in the Page header. You can undo one change or restore the whole Model to an earlier point. Press **⌘ Z** (Ctrl+Z on Windows and Linux) to undo your last change, or ask Ari to undo it. See [Version history and undo](/getting-started/build-by-hand#version-history-and-undo).
-
-  You can also make any change yourself, without Ari: type a value, edit a formula, or add a row. See [Build and edit your Model by hand](/getting-started/build-by-hand).
-</Note>
-
 ## Before you begin
 
 Have one of these ready:
@@ -26,50 +16,21 @@ Have one of these ready:
 - **Your current model**, such as an Excel workbook.
 - **A few facts about the business**, if you have neither: what you sell, what you charge, how many customers and employees you have, and how much cash is in the bank.
 
-Set aside about 10 minutes. A large workbook or a first sync of many years of history can take longer, and you can keep working while it finishes.
+Set aside 10 to 30 minutes, depending on how much you bring. You can keep working while a large file or a long history finishes loading.
 
 <Steps>
-  <Step title="Start from your business">
-    A new workspace opens in a chat named **Welcome**. Ari posts a short brief about your company, researched from your work email's domain.
+  <Step title="Answer Ari's starting card">
+    Your first chat opens with Ari's greeting and a short starting card. Ari may also post a brief about your company, researched from your work email's domain. Correct anything it got wrong, such as what you sell or how you charge.
 
-    - Read the brief and correct anything wrong, such as what you sell, who buys it, or how you charge. This is your first contribution to the Model.
-    - On the starting card, choose **My business**.
+    The card asks where to start and what to work from. Pick whatever fits; you can change direction anytime. You get the closest fit when Ari works from your own numbers:
 
-    **Just show me what you can do** builds a small sample model. It is a fine tour, but it is not your business, so come back to **My business** when you are ready.
-
-  </Step>
-  <Step title="Bring something of your own">
-    Pick the one that matches what you have today. Each takes a few minutes.
-
-    <Tabs>
-      <Tab title="Connect your books">
-        Use this when your accounting system holds your history. Ask Ari:
-
-        > Connect [QuickBooks Online / Xero / NetSuite] so we can build a monthly profit and loss statement.
-
-        Ari opens the sign-in. You approve access in your browser; Ari cannot do that step for you. Ari tells you in the chat when the first load finishes and which months arrived. You can keep going with the next step while it loads.
-
-        See [Connect and sync your data](/integrations/connect-and-sync-data) for other sources, such as payroll or a CRM.
-      </Tab>
-      <Tab title="Upload your model">
-        Use this when you already plan in a spreadsheet. Attach the Excel workbook to the chat and ask:
-
-        > Import this workbook into cfo.ai. Rebuild [the revenue forecast, hiring plan, and operating expenses] and keep the same assumptions.
-
-        Ari reads the tabs, formulas, and values, then rebuilds them as Pages in your Model. A large workbook takes longer than 10 minutes. See [Import an existing spreadsheet model](/getting-started/import-a-spreadsheet-model).
-      </Tab>
-      <Tab title="Describe your business">
-        Use this when you have no system or model to share yet. Write a few lines in your own words:
-
-        > We sell [product] to [customers] for [price] per [month / year / unit]. We have [number] customers and [number] employees. Our biggest costs are [costs]. We have [amount] in the bank.
-
-        Ari labels every number you did not give it as an assumption, so you can replace it later. Connect your books when you can.
-      </Tab>
-    </Tabs>
+    - **Connect your data**, such as QuickBooks Online, Xero, or NetSuite. You approve access in your browser, and Ari tells you in the chat when the data has loaded. See [Connect and sync your data](/integrations/connect-and-sync-data).
+    - **Attach your current model**, such as an Excel workbook. See [Import an existing spreadsheet model](/getting-started/import-a-spreadsheet-model).
+    - **Type a few lines** about the business if you have neither: what you sell, what you charge, and how much cash is in the bank. Ari labels every number you did not give it as an assumption.
 
   </Step>
-  <Step title="Ask for your first Model">
-    Say what you want to decide, not which report to build. Write it the way you would ask a coworker. You do not need a perfect prompt. For example:
+  <Step title="Tell Ari what you want to know">
+    Ari starts your first Model from the starting card. Tell it the decision that matters, so it builds the right thing. Write it the way you would ask a coworker; you do not need a perfect prompt. For example:
 
     > Build a model of our business for the next [12 / 18 / 24] months. I want to know [how long our cash lasts / whether we can hire / when we break even].
 
@@ -81,7 +42,7 @@ Set aside about 10 minutes. A large workbook or a first sync of many years of hi
   <Step title="Check one number you already know">
     Open the first Page Ari built. Find a number you know by heart, such as last month's revenue, payroll, or cash in the bank.
 
-    Select that cell and press **⌘ L** (Ctrl+L on Windows and Linux) to mention it in the chat, then ask:
+    Right-click that cell and choose **Mention cell in chat**, or select it and press **⌘ L** (Ctrl+L on Windows and Linux). Then ask:
 
     > Where does this number come from? Show me the source and the formula.
 
@@ -89,11 +50,13 @@ Set aside about 10 minutes. A large workbook or a first sync of many years of hi
 
   </Step>
   <Step title="Change one assumption">
-    Pick an assumption you care about and change it, or ask Ari to:
+    Pick an assumption you care about. Type a new value in the cell yourself, or ask Ari:
 
     > Move the start date for the next two hires to [month] and show what happens to cash.
 
-    The calculation engine recalculates every connected number. Ari writes formulas; it does not do the math in the chat. If you do not like the result, undo it from **Version history**.
+    The calculation engine recalculates every connected number. Ari writes formulas; it does not do the math in the chat. If you do not like the result, press **⌘ Z** (Ctrl+Z) or undo it from **Version history**.
+
+    You can make any change by hand like this. See [Build and edit your Model by hand](/getting-started/build-by-hand).
 
   </Step>
 </Steps>
@@ -113,7 +76,11 @@ After your first session, you should have:
     Ask Ari to compare the Model with the source for one closed month and list every account that differs. A common cause is that the connection is still loading, or that the Model's last closed month is earlier than you expect.
   </Accordion>
   <Accordion title="Ari built something different from what I wanted">
-    Select **Stop**, then say what you wanted instead. Changes Ari already saved stay in place, so ask what it finished before you continue. See [Steer, stop, and approve during a chat](/ari/during-a-conversation).
+    That is part of the process. Working with Ari is back and forth: tell it what to change, and it updates the Model.
+
+    Nothing you try is permanent. Every change, whether you made it or Ari did, is saved in **Version history**, the clock icon in the Page header. Undo one change or restore an earlier version there, press **⌘ Z** (Ctrl+Z), or ask Ari "Undo that last change." See [Version history and undo](/getting-started/build-by-hand#version-history-and-undo).
+
+    If a long build is heading the wrong way, select **Stop** and say what you want instead. See [Steer, stop, and approve during a chat](/ari/during-a-conversation).
   </Accordion>
   <Accordion title="The reply stopped partway">
     Select **Retry** on **Ari stopped before finishing**. Anything Ari saved before the stop is still in the Model.
@@ -122,7 +89,13 @@ After your first session, you should have:
 
 ## Getting help
 
-- **In cfo.ai:** ask Ari a "how do I" question, such as "How do I connect payroll?"
+- **Ask Ari first.** Ari knows how cfo.ai works and what is in your Model. Try:
+  - "What can you build for me?"
+  - "Walk me through this Page."
+  - "How can you help me understand where our cash goes?"
+  - "Why did expenses go up last month?"
+  - "What should I build next?"
+  - "How do I connect payroll?"
 - **In the docs:** start with [Meet Ari](/ari/meet-ari), [Ari prompts](/ari/prompts), and [Ask Ari better questions](/ari/ask-better-questions).
 - **From the team:** email [success@cfo.ai](mailto:success@cfo.ai).
 

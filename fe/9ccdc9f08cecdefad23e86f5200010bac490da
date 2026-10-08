@@ -1,0 +1,19 @@
+automation/skills.mdx
+  s_6b8f79d13f8113::t_adb4f565ead463 13,15,17-19,21,23-66,70-75
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "fe9ccdc9f08cecdefad23e86f5200010bac490da",
+  "prompts": {},
+  "sessions": {
+    "s_6b8f79d13f8113": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e162cbe8-cecd-45a4-9365-6e3784864af7",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Caileigh <caileigh.delea@runway.com>"
+    }
+  }
+}

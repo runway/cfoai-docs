@@ -10,17 +10,44 @@ A **Skill** is a saved process that tells Ari how to handle a recurring situatio
 
 cfo.ai ships with built-in Skills covering common workflows. Your workspace can also hold its own saved Skills, written for how your team specifically works. Ask Ari to list what's available, including a search by name, to see both together.
 
-## Create a Skill
+## Turn on a built-in Skill
 
-Ask Ari to save a new Skill, or open **Settings → Skills** and select **Write manually** to write one yourself. Either way, a Skill has:
+Some built-in Skills are off until you turn them on. Open **Settings → Skills** and find **Built-in skills** below your custom Skills. Turn on the switch next to a Skill to use it.
+
+- **Model audit** — checks that the formulas, mappings, and statements hold together, and that the Model ties to the ledger and the bank. Ari writes a short audit page with live checks. Use it before the board or investors see the Model.
+- **Flash report** — reads the current month before the books close. Actuals, committed spend, and estimates stay separate. Use it to answer "where are we this month?"
+
+A switch applies to everyone in the workspace. cfo.ai keeps these Skills up to date, so you can't edit them.
+
+## Create a Skill with Ari
+
+The fastest way to make a Skill is to build it with Ari. You describe the workflow in plain words, and Ari writes and saves the Skill for you.
+
+<Steps>
+  <Step title="Open Build with Ari">
+    Go to **Settings → Skills** and select **Build with Ari**. A new chat opens. Any message you were drafting in your current chat stays where it was.
+  </Step>
+  <Step title="Tell Ari what the Skill should do">
+    Ari asks what the Skill should help with. Describe the workflow, paste instructions you already have, or attach a Markdown file.
+  </Step>
+  <Step title="Review the saved Skill">
+    Ari saves the Skill and confirms its name, when it activates, and that it is shared with your workspace. Select **View skill** in Ari's reply to read the saved instructions in **Settings → Skills**.
+  </Step>
+</Steps>
+
+You can also ask Ari to save a Skill from any chat. This works well right after Ari finishes a task you want repeated, such as "Save how you built this board report as a Skill."
+
+Every Skill has three parts:
 
 - **A name** — lowercase letters, digits, and hyphens, like `board-report`.
-- **A trigger condition** — phrased as when it should activate, for example "Use when the user asks for a board or investor report."
-- **Instructions** — the full workflow: the steps, structure, and conventions Ari should follow once the Skill activates.
+- **A trigger condition** — when the Skill should activate, for example "Use when the user asks for a board or investor report."
+- **Instructions** — the full workflow: the steps, structure, and conventions Ari follows once the Skill activates.
 
 A good trigger condition is specific enough that Ari doesn't activate the Skill for unrelated requests, but general enough to catch the different ways someone might phrase the same ask.
 
-You can also start from **Settings → Skills**. **Build with Ari** opens a chat where you describe the workflow, paste instructions, or attach a Markdown file, and Ari writes the Skill with you. **Write manually** opens a form for the name, trigger condition, and instructions. Saved Skills appear in the same list with a search field and an **Edit** action.
+## Write a Skill yourself
+
+To write a Skill without Ari, open **Settings → Skills** and select **Write manually**. A form opens for the name, trigger condition, and instructions. Saved Skills appear in the same list, with a search field and an **Edit** action.
 
 ## Update or remove a Skill
 
@@ -28,7 +55,7 @@ Ask Ari to update a saved Skill's description or instructions, or to delete one 
 
 ## Sample custom Skill prompts
 
-These are complete, ready-to-save Skills. Prompt Ari with the instructions below and ask Ari to save as a Skill under the associated name.
+These are complete, ready-to-save Skills. To use one, select **Build with Ari**, paste its instructions, and ask Ari to save it under the name in the table.
 
 | Name | Description | Instructions |
 | --- | --- | --- |
@@ -234,7 +261,7 @@ These are complete, ready-to-save Skills. Prompt Ari with the instructions below
     scenario.
   
   ## After writing
-  `add_canvas` leaves `render_verified: false`. Always run `validate_code_blocks` on the
+  Saving a Canvas block does not check that it renders. Always run `validate_code_blocks` on the
   block id — it renders in Chromium in light and dark and returns real runtime errors. Fix
   anything it reports before calling the work done.
   
@@ -244,7 +271,8 @@ These are complete, ready-to-save Skills. Prompt Ari with the instructions below
   dimension", and "profit by dimension" are one shape drawn three times. Replace duplicates
   with **ratios that diverge** — cost as % of revenue, support headcount per 100 units,
   profit per employee. A quotient of two things growing at different rates carries
-  information a level chart cannot.Every chart must have an explicit, descriptive title inside the chart configuration
+  information a level chart cannot. Every chart must have an explicit, descriptive title
+  inside the chart configuration.
   ```
 </Accordion>
 

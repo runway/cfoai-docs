@@ -24,9 +24,13 @@ Ari's reasoning and the actions it takes collect in an **Activity** group under 
 
 The log does not report tool errors. Ari often recovers from a failed step on its own, by retrying or reading the data another way, so a step whose call failed reads as a finished step with the normal check mark, and the collapsed summary folds it into **and N more** instead of naming it. Anything you need to know about a failure is in Ari's reply. A step you stopped yourself still reads **Cancelled**, and **Conversation interrupted** keeps its red mark.
 
+Work that runs beside the conversation, such as a sync Ari started, shows as a line of text above the message box, under Ari's **Thinking…** status line; select the line to open its card. Press the Up arrow from the start of your draft to reach the line nearest the message box, and Down to return to the draft. See [Follow a sync from the chat](/integrations/connect-and-sync-data#follow-a-sync-from-the-chat).
+
 ## Watch Ari edit the page
 
 When Ari edits a table you are looking at, it replays each edit on the page: a caption moves to the target, the editor opens, the new value or formula is typed in, and the changed cells are highlighted. The caption's first line is Ari's own note for the change, such as **Setting upside churn assumptions**. Its second line says what changed: `Churn [Starter] 5% → 4%` for a value that replaced a value, `set to 4%` for a new value, `cleared (was $15,000)` for a removed one, or the new formula followed by `(was …)`. Filling many cells with one rule reads `Filling 24 cells in Revenue with …`. While a change is still running, the caption shows the note alone and adds **Still working** after about eight seconds.
+
+A text block Ari rewrites while you have its Page open updates in place, without a reload, and the update does not enter your undo history. While you have unsaved typing in that block, from the first keystroke until your save is confirmed, Ari's change is not shown; your save then replaces the block, because the last save wins.
 
 The first edit of each kind in a turn plays at full speed with a short explanation; repeated edits of the same kind play at twice the speed. Rest the pointer on the caption to pause the playback. If your system asks for reduced motion, the captions and highlights appear without movement.
 
@@ -36,7 +40,13 @@ While Ari works, the page follows it to each table it edits. Scrolling the page 
 
 When Ari needs a few details before it can continue, it asks them as a short form in the chat. Fill in the answers you know and select **Dismiss** on any question you would rather not answer; Ari continues without it and the transcript marks that question as **Declined**. **Undo** restores a dismissed question before you send.
 
+When the form has several questions, choosing the answer to a question that takes one choice settles it and opens the next unanswered question. The button at the bottom of the form reads **Next** while a later question remains, and selecting it moves you to that question whether or not the one on screen is answered. On the last question it reads **Submit answers** (**Submit** on a one-question form) and stays off until every question is answered or dismissed. A question that takes several choices stays open until you move on, because another choice may still be intended.
+
 Your answers appear in the transcript as a record of the form, each question above the answer you gave.
+
+## Approve an email Ari drafts
+
+Ari emails you at your verified address as soon as you ask. An email to anyone else does not go out on its own: Ari posts a preview card in the chat, headed **Preview**, with the recipients, subject, and body it would send, and nothing leaves cfo.ai until you press **Send**. Select **Edit** to change the draft, including the recipient list, where addresses separated by commas or Enter become removable pills; a message can carry up to ten recipients. If the mail provider accepts only some of the addresses, the card keeps the rejected ones so you can send to them again without emailing the others twice. A scheduled Trigger follows the same rule, so a run that addresses someone other than you stops at the preview.
 
 ## Approve a plan
 
@@ -52,25 +62,33 @@ Ari's answers can run to several paragraphs, a list, or a table. To ask about on
 
 A message can carry up to five excerpts of up to 2,000 characters each. Send stays off until you write something to go with them, because a bare quote gives Ari nothing to act on. Click an excerpt, in the input or in the transcript, to scroll to the original words and highlight them. Reply is not offered while the answer is still streaming, when the selection spans two answers, or in a read-only chat.
 
+## Download a file Ari made
+
+When Ari makes a file for you, such as a workbook export, an image, or a document it delivers, the file shows as a download card directly under the answer that ends the turn, where you finish reading, rather than above a long answer. Cards for plans, approvals, Pages, and Scenarios keep their place above the answer. When the answer names the file by its exact file name, with the same letter case and extension, that name is a link to the same download; a name inside a code block, or spelled differently, stays plain text.
+
 ## Approve a tool call
 
 When Ari wants to call a connected external service, such as an MCP connector or an API connection from **Settings → Connections**, it pauses and shows the call for approval. Choose one of:
 
 - **Approve** to run this one call.
-- **Always allow** to let Ari run this tool without asking again for the whole workspace. Only someone who can manage workspace settings sees this option.
+- **Always allow** to let Ari run this tool without asking again for the whole workspace. Only someone who can manage workspace settings sees this option. Once the workspace confirms the choice, every other card waiting for the same tool on the same server reads **Always allowed** and those calls run on Ari's next turn; a card for another tool, or for a tool of the same name on another server or API, still asks.
 - **Decline** to skip the call. Ari continues without it.
 
 Anyone in the chat can approve or decline the single call. After you choose, Ari continues on its own; you do not need to send another message.
 
 ## When a reply is interrupted
 
-If Ari's reply is cut off, the transcript shows **Ari stopped before finishing** with a **Retry** button. Select it to have Ari pick the work back up. cfo.ai also tries on its own to continue a reply that was interrupted, for example when the service running Ari restarted. When every attempt fails, the reply ends with **I stopped before finishing this reply. It was interrupted, and repeated attempts to continue it did not finish. Changes I saved before the interruption are kept. Sending the message again starts a new reply.** Anything Ari saved before the interruption is still in the Model. If your connection drops, the chat says **No internet connection. Reconnect to continue with Ari.** If the workspace runs out of AI usage mid-turn and has auto-reload on, the chat tells you usage is being added and Ari continues in a moment.
+If Ari's reply is cut off, the transcript shows **Ari stopped before finishing** with a **Retry** button. Select it to have Ari pick the work back up. cfo.ai also tries on its own to continue a reply that was interrupted, for example when the service running Ari restarted. When every attempt fails, the reply ends with **I stopped before finishing this reply. It was interrupted, and repeated attempts to continue it did not finish. Changes I saved before the interruption are kept. Sending the message again starts a new reply.** Anything Ari saved before the interruption is still in the Model. If your connection drops, the chat says **No internet connection. Reconnect to continue with Ari.** When the service running Ari loses touch with cfo.ai for a moment, the chat reads **Ari hit a temporary connection issue. Retrying now.** and Ari continues from the steps it already saved; if the trouble does not clear, the reply ends with **Ari hit a temporary connection problem and could not recover. Please try again in a moment.**
+
+When billing stops a turn, the reply ends with Ari's own explanation, which begins **I had to stop here** and names the cause and the fix, for example **I had to stop here: this workspace is out of AI usage. Buy more usage or upgrade the plan in Settings → Billing, then send a new message and I'll pick up where we left off.** The same shape covers a reached spend limit, a plan limit, a failed usage purchase, a trial not yet started, and a workspace with no active plan. No **Retry** is offered, because the same request would stop the same way: fix the cause in **Settings → Billing**, then send a new message. If more AI usage is already on the way, for example from auto-reload, the message says so and asks you to send a new message in a moment.
 
 A very long conversation can outgrow what Ari can read in one request. The chat then says **This request is too large for Ari to continue. Start a new chat with a shorter request or fewer attachments.** and offers no **Retry**, because the same request would fail the same way. Start a new chat with **⌘ /** (Ctrl+/ on Windows and Linux) and restate what you need; attach a file again only if the new request needs it.
 
 ## Manage your chats
 
 The chat sidebar lists your conversations under **My sessions**, and any conversation someone else opened for you under **Shared with me**. Filter the list by **Active**, **Archived**, or **All**. Both sections keep their order, newest activity first, when you open a chat; a chat moves up only when something happens in it.
+
+The list starts compact, with your newest chats behind a **Show more** row. Once it is expanded, scrolling to the bottom loads older chats automatically; the list reads **Loading older chats…** while a page loads and offers **Retry loading chats** if one fails. There is no **Show less**: fold the **Chats** section and open it again to return to the compact list.
 
 Open a conversation's menu to **Archive chat**, which hides it from the active list without deleting anything, or **Unarchive chat** to bring it back. A conversation you have not sent anything in yet offers **Discard chat** instead. You can also rename a conversation inline.
 

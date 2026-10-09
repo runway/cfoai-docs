@@ -51,7 +51,7 @@ iferror(Revenue / sum(Revenue[Department in any]), 0)
 
 Because the plain `Revenue` follows the current segment, this produces each department's share when calculated by Department.
 
-## Average across selected segments
+## Average across selected Dimension items
 
 ```text
 average(Revenue[Region in {"East", "West"}])

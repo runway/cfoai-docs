@@ -24,9 +24,13 @@ Ari's reasoning and the actions it takes collect in an **Activity** group under 
 
 The log does not report tool errors. Ari often recovers from a failed step on its own, by retrying or reading the data another way, so a step whose call failed reads as a finished step with the normal check mark, and the collapsed summary folds it into **and N more** instead of naming it. Anything you need to know about a failure is in Ari's reply. A step you stopped yourself still reads **Cancelled**, and **Conversation interrupted** keeps its red mark.
 
+Work that runs beside the conversation, such as a sync Ari started, shows as a line of text above the message box, under Ari's **Thinking…** status line; select the line to open its card. Press the Up arrow from the start of your draft to reach the line nearest the message box, and Down to return to the draft. See [Follow a sync from the chat](/integrations/connect-and-sync-data#follow-a-sync-from-the-chat).
+
 ## Watch Ari edit the page
 
 When Ari edits a table you are looking at, it replays each edit on the page: a caption moves to the target, the editor opens, the new value or formula is typed in, and the changed cells are highlighted. The caption's first line is Ari's own note for the change, such as **Setting upside churn assumptions**. Its second line says what changed: `Churn [Starter] 5% → 4%` for a value that replaced a value, `set to 4%` for a new value, `cleared (was $15,000)` for a removed one, or the new formula followed by `(was …)`. Filling many cells with one rule reads `Filling 24 cells in Revenue with …`. While a change is still running, the caption shows the note alone and adds **Still working** after about eight seconds.
+
+A text block Ari rewrites while you have its Page open updates in place, without a reload, and the update does not enter your undo history. While you have unsaved typing in that block, from the first keystroke until your save is confirmed, Ari's change is not shown; your save then replaces the block, because the last save wins.
 
 The first edit of each kind in a turn plays at full speed with a short explanation; repeated edits of the same kind play at twice the speed. Rest the pointer on the caption to pause the playback. If your system asks for reduced motion, the captions and highlights appear without movement.
 
@@ -67,7 +71,7 @@ When Ari makes a file for you, such as a workbook export, an image, or a documen
 When Ari wants to call a connected external service, such as an MCP connector or an API connection from **Settings → Connections**, it pauses and shows the call for approval. Choose one of:
 
 - **Approve** to run this one call.
-- **Always allow** to let Ari run this tool without asking again for the whole workspace. Only someone who can manage workspace settings sees this option.
+- **Always allow** to let Ari run this tool without asking again for the whole workspace. Only someone who can manage workspace settings sees this option. Once the workspace confirms the choice, every other card waiting for the same tool on the same server reads **Always allowed** and those calls run on Ari's next turn; a card for another tool, or for a tool of the same name on another server or API, still asks.
 - **Decline** to skip the call. Ari continues without it.
 
 Anyone in the chat can approve or decline the single call. After you choose, Ari continues on its own; you do not need to send another message.

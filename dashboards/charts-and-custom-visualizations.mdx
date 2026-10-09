@@ -22,13 +22,13 @@ A custom visual reads from named Model data views using the same Variables and D
 
 Ask Ari to label a chart's values. A label drawn inside a bar or a pie slice takes a color that contrasts with that fill, so it stays readable in both themes, and a bar's label can sit inside the bar or outside its end instead.
 
-A visual receives each Variable's own kind of value: numbers, text such as a customer code or a currency, dates, and true/false values. A table of labels or invoice dates can drive a visual directly, without a numeric stand-in. An empty cell or a calculation error reaches the visual as no value.
+A visual receives each Variable's own kind of value: numbers, text such as a customer code or a currency, dates, including the full time of day a record carries, and true/false values. A table of labels or invoice dates can drive a visual directly, without a numeric stand-in. An empty cell or a calculation error reaches the visual as no value.
 
 A visual resolves its data in the Page's Scenario unless one of its data views names another saved Scenario. A Canvas block can read up to three Scenarios, so one block can chart Main, an Upside, and a Downside side by side; Ari's **Scenario comparison** template is built this way. Every read of another Scenario checks that the viewer can read that Scenario; a viewer who cannot gets no data for that view. A Table Block offers a saved side-by-side comparison too. See [Create and compare Scenarios](/scenarios/create-and-compare-scenarios).
 
 A button inside a visual can do a few things when you click it: open another Page or block in your workspace, including a Page or block Ari named in a chat; prepare a draft message for Ari that you review before sending; or start a new chat that sends its message at once, for example to ask Ari to present a saved Guide. That new chat opens even when the Page has not finished loading the block's name; in that case the message goes without a reference to the block. A button that hands work to Ari can be marked as an Ari action: it shows a trailing arrow and lights up when you hover or click it, so you can tell it from a button that only changes the view.
 
-When Ari checks a visual it built, it renders the block once per light and dark theme at a width of 1200 px with the block's saved state, and reads the errors and warnings from those renders. It does not click buttons, type into inputs, follow links, or launch Guides, so what those do is not checked, and neither is the layout at other widths.
+When Ari checks a visual it built, it renders the block once per light and dark theme at a width of 1200 px with the block's saved state, and reads the errors and warnings from those renders. It does not click buttons, type into inputs, follow links, or launch Guides, so what those do is not checked, and neither is the layout at other widths. A Canvas block cannot show an image: its frame allows no image from the web or from a data URL, and a block that tries fails Ari's check, which names how many images did not load and from where. Draw a logo or an icon with the block's own shapes and text instead.
 
 ## Start from a template
 

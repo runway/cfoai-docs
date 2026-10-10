@@ -44,7 +44,7 @@ Ask Ari to change an existing visual, its source values, or its title. Describe 
 
 ## Blank and error cells in a visual
 
-An empty cell or a calculation error such as `#DIV/0!` reaches a visual as no value. When Ari checks a visual, the check names each dataset and series where a numeric series has a blank cell or any series holds an error code, with the rows affected, for example **"Revenue": #DIV/0! in 3 of 12 rows (Oct ’26, Nov ’26, Dec ’26)**. The block's own code still renders, so this is a warning rather than a failure: the gap comes from the Model's calculation, and the fix is in the formula behind the Variable, not in the visual. A series of text or dates is not checked for blanks, since it holds no numbers by design.
+An empty cell or a calculation error such as `#DIV/0!` reaches a visual as no value. When Ari checks a visual, the check names each dataset and series where a numeric series has a blank cell or any series holds an error code, with the rows affected, for example **"Revenue": #DIV/0! in 3 of 12 rows (Oct ’26, Nov ’26, Dec ’26)**. The block's own code still renders, so this is a warning rather than a failure, and the fix is in the Model, not in the visual: for an error code, the formula behind the Variable; for a blank value, the Model value or the imported source that should supply it. A series of text or dates is not checked for blanks, since it holds no numbers by design.
 
 ## Interactive controls and shared state
 

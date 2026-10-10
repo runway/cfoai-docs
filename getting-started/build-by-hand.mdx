@@ -60,6 +60,7 @@ Blocks stack top to bottom on a Page. You can add three kinds yourself.
 - On a Page that already has blocks, select **Add block** at the bottom of the Page and choose **Table block**, **Text block**, or **Canvas block**.
 - Hover the left edge of any block and select the **+** labeled **New block below**. The compact menu offers **Table**, **Text**, and **Canvas**.
 - On an empty Page, choose one of the **Table block**, **Text block**, or **Canvas block** cards, or select **Create with Ari**.
+- A workspace with no Pages at all greets a member with **Ready to model, [name]?** and the same **Create with Ari** and **Add block** choices. A person whose access does not include creating Pages, such as a guest who holds read access to a shared Page rather than membership, sees **No pages yet** with **Your workspace role does not include creating pages. A workspace admin can give you access.** instead, and Ari chat stays available.
 
 ### Move, duplicate, or delete a block
 
@@ -195,7 +196,7 @@ You can open the editor from several places. Where you open it decides what the 
 The editor's title shows the formula's address: the Variable name plus a pill for each Dimension it is scoped to. A row-level formula shows **Any Segment**, meaning it is the default for every segment.
 
 <Accordion title="Show the formula bar">
-The formula bar is a strip above the grid that shows the selected cell's formula and address. If it is hidden, open the table's settings menu (the **…** button labeled **Table block settings** in the table header) and choose **Show formula bar**. The same menu offers **Show total columns**, **Pin total columns**, and **Auto-fit all columns**.
+The formula bar is a strip above the grid that shows the selected cell's formula and address. If it is hidden, open the table's settings menu (the **…** button labeled **Table block settings** in the table header) and choose **Show formula bar**. The same menu offers **Show total columns**, **Pin total columns**, and **Auto-fit all columns**. A total column's header names the summary it applies to its column group, such as **SUM** or **LAST**. When the group's summary is **None**, the column shows the Variable's own value for the whole group, such as a yearly formula beside its months, under the header **TOTAL**.
 </Accordion>
 
 ### Write and reference
@@ -204,6 +205,7 @@ The formula bar is a strip above the grid that shows the selected cell's formula
 - **Click to reference.** While the editor is open and the caret sits where a reference belongs, such as after an operator, click another cell, row label, or period header to insert a reference to it. Clicking the previous month's cell of Revenue inserts `Revenue[-1]`; clicking a period header inserts a relative date such as **Last month**. A click while the caret sits inside a name, a string, or a comment edits the text instead. Double-click a cell you just clicked to withdraw the reference the first click inserted.
 - **Point with the arrow keys.** With the caret in the same position, press an arrow key to point at the neighboring cell and insert its reference; keep pressing to move the pointer, the way a spreadsheet does. Each reference in the formula and the cells it points at share a color, so you can see what the formula reads: an input cell takes a dashed outline in its reference's color, and the input the caret is in or touching is tinted too, so you can tell which part of a long formula points at which cell. Row names and column headers are click targets but take no outline. The small editor card opens just below and to the right of the cell's top-left corner, so the cell and its selection outline stay visible. **F2** also starts reference selection; press **Enter** to keep the reference or **Esc** to cancel.
 - **Filter a reference.** Select a reference chip and choose **+ Add filter** to restrict it to certain Dimension items or dates. Date filters offer presets such as **Last 3 months of actuals**, **Year to date**, **Quarter to date**, and **Custom range**.
+- **Fix a reference.** A reference written with `$` after its name, such as `` `Reported June MRR`$ ``, reads the same value in every row and period: it keeps only the filters it names and does not follow the cell it sits in. The editor shows it as one chip with a pin in place of its icon. To fix or release a reference, select its chip and press the pin button in its panel, whose tooltip reads **Fixed: does not follow the current row or period. Only its own filters apply. (F4)**, or press **F4** with the caret at the reference. Filters you wrote stay either way. A column of an imported table cannot be fixed.
 - **Point a reference somewhere else.** Select a reference chip to open its panel, then select the reference's name there to search Variables and Dimensions; choosing a result replaces the reference. The **Toggle details** button in the picker shows which table and Page own the highlighted result, with links, so you can find where a Variable is calculated without leaving the editor. The same search inside a filter key, such as Region in `Revenue[Region = "West"]`, lists Dimensions only.
 - **Use `this`.** Inside a filter, `this.Department` means "the same Department as the cell being calculated."
 
@@ -283,7 +285,7 @@ A Variable row's menu keeps **Remove item**, which takes the row off this table.
 
 ### Hide, resize, and reorder
 
-- **Hide a row or column** without removing it: open the table setup panel and use the show/hide toggle on the item. Hidden items keep their sort, filter, and formula settings.
+- **Hide a row or column** without removing it: open the table setup panel and use the show/hide toggle on the item. Hidden items keep their sort, filter, and formula settings. Hiding a column group, such as a Variable with its months beneath it, also hides the group's total column and its own formula column. Hiding only a level beneath the group keeps the group's total column, so you can hide the months and keep the total.
 - **Resize a column** by dragging the right edge of its header or of any cell in it. Double-click the edge to fit the content. Use **Auto-fit all columns** in the table settings menu to size every column at once. Column widths are saved and shared with your team.
 - **Reorder** rows by dragging their grip in the left gutter, and non-date columns by dragging their headers. Formula and setup-panel items also drag.
 - **Pin a column** by dragging its header left into the pinned area beside the row names, or right-click the header and choose **Pin column**. Pins are saved with the table and need edit access to it; a read-only table offers neither path.
@@ -314,7 +316,7 @@ A Variable's number format belongs to the Variable, so one change applies everyw
     Under **Precision**, choose how many decimal places to show.
   </Step>
   <Step title="Set variance colors">
-    Under **Variance colors**, choose **Higher is better** or **Lower is better**. This decides whether a positive variance shows in the good or bad color when the table compares Scenarios or periods.
+    Under **Variance colors**, choose **Higher is better** or **Lower is better**. This decides whether a positive variance shows in the good or bad color when the table compares Scenarios or periods. You can also ask Ari, for example to show a shortfall in a cost Variable as good: Ari saves the same setting on the Variable, so every table that shows it changes.
   </Step>
 </Steps>
 
@@ -512,6 +514,7 @@ Use **Ctrl** in place of **⌘** on Windows and Linux.
 | **Ctrl Space** | Open formula autocomplete |
 | **Alt F12** | Show help for the function under the cursor |
 | **Alt ↓** | Open reference filters in a formula |
+| **F4** | Fix or release the formula reference at the caret |
 | **⌘ click** a chevron | Expand or collapse every sibling row |
 | **⌘ L** | Mention the selected cell or block in the current chat, or reply to the text you selected in an Ari answer |
 | **⌘ /** | Start a new chat about the selected cell, block, or Page |

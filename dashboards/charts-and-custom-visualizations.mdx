@@ -42,11 +42,17 @@ A visual takes its colors from the app theme, so it follows your light or dark m
 
 Ask Ari to change an existing visual, its source values, or its title. Describe the intended result, such as switching from a line chart to stacked bars or narrowing the chart to one customer segment.
 
+## Blank and error cells in a visual
+
+An empty cell or a calculation error such as `#DIV/0!` reaches a visual as no value. When Ari checks a visual, the check names each dataset and series where a numeric series has a blank cell or any series holds an error code, with the rows affected, for example **"Revenue": #DIV/0! in 3 of 12 rows (Oct ’26, Nov ’26, Dec ’26)**. The block's own code still renders, so this is a warning rather than a failure: the gap comes from the Model's calculation, and the fix is in the formula behind the Variable, not in the visual. A series of text or dates is not checked for blanks, since it holds no numbers by design.
+
 ## Interactive controls and shared state
 
 A custom visual can carry sliders, toggles, and other controls. Moving one changes your own view of the visual; it is a preview, not a saved change, unless the visual was built to save that value. Ask Ari to save a setting you want to keep.
 
 A control never writes into your Model on its own. To change a saved assumption, edit the Variable or the value in a Table Block, or ask Ari.
+
+A button in a visual can also open the browser's own dialogs. A print button prints that block's frame alone, not the whole Page, and a visual can ask you to confirm a step or type a short answer in a browser dialog. The dialog belongs to the block, not to cfo.ai, so read it as the block asking.
 
 ## Change a visual you did not build
 

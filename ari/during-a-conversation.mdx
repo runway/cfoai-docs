@@ -62,9 +62,13 @@ When Ari wants to call a connected external service, such as an MCP connector or
 
 Anyone in the chat can approve or decline the single call. After you choose, Ari continues on its own; you do not need to send another message.
 
+If you choose a button on a card whose call can no longer be acted on, for example because a teammate already approved it, nothing new runs and a notice headed **Could not approve tool call** or **Could not decline tool call** says why: **This tool call was already approved.**, **This tool call was already declined.**, **The MCP connection for this tool was removed, so this call can no longer run.**, **A workspace setting now blocks this tool, so this call cannot be approved.**, or **This approval request is not part of this chat.**
+
 ## When a reply is interrupted
 
 If Ari's reply is cut off, the transcript shows **Ari stopped before finishing** with a **Retry** button. Select it to have Ari pick the work back up. cfo.ai also tries on its own to continue a reply that was interrupted, for example when the service running Ari restarted. When every attempt fails, the reply ends with **I stopped before finishing this reply. It was interrupted, and repeated attempts to continue it did not finish. Changes I saved before the interruption are kept. Sending the message again starts a new reply.** Anything Ari saved before the interruption is still in the Model. If your connection drops, the chat says **No internet connection. Reconnect to continue with Ari.** If the workspace runs out of AI usage mid-turn and has auto-reload on, the chat tells you usage is being added and Ari continues in a moment.
+
+A reply can also end before Ari writes anything. When the model behind Ari spends a whole response's output limit on reasoning, Ari continues once on its own; if that second attempt also writes nothing, the reply ends with **Ari's reply stopped: the model reached its output limit of 65,536 tokens after 12 minutes of reasoning, before it wrote a reply. Your conversation is saved.**, with the limit and the minutes that applied. A reply that ends with no visible answer for another reason reads **Ari could not finish its latest reply. Please try again.** In both cases, send the request again, and consider asking for a smaller piece of the work first.
 
 A very long conversation can outgrow what Ari can read in one request. The chat then says **This request is too large for Ari to continue. Start a new chat with a shorter request or fewer attachments.** and offers no **Retry**, because the same request would fail the same way. Start a new chat with **⌘ /** (Ctrl+/ on Windows and Linux) and restate what you need; attach a file again only if the new request needs it.
 

@@ -7,7 +7,7 @@ Aggregation functions combine several selected values into one result.
 
 ## sum and product
 
-`sum` adds selected numeric values. `product` multiplies them.
+`sum` adds selected numeric values. `product` multiplies them. `sum` always returns a number: empty values contribute nothing, and a sum with no values at all, such as a total over an empty group, returns 0 rather than an empty value.
 
 ```text
 sum(Revenue[Department in any])

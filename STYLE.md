@@ -59,7 +59,7 @@ Keep Ari, the human interface, and external agents connected to the same Model. 
 
 When the docs and product disagree, verify the customer-facing behavior in `runway/cfoai` before editing:
 
-- Product names, modeling concepts, and action labels: `agent_docs/product-sense.md`.
+- Product names, modeling concepts, and action labels: `agent_docs/canonical-terminology.md`.
 - Supported formula functions and aliases: `shared/formula-functions.json`.
 - Parser-verified formula syntax: the generated section of `agent-runtime/src/skills/ari/builtin/build-model/SKILL.md` between the `formula-syntax:start` and `formula-syntax:end` markers, built from `shared/formula-functions.json` by `make formula-functions`.
 - Formula writing and saved-table behavior: `agent_docs/interfaces/formulas.md` and the "Cells: inputs and rules" section of the same `SKILL.md`.

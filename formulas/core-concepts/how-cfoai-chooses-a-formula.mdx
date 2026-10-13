@@ -43,7 +43,7 @@ The totals are written under a rule that covers every line: yours, or the genera
 
 ## A cell no rule covers
 
-When no formula applies to a cell and nothing was entered there, the cell reads a default chosen by the Variable's type: 0 for a number, and an empty value for a date or text Variable. An imported Variable reads its source column in Actuals and the default in Forecast months unless a rule covers them. See [A date or text cell nobody filled in reads empty](/formulas/formula-reference/formula-errors-and-troubleshooting#a-date-or-text-cell-nobody-filled-in-reads-empty).
+When no formula applies to a cell and nothing was entered there, the cell reads a default chosen by the Variable's type: 0 for a number, and an empty value for a date or text Variable. An imported Variable with no saved rule reads its source column in Actuals and the default in Forecast months. A column imported now starts with a saved rule, `sum` over its source column for a Variable and `last` for a Dimension, which covers every period, including months after Last close; see [Connect and sync your data](/integrations/connect-and-sync-data#understand-sync-status). See [A date or text cell nobody filled in reads empty](/formulas/formula-reference/formula-errors-and-troubleshooting#a-date-or-text-cell-nobody-filled-in-reads-empty).
 
 ## Avoid overlapping exceptions
 

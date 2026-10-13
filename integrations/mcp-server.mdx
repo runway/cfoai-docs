@@ -68,6 +68,10 @@ You need a cfo.ai account with access to the intended workspace. If you do not h
 
 Any harness that supports remote MCP servers can connect. Add `https://api.cfo.ai/mcp` as a custom connector or MCP server in your agent's settings, then sign in with your cfo.ai account when the browser prompt appears.
 
+## Approve the connection in the browser
+
+Whichever client you use, the browser opens a page headed **Connect CFO.ai** that says an external MCP client is asking to use your account. Select its **Connect CFO.ai** button while signed in to the cfo.ai account you want the client to use. The page stays valid for 60 minutes and still works if it loads twice or you have several tabs open. If the approval is not recorded, the page says why: no cfo.ai account is signed in to this browser, the page was opened under a different cfo.ai account than the one signed in now, the approval does not match the sign-in request it was sent for, or the page was opened more than 60 minutes ago. Start the sign-in again from your client in those cases.
+
 ## Choose the correct workspace
 
 If your account belongs to one workspace, the connection can use it automatically. If your account belongs to several workspaces, ask the agent to call `list_orgs`, select the correct workspace by its ID or slug, and pass that value as `org_id` on each later tool call.

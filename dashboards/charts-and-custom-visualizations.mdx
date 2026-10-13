@@ -26,7 +26,7 @@ A visual resolves its data in the Page's Scenario unless one of its data views n
 
 A button inside a visual can do a few things when you click it: open another Page or block in your workspace, including a Page or block Ari named in a chat; prepare a draft message for Ari that you review before sending; or start a new chat that sends its message at once, for example to ask Ari to present a saved Guide. That new chat opens even when the Page has not finished loading the block's name; in that case the message goes without a reference to the block.
 
-When Ari checks a visual it built, it renders the block once per light and dark theme at a width of 1200 px with the block's saved state, and reads the errors and warnings from those renders. It does not click buttons, type into inputs, follow links, or launch Guides, so what those do is not checked, and neither is the layout at other widths.
+When Ari checks a visual it built, it renders the block once per light and dark theme at a width of 1200 px with the block's saved state, and reads the errors and warnings from those renders. It does not click buttons, type into inputs, follow links, or launch Guides, so what those do is not checked, and neither is the layout at other widths. A visual that alone reads more than 20 MiB of calculated data is not rendered in that check: Ari is told its size and that nothing about it was observed, and the other visuals in the same check still render.
 
 ## Start from a template
 

@@ -106,6 +106,10 @@ Two things follow from an empty value:
 
 The default applies per formula range. An imported Variable with no saved rule reads its source column in Actuals and the default in Forecast months. See [Test for an empty value](/formulas/formula-guides/use-conditional-logic#test-for-an-empty-value).
 
+## A table says the connection to cfo.ai failed
+
+A table that reads **This table didn't load because the connection to cfo.ai failed.** never reached cfo.ai: your network dropped, or no answer arrived. Nothing is wrong with the table or its formulas. Select **Retry**, or wait: the table reloads itself when your connection to cfo.ai returns. **We couldn't calculate this table.** is different: the calculation itself failed, and Ari can say why.
+
 ## The table shows a calculation capacity notice
 
 When the calculation service is out of capacity, the table shows a banner instead of values: **Calculation capacity was full when this calculation ran. We're looking into it — try again in a moment.** or **Calculation results are temporarily busy; this failure is transient. We're looking into it — try again in a moment.** Nothing in the formula is wrong. Both of these failures are retryable: the first means the shared calculation capacity was exhausted when the calculation ran, and the second means the results store was busy for a moment, so the table calculates again when you retry. Not every capacity failure is transient: a calculation that ran past its time limit is also reported as a capacity failure, and a retry does not help it. When Ari reads such a table, its result names the failure's category and whether it is transient, so Ari retries only when a retry can help.

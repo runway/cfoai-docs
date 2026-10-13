@@ -1,0 +1,19 @@
+workspace-settings/team-and-workspace.mdx
+  s_b67c332123345a::t_573ec94a47c022 4
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "e9a5f0c7e0f4d2e0d60afb84f95cdeba23eea546",
+  "prompts": {},
+  "sessions": {
+    "s_b67c332123345a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "0f181e59-3a63-4930-ae4e-00784d17577d",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": "Siqi Chen <blader@gmail.com>"
+    }
+  }
+}

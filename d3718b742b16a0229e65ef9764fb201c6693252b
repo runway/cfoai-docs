@@ -1,0 +1,65 @@
+agent-instructions.mdx
+  s_724f60c9b3c5d7::t_5c830e948cd100 57,63-65,68-93
+ari/meet-ari.mdx
+  s_724f60c9b3c5d7::t_825ec4410a1bce 44-45,58
+automation/guides.mdx
+  s_724f60c9b3c5d7::t_ac3e19c36d8aaa 11-15,24,27-28,31,35
+automation/skills.mdx
+  s_724f60c9b3c5d7::t_185f5f79a13e69 23-24
+automation/triggers.mdx
+  s_724f60c9b3c5d7::t_2a1782892ac852 25-28,31
+dashboards/share-pages-and-scenarios.mdx
+  s_724f60c9b3c5d7::t_d8880255a6a6ba 21-23,25-28,31-33,37-46,51,55
+formulas/agent-docs/authoring-overview.mdx
+  s_724f60c9b3c5d7::t_95ae6b9f93e2df 10-17,23,25,31,35,39
+formulas/agent-docs/create-and-update.mdx
+  s_724f60c9b3c5d7::t_91558886be140f 3,6-10,14-20,25-36,40,44,49-62,64-83,89-111,113,115,119,121
+formulas/agent-docs/evaluate-without-saving.mdx
+  s_724f60c9b3c5d7::t_f404197ed79c3f 10,15-18,22,26,28,32
+formulas/agent-docs/read-and-explain.mdx
+  s_724f60c9b3c5d7::t_993ebaa5477337 6,15,19-21,25,30-34,38-42
+formulas/agent-docs/resolve-scope.mdx
+  s_724f60c9b3c5d7::t_54a7e22e69c3c2 56,67
+formulas/agent-docs/validate-and-verify.mdx
+  s_724f60c9b3c5d7::t_603edb4c223fe7 12-13,27,29-31,33
+formulas/agent-docs/work-with-formula-ranges.mdx
+  s_724f60c9b3c5d7::t_3711c3f418f463 26,30
+formulas/formula-reference/formula-errors-and-troubleshooting.mdx
+  s_724f60c9b3c5d7::t_2fa8675f5e1088 47-61
+formulas/formula-reference/function-reference/conditional-functions.mdx
+  s_724f60c9b3c5d7::t_ada8572c75fd48 52-53
+getting-started/build-by-hand.mdx
+  s_724f60c9b3c5d7::t_e01f1d3392719a 13,15,18,96,114-115,117,136-139,144-145,177,189-190,241,320,331,400-401,404,407,410,414,418,422,430,432-434,437-438,454-458,461-463
+getting-started/quickstart.mdx
+  s_724f60c9b3c5d7::t_f14f26f2a5b0f4 13
+getting-started/understand-your-workspace.mdx
+  s_724f60c9b3c5d7::t_5ffa2a5030639e 22
+integrations/connect-and-sync-data.mdx
+  s_724f60c9b3c5d7::t_bc105c0cfbf3ce 33-35,47-56,64-66,78-83
+integrations/mcp-server.mdx
+  s_724f60c9b3c5d7::t_a2076dc4b7a20a 77-82
+workspace-settings/billing.mdx
+  s_724f60c9b3c5d7::t_351f291175a80e 24-29
+workspace-settings/file-attachments-in-chat.mdx
+  s_724f60c9b3c5d7::t_da9184ee017a17 37-40
+workspace-settings/personal-theme.mdx
+  s_724f60c9b3c5d7::t_66d363baecf7aa 25-26
+workspace-settings/team-and-workspace.mdx
+  s_724f60c9b3c5d7::t_3bc3cf09eb6a06 36
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "d3718b742b16a0229e65ef9764fb201c6693252b",
+  "prompts": {},
+  "sessions": {
+    "s_724f60c9b3c5d7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ec814585-6d61-4acc-8ec7-d4508dedb886",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": "Siqi Chen <blader@gmail.com>"
+    }
+  }
+}

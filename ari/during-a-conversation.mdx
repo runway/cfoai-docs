@@ -38,7 +38,9 @@ While Ari works, the page follows it to each table it edits. Scrolling the page 
 
 ## Answer Ari's questions
 
-When Ari needs a few details before it can continue, it asks them as a short form in the chat. Fill in the answers you know and select **Dismiss** on any question you would rather not answer; Ari continues without it and the transcript marks that question as **Declined**. **Undo** restores a dismissed question before you send.
+When Ari needs a few details before it can continue, it asks them as a short form in the chat. The form is part of the chat history: it follows the last message at its full height and scrolls with the conversation, so if you have scrolled up when it arrives, select **Scroll to latest messages** to reach it. Fill in the answers you know and select **Dismiss** on any question you would rather not answer; Ari continues without it and the transcript marks that question as **Declined**. **Undo** restores a dismissed question before you send.
+
+A question that offers **Other…** takes an answer in your own words. While that box is empty, the form says **Type your answer to continue.** (or **Type your answer or attach a file to continue.** when the question accepts a file), and the send button, whether it reads **Submit**, **Submit answers**, or **Next**, stays dimmed. Pressing the dimmed button puts the cursor in the empty box instead of sending.
 
 When the form has several questions, choosing the answer to a question that takes one choice settles it and opens the next unanswered question. The button at the bottom of the form reads **Next** while a later question remains, and selecting it moves you to that question whether or not the one on screen is answered. On the last question it reads **Submit answers** (**Submit** on a one-question form) and stays off until every question is answered or dismissed. A question that takes several choices stays open until you move on, because another choice may still be intended.
 
@@ -70,11 +72,13 @@ When Ari makes a file for you, such as a workbook export, an image, or a documen
 
 When Ari wants to call a connected external service, such as an MCP connector or an API connection from **Settings → Connections**, it pauses and shows the call for approval. Choose one of:
 
-- **Approve** to run this one call.
+- **Allow** to run this one call.
 - **Always allow** to let Ari run this tool without asking again for the whole workspace. Only someone who can manage workspace settings sees this option. Once the workspace confirms the choice, every other card waiting for the same tool on the same server reads **Always allowed** and those calls run on Ari's next turn; a card for another tool, or for a tool of the same name on another server or API, still asks.
 - **Decline** to skip the call. Ari continues without it.
 
 Anyone in the chat can approve or decline the single call. After you choose, Ari continues on its own; you do not need to send another message.
+
+Some MCP servers bring their own view. When Ari calls such a tool on a server you connected, for example GitHub's issue form, the server's form appears in the chat under the heading **View from [server]: [tool]**, filled with what Ari proposed, and you finish it there, such as by selecting its **Create issue** button. The view runs in a sandbox; the note under it reads **Runs in a sandbox. Calls it makes use your [server] connection and its approvals.** A call the view makes on a tool that needs approval shows its own card, **The [server] view is asking to run "[tool]" on [server].**, with **Allow** and **Decline** only, and a link the view wants to open asks first with **Open link** or **Cancel** and the full address. Ari is told what the form wrote. A view from an earlier turn, or after a reload, starts closed with an **Open view** button. Views appear only in your own web chat, not in scheduled or background work.
 
 If you choose a button on a card whose call can no longer be acted on, for example because a teammate already approved it, nothing new runs and a notice headed **Could not approve tool call** or **Could not decline tool call** says why: **This tool call was already approved.**, **This tool call was already declined.**, **The MCP connection for this tool was removed, so this call can no longer run.**, **A workspace setting now blocks this tool, so this call cannot be approved.**, or **This approval request is not part of this chat.**
 

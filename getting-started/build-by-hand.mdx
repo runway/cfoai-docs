@@ -31,7 +31,7 @@ A Page is a dashboard of blocks. Pages nest, so a top-level Page can hold subpag
     In the sidebar's **Model** section, select the **+** button labeled **New page**. cfo.ai creates a Page named "New Page" and opens it. To create a subpage, hover a Page row and select its **New subpage** button. A workspace that has never had a Page shows no **Model** section yet; its first Page comes from Ari, or from the **Create page** button in the empty model pane that a chat's **Expand model pane** button opens. The **Model** section appears as soon as that Page exists.
   </Step>
   <Step title="Rename the Page">
-    Double-click the Page row in the sidebar, or select it and press **F2**. You can also click the Page title at the top of the Page and type. Press **Enter** to save or **Esc** to cancel.
+    Double-click the Page row in the sidebar, or select it and press **F2**. You can also click the Page title shown at the top of the Page body, which is separate from the name in the Page header, and type. Press **Enter** to save or **Esc** to cancel.
   </Step>
   <Step title="Pick an icon">
     Select the icon beside the Page name. The picker has a **Search icons** field, a **Shuffle icon** action, and **Remove page icon**.
@@ -341,7 +341,7 @@ Click into a Text block and select some text. A small toolbar appears with **Hea
 
 If a Page already has a chart block, you can restyle it yourself. Select the chart and open its sidebar from the toggle in the chart's header. The sidebar has three sections.
 
-- **Setup** controls what the chart shows: the Variables plotted as series, the **X axis** (usually **Date**, with its own granularity control), the **Y axis**, and **Segment by** to split a series by a Dimension. Use the chart type picker to switch between **Line**, **Bar**, **Area**, and the other chart types. Select a series' color swatch (**Pick color**) to change its color. Chart colors come from the theme in effect: a chart saves which of the theme's color families a series uses, and a custom theme's series colors replace the first of those families, so every saved chart follows your theme. In a combo chart, each series has its own **Line** or **Bar** type.
+- **Setup** controls what the chart shows: the Variables plotted as series, the **X axis** (usually **Date**, with its own granularity control), the **Y axis**, and **Segment by** to split a series by a Dimension. Use the chart type picker to switch between **Line**, **Bar**, **Area**, and the other chart types. Select a series' color swatch (**Pick color**) to change its color. Chart colors come from the theme in effect: a chart saves which of the theme's color families a series uses, and a custom theme's series colors replace the first three of those families, one each, in order, so every saved chart follows your theme. In a combo chart, each series has its own **Line** or **Bar** type.
 - **Display** controls the chrome: **Show chart title** and **Chart title text**, **Show legend**, **Show X axis** and **X axis title**, **Show Y axis** and **Y axis title**, and grid lines. Waterfall charts add **Positive**, **Negative**, and **Total** colors and a **Values** label toggle.
 - **Compare** adds a Scenario or time-period comparison, with the same choices as a Table Block.
 

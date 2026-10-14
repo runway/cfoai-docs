@@ -21,7 +21,7 @@ You can attach up to **five files per message**. Use the attachment control in t
 
 - **Images and PDFs** are made available directly for Ari to inspect.
 - **Text files and CSVs** can be included as readable conversation context. Large text content may be shortened before it is included.
-- **Excel workbooks and other binary files** are opened through Ari's secure workspace, where Ari can inspect workbook sheets, formulas, cached values, and other file contents.
+- **Excel workbooks and other binary files** are opened through Ari's secure workspace, where Ari can inspect workbook sheets, formulas, cached values, and other file contents. That workspace is cfo.ai's private, server-side scratch space: a port or server Ari opens there answers nothing outside it, and what Ari makes there reaches you only as a file it delivers to the chat.
 
 If a workbook is large, tell Ari which sheet, date range, or business question matters most.
 
@@ -40,7 +40,7 @@ Each attached file shows as a tile in the conversation with its name and file ty
 
 ## Good to know
 
-- Ari can look up files shared earlier in the same conversation, and the files in your other chats in the same workspace: both the files you uploaded there and the files Ari produced there. Ask for a file by name and Ari finds the chat that holds it. Files in a teammate's chats are not readable from yours.
+- Ari can look up files shared earlier in the same conversation, and the files in your other chats in the same workspace: both the files you uploaded there and the files Ari produced there. Ask for a file by name and Ari finds the chat that holds it. For each file in another chat, Ari sees its name, the chat's title, when it arrived, and whether a CSV was sent as a **Data source**, so it can tell two files with the same name apart. Files in a teammate's chats are not readable from yours.
 - Archiving a chat hides it from the chat list; its messages and attached files stay stored. See [Your chats](/ari/meet-ari#your-chats).
 - If a conversation grows too large for Ari to read in one request, the chat says **This request is too large for Ari to continue. Start a new chat with a shorter request or fewer attachments.** Start a new chat and attach only the files the new request needs. See [When a reply is interrupted](/ari/during-a-conversation#when-a-reply-is-interrupted).
 - A damaged, encrypted, or otherwise unreadable file may require a different export or an unprotected copy.

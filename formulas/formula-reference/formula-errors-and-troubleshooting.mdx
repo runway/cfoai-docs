@@ -77,7 +77,7 @@ When Ari saves a rule through a table, the receipt can carry warnings about rule
 - **A rule saved at a coarser grain.** A default written through a table whose periods are years, in a monthly Model, is saved at year grain. The warning says the year cells compute it whatever their month cells hold, and that the month cells do not read it.
 - **Which Scenario the write used.** When the call named no Scenario, the receipt says which one it used, the one you were viewing, because that can change between turns.
 
-A receipt also states rules the save wrote for you: the time rollup a new monthly row gets (`SUM`, or `LAST` for a balance), and the level defaults that make a breakdown's totals add up the rows beneath them. See [How aggregation works](/formulas/core-concepts/how-aggregation-works#default-time-rollup) and [Breakdown totals add up the rows beneath them](/formulas/core-concepts/how-cfoai-chooses-a-formula#breakdown-totals-add-up-the-rows-beneath-them).
+A receipt also states rules the save wrote for you: the time rollup a new monthly row gets (`SUM`, or `LAST` for a balance), and the level defaults that make a breakdown's totals add up the rows beneath them, or, for a percentage, that give each row above the lines the line formula or a blank. See [How aggregation works](/formulas/core-concepts/how-aggregation-works#default-time-rollup) and [Breakdown totals add up the rows beneath them](/formulas/core-concepts/how-cfoai-chooses-a-formula#breakdown-totals-add-up-the-rows-beneath-them).
 
 One case is refused instead of warned: a numeric aggregate such as `sum` or `max` over a text or date operand, for example `max(synced_month$)` on a date Dimension. Use `first`, `last`, or `count` for a value that is not a number.
 
@@ -110,9 +110,15 @@ The default applies per formula range. An imported Variable with no saved rule r
 
 A table that reads **This table didn't load because the connection to cfo.ai failed.** never reached cfo.ai: your network dropped, or no answer arrived. Nothing is wrong with the table or its formulas. Select **Retry**, or wait: the table reloads itself when your connection to cfo.ai returns. **We couldn't calculate this table.** is different: the calculation itself failed, and Ari can say why.
 
+## A percentage's total row is blank
+
+A Variable formatted as a percentage is not summed above its breakdown lines. The row above the lines shows the line formula computed from its own inputs, such as total profit over total revenue, or reads blank where no one formula can stand for the whole: the lines hold typed-in rates or several formulas, or the formula reads something the row does not have. A rate you type on one line blanks the rows above it. To show a rate on that row, write the row's own formula, or remove the typed-in rate. See [A percentage is not added up](/formulas/core-concepts/how-cfoai-chooses-a-formula#a-percentage-is-not-added-up).
+
 ## The table shows a calculation capacity notice
 
 When the calculation service is out of capacity, the table shows a banner instead of values: **Calculation capacity was full when this calculation ran. We're looking into it — try again in a moment.** or **Calculation results are temporarily busy; this failure is transient. We're looking into it — try again in a moment.** Nothing in the formula is wrong. Both of these failures are retryable: the first means the shared calculation capacity was exhausted when the calculation ran, and the second means the results store was busy for a moment, so the table calculates again when you retry. Not every capacity failure is transient: a calculation that ran past its time limit is also reported as a capacity failure, and a retry does not help it. When Ari reads such a table, its result names the failure's category and whether it is transient, so Ari retries only when a retry can help.
+
+Two more banners name what stopped. **This calculation stopped before it finished because the worker running it ended. The calculation service ends a worker whose calculation runs past its time or memory limit.** means the same request runs into the same limit, so the banner adds no try-again sentence; **Retry** reruns the same calculation. Narrow the table instead, for example by filtering the items it shows, or ask Ari why the table is large. **Calculations are temporarily unavailable. We're looking into it — try again in a moment.** means no calculation service answered; this one is retryable. Every load failure shows **We couldn't load this table** with the sentence that says what stopped and a **Retry** button.
 
 ## A year or quarter cell has no time rollup
 

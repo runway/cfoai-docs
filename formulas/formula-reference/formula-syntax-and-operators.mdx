@@ -16,6 +16,19 @@ Use this page to look up the building blocks of a formula.
 
 `50%` is the same as `0.5`. A minus sign can make a value negative.
 
+## Text, empty values, and comments
+
+```text
+"West"
+'West'
+null
+Revenue // the current month
+/* a note that spans
+   more than one line */
+```
+
+Text can use either quote style. `null` is the empty value. A `//` comment runs to the end of the line, and a `/* */` comment can span several lines.
+
 ## Arithmetic
 
 - `+` add
@@ -75,6 +88,8 @@ A plain lookup inherits the rest of the current segment. Put `$` after the Varia
 Revenue$
 Revenue$[Department = "Sales"]
 ```
+
+The formula editor calls this a fixed reference and draws it as one chip with a pin in place of its icon, with the `$` inside the chip. The pin button in the chip's panel, or **F4** with the caret at the reference, adds or removes the `$`; the saved formula text is the same either way.
 
 ## Relative period references
 

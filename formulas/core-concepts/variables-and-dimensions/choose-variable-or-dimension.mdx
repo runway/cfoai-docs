@@ -63,6 +63,10 @@ A source Account or Account Code usually classifies transactions and is a Dimens
 
 If several account values roll into one modeled result, Account is the organizing Dimension and the modeled result is the Variable.
 
+## How Ari applies this
+
+Ari follows the same rule when it builds. A product, plan, or region is a Dimension item, not part of a Variable's name, so Ari builds Revenue by Product, one value per product, rather than a `Starter Revenue` Variable, even when the business has one product today. A new product then becomes one new item that the Variable's rules and breakdowns already reach.
+
 ## Related
 
 - [What is a Variable?](/formulas/core-concepts/variables-and-dimensions/what-is-a-variable)

@@ -68,6 +68,12 @@ You need a cfo.ai account with access to the intended workspace. If you do not h
 
 Any harness that supports remote MCP servers can connect. Add `https://api.cfo.ai/mcp` as a custom connector or MCP server in your agent's settings, then sign in with your cfo.ai account when the browser prompt appears.
 
+## How sign-in works
+
+Every client signs in the same way: a browser window opens, you sign in to your cfo.ai account, and you approve the connection. The client then acts as you, in the workspaces your account can open.
+
+Browser sign-in is the only way to authorize a connection. cfo.ai does not issue API keys or access tokens to copy into a project, a script, or an environment variable, and the MCP server is the documented way for outside software to work with a workspace. An app or agent you build connects as a remote MCP client and signs in through the same browser step.
+
 ## Choose the correct workspace
 
 If your account belongs to one workspace, the connection can use it automatically. If your account belongs to several workspaces, ask the agent to call `list_orgs`, select the correct workspace by its ID or slug, and pass that value as `org_id` on each later tool call.

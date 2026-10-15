@@ -1,0 +1,19 @@
+concepts/variables-and-dimensions.mdx
+  s_7bc7ffe9a85257::t_e1fb570bf003db 43
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "f649295e9d77fefba88a8f67473784fa3253b266",
+  "prompts": {},
+  "sessions": {
+    "s_7bc7ffe9a85257": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "43b1e043-3d0e-40c3-bacc-de97b588da35",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Siqi Chen <blader@gmail.com>"
+    }
+  }
+}

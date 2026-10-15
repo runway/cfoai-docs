@@ -1,0 +1,79 @@
+---
+title: "Upload a CSV as a data source"
+sidebarTitle: "Upload a CSV"
+description: "Upload a CSV export, such as bank transactions or a report from a system cfo.ai does not connect to, so its rows feed your Model. How to prepare the file, upload it, replace it with a newer version, and handle Excel workbooks and PDFs."
+---
+
+Upload a CSV when the numbers you need are not in a system cfo.ai connects to, such as an export from an unsupported accounting or payroll tool, a one-off report, or a list you keep by hand. Its rows become Variables and Dimensions you can use in tables and formulas. An upload never refreshes on its own, so upload the new version when the numbers change.
+
+## Prepare the file
+
+- Save it as a `.csv` file of up to 50 MB.
+- Put the column names on the first line, and keep one record per row after it, with the same number of fields on every row.
+- Use commas between fields.
+- Delete report title lines above the table and total lines below it. If you would rather not, attach the file to a chat instead; Ari cleans up a copy and loads that.
+
+An upload uses no plan slot. [How imported data loads](/reference/imported-data#csv-files) lists how cfo.ai reads names, numbers, and dates.
+
+## Upload the file
+
+<Tabs>
+  <Tab title="Ask Ari">
+    Attach the CSV to a chat message. The file's tile shows **Data source** and **Chat only**. A CSV starts on **Data source**, which imports it into cfo.ai as a data source when you send. Say what the file holds and which column dates the rows:
+
+    > This is our bank transactions export for 2026. Load it as a data source. The Posted Date column dates each row.
+
+    Ari tells you when the rows are in. Choose **Chat only** instead when you want Ari to read or summarize the file without loading it.
+  </Tab>
+  <Tab title="By hand">
+    <Steps>
+      <Step title="Open the upload">
+        In the sidebar, point at **Connections** and select **+** (**Add integration**). On the **Integrations** tab, select **Upload**.
+      </Step>
+      <Step title="Choose the files">
+        **Import CSV files** opens: **Each file creates a separate data source in cfo.ai.** Drop one or more files, or select **Click to upload CSVs or drag and drop**.
+      </Step>
+      <Step title="Import">
+        Select **Import** and the number of files. Each file appears under **Connections**, named after the file.
+      </Step>
+      <Step title="Tell Ari what the file holds">
+        Ask Ari to use the data, and name the column that dates the rows, such as an invoice date. Ari writes the saved query that brings the rows into your Model.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## Replace the file with a newer version
+
+Select the file's row in the sidebar to open its page, and select **Update file**. **Update CSV file** opens; choose the new file. Its rows replace the old ones. When the columns keep their names, your tables and formulas keep reading the same Variables.
+
+You can also attach a file with the same name to a chat. Ari asks before it replaces the existing data source.
+
+## Use a CSV from another chat
+
+Ari can load a CSV you attached in any of your chats in this workspace. Name the file. If more than one of your chats holds a file with that name, Ari asks which one you mean.
+
+## Excel workbooks and PDFs
+
+The **Upload** button takes CSV files only.
+
+- To load one sheet of an Excel workbook as data, attach the workbook to a chat and ask Ari to load that sheet as a data source. You can also save the sheet as a CSV and upload it.
+- To rebuild a whole workbook model, see [Import an existing spreadsheet model](/guides/import-a-spreadsheet-model).
+- To keep a workbook in sync, store it in Google Drive and [connect it](/guides/connect-a-google-sheet).
+- To use a PDF, such as a bank statement, attach it to a chat and ask Ari to turn its table into a data source. Check the totals Ari reports against the statement.
+
+## Remove the file
+
+Point at the file's row in the sidebar and select the trash button, **Remove file**, or open its page and select **Remove file**. Confirm **Do you want to remove this file? This cannot be undone.**
+
+## If the file does not load
+
+The row reads **The file couldn’t load**, followed by what was wrong, such as **the header row has 5 columns and row 12 has 6**. Fix the file and select **Update file**. To see what went wrong, ask Ari; it can copy the file you uploaded into the chat and read it. [Connection statuses and actions](/reference/connection-statuses#messages-about-uploaded-files) lists every message.
+
+If your Model shows fewer rows than the file, the saved query may filter them on purpose. See [Check that your numbers match your books](/guides/check-imported-data).
+
+## Related
+
+- [How imported data loads](/reference/imported-data)
+- [Attach files to a chat](/guides/attach-files)
+- [Connect your accounting system](/guides/connect-accounting)

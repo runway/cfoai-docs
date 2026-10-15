@@ -1,0 +1,100 @@
+---
+title: "Enter, paste, and clear values"
+sidebarTitle: "Enter and clear values"
+description: "Change a number yourself in a Table block, such as a team member's salary: type numbers, text, and dates, paste from Excel or Google Sheets, fill cells, and total a selection. Also see whether a number is typed or calculated, and clear a cell's own value or formula so it follows its row again."
+---
+
+Use this guide to type or change the numbers in a table yourself, such as a new hire's salary or next quarter's price. It also shows how to remove a value you typed, so the cell goes back to its row's formula. To learn how a typed value and a row's formula work together, read [How formulas work](/concepts/formulas).
+
+You need a desktop browser and edit access to the Page.
+
+## Change a value, such as a team member's salary
+
+<Tabs>
+  <Tab title="Ask Ari">
+    Name the person or line, the new value, and when it starts:
+
+    > Set Maria Lopez's salary to \$140,000 a year starting in March.
+
+    Ari changes the value in your Model, and the change appears in version history.
+  </Tab>
+  <Tab title="By hand">
+    <Steps>
+      <Step title="Find the cell">
+        Open the table that shows the value, such as the headcount table, and find the cell: Salary in Maria Lopez's row, for example. Workspace search (**⌘ K**) finds a Page, a table, or a Variable by name.
+      </Step>
+      <Step title="Type the new value">
+        Select the cell and start typing; the first key replaces what the cell showed. To edit the current entry instead, double-click the cell or press **Enter**.
+      </Step>
+      <Step title="Save">
+        Press **Enter** to save and move down, or **Tab** to save and move right. **⌘ Enter** (**Ctrl Enter**) saves and stays on the cell. **Esc** cancels.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+The new value shows at once while cfo.ai recalculates everything that depends on it.
+
+If cfo.ai refuses the change and says the cells come from an integration, the value comes from a connected system, such as your payroll provider. Change it there; it arrives with the next sync. See [Refresh data or change when it refreshes](/guides/refresh-data).
+
+## Type numbers the way you would in a spreadsheet
+
+cfo.ai reads a number written the way people write one: `1,000`, `$1,250.75`, `50%`, and `(500)` each save the number they mean. A currency sign or a percent sign also shows that cell as **Currency** or **Percentage**. Every form cfo.ai reads is listed in [What you can type into a cell](/reference/table-blocks#what-you-can-type-into-a-cell).
+
+Anything else you type in a number cell is read as a formula, such as `Revenue * 1.1`; a leading `=` is optional. See [Write a formula](/guides/write-a-formula).
+
+## Type text, dates, and items
+
+In a Variable that holds text, such as Job Title, what you type is saved as words: `Finance assistant`, `N/A`, and `2026-01-01` all stay as typed. Start with `=` to enter a formula instead.
+
+A cell of a date Variable, such as Start Date, opens a calendar. Pick a day, or select **Edit formula** to write a formula.
+
+A column that shows which item each row belongs to, such as each employee's Department, opens a list of the Dimension's items. Search, then pick one. To use a new item, type its name and choose **Add** with that name. The **Edit formula** button opens the formula editor.
+
+When an item column reads its values from a connected system, the list shows **Source** with the name of the import. Picking another item saves your choice over it, and the list then reads **Overrides source**. **View source** opens that connection.
+
+## See whether a number is typed or calculated
+
+A dashed underline marks a cell that holds its own value or formula, such as a number someone typed. That value replaces the row's formula in this cell only. A cell without the underline takes its number from the row's formula or from a connected system. A picked item or date is the exception: it belongs to the cell but never shows the underline.
+
+To see the formula behind a cell, open it. A formula the cell inherits shows dimmed; point at it to see **Inherited from** and where the formula comes from. See [Override one cell](/guides/write-a-formula#override-one-cell).
+
+## Clear a value or a cell's own formula
+
+Select the cell, or several cells, and press **Delete** or **Backspace**. Each cell loses the value or formula it held on its own, the dashed underline disappears, and the cell follows its row's formula again.
+
+You can also open the cell, delete everything in it, and press **Enter**.
+
+A cell with nothing of its own has nothing to clear. Its number comes from the row's formula or from a connected system, or is 0 when neither covers it; see [A cell that no formula covers](/concepts/formulas#a-cell-that-no-formula-covers). To change a calculated number, change the row's formula; see [Write a formula](/guides/write-a-formula). To make one cell different from its row, type a value into it. Cells that come from a connected system can be changed only in that system.
+
+## Copy, cut, and paste
+
+- **⌘ C** copies the selected cells, **⌘ X** cuts them, and **⌘ V** pastes. On Windows and Linux, use **Ctrl**.
+- **⌘ Shift V** pastes values only, without formulas.
+- Right-click a cell for **Copy value**, **Copy formula**, and **Paste**.
+
+A cut works the way it does in Excel: the cut cells stay in place, outlined, until you paste, and the paste clears them. Press **Esc**, or copy something else, to cancel the cut. You can paste into another table.
+
+You can paste a range from Excel or Google Sheets. Each pasted cell is read the way a typed entry is, so `$1,000` becomes 1000. Text is saved exactly as copied, and a spreadsheet cell with line breaks stays one cell. A formula copied from a cfo.ai table pastes as that formula.
+
+## Fill neighboring cells
+
+Select one cell and drag the small square at its corner across the cells next to it. Each of those cells gets the same value or formula.
+
+## Add up selected cells
+
+Select a range of cells. A bar at the lower right of the Page shows **Count:**, **Sum:**, and **Avg:** for the numbers in the selection. **⌘ A** selects every cell in the table.
+
+## If a value does not save
+
+When cfo.ai refuses a change, the cell returns to its earlier value and a notice says why. Common reasons are a value that comes from an integration, a selection whose cells take different formulas, and a table you can only read. For a value you typed, the formula editor reopens with your entry so you can fix it.
+
+Every notice and what to do about it is listed in [Table block controls and messages](/reference/table-blocks#when-a-change-is-not-saved). To take back a change, press **⌘ Z**, or see [Undo a change or restore an earlier version](/guides/undo-changes).
+
+## Related
+
+- [How formulas work](/concepts/formulas)
+- [Write a formula](/guides/write-a-formula)
+- [Build a Table block by hand](/guides/build-a-table)
+- [Keyboard shortcuts](/reference/keyboard-shortcuts#table-cells)
+- [Table block controls and messages](/reference/table-blocks)

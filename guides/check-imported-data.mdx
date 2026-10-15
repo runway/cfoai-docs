@@ -1,0 +1,101 @@
+---
+title: "Check that your numbers match your books"
+sidebarTitle: "Check numbers against your books"
+description: "Why a number in cfo.ai does not match QuickBooks, Xero, or your other books, and how to fix it. Compare a closed month with the source, check the common causes, trace a number to its source rows, and fix data that loaded the wrong way."
+---
+
+When a number in cfo.ai does not match your books, compare one closed month with the source and have Ari list every account that differs. Most differences come from a handful of causes, and each one has a quick check.
+
+## Compare one closed month with your books
+
+Pick a month you have closed in your accounting system, and ask:
+
+> Compare September 2026 in the Model with QuickBooks and list every account that differs, with both amounts.
+
+Ari reads your Model and the synced source side by side and names each difference. Fix the cause, then ask again until the month ties.
+
+## Common causes
+
+### The connection is still loading
+
+QuickBooks Online and Xero load your three most recent complete months first and the rest of your history after, so older months can be missing for a while. Ask Ari which periods have loaded:
+
+> Which months has our QuickBooks connection loaded?
+
+### Last close is not the month you think
+
+Your Model's **Last close**, your month-end, decides which months read as Actuals. In months after it, a Variable with a Forecast formula calculates that formula instead of reading your books. A Variable that only reads its connected column keeps showing the source's rows after Last close, so moving Last close does not change what it shows. If last month still shows forecast numbers, move Last close; see [Set Last close and date defaults](/guides/set-dates-and-last-close) and [Connected data before and after Last close](/concepts/actuals-and-forecast#connected-data-before-and-after-last-close).
+
+### A saved query filters rows on purpose
+
+A saved query brings in only the rows your Model needs, so your Model can hold fewer rows than the source. Ask Ari what the query keeps and what it leaves out before you treat a smaller count as missing data.
+
+### The same cost is counted twice
+
+When two sources describe the same thing, a total can add both. For example, salaries can arrive in your profit and loss from QuickBooks and again as payroll from Gusto. Ask:
+
+> Is payroll counted twice in total expenses? Show me which Variables the total adds.
+
+### The source changed after the last sync
+
+A correction you made in your books reaches cfo.ai at the next sync, but QuickBooks Online re-reads only the last three months each night. For an older month, ask Ari to re-import the full history; see [Refresh data](/guides/refresh-data#re-import-past-months).
+
+### The opening cash balance is an estimate
+
+A Model that Ari started from estimates holds an estimated opening balance. Once your books are connected, ask Ari to take the opening cash from your synced balance sheet. See [Replace estimates with your real numbers](/guides/switch-to-real-numbers).
+
+### The balance sheet does not balance
+
+Ask Ari to reconcile it month by month:
+
+> Check that assets equal liabilities plus equity for every month, and name the accounts behind any gap.
+
+An amount the source did not classify loads into the statement's unclassified amount, and it stays part of the total, so Ari can name it.
+
+## Trace a number to its source rows
+
+Right-click a cell and choose **Mention cell in chat**, then ask "Where does this number come from? Show me the source rows." Ari shows the formula and the source rows behind the value. See [Ask Ari about a number](/guides/ask-about-a-number). To split a total into the items that make it up, see [Break a number down](/guides/break-down-a-number).
+
+## Check which periods loaded
+
+Ask Ari, or open the connection's page: when two or more tables have synced, **Source tables** shows each table's **Last synced** time and the date its **Data through** reaches.
+
+## Check how many rows loaded
+
+Ask Ari:
+
+> How many rows did the bank transactions upload load, and how many does its saved query keep?
+
+When the file or table holds more rows than your Model, Ari explains what the query filters.
+
+## Read the saved queries
+
+Open the connection's page and find **Queries**. Each saved query shows when it last ran, such as **Ran 2 hours ago · Completed**, with **Show SQL** and **Copy SQL**. The queries are read-only there. To change one, ask Ari. Ari shows you what a change would remove from your Model before it saves. [How imported data loads](/reference/imported-data#saved-queries) lists the rules.
+
+## Fix a source that has no date column
+
+A table that shows an imported source by month stops calculating when nothing tells cfo.ai which column dates the source's rows. Its error says the source **has no date column to read it by**, and names the source. A column named `Date` does not count by itself. Ask Ari to set the column that dates the rows:
+
+> The Posted Date column dates each row of the bank transactions upload. Use it.
+
+If the source has no date at all, add a date column at the source and sync or upload it again. A table that does not split the source by date, such as one showing the latest value, still calculates. [Formula errors and warnings](/reference/formula-errors) has the full message.
+
+## Fix a column that loaded as the wrong kind
+
+A code or ID can load as a Variable that adds up, such as a store number summed across stores. Ask Ari to switch it:
+
+> Load Store Number as a Dimension instead.
+
+Ari switches the column in place, so formulas, tables, and filters that use it keep working, and later syncs keep the new role. A number column that becomes a Dimension keeps number items, so leading zeros do not come back. To keep them, ask Ari to load the column as text under a new name. A column that feeds a Dimension other queries also feed cannot switch roles for one query; Ari names the shared Dimension instead. [How imported data loads](/reference/imported-data#how-columns-become-variables-and-dimensions) explains how roles are first chosen.
+
+## Run a Model audit
+
+The optional **Model audit** Skill checks the whole Model at once. It checks whether formulas, mappings, and statements hold together, whether the Model ties to your ledger and bank, and what is still typed in or estimated. It writes a short audit page and fixes problems when you ask. Turn it on first; see [Turn on a built-in Skill](/guides/turn-on-built-in-skills). Then ask:
+
+> Audit the model before the board meeting.
+
+## Related
+
+- [How connected data reaches your Model](/concepts/connected-data)
+- [How imported data loads](/reference/imported-data)
+- [Fix a connection that needs attention](/guides/fix-a-connection)

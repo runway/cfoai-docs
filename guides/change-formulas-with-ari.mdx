@@ -1,0 +1,98 @@
+---
+title: "Have Ari write, change, or explain formulas"
+sidebarTitle: "Formulas with Ari"
+description: "Ask Ari to write or change a formula in plain language, say where it applies and in which Scenario, point Ari at a cell or formula, have Ari explain a formula, and hand Ari a cell that shows an error."
+---
+
+Describe the calculation in plain language, and Ari writes the formula, saves it on the Variable, and checks the result in the table. You do not need to know the formula syntax or where a Variable's formula lives. To write a formula yourself, see [Write a formula](/guides/write-a-formula).
+
+## Ask Ari to write or change a formula
+
+Name the Variable and the calculation:
+
+> Set Gross Profit to Revenue minus Cost of Goods Sold.
+
+> Add Gross Profit to this table, calculate it as Revenue minus Cost of Goods Sold, and check the result for the last three months.
+
+Ari saves the formula on the Variable, so every table that shows the Variable uses it. A new Variable needs a place on a table, so Ari adds it to one, such as the table you name.
+
+## Say where the formula applies
+
+Add where the formula applies only when it matters. Ari reads the table you are looking at to work out the rows and items you mean.
+
+| You want the formula for | Ask |
+| --- | --- |
+| The Variable everywhere | "Use this calculation for Gross Profit everywhere." |
+| Each item of a Dimension | "When Payroll is broken down by Department, calculate each department as Headcount times Average Salary." |
+| One item | "For the Sales department, calculate Commission as Revenue times Commission Rate." |
+| Actuals or Forecast | "Use imported Payroll for Actuals and Headcount times Average Salary for Forecast." |
+| One cell | "Set March 2027 Marketing Spend to 50,000 and leave the other months alone." |
+
+A formula for Actuals or Forecast needs months. If the Variable cannot take one, Ari says why. See [Use different formulas for Actuals and Forecast](/guides/actuals-and-forecast-formulas).
+
+## Say which Scenario
+
+Ari changes the Scenario your chat is in, unless you name another one:
+
+> Make this change in the Hiring freeze Scenario.
+
+Name the Scenario and the formula range, Actuals or Forecast, whenever that choice matters, for example when a change could otherwise land in the wrong place. When you name no Scenario, Ari's save records which one it used, so you can ask Ari to confirm it.
+
+## Point Ari at a cell or a formula
+
+Ari works best when it knows exactly which number you mean.
+
+- Right-click a cell and choose **Mention cell in chat**, or select it and press **⌘ L** (**Ctrl L** on Windows and Linux). The cell joins your message.
+- In the formula editor, select the **@** button, **Mention formula in chat**, to add the formula you are editing.
+
+Then ask:
+
+> Explain the formula for this row.
+
+> Why is this value different in the Sales column?
+
+## Ask Ari to explain a formula
+
+Reading formulas does not change the Model. Ask about a Variable, a cell, or a difference you see:
+
+> How is Gross Margin calculated?
+
+> Which formula applies to Payroll in Forecast?
+
+> Show me the formulas for Payroll, including the ones that apply only to some departments.
+
+> Explain this formula in plain language and tell me where it applies.
+
+A useful explanation covers what the formula calculates, which Variables it reads, where it applies, whether a more specific formula replaces it somewhere, and whether it is for Actuals, Forecast, or both. To answer a question with numbers already in the Model without saving anything, see [Ask Ari about a number](/guides/ask-about-a-number).
+
+## Hand Ari a cell or table that shows an error
+
+- Right-click a cell that shows an error code and choose **Fix**. A new chat opens with the cell and the message "Help me fix this cell."
+- When a table cannot calculate because of the Model's setup, its notice has a **Fix** button that opens a chat with "Help me fix this table."
+
+To have Ari find the cause before it changes anything, say so:
+
+> Explain why this formula works for Sales but not Marketing. Do not change anything yet.
+
+> Check whether a more specific formula is replacing this one.
+
+## Check a formula before Ari saves it
+
+Ask Ari to show you the formula and wait:
+
+> Show me the formula you would use, and wait for my OK before saving.
+
+When the formulas belong to a new table, Ari can also run a check that saves nothing:
+
+> Draft the new table and check its formulas, but don't save anything yet.
+
+The check confirms the table's layout, the Variables and Dimensions its formulas name, and their syntax. It reports whether the table is valid, any warnings, and what saving it would change. It calculates nothing, so it returns no values and cannot find circular references. Changes to an existing table and deletions have no such check: read the formula Ari proposes, then check the numbers after it saves.
+
+After Ari saves, see [Review Ari's formula changes](/guides/review-ari-formula-changes).
+
+## Related
+
+- [Review Ari's formula changes](/guides/review-ari-formula-changes)
+- [Write a formula](/guides/write-a-formula)
+- [How formulas work](/concepts/formulas)
+- [Formula errors and warnings](/reference/formula-errors)

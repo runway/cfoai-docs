@@ -1,0 +1,86 @@
+---
+title: "Pages, Table blocks, and Canvas blocks"
+sidebarTitle: "Pages and blocks"
+description: "How Pages present your Model: what Table blocks calculate and what they only present, how Canvas blocks read live data and Scenarios, why controls never change the Model, how Ari checks a visual, and when to use which block."
+---
+
+Why does the same Revenue number appear on three Pages, and what happens when you change it on one? Because a Page does not hold numbers. A Page is a report that reads the Model, so every Page that shows Revenue shows the same value, and a change made on any of them reaches all of them.
+
+## A Page is a view of the Model
+
+A Page, which some people call a sheet or a tab, is a stack of blocks that read from the Model. Your P&L, your hiring plan, and a board report can all show the same Cash Variable. When a new hire moves cash, every Page that shows Cash changes with it, because each one asks the Model for the value.
+
+Pages nest. A Page can hold subpages, so a Page with subpages works like a folder. For example, a Board Page can hold one subpage per meeting, and a Plans Page can hold the forecast and the headcount plan. cfo.ai has no other kind of folder.
+
+Ari creates Pages as it builds, such as a Page for each statement in a forecast. You can tell it where its work goes, such as "add this to the Board Page" or "put the new Pages under Plans", and ask it to rename, move, or delete Pages. See [Create and organize Pages and blocks](/guides/create-pages-and-blocks).
+
+Pages follow Scenarios too. The Pages in Main appear in every Scenario that branches from it, but a Page you or Ari add while viewing a Scenario exists only in that Scenario until you merge it into Main. See [Scenarios, Snapshots, and version history](/concepts/scenarios).
+
+## Three kinds of block
+
+| Block | What it is for |
+| --- | --- |
+| **Table block** | A grid of Variables across time and categories: a P&L, a headcount roster, a variance report. You can type into it. |
+| **Canvas block** | A chart, a scorecard, a what-if control, or another custom visual that Ari builds from live Model data. |
+| **Text block** | Words: a summary, notes, or headings between other blocks. |
+
+Some Pages also have chart blocks from earlier versions of cfo.ai, which still show their charts and can still be restyled. New charts are Canvas blocks: the **Add block** menu offers a blank Canvas block, not a chart, and Ari builds the chart in it.
+
+## What a Table block calculates and what it only presents
+
+A Table block holds no numbers of its own. It names the Variables to show, the Dimensions that break them down, such as Department, and the dates across the top. The Model calculates each value from the Variable's formula, and the table presents the result.
+
+That split decides where a change lands:
+
+- Typing a value or writing a formula changes the Variable in the Model, so every table and chart that shows that cell changes too.
+- The Variable's own number format, such as currency with no decimals, is where every table and chart starts. Ari can change it for you.
+- Presentation belongs to the table alone. That covers which rows and columns show, their order, filters, hidden rows, column widths, the date range, and Scenario comparison columns. It also covers what you pick in the table's **Format and display** menu, such as a fill color, bold text, an indent, or a different number format or precision for this table.
+- A summary column, such as a total at the end of a group of months, only summarizes the cells the table shows and saves no formula. A breakdown total, the parent row above a breakdown, is a formula. See [How formulas work](/concepts/formulas#breakdown-totals-and-summary-columns-calculate-differently).
+
+So you can build a second table of the same Variables with a different layout or format without copying any data. See [Format and arrange a table](/guides/format-a-table).
+
+## Canvas blocks read live data
+
+A Canvas block reads the Model the way a table does. It names datasets, each a set of Variables broken down by Dimensions and dates, and the Model calculates them every time the block loads. When Actuals sync overnight or someone changes an assumption, the chart redraws with the new values. A blank or error cell, such as `#DIV/0!` from a formula, reaches the visual as no value; the fix is in the Model, not in the chart.
+
+A Canvas block reads the Scenario of the Page you are viewing, unless a dataset names another one. One block can read up to three Scenarios, so a single chart can show Main, an Upside, and a Downside side by side. Everyone who can read the Page sees the data of every Scenario the block was saved to read, including someone who opened it through a share link. See [Sharing and access](/concepts/sharing-and-access).
+
+A Canvas block takes its colors, heading typeface, and corner shape from the theme in effect: your workspace brand, or each person's own theme. A color that Ari fixed on purpose, such as a brand color, stays the same in light and dark mode. A Canvas block cannot show an image from the web or from a file, so a logo or icon inside one is drawn with shapes and text.
+
+## Controls change the view, never the Model
+
+A Canvas block can carry sliders, toggles, menus, and buttons. Moving a slider shows what would happen, such as how cash runway responds to a later hiring date, without saving anything. A control never writes a value into the Model. To change an assumption, edit it in a Table block or ask Ari.
+
+A block can save a control's setting, such as monthly or quarterly, when it was built to. The saved setting belongs to that block in that Scenario, and everyone who opens the Page sees it. A button in a block can open another Page, start a Guide, or start a chat with Ari, but it never changes the Model either. See [Change a chart or Canvas block](/guides/change-a-visual).
+
+## How Ari checks a visual
+
+To check a Canvas block it built or changed, Ari renders the saved block in a browser with live data, once in light mode and once in dark mode, at a width of 1,200 pixels. It reads the errors and warnings from those renders, such as a chart series with blank or error cells, and can fix the block before it answers.
+
+The check has limits. It does not click buttons, type into fields, follow links, or start Guides, so what those do is first tried when you use them. It does not check the block at other widths. A clean render also does not prove the numbers are right; that comes from the Model's formulas, which you can trace from any table. See [How Ari works with you](/concepts/working-with-ari).
+
+## The Page's date range
+
+A Page that holds a table, a chart, or a Canvas block with data has a date-range control in its title row. Changing it sets the same range on every table, chart, and Canvas dataset on the Page at once.
+
+## Choosing a block
+
+| You want readers to | Use |
+| --- | --- |
+| See exact numbers in rows and columns, such as a P&L or a variance report | A Table block |
+| Type in assumptions or record values | A Table block |
+| Compare a plan with a Scenario number by number | A Table block with comparison columns |
+| See a trend, a mix, or how a total changed | A Canvas block with a chart |
+| Check a few headline numbers at a glance | A Canvas block with a scorecard |
+| Try a what-if without changing the plan | A Canvas block with a control |
+| Read the story behind the numbers | A Text block |
+
+To choose the right chart for a question, see [Prompt library](/reference/prompt-library).
+
+## Related
+
+- [Build a dashboard or board report](/guides/build-a-dashboard)
+- [Change a chart or Canvas block](/guides/change-a-visual)
+- [Create and organize Pages and blocks](/guides/create-pages-and-blocks)
+- [Variables and Dimensions](/concepts/variables-and-dimensions)
+- [The cfo.ai interface](/reference/interface)

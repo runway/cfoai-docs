@@ -1,0 +1,314 @@
+---
+title: "Glossary"
+description: "Short definitions of every cfo.ai product term, and the cfo.ai term for everyday words people use, such as assumptions, breakdowns, categories, tabs or sheets, month-end, versions of the plan, export, credits, and add a user. Each entry links to the page that explains it."
+---
+
+This glossary defines each cfo.ai term in a sentence or two and links to the page that explains it. Entries for everyday words, such as **Assumption**, **Month-end**, or **Sheet or tab**, name the cfo.ai term they mean. Entries are in alphabetical order.
+
+## Actuals
+
+The periods up to and including Last close, which usually read your accounting system. A Variable can use a different formula in Actuals than in the Forecast. See [Actuals, Forecast, and Last close](/concepts/actuals-and-forecast).
+
+## Address
+
+Where one value lives: a Variable, an item from each of its Dimensions, and a period, such as Revenue for Sales in March 2026. It plays the part of a cell reference such as B7 in a spreadsheet. See [Variables and Dimensions](/concepts/variables-and-dimensions).
+
+## Administrator
+
+A member of a workspace. Every member is an administrator, who can see and edit every Page, invite others, and manage billing and settings. cfo.ai has no view-only or other lower role; to let someone read Pages without editing, use a [share link](#share-link). See [Sharing and access](/concepts/sharing-and-access).
+
+## Aggregation
+
+How a Variable that reads a connected system combines the source's rows in one period into one value, such as their sum or the latest row. See [Totals, aggregation, and time rollups](/concepts/totals-and-rollups).
+
+## AI usage
+
+What Ari's work draws on: your chats with Ari, background work it starts, every scheduled Trigger run, and images Ari creates. Each plan includes an amount for each billing cycle. You can buy more, cap what extra usage costs in a month with a spend limit, or turn on auto-reload. A sync uses none. Many people call it credits. See [Plans, AI usage, and connection slots](/concepts/plans-and-usage).
+
+## API key
+
+cfo.ai issues no API keys or access tokens. AI tools, and software you build, connect through the cfo.ai [MCP server](#mcp-server), and a person approves the connection in a browser. See [Is there a cfo.ai API or API key?](/guides/connect-an-ai-client#is-there-a-cfoai-api-or-api-key)
+
+## Ari
+
+cfo.ai's AI finance coworker. Ari answers questions by reading your Model and connected data, and it builds what an answer needs into the Model, where you can inspect and change it. See [How Ari works with you](/concepts/working-with-ari).
+
+## Assumption
+
+An input you choose rather than observe, such as a price, a growth rate, or a hire's start date. In cfo.ai an assumption is a Variable, and Ari labels every value it estimated as an assumption. See [Variables and Dimensions](/concepts/variables-and-dimensions).
+
+## Block
+
+A part of a Page: a Table block, a Canvas block, or a Text block. A Page can also hold a chart block made earlier; new charts are Canvas blocks. See [Pages, Table blocks, and Canvas blocks](/concepts/pages-and-blocks).
+
+## Breakdown
+
+A Variable split into rows or columns by the items of a Dimension, such as Revenue by Product. People also use the word for the Dimension itself. See [Break a number down](/guides/break-down-a-number).
+
+## Breakdown total
+
+A parent row that adds up the rows directly beneath it, such as Revenue above its products. It is a formula cfo.ai saves with the table, and you can replace it with your own, such as a ratio. See [Totals, aggregation, and time rollups](/concepts/totals-and-rollups).
+
+## Canvas block
+
+A block that draws a custom chart, scorecard, or interactive visual from your Model's numbers. See [Pages, Table blocks, and Canvas blocks](/concepts/pages-and-blocks).
+
+## Catch-all
+
+The item a Dimension mapping assigns to every source item that no assignment matches, such as Other. See [Dimension mappings and shared Dimensions](/concepts/dimension-mappings).
+
+## Category
+
+What many people call a Dimension, such as Department or Region. See [Dimension](#dimension).
+
+## Cell comment
+
+cfo.ai has no comments on cells. To keep a note beside your numbers, add a Text block, or ask Ari for a text Variable, such as Notes, on a table that lists records. See [What a table cannot do](/reference/table-blocks#what-a-table-cannot-do). A formula can hold its own comment; see [Formula syntax](/reference/formula-syntax#comments).
+
+## Chart
+
+New charts are Canvas blocks: ask Ari for a chart, because the **Add block** menu has no chart option. A chart block a Page already has can still be restyled. See [Change a chart or Canvas block](/guides/change-a-visual).
+
+## Circular reference
+
+A formula that needs its own result to calculate, shown in the cell as `#CIRC!`. See [How formulas work](/concepts/formulas).
+
+## Connection
+
+A link to another system, such as QuickBooks Online, Rippling, or a Google Sheet, that brings its data into your Model and refreshes it. Also called an integration. See [How connected data reaches your Model](/concepts/connected-data).
+
+## Connection slot
+
+One of the connections a workspace's plan lets it hold. Each source that syncs data into your Model takes a standard or premium slot; CSV uploads, and the MCP servers and APIs that Ari calls live, take none. Settings calls them integration slots. See [Plans, AI usage, and connection slots](/concepts/plans-and-usage).
+
+## Credits
+
+Another name for AI usage. See [AI usage](#ai-usage).
+
+## Dashboard
+
+A Page of the numbers you review regularly, such as burn, cash, and cash runway, usually built by Ari from Canvas blocks, Table blocks, and Text blocks. See [Build a dashboard or board report](/guides/build-a-dashboard).
+
+## Dimension
+
+A list of categories that breaks Variables down, such as Department, Region, Product, or Date. People also call these breakdowns or categories. See [Variables and Dimensions](/concepts/variables-and-dimensions).
+
+## Dimension item
+
+One entry in a Dimension, such as Sales in Department or West in Region. Called an item for short. See [Variables and Dimensions](/concepts/variables-and-dimensions).
+
+## Dimension mapping
+
+A one-way lookup that assigns each item of one Dimension to an item of another, such as GL accounts to P&L lines. See [Dimension mappings and shared Dimensions](/concepts/dimension-mappings).
+
+## Drill in
+
+To open, under a calculated row, the rows its formula reads. Drill-in rows have a hatched background, and **Clear drill-in** closes them. See [Break a number down](/guides/break-down-a-number#see-the-inputs-behind-a-calculated-number-drill-in).
+
+## Empty value
+
+The value of a text or date cell that holds nothing, written `null` in a formula. A number cell that holds nothing reads 0 instead. See [How formulas work](/concepts/formulas).
+
+## Export
+
+cfo.ai's export is **Download spreadsheet** in the Page header, which saves the Page's tables as an Excel workbook. For a PDF or a CSV, ask Ari. See [Export a Page to Excel](/guides/download-a-spreadsheet).
+
+## Expression
+
+The part of a formula that says what to calculate, such as `Revenue - Expenses`. See [How formulas work](/concepts/formulas).
+
+## Fiscal year
+
+cfo.ai has no fiscal-year setting: quarters, half-years, and years follow the calendar. Ari can add fiscal-year totals for a year that starts in another month. See [Actuals, Forecast, and Last close](/concepts/actuals-and-forecast).
+
+## Fixed reference
+
+A reference written with `$` after a Variable's name. It reads the same value wherever the formula runs, instead of following the cell being calculated. See [Formula syntax](/reference/formula-syntax).
+
+## Forecast
+
+The periods after Last close, calculated from your assumptions and formulas. A forecast is not a separate model: it is the later part of the same Model's timeline. See [Actuals, Forecast, and Last close](/concepts/actuals-and-forecast).
+
+## Formula
+
+What sets a Variable's values where it applies: an expression, its scope, and, when it covers only Actuals or only Forecast, a formula range. A value typed into a cell is saved as that cell's own formula. See [How formulas work](/concepts/formulas).
+
+## Formula column
+
+A column beside a table's row names that shows each row's formula. It can split into one column for each formula range, such as Actuals and Forecast. See [Use different formulas for Actuals and Forecast](/guides/actuals-and-forecast-formulas).
+
+## Formula range
+
+A span of the timeline that can have its own formula. Actuals and Forecast are the two formula ranges, split by Last close. See [Actuals, Forecast, and Last close](/concepts/actuals-and-forecast).
+
+## Grain
+
+The length of the periods a table shows, such as months, quarters, or years. **Raw** shows each date without grouping it into periods. Settings calls it date granularity. See [Table block controls and messages](/reference/table-blocks#table-header).
+
+## Guide
+
+An interactive walkthrough that highlights Pages, blocks, or cells and explains what someone should notice. See [Skills, Triggers, and Guides](/concepts/automation).
+
+## Integration
+
+Another name for a connection. See [Connection](#connection).
+
+## Last close
+
+The end of the last period whose books you have closed, your month-end. It splits Actuals from the Forecast, and it moves only when you or Ari move it. See [Actuals, Forecast, and Last close](/concepts/actuals-and-forecast).
+
+## Line item
+
+What many people call a Variable, such as Revenue or Rent. See [Variable](#variable).
+
+## Main
+
+The Scenario that holds your plan, which other Scenarios branch from. Pages show Main unless you pick another Scenario. See [Scenarios, Snapshots, and version history](/concepts/scenarios).
+
+## MCP server
+
+A way for AI tools to work with a service. cfo.ai's MCP server, at `https://api.cfo.ai/mcp`, lets AI tools such as Claude, ChatGPT, or Codex read your Model and make the changes you ask for, as you. In **Settings → Connections**, you can also give Ari other services' MCP servers. See [Connect Claude, ChatGPT, Codex, or another AI tool to cfo.ai](/guides/connect-an-ai-client).
+
+## Mention
+
+A chip in the message box that points Ari at an exact cell, row, column, block, Page, or formula, so you do not have to describe it. See [Chat controls and messages](/reference/chat#start-a-chat).
+
+## Model
+
+Your company's shared financial model: its Variables, Dimensions, formulas, and Scenarios, which you, Ari, and connected AI tools all work on. Each workspace has one Model. See [How cfo.ai works](/concepts/how-cfoai-works).
+
+## Month-end
+
+What many teams call Last close: the end of the last month whose books are closed. See [Last close](#last-close).
+
+## Multi-entity
+
+Reporting several legal entities, such as a US company and a UK subsidiary, and their group total in one Model. See [Model several entities and consolidate them](/guides/consolidate-entities).
+
+## Original table
+
+The table where a Variable or Dimension was created. Removing its last row or column there deletes it from the Model; removing it from any other table only takes it off that table. See [Table block controls and messages](/reference/table-blocks#removing-and-deleting).
+
+## Override
+
+A value or formula saved for one cell or one item, which replaces the formula it would otherwise take from its row. A dashed underline marks a cell with its own value or formula. See [How formulas work](/concepts/formulas).
+
+## Page
+
+A report built from blocks: Table blocks, Canvas blocks, and Text blocks. People sometimes call Pages sheets or tabs. A Page shows the Model's numbers; it does not hold copies of them. See [Pages, Table blocks, and Canvas blocks](/concepts/pages-and-blocks).
+
+## Period
+
+One bucket of time at the Model's base grain, such as March 2026 in a monthly Model. See [Variables and Dimensions](/concepts/variables-and-dimensions).
+
+## Plan
+
+The word means two things in cfo.ai: your financial plan, which lives in Main and its Scenarios, and your workspace's subscription plan, which sets what the workspace includes. See [Main](#main) and [Plans and billing](/reference/plans-and-billing).
+
+## Refresh
+
+A connection's update, which brings the source's latest data into your Model. Also called a sync. Every integration refreshes once a day, by default in a nightly run that starts at 02:00 UTC, and you can ask Ari to refresh one now. See [Refresh data or change when it refreshes](/guides/refresh-data).
+
+## Saved query
+
+The query that brings one table from a connection into your Model. See [How connected data reaches your Model](/concepts/connected-data).
+
+## Scenario
+
+A branch of your Model where you can try a different plan, such as a hiring freeze, without changing Main. People also call these versions of the plan. See [Scenarios, Snapshots, and version history](/concepts/scenarios).
+
+## Scope
+
+Where a formula applies: every cell of its Variable, one item, one formula range, or one cell. See [How formulas work](/concepts/formulas).
+
+## Segment
+
+A slice of a Variable named by one or more Dimension items, such as Revenue for Sales in the West. See [Variables and Dimensions](/concepts/variables-and-dimensions).
+
+## Segment by
+
+The table action that shows a Variable's segments as rows or columns, one for each item of a Dimension. See [Break a number down](/guides/break-down-a-number).
+
+## Segmentation and Mapping
+
+The two roles a Dimension can play on a table, set with **Use as**. **Segmentation** breaks Variables down by the Dimension's items. **Mapping** shows which item each row belongs to. See [Dimension mappings and shared Dimensions](/concepts/dimension-mappings).
+
+## Share link
+
+A link that lets someone outside your workspace read chosen Pages, in one Scenario, without a cfo.ai account. It can require a password, and it never allows editing. The Share panel calls it an external link. See [Sharing and access](/concepts/sharing-and-access).
+
+## Sheet or tab
+
+What spreadsheet users often call a Page. A Page holds blocks, and its Table blocks hold the rows and columns of numbers. See [Page](#page).
+
+## Skill
+
+A saved workflow that teaches Ari how your team does a recurring kind of work. See [Skills, Triggers, and Guides](/concepts/automation).
+
+## Snapshot
+
+A copy of Main or a Scenario pinned to one moment in its history, which no later sync or edit reaches. You can still type over its values. See [Scenarios, Snapshots, and version history](/concepts/scenarios).
+
+## Summary column
+
+A total column at the end of a group of columns on one table, headed **SUM**, **LAST**, or **TOTAL**, for example. It summarizes the cells shown in its group and saves no formula. See [Totals, aggregation, and time rollups](/concepts/totals-and-rollups).
+
+## Sync setup
+
+A saved setup that copies the results of one read-only tool or endpoint of an MCP server or API into your data on each sync. Ari creates and edits sync setups. See [How imported data loads](/reference/imported-data#sync-setups-for-mcp-servers-and-apis).
+
+## Table block
+
+A spreadsheet-like block that shows and edits Variables, usually across time. It is the closest thing in cfo.ai to a worksheet. See [Pages, Table blocks, and Canvas blocks](/concepts/pages-and-blocks).
+
+## Text block
+
+A block of written notes on a Page. See [Pages, Table blocks, and Canvas blocks](/concepts/pages-and-blocks).
+
+## Theme
+
+Your own colors for cfo.ai, which only you see. A workspace brand replaces your theme in that workspace. Light or dark mode is a separate setting. See [Change your theme, sounds, and notifications](/guides/personalize-cfoai).
+
+## Time rollup
+
+A Variable's own formula for quarters, half-years, and years: the sum, last value, or average of its months. A Variable without one shows 0 in quarter and year cells. See [Totals, aggregation, and time rollups](/concepts/totals-and-rollups).
+
+## Total
+
+A total is one of two things in cfo.ai. A [breakdown total](#breakdown-total) is a parent row that adds up the rows beneath it. A [summary column](#summary-column), which a table's menu calls a total column, summarizes a group of columns. They calculate differently; see [Totals, aggregation, and time rollups](/concepts/totals-and-rollups).
+
+## Trigger
+
+A scheduled instruction that has Ari run a recurring task at the time you choose. See [Skills, Triggers, and Guides](/concepts/automation).
+
+## Undo
+
+**⌘ Z** undoes the last change you made to the Model in the current browser tab. To undo a change Ari made, or one from an earlier visit, use version history. See [Undo a change or restore an earlier version](/guides/undo-changes).
+
+## User
+
+cfo.ai calls the people in a workspace administrators. To add a user, invite them as an administrator. See [Administrator](#administrator).
+
+## Variable
+
+A named line of your Model, such as Revenue, Headcount, Cash, or Price, with one value for each period and each item it is broken down by. People also call these line items or assumptions. See [Variables and Dimensions](/concepts/variables-and-dimensions).
+
+## Variance
+
+The difference between a table's values and another Scenario or an earlier period, shown in **Variance** and **Variance %** comparison columns. Green means better and red means worse, as set by the Variable's **Variance colors**. See [Compare Scenarios side by side](/guides/compare-scenarios).
+
+## Version
+
+People use the word for three things in cfo.ai: a [Scenario](#scenario), which is a different plan; a [Snapshot](#snapshot), which is a plan pinned at one moment; and an entry in [version history](#version-history), which you can restore.
+
+## Version history
+
+The record of every change to the Model, yours and Ari's, where you can undo one change or restore an earlier version. See [Scenarios, Snapshots, and version history](/concepts/scenarios).
+
+## Workspace
+
+Your company's home in cfo.ai: its Model, Pages, Scenarios, connections, chats with Ari, saved Skills and Triggers, and team. Some people call a workspace a project. See [How cfo.ai works](/concepts/how-cfoai-works).
+
+## Workspace brand
+
+A workspace's saved look: its name, colors, heading typeface, corner shape, and logo. Everyone who opens the workspace sees it, including visitors who follow a share link. See [Brand your workspace](/guides/brand-your-workspace).

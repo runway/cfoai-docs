@@ -1,0 +1,133 @@
+---
+title: "Filter and sort a table"
+sidebarTitle: "Filter and sort"
+description: "Show only some of a Dimension's items on a Table block, hide one item, find and clear a filter (unfilter a row or column), filter a list by a column's value, and sort items A to Z, Z to A, or in your own order."
+---
+
+Use a filter to show only some of a Dimension's items on a table, such as two departments out of ten, and a sort to put the items in order. Filters and sorts change only this table, and everyone who opens it sees the same view. They never change a number in your Model.
+
+You need a desktop browser and edit access to the Page.
+
+## Filter a table to show only some items
+
+<Tabs>
+  <Tab title="Ask Ari">
+    > On the Payroll table, show only the Sales and Marketing departments.
+  </Tab>
+  <Tab title="By hand">
+    <Steps>
+      <Step title="Open the Dimension's menu">
+        Right-click the Dimension's label row, such as **DEPARTMENT** above its items. Or right-click one of its items and choose **[Department] dimension settings**.
+      </Step>
+      <Step title="Choose Filter items">
+        Choose **Filter items**. A list of the Dimension's items opens.
+      </Step>
+      <Step title="Pick the items to keep">
+        Check the items to show. Type in **Search items** to find one in a long list.
+      </Step>
+      <Step title="Save">
+        Select **Save**.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+**Filter items** is in the menu for Dimensions in the rows. For a Dimension in the columns, use the table setup panel: select **Show table setup** at the left of the table header, point at the Dimension under **Columns**, and select its funnel button. The same list opens.
+
+## Hide one item
+
+Right-click the item, such as **Contractors**, and choose **Filter out this item**. The table must keep at least one item, so you cannot filter out the last one.
+
+## Clear a filter so every item shows again
+
+A filter leaves no mark on the table itself. To check whether a Dimension is filtered, open **Show table setup**: a funnel with a number beside a Dimension shows how many items the filter keeps. In the right-click menu, **Filter items** shows the same number.
+
+To clear the filter:
+
+<Steps>
+  <Step title="Open the filter list">
+    Right-click the Dimension's label row and choose **Filter items**, or select its funnel in the table setup panel.
+  </Step>
+  <Step title="Choose All Items">
+    Select **All Items** at the top of the list.
+  </Step>
+  <Step title="Save">
+    Select **Save**. Every item shows again, including any you filtered out with **Filter out this item**.
+  </Step>
+</Steps>
+
+## Filter a list by a column's value
+
+You can filter a table that lists records, such as one row per employee, by a column's value. This works for a column that shows which item each row belongs to, such as Status or Department.
+
+1. Right-click the column header, such as **Status**, and choose **Filter**.
+2. Check the values to keep under **Show rows where Status is**, and select **Save**.
+
+A funnel then appears in the column header. Point at it to see which values the filter keeps. To change or clear it, select the funnel; choose **Any value** and **Save** to show every row again.
+
+## Sort items A to Z, Z to A, or in your own order
+
+<Tabs>
+  <Tab title="Ask Ari">
+    > On the Payroll table, list the departments in this order: Sales, Marketing, Engineering, then the rest.
+  </Tab>
+  <Tab title="By hand">
+    <Steps>
+      <Step title="Open the Dimension's menu">
+        Right-click the Dimension's label row, or choose **[Department] dimension settings** from one of its items.
+      </Step>
+      <Step title="Choose a sort">
+        Choose **Sort**, then:
+
+        - **Ascending** for A to Z, or smallest to largest for number items.
+        - **Descending** for Z to A.
+        - **Manual** for your own order. Drag the items in the list that opens; each move saves.
+        - **None** to return to the standard order, A to Z.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+You can also drag item rows up or down by the grip at their left edge. The Dimension then switches to **Manual**. The table setup panel has the same choices behind each Dimension's sort button.
+
+A sort applies to the whole level, so every group on the table that shows that Dimension lists its items in the same order.
+
+## Sort rows by their numbers
+
+A table cannot sort by the values in a column, such as the largest Revenue first. **Sort** orders a Dimension's items by their names. To show the largest first, set a **Manual** order, or ask Ari to put the items in order of their values.
+
+Variable rows have no sort; drag them into the order you want. Date columns always run in date order; to show fewer periods, change the table's date range.
+
+## If Filter items or Sort is missing
+
+The menu leaves out actions that cannot apply. Check which case you are in:
+
+<Accordion title="The table is read-only for you">
+  Ask a page owner for edit access.
+</Accordion>
+
+<Accordion title="The Dimension is Date">
+  Dates cannot be filtered or sorted. Change the date range instead; see [Build a Table block by hand](/guides/build-a-table#set-the-dates-and-the-time-grain).
+</Accordion>
+
+<Accordion title="The row is a Variable">
+  Variables cannot be filtered or sorted. Hide or drag them instead; see [Format and arrange a table](/guides/format-a-table).
+</Accordion>
+
+<Accordion title="The Dimension is a column that shows each row's item">
+  That is a mapping. Use **Filter** on its column header, as described above, or change it with **Use as**.
+</Accordion>
+
+<Accordion title="The breakdown belongs to one item only">
+  A breakdown added with **Segment by** on a single item is not a level of the whole table, so it has no filter or sort.
+</Accordion>
+
+<Accordion title="There is no label row to right-click">
+  The table hides its label rows. Right-click an item and use **[Department] dimension settings**, or turn on **Show dimension headers** in the table's **…** menu, **Table block settings**.
+</Accordion>
+
+## Related
+
+- [Break a number down](/guides/break-down-a-number)
+- [Format and arrange a table](/guides/format-a-table)
+- [Table block controls and messages](/reference/table-blocks#dimension-menu)

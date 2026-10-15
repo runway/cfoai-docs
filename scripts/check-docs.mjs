@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { createHash } from "node:crypto";
 import { existsSync } from "node:fs";
-import { readFile } from "node:fs/promises";
+import { readdir, readFile } from "node:fs/promises";
 import { join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -30,15 +30,44 @@ function frontmatterValue(contents, key) {
     .replace(/^["']|["']$/g, "");
 }
 
+// Each navigation section (a sidebar anchor) holds one Diátaxis page type, and
+// its pages live in that type's folder, so a page's path says what kind of page it is. Two pages keep
+// root paths: the home page, and agent-instructions, which external agents fetch
+// by URL.
+const SECTION_FOLDERS = {
+  "Get started": "tutorials/",
+  "How-to guides": "guides/",
+  Concepts: "concepts/",
+  Reference: "reference/",
+  "For AI agents": "agents/"
+};
+const ROOT_PAGE_SECTIONS = { index: "Get started", "agent-instructions": "For AI agents" };
+
 function collectPages(value, pages = []) {
   if (typeof value === "string") {
     pages.push(value);
   } else if (Array.isArray(value)) {
     for (const item of value) collectPages(item, pages);
   } else if (value && typeof value === "object") {
-    if ("pages" in value) collectPages(value.pages, pages);
+    for (const key of ["anchors", "groups", "pages"]) {
+      if (key in value) collectPages(value[key], pages);
+    }
   }
   return pages;
+}
+
+async function collectMdxFiles(root, folder = "", files = []) {
+  for (const entry of await readdir(join(root, folder), { withFileTypes: true })) {
+    const path = folder ? `${folder}/${entry.name}` : entry.name;
+    if (entry.isDirectory()) {
+      if (!entry.name.startsWith(".") && entry.name !== "node_modules") {
+        await collectMdxFiles(root, path, files);
+      }
+    } else if (entry.name.endsWith(".mdx")) {
+      files.push(path.slice(0, -".mdx".length));
+    }
+  }
+  return files;
 }
 
 function collectRootRelativeAssets(value, assets = []) {
@@ -56,6 +85,38 @@ function collectRootRelativeAssets(value, assets = []) {
 
 function isRootRelativeAsset(value) {
   return typeof value === "string" && value.startsWith("/");
+}
+
+// A code fence opens with three or more backticks or tildes. It closes only at
+// a line of the same character, at least as long, with nothing after it, so a
+// tilde fence can show a backtick fence inside it.
+const FENCE = /^(`{3,}|~{3,})/;
+
+// Mintlify renders the text between two dollar signs on one line as LaTeX math,
+// in the body and in the frontmatter description, so a line with two currency
+// amounts must escape them. Code is left as written.
+function lineWithUnescapedDollarPair(contents) {
+  const lines = contents.split("\n");
+  let openFence = null;
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = lines[index].trimStart();
+    const marker = line.match(FENCE)?.[1];
+    if (openFence !== null) {
+      const closes =
+        marker?.[0] === openFence[0] &&
+        marker.length >= openFence.length &&
+        line.slice(marker.length).trim() === "";
+      if (closes) openFence = null;
+      continue;
+    }
+    if (marker) {
+      openFence = marker;
+      continue;
+    }
+    const prose = lines[index].replace(/`[^`]*`/g, "").replaceAll("\\$", "");
+    if ((prose.match(/\$/g) ?? []).length >= 2) return index + 1;
+  }
+  return null;
 }
 
 function sha256(contents) {
@@ -83,7 +144,39 @@ export async function checkRepository(
     return { ok: false, findings };
   }
 
-  const pages = collectPages(config.navigation?.pages);
+  const pages = collectPages(config.navigation);
+  for (const section of config.navigation?.anchors ?? []) {
+    const folder = SECTION_FOLDERS[section.anchor];
+    if (folder === undefined) {
+      findings.push(
+        finding(
+          "unknown-section",
+          "docs.json",
+          `Section "${section.anchor}" is not a page type.`
+        )
+      );
+      continue;
+    }
+    for (const page of collectPages(section)) {
+      if (!page.startsWith(folder) && ROOT_PAGE_SECTIONS[page] !== section.anchor) {
+        findings.push(
+          finding(
+            "page-type-folder",
+            "docs.json",
+            `${page} is in the "${section.anchor}" section, so it belongs in ${folder}.`
+          )
+        );
+      }
+    }
+  }
+  const navigated = new Set(pages);
+  for (const file of await collectMdxFiles(root)) {
+    if (!navigated.has(file)) {
+      findings.push(
+        finding("orphan-page", `${file}.mdx`, "Page is not in the navigation.")
+      );
+    }
+  }
   for (const page of pages) {
     const pagePath = join(root, `${page}.mdx`);
     const displayPage = `${page}.mdx`;
@@ -147,6 +240,16 @@ export async function checkRepository(
       );
     }
     LEGACY_TERM.lastIndex = 0;
+    const mathLine = lineWithUnescapedDollarPair(contents);
+    if (mathLine !== null) {
+      findings.push(
+        finding(
+          "unescaped-dollar",
+          displayPage,
+          `Line ${mathLine} has two unescaped dollar signs, which render as math. Write \\$ for a currency sign.`
+        )
+      );
+    }
   }
 
   const configuredAssets = new Set([

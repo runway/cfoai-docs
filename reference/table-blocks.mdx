@@ -1,0 +1,492 @@
+---
+title: "Table block controls and messages"
+sidebarTitle: "Table block controls"
+description: "Every control in a Table block: the header, the Table block settings menu, the setup panel, the right-click menus for Variables, Dimensions, items, and cells, format options (currency, percentages, decimal places) and date formats, total columns, what colors and marks mean, what you can type into a cell, where to open the formula editor, every notice when a change is not saved, and what a table cannot do, such as cell comments or numbers in thousands."
+---
+
+This page lists every control, menu action, option, and message of a Table block, in the order the table shows them. For steps, see the guides linked in each section. Keyboard shortcuts are in [Keyboard shortcuts](/reference/keyboard-shortcuts#table-cells).
+
+Editing controls appear only when you can edit the Page, in a desktop browser. A phone, a past version opened from version history, and a Page you can only read show the table without them.
+
+## Table header
+
+The strip above the grid, from left to right.
+
+| Control | What it does |
+| --- | --- |
+| **Show table setup** / **Hide table setup** | Opens or closes the [table setup panel](#table-setup-panel). Whether it is open is remembered in your browser. |
+| Table title | Click to rename the table. An unnamed table reads **New Table Block**. A new table gets a suggested title when you first add rows or columns. |
+| **Regenerate title** | A sparkle button that appears when you point at the title. Asks cfo.ai for a new title from what the table shows. |
+| **Deleted property reference** | A warning triangle. The table still lists a Variable or Dimension that was deleted; its tooltip reads **This table references a property that no longer exists.** With several, it reads **[N] deleted property references** and its tooltip counts them. Select it to open the setup panel, where each such row reads **Deleted property**. |
+| **Recomputing** | Shows while the table recalculates after a change. |
+| Date range button | Shows the first and last period. Opens a calendar; a complete range applies at once. **Today** jumps the calendar to the current period. |
+| Grain button | **Raw**, **Daily**, **Weekly**, **Monthly**, **Quarterly**, **Half-yearly**, or **Yearly**. Reads **Mixed** when the table's Date axes use different grains. **Raw** shows each date without grouping it into periods. |
+| **Compare** | Shows other Scenarios or an earlier period beside the table's values. See [Compare Scenarios side by side](/guides/compare-scenarios). |
+| **Mention table in chat** | Adds the table to the current chat. See [Chat controls and messages](/reference/chat). |
+| **Table block settings** (**…**) | Opens the [settings menu](#table-block-settings-menu). |
+
+On a phone, the header shows the title, the date range, **Mention table in chat**, and **Table block settings**.
+
+## Table block settings menu
+
+The **…** button at the right of the table header.
+
+| Control | What it does | Saved |
+| --- | --- | --- |
+| **Show formula bar** | Shows a strip above the grid with the selected cell's formula and where it applies. Select it to edit that formula. | In your browser |
+| **Show total columns** | Shows the [total column](#total-columns) at the end of each column group. On when a table opens. | Not saved |
+| **Pin total columns** | Keeps total columns beside the row names while you scroll. Available while total columns show. | Not saved |
+| **Show dimension headers** | Shows a label row, such as **DEPARTMENT**, above each Dimension's items. On by default. | With the table, for everyone |
+| **Auto-fit all columns** | Sizes every column to its widest content. | With the table, for everyone |
+| **Show formula columns** | On a phone only: shows the formula columns. | In your browser |
+
+## Table setup panel
+
+Opened with **Show table setup**. It has four sections, from top to bottom: Layout, Formula, Columns, and Rows.
+
+### Layout section
+
+| Control | What it does |
+| --- | --- |
+| **Open Layout Options** (**…**) → **Force refresh** | Calculates the table's values again. |
+| **Open Layout Options** (**…**) → **Show all formulas** | Opens **All Formulas**, which lists the formulas saved in the Model, each with its Variable, where it applies, and when it was created and last changed. **Delete formula** removes one. An empty list reads **No formulas found**. |
+
+### Formula section
+
+| Control | What it does |
+| --- | --- |
+| **Show all formula columns** / **Hide all formula columns** | Opens or closes every formula column. |
+| **Pin formula column** / **Unpin formula column** | Keeps the formula column beside the row names. |
+| **Formula settings** → **Show formula bar** | The same setting as in **Table block settings**. |
+| **Formula settings** → **Show formula columns** | Shows the formula columns. Unavailable, with **Formula columns require Variables in Rows or at the root of a Column group.**, when the layout cannot show them. |
+| **Formula settings** → one checkbox per range, such as **Actuals** and **Forecast** | Shows or hides that range's formula column. |
+
+Which formula columns are open is remembered in your browser. See [Use different formulas for Actuals and Forecast](/guides/actuals-and-forecast-formulas).
+
+### Columns and Rows sections
+
+Each section lists what is on that axis as a tree. Drag an item to reorder it, to nest it under another, or to move it between **Columns** and **Rows**.
+
+| Control | What it does |
+| --- | --- |
+| **+** (**Add Column**, **Add Row**) and **Add** | Opens the [Create or search field](#add-rows-and-columns-the-create-or-search-field) for that axis. |
+| **…** (**Open Column Options**, **Open Row Options**) → **Reset columns** / **Reset rows** | Removes every column, or every row, from the table. |
+| Eye button, **Hide [name]** / **Show [name]** | Hides or shows that item for everyone who opens the table. Hidden items keep their settings. |
+| **Sort** | **None**, **Ascending**, **Descending**, or **Manual**, for a Dimension other than Date. |
+| Funnel button, **Filter [name]** | Opens the item list: **All Items**, the items, **Cancel**, and **Save**. For a Dimension other than Date, in rows or columns. |
+| **Segment by** | Adds a breakdown level under that item. |
+| **Date granularity** | For a Date axis: **Inherit**, **Raw**, **Day**, **Week**, **Month**, **Quarter**, **Half**, or **Year**. |
+| **Remove from table** | Removes the item from this table. On a Variable's original table it reads **Delete variable** (or **Delete dimension**) instead; see [Removing and deleting](#removing-and-deleting). For a deleted Variable or Dimension it reads **Remove deleted property from table**. |
+
+At rest, each item shows small marks for what is set on it: an eye with a line through it when hidden, the sort, a funnel with the number of items the filter keeps, a branch with the number of breakdown levels, and the date grain. Right-click an item for the same [right-click menus](#right-click-menus) as in the grid; here the remove action reads **Remove item**, or **Remove item and drill-ins** for an item with levels under it.
+
+## Controls in the grid
+
+| Control | Where | What it does |
+| --- | --- | --- |
+| **Build your table** | A new, blank table | Hint: **Add a row below or a column above**. |
+| **Add row** | Last row of the table | Opens the [Create or search field](#add-rows-and-columns-the-create-or-search-field) for rows. |
+| **Add column** | **+** at the right end of the column headers | Opens the Create or search field for columns. |
+| **Insert row below** | **+** at a row's left edge | Opens a new row with **Type a name or / to search**. A name and **Enter** creates a Variable there, or an item when the row above is an item. **/** opens the search. |
+| **Reorder row or open row menu** | Grip at a row's left edge | Drag to reorder; click for the row's menu. Dragging a Dimension's items sets its sort to **Manual**. |
+| **Edit variable formula** | **fx** button when you point at a row name or column header | Opens the formula for the whole row or column. |
+| **Segment by** | Branch button when you point at a row name or column header | Breaks the row or column down by a Dimension. On a row that already has a breakdown, opens **Segment [name] by** with **Add**, **Remove level**, and drag to reorder levels. |
+| **Drill in** / **Clear drill-in** | Magnifier button when you point at a calculated row's name | Opens or closes the rows its formula reads. |
+| **More header actions** | Button when you point at a column header | Opens the column's right-click menu. |
+| **Edit formula for [Dimension]** | Button when you point at a Dimension's label row | Opens the formula every item at that level shares. |
+| **Create [Dimension] item** | **+** at the end of a Dimension's items | Adds an item. Reads **Create [Dimension] item under [parent]** inside a nested breakdown. |
+| **Show formulas** / **Hide formulas** | **fx** button at the top of the row-name column | Peeks at, opens, or closes the formula columns. |
+| Arrow beside a row name | A row with rows under it | Expands or collapses them. **Shift**-click, or **⌘**-click on a Mac, does it for every sibling row at that level. Your browser remembers rows you open or close. |
+| Arrow in a column group's header | A group of columns, such as a region over its months | Collapses the group to its total column, or expands it. **Shift**-click, or **⌘**-click on a Mac, does it for every sibling group at that level. |
+| **LC** | Header of the Last close period | **Edit last close** changes Last close for the Scenario you are viewing. See [Set Last close and date defaults](/guides/set-dates-and-last-close). |
+| **Space** | A blank spacer row, when you point at it | Select it to replace the space with a row. |
+| Bottom edge | Below the last row | Drag to resize the table. Double-click, or press **Enter**, to fit the table to its content. The height is saved in your browser. |
+| **Mention cell in chat** and **Open context menu** | Buttons beside one selected cell | Add the cell to the current chat, or open the cell menu. |
+
+Select a range of cells to see a bar at the lower right of the Page: **Count:**, **Sum:**, and **Avg:** for the numbers in the selection, rounded to two decimals. Cells without a number are not counted.
+
+## Add rows and columns: the Create or search field
+
+**Add row**, **Add column**, **Insert above** and its neighbors, and the setup panel's **Add** open the same search field, **Create or search**. Type to find Variables, Dimensions, and items; select one to add it.
+
+| Control | What it does |
+| --- | --- |
+| **Create variable: [name]** | Creates a Variable with that name and adds it here. It holds numbers. Not offered on an axis where the other axis already holds Variables. |
+| **Create dimension: [name]** | Creates a Dimension with that name. |
+| **Create [Dimension] item: [name]** | In a new row under an item: creates an item of that Dimension. |
+| **List dimension items** | For a Dimension: one row or column per item, a breakdown. |
+| **Add as mapping** | For a Dimension: one cell per row that shows which item the row belongs to. |
+| **Back** | Returns from the choice above to the search. |
+| **Filter** → **Include**: **Variables**, **Dimensions**, **Dimension items** | Limits what the search lists. |
+| **Filter** → **Show disabled results** | Also lists Variables and Dimensions the search leaves out because they are already on the table. |
+
+## Right-click menus
+
+Right-click (or **Control**-click) a row name, a column header, a Dimension's label row, or a cell. With a cell or name selected, **Shift F10** opens the same menu. Each menu shows only the actions that apply. **All tables** beside an action means it changes every table that shows that Dimension.
+
+### Variable row or column menu
+
+A row or column for a Variable, such as Revenue, or a column that shows each row's item, such as Department.
+
+| Control | What it does |
+| --- | --- |
+| **Edit formula** | Opens the formula for the whole row or column. |
+| **Edit formula for [Dimension]** | On a row with a breakdown: the formula for the items one level down. |
+| **Edit child formula** | The same, when there are several levels below; pick one. |
+| **Segment by** | Breaks the row down by a Dimension. |
+| **Drill in** / **Clear drill-in** | Opens or closes the rows its formula reads. |
+| **Go to original table** | Opens the Page and table where the Variable was created. Shown on other tables only. |
+| **Copy** | Copies the row or column name. |
+| **Mention in chat** | Adds the row or column to the current chat. |
+| **Show formula column** / **Hide formula column** | On a column that heads a group: opens or closes its formula column. |
+| **Filter** | On a column that shows each record's item, such as Status: filters the rows by its value. |
+| **Pin column** / **Unpin column** | Columns only. Keeps the column beside the row names while you scroll, like a frozen column in a spreadsheet, for everyone. |
+| **Format and display** | Opens the [format options](#format-and-display-options). |
+| **Use as** | For a Dimension shown as a mapping column: **Segmentation** or **Mapping**. |
+| **Insert above** / **Insert below** | Opens the Create or search field for a new row at that place. On a column: **Insert left** / **Insert right**. |
+| **Insert space** | Rows only. Adds a blank spacer row below. |
+| **Expand child rows** / **Collapse child rows** | Opens or closes the rows under it. |
+| **Remove item and drill-ins** | Removes the row, and any rows under it, from this table. On the Variable's original table, removing its last row reads **Delete variable**. |
+
+### Dimension item menu
+
+A row or column for one item, such as Sales.
+
+| Control | What it does |
+| --- | --- |
+| **Copy** | Copies the item's name. |
+| **Mention in chat** | Adds the item to the current chat. |
+| **Segment by** | Breaks this item down by another Dimension. |
+| **Drill in** / **Clear drill-in** | Opens or closes the rows the item's formula reads. |
+| **Filter out this item** | Hides the item on this table. Not offered on a read-only table. |
+| **Expand child rows** / **Collapse child rows** | Opens or closes the rows under it. |
+| **Format and display** | Opens the [format options](#format-and-display-options). |
+| **Rename** | Renames the item. **All tables.** Unavailable, with **Only items you created can be renamed**, for items from connected data. |
+| **Delete [Dimension] item** | On the Dimension's original table only: deletes the item. **All tables.** Unavailable, with **Only items you created can be deleted**, for items from connected data. |
+| **[Dimension] dimension settings** | Opens the [Dimension menu](#dimension-menu). |
+
+### Dimension menu
+
+Opens from a Dimension's label row, such as **DEPARTMENT**, or from **[Dimension] dimension settings** on any of its items.
+
+| Control | What it does |
+| --- | --- |
+| **Go to original table** | Opens the table where the Dimension was created. Shown on other tables only. |
+| **Default for every [Dimension]** | Opens the formula every item at this level shares. A nested breakdown offers one entry per level. |
+| **Edit dimension formula** | Rows only. Opens the formula that defines the Dimension's items. |
+| **Segment by** | Breaks every item at this level down by another Dimension. |
+| **Filter items** | Rows only. Chooses which items show. Shows the number of items kept when filtered. |
+| **Filter** | On a list of records: filters the rows by this column's value. |
+| **Sort** | **None**, **Ascending**, **Descending**, or **Manual**. Not offered for Date. |
+| **Date granularity** | For Date: **Inherit**, **Raw**, **Day**, **Week**, **Month**, **Quarter**, **Half**, or **Year**. |
+| **Use as** | **Segmentation** or **Mapping**. |
+| **Segment generation** | **Show only matching segments** shows the combinations that have data. **Expand to create all segments** shows every combination; for a Dimension of numbers, set **Start Value** and **End Value**. |
+| **Format and display** → **Dimension color** | The color of the Dimension's item pills. **All tables.** |
+| **Format and display** → **Display as** | **Pill** or **Plain text**, on this table, in your browser. |
+| **Create [Dimension] item** | Adds an item. **All tables.** Unavailable, with **Clear the filter to create a new item.**, while the Dimension is filtered. |
+| **Insert above** / **Insert below** | Opens the Create or search field at that place. On a column: **Insert left** / **Insert right**. |
+| **Insert space** | Rows only. Adds a blank spacer row. |
+| **Pin column** / **Unpin column** | Columns only, not Date. |
+| **Remove dimension** | Removes the Dimension from this table. On its original table it reads **Delete dimension**, **All tables**. |
+
+For actions that change the layout, such as **Filter items**, **Sort**, and **Insert above**, the Dimension's level must be saved on this table. A level that **Segment by** added under one item only offers none of them. On a read-only table, the menu keeps **Display as**.
+
+### Cell menu
+
+| Control | What it does |
+| --- | --- |
+| **Fix** | On a cell that shows an error: starts a chat that asks Ari to fix it. |
+| **Edit formula** | Opens the formula editor for this cell. |
+| **Format and display** | Format options for this cell only. |
+| **Copy formula** | Copies the cell's formula. Shown when it has one. |
+| **Copy value** | Copies the value as the cell shows it. |
+| **Paste** | Pastes into the cell. |
+| **Mention cell in chat** | Adds the cell to the current chat. |
+
+With several cells selected, the menu reads **[N] items selected** and offers **Format and display**, for each selected cell, and **Paste**.
+
+### Menu for several selected rows
+
+Select a range that includes row names, or press **⌘ A**, and right-click a row name.
+
+| Control | What it does |
+| --- | --- |
+| **Copy [N] row labels** | Copies the names, one per line. |
+| **Filter selected items** | Hides the selected items on this table. |
+| **Format [N] variables** | Format options for every selected row. Reads **Format and display** when the selection mixes Variables and items. |
+| **Segment by** | Breaks every selected row down by a Dimension. |
+| **Drill in** / **Clear drill-in** | Opens or closes the inputs of every selected row. |
+| **Expand child rows** / **Collapse child rows** | For every selected row. |
+| **Remove selected items and drill-ins** | Removes the selected Variable rows from this table. On their original table it reads **Delete variables**. |
+| **Remove [Dimension]** | Removes the Dimension of the selected items from this table, or reads **Delete dimension** on its original table. |
+| **Remove [N] rows** | In the table setup panel: removes the selected rows from this table. |
+| **Remove all drill-in rows** | Closes every drill-in row. |
+| **No actions available** | Nothing applies to the whole selection. |
+
+### Total column header menu
+
+Right-click a total column's header and choose its summary: **None**, **Sum**, **Average**, **Minimum**, **Maximum**, **Count**, or **Last**. See [Total columns](#total-columns).
+
+### Formula column header menu
+
+| Control | What it does |
+| --- | --- |
+| **Pin column** / **Unpin column** | Keeps the formula column beside the row names. |
+| **Hide column** | Hides this formula column. On a split column, hides that range only. |
+| **Show [range] column** | Brings back a hidden range, such as **Show Forecast column**. |
+| **Hide all formula columns** / **Show all formula columns** | For a split formula column. |
+
+### Drill-in row and spacer row menus
+
+| Control | What it does |
+| --- | --- |
+| **Show variable name** / **Hide variable name** | Labels each drill-in row with its Variable. Remembered in your browser. |
+| **Remove all drill-in rows** | Closes every drill-in row on the table. |
+| **Remove space** | Removes a spacer row. |
+
+## Removing and deleting
+
+Each Variable and Dimension you create on a table has that table as its original table.
+
+| You remove | What happens |
+| --- | --- |
+| A row or column from any other table | It leaves that table only. |
+| Its last row or column on its original table | The action reads **Delete variable**, **Delete dimension**, or **Delete variable or dimension**, and deletes it from the Model and every table. |
+| Its original table, with **Delete block**, or that table's Page | Kept when another table still shows it, and one of those tables becomes its original table. Deleted when no other table shows it. |
+
+When a delete would break something, cfo.ai asks first:
+
+| Dialog | Text | Buttons |
+| --- | --- | --- |
+| **Delete variable or dimension?** (**Delete variables or dimensions?** for several) | **Deleting [name] will break [counts].** The counts can include formulas, blocks, Canvas blocks, property settings, and items or pins, and end with **including [N] dependents you can’t see** when you cannot open some of them. | **Cancel**, **Delete anyway** |
+| **Delete item?** | **“[item]” is still used. Deleting it everywhere will break:** and a list. | **Cancel**, **Delete anyway** |
+
+## Format and display options
+
+Right-click a row name, a column header, or a cell and choose **Format and display**. On a read-only table, the menu has none of these.
+
+| Option | Choices | Applies to |
+| --- | --- | --- |
+| **Background** | A set of colors, and **No fill** | This table, at the row, column, or cell you clicked |
+| **Text style** | **Bold**, **Italic**, **Underline**, **Strikethrough** | This table, at the place you clicked |
+| **Indent** / **Outdent** | Moves a row name one step in or out | This table, that row |
+| **Format** | **Auto**, **Number**, **Currency**, **Percentage**, **Integer**, **Multiple**, **Date**, **Reset** | This table, at the place you clicked. **Date** instead makes the Variable a date Variable on every table; it is not offered for cells or the Date axis. |
+| **Currency** | **USD (\$)**, **EUR (€)**, **JPY (¥)**, **GBP (£)**, **CNY (CN¥)**, **AUD (A\$)**, **CAD (CA\$)**, **CHF**, **HKD (HK\$)**, **NZD (NZ\$)** | The Variable, on every table. Appears after you choose **Currency**. |
+| **Date format** | See [Date formats](#date-formats) | This table. Appears for date headers and date Variables. |
+| **Precision** | Decimal places: **Default**, **1**, **1.0**, **1.00**, **1.000**, **1.0000**, **1.00000** | This table, at the place you clicked |
+| **Variance colors** | **Higher is better**, **Lower is better** | The Variable, on every table. See [What colors and marks mean](#what-colors-and-marks-mean). |
+| **Reset formatting** | Removes everything set at that place | This table |
+
+A cell's own format wins over its column's, and a column's over its row's. A Variable can also carry a default format that Ari sets; a table's own format wins over it. A format never changes how a Variable adds up. When several selected rows differ, an option shows **Mixed**.
+
+The [Dimension menu](#dimension-menu) has its own **Format and display** with **Dimension color** and **Display as**.
+
+## Date formats
+
+How each **Date format** shows a period at each grain. The examples use September 2, 2026, the week of August 24, 2026, and the third quarter of 2026.
+
+| Format | Day | Week | Month | Quarter | Half-year | Year |
+| --- | --- | --- | --- | --- | --- | --- |
+| **Abbreviated** (default) | `Sep-02-26` | `W35-26` | `Sep-26` | `Q3-26` | `H2-26` | `2026` |
+| **ISO standard** | `2026-09-02` | `2026-W35` | `2026-09` | `2026-Q3` | `2026-H2` | `2026` |
+| **Full month** | `September 2, 2026` | `Week 35 2026` | `September 2026` | `Q3 2026` | `H2 2026` | `2026` |
+| **Compressed year** | `Sep 2 ’26` | `W35 ’26` | `Sep ’26` | `Q3 ’26` | `H2 ’26` | `’26` |
+| **Year-first slash** | `2026/09/02` | `2026/W35` | `2026/09` | `2026/Q3` | `2026/H2` | `2026` |
+| **Period-separated** | `2026.09.02` | `26.W35` | `26.09` | `26.Q3` | `26.H2` | `2026` |
+| **Day-first formal** | `02-Sep-2026` | `W35-2026` | `Sep-2026` | `Q3-2026` | `H2-2026` | `2026` |
+| **Descriptive** | `02-Sep-26` | `WE 30-Aug-26` | `Sep FY2026` | `Q3 FY2026` | `H2 FY2026` | `FY2026` |
+
+Weeks are numbered Monday to Sunday, and **WE** shows the Sunday that ends the week. **Raw** dates use the Day form.
+
+## Total columns
+
+A total column, also called a summary column, sits at the end of each column group and summarizes the cells shown in the group. It saves no formula. It is not the same as a parent row that adds up the rows beneath it; see [Totals, aggregation, and time rollups](/concepts/totals-and-rollups#summary-columns-total-columns-at-the-end-of-a-group).
+
+| Summary | Header | Shows |
+| --- | --- | --- |
+| **Sum** | **SUM** | The group's cells added up |
+| **Average** | **AVG** | Their average |
+| **Minimum** | **MIN** | The smallest |
+| **Maximum** | **MAX** | The largest |
+| **Count** | **COUNT** | How many have a value |
+| **Last** | **LAST** | The last one |
+| **None** | **TOTAL** | The Variable's own value for the whole group, such as its year value beside its months |
+
+A table starts with **Sum**, or **Last** when it shows a Dimension's values. Text and true-or-false values offer only **None**, **Count**, and **Last**; dates add **Minimum** and **Maximum**. The summary is saved with the table.
+
+## What colors and marks mean
+
+| What you see | Meaning |
+| --- | --- |
+| A dashed underline under a value | The cell holds its own value or formula, saved at that exact cell, in place of its row's formula. A picked item or date shows no underline. Clear it with **Delete**; see [Enter, paste, and clear values](/guides/enter-values). |
+| A green or red number with **+** or **-** | A change in a **Variance** or **Variance %** comparison column: green is good and red is bad, by the Variable's **Variance colors**. Plain values are never colored by sign. |
+| Colored pills | Items of a Dimension, in the Dimension's color. |
+| Colored references and outlined cells while you edit a formula | Each reference in the formula gets its own color, in order, and the cells it reads take the same color. The colors only tell references apart. See [Write a formula](/guides/write-a-formula). |
+| A logo beside a row name | The Variable reads a connected system, such as QuickBooks. |
+| A link mark beside a row name, when you point at the row | The Variable appears on other tables too. Point at the mark for **[N] synced instances** and **Original:** with its table and Page, or **No access** when you cannot open it. |
+| A hatched background | Drill-in rows: the inputs of a formula, or source records. |
+| **LC** and a vertical line | Last close. Actuals are to the left, Forecast to the right. |
+| A funnel in a column header | The rows are filtered by that column's value, such as **Filtered: Status is Active**. A filter the list cannot show reads **Filtered by a custom condition on Status**. |
+| **No items** | The Dimension has no items yet. |
+| An error code such as `#DIV/0!` | See [Formula errors and warnings](/reference/formula-errors). |
+
+## What you can type into a cell
+
+| You type | cfo.ai saves |
+| --- | --- |
+| `1,000` | 1000 |
+| `$1,250.75` or `1,250.75 €` | 1250.75, and shows the cell as **Currency** |
+| `50%` | 0.5, and shows the cell as **Percentage** |
+| `(500)` | -500 |
+| `-` | 0 |
+| `1e3` | 1000 |
+| `=Revenue * 1.1`, or `Revenue * 1.1` in a number cell | The formula `Revenue * 1.1` |
+| `Finance assistant`, `N/A`, or `2026-01-01` in a text cell | That text |
+| `=Level * 2` in a text cell | The formula `Level * 2` |
+| A function call such as `if(Level = "L5", "Senior", "Junior")` in a text cell | That formula, without an `=` |
+
+Recognized currency signs, before or after the number: `$`, `€`, `£`, `¥`, `₹`, `A$`, `C$`, and `NZ$`. A number cannot carry both a currency sign and `%`. A pasted cell follows the same rules, and a formula copied from a cfo.ai table pastes as that formula. **⌘ Shift V** pastes values only.
+
+## Where to open the formula editor
+
+| Where | The formula covers |
+| --- | --- |
+| Double-click a cell, or select it and press **Enter** | That cell |
+| Right-click a cell → **Edit formula** | That cell |
+| A date or item cell → **Edit formula** | That cell |
+| **Edit variable formula** (**fx**) on a row name or column header | The whole row or column |
+| Right-click a row name → **Edit formula** | The whole row |
+| Right-click a row with a breakdown → **Edit formula for [Dimension]** or **Edit child formula** | The items one level down |
+| A Dimension's label row → **Edit formula for [Dimension]**, or right-click → **Default for every [Dimension]** | Every item at that level |
+| Right-click a Dimension's label row → **Edit dimension formula** | The formula that defines the Dimension's items |
+| The formula bar | The selected cell |
+
+For writing and saving formulas, see [Write a formula](/guides/write-a-formula).
+
+## When a change is not saved
+
+A change saves in the background. When cfo.ai refuses it, the cells go back to what they showed and a notice appears. Its title names what you did, and its text says why.
+
+| Message | Meaning |
+| --- | --- |
+| **Could not save the formula** | A value or formula you typed into a cell or a formula editor was not saved. The editor reopens with your entry. |
+| **Could not save "[value]"** | An item or a date you picked from a cell's list was not saved. |
+| **Could not paste** | A paste was not saved. |
+| **Could not fill the cells** | Dragging the fill handle did not save. |
+| **The cells could not be cleared** | Pressing **Delete** or **Backspace**, or pasting a cut, which clears its source, did not save. |
+| **Could not update the parent rows** | Choosing **Yes** at **Propagate?** did not save. The text can read **The formula was saved, but not to the parent rows.** |
+| **Couldn't apply that change** | A change to the table's rows or columns was refused. The table goes back to its earlier layout. See [Why a layout change was undone](#why-a-layout-change-was-undone). |
+
+### Why a change was not saved
+
+The text under the notice titles names the reason.
+
+| Message | Meaning |
+| --- | --- |
+| **These cells come from an integration. Change the value in the source system.** | The cells read data imported from a connection, such as a pay rate from your payroll system. Only the source can change them. |
+| **These cells don't all take the same formula. Edit one cell at a time.** | The selection spans cells with different formulas, such as Actuals read from an integration and Forecast from a formula. |
+| **Each of these cells holds one item. Pick one from the list.** | The column shows a Dimension's items, and the value is not one of them. |
+| **The table changed while you were editing. Check the cells, then try again.** | A row or column you edited moved or disappeared while you worked. |
+| **You can't edit this table. Ask a page owner for edit access.** | You can read the Page but not edit it. |
+| **These cells can't take this change.** | cfo.ai refused the change for another reason. |
+| **Try again.**, **Check the cells, then try again.**, **Their values are still in place.**, or **Your edit is still open. Try again.** | The save failed for no stated reason, such as a lost connection. |
+| **Your earlier draft is ready to retry.** with **Open draft** | A formula failed to save after you had opened another editor. **Open draft** reopens it. If you have moved to another workspace or Scenario, it reads **Return to the original workspace and scenario to open this draft.** |
+
+In an open formula editor, the same reasons appear under the editor after **Could not save the formula.**
+
+### Why a layout change was undone
+
+The text of **Couldn't apply that change**:
+
+| Message | Meaning |
+| --- | --- |
+| **"[A]" and "[B]" are both variables, and a table can only have variables in rows or in columns — not both. We restored your previous table.** | Variables went on both axes. |
+| **"[A]" and "[B]" are both variables, and a row or column can only include one variable. We restored your previous table.** | One row or column path held two Variables. |
+| **"[Dimension]" is segmenting both rows and columns, and a dimension can only segment one of them. We restored your previous table.** | A Dimension broke down both axes. |
+| **This change isn't a valid table setup, so we restored your previous table.** | Any other layout cfo.ai cannot calculate. |
+
+## Other notices
+
+| Message | Meaning |
+| --- | --- |
+| **A dimension can only segment rows or columns, not both** | You chose a Dimension that already breaks down the other axis. |
+| **Date can only be added as segmentation** | You tried to add Date as a mapping. |
+| **Only dimensions can be added as segmentation** | You tried to break a row down by a Variable. |
+| **Variable or dimension is no longer available** | The search result was deleted while the search was open. |
+| **Could not create variable** / **Could not create dimension**, with **Try again or contact support if the issue persists.** | Creating from **Add row** or **Add column** failed. |
+| **Failed to create variable** / **Failed to create dimension**, with the same text | Creating from another search, such as **Segment by**, failed. |
+| **Something went wrong when trying to create new row** | Inserting a row failed. |
+| **Item created** | An item was added. |
+| **Could not create item**, **Could not create item here**, or **Something went wrong when trying to create new dimension item** | Adding an item failed. |
+| **Items cannot be created when a Dimension has conflicting values in the same hierarchy.** | The **+** to create an item is unavailable there. |
+| **At least one dimension item must remain visible** | You chose **Filter out this item** on the last item showing. |
+| **Couldn’t filter out dimension item** / **Couldn’t filter out selected dimension items** | **Filter out this item** or **Filter selected items** failed. |
+| **Renamed to “[name]” · updated [N] formulas** (and filters, drill-ins, or charts) | A rename also changed the formulas and other settings that use the item. |
+| **An item named “[name]” already exists.** | The new name is taken. |
+| **“[item]” now comes from connected data and can't be renamed.** | The item became an imported item. |
+| **Could not rename** / **Could not rename property** | Renaming an item, or a Variable from a column header, failed. |
+| **Deleted “[item]”** with **Undo** | An item was deleted. **Undo** brings it back. |
+| **Can't delete “[item]”: [what uses it]** | Something still uses the item. |
+| **“[item]” comes from connected data and can't be deleted.** | The item is imported. |
+| **“[item]” no longer exists. Refresh the table to see the current items.** | Someone else deleted it first. |
+| **“[item]” can't be deleted on its own here.** | The item exists only paired with other items. |
+| **Could not delete “[item]”** | The delete failed for another reason. |
+| **Unable to move block to page** / **Unable to create page** | **Move to page** or its **New page** failed. |
+| **Could not update last close** | A change from the **LC** badge failed. |
+| **Failed to delete formula** | **Delete formula** in **All Formulas** failed. |
+| **This segmentation can only have one top-level property** | A drop in the **Segment by** editor that the breakdown cannot hold. |
+
+When a table cannot load or calculate, its notices, such as **We couldn't load this table**, are listed in [Formula errors and warnings](/reference/formula-errors#table-calculation-notices).
+
+## Why a table looks empty
+
+| What you see | Why | What to do |
+| --- | --- | --- |
+| No numbers in any date column | The table's date range does not cover the periods that hold values. Typing or importing dated values never moves the range. | Change the range with the date range button. |
+| Quarter or year columns show 0 | The Variable has no time rollup, which Variables created by hand lack. | Ask Ari to give the Variable a time rollup. See [Why a quarterly view shows zeros](/concepts/totals-and-rollups#why-a-quarterly-view-shows-zeros). |
+| An item missing from a breakdown | An item whose values are all zero or empty across the date range is left out of a breakdown under a Variable. A filter can also hide it. | Set the level to **Expand to create all segments** with **Segment generation**, or ask Ari to show empty items on the table. To clear a filter, see [Filter and sort a table](/guides/filter-and-sort-a-table#clear-a-filter-so-every-item-shows-again). |
+| Blank cells for some items only | The formula that fills the row applies to other items, so these read empty. | See [How formulas work](/concepts/formulas). |
+
+## Where each setting is saved
+
+| Saved | Settings |
+| --- | --- |
+| With the table, for everyone | Rows, columns, and breakdowns; filters and sorts; hidden rows and columns; the date range and grain; comparisons; **Format**, **Precision**, **Date format**, **Background**, **Text style**, and **Indent**; total column summaries; column widths; pinned columns; **Show dimension headers** |
+| On the Variable or Dimension, for every table | Values and formulas; the name; the currency; the **Date** type; **Variance colors**; **Dimension color** |
+| In your browser only | Open formula columns; the formula bar; whether the setup panel is open; the table height; **Display as**; which rows you expanded or collapsed; **Show variable name** |
+| Not saved | **Show total columns**; **Pin total columns**; drill-in rows |
+
+Version history does not list changes to column widths or pinned columns.
+
+## What a table cannot do
+
+| A table cannot | Instead |
+| --- | --- |
+| Hold a comment or note on a cell | Add a Text block beside the table, or ask Ari for a text Variable, such as Notes, on a table that lists records. |
+| Color the cells you type into automatically | They carry a dashed underline. Select them and set a **Background**. |
+| Sort rows by the numbers in a column | **Sort** orders items by name. Set a **Manual** order, or ask Ari to order the items by value. |
+| Show numbers in thousands or millions | Ask Ari for a Variable that divides by 1,000. |
+| Filter or sort dates | Change the date range. Dates always run in date order. |
+| Show two grains on one Date axis, such as quarters and years | Duplicate the table with **Duplicate block** and give each copy its own grain. |
+| Hold Variables in both the rows and the columns | Keep every Variable on one side. |
+| Show the same Variable or Dimension twice in the columns | Use a second table. |
+| Transpose itself with one button | Ask Ari to flip it, or drag items between **Rows** and **Columns** in the setup panel. |
+| Create a text Variable by hand | Ask Ari. By hand, a new Variable holds numbers, and **Format** → **Date** makes it a date. |
+| Take new items by hand in a Dimension of numbers, dates, or true-or-false values | Only text Dimensions take new items by hand. For a Dimension of numbers, use **Segment generation** → **Expand to create all segments** with a **Start Value** and **End Value**. |
+| Hide a row from the grid's menu | Use the eye button in the table setup panel. |
+| Start a breakdown collapsed for everyone | Which rows are expanded or collapsed is saved only in each person's browser, so each reader opens or closes rows for themselves. |
+| Lock cells so teammates cannot edit them | Every member of a workspace can edit every Page. To let someone read without editing, share a link; see [Sharing and access](/concepts/sharing-and-access). |
+| Choose a Variable's original table | A Variable keeps the table it was created on, until that table is deleted while another table shows it. |
+| Be edited on a phone | Ask the phone's browser for its desktop site, or use a computer. See [Phones and tablets](/reference/interface#phones-and-tablets). |
+
+To add a chart, ask Ari; the block menu has no chart block. See [Create and organize Pages and blocks](/guides/create-pages-and-blocks#add-a-block-to-a-page).
+
+## Related
+
+- [Build a Table block by hand](/guides/build-a-table)
+- [Enter, paste, and clear values](/guides/enter-values)
+- [Format and arrange a table](/guides/format-a-table)
+- [Filter and sort a table](/guides/filter-and-sort-a-table)
+- [Break a number down](/guides/break-down-a-number)
+- [Keyboard shortcuts](/reference/keyboard-shortcuts)
+- [Formula errors and warnings](/reference/formula-errors)

@@ -1,0 +1,427 @@
+---
+title: "Integrations directory"
+description: "Which apps cfo.ai can connect to and what data comes in from each, such as QuickBooks, Xero, NetSuite, Stripe, Gusto, HubSpot, and databases: how each one connects, whether it is standard or premium, what syncs, how much history loads, its limits, and what you need first. Also what to do when your system is not listed."
+---
+
+cfo.ai pulls data from accounting, HR and payroll, CRM, payments, database, and file sources, and it lets Ari call other services through MCP servers and APIs. This page lists every source in the in-app directory, with the facts you need before you connect one. To connect a source, follow [Connect your accounting system](/guides/connect-accounting) or [Connect payroll, HR, CRM, payments, or a database](/guides/connect-other-sources). cfo.ai only reads from these systems; see [What cfo.ai does not do with your sources](#what-cfoai-does-not-do-with-your-sources).
+
+## Check whether your system is supported
+
+These are the systems customers ask about most. Search the rest of this page, or the **Search integrations** box in the app, for any other name.
+
+| You use | In cfo.ai |
+| --- | --- |
+| QuickBooks Online | Supported: [QuickBooks Online](#quickbooks-online), standard |
+| QuickBooks Desktop or QuickBooks Enterprise | Not available. Export reports to CSV and [upload them](/guides/upload-a-csv), or attach them to a chat for Ari. |
+| Xero | Supported: [Xero](#xero), standard |
+| NetSuite | Supported: [NetSuite SuiteAnalytics](#netsuite-suiteanalytics), premium |
+| Sage Intacct | Supported: [Sage Intacct](#sage-intacct), premium |
+| Acumatica, Visma, Microsoft Dynamics 365 Business Central, Exact Online | Supported through Fivetran, premium. See [Other accounting, billing, and commerce systems](#other-accounting-billing-and-commerce-systems). |
+| Rillet | Supported: [Rillet](#rillet), standard |
+| Zoho Books, FreshBooks, e-conomic | Supported through Fivetran, standard |
+| bill.com, Quicken, Puzzle, Tripletex | Not available |
+| Pennylane | Available as an [API for Ari](#apis), not as a synced integration |
+| Gusto, Justworks | Supported: [Gusto](#gusto), [Justworks](#justworks), standard |
+| ADP Workforce Now, Paychex, Hibob, UKG Pro, UKG Ready, BambooHR, Deel, Workday | Supported through Merge. See [Other HR and payroll systems](#other-hr-and-payroll-systems). Workday is premium. |
+| Rippling | Supported: [Rippling](#rippling), standard. Also available as an MCP server and an API for Ari. |
+| HubSpot, Salesforce | Supported: [HubSpot](#hubspot), [Salesforce](#salesforce), standard |
+| Stripe | Supported: [Stripe (Direct)](#stripe-direct), standard. Also an MCP connector and an API for Ari. |
+| Shopify | Supported: [Shopify](#shopify), standard |
+| Square, PayPal, Braintree, Chargebee, Recurly, Zuora | Supported through Fivetran, standard |
+| Toast | Not available |
+| Mercury | Available to Ari as an [MCP connector](#mcp-connectors) and an [API](#apis) for live lookups, not as a synced integration |
+| Other banks | No direct bank feed. Bank balances reach cfo.ai through your accounting system's balance sheet, or upload a CSV of bank transactions. |
+| Brex, Ramp | Supported through Fivetran, standard. Also MCP connectors for Ari. |
+| Snowflake, BigQuery, Databricks | Supported: [Snowflake](#snowflake), [BigQuery](#bigquery), [Databricks](#databricks), premium |
+| PostgreSQL, MySQL, SQL Server | Supported, premium. See [PostgreSQL](#postgresql) and [Other databases and data warehouses](#other-databases-and-data-warehouses). |
+| Amazon Redshift | Not available |
+| Supabase | Available as an [MCP connector](#mcp-connectors) for Ari, not as a synced integration |
+| Google Sheets | Supported: [Google Sheets](#google-sheets), standard |
+| Excel workbooks | Connect one through [Google Drive](#google-drive), attach it to a chat for Ari, or [import it as a model](/guides/import-a-spreadsheet-model). The **Upload** button takes CSV files only. |
+| Airtable | Supported through Fivetran, standard. Also an MCP connector for Ari. |
+| Notion, GitHub | Supported through Fivetran, standard. Notion is also an MCP connector for Ari. |
+| SharePoint, OneDrive, Box, Dropbox | Supported through Fivetran for files, standard |
+| Carta | Available as an [MCP connector](#mcp-connectors) for Ari |
+
+## The directory in the app
+
+The **Integrations** tab of the connection manager holds the same catalog. Open it from **Connections** in the sidebar with **+** (**Add integration**).
+
+| Control | What it does |
+| --- | --- |
+| **Search integrations** | Finds a source by name |
+| **Upload** | Uploads CSV files as data sources |
+| **Filter integrations** | Shows **All integrations**, or one type: **Accounting**, **CRM**, **Data upload**, **Data Warehouse**, **HR & Payroll**, **Recruiting**, **Support & Ticketing**, or **Other** |
+| **Sort integrations** | **Relevance**, **A–Z**, or **Z–A**. **Relevance** shows a **Featured** group first: QuickBooks Online, Xero, Rillet, Gusto, Rippling, Google Sheets, Justworks, HubSpot, and Salesforce. The other sources follow. In each group, sources you already connected come first; after them, the **Featured** group keeps the order above and the other sources are alphabetical. |
+| **List view**, **Grid view** | Changes how the cards are laid out |
+
+[Connection statuses and actions](/reference/connection-statuses#directory-cards) explains each card's button.
+
+## If your system is not listed
+
+You can still bring its data in:
+
+- Export a report from the system, such as a general ledger, a monthly profit and loss, or a payroll register, and [upload it as a CSV](/guides/upload-a-csv). An upload does not refresh, so upload a new export when the numbers change.
+- Attach the export or workbook to a chat and ask Ari to load it or [import it as a model](/guides/import-a-spreadsheet-model).
+- If the data sits in a database cfo.ai supports, such as PostgreSQL, connect the database.
+- If the system has an MCP server or an API, [give Ari access to it](/guides/give-ari-another-service), so Ari can look things up live.
+
+To ask for a system that is not listed, email [success@cfo.ai](mailto:success@cfo.ai) and name the system.
+
+## Standard and premium integrations
+
+Each integration that syncs data into your Model is standard or premium, and each one uses a connection slot on your plan. Your plan sets how many standard and premium connections you can hold; see [Plans and billing](/reference/plans-and-billing).
+
+| Class | Sources | Plans |
+| --- | --- | --- |
+| Standard | Every integration on this page that is not marked premium, including QuickBooks Online, Xero, Rillet, Stripe (Direct), Gusto, Rippling, HubSpot, Salesforce, Shopify, and Google Sheets | Every plan that includes integrations |
+| Premium | NetSuite SuiteAnalytics, every database and data warehouse, and the other sources marked "(premium)" on this page, such as Sage Intacct, Acumatica, Visma, Workday, Microsoft Dynamics 365 Business Central, and Amazon S3 | The Enterprise plan. A directory card for a premium source your plan does not include shows a **Premium** badge. |
+
+These connections do not use a slot:
+
+- CSV uploads.
+- MCP servers and APIs that Ari calls live. If Ari saves a sync setup that copies an MCP server's or an API's data into your Model, that server or API then uses one standard slot.
+
+Two rules change the count:
+
+- Every Google Sheets connection in a workspace shares one slot. Each Google Drive connection uses its own.
+- Each connection to a system uses its own slot, so a second QuickBooks company uses a second slot. A connection keeps its slot while it is broken or unfinished, until you remove it.
+
+## How each kind of source connects
+
+Most sources connect through Merge or Fivetran, outside services that copy a source's data for cfo.ai. A few connect directly.
+
+| Method | Sources | What you do |
+| --- | --- | --- |
+| Sign in through Merge | QuickBooks Online, Xero, Gusto, Justworks, and the other HR and payroll systems that connect through Merge | Sign in to the system in a window cfo.ai opens, choose the company, and approve access. |
+| Fivetran setup window | NetSuite SuiteAnalytics, Rippling, HubSpot, Salesforce, databases, and the other sources this page lists as syncing through Fivetran | Enter the credentials or sign-in the source needs in Fivetran's setup window. Some sources then show a table picker. |
+| API key | Rillet | Paste a Rillet API key into the card. |
+| Stripe app | Stripe (Direct) | Sign in to Stripe and install cfo.ai's Stripe app, which asks for read-only access. |
+| Google sign-in and file picker | Google Sheets, Google Drive | Sign in with Google and choose one file. |
+| File upload | CSV / Raw File Upload | Choose CSV files. Nothing to sign in to. |
+
+When a sign-in asks for a permission you do not have, the person who administers that system must connect it, or grant you access first. See each source below for what it needs.
+
+## Accounting
+
+The app's **Accounting** filter also holds payment and commerce sources, such as Stripe (Direct) and Shopify, so they are listed here. In each table, a saved query is the query that brings a synced table into your Model; see [Saved query](/reference/glossary#saved-query).
+
+### QuickBooks Online
+
+| Fact | Detail |
+| --- | --- |
+| How it connects | Sign in to QuickBooks Online in a window cfo.ai opens (through Merge) and choose the company. |
+| Standard or premium | Standard |
+| What syncs | Monthly profit and loss and balance sheet, the chart of accounts, vendors, invoices, and journal entries |
+| Saved queries cfo.ai adds | **QuickBooks Profit & Loss** and **QuickBooks Balance Sheet**. Each carries **Entity** and **Currency** columns. |
+| History | From January 1 of last year through today. Ask Ari for a full-history import to reach back to a year you name, 2015 or later. A full-history import also takes the balance sheet of the month before that year. |
+| First sync | Your three most recent complete months load first. The rest of the history loads in the background. |
+| Nightly refresh | Re-reads the last three months, or the whole history when the connection has not synced for more than a month |
+| Limits | One connection per company. Connect each company you own as its own connection. |
+| You need first | A login with admin access to the company in QuickBooks Online |
+| Writes back | No |
+
+### Xero
+
+| Fact | Detail |
+| --- | --- |
+| How it connects | Sign in to Xero in a window cfo.ai opens (through Merge) and choose the organisation. |
+| Standard or premium | Standard |
+| What syncs | Journals by month, the chart of accounts, tracking categories, contacts, and organisation details |
+| Saved queries cfo.ai adds | **Xero Income Statement**, or **Xero Income Statement by Tracking Category** when you use tracking categories, and **Xero Balance Sheet**. Each carries **Entity** and **Currency** columns. |
+| History | From January 1 of last year through today. Ask Ari for a full-history import to reach back to a year you name, 2015 or later. |
+| First sync | Your three most recent complete months load first. The rest loads in the background. Xero limits how many requests an app can make for an organisation each minute and each day, so a large ledger can take several hours or more than a day. |
+| Nightly refresh | Re-reads the whole history window |
+| Limits | One connection per organisation. Connect each organisation as its own connection. |
+| You need first | A login with admin access to the organisation in Xero |
+| Writes back | No |
+
+### NetSuite SuiteAnalytics
+
+| Fact | Detail |
+| --- | --- |
+| How it connects | Fivetran setup window, with your NetSuite account and an access token |
+| Standard or premium | Premium |
+| What syncs | The NetSuite tables the financial statements need, such as accounts, accounting periods, transactions and their lines, subsidiaries, customers, and vendors. You can ask Ari to add other tables later. |
+| Saved queries cfo.ai adds | **NetSuite Income Statement** and **NetSuite Balance Sheet** |
+| History | The full history of each table |
+| First sync | Can take many hours, because Fivetran copies every table's full history first |
+| Table choice | Setup shows a table picker. Required tables are locked. Tables for features your account does not use, **Multiple Currencies**, **Multiple Calendars**, or **Multi-Book Accounting**, start unchecked. Tables that already sync cannot be removed. |
+| You need first | A NetSuite admin creates an access token for the **Data Warehouse Integrator** role. Entering a different role ID with an existing token does not change what cfo.ai can see. |
+| Writes back | No |
+
+If NetSuite hides a table the statements need, the connection reads **Missing access in NetSuite SuiteAnalytics**. See [Fix a connection](/guides/fix-a-connection#netsuite-is-missing-access).
+
+### Rillet
+
+| Fact | Detail |
+| --- | --- |
+| How it connects | API key. Find or create one in Rillet under **Organization Settings → API access**. |
+| Standard or premium | Standard |
+| What syncs | Accounts, subsidiaries, custom fields, the income statement and balance sheet reports, customers, contracts, and invoices |
+| Saved queries cfo.ai adds | **Rillet Income Statement** and **Rillet Balance Sheet**, one set of rows per subsidiary, with **Entity** naming the subsidiary and **Currency** taken from each row |
+| Limits | One Rillet connection per workspace. Adding up the subsidiaries does not reproduce Rillet's consolidated view, because Rillet applies intercompany eliminations only there. |
+| You need first | A Rillet API key |
+| Writes back | No |
+
+### Stripe (Direct)
+
+| Fact | Detail |
+| --- | --- |
+| How it connects | Sign in to Stripe and install cfo.ai's Stripe app, which asks for read-only access |
+| Standard or premium | Standard |
+| What syncs | Customers, subscriptions and their items and schedules, invoices with their lines and payments, charges, refunds, disputes, payment intents, balance transactions, payouts, products, plans, prices, coupons, discounts, credit notes, payment methods, and setup intents. An object Stripe deleted stays as a row marked deleted, so an invoice's customer is still there to look up. |
+| History | The first sync lists every object in the account. Later syncs apply Stripe's changes since the last one. |
+| First sync | Can take a day or more for an account with a long history. Stripe lists payment methods one customer at a time, so for an account with many customers that table fills over several syncs. |
+| Permissions | A table that needs a permission your installed version of cfo.ai's Stripe app does not have still syncs what other objects carry, and the sync completes. The table fills in full after an owner of the Stripe account approves an app version that includes the permission. Signing in again does not change the app's permissions. |
+| You need first | A Stripe login that can install apps on the account |
+| Writes back | No |
+
+### Sage Intacct
+
+| Fact | Detail |
+| --- | --- |
+| How it connects | Fivetran setup window |
+| Standard or premium | Premium |
+| What syncs | The tables you choose in the table picker, up to 100 |
+| Saved queries | Ari writes them after the first sync |
+| You need first | Sage Intacct credentials, which you enter in Fivetran's setup window |
+| Writes back | No |
+
+### Shopify
+
+| Fact | Detail |
+| --- | --- |
+| How it connects | Fivetran setup window for your store |
+| Standard or premium | Standard |
+| What syncs | The tables you choose in the table picker, up to 100. Ari recommends orders and their lines, refunds, adjustments, discounts, shipping, taxes, tags, fulfillments, customers, products, gift cards, and the shop. Payment transactions are left out of that recommendation because they slow the first sync the most. |
+| Saved queries | Ari writes them after the first sync |
+| Writes back | No |
+
+### Other accounting, billing, and commerce systems
+
+These sources sync through Fivetran. Each one shows a table picker during setup, where you choose up to 100 tables, and Ari writes the saved queries that bring the data into your Model after the first sync. None of them writes back. Sources marked "(premium)" are premium; the rest are standard.
+
+Acumatica (premium), Adyen, Afterpay, Anaplan (premium), Anvyl, Aumni, AWS Cost and Usage Reports (premium), BigCommerce, BillingPlatform, Braintree, Braintree Sandbox, Brex, Brightpearl, Chargebee Product Catalog 1.0, Chargebee Product Catalog 2.0, Checkout.com, Cin7 Core, Clubspeed, Column, Coupa, Donus, e-conomic, EasyPost, eBay, Exact Online (premium), ExpenseIn, Expensify, EZOfficeInventory, Flexport, FourKites, FreshBooks, GoCardless, Invoiced, Klarna, Lightspeed Retail, Mambu, Maxio Chargify, Maxio SaaSOptics, Microsoft Dynamics 365 Business Central (premium), Microsoft Dynamics 365 Finance and Operations (premium), Navan, Open Exchange Rates, Oracle Fusion Cloud Applications - FSCM(ERP & SCM) (premium), Ordway, PayPal, PayPal Sandbox, Pigment (premium), Pipe17, Planful, Ramp, ReBound Returns, Recharge, Recurly, Revel Systems, RevenueCat, Rithum, Salesforce Commerce Cloud (premium), SAP Business ByDesign (premium), SAP Concur (premium), Sharetribe, ShipHero, Shopware, Splash, Square, Squarespace, Statistics Netherlands CBS, sticky.io, Subscript, Tremendous, Unicommerce, Visma (premium), Walmart Marketplace, Workday Financial Management (premium), Workday Strategic Sourcing (premium), Xactly, Xsolla, Younium, Zip, Zoho Books, Zoho Inventory, Zuora, Zuora Sandbox
+
+## HR and payroll
+
+### Gusto
+
+| Fact | Detail |
+| --- | --- |
+| How it connects | Sign in to Gusto in a window cfo.ai opens (through Merge) |
+| Standard or premium | Standard |
+| What syncs | Employees and their jobs and pay, groups such as departments and teams, payroll runs with each employee's gross and net pay, pay period, and check date, and benefits |
+| Saved query cfo.ai adds | **HRIS Employees** |
+| First sync | cfo.ai waits for Merge's first sync of your account, which can take hours. See [First sync not ready](/reference/connection-statuses#first-sync-not-ready). |
+| Limits | One connection per company. Signing in again to a company the workspace already holds is refused. |
+| You need first | Admin access to the company in Gusto |
+| Writes back | No |
+
+### Justworks
+
+| Fact | Detail |
+| --- | --- |
+| How it connects | Sign in to Justworks in a window cfo.ai opens (through Merge) |
+| Standard or premium | Standard |
+| What syncs | Employees and their jobs and pay, groups, payroll runs, and benefits, as your Justworks account provides them |
+| Saved query cfo.ai adds | **HRIS Employees** |
+| First sync | cfo.ai waits for Merge's first sync of your account, which can take hours |
+| You need first | Admin access to the company in Justworks |
+| Writes back | No |
+
+### Rippling
+
+| Fact | Detail |
+| --- | --- |
+| How it connects | Fivetran setup window with a Rippling API key. Before the window opens, a dialog titled **Before you connect Rippling** says: **You’ll need a Rippling API key to continue. API access may need to be enabled as a paid feature in your Rippling account.** |
+| Standard or premium | Standard |
+| What syncs | The seven tables the employee roster reads: workers, users, worker details, departments, teams, team membership, and work locations. There is no table picker. Ari can add other Rippling tables later; these seven stay locked. |
+| Saved query cfo.ai adds | **HRIS Employees** |
+| You need first | A Rippling API key. If you cannot get one, upload an employee export as a CSV, or connect the Rippling MCP server for Ari. |
+| Writes back | No |
+
+### Other HR and payroll systems
+
+These systems connect the same way as Gusto, through Merge, and sync the same kinds of records. Sources marked "(premium)" are premium; the rest are standard.
+
+ADP Workforce Now, Altera Payroll, BambooHR, Breathe, Charlie, ChartHop, ClayHR, Dayforce, Deel, Factorial, Freshteam, Google Workspace, Hibob, HR Cloud, HR Partner, Humaans, Insperity Premier, IntelliHR, JumpCloud, Kallidus, Keka, Lano, Lucca, Microsoft Entra ID, Namely, Nmbrs, Officient, Okta, OneLogin, PayCaptain, Paychex, Paycom, Paycor, Paylocity, PeopleHR, Personio, Proliant, Sage HR (premium), SAP SuccessFactors (premium), Sesame, Simployer, Square Payroll, TriNet, TriNet HR Platform, UKG Pro, UKG Pro Workforce Management, UKG Ready, Workday (premium), Zoho People
+
+These HR, scheduling, and learning tools sync through Fivetran, with a table picker during setup:
+
+15Five, 360Learning, 7shifts, Absorb LMS, Canvas by Instructure, Care Quality Commission, Coassemble, Cornerstone, Culture Amp, D2L Brightspace, Deputy, Docebo, Employment Hero, Google Classroom, Jibble, KeyPay, Lattice, Lessonly, Oracle Fusion Cloud Applications - HCM (premium), Papershift, Persona, Playvox Workforce Management, Proofpoint Security Awareness, Ruddr, Sana, SCORM, Security Journey, SkillsTX, SmartHR, Thinkific, Tymeshift, Udemy Business, When I Work, Workleap Officevibe, WorkRamp
+
+## CRM
+
+### HubSpot
+
+| Fact | Detail |
+| --- | --- |
+| How it connects | Fivetran setup window, where you sign in to HubSpot |
+| Standard or premium | Standard |
+| What syncs | A fixed set of 20 tables: deals, deal pipelines and their stages, owners, contacts, companies, line items, products, and invoices; the links between deals, contacts, companies, line items, and invoices; and the property histories of line items, products, and invoices. A table HubSpot does not expose is skipped. There is no table picker. Ari can add other HubSpot tables later; these 20 stay locked. |
+| Saved query cfo.ai adds | **HubSpot Deals** |
+| Writes back | No |
+
+### Salesforce
+
+| Fact | Detail |
+| --- | --- |
+| How it connects | Fivetran setup window, where you sign in to Salesforce |
+| Standard or premium | Standard |
+| What syncs | Opportunities, accounts, and users. There is no table picker. Ari can add other Salesforce objects later; these three stay locked. |
+| Saved query cfo.ai adds | **Salesforce Opportunities** |
+| Writes back | No |
+
+### Other CRMs
+
+These sync through Fivetran, with a table picker during setup. Sources marked "(premium)" are premium; the rest are standard.
+
+AccuLynx, Amazon Selling Partner, Attio, Bigin by Zoho CRM, Boostr, Buildium, Centra, Clari, Clazar, Close, Cloudbeds, Copper, Crossbeam, DoorLoop, Duoplane, Freshsales, Freshsuccess, JobNimbus, Lemlist, Loop, Malomo, Microsoft Dynamics 365 CRM (premium), Odoo Synconics, Oracle Business Intelligence Publisher, Oracle Fusion Cloud Applications - CRM (premium), Outreach, Pipedrive, Planhat, RevOps, Ricochet360, Salesforce Sandbox, Salesloft, SugarCRM, Tive, Veeqo, Zendesk Sell, Zoho CRM
+
+## Databases and data warehouses
+
+Every database and data warehouse is premium. Each one connects through Fivetran's setup window, with your database's connection details and a user that can read the tables you want, and then shows a table picker where you choose up to 100 tables. Ari writes the saved queries that bring the rows into your Model. cfo.ai never writes to your database.
+
+### PostgreSQL
+
+Four PostgreSQL entries cover different hosts: **PostgreSQL** for any reachable server, **Amazon RDS for PostgreSQL**, **Amazon Aurora PostgreSQL**, and **Google Cloud SQL for PostgreSQL**. All four are premium and work the same way.
+
+### Snowflake
+
+Premium, through Fivetran, with a table picker.
+
+### BigQuery
+
+Premium, through Fivetran, with a table picker. If the sync fails with Fivetran's report that the user cannot access BigQuery tables or the project, grant that user access in Google Cloud, then select **Retry**.
+
+### Databricks
+
+Premium, through Fivetran, with a table picker.
+
+### Other databases and data warehouses
+
+Amazon Aurora MySQL, Amazon DocumentDB, Amazon DynamoDB, Amazon RDS for MariaDB, Amazon RDS for SQL Server, Azure Cosmos DB for MongoDB, Azure Cosmos DB for NoSQL, Azure Database for MySQL, Azure Database for PostgreSQL, Azure SQL Database, Azure SQL Managed Instance, CockroachDB, Google Cloud SQL for MySQL, Google Cloud SQL for SQL Server, Heroku PostgreSQL, High Volume Agent Db2 for i, High-Volume Agent SQL Server, HVA SAP ECC on SQL Server, Magento MySQL, Magento MySQL RDS, MariaDB, MongoDB, MongoDB Sharded, MySQL, MySQL RDS, SQL Server
+
+Amazon Redshift is not in the catalog.
+
+## Spreadsheets and file uploads
+
+### CSV / Raw File Upload
+
+| Fact | Detail |
+| --- | --- |
+| How it connects | Select **Upload** in the connection manager, or attach a CSV to a chat as a **Data source** |
+| Standard or premium | Neither. An upload uses no connection slot. |
+| What it loads | One table per file. The file must be a `.csv` up to 50 MB. See [How imported data loads](/reference/imported-data#csv-files). |
+| Refresh | Never. Upload a new version to update it. |
+
+### Google Sheets
+
+| Fact | Detail |
+| --- | --- |
+| How it connects | Sign in with Google and choose one spreadsheet in Google's file picker. cfo.ai can open only the files you pick. |
+| Standard or premium | Standard. Every Google Sheets connection in a workspace shares one slot. |
+| What it loads | Ari imports the whole spreadsheet, every tab with its formulas, values, and number formats, and rebuilds it in your Model |
+| Refresh | Nightly and when you ask Ari. A changed value or formula updates your Model; an unchanged spreadsheet starts no update and uses no AI usage. |
+| Limits | One spreadsheet per connection, up to 50 MB when exported as an Excel workbook. The same spreadsheet cannot be connected twice in a workspace. |
+
+### Google Drive
+
+| Fact | Detail |
+| --- | --- |
+| How it connects | Sign in with Google and choose one file: a Google Sheet, an Excel workbook (`.xlsx`), or a CSV file |
+| Standard or premium | Standard. Each Google Drive connection uses its own slot. |
+| What it loads | Ari imports the file the way it imports an upload |
+| Refresh | Nightly and when you ask Ari |
+| Limits | A Google Sheet up to 50 MB as an Excel workbook; an Excel or CSV file up to 10 MB |
+
+### Other file sources
+
+These sync files through Fivetran, with a table picker during setup. Sources marked "(premium)" are premium; the rest are standard.
+
+Amazon S3 (premium), Azure Blob Storage (premium), Box, Dropbox, Email, FTP, Google Cloud Storage (premium), OneDrive, SFTP, SharePoint
+
+## Recruiting, support, and other apps
+
+These sources sync through Fivetran, with a table picker during setup. Sources marked "(premium)" are premium; the rest are standard.
+
+### Recruiting
+
+Fountain, Gem, Greenhouse, Lever, Pinpoint, SmartRecruiters, Teamtailor, Workable
+
+### Support and ticketing
+
+Ada, Alchemer, Assembled, Birdeye, CloudTalk, DSV, Fillout, Formstack, Freshchat, Freshdesk, Freshdesk Contact Center, Front, Genesys, GetFeedback, Gladly, Gorgias, Help Scout, Helpshift, Intercom, Ivanti, Khoros Care, Khoros Communities, Konnect Insights, Kustomer, Medallia, Medallia Agile Research, Missive, NICE, Playvox, Qualaroo, Qualtrics, RingCentral, Ringover, ServiceTitan, Simplesat, SurveyMonkey, Survicate, Talkdesk, Typeform, Uservoice, Visit by GES, Vonage Contact Center, Zendesk Chat, Zendesk Sunshine, Zendesk Support, Zingtree, Zoho Desk
+
+### Marketing, product, and other apps
+
+ActiveCampaign, Adjust, Adobe Analytics, Adobe Analytics Data Feed (premium), Adobe Commerce, Adobe Workfront, AdRoll, Affinity, Aha!, Aircall, Airtable, Akamai, Akeneo, Algolia, Amazon Ads, Amazon Attribution, Amazon DSP, Amplitude, Appcues, Appfigures, Apple App Store, Apple Search Ads, AppsFlyer, Asana, Attentive, Auth0, Autodesk BIM 360 & Construction Cloud, AvantLink, Awin, AWS Inventory (premium), Azure DevOps, Backbone PLM, BallotReady, Bazaarvoice, Betterworks, BigMarker, Bitly, Branch, Brave Ads, Braze, Brevo, Brightcove, Buildkite, Buzzsprout, Calabrio, Calendly, CallRail, Campaign Monitor, Campfire, Canny, Castor EDC, Chameleon, ChargeDesk, ChartMogul, Checkr, Chorus, Churnkey, ChurnZero, Cimis, Cin7, CircleCI, CJ Commission Detail, ClickUp, Clockify, Clockodo, Codefresh, Collibra, commercetools, Compliance Checkpoint, Concord, Confluence, Constant Contact, Contrast Security, Criteo, Criteo Retail Media, crowd.dev, Customer.io, Cvent, dbt Cloud, DCL Logistics, Deposco, Destini, Dialpad, Dixa, Drata, Drift, Drip, Dropbox Sign, Electronic Tenant Solutions, Eloqua, Eventbrite, Eventsforce, Everflow, Everhour, Facebook Ads, Facebook Pages, Factbird, FireHydrant, Float, Flywheel Digital, Fone Dynamics, Forj Community, Freightview, Freshservice, Friendbuy, FullStory, G2, Gainsight Customer Success, Gainsight Product Experience, GitHub, GitLab, GlobalMeet, Gmail, Gong, Google Ad Manager, Google Ads, Google Analytics 4, Google Analytics 4 Export (premium), Google Business Profile, Google Calendar, Google Campaign Manager 360, Google Display & Video 360, Google Play, Google Search Ads 360, Google Search Console, Google Tasks, GreenPowerMonitor, Grepsr, GRIN, Guru, HappyFox, Harvest, Healthie, Heap, Hilti On!Track, Hopin, iLevel, Impact Brand, incident.io, Infobip, Insightly, Instagram Business, Integral Ad Science, Integrate, Ironclad, ironSource, Iterable, Jama Software, Jamf, Jira, Jira Align, Jotform, JustCall, Kandji, Kantata, Katana, Kevel, Kisi, Kissmetrics, Klaviyo, LaunchDarkly, Leap CRM, LearnUpon, Liftoff, LINE Ads, Linear, LinkedIn Ad Analytics, LinkedIn Company Pages, LinkSquares, LiveChat Partner, Lob, Looker, Loopio, Luma, Mailchimp, Mailgun, Mailjet, Mandrill, Marin Software, Marketo, Matomo, Megaphone, Mention, Microsoft Advertising, Microsoft Lists, Mixmax, Mixpanel, MNTN, Mode, Moloco, Monday.com, Mux, myosh, Notion, Nylas, Okendo, Ometria, ON24, OnceHub, Open Data DC, Opsgenie, Optimizely, Oracle Moat Analytics, Orbit, Ortto, Outbrain, Packiyo, PagerDuty, PandaDoc, Pardot, Partnerize, PartnerStack Vendor, Pendo, Phoenix Ads, Picqer, Pingdom, Pinterest Ads, Pinterest Organic, Pivotal Tracker, Piwik PRO, Placer.ai, Podio, PostHog, Postmark, PowerReviews Enterprise, Prisma Cloud, Prive, Procore, Productboard, Productive, Quora Ads, Quorum, Rakuten Advertising, Rarible, Reddit Ads, ReferralHero, Reltio, Reply.io, Resource Management by Smartsheet, RetailNext, Retently, REVIEWS.ai, REVIEWS.io, RevX, Rocketlane, Rokt, Rollbar, Rootly, RTB House, Rundeck, SafeBase, SafetyCulture, Sailthru, Salesforce Marketing Cloud (premium), Salsify, Samsara, Segment, SendGrid, Sentry, ServiceNow, ShipNetwork, ShipStation, Short.io, Shortcut, Sigma Computing, Simplecast, SISTRIX, Skilljar, SkuVault, Slab, Smadex, Smartwaiver, Snapchat Ads, Snowplow (premium), Snyk, SolarWinds Service Desk, SonarQube, SparkPost, Split, Spotify Ads, Sprout Social, StarRez, Statsig, Statuspage, Stylight, Swoogo, Tableau, Taboola, Talkwalker, Teads, Teamwork, Tempo, TestRail, TextUs, The Movie Database, The Trade Desk, Ticket Tailor, Tiktok Ads, Toggl Track, Totango, Transcend, Trelica, Trello, Triple Whale, Trisolute, Twilio, Upland Software, UpPromote, Vimeo, Vitally, VTS, VWO, Web Scraper, Webconnex, Wherefour, Wicked Reports, WooCommerce, WordPress, Wrike, X Ads, X Organic, Xandr, Xray, Yahoo Search Ads on Yahoo Japan, Yotpo, YouGov Sport, YouTube Analytics, Zoho Campaigns, Zonka Feedback, Zoom
+
+## What cfo.ai does not do with your sources
+
+- cfo.ai does not write back to a synced source. To change a number in QuickBooks, Xero, or any other system, change it there; the next sync brings it in.
+- cfo.ai does not connect bank accounts directly. Use your accounting system's balance sheet, upload bank transactions as a CSV, or connect Mercury's MCP server for live balances.
+- The **Upload** button does not take Excel workbooks or PDFs. Attach them to a chat for Ari instead; see [Upload a CSV as a data source](/guides/upload-a-csv#excel-workbooks-and-pdfs).
+- There is no **Sync now** button. Ask Ari to refresh a connection; see [Refresh data](/guides/refresh-data).
+
+## Connections for Ari
+
+MCP servers and APIs are tools Ari calls live when you ask a question, such as a bank balance in Mercury. Nothing from them is copied into your Model unless you ask Ari to save a sync setup, and they use no plan slot until then. The integrations above, by contrast, sync data into your Model once a day. Add an MCP server or API from the **MCP** and **API** tabs of the connection manager, or from **Settings → Connections**. See [Give Ari access to another service](/guides/give-ari-another-service).
+
+### MCP connectors
+
+Each connector signs in with OAuth, except Brex, which takes a bearer token.
+
+| Category | Connectors |
+| --- | --- |
+| Payments | Stripe, PayPal, Square, Mercado Pago |
+| Banking & Spend | Mercury, Ramp, Brex, Expensify, Plaid (Plaid dashboard diagnostics, not bank data) |
+| Accounting & Tax | Avalara AvaTax, Avalara Returns, Numeric |
+| HR & Payroll | Gusto, Deel |
+| Equity & Compliance | Carta, Vanta |
+| Market Data | Alpha Vantage, Morningstar |
+| CRM & Sales | Intercom, Close, Attio |
+| Productivity & Docs | Notion, Linear, Atlassian (Jira & Confluence), Airtable, monday.com |
+| Data & Analytics | Supabase, ThoughtSpot |
+
+### Rippling MCP server
+
+Rippling's remote MCP server is not in the catalog; add it with **Add manually**. When the **MCP URL**'s host is `mcpgateway.rippling.com`, the **Add MCP server** dialog shows a **Rippling setup** note. The same note appears beside the server's tool-loading error and on Ari's connect card:
+
+- Copy your Remote MCP server URL from **IT → My IT → MCP connectors → Rippling MCP**.
+- Ask a Rippling admin to assign you access in **IT → MCP Gateway → Rippling MCP → Access assignments**.
+- Your company needs an active Rippling AI trial or subscription for tools to return data.
+
+### APIs
+
+| API | Sign-in |
+| --- | --- |
+| Stripe | API key (bearer) |
+| Adyen Transfers, Adyen Management, Adyen Balance Platform | API key in the `X-API-Key` header |
+| Increase | API key (bearer) |
+| Synctera | API key (bearer) |
+| Mercury | API key (bearer) |
+| Brex | API key (bearer) |
+| Pleo | API key (bearer) |
+| Pennylane | API key (bearer) |
+| TaxJar | API key (bearer) |
+| Rippling | API key (bearer) |
+| CoinAPI | API key in the `X-CoinAPI-Key` header |
+| Tradier | API key (bearer) |
+| Frankfurter | None (exchange rates) |
+| U.S. Treasury Fiscal Data | None |
+
+### Any other MCP server or API
+
+Use **Add with Ari** to have Ari research the provider and set it up in a chat, or **Add manually**. An MCP server can sign in with OAuth, a bearer token, or an API key header. An API needs an OpenAPI 3.0 or 3.1 specification and signs in with a bearer token, an API key header, a key as the Basic authentication username, or no authentication. A provider that requires an app registered with it in advance, and an API that signs in with a username and password or with a key in the address, cannot be connected this way.
+
+cfo.ai's own MCP server, which lets an outside AI client use cfo.ai, is a different thing; see [Use cfo.ai from Claude Code, Codex, or another AI client](/guides/connect-an-ai-client).
+
+## Related
+
+- [How connected data reaches your Model](/concepts/connected-data)
+- [Connection statuses and actions](/reference/connection-statuses)
+- [How imported data loads](/reference/imported-data)
+- [Plans and billing](/reference/plans-and-billing)

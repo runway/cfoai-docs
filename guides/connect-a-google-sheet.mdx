@@ -1,0 +1,74 @@
+---
+title: "Connect a Google Sheet or Drive file"
+sidebarTitle: "Connect a Google Sheet"
+description: "Connect a Google Sheet, or an Excel or CSV file in Google Drive, so Ari imports it into your Model and updates the Model when the file changes."
+---
+
+Connect a Google Sheet when numbers you still keep in a spreadsheet should feed your Model, such as a hiring tracker or a pricing table. Ari imports the whole file, rebuilds it in your Model, and re-reads it every night, so a change you make in the sheet reaches cfo.ai without a new upload. Use Google Drive to connect an Excel workbook or a CSV file the same way.
+
+## Before you start
+
+- A Google account that can open the file.
+- A started trial or an active plan with a free connection slot. Every Google Sheets connection in a workspace shares one slot; each Google Drive connection uses its own. See [Standard and premium integrations](/reference/integrations#standard-and-premium-integrations).
+
+cfo.ai can open only the files you pick in Google's file picker, nothing else in your Drive. You can remove its access from your Google account at any time.
+
+## Connect the file
+
+<Tabs>
+  <Tab title="Ask Ari">
+    In a chat, ask Ari to connect the sheet and say what it holds:
+
+    > Connect our hiring tracker from Google Sheets and use it for the headcount plan.
+
+    Ari opens the connection manager with Google Sheets. Select **Connect**, sign in with Google, and pick the file. Ari imports it in this chat, so it can ask you about the sheet while it works.
+  </Tab>
+  <Tab title="By hand">
+    <Steps>
+      <Step title="Open the connection manager">
+        In the sidebar, point at **Connections** and select **+** (**Add integration**).
+      </Step>
+      <Step title="Choose Google Sheets or Google Drive">
+        On the **Integrations** tab, select **Connect** on **Google Sheets** for a spreadsheet, or on **Google Drive** for a Google Sheet, an Excel workbook (`.xlsx`), or a CSV file. Both are listed under **Data upload** when you filter the directory by type.
+      </Step>
+      <Step title="Sign in and pick the file">
+        Sign in with Google. Google's file picker opens; choose one file. The card reads **Opening Google authentication…**, **Choosing in Google…**, **Completing connection…**, and then **Connected**.
+      </Step>
+      <Step title="Watch the import">
+        Ari imports the file in the background. The connection's row reads **Waiting for the first sync to read this file…**, then **Ari is importing this file…**. When the import is done, it reads **Imported to** and the Page Ari built, with **Ari updates the model when the file changes.**
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+If you close Google's picker without choosing a file, the connection stays unfinished and reads **Setup not finished**. Select **Finish setup** on it to pick the file.
+
+## What Ari builds from the file
+
+Ari reads every tab of the spreadsheet with its formulas, values, and number formats. It rebuilds the file in your Model the way it [imports a spreadsheet model](/guides/import-a-spreadsheet-model): tabs become Pages, repeated sections become Dimensions, and formulas become cfo.ai formulas. A file of plain data, such as a list of transactions, is imported as data.
+
+## Keep the file in sync
+
+cfo.ai re-reads the file every night, and when you ask Ari to refresh it. When a value, a formula, a tab, or a defined name changed, Ari updates the parts of your Model that came from the changed sections. Edits you made in cfo.ai to sections that did not change stay. A sync that finds the same content starts no update and uses no AI usage, and the row adds **The last sync found no change.** A change to formatting alone, such as colors, column widths, or comments, starts no update either.
+
+Where the update happens follows where you connected the file. A file connected from a chat updates in that chat. A file connected from the connection manager updates in the background, and Ari opens a chat with you only when it needs you.
+
+## Limits
+
+- One file per connection. The same file cannot be connected twice in a workspace.
+- A Google Sheet can be up to 50 MB when exported as an Excel workbook. An Excel or CSV file in Drive can be up to 10 MB.
+- A larger file shows **This file is too large to import. Make it smaller and the next sync imports it.**
+
+## If something goes wrong
+
+- **Ari stopped before finishing this import. The next sync tries again.** The next nightly sync resumes it, or ask Ari to refresh the connection now.
+- **Ari stopped before finishing this import. Continue in the chat that connected it.** Open that chat and ask Ari to continue.
+
+For other problems, see [Fix a connection that needs attention](/guides/fix-a-connection).
+
+## Related
+
+- [Import an existing spreadsheet model](/guides/import-a-spreadsheet-model)
+- [Upload a CSV as a data source](/guides/upload-a-csv)
+- [Refresh data or change when it refreshes](/guides/refresh-data)
+- [Integrations directory](/reference/integrations#google-sheets)

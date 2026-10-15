@@ -1,0 +1,116 @@
+---
+title: "Fix a connection that needs attention"
+sidebarTitle: "Fix a connection"
+description: "What to do when a connection failed, is stuck syncing, or shows a red triangle or an orange dot in the sidebar. Finish setup, reconnect after cfo.ai lost access, retry a failed sync, grant missing access, wait out a slow first sync, and handle partial or empty syncs."
+---
+
+Use this guide when a connection in the sidebar shows a red triangle, an orange dot, or a gray dot, or when its data stopped updating. Point at the connection: the card that opens names the problem and offers the one action that fixes it. [Connection statuses and actions](/reference/connection-statuses) lists every status and message.
+
+## Find out what is wrong
+
+- Look at the mark at the end of the connection's row. A red triangle means you must act. A steady orange dot needs nothing from you: the sync resumes by itself, only cfo.ai can fix it, or someone else must act. A gray dot means setup was not finished, someone stopped the latest sync, or the source was added but never connected. See [Sidebar marks](/reference/connection-statuses#sidebar-marks).
+- Point at the connection's row in the sidebar to read its status and the line under it.
+- Select the row to open the connection's page, which shows every action it offers.
+- Ask Ari: "What's wrong with my Xero connection?" Ari reads the same status, including the provider's own report when it gave one.
+
+## Setup not finished: finish or cancel it
+
+The connection reads **Setup not finished** when someone started connecting and did not finish, for example because the sign-in window was closed. Select **Finish setup** to continue the same connection, or **Cancel setup** to remove it. Canceling asks nothing, because the connection holds no data, and it frees the plan slot the connection was holding.
+
+Connecting the same source again, from its card, from a link, or by asking Ari, also continues the unfinished connection instead of adding a second one.
+
+Stripe (Direct) cannot resume a setup. Its card reads **Setup wasn’t finished. Cancel it and connect Stripe (Direct) again.** Select **Cancel setup**, then connect again.
+
+## cfo.ai lost access: reconnect
+
+The connection reads **cfo.ai lost access** with **Reconnect to start syncing again.** when the source revoked access, for example after a password change or an expired authorization.
+
+<Steps>
+  <Step title="Reconnect">
+    Select **Reconnect** on the card or the connection's page.
+  </Step>
+  <Step title="Sign in to the same company">
+    Sign in to the company or organisation the connection already holds. A sign-in to a different company is refused, and so is one to a company another connection in the workspace already holds.
+  </Step>
+  <Step title="Choose Relink integration, if the provider asks">
+    If the provider's screen says you are already connected and offers **Finish**, choose **Relink integration** instead. **Finish** keeps the old authorization, and the card then reads **[Source] was not reconnected**. Select **Try again**.
+  </Step>
+</Steps>
+
+For Xero, if the consent screen lists your organisation as already connected, disconnect cfo.ai's app under **Connected apps** in Xero, then try again. The card names the app as Xero lists it.
+
+Asking Ari to connect a source never reconnects an existing connection. Ask Ari to reconnect the connection by name, or use **Reconnect**.
+
+## A sync failed: retry it
+
+The connection reads **Sync failed**. Read the line under it:
+
+- **[Source]’s sync hit an error. cfo.ai will try again on the next scheduled sync.** The provider's own run failed, often for a moment. Do nothing, or select **Retry** to run it now. When the line includes the provider's report, such as a user that cannot access a table, fix that at the source first.
+- Any other reason, or **The last sync couldn’t finish.** Select **Retry**. If it fails again, select **Investigate with Ari**, which opens a chat where Ari looks for the cause.
+
+**Retry** runs the import again with the same sign-in and does not use another plan slot.
+
+When setup itself failed, the connection reads **Connection failed** with **Retry to set it up again.** Select **Retry**.
+
+## NetSuite is missing access
+
+The connection reads **Missing access in NetSuite SuiteAnalytics** when NetSuite hides tables the financial statements need. The connection's page lists the missing tables.
+
+<Steps>
+  <Step title="Get a token for the right role">
+    Have your NetSuite admin create an access token for the **Data Warehouse Integrator** role. Entering a different role ID with the old token does not work, because a NetSuite token belongs to one role.
+  </Step>
+  <Step title="Reconnect with the new token">
+    Select **Reconnect** and enter the new token. The next sync checks the tables again and clears the warning.
+  </Step>
+</Steps>
+
+If a missing table belongs to a NetSuite feature you do not use, **Multiple Currencies**, **Multiple Calendars**, or **Multi-Book Accounting**, no role change can share it. Uncheck that feature's tables in the table picker when you first connect. For a connection that linked before the picker existed, email [success@cfo.ai](mailto:success@cfo.ai).
+
+## The first sync is taking hours
+
+HR and payroll systems, and sources that sync through Fivetran, run their own first sync of your account before cfo.ai can load anything. While cfo.ai waits, the connection reads **Syncing**, and the line says how long it has waited, what the provider last reported, and when the wait ends. Xero can also wait for its request allowance to reset. You do not need to do anything.
+
+If the provider still has not finished 20 hours after cfo.ai began waiting, the connection reads **First sync not ready**. The next nightly sync starts a new wait, or select **Retry** to start one now.
+
+A payments system with a long history, such as Stripe, can spend a day or more in its first sync. Ask Ari whether the load is still running before you treat it as a failure.
+
+## Partly synced
+
+The connection reads **Partly synced** when the last sync finished without some tables, such as **Stripe’s last sync couldn’t refresh balance transactions. Everything else is up to date, and cfo.ai will try again on the next sync.** The data that arrived is usable, and the next sync retries the missing tables. You do not need to do anything.
+
+## Paused until next sync
+
+A connection reads **Paused until next sync** when the source's daily request limit ran out. Progress is saved, and the next scheduled sync picks it up. You do not need to do anything; signing in again would not change the limit.
+
+## Sync stopped
+
+A connection reads **Sync stopped**, with **Contact cfo.ai support if it isn’t fixed soon.**, when cfo.ai's data warehouse refused the data. Only cfo.ai can fix it. If it lasts, email [success@cfo.ai](mailto:success@cfo.ai).
+
+## No queries yet
+
+The connection reads **No queries yet** when its data synced but no saved query brings it into your Model. Select **Set up queries with Ari**. A new chat opens with a request for Ari to review what synced, propose the queries worth saving, and set them up; read it, then send it. If you cannot edit the connection, the line reads **Data synced. Someone with access can set up queries with Ari.**
+
+## No data found
+
+The connection reads **No data found** when the sync finished but found no rows. Select **Investigate with Ari**, and Ari checks what synced and whether a query filters everything out.
+
+For QuickBooks Online, a company with no posted transactions since January 1 of last year loads empty reports. Ask Ari for a full-history import from an earlier year; see [Refresh data](/guides/refresh-data#re-import-past-months).
+
+## An uploaded file did not load
+
+The file's row reads **The file couldn’t load**, followed by what was wrong. Fix the file, open its page, and select **Update file**. See [Upload a CSV as a data source](/guides/upload-a-csv#if-the-file-does-not-load).
+
+## When cfo.ai repairs a source for you
+
+When the nightly sync of a source you connected from the connection manager fails right after a successful one, Ari starts a background repair, acting with your permissions. It checks the connection and fixes what it can, such as a saved query that a change in the source's layout broke. If the repair worked, you hear nothing. If it needs your decision, could not finish, or changed something you should know, a chat titled **[Connection name] stopped updating** appears in your chat list. Answer Ari there.
+
+## If no action appears
+
+No action appears while a sync is running, when only cfo.ai support can fix the failure, when cfo.ai has turned the source off, or when you cannot manage connections. A broken connection keeps its plan slot until you remove it. To start over, open the connection's page and select **Remove connection**; the data it already loaded stays in your Model.
+
+## Related
+
+- [Connection statuses and actions](/reference/connection-statuses)
+- [Refresh data or change when it refreshes](/guides/refresh-data)
+- [How connected data reaches your Model](/concepts/connected-data#when-a-source-stops-updating)

@@ -1,0 +1,56 @@
+---
+title: "Plans, AI usage, and connection slots"
+description: "What a cfo.ai plan pays for and when you are charged: the free trial, why a plan is priced per workspace, what uses AI usage and what does not, what happens when usage runs out, which connections take a slot, and what stops when a workspace has no plan."
+---
+
+A cfo.ai plan buys a workspace two things: a monthly amount of AI usage, which pays for Ari's work, and a number of connection slots, which limit how many data sources you can sync. Plans do not limit the number of Pages, Scenarios, or people. That is why adding a teammate does not raise the bill, and why Ari can stop partway through an answer when usage runs out.
+
+## A plan belongs to the workspace
+
+A plan is priced for the workspace, not for each person in it. Inviting another administrator does not change what you pay, and everyone in the workspace shares the same AI usage and connection slots.
+
+Each workspace has its own plan and its own bill. A second workspace, such as one for another company, needs its own plan, and each workspace can have one free trial. See [Create a second workspace or switch workspaces](/guides/manage-workspaces).
+
+## When you are charged
+
+A workspace's first plan starts with a 14-day free trial. You add a card to start it, and nothing is charged until the trial ends. Then the paid plan starts on its own and charges that card.
+
+If you cancel during the trial, nothing is charged, and you keep the workspace until the trial's end date. A canceled paid plan also stays active until the end of the term you paid for. Every price, date, and billing message is in [Plans and billing](/reference/plans-and-billing#free-trial). To cancel, see [Cancel your subscription or delete your data](/guides/cancel-or-delete).
+
+## AI usage pays for Ari's work
+
+Every time Ari reads, thinks, and writes, it uses AI usage. That includes:
+
+- Your chats with Ari, in cfo.ai or in Slack.
+- Background work Ari starts from a chat, such as building several Pages at once.
+- Every run of a scheduled Trigger.
+- Images Ari creates when you ask for one. A higher-quality image costs more.
+
+Some AI work is not charged to you. That includes work cfo.ai starts on its own, such as Ari's first look at a newly connected source and the saved queries cfo.ai writes after a sync. It also includes work cfo.ai repeats after a failure on its side. A sync itself uses no AI usage. Work you ask Ari to do with the synced data, such as building Pages from it, uses AI usage like any other request.
+
+Your plan includes an amount of AI usage each billing cycle, and the **Usage** section of Settings shows the share used so far. It resets when the cycle renews. Unused included usage does not carry over.
+
+## When included usage runs out
+
+After the included usage is gone, Ari draws on usage you bought. You can buy it once, have cfo.ai buy it automatically when your balance runs low (auto-reload), and cap how much extra usage can cost in a month (a spend limit). Usage you bought does not reset each month.
+
+When no usage is left, or the spend limit is reached, Ari stops at its next step and says why in the chat. Nothing is lost: your Pages, your data, and the changes Ari already saved stay, and connected data keeps syncing. Once you add usage or raise the limit, send a new message and Ari picks up where it left off. With auto-reload on, Ari pauses for a moment while the purchase goes through and then continues. See [Buy AI usage, set a spend limit, or turn on auto-reload](/guides/manage-ai-usage).
+
+During a free trial, the trial includes its own amount of AI usage. When it is used up, you can buy extra usage or start your paid plan early, which resets your included usage; see [Start a trial or choose a plan](/guides/choose-a-plan).
+
+## Connection slots limit what you can sync
+
+A plan allows a number of standard connections and a number of premium connections. Plans differ in how many connections you can hold, not in what a connection does. Each source that syncs data into your Model takes a slot, while CSV uploads and the MCP servers and APIs that Ari calls live take none. Which systems are premium, and exactly how slots count, such as for Google Sheets or a second company, are listed in the [integrations directory](/reference/integrations#standard-and-premium-integrations).
+
+When every slot is used, a new connection is refused until you remove one or move to a plan with more. You also cannot move to a plan with fewer slots than you use until you disconnect enough. For the messages you see, see [Connection statuses and actions](/reference/connection-statuses#messages-when-a-new-connection-is-refused).
+
+## What stops when a workspace has no plan
+
+A workspace with no plan, such as after a canceled plan ends, locks: its administrators see the plan chooser, and nobody can work in it until someone chooses a plan. Its connected sources stop refreshing. The data already in the workspace stays. A payment that fails at renewal does not stop syncing; cfo.ai retries the charge, and access stops only if the payment still fails. See [Plans and billing](/reference/plans-and-billing).
+
+## Related
+
+- [Plans and billing](/reference/plans-and-billing)
+- [Start a trial or choose a plan](/guides/choose-a-plan)
+- [Buy AI usage, set a spend limit, or turn on auto-reload](/guides/manage-ai-usage)
+- [How connected data reaches your Model](/concepts/connected-data)

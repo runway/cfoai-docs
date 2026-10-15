@@ -1,0 +1,249 @@
+---
+title: "Formula syntax"
+description: "The syntax of a cfo.ai formula: how to name a Variable, filter by a Dimension item, read last month or a fixed period, and write dates, operators, and conditions, plus how cfo.ai formulas differ from Excel."
+---
+
+A cfo.ai formula calculates a Variable's values from Variables, numbers, and functions, such as `Price * Quantity` or `Revenue[-1] * 1.1`. This page lists each part of the formula language and what it means. For the functions, see [Formula functions](/reference/functions). For the steps to write one, see [Write a formula](/guides/write-a-formula). To learn how cfo.ai picks which formula fills a cell, read [How formulas work](/concepts/formulas).
+
+## Names of Variables and Dimensions
+
+| You write | It means |
+| --- | --- |
+| `Revenue` | The Variable or Dimension named Revenue, read for the cell being calculated |
+| `` `Cost of Goods Sold` `` | A name in backticks. Use backticks when a name has spaces, punctuation, or a word the formula language uses, such as `and` |
+| `Revenue#a3f` | One of two Variables that share a name. Use the shortest code after `#` that the editor or Ari offers |
+| `this.Revenue` or `Revenue[]` | The same as `Revenue` |
+
+Names match exactly, including capital letters: `` `Deferred revenue` `` does not find a Variable named Deferred Revenue. A formula stores the Variable itself, not its name, so renaming a Variable updates every formula that uses it.
+
+## Numbers, text, and empty values
+
+| You write | It means |
+| --- | --- |
+| `1000`, `1000.5`, `.5` | A number. A leading `0` is optional |
+| `50%` | 0.5. A `%` right after a number makes it a percentage |
+| `-500` | A negative number |
+| `"West"` or `'West'` | Text. Either quote style works. Inside text, `\"`, `\'`, and `\\` stand for a quote, an apostrophe, and a backslash, and `\n` and `\t` for a new line and a tab |
+| `null` | The empty value |
+
+A cell that no formula or value covers has a default. A number reads 0, so sums keep working. A date or text Variable reads empty, so `` `End Date` = null `` is true for a person with no end date.
+
+Arithmetic treats an empty value as 0: `null + 1` is 1. Dividing by an empty value is a division by zero. A minus sign in front, and `abs`, keep an empty value empty. A comparison with an empty value, other than `= null`, is itself empty, so `if` takes its third argument.
+
+## Operators
+
+| Group | Operators | Example |
+| --- | --- | --- |
+| Arithmetic | `+` add, `-` subtract, `*` multiply, `/` divide, `%` remainder, `^` power | `Price * Quantity` |
+| Comparison | `=` equal, `<>` not equal, `<`, `<=`, `>`, `>=` | `Revenue >= 100000` |
+| Logical | `and`, `or`, `not` | `Revenue > 0 and Margin > 0.2` |
+| Membership | `in`, `not in`, with a set `{...}` or a range `a:b` | `if(Tier in 1:3, 1, 0)` |
+
+`%` between two numbers is the remainder, so `17 % 5` is 2. `%` right after a number is a percentage.
+
+### Order of operations
+
+From first to last, cfo.ai applies operators in this order:
+
+1. Parentheses and function calls
+2. A minus sign in front of a value
+3. `^`
+4. `%` as a percentage
+5. `*`, `/`, and `%` as a remainder
+6. `+` and `-`
+7. Comparisons: `<`, `<=`, `>`, `>=`, `=`, `<>`
+8. `in` and `not in`
+9. `not`
+10. `and`
+11. `or`
+
+`^` works from right to left, unlike in Excel: `2 ^ 3 ^ 2` is 2 to the power of 9, which is 512. Use parentheses when the order matters.
+
+When `and` or `or` already has its answer, an error on the other side does not matter: `false and` an error is false, and `true or` an error is true.
+
+## Lookups and filters
+
+A lookup in brackets after a name changes which items the reference reads. Every Dimension you do not name still follows the cell being calculated.
+
+| You write | It reads |
+| --- | --- |
+| `Revenue[Department = "Sales"]` | Sales, for the cell's other Dimensions |
+| `Revenue[Region = "West", Department = "Sales"]` | West and Sales together |
+| `Revenue[Department in {"Sales", "Marketing"}]` | Both departments |
+| `Revenue[Department not in {"Engineering"}]` | Every department except Engineering |
+| `Revenue[Department in any]` | Every department |
+| `Revenue[Date.Month < "2026-07"]` | Months before July 2026. `<>`, `<`, `<=`, `>`, and `>=` also work in a lookup |
+| `Revenue[Department in any] where Revenue > 10000` | Every department whose revenue is over 10,000 |
+| `` `List Price`$[Plan = this.Plan] `` | The list price for the plan of the cell being calculated |
+
+When a lookup reads several items, wrap it in a function that says how to combine them, such as `sum`, `average`, or `count`: `average(Revenue[Department in any])`. See [Aggregation functions](/reference/functions#aggregation-functions).
+
+Inside `where`, a plain name refers to the item being tested, and `this.` to the cell being calculated: `sum(Revenue[Department in any] where Revenue > this.Revenue)` adds the departments with more revenue than this one.
+
+A lookup or offset attaches to a Variable's name, not to a calculation. `(Revenue - Cost)[-1]` is an error; write `Revenue[-1] - Cost[-1]`.
+
+### Lookups through a Dimension mapping
+
+When a mapping assigns each item of one Dimension to an item of another, such as accounts to reporting lines, a dot follows the mapping: `Account.Bucket` is the line the cell's account belongs to. A lookup on the mapped Dimension gathers every item the mapping puts there: `sum(Amount[Bucket = "COGS"])` adds every account in COGS. See [Dimension mappings and shared Dimensions](/concepts/dimension-mappings).
+
+## Fixed references
+
+A `$` right after a name makes a fixed reference. It reads only the items you name and does not follow the cell being calculated.
+
+| You write | It reads |
+| --- | --- |
+| `` `Tax Rate`$ `` | The same value in every cell |
+| `Revenue$[Department = "Sales"]` | Sales, with no other Dimension from the cell |
+| `Revenue$[-1]` | A fixed reference with a period offset |
+
+In the formula editor, a fixed reference shows a pin in place of its icon. **F4** or the pin button fixes or releases the reference at the cursor, and the saved text is the same as typing the `$`. A column of an imported table cannot be fixed.
+
+## Period offsets
+
+A number in brackets reads a nearby period, at the cell's own grain.
+
+| You write | It reads |
+| --- | --- |
+| `Revenue[-1]` | The previous period: the previous month on a monthly row, the previous quarter on a quarterly row |
+| `Revenue[1]` | The next period |
+| `Revenue[-12]` | Twelve periods back: the same month last year on a monthly row |
+| `Revenue[Department = "Sales"][-1]` | Sales in the previous period |
+| `Revenue[Date.Month = [-1]]` | The previous month, written as a Date filter |
+| `Revenue[Department = "Sales"]Date.Quarter[-1]` | Sales in the previous quarter, with the grain written out |
+
+A period offset is how a running balance reads its own previous value: `` `Cash Balance`[-1] + `Net Cash Flow` ``. Without the offset, the formula reads itself and the cell shows `#CIRC!`.
+
+## Dates
+
+### Date grains
+
+`Date` with a grain names the period a formula works in. Write the grain with a capital letter.
+
+| You write | The period |
+| --- | --- |
+| `Date.Day` | A day |
+| `Date.Week` | A week |
+| `Date.Month` | A month |
+| `Date.Quarter` | A calendar quarter |
+| `Date.Half` | A half-year |
+| `Date.Year` | A year |
+
+### Fixed periods and date text
+
+| You write | It reads |
+| --- | --- |
+| `Revenue[Date.Month = "2026-01"]` | January 2026 |
+| `Revenue[Date.Quarter = "2026-Q1"]` | The first quarter of 2026 |
+| `Revenue[Date.Year = "2026"]` | 2026 |
+
+Date text names the start of a period. These forms work: `2026`, `2026-01`, `2026-01-31`, `2026-Q1`, `2026-H2`, `July 2026`, `Jul 1, 2026`, `1 July 2026`, `7/1/2026`, and `2026-07-01T13:30:12Z`. In `7/1/2026` the month comes first, unless the first number is over 12, as in `13/7/2026`. These do not work: `Q1 2026`, `Sept 2026`, `July` with no year, and two-digit years such as `7/1/26`.
+
+`Revenue["2026"]` is not a filter for 2026. Write `Revenue[Date.Year = "2026"]`.
+
+### Date ranges
+
+A range includes both ends. A range written from the later date to the earlier one matches nothing.
+
+| You write | It reads |
+| --- | --- |
+| `sum(Revenue[Date.Month in "2026-01":"2026-12"])` | Every month of 2026 |
+| `sum(Revenue[Date.Month in [-12]:[-1]])` | The 12 months before the cell's month |
+| `sum(Revenue[Date.Month in "2026-01":[-1]])` | January 2026 through the month before the cell's month |
+| `sum(Revenue[Date.Month in startofyear([0]):[0]])` | Year to date |
+| `sum(Revenue[Date.Month in startofquarter([0]):[0]])` | Quarter to date |
+
+### Date filter presets
+
+When you add a date filter to a reference in the formula editor, the presets write a range for you. What a preset covers depends on whether you are editing an Actuals formula.
+
+| Preset | In an Actuals formula | In any other formula, such as a Forecast formula |
+| --- | --- | --- |
+| **Last 3 months of actuals** | The cell's month and the two before it. When the reference reads the formula's own Variable, the three months before the cell's month. | The three months that end with the **Last close** month, the same months for every cell |
+| **Last 6 months of actuals**, **Last 12 months of actuals** | As above, for 6 or 12 months | As above, for 6 or 12 months |
+| **Year to date** | `startofyear([0]):[0]`: January through the cell's month | The same |
+| **Quarter to date** | `startofquarter([0]):[0]`: the quarter's first month through the cell's month | The same |
+| **Custom range** | Dates you pick, fixed or relative to the cell's period | The same |
+
+On a reference by quarter, half-year, or year, the presets offer the last 2, 3, or 4 of those periods instead, such as **Last 4 quarters of actuals**.
+
+For example, a Forecast formula that averages Revenue with the **Last 3 months of actuals** filter reads a run rate: every Forecast month uses the average of the last three closed months.
+
+### Dates against imported timestamps
+
+An imported Dimension can hold timestamps, such as one item per sync at `2026-07-01 00:00:00+00`. Where you write a date decides what it matches:
+
+- In a lookup, `date(2026, 7, 1)` or a date Variable selects the item at midnight of that day, as long as every item of the Dimension comes from the source.
+- In a formula's condition, a date never equals a timestamp item, so `[synced_month = date(2026, 7, 1)]` reaches no cell.
+- Date text such as `"2026-07-01"` reaches the item at that moment in both places.
+- `` synced_month.Month = startofmonth(`Snapshot Month`$) `` compares two dates, so it matches every item in that month.
+
+## Conditions: where a saved formula applies
+
+Every saved formula has a condition that says which cells it fills. You usually set it by choosing where to open the editor, or by telling Ari, rather than typing it. The formula editor's title shows the condition as pills.
+
+| Condition | The formula fills | In the editor's title |
+| --- | --- | --- |
+| `[]` | Every cell of the Variable | **Any Segment** |
+| `[Department in any]` | Every department's cells, including finer breakdowns under them | **All Departments** |
+| `[Department = "Sales"]` | Sales cells, including finer breakdowns under Sales | **Sales** |
+| `[Date.Month in any]` | Every month of the Variable | **All Months** |
+| `[Department = "Sales", Date.Month in any]` | Sales in every month | **Sales**, **All Months** |
+| `$[Department = "Sales"]` | Only cells broken down by exactly Department, at Sales | **Sales** |
+| `$[]` | Only the cell with no Dimensions | No table opens this condition |
+
+Ari's formula cards in the chat show the same condition a little differently. A Dimension that applies to every item shows its name, such as **Department**. A **+ any** pill marks a condition that names a Dimension and also applies to finer breakdowns, which is every such condition without a leading `$`. `[]` reads **Any Segment** and `$[]` reads **Empty Segment**.
+
+A `$` in front of a condition limits it to exactly the Dimensions it names. A `$` after a name in a formula makes a fixed reference. They are different things.
+
+When several formulas could fill a cell, the more specific one wins; see [How formulas work](/concepts/formulas).
+
+## Comments
+
+```text
+Revenue * 1.1 // 10% uplift for the new price
+/* A note that spans
+   more than one line */
+```
+
+`//` starts a comment that runs to the end of the line. `/* */` wraps a comment of any length.
+
+## A leading equals sign
+
+You can start a formula with `=`, as in a spreadsheet. cfo.ai removes it when it saves, so `=Revenue * 1.1` saves as `Revenue * 1.1`. In a cell of a text Variable, start a formula with `=`; without it, cfo.ai saves the words as text.
+
+Inside a formula, `=` compares two values. Docs and Ari sometimes write a relationship with `=` to say which Variable a formula belongs to:
+
+```text
+`Ending Customers` = `Beginning Customers` + `New Customers` - `Churned Customers`
+`Subscription Revenue` = Customers * `Average Subscription Price`
+```
+
+Enter only the part after `=` as the formula of the Variable before it. Typed as one formula, the whole line would be a comparison.
+
+## Preferred spellings
+
+Older formulas may use other spellings of some operators. They still work, but write the preferred ones in new formulas.
+
+| Preferred | Older spelling that still works |
+| --- | --- |
+| `^` | `**` |
+| `=` | `==` |
+| `<>` | `!=` |
+
+Older function names, such as `avg` for `average`, are listed in [Formula functions](/reference/functions#older-spellings).
+
+## How cfo.ai formulas differ from Excel and other spreadsheets
+
+- A formula names Variables, not cells. There are no addresses such as `B7`; use a period offset such as `Revenue[-1]` for the period before.
+- `and`, `or`, and `not` are operators, not functions. `AND(a, b)` shows the message **'and' joins conditions: (condition) and (condition). It cannot be called as a function.**
+- `if` needs all three arguments.
+- `^` works from right to left.
+- There is no `&` operator and no text function. Keep text as the values of a text Variable or as the items of a Dimension.
+- Some spreadsheet functions have no cfo.ai equivalent. See [Excel functions that are not available](/reference/functions#excel-functions-that-are-not-available).
+
+## Related
+
+- [Formula functions](/reference/functions)
+- [Formula errors and warnings](/reference/formula-errors)
+- [Write a formula](/guides/write-a-formula)
+- [How formulas work](/concepts/formulas)

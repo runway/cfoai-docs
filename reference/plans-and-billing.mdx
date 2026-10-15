@@ -1,0 +1,316 @@
+---
+title: "Plans and billing"
+description: "cfo.ai's Starter, Growth, and Enterprise plans and every billing rule and message: when the free trial charges your card, monthly and annual billing, changing or canceling a plan, invoices and receipts, Settings → Billing and Usage, banners, locked workspaces, and AI usage notices."
+---
+
+cfo.ai has three plans: Starter, Growth, and Enterprise. A plan is bought for a workspace, not per person, and its price is shown in the app. Billing lives in two Settings sections, **Billing** and **Usage**, which every member can open because every member is an administrator. A workspace billed outside the app shows neither. Ari can read your plan, usage, balance, spend limit, and connection slots, but it cannot change billing; it tells you which Settings section to use. For how plans work, see [Plans, AI usage, and connection slots](/concepts/plans-and-usage).
+
+## Plans
+
+The plan cards show each plan's current price. Starter and Growth come in monthly and annual versions, and include no premium integrations. For which integrations are standard and which are premium, see the [integrations directory](/reference/integrations#standard-and-premium-integrations). The cfo.ai MCP server works in any workspace that has started its trial or a plan, whichever plan it is; see [Connect Claude, ChatGPT, Codex, or another AI tool](/guides/connect-an-ai-client).
+
+### Starter
+
+The card reads **Build and run the finance model.** It lists:
+
+- Standard AI usage that resets monthly
+- Up to 5 standard integrations
+- Up to 500K synced rows per month
+- The MCP server and Slack app
+- Proactive alerts and Triggers
+- Unlimited Models and Scenarios
+- 1 dedicated workspace
+
+### Growth
+
+The card reads **Scale the workflows that are already running in Starter.** It lists:
+
+- Everything in Starter
+- A multiple of Starter's AI usage, shown on the card
+- Up to 8 standard integrations
+- Up to 2M synced rows per month
+
+### Enterprise
+
+The card reads **Connect a complex stack and add hands-on finance support.** It lists:
+
+- A custom price and AI credits
+- Premium integrations, including NetSuite and data warehouses
+- Multiple workspaces
+- SSO / SAML and priority support
+- A dedicated Forward Deployed Finance Partner and a shared Slack channel
+
+Enterprise is not chosen from its card: **Talk to sales** opens a scheduler to book a call. If the scheduler cannot open, a notice reads **Couldn’t open scheduling**.
+
+## Monthly and annual billing
+
+| Rule | Detail |
+| --- | --- |
+| The switch | **Monthly** and **Annual** above the plan cards, shown when annual plans are offered. **Annual** names its saving as **Annual — save** followed by a percentage, or **Annual — save up to** a percentage when plans save different amounts. |
+| Which side it opens on | **Annual** when you choose your first plan. In **Settings → Billing**, the cadence of the plan you have. |
+| Annual prices | Shown per month, with **billed annually** and the yearly amount. An annual plan is charged for the year at the start of each term. |
+| Changing cadence | Moving between monthly and annual on the same plan is scheduled for your next renewal. Moving to a higher plan and changing cadence in one step is not offered. |
+
+## Free trial
+
+A free trial lasts 14 days and needs a card to start. When it ends, the paid plan starts and charges the card on file, unless you cancel before the end date.
+
+| Rule | Detail |
+| --- | --- |
+| Length | 14 days |
+| How many | One per workspace. A workspace that had a trial, including a canceled one, pays from the first day of its next plan. |
+| Card | Required to start. Nothing is charged when the trial starts. |
+| When it ends | The paid plan starts on its own and charges the card on file. |
+| Canceling | Cancel any time before the end and nothing is charged; the trial still runs to its end date. |
+| Changing plans | A plan change during a trial applies right away at no charge, and the trial keeps its end date. |
+| AI usage | The trial includes its own AI usage. Once it is used up, **Start paid plan** lets you end the trial early, pay, and reset your included usage. Before then, the plan cannot be started early. |
+
+| Message | Where |
+| --- | --- |
+| **Try cfo.ai free for 14 days** / **\$0 today. Cancel anytime before it ends and you won’t be charged, and you still get all 14 days free.** | Plan page, first plan |
+| **Choose a plan to continue** / **Your free trial has already been used. Paid plans charge immediately.** | Plan page, when the workspace had a trial |
+| **We ask for a card to confirm you’re a real person and keep** [plan] **active after the trial. Cancel in Settings before** [date] **and you won’t be charged. You still get all 14 days free.** | **Add a payment method**, starting a trial |
+| **This plan has no free trial. Starting it charges your card immediately.** | **Add a payment method**, plan with no trial |
+| **By starting a plan, you agree to the Standard Terms and Conditions and acknowledge the Privacy Policy.** | Plan page; see [Privacy, security, and legal documents](/reference/privacy-and-legal) |
+
+## Plan chooser
+
+**Change** next to your plan in **Settings → Billing** opens the plan chooser, headed **Choose your plan**, or **Change your trial** during a trial. With no plan, the button reads **Choose a plan**.
+
+| Button on a plan card | Meaning |
+| --- | --- |
+| **Start free trial** | Starts a 14-day trial of the plan. |
+| **Subscribe to** [plan] / **Choose** [plan] | Starts the plan and charges it today. |
+| **Switch to** [plan] | Changes your plan. A confirmation shows the cost first. |
+| **Your current plan** / **Your current trial** | The plan you have, marked **Current plan** or **Current trial**. |
+| **Keep** [plan] | Calls off a scheduled change or a cancellation. |
+| **Keep and switch to** [plan] | Calls off a cancellation and switches plan. |
+| **Starts** [date] / **Change scheduled** | The plan you are switching to at renewal. |
+| **Contact support to change plan** | Your plan is a custom plan that cannot be changed here. |
+| **Talk to sales** | Enterprise. |
+
+A card you cannot choose is grayed out, and pointing at its button says why:
+
+| Reason | Text |
+| --- | --- |
+| More integrations connected than the plan allows | [plan] **includes** [number] **standard integrations; you have** [number] **connected. Disconnect integrations to switch.** For a class the plan lacks: [plan] **doesn't include premium integrations; you have** [number] **connected.** |
+| A higher plan on the other cadence, from annual | **Your annual plan runs until** [date]**. Switch to** [plan] **on annual billing to upgrade now, or move to monthly billing when your plan renews.** |
+| A higher plan on the other cadence, from monthly | **Switch to** [plan] **on monthly billing first. You can move to annual billing when your plan renews on** [date]**.** |
+| Not offered for this workspace | [plan] **isn't available for this workspace — contact support.** |
+
+### Confirm plan change
+
+The dialog **Confirm plan change** states the cost before anything is charged:
+
+| Change | Dialog text | Button |
+| --- | --- | --- |
+| First paid plan | **Your** [plan] **plan starts today, billed at** [amount]**.** **Your plan will renew for** [amount] **on** [date]**.** | **Subscribe to** [plan] |
+| Higher plan | **Your plan will switch to** [plan] **immediately. You will be billed** [amount] **today to upgrade from** [plan]**, covering the rest of your current plan term.** | **Switch to** [plan] |
+| Higher plan at the same price | **Your plan will switch to** [plan] **immediately at no extra charge.** | **Switch to** [plan] |
+| Lower plan, or the same plan on the other cadence | **Your current** [plan] **plan will remain active until** [date]**, when it will change to** [plan] **at** [price]**.** | **Schedule change** |
+| Any change during a trial | **Your trial switches to** [plan] **today, at no charge.** **Your trial still ends on** [date]**, when** [price] **begins.** | **Switch to** [plan] |
+| Starting a trial | **Your 14-day** [plan] **trial starts today and runs until** [date]**.** | **Start free trial** |
+| Starting a trial, with no card on file | **Starting your free trial needs a payment method on file — it’s what your plan charges when the trial ends.** | **Add a payment method** |
+| A plan that charges, with no card on file | [Switching to or Subscribing to] [plan] **costs** [amount] **today. Add a payment method to continue.** | **Add a payment method** |
+| Switching while a cancellation is booked | **Your plan will no longer end on** [date] **— confirming keeps it and switches you to** [plan]**.** | **Keep and switch to** [plan] |
+
+If the cost cannot be worked out, the dialog reads **We couldn’t work out what switching to** [plan] **will cost right now. Please close this and try again.** and cannot be confirmed.
+
+| Notice | Meaning |
+| --- | --- |
+| **You're on** [plan] | The new plan applies now. |
+| **Your** [plan] **trial has started** | The trial started. |
+| **Plan change scheduled for** [date] | The change applies at renewal. |
+| **Plan change canceled** / **You’ll stay on** [plan]**.** | A scheduled change was called off. |
+| **Couldn’t change plan** / **Couldn’t cancel the plan change** | The change failed; the reason follows. |
+
+## Settings → Billing
+
+### Current plan
+
+The plan's name, with a **Trial** or **Canceled** badge when one applies, and one line about what happens next:
+
+| Line | Meaning |
+| --- | --- |
+| **You will be charged** [amount] **when your trial ends on** [date]**.** | In a trial. The paid plan starts on that date. |
+| **Your plan renews on** [date] **for** [amount] | A paid plan renewing as usual. |
+| **Your** [plan] **plan is active until** [date]**, then changes to** [plan] **at** [price]**.** | A change is scheduled. **Keep** [plan] calls it off. |
+| **Your plan was canceled and won’t renew — it ends on** [date]**.** | Canceled. For a trial, it reads **Your trial was canceled**. **Keep** [plan] restores it. |
+| **Renewal processing. Your invoice is being prepared, and your credits will refresh after payment.** | A renewal is being charged. |
+| **Choose a plan to start using Ari.** | No plan. |
+| **Only workspace admins can change the plan.** | You cannot change billing. |
+
+Buttons: **Change** or **Choose a plan**; **Keep** [plan] while a change or cancellation is booked; and **Start paid plan** in a trial whose included AI usage is used up.
+
+### Payment methods
+
+| Control | What it does |
+| --- | --- |
+| **Add** | Opens **Add a payment method**. Enter a card and select **Save payment method**. |
+| A card row | The card, its last four digits, and its expiry, with **Default**, **Expired**, or **Payment failed** when they apply. |
+| **Set as default** | On a card's menu. Renewals and automatic top-ups charge the default card. |
+| **Replace…** | Opens **Replace payment method** to swap in a new card. |
+| **Remove** | Removes the card. Unavailable for the only card on a plan, with the reason. |
+
+| Message | Meaning |
+| --- | --- |
+| **No payment methods saved yet. Add one to enable automatic top-ups and plan charges.** | No card is saved. |
+| **A workspace on a plan needs a payment method on file — it is what your renewal charges. Add another payment method to replace this one.** | You cannot remove the last card while you have a plan. With auto-reload on, the message reads **…it is what your renewal and your automatic top-ups charge…** |
+| **You need a payment method on file while automatic top-ups are on. Turn off auto-reload first, or add another payment method.** | You cannot remove the last card while auto-reload is on. |
+| **Payment method added** / **Payment method replaced** | Saved. |
+| **Couldn’t save the payment method** / **Couldn’t replace the payment method** / **Couldn’t remove the payment method** / **Couldn’t set the default payment method** | The change failed; the reason follows. |
+
+The card dialogs do not close when you click outside them, so a card you typed is not lost. Close them with **Cancel** or **Esc**.
+
+### Billing history
+
+Each row shows the date, **Credit top-up** for a usage purchase, the amount, and a status: **Paid**, **Failed**, **Processing**, **Due**, **Pending**, **Refunded**, or **Void**. **View** opens the invoice or receipt in a new tab. **View all** opens the full list when there are more rows. With no rows, it reads **Nothing here yet. Invoices and credit purchases will appear here.**
+
+### Cancel subscription
+
+Shown while you have a plan that is not already ending. It reads **Your plan stays active until the end of your current plan term on** [date]**.**, or in a trial **Your trial stays active until** [date]**. You won’t be charged when it ends.**, with **Cancel**.
+
+| Part of the dialog | Text |
+| --- | --- |
+| Title | **Cancel subscription** |
+| Paid plan | **Your** [plan] **plan will remain active until** [date]**, the end of your current plan term. You won’t be charged again. You can undo this cancellation any time before** [date]**.** |
+| Trial | **Your** [plan] **trial will remain active until** [date]**. You won’t be charged when it ends. You can undo this cancellation any time before** [date]**.** |
+| **Why are you cancelling?** | **Select a reason**: **I don’t want to be charged yet** (trials only), **I didn’t see enough value**, **It was too difficult to get started**, **Pricing wasn’t right for me**, or **Other — please tell us why**, which needs a short explanation. |
+| Waiting for a reason | **Cancel subscription is available once a reason is selected.** or **Cancel subscription is available once the explanation is filled in.** |
+| Buttons | **Keep subscription** closes the dialog; **Cancel subscription** confirms. |
+
+| Notice | Meaning |
+| --- | --- |
+| **Your** [plan] **plan was canceled** / **You keep access until** [date]**.** | Canceled. |
+| **Cancellation reversed** / [plan] **renews as normal.** | **Keep** [plan] undid the cancellation. |
+| **Couldn’t cancel the plan** / **Couldn’t reverse the cancellation** | The change failed; the reason follows. |
+
+## Settings → Usage
+
+| Row | What it shows |
+| --- | --- |
+| **Included plan usage** | The share of this cycle's included AI usage used, such as **42% used**, and **Resets** [date]. **No included usage granted yet** before the first grant. |
+| Trial usage used up | **You’ve used all the AI usage included with your trial. Start your paid plan early to reset your monthly AI usage. Your payment method will be charged now.** with **Start paid plan**. |
+| **Free AI credits** | Only when the workspace still has one-time free credits: [amount] **remaining** and **One-time credits. They do not replenish.** |
+| **Extra usage** | **Credits used after your included usage runs out**: the monthly spend limit, the purchased balance, and auto-reload, below. |
+| **Integrations** | **Standard** [used]/[limit] and **Premium** [used]/[limit], or **Premium not included**, then each counted connection with its class and status. Google Sheets connections show together with their count. **Updated** [time] and a refresh button sit beside the heading. |
+
+### Extra usage
+
+| Control | What it does |
+| --- | --- |
+| **Monthly spend limit** | The most extra usage may cost per billing cycle, or **No limit**, with the amount spent this cycle. **Adjust limit** opens a box: type an amount and select **Save** (**Takes effect immediately.**), or select **Remove limit**. |
+| **Purchased usage balance** | [amount] **available**, with **Auto-reload on**, **off**, or **paused**. When paused: **A payment failed. Update the payment method or buy credits to resume automatic reloads.** |
+| **Buy credits** | Opens the purchase page, below. |
+| **Auto-reload** | A switch. When on: **When the balance falls below** [amount] **, add** [amount], and **Save**. Needs a default card in **Settings → Billing**. |
+
+| Message | Meaning |
+| --- | --- |
+| **Spend limit updated** / **Spend limit removed** | Saved. |
+| **Auto-reload updated** / **Auto-reload turned off** | Saved. |
+| **Each reload adds this amount to your balance.** | The reload amount is fine. |
+| **The minimum reload amount is \$5.** / **The maximum reload amount is \$10,000.** / **The reload amount must be greater than \$0.** | The reload amount is out of range. |
+| **Add a payment method in Billing before turning this on.** | No default card. |
+| **Charges use** [card]**.** | The card auto-reload charges. |
+| **Only workspace admins can manage usage.** | You cannot change usage settings. |
+| **Couldn’t update the spend limit** / **Couldn’t update auto-reload** | The change failed; the reason follows. |
+
+### Buy credits
+
+The page reads **Choose an amount. Credits never expire.**
+
+| Control | What it does |
+| --- | --- |
+| **\$100**, **\$250**, **\$1,000**, **Other** | The amount. **Other** takes a whole-dollar amount. |
+| **Payment method** | Your saved cards, with **Default** marked, and **Use a new payment method**, which adds a card here with **Use this payment method**. |
+| **Pay** [amount] **now** | Charges the card. **By clicking Pay now, you allow cfo.ai to charge the selected payment method for the amount selected.** |
+
+| Message | Meaning |
+| --- | --- |
+| **The minimum top-up is \$5.** / **The maximum top-up is \$10,000.** | The amount is out of range. |
+| **That’s more than your remaining monthly limit of** [amount]**.** | The purchase would pass your spend limit. The link opens the limit. |
+| **Add a payment method to buy credits.** | No card is saved. |
+| **Added** [amount] **of usage** | Bought. With **(clamped by your spend limit)**, less than you asked for was bought, to stay within the limit. |
+| **Couldn’t complete the purchase** | The purchase failed; the reason follows. |
+
+## Payment messages
+
+| Message | Meaning |
+| --- | --- |
+| **The bank that issued this card declined it and gave no reason. Nothing was charged.** | The card was declined. Try another card or ask your bank. |
+| [the card provider's reason] **Nothing was charged.** | The card provider gave a reason. |
+| **Please check your payment details and try again.** | Another payment problem. |
+| **The payment form is still loading. Please try again.** / **Could not load the payment form. Close it and try again.** | The card form did not load. |
+| **Payment received** | A payment went through. Your plan and usage update a moment later. |
+| **Payment failed** | Starting the paid plan early failed; the reason follows. |
+
+## Banners above the workspace
+
+| Banner | When | Action |
+| --- | --- | --- |
+| **Your trial ends on** [date]**. Add a payment method to keep access. Without one, this workspace locks when the trial ends.** | A trial with no usable card. Teammates who cannot change billing see **Ask a workspace admin to add a payment method so you keep access.** | **Add payment method** |
+| **Your trial ends on** [date]**. Your paid subscription starts that day, and we’ll charge the card on file.** | Three days or less before a trial with a card ends. | Dismiss with the ✕. |
+| **You’ve used all the AI usage included with your trial. Start your paid plan now to refresh it, or keep using purchased usage until the trial ends on** [date]**.** | A trial's included usage is used up. Dismissing hides it for the rest of the trial; **Start paid plan** stays in Settings. | **Start paid plan** |
+| **We couldn’t process your last payment. We’ll keep retrying, or you can update your card and pay now.** | A renewal payment failed and is being retried. Teammates who cannot change billing see **We couldn’t process this workspace’s last payment. Ask a workspace admin to update billing.** | **Update payment method**, **Pay now** |
+| **Need a hand with cfo.ai?** | During a trial, until the first invoice is paid. Dismissing hides it until the next day. | **Talk to our Forward Deployed team** |
+
+## When the workspace locks
+
+A workspace locks when it has no plan, such as after a canceled plan ends, or when a renewal payment still fails after retries. While it is locked, nobody can open its Pages or chat with Ari, and its connected sources stop refreshing.
+
+| Screen | Who sees it | What it says |
+| --- | --- | --- |
+| Plan chooser | Administrators, when there is no plan | The plan cards, with a heading such as **Choose a plan to continue**. Choosing a plan unlocks the workspace. |
+| **We couldn’t charge your card** | Administrators, when payment failed | **Your subscription payment didn’t go through. Update your card and we’ll try again straight away. Access comes back as soon as it succeeds.**, your payment methods, and **Pay now**. |
+| **This workspace is unavailable** | Members who cannot change billing | **A workspace admin needs to update billing before anyone can get back in.** |
+
+Each screen offers **Log out** and the help@cfo.ai address. When the workspace has connected sources, the screen says when they last refreshed: **Your connected source was last refreshed on** [date]**. Your connected source is not being refreshed while this workspace has no plan.**, or **while this workspace’s billing is locked.** With several sources, it gives the newest refresh of any of them.
+
+## Notices in the chat
+
+When billing stops Ari, its reply ends with a message that starts **I had to stop here**; every one is listed in [Chat controls and messages](/reference/chat#billing-stops-out-of-ai-usage-or-over-a-limit). The **AI usage recovery** panel above the message box then names the problem and offers a fix:
+
+| Panel message | Button |
+| --- | --- |
+| **This workspace is out of AI usage.** | **Usage settings**, and a purchase button such as **Add \$100** |
+| **This workspace reached its monthly AI spend limit.** | **Adjust limit** |
+| **Automatic top-up failed — the card on file was declined.** | **Update payment method** |
+| **More AI usage is still being added to this workspace.** | **Usage settings** |
+| **This workspace's plan isn't active.** | **Review billing** |
+| **The workspace's subscription payment is failing.** | **Update payment method** |
+| **This workspace hasn't started its trial yet.** | **Open billing** |
+| **This workspace reached a limit of its current plan.** | **Open billing** |
+| **This wouldn't fit the limits of the plan this workspace is switching to.** | **Open billing** |
+| **This workspace's billing status couldn't be checked.** | **Open billing** |
+
+After a purchase, the panel reads **Usage added. This workspace will update in a moment.** and may suggest **Turn on auto-reload to avoid running out of AI usage next time.** with **Enable auto-reload**. In a trial whose usage is used up, it offers **Start plan & save**. Teammates who cannot buy usage see **Ask a workspace admin to add usage.**
+
+While auto-reload buys usage, the chat shows **Adding AI usage to your workspace…**, then **AI usage added to your workspace.**
+
+Before usage runs out, one notice at a time can appear above the message box:
+
+| Notice | When | Button |
+| --- | --- | --- |
+| [percent] **of your workspace's monthly AI usage remains.** | Included usage falls to 50%, 25%, 10%, and 5% left. Below 1%, it reads **Less than 1%**. | **View usage** |
+| **Your workspace reached its monthly top-up limit.** | Purchases this cycle reached the spend limit. | **Adjust limit** |
+| **AI usage is low, but the monthly top-up limit keeps auto-reload from adding more.** | Auto-reload is blocked by the spend limit. | **Adjust limit** |
+
+Dismissing a notice hides it until the next threshold or the next billing cycle.
+
+## Rules and limits
+
+- Every member is an administrator, so every member can change the plan, buy usage, and change the spend limit and auto-reload. Adding people does not change the price.
+- Canceling keeps the plan until the end of the term you paid for, and a trial until its end date. Under the Standard Terms and Conditions, fees already paid are not refunded.
+- You can undo a cancellation any time before it takes effect.
+- A subscription cannot be paused.
+- A workspace cannot be deleted from Settings. See [Cancel your subscription or delete your data](/guides/cancel-or-delete).
+- Adding an integration needs a started trial or an active plan with a free slot. For the messages, see [Connection statuses and actions](/reference/connection-statuses).
+- For the trial length and purchase limits with every other limit, see [Limits and file types](/reference/limits).
+
+## Related
+
+- [Start a trial or choose a plan](/guides/choose-a-plan)
+- [Buy AI usage, set a spend limit, or turn on auto-reload](/guides/manage-ai-usage)
+- [Cancel your subscription or delete your data](/guides/cancel-or-delete)
+- [Plans, AI usage, and connection slots](/concepts/plans-and-usage)
+- [Settings](/reference/settings)

@@ -1,0 +1,87 @@
+---
+title: "Ask Ari about a number"
+description: "Point Ari at a cell, row, table, or Page and ask where a number comes from, which assumptions drive it, why it changed, or what depends on it, with or without changing your Model."
+---
+
+Use this when a number surprises you, or someone asks "where did this come from?". Point Ari at the exact cell instead of describing it, and ask. Ari reads the cell's Variable, its Dimension items, its period, and its formula, so you do not have to name them.
+
+<Steps>
+  <Step title="Point Ari at the number">
+    Right-click the cell and choose **Mention cell in chat**, or select the cell and press **⌘ L** (**Ctrl L** on Windows and Linux). The cell appears as a chip in the message box of the chat you have open.
+
+    To ask about more than one cell, mention a larger part:
+
+    - A row or column: right-click its label and choose **Mention in chat**.
+    - A whole table: open its block menu and choose **Mention table in chat**.
+    - A Page: select **Mention page in chat** on the Page's row in the sidebar.
+  </Step>
+  <Step title="Ask your question">
+    Type your question after the chip and send it. For example:
+
+    > Where does this number come from? Show me the formula and the source.
+
+    > Why did this move so much from March to April?
+
+    > Which source rows make up this number?
+  </Step>
+  <Step title="Check the answer on the Page">
+    Ari answers in the chat and can open the rows behind a total on your screen, the same as clicking a row's arrow. Opening rows this way does not change the saved table.
+  </Step>
+</Steps>
+
+## Investigate an unexpected change
+
+When a cost or a revenue line jumps, ask Ari to break the change down and look for the cause:
+
+> Why did software spend increase last month? Break the change down by vendor and tell me whether any new contract explains it.
+
+Ari compares the periods, splits the change by the category you named, and points to the source records behind the largest pieces.
+
+## Ask where an assumption came from
+
+An assumption is an input Ari or someone else chose, such as a 35% benefits load or a 5% monthly churn rate. Mention the cell that holds it, or name it, and ask:
+
+> Where did the 35% fringe rate come from?
+
+> List every assumption behind this forecast, where each one came from, and which ones you estimated.
+
+Ari says whether each one came from your connected data, a file, something you told it, a public source, or its own estimate. It labels its estimates as assumptions, so you know which ones to replace with your own numbers. To replace one, tell Ari the right value and why.
+
+## See what a number feeds into
+
+cfo.ai has no "trace dependents" button. To see what uses a number, ask Ari:
+
+> What depends on Headcount? List the formulas, tables, and Pages that read it.
+
+Ari lists the formulas, tables, and blocks that read the Variable. Do this before you change or delete an input you are not sure about.
+
+## Get an answer without changing the Model
+
+Say so in your message:
+
+> Explain why gross margin fell in March. Don't change anything.
+
+Ari reads what the Model already holds and answers. If the answer needs a calculation the Model does not have yet, Ari tells you what it would have to add. To let it add the calculation without touching your plan, ask it to work in a Scenario:
+
+> Create a Scenario called Analysis, add gross margin by product there, and show me the result without changing Main.
+
+To have Ari check a formula before it saves anything, ask it to draft the formula and validate it. A check confirms the formula is valid but does not calculate values, because only saved formulas calculate. See [Have Ari write, change, or explain formulas](/guides/change-formulas-with-ari).
+
+## Check a number yourself
+
+- To see a cell's formula, right-click the cell and choose **Edit formula**. Closing the editor without saving changes nothing.
+- To see the rows that make up a total, see [Break a number down](/guides/break-down-a-number).
+- To see a quick total, select several cells: a bar shows their **Count**, **Sum**, and **Avg**.
+- To see who changed a number and when, open version history. See [Undo a change or restore an earlier version](/guides/undo-changes).
+
+## If the answer looks wrong
+
+If a number does not match your books, ask Ari to compare one closed month with the source and list every account that differs. Common causes include a connection that is still loading and a **Last close** earlier than you expect. See [Actuals, Forecast, and Last close](/concepts/actuals-and-forecast) and [Check that your numbers match your books](/guides/check-imported-data).
+
+## Related
+
+- [Find a Page, number, or file](/guides/find-things)
+- [How Ari works with you](/concepts/working-with-ari)
+- [How formulas work](/concepts/formulas)
+- [Get better answers from Ari](/guides/get-better-answers)
+- [Chat controls and messages](/reference/chat#start-a-chat)

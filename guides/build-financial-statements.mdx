@@ -1,0 +1,69 @@
+---
+title: "Get your P&L, balance sheet, and cash flow statement"
+sidebarTitle: "Financial statements"
+description: "Have Ari build an income statement (P&L), balance sheet, and cash flow statement that tie together from your connected accounting data, check the reporting lines and the balance check, and update the statements after each month-end close."
+---
+
+Ask Ari for your three financial statements when you want a P&L, a balance sheet, and a cash flow statement that update each time your books close. Ari builds them as Table blocks on a Page, reading your accounting data, so each Actuals month traces to the accounts behind it and each Forecast month to its formulas and assumptions.
+
+You need a connected accounting system, such as QuickBooks Online, Xero, NetSuite, or Rillet; see [Connect QuickBooks, Xero, NetSuite, or Rillet](/guides/connect-accounting). Without one, Ari can build a draft from numbers you give it, with every figure it had to assume labeled as an assumption.
+
+<Steps>
+  <Step title="Ask for the statements">
+    > Build a P&L, balance sheet, and cash flow statement that tie together.
+
+    Add anything that matters for your company, such as the months to show, the company to report on if you connected more than one, or the reporting lines you use:
+
+    > Build our three statements by month for this year and next. Group operating expenses into Sales and Marketing, Research and Development, and General and Administrative.
+
+    To review the plan first, add: "Show me the reporting lines and which accounts go in each before you build."
+  </Step>
+  <Step title="Check the reporting lines">
+    Ari puts each account from your ledger into a reporting line, such as Revenue, Cost of Revenue, or an operating expense group. Ari keeps this account mapping in its own table, with accounts on rows, so you can change where an account belongs in one place; see [Map one Dimension's items to another](/guides/map-dimensions).
+
+    Open a line on the P&L to see the accounts beneath it. Accounts Ari could not place stay visible as their own group, so the statement still adds up to your ledger.
+  </Step>
+  <Step title="Check that the balance sheet balances">
+    Ask:
+
+    > Check that assets equal liabilities plus equity in every month, and name any difference.
+
+    Ari adds a balance check to the balance sheet. When the check is not zero, Ari names the amount, the month, and the accounts behind the difference.
+  </Step>
+  <Step title="Check that cash ties out">
+    The cash flow statement shows operating, investing, and financing cash flow and the net change in cash. That change must match the change in cash on the balance sheet. Ask:
+
+    > Check that the cash flow statement ties to the balance sheet cash in every month.
+  </Step>
+</Steps>
+
+The P&L's subtotals, such as Gross Profit and Operating Profit, are formulas on the reporting lines, so they recalculate when an account moves or new data arrives. To read or change one, see [Write a formula](/guides/write-a-formula).
+
+## Update the statements after month-end close
+
+1. When your books close, wait for the next refresh, or ask Ari to sync now; see [Refresh data or change when it refreshes](/guides/refresh-data).
+2. Move **Last close** to the end of the closed month, so that month shows as Actuals instead of Forecast. Ask Ari, "September is closed. Move Last close to September 30," or see [Set Last close and date defaults](/guides/set-dates-and-last-close).
+3. Ask Ari to run the balance and cash checks again.
+
+Each month on the statements is either all Actuals or all Forecast, on the two sides of Last close. To read the current month before it closes, use the built-in **Flash report** Skill; see [Turn on a built-in Skill](/guides/turn-on-built-in-skills). For the whole month-end routine, see [Update your plan after you close the month](/guides/close-the-month).
+
+## Build the same statements every time
+
+To have Ari build the statements the same way every time, save a Skill with your layout and checks. The ready-to-save sample Skill **three-statement-buildout** builds an Income Statement, a Cash Flow Statement, and a Balance Sheet on one Page from your existing Variables and mappings. Copy it from [Sample Skills](/reference/sample-skills), and see [Save a workflow as a Skill](/guides/save-a-skill).
+
+Before your board or investors see the statements, run the built-in **Model audit** Skill. It checks that the statements hold together and tie to your ledger and bank; see [Turn on a built-in Skill](/guides/turn-on-built-in-skills).
+
+## If something looks wrong
+
+- If an account is in the wrong line, change its reporting line in the mapping table, or tell Ari: "Move account 6540 Software to Research and Development."
+- If the balance check is not zero, ask Ari to explain the difference. Ari names the amount, the month, and the accounts behind it.
+- If a number does not match your accounting system, ask Ari to trace it: "Show me the accounts and transactions behind October revenue." See [Ask Ari about a number](/guides/ask-about-a-number).
+
+To share the statements, see [Share a Page outside your workspace](/guides/share-a-page) or [Export a Page to Excel](/guides/download-a-spreadsheet).
+
+## Related
+
+- [Build a budget and compare it with actuals](/guides/budget-vs-actuals)
+- [Actuals, Forecast, and Last close](/concepts/actuals-and-forecast)
+- [Dimension mappings and shared Dimensions](/concepts/dimension-mappings)
+- [How connected data reaches your Model](/concepts/connected-data)

@@ -1,0 +1,175 @@
+---
+title: "Read and explain formulas"
+description: "For agents: read a Variable's or Dimension's saved formulas with inspect_table_blocks, connect them to the values a table shows, read at another grain or an earlier point, explain one cell's inputs, and handle a table that cannot calculate."
+searchable: false
+---
+
+Use `inspect_table_blocks` with its `variable` block when a user asks how a Variable is calculated, or why it behaves differently by segment or period. Use its `read` block to see which formula actually produced the numbers in a table.
+
+## Read a Variable's saved formulas
+
+```json
+{
+  "scenario": "Main",
+  "variable": { "target": "Gross Margin" }
+}
+```
+
+- The result lists every formula definition saved on the Variable, each with its condition and its Actuals or Forecast range.
+- Add `conditions` only when the question needs one exact saved scope, such as `["[Department = \"Sales\"]"]`. Leave it out when the user wants every formula.
+- A Variable with many formulas returns them in pages. To read the next page, copy the response's `next.after` into `after` in the same `variable` block, with the same `target`.
+- Leave out `target` to list every readable Variable in the Scenario, as the same entries, in saved order. `next` continues the listing.
+
+Use the `dimension` block the same way to read a Dimension's saved definitions, and the `items` block to list its items.
+
+### What reads each object
+
+Each `variable` or `dimension` entry carries `dependents`, what reads the object at that snapshot:
+
+| Field | Meaning |
+| --- | --- |
+| `total` | Every dependent |
+| `formulas`, `blocks`, `settings`, `manual_items` | Counts by kind |
+| `inaccessible` | Dependents this user cannot read |
+| `items` | Descriptions of up to 20 dependents |
+
+A `delete` without `force` is refused exactly when `total` is above 0, and deletes at once when it is 0.
+
+### How each definition's scope is described
+
+Each definition states its `time_grain` when it is dated, and its reach in words. [How results describe a formula's reach](/agents/formula-scope#how-results-describe-a-formulas-reach) explains the wording.
+
+### Imported Variables and Dimensions
+
+For a Variable or Dimension read from an imported source, the entry's `source_default` also states `order`, such as `last by MONTH` or `last by source order`. It says how a column that shows one row per record picks that row when a record has several: the latest row by the source's date column when the source has one, or the last row in source order when it has none. A column that sums its rows has no `order`.
+
+### Read several at once
+
+`target` on the `variable` and `dimension` blocks also takes a list of references:
+
+```json
+{
+  "scenario": "Main",
+  "variable": { "target": ["Amount#a4d", "Probability#058"] }
+}
+```
+
+The response holds one entry per reference, in the order given, all read at one snapshot. Each imported source's query is stated once under `sources`, and an entry's `source.query_ref` names its key there. A reference that matches nothing is refused in its own entry while the others still answer.
+
+## Connect formulas to the values a table shows
+
+Use the `read` block on the table that actually shows the result:
+
+```json
+{
+  "scenario": "Main",
+  "read": {
+    "target": "Operating Plan",
+    "rows": ["Gross Margin"],
+    "formula_origins": "all"
+  }
+}
+```
+
+- Each row and column already carries its formula per range under `formulas`, and a cell that breaks its row's formula says so in the cell.
+- `formula_origins: "all"` adds, for every row, each formula the engine ranked for it, best first, with the ones that computed a cell marked selected. `"zeros"` adds them only to rows that show a zero, blank, or error. The default is `"off"`, except that a selection of exactly one cell defaults to `"all"`.
+- A row computed by a formula saved outside this table's rows and columns names that formula's owner and condition in `inherited_from`.
+- `include_edit_rules: true` adds each returned row's and column's editing rules: the actions a write accepts there, its own Actuals and Forecast defaults with ownership and writability, and its formula roles.
+
+Use the same Scenario for the formula read and the table read. The saved formula explains the intended calculation; the table confirms which formula applies to the selected period, segment, and Scenario.
+
+### Select rows and columns
+
+- Select rows and columns by the references a read prints, by unambiguous names or full paths, or by coordinate predicates. A name in backticks selects the same row as the bare name.
+- An item row is selected by its path from its Variable or axis Dimension, one bracket per breakdown level, as a readback prints it: `Revenue[West]`, `Revenue[West][Enterprise]`, `Employee ID[E-207]`.
+- A nested item written without the items above it, such as `Revenue[Enterprise]` for `Revenue[West][Enterprise]`, selects the one saved coordinate that ends in it. When several do, the read is refused as ambiguous and names each.
+- The item that holds rows with no value displays as **None** and is spelled `empty:None` in a selector, such as `Region[empty:None]`.
+- A text item is printed as written, even when it contains a colon. The read's `member` field, a receipt's `members` list, and a row reference such as `Cash Step[Expected in: open invoice #483]#c00` all spell it `Expected in: open invoice #483`, and a formula matches that exact spelling.
+- A read that names rows or columns holds every item of the layout, zero and empty items included, whatever the saved display hides. A read that names none shows what the app displays.
+
+### Which targets take a write
+
+Each rendered target's formulas say whether `formula` and `clear_formula` can be written there. A target whose cells a direct write would refuse, such as cells read from an integration or cells whose origin the read cannot establish, does not offer those actions. Its formula carries a `readOnlyReason` instead, so a write is not attempted where it would fail.
+
+The spelling differs by level: a rendered target's formula spells it `readOnlyReason`, while a row or column that cannot be written spells its own reason `read_only_reason` beside `writable: false`. Dated Actuals and Forecast defaults keep their own writability.
+
+### Facts the read computed
+
+A `read` result also carries `figures`, facts about the returned numbers that no row or column states. Each key appears only when its fact holds:
+
+| Key | Present when |
+| --- | --- |
+| `signs_as_stored: "mixed"` | The outermost returned rows differ in sign, because every value keeps the sign it is stored with. |
+| `currency` | The currency-formatted figures share no single saved code: `no saved code`, `some figures have no saved code`, or `saved codes differ`. |
+| `window` | The table saves no valid date range and returns no period columns or rows, so every value aggregates over a defaulted range. It holds `start`, `end`, `granularity`, and `defaulted: true`. |
+| `source_grain` | A source query holds several rows for one item of the Dimension that keys the rows. Each entry names the `query`, `dimension`, `rows`, `members`, and `max_rows_per_member`. |
+
+Receipts from `edit_table_blocks` carry no `figures`.
+
+## Read a table that compares Scenarios or periods
+
+- A read of a table that compares Scenarios returns every compared Scenario's value when `columns` names periods: one column reference per Scenario and period, each labeled with its Scenario.
+- When a compared Scenario returns no values, the result carries a `comparison_scenario_missing` issue, and coverage reads `incomplete`.
+- `comparison` defaults to `"saved"`, the table's saved comparison. `"none"` reads the selected Scenario's own values and formulas, and `formula_origins: "all"` annotates such a read with the formula each cell used.
+- A `comparison` object compares the selected Scenario with each Scenario it names in this one read, whatever the table saves, and leaves the saved table unchanged: `{"scenarios": ["Budget"], "measures": ["VALUE", "DELTA"]}`. `measures` takes up to three of `VALUE`, `DELTA` (the compared Scenario minus the selected one), and `PERCENT` (`DELTA` over the selected Scenario's value); it defaults to `VALUE`.
+- A column or row that is not the selected Scenario's own reads `writable: false`, with a `read_only_reason` that says what it shows: another Scenario's values, saved in that Scenario; another period's values, saved in that period; or the difference between two Scenarios or two periods, which is calculated and has no saved value.
+- The comparison qualifier alone makes nothing read-only. The selected Scenario's own column or row is as writable under either reference the read prints, with or without the qualifier, as the same cells are in a read with no comparison.
+
+## List tables and their layouts
+
+- `list` without `limit` returns every table in the Scenario, and pages with `next.after` when the result ends early.
+- With `target`, it returns each named table's full saved layout. A table whose layout is larger than one result comes back as the summary entry a list without `target` returns, with a `layout_problem` note that states why; a `read` of that table pages through its rows and columns.
+
+## Read a monthly table by quarter or year
+
+`read` takes `grain: "QUARTER"` or `"YEAR"` to read a table's Date periods at a coarser grain than the saved table's own, without changing the table:
+
+```json
+{
+  "scenario": "Main",
+  "read": { "target": "Operating Plan", "rows": ["Bookings"], "grain": "YEAR" }
+}
+```
+
+- Each period holds what the Model calculates at that grain: the Variable's time rollup (its base periods summed, closed, or averaged), or a timeless formula recomputed there.
+- A Variable with neither reads `#NO_ROLLUP` in those cells, explained as no formula computing it at that grain, with its values in the table's own periods. The app shows such a cell as 0, and a Scenario or time comparison read at a coarser grain also shows 0 there.
+- The period columns come back `writable: false`, because their references spell the date each period starts and would name the saved month column in a write. A read at the grain the table already shows is the table's plain read, with writable period columns.
+- A finer grain, or a table with no Date axis, comes back as an `invalid` result rather than a tool error, with its reason: `grain QUARTER is finer than this table's YEAR periods; a read's grain shows the periods at their own grain or rolled up to a coarser one`, or `grain QUARTER sets the grain of a table's Date periods, and this table has no Date axis`.
+- Continuation cursors carry the grain.
+
+A period selector can be spelled the way people write it, and it is read under each column's own grain: `2027` or `FY2027` selects a year column, `Q3 2026` or `2026 Q3` a quarter column, and `Mar 2026` a month column. `2027` never selects January of a monthly axis. The stored spelling, such as `2027-01`, still works everywhere.
+
+## When the table cannot calculate
+
+When the calculation service cannot compute a table, `read` still returns the saved configuration: the rows, their default formulas and formatting, and the saved column axes. No cells come back.
+
+- Each axis entry is marked `axis: true` and carries its Dimension, grain, and writability, such as `{"ref": "Date#10b", "axis": true, "dimension": "Date", "grain": "MONTH", "writable": true}`, so an empty `columns` list never stands in for a Date axis that exists.
+- The result carries a `calculation_unavailable` issue. When the calculation service explained the failure, the message includes `The calculation service reported <code>: <message>`, such as `table_config/external_column_not_mapped: external column Class L1 is not mapped in table …`, so you can name the cause instead of guessing.
+- The issue also carries `category` (`capacity`, `model`, `request`, `dependency`, or `internal`), a `transient` flag, and a sentence stating what the category means. Retry only a transient failure: a calculation that did not finish within its time limit is `capacity` and not transient, while a service that did not answer is `dependency` and transient.
+- A failure the calculation service did not classify carries the error as raised, clipped to 500 characters, with no `category` or `transient` flag, so assume nothing about a retry.
+
+A table whose saved comparison names a Scenario that no longer exists still reads. The comparison columns are dropped for the calculation only, and a `table_problem` issue names the former Scenario. An `edit_scenarios` `delete` lists the readable tables that compared against the deleted Scenario as `tables_comparing_against_it`.
+
+## Explain one cell's inputs
+
+For a single cell, select one row and one column and add `include_inputs: true`:
+
+- The result shows one level of the formula's inputs and where each value came from: lookup coordinates, aggregate units, the selected formula, and source dates. Read an input by its own reference to go deeper.
+- `sources` lists the imported tables whose fetched values fed the cell, or fed the cells that the cell's formula directly reads, one whole table per entry and never a record.
+- `sources_status` says how complete that list is: `available`, `truncated` when one of the engine's bounds cut the search, or `not_retained` when the calculation recorded no such table within that reach, which says nothing about whether imported data feeds the cell.
+- `include_inputs` needs `comparison: "none"`. On a time or Scenario comparison, the read answers with an invalid-input refusal that names the option, not a tool error.
+- The inputs come from a second calculation after the table's own. When it is still running at the read's answer deadline, the read answers with the calculated values and this note: "include_inputs: the calculated values on this page are complete. Its input rows are unavailable: the second calculation, which adds each row's formula inputs, was still running at the read's answer deadline, and the read answers within 119 seconds."
+
+Every `read` also reports `calculation.source`. When a value is in doubt, [Verify the calculated values](/agents/validate-and-verify#verify-the-calculated-values) says when to read again with `recalculate: true`.
+
+## Read the Model at an earlier point
+
+Use `as_of_point` when the user asks about the Model as it was at a previous saved change; leave it out for the current state. [Read the Model at an earlier point](/agents/mcp-tools#read-the-model-at-an-earlier-point) lists the point types.
+
+- `inspect_canvas_blocks` takes it too, and returns each block's `dataset_layouts` at that point.
+- `inspect_table_blocks` `items` reads the source run the Model used at that point.
+- `bounds` reads current source state and refuses `as_of_point` with `bounds reads current source state; as_of_point applies to items`.
+
+## Explain the business meaning
+
+Lead with what the formula does. Then explain its inputs, the Scenario, the Dimensions involved, and whether Actuals or Forecast changes the result. Include assumptions only when they matter to the user's question.

@@ -1,0 +1,135 @@
+---
+title: "Fix a formula that shows an error or a wrong number"
+sidebarTitle: "Fix formula errors"
+description: "Find and fix the cause when a formula cell shows an error code such as #CIRC!, #REF!, or #DIV/0!, reads 0 where you expect a value, totals too high, or works in one place but not another."
+---
+
+Use this guide when a formula cell shows an error code or a number you do not expect. Find the problem you see, then check its causes in order. Every code and message is listed in [Formula errors and warnings](/reference/formula-errors).
+
+The fastest first step is often to ask Ari. Right-click the cell and choose **Fix**: a new chat opens about that cell, and Ari traces the formula and its inputs. To find the cause yourself, read on.
+
+## A cell shows an error code
+
+Point at the cell. The message says what went wrong. When the error started in another cell, the lines that begin with **originating in** and **via** name the Variable where it started and each step in between. Fix the first one: the cells that read it recover on their own.
+
+To keep a calculation going while you fix its input, wrap the risky part in `iferror`: `` iferror(`Gross Profit` / Revenue, 0) ``.
+
+## The cell shows #CIRC!, a circular reference
+
+`#CIRC!` means the formula reads its own cell, directly or through other formulas, in the same period. cfo.ai cannot calculate a value that depends on itself. Check these causes:
+
+- A running balance reads itself. `` `Cash Balance` + `Net Cash Flow` `` asks for this month's balance to calculate this month's balance. Read the previous month instead: `` `Cash Balance`[-1] + `Net Cash Flow` ``.
+- Two Variables read each other in the same month. For example, Interest reads Cash Balance, and Cash Balance includes Interest. Break the loop by reading one of them from the previous month: `` `Cash Balance`[-1] * `Interest Rate` ``.
+- A total formula also runs on the rows beneath it. If you give Revenue's whole row the formula `sum(Revenue[Department in any])`, the formula also runs on each department's row, where it reads that department's own cell. Delete the row's formula: the rows above a breakdown add up the rows beneath them unless they have a formula of their own; see [Totals, aggregation, and time rollups](/concepts/totals-and-rollups). Or give the department rows their own formula: right-click the Revenue row and choose **Edit formula for Department**.
+
+When Ari saves a formula that reads its own Variable, its receipt warns which cells can show `#CIRC!`. To see how cfo.ai decides which formula runs on which row, read [How formulas work](/concepts/formulas).
+
+## The cell shows #REF!
+
+The formula names a Variable or Dimension that does not exist. Someone may have deleted it, or the name has a typo.
+
+1. Open the formula. A name that matches nothing is underlined in red with **Unknown variable or dimension name**.
+2. Check the spelling and capital letters. Names match exactly, and a name with spaces needs backticks.
+3. To swap in the right Variable, select the reference and select its name to search; see [Point a reference at something else](/guides/write-a-formula#point-a-reference-at-something-else).
+
+A renamed Variable does not cause `#REF!`: formulas follow the Variable, not its old name.
+
+## The cell shows #NAME?
+
+The formula calls a function cfo.ai does not have, often a spreadsheet function such as `VLOOKUP` or `SUMIF`. Use the cfo.ai form listed in [Excel functions that are not available](/reference/functions#excel-functions-that-are-not-available).
+
+## The cell shows #VALUE!
+
+Point at the cell to read which of these it is:
+
+- A function has the wrong number of arguments, such as **IF requires exactly 3 arguments**. `if` always needs a third argument: `if(Revenue > 0, Revenue, 0)`.
+- A value has the wrong type, such as a date function given a number. Check that each argument is the kind of value the function expects; see [Formula functions](/reference/functions).
+- The formula has a syntax mistake. Open it and read the red underline; see [Formula editor messages](/reference/formula-errors#formula-editor-messages).
+
+## The cell shows #DIV/0!
+
+The formula divides by zero or by an empty value, often a month before any revenue. Decide what the result should be when the divisor is zero, and say so in the formula:
+
+```text
+if(Revenue <> 0, `Gross Profit` / Revenue, 0)
+```
+
+## A number reads 0 where you expect a value
+
+cfo.ai shows 0 for a number cell that no formula or value covers. A formula reads that 0 when it looks for a value where none is saved. Check these causes:
+
+- The input has no months. A salary typed once per employee has no months, so a monthly formula that names it plainly reads 0. Read it through a fixed reference: `` `Annual Salary`$[Employee = this.Employee] / 12 ``. See [Read a per-item input that has no months](/guides/write-a-formula#read-a-per-item-input-that-has-no-months).
+- The input is imported and the month is in Forecast. An imported Variable has values only where its source has rows, usually through **Last close**, so a formula that reads it in a Forecast month reads 0. Give the imported Variable a Forecast formula; see [Use different formulas for Actuals and Forecast](/guides/actuals-and-forecast-formulas).
+- A filter names an item that is spelled differently. `Step = "Committed"` reaches nothing when the item is `Committed out`. Copy the item's exact spelling, or pick it from the filter's list.
+- The first Forecast month reads an empty last Actuals month. A formula with `[-1]` starts from the last closed month. Give that month a value, such as an opening balance.
+- A quarter or year shows 0 but its months have values. The Variable has no time rollup, so its months are not added into the longer period. Ask Ari to give the Variable a time rollup; see [Why a quarterly view shows zeros](/concepts/totals-and-rollups#why-a-quarterly-view-shows-zeros).
+
+## A cell does not follow its row's formula
+
+A cell, or a row under a breakdown, has a formula or value of its own, called an override; see [Override one cell](/guides/write-a-formula#override-one-cell). A more specific formula, such as one for a single department, can also replace the row's formula there.
+
+- To make the cell follow its row again, select it and press **Delete** or **Backspace**; see [Clear a value or a cell's own formula](/guides/enter-values#clear-a-value-or-a-cells-own-formula).
+- To see which formula fills the cell and where it comes from, open the cell: an inherited formula shows dimmed, with **Inherited from** when you point at it. Or ask Ari, "Which formula applies to this cell, and why?"
+- To see who added the override and when, open version history; see [Undo a change or restore an earlier version](/guides/undo-changes).
+
+## A formula you saved does not change the numbers
+
+The formula saved, but the cells you are looking at still show another value. Work through these checks in order:
+
+1. Check the formula range. A formula saved for Actuals does not fill Forecast months, and the reverse. Open the row's formula and check both sections.
+2. Check the grain. A formula for one range must cover the Model's base periods, usually months. In a monthly Model, a formula written on a table by year is saved at year grain and fills only the year cells; the month cells do not read it.
+3. Check for a more specific formula. A formula for one item or one cell replaces the row's formula there; see [A cell does not follow its row's formula](#a-cell-does-not-follow-its-rows-formula).
+4. Check the Scenario. A formula saves in the Scenario shown in the sidebar's Scenario picker. Check that you are viewing the Scenario you changed.
+
+## A total is higher than expected
+
+A lookup that reads several items, such as `Revenue[Department in any]`, a set, or a `where` test, may be adding up more values than you meant.
+
+- Wrap the lookup in the function that matches the question: `average`, `count`, `max`, `last`, or another; see [Aggregation functions](/reference/functions#aggregation-functions).
+- A filter on one Dimension keeps the cell's other Dimensions. A filter that names the Dimension a table breaks down by, such as `sum(Amount[Account in {"A", "B"}])` on rows by Account, repeats the same total on every account row.
+
+## The formula works for one item but not another
+
+- A more specific formula wins for that item. Open a cell of the item that looks wrong and check where its formula comes from.
+- The input has no value for that item. A formula that reads Commission Rate for each department reads 0 for a department with no rate.
+- The reference follows the cell when it should not, or the reverse. A fixed reference (`$`) reads the same value for every item. A plain reference reads each item's own value. See [Fix a reference so it reads one value everywhere](/guides/write-a-formula#fix-a-reference-so-it-reads-one-value-everywhere).
+
+## The formula works in Actuals but not in Forecast
+
+Actuals and Forecast can have different formulas, so the Forecast months may run a formula you did not write, or none. Open the row's formula and check the **Forecast** section, and check where **Last close** sits. See [Use different formulas for Actuals and Forecast](/guides/actuals-and-forecast-formulas).
+
+## A date filter matches nothing
+
+- The grain and the date text do not match. A monthly filter needs `Date.Month` and a month, such as `Revenue[Date.Month = "2026-01"]`. See [Dates](/reference/formula-syntax#dates) for the date text cfo.ai reads.
+- The Dimension holds timestamps. An imported Dimension can hold items such as `2026-07-01 00:00:00+00`. In a formula's condition, `date(2026, 7, 1)` never equals such an item. Use date text such as `"2026-07-01"`; see [Dates against imported timestamps](/reference/formula-syntax#dates-against-imported-timestamps).
+
+## A date or text cell reads empty
+
+A date or text Variable that nobody filled in reads empty, not 0. A comparison with an empty value is empty too, so `if` takes its third argument: `` `End Date` < date(2030, 1, 1) `` is not true for someone with no end date. Test for the empty value directly:
+
+```text
+if(`End Date` = null, 1, 0)
+```
+
+## A percentage adds up, or its total row is blank
+
+cfo.ai does not add up a Variable formatted as a percentage above a breakdown. The row above shows the lines' formula calculated on its own inputs, such as total profit over total revenue. It reads blank when no one formula fits the whole, for example when a line holds a typed-in rate.
+
+- If the row above is blank, give that row its own formula, or remove the typed-in rate.
+- If a ratio adds up its lines, write the ratio as the row's own formula, such as `` iferror(`Gross Profit` / Revenue, null) ``. It then calculates on its own inputs on every row. A quarter or year column beside the months combines them by its own setting, which the concept page linked below explains.
+
+See [Percentages and ratios are not added up](/concepts/totals-and-rollups#percentages-and-ratios-are-not-added-up).
+
+## The table shows a notice instead of numbers
+
+A notice such as **Calculation capacity was full when this calculation ran.** means the calculation service had a problem, not your formulas. Select **Retry**, or wait. A notice that names a setup problem needs a change to the table. Every notice is listed in [Table calculation notices](/reference/formula-errors#table-calculation-notices).
+
+## Ari refused or warned about a formula
+
+Ari's formula saves are checked before they save, and some save with a warning. Read what each one means in [Ari's save refusals](/reference/formula-errors#aris-save-refusals) and [Ari's save warnings](/reference/formula-errors#aris-save-warnings), and see [Review Ari's formula changes](/guides/review-ari-formula-changes).
+
+## Related
+
+- [Formula errors and warnings](/reference/formula-errors)
+- [Write a formula](/guides/write-a-formula)
+- [How formulas work](/concepts/formulas)

@@ -1,0 +1,176 @@
+---
+title: "Prompt library"
+description: "What you can ask Ari, with what you get back: example requests grouped by goal, from what to ask first to understanding a number, forecasts, Scenarios, month-end reviews, charts, sharing, and recurring work, plus a table for choosing the right chart."
+---
+
+These are requests you can type to Ari, grouped by what you want to get done, with what you get back from each. Replace the words in brackets with your own. Ari's wording and layout change from run to run, so the results describe what you get, not exact output. For how to frame a question, see [Get better answers from Ari](/guides/get-better-answers).
+
+## Get started
+
+| Prompt | What you get |
+| --- | --- |
+| "What can you build for me?" | A short list of what Ari can do with your workspace as it stands, and what to connect or describe first. |
+| "We sell [product] to [customers] for about [price]. We have [N] employees and about [\$X] in the bank. Build a 12-month model so I can see how long our cash lasts." | A first Model built from your description, with every number you did not give labeled as an assumption. |
+| "Connect QuickBooks Online so we can build a monthly profit and loss statement." | A card that opens the connection's sign-in for you to approve. Ari cannot sign in for you. |
+| "Rebuild this spreadsheet in cfo.ai." (with the workbook attached) | Your workbook's structure, names, and numbers rebuilt as Pages, Variables, and formulas, with a note on anything Ari could not carry over. |
+| "Does this tie to my workbook?" (with the workbook attached) | With the built-in **Model migration tie-out** Skill turned on, a tie-out Page that compares your Model with the workbook and explains every difference. |
+| "Walk me through this Page." | An explanation of what the Page you have open shows and how its numbers connect. |
+| "What should I build next?" | Suggestions based on what your Model has and lacks, such as headcount from payroll or pricing detail. |
+| "How do I connect payroll?" | The steps for your payroll system, from these docs, and an offer to start the connection. |
+| "How can you help me understand where our cash goes?" | A plan for what to build or connect to answer that, such as expenses by vendor and department. |
+| "Add a chart showing the last 12 months of revenue above this table." | A chart placed on the Page you have open. |
+
+## Understand a number
+
+| Prompt | What you get |
+| --- | --- |
+| "Where does this number come from? Show me the formula and the source." (with the cell added through **Mention cell in chat**) | The formula behind the cell and where its inputs came from: your data, a file, something you said, or an estimate. |
+| "Why did this move so much from March to April?" | The change broken down into what drove it. |
+| "Which source rows make up this number?" | The rows from your connected data behind the value. |
+| "Where did the [35% fringe rate] come from?" | The source of that assumption, or a note that Ari estimated it. |
+| "List every assumption behind this forecast and which ones you estimated." | Each assumption with its source, estimates marked. |
+| "What depends on [Headcount]? List the formulas, tables, and Pages that read it." | Everything in the Model that reads the Variable. |
+| "List every Variable and Dimension in the Model." | The full list, including ones no table shows. |
+| "Which formula applies to this cell?" | The formula that calculates the cell, and why that one applies there. |
+| "Why is this row blank?" | The reason the value does not calculate, such as a missing mapping or a formula that does not cover that period. |
+| "Explain why gross margin fell in March. Don't change anything." | An answer from what the Model already holds, with nothing changed. |
+
+See [Ask Ari about a number](/guides/ask-about-a-number).
+
+## Forecast and plan
+
+| Prompt | What you get |
+| --- | --- |
+| "Build a 12-month revenue forecast by customer segment. Use our history where we have it and label any assumptions." | The Variables, Dimensions, and formulas behind the forecast, each assumption named so you can change it. |
+| "Build out our forecast. Calculate revenue from [new customers, pricing, and churn] and costs from [headcount and our biggest vendors]." | A forecast driven by the inputs you named, placed where you can see and change them. |
+| "Build a headcount plan by department with loaded payroll cost." | Employees and departments, compensation, start dates, and planned hires over time. |
+| "Build a P&L, balance sheet, and cash flow statement that tie together." | A linked set of statements built from your Model and accounting data, with assumptions disclosed. |
+| "Forecast monthly cash for the next 18 months and show when cash falls below six months of operating expenses." | A cash forecast with the month the threshold is crossed. |
+| "Add average contract value to the model." | A new Variable for average contract value, with its formula, that the rest of the Model can use. |
+| "Break revenue out by region." | A Dimension applied to Revenue, so it calculates for each region and adds up to the total. |
+| "Write a formula for [gross margin] and check it, but don't save it yet." | A check of the formula's syntax and references, with nothing saved and no values calculated. |
+
+## Test a decision
+
+| Prompt | What you get |
+| --- | --- |
+| "Can we hire three engineers in September? Build a hiring Scenario and show the effect on payroll, cash, and cash runway." | A Scenario with the hires modeled and their effect on each number. |
+| "Create a Hiring Freeze Scenario, pause new hires through December, and compare payroll and ending cash with Main." | A Scenario and a side-by-side comparison with Main. |
+| "What's different between this Scenario and Main?" | A summary of what the Scenario changed. |
+| "Is this Scenario ready to merge into Main? Let me confirm before you merge." | What merging would change, and a **Merge** button you press yourself. |
+| "Review my Model without changing it. Which assumptions look weakest compared with our history?" | A review of weak or missing pieces, with nothing changed. |
+
+See [Test a decision in a Scenario](/guides/test-a-decision-in-a-scenario).
+
+## Review the month
+
+| Prompt | What you get |
+| --- | --- |
+| "Compare last month's Actuals with the Forecast and explain the three biggest differences." | The variances and what caused them. |
+| "Compare last month's operating expenses with our budget by department. Explain the five largest differences." | A budget-versus-actuals breakdown by department. |
+| "Why did software spend increase last month? Break the change down by vendor and tell me whether any new contract explains it." | The breakdown, the largest contributors, and the records behind them. |
+| "Update the assumptions behind those differences and show me each change." | The changed assumptions, listed. |
+| "Check my model before the board sees it." | A review of formulas, mappings, statements, and ties to your books. With the built-in **Model audit** Skill turned on, Ari also writes a short audit Page; see [Turn on a built-in Skill](/guides/turn-on-built-in-skills). |
+| "Where are we this month?" | With the built-in **Flash report** Skill turned on, a read of the current month before the books close, with actuals, commitments, and estimates kept apart. |
+
+## Choose the right visual
+
+Ari builds charts and other visuals as Canvas blocks on a Page. Name the shape you want: "show me revenue" leaves the shape to Ari, and "show me revenue by month as a line" does not.
+
+| When your question is | Ask Ari for |
+| --- | --- |
+| How has this moved over time? | A line chart |
+| How do these categories compare? | A bar chart |
+| How much accumulated, and when? | An area chart |
+| What is this total made of, month by month? | A stacked bar or stacked area chart |
+| Is our mix shifting, whatever the size? | A 100% stacked chart |
+| What was the split in one period? | A pie or donut chart |
+| Where do we lose people between stages? | A funnel chart |
+| What explains the change from A to B? | A waterfall chart |
+| How does a total compare with a rate? | A combo chart, with bars and a line |
+| How close are we to a target? | A gauge, or a scorecard with a change figure |
+| What are the few numbers I check every day? | A scorecard grid |
+| What if this assumption changed? | A chart with a control, such as a slider |
+| I need the actual numbers in rows and columns | A Table block, not a chart |
+
+## Build charts and visuals
+
+| Prompt | What you get |
+| --- | --- |
+| "Show me revenue by month as a line." | A line chart of Revenue across months, in the Scenario you are viewing. |
+| "Plot revenue and expenses on the same chart." | One chart with two series and a shared time axis. |
+| "Show revenue as bars with gross margin percent as a line." | A combo chart, revenue on one scale and margin on its own. |
+| "Show our revenue mix as stacked bars by customer segment." | Each segment as its own series, stacking to the total. |
+| "Same chart, but show each segment as a share of the total." | A 100% stacked chart, so the mix shows even while the total grows. |
+| "What was our revenue split by region last quarter?" | A pie or donut chart for that one period. |
+| "Build a waterfall explaining the change in revenue from Q1 to Q2." | The opening total, the changes that moved it in order, and the closing total. |
+| "Show our sales funnel from lead to closed won." | A funnel with each stage's volume, in order. |
+| "Give me a row of our five key numbers with change since last month." | A scorecard grid, each figure with its own change. |
+| "Put a slider on this so I can try different hiring dates." | A control wired to that assumption, with the result updating as you move it. |
+| "Build a board summary Page with our five key numbers, a cash runway gauge, and a slider for hiring dates." | A Page of Canvas blocks built from live Model data. |
+
+What shapes the result:
+
+- A pie or donut chart shows one period. For a mix over time, ask for stacked bars or a stacked area chart.
+- A waterfall bridges two totals with the changes between them. For the totals themselves, ask for bars.
+- A change figure is colored by what it means for the business, not by its sign, so a cost under plan reads as good news.
+- A visual reads your Model and never writes to it. Moving a slider previews a result without changing a saved assumption. To change the Model, ask Ari to update the assumption, or edit the value in a Table block.
+
+For ideas, select **Browse Canvas block library** in the message box. See [Build a dashboard or board report](/guides/build-a-dashboard).
+
+## Change a visual or its period
+
+| Prompt | What you get |
+| --- | --- |
+| "Make that quarterly instead of monthly." | The chart recalculated by quarter. You can ask for daily, weekly, monthly, quarterly, half-yearly, or yearly. |
+| "Only show the last 12 months." | The window narrowed and the values recalculated for it. |
+| "Drop the time axis and show the total by product." | A chart of categories with no date axis. |
+| "Start the axis at zero." | Fixed axis bounds. |
+| "Format the axis in thousands and label it." | Shorter axis labels and a title; the values themselves stay exact. |
+| "Show the value on each bar." | A label with each bar's value. |
+| "Turn that line chart into stacked bars." | The same data redrawn in the new shape. |
+| "Narrow that chart to enterprise customers only." | The same chart updated in place, not a second chart. |
+| "Change the title of this chart." | The title updated, with the data left alone. |
+| "Move the cash chart above the expense table." | The block moved on the Page. |
+| "I need the actual numbers behind this chart." | A Table block with the values in rows and columns. |
+| "Show this side by side for Main and the Downside Scenario." | A Table block with Scenario comparison columns. |
+
+See [Change a chart or Canvas block](/guides/change-a-visual).
+
+## Share and report
+
+| Prompt | What you get |
+| --- | --- |
+| "Prepare a board-reporting Page with revenue, gross margin, cash, headcount, and the largest changes since last quarter." | A reporting Page built from live Model data. |
+| "Create a view-only link to the Board summary Page." | A read-only link's address. See [Share a Page outside your workspace](/guides/share-a-page). |
+| "Export this Page to Excel." | A workbook of the Page as a download card in the chat. See [Download a Page as a spreadsheet](/guides/download-a-spreadsheet). |
+| "Invite [name@company.com] to the workspace." | An invitation to that person. See [Invite or remove teammates](/guides/invite-teammates). |
+| "Make this workspace look like [our website]." | A workspace brand with your colors, typeface, and logo. See [Brand your workspace](/guides/brand-your-workspace). |
+| "Build a Guide walking a new analyst through this Page." | A saved Guide whose steps point at specific blocks, rows, or cells. See [Walk someone through a Page with a Guide](/guides/create-a-guide). |
+
+## Automate recurring work
+
+| Prompt | What you get |
+| --- | --- |
+| "Every Monday at 8am [your time zone], summarize last week's cash in and out and flag any unusual expense. Send it to my Slack direct messages." | A Trigger on that schedule that sends you the result. See [Schedule a recurring report with a Trigger](/guides/schedule-a-trigger). |
+| "On the 5th of every month, compare last month's Actuals with the Forecast and explain the three biggest differences." | A monthly Trigger with that review. |
+| "List my Triggers." | Your saved Triggers with their names and schedules. |
+| "Save this as our monthly close review." | A Skill with when it applies and the steps to follow, which Ari uses next time. See [Save a workflow as a Skill](/guides/save-a-skill). |
+| "Here is what I still do by hand each month: [list]. Which of these can you do as a Skill or a Trigger? Set up the first one." | A recommendation and the first Skill or Trigger set up. |
+
+## Teach Ari
+
+| Prompt | What you get |
+| --- | --- |
+| "Remember that I prefer ending cash shown in thousands." | A fact saved in your own memory. |
+| "For the whole workspace, remember that our fiscal year starts in February." | A fact saved for everyone in the workspace. |
+| "What do you remember about me?" | The facts Ari saved for you. |
+| "Forget that I prefer quarters." | That fact removed. |
+
+See [Teach Ari your company's conventions](/guides/teach-ari).
+
+## Related
+
+- [Get better answers from Ari](/guides/get-better-answers)
+- [How Ari works with you](/concepts/working-with-ari)
+- [Chat controls and messages](/reference/chat)

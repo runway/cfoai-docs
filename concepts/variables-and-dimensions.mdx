@@ -1,0 +1,137 @@
+---
+title: "Assumptions and breakdowns: Variables and Dimensions"
+sidebarTitle: "Variables and Dimensions"
+description: "What a Variable (a line item or assumption) and a Dimension (a breakdown or category) are, how to choose between them, how segments and addresses name one number, and how spreadsheet, FP&A, and BI terms translate."
+---
+
+Every number in your Model answers two questions: what is being measured, and for which part of the business. A **Variable** answers the first. It is a line of the Model, such as Revenue, Headcount, or Price per seat, and it is what most people call a line item or an assumption. A **Dimension** answers the second. It is a list of categories, such as Department or Region, that breaks a Variable down. Most people call these breakdowns or categories.
+
+## A Variable is a line of your Model, such as Revenue or an assumption
+
+A Variable is a named set of values, with one value for each period and each part of the business it is broken down by. Revenue is one Variable, even though its value for the West in March differs from its value for the East in April.
+
+A Variable's values can come from three places:
+
+- A connected system, such as your accounting software.
+- Values you or Ari type in, such as a price or a starting cash balance.
+- A formula that calculates them from other Variables.
+
+The source can differ by period without changing what the Variable means. Revenue can read your books in closed months and come from a formula in later months, and it is still Revenue.
+
+Assumptions are Variables too. Price, churn rate, average salary, and conversion rate are inputs rather than results, but they are values you can change, compare, and use in formulas. When Ari estimates a value you did not give it, it labels that value as an assumption.
+
+Most Variables hold numbers. A Variable can also hold text, a date, or true or false, such as an employee's start date.
+
+A Variable is shared. The same Revenue Variable can appear on a P&L, a chart, and a board report, and when it changes, every place that shows it changes.
+
+## Where to find every Variable
+
+There is no screen that lists every Variable in your Model. Workspace search (**⌘ K**) finds a Variable or Dimension by name and opens the table that shows it. Ari can list every Variable and Dimension in your Model and tell you where each one is used.
+
+You create a Variable when you add a row with a new name to a table, when Ari builds part of your Model, or when a connection brings in a column. See [Build a Table block by hand](/guides/build-a-table) and [Find a Page, number, or file](/guides/find-things).
+
+## A Dimension is a breakdown, such as Department or Region
+
+A Dimension is a list of categories that breaks Variables down. Each entry in the list is a **Dimension item**, or item for short: Sales is an item of Department, and West is an item of Region. Common Dimensions are Department, Region, Product, Customer, Vendor, Account, Entity, and Date.
+
+One Dimension serves every Variable that uses it. Department splits Payroll, Headcount, and Expenses the same way, so when you add a new department, every Variable broken down by Department has a place for it.
+
+A Dimension can play two roles on a table. It can break a Variable down into one row or column per item. It can also show which item each row belongs to, such as each employee's department; that second role is a mapping, explained in [Dimension mappings and shared Dimensions](/concepts/dimension-mappings).
+
+## Is the timeline always in months?
+
+No. Months are the default, and most Models calculate monthly. Each Scenario's **Default date granularity** sets its base time grain: **Raw**, day, week, month, quarter, half-year, or year. New tables in that Scenario show that grain, and a formula Ari saves without a table uses it. A formula written through a table takes that table's grain, so one written on a table of years fills years, not months. Changing the setting leaves the tables and formulas you already have at their own grain. See [Set Last close and date defaults](/guides/set-dates-and-last-close).
+
+Date is a Dimension too. Its items are periods, and a period is one bucket of time at the base grain, such as March 2026 in a monthly Model. A table can show coarser periods than the base grain: quarters and years in a monthly Model come from each Variable's time rollup, explained in [Totals, aggregation, and time rollups](/concepts/totals-and-rollups). A table can also show finer periods, such as weeks in a monthly Model, but a formula written for months does not fill week columns; weeks need formulas written for weeks.
+
+## Variable or Dimension: how to choose
+
+Ask one question: is this the value I want to measure, or the way I want to organize that value? A value is a Variable. A way of organizing values is a Dimension.
+
+| Variables: values you measure | Dimensions: ways to organize them |
+| --- | --- |
+| Revenue, Cash balance, Headcount | Department, Legal entity, Region |
+| Units sold, Average salary, Gross margin | Product, Customer, Vendor |
+| Price, Churn rate, Conversion rate | Account, Date |
+
+Do not choose by the kind of data:
+
+- Employee ID holds numbers, but it identifies people, so it is a Dimension.
+- Gross margin is a percentage, but it is a calculated value, so it is a Variable.
+- Headcount is a count, not a list of people, so it is a Variable.
+- Date holds dates, but it organizes values across time, so it is a Dimension.
+
+Accounts are the common hard case. An account from your books, such as account 6100, classifies transactions, so Account is a Dimension. A line you report, such as Revenue or Rent expense, is a Variable. When several accounts roll up into one line, a mapping says which accounts belong to it; see [Dimension mappings and shared Dimensions](/concepts/dimension-mappings).
+
+Alternative futures are neither. A base case, an upside, and a downside never happen together, so adding them up answers nothing. Each one is a Scenario; see [Scenarios, Snapshots, and version history](/concepts/scenarios).
+
+## How Ari applies the choice
+
+Ari asks one question of everything it builds: when the business adds one more department, product, or customer, what has to change? The right answer is one new item in a Dimension, plus one mapping row when the new item needs a category. Every total, table, and chart then follows on its own.
+
+So Ari builds Payroll broken down by Department, not separate Engineering Payroll and Sales Payroll Variables. It builds Revenue by Product even when you sell one product today, so a second product is one new item that the formulas and totals already reach. It keeps base, upside, and downside cases in Scenarios, not as three Variables.
+
+## Segments and addresses name one exact number
+
+A **segment** is a slice of a Variable named by one or more items: Revenue for Sales, or Revenue for Sales in the West. On a table, **Segment by** shows a Variable's segments as rows or columns. Moving a Dimension between rows and columns changes the layout, not the numbers.
+
+An **address** names one value completely: the Variable, an item from each of its Dimensions, and a period. "Revenue for Sales in the West in March 2026" is one address. In a spreadsheet you would point at a cell such as B7; in cfo.ai you name what the number means, which is why a formula can work in every month and every department at once. See [How formulas work](/concepts/formulas).
+
+## Worked example: revenue by department
+
+The question: how much revenue did each department bring in each month?
+
+- Revenue is the Variable, the value being measured.
+- Department is a Dimension that organizes Revenue by team. Sales, Marketing, and Engineering are its items.
+- Date is a Dimension that organizes Revenue by month.
+
+One result is "Revenue is 250,000 for Sales in January 2026." Revenue, Sales, and January 2026 together are its address. The Scenario you view, Main or another, supplies the rest of the context.
+
+Suppose Revenue's formula is:
+
+```text
+`Units Sold` * Price
+```
+
+When the table breaks Revenue down by Department, and Units Sold and Price are broken down by Department too, the Sales row multiplies Sales' units sold by Sales' price. A name in a formula reads the same department and month as the cell it calculates. If Sales prices differently, Revenue can have a second formula that applies to Sales alone, while the first keeps applying to every other department.
+
+## For spreadsheet and FP&A users
+
+| What you call it | What cfo.ai calls it |
+| --- | --- |
+| Line item | Variable |
+| Assumption or operating input | Variable |
+| Department or cost center | Dimension |
+| Entity, product, region, or customer | Dimension |
+| A category entry, such as Sales or West | Dimension item |
+| Month, quarter, or year columns | Date, shown at a time grain |
+| A P&L by department | A Variable broken down by a Dimension |
+| Actuals columns and forecast columns | Formula ranges, split by Last close |
+| Budget version or plan case | Scenario |
+| Worksheet | Table block |
+| Tab or sheet of reports | Page |
+| Cell reference, such as B7 | Address |
+
+A Page is closer to a report than to a worksheet: it holds Table blocks, charts, and notes, and the numbers live in the Model, not on the Page. See [Pages, Table blocks, and Canvas blocks](/concepts/pages-and-blocks).
+
+## For BI and data-modeling users
+
+| Dimensional-modeling term | cfo.ai term |
+| --- | --- |
+| Measure or fact | Variable |
+| Dimension or attribute | Dimension |
+| Dimension entry | Dimension item |
+| Group by, slice, or dice | Segment by and filters |
+| Grain | The Dimensions and Date grain of a value |
+| Cube cell | A Variable's value at one address, in one Scenario |
+
+Grain matters because every address calculates its own formula with its own inputs. A margin shown by department is calculated from each department's revenue and cost; it is not derived from the company-wide margin. You do not need to design a star schema or a cube to work in cfo.ai: Variables hold values, Dimensions organize them, and an address names one result.
+
+## Related
+
+- [How formulas work](/concepts/formulas)
+- [Totals, aggregation, and time rollups](/concepts/totals-and-rollups)
+- [Dimension mappings and shared Dimensions](/concepts/dimension-mappings)
+- [Break a number down](/guides/break-down-a-number)
+- [How cfo.ai works](/concepts/how-cfoai-works)
+- [Glossary](/reference/glossary)

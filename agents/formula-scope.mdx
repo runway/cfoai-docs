@@ -1,0 +1,96 @@
+---
+title: "Formula scope and formula ranges"
+sidebarTitle: "Scope and ranges"
+description: "For agents: how a formula's condition sets which cells it controls, from Model-wide defaults to one segment or one cell; exact versus inheriting conditions; how results describe a formula's reach; and how Actuals and Forecast ranges follow Last close."
+searchable: false
+---
+
+A formula's scope is the set of Model values it controls. Its condition says where it applies, and its formula range says whether it covers Actuals, Forecast, or both. A visible Table block target is the preferred authority for both, because the server derives the actual cell address and formula range from it. For the customer-facing explanation, see [How formulas work](/concepts/formulas) and [Actuals, Forecast, and Last close](/concepts/actuals-and-forecast).
+
+## Start from the visible target
+
+Inspect the saved table, and copy the returned row or column reference into `edit_table_blocks`:
+
+- Use a row or a column for a formula that applies along that axis.
+- Use a cell for one exact visible result.
+
+The server derives the scope and the formula range from the target. You do not invent Dimension IDs, array positions, formula-range IDs, or conditions for a visible edit.
+
+## Write a condition
+
+When you write a condition yourself, use the readable Dimension and item names that inspection returns. Put backticks around names with spaces, and add a returned reference's short suffix only when needed.
+
+| Scope | Condition | Use it when |
+| --- | --- | --- |
+| Model-wide default | `[]` | The same formula should apply across the Model, with no narrower business condition. |
+| Every item of a Dimension | `[Department in any]` | The formula applies to each Department. It still applies when more Dimensions are present. |
+| One segment | `[Department = "Sales"]` | The formula applies to one item. |
+| A combination of segments | `[Department = "Sales", Region = "West"]` | The formula applies where both hold. |
+| A segment across time | `[Department = "Sales", Date.Month in any]` | The formula is dated, in a monthly Model. |
+
+A condition with no Date term, such as `[]`, can supply inherited defaults in both Actuals and Forecast.
+
+## Exact and inheriting conditions
+
+A condition without `$` can still match a richer cell address. A condition that begins with `$` matches exactly the set of Dimensions it names:
+
+```text
+[Department = "Sales"]
+$[Department = "Sales"]
+```
+
+In a saved table, the exact form is what a cell write produces:
+
+- A `cell_updates` entry saves one exact formula per selected cell, so one row across 60 period columns saves 60 formulas, and `clear_formula` removes them.
+- A `row_updates` entry's `default_formulas` saves one inheriting formula that covers every period in its range.
+- On a timeless row with one value column, the cell's coordinates are the row's own, so the edit writes or removes the row's formula.
+
+The leading `$` belongs to the condition grammar. In an expression, an absolute reference puts `$` after the Variable's name instead: `Revenue$[Department = "Sales"]`.
+
+Use exact scope only when the user intends that narrower behavior. A formula that leaves out Date cannot fill dated cells when it matches only its exact set of Dimensions.
+
+## How results describe a formula's reach
+
+Formula reads and write receipts describe each saved default's scope the same way:
+
+- its condition and its range;
+- its Date grain, when the formula is dated: `time_grain` in a read, `Date grain: <grain>` in a receipt;
+- its reach in words. `includes additional dimensions` means an inheriting `[...]` condition that also covers cells carrying more business Dimensions, at the same Date grain. `this grain only` means an exact `$[...]` condition.
+
+Reach describes Dimension coverage only; time coverage is the separate Date grain. A Month formula never covers Day cells, however far its reach extends, so a daily forecast needs a Day formula of its own.
+
+## Actuals and Forecast ranges
+
+Formula ranges separate parts of the timeline that use different calculations. Actuals and Forecast are defined relative to a Scenario's Last close, and each Scenario has its own. Interpret a formula range against the boundary of the Scenario you read or write: the one `scenario` names, or the Scenario in view when the call leaves `scenario` out.
+
+### Let the visible target choose the range
+
+When the formula belongs to a visible row, column, or cell, inspect the saved table and use `edit_table_blocks` to target the actual result. The server derives the formula range from the target, so you do not invent or fetch a formula-range ID.
+
+### Dated formulas need Date at the base grain
+
+A formula for Actuals or Forecast needs Date in its condition, at the Model's base grain. In a monthly Model:
+
+```text
+[Date.Month in any]
+```
+
+```text
+[Department = "Sales", Date.Month in any]
+```
+
+The range is chosen by where the formula sits: `default_formulas.actuals` or `default_formulas.forecast` on a row or a column, or in a `variables` entry of `edit_table_blocks`. A formula saved through a `variables` entry, with no table named, gets one Date term at the Model's base grain automatically.
+
+### Read Last close when it matters
+
+Every table `read` returns the Scenario's `calendar`: `last_close`, its default `granularity`, and its default range. Read it when you need to confirm Last close, because the boundary decides which dates count as Actuals and which belong to Forecast. `edit_table_blocks` `update_calendar` changes these settings for the Scenario; every table in the Scenario shares them.
+
+If the Scenario has no Last close, explain the missing setting before you build a result that depends on the range.
+
+### Keep the Model's time grain
+
+Use the workspace's actual Date grain rather than assuming every Model is monthly. Date conditions, the table's selected periods, and the user's requested range must agree.
+
+### Check both sides of the boundary
+
+After a change, inspect one period in Actuals and one in Forecast. Confirm that the formula applies only where it should, and that the Scenario you meant holds the saved change.

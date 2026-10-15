@@ -16,13 +16,13 @@
     "dark": "/logo/cfo-ai-logo-dark.svg"
   },
   "navigation": {
-    "tabs": [
+    "anchors": [
       {
-        "tab": "Get started",
+        "anchor": "Get started",
         "icon": "rocket",
         "groups": [
           {
-            "group": "Get started",
+            "group": "Start here",
             "pages": [
               "index",
               "tutorials/first-model",
@@ -33,11 +33,11 @@
         ]
       },
       {
-        "tab": "How-to guides",
+        "anchor": "How-to guides",
         "icon": "list-check",
         "groups": [
           {
-            "group": "How-to guides",
+            "group": "Overview",
             "pages": [
               "guides/index"
             ]
@@ -173,11 +173,11 @@
         ]
       },
       {
-        "tab": "Concepts",
+        "anchor": "Concepts",
         "icon": "lightbulb",
         "groups": [
           {
-            "group": "Concepts",
+            "group": "Overview",
             "pages": [
               "concepts/index",
               "concepts/how-cfoai-works"
@@ -219,11 +219,11 @@
         ]
       },
       {
-        "tab": "Reference",
+        "anchor": "Reference",
         "icon": "book",
         "groups": [
           {
-            "group": "Reference",
+            "group": "Overview",
             "pages": [
               "reference/index",
               "reference/glossary"
@@ -274,11 +274,11 @@
         ]
       },
       {
-        "tab": "For AI agents",
+        "anchor": "For AI agents",
         "icon": "robot",
         "groups": [
           {
-            "group": "For AI agents",
+            "group": "Overview",
             "pages": [
               "agents/index",
               "agent-instructions"

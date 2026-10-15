@@ -10,9 +10,9 @@ Write every page so that one of these readers, arriving from search, can use it 
 
 ## Page types
 
-The docs follow [Diátaxis](https://diataxis.fr). Every page is exactly one of the types below, and its folder and navigation tab say which. Decide the type before you write. When a sentence would serve a different type, put it on a page of that type and link to it.
+The docs follow [Diátaxis](https://diataxis.fr). The navigation sections are anchors at the top of the sidebar, so readers see all five on every page. Every page is exactly one of the types below, and its folder and navigation section say which. Decide the type before you write. When a sentence would serve a different type, put it on a page of that type and link to it.
 
-| Type | Answers | Folder and tab | Title pattern |
+| Type | Answers | Folder and section | Title pattern |
 | --- | --- | --- | --- |
 | Tutorial | "Teach me cfo.ai." | `tutorials/`, **Get started** | The outcome of the lesson: "Build your first Model" |
 | How-to guide | "How do I get this done?" | `guides/`, **How-to guides** | The goal as an instruction: "Connect your accounting system" |
@@ -20,7 +20,7 @@ The docs follow [Diátaxis](https://diataxis.fr). Every page is exactly one of t
 | Reference | "What exactly is true?" | `reference/`, **Reference** | The thing described: "Keyboard shortcuts", "Connection statuses" |
 | Agent docs | "How does an external agent use cfo.ai?" | `agents/`, **For AI agents** | Same patterns, for an agent reader |
 
-Each tab and each navigation group opens with a landing page that introduces what is inside it. A landing page is an overview with a sentence or two per group, not a bare list.
+Each navigation section and each group opens with a landing page that introduces what is inside it. A landing page is an overview with a sentence or two per group, not a bare list.
 
 ### Tutorials
 

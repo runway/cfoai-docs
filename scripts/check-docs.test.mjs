@@ -124,17 +124,17 @@ test("accepts escaped dollar signs and dollar signs in backtick and tilde code",
   }
 });
 
-test("accepts tabs whose pages sit in their page-type folders", async () => {
+test("accepts sections whose pages sit in their page-type folders", async () => {
   const fixture = baseFixture();
   fixture["docs.json"] = JSON.stringify({
     navigation: {
-      tabs: [
+      anchors: [
         {
-          tab: "Get started",
+          anchor: "Get started",
           groups: [{ group: "Start", pages: ["index", "tutorials/lesson"] }]
         },
         {
-          tab: "How-to guides",
+          anchor: "How-to guides",
           groups: [{ group: "Data", pages: ["guides/connect"] }]
         }
       ]
@@ -285,17 +285,17 @@ const failureCases = [
     () => ({
       "docs.json": JSON.stringify({
         navigation: {
-          tabs: [{ tab: "How-to guides", groups: [{ group: "G", pages: ["index"] }] }]
+          anchors: [{ anchor: "How-to guides", groups: [{ group: "G", pages: ["index"] }] }]
         }
       })
     })
   ],
   [
-    "unknown-tab",
+    "unknown-section",
     () => ({
       "docs.json": JSON.stringify({
         navigation: {
-          tabs: [{ tab: "Misc", groups: [{ group: "G", pages: ["index"] }] }]
+          anchors: [{ anchor: "Misc", groups: [{ group: "G", pages: ["index"] }] }]
         }
       })
     })

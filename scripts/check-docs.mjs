@@ -30,18 +30,18 @@ function frontmatterValue(contents, key) {
     .replace(/^["']|["']$/g, "");
 }
 
-// Each navigation tab holds one Diátaxis page type, and its pages live in that
-// type's folder, so a page's path says what kind of page it is. Two pages keep
+// Each navigation section (a sidebar anchor) holds one Diátaxis page type, and
+// its pages live in that type's folder, so a page's path says what kind of page it is. Two pages keep
 // root paths: the home page, and agent-instructions, which external agents fetch
 // by URL.
-const TAB_FOLDERS = {
+const SECTION_FOLDERS = {
   "Get started": "tutorials/",
   "How-to guides": "guides/",
   Concepts: "concepts/",
   Reference: "reference/",
   "For AI agents": "agents/"
 };
-const ROOT_PAGE_TABS = { index: "Get started", "agent-instructions": "For AI agents" };
+const ROOT_PAGE_SECTIONS = { index: "Get started", "agent-instructions": "For AI agents" };
 
 function collectPages(value, pages = []) {
   if (typeof value === "string") {
@@ -49,7 +49,7 @@ function collectPages(value, pages = []) {
   } else if (Array.isArray(value)) {
     for (const item of value) collectPages(item, pages);
   } else if (value && typeof value === "object") {
-    for (const key of ["tabs", "groups", "pages"]) {
+    for (const key of ["anchors", "groups", "pages"]) {
       if (key in value) collectPages(value[key], pages);
     }
   }
@@ -145,21 +145,25 @@ export async function checkRepository(
   }
 
   const pages = collectPages(config.navigation);
-  for (const tab of config.navigation?.tabs ?? []) {
-    const folder = TAB_FOLDERS[tab.tab];
+  for (const section of config.navigation?.anchors ?? []) {
+    const folder = SECTION_FOLDERS[section.anchor];
     if (folder === undefined) {
       findings.push(
-        finding("unknown-tab", "docs.json", `Tab "${tab.tab}" is not a page type.`)
+        finding(
+          "unknown-section",
+          "docs.json",
+          `Section "${section.anchor}" is not a page type.`
+        )
       );
       continue;
     }
-    for (const page of collectPages(tab)) {
-      if (!page.startsWith(folder) && ROOT_PAGE_TABS[page] !== tab.tab) {
+    for (const page of collectPages(section)) {
+      if (!page.startsWith(folder) && ROOT_PAGE_SECTIONS[page] !== section.anchor) {
         findings.push(
           finding(
             "page-type-folder",
             "docs.json",
-            `${page} is in the "${tab.tab}" tab, so it belongs in ${folder}.`
+            `${page} is in the "${section.anchor}" section, so it belongs in ${folder}.`
           )
         );
       }

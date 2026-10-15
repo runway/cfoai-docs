@@ -1,0 +1,413 @@
+---
+title: "Sample Skills"
+description: "Four complete Skills you can save in your workspace as they are or adapt: three-statement-buildout, forecast-simulator, headcount-from-capacity, and interactive-profitability-bridge, each with its description and full instructions."
+---
+
+These are four complete Skills you can save in your workspace as they are, or change to fit how your team works. A Skill is a saved workflow that Ari follows whenever a request matches its description. Each sample has a name, a description that tells Ari when to use it, and full instructions.
+
+To save one, copy its name, description, and instructions into a new Skill in **Settings → Skills**, or paste them into a chat and ask Ari to save the Skill. For the steps, see [Save a workflow as a Skill](/guides/save-a-skill).
+
+| Name | What it does |
+| --- | --- |
+| [`three-statement-buildout`](#three-statement-buildout) | Builds an Income Statement, a Cash Flow Statement, and a Balance Sheet as Table blocks on one Page, from the Variables, formulas, and mappings you already have, and checks that they tie. |
+| [`forecast-simulator`](#forecast-simulator) | Builds an interactive forecast Page with sliders, where the simulated numbers match your Model exactly at the default settings and the sliders never change the Model. |
+| [`headcount-from-capacity`](#headcount-from-capacity) | Plans headcount as a ratio to what your business grows on, such as accounts or stores, instead of a monthly growth rate that compounds out of control. |
+| [`interactive-profitability-bridge`](#interactive-profitability-bridge) | Builds a Canvas block that walks from revenue to net income using your own income statement lines, with preview sliders that never change the Model. |
+
+## three-statement-buildout
+
+Builds an Income Statement, a Cash Flow Statement, and a Balance Sheet as Table blocks on one Page, from the Variables, formulas, and mappings you already have, and checks that they tie.
+
+**Description**
+
+```text wrap
+Build a saved page with native Income Statement, Cash Flow Statement, and Balance Sheet tables using the workspace's existing variables, formulas, and mappings. Use when creating or updating the full three-statement model, or when auditing subtotals, cash continuity, and the balance check.
+```
+
+<Accordion title="Instructions">
+  ```markdown expandable wrap
+  # Three statement buildout
+
+  Build a saved page titled "9. Financial Statements" with three native model tables:
+
+  1. Income Statement
+  2. Cash Flow Statement
+  3. Balance Sheet
+
+  Use the workspace's existing variables, formulas, dimensions, mappings, source data, accounting conventions, currency, signs, scenario, and Last close. Do not assume USD, tax rates, fiscal years, or literal variable names. Resolve the closest verified existing variables and formulas first. Reuse existing model objects instead of creating duplicates.
+
+  Use the current scenario unless another is specified. Preserve unrelated pages, tables, variables, formulas, mappings, scenarios, and time settings. If the page or tables already exist, update them in place.
+
+  Use variables on rows and the system Date dimension by month across columns. Use a visible window from January 2025 through December 2030 unless another window is requested. Preserve the scenario's existing Last close and label Actuals and Forecast according to that boundary.
+
+  ## Income Statement rows
+
+  Use verified organizational equivalents where necessary:
+
+  - Revenue
+  - Cost of Revenue
+  - Gross Profit
+  - Gross Margin
+  - Technology and Infrastructure
+  - Sales and Marketing
+  - General and Administrative
+  - Total Operating Expenses
+  - Operating Income
+  - Operating Margin
+  - Interest Expense Net
+  - Other Income Net
+  - Pre-Tax Income
+  - Income Tax Expense
+  - Net Income
+  - Depreciation and Amortization
+  - Stock-Based Compensation Expense
+  - Other Non-GAAP Adjustments
+  - Adjusted EBITDA
+  - Adjusted EBITDA Margin
+  - Adjusted Operating Income
+  - Adjusted Operating Margin
+  - Adjusted Net Income
+
+  ## Cash Flow Statement rows
+
+  - Net Income
+  - Depreciation and Amortization
+  - Stock-Based Compensation Expense
+  - Customer Prepayments Received
+  - Deferred Revenue Recognized
+  - Change in Deferred Revenue
+  - Working Capital Intensity of Revenue Growth
+  - Other Working Capital Change
+  - Operating Cash Flow
+  - Cash Capital Expenditures
+  - Free Cash Flow
+  - Net Debt Draws
+  - Equity Issuance
+  - Financing Cash Flow
+  - Net Change in Cash
+  - Cash Balance
+
+  ## Balance Sheet rows
+
+  - Cash Balance
+  - Property and Equipment Net
+  - Net Working Capital and Other Assets
+  - Lease ROU Capitalized per Leased MW
+  - Operating Lease ROU Assets
+  - Total Assets
+  - Total Debt
+  - Deferred Revenue Balance
+  - Operating Lease Liabilities
+  - Total Liabilities
+  - Stockholders Equity
+  - Balance Check
+
+  ## Before writing
+
+  Inspect:
+
+  - The current page and its existing blocks
+  - Existing saved tables and layouts
+  - Variables, formulas, source metadata, formats, currencies, and preferred time bindings
+  - Dimensions, items, reporting grain, ranges, and Last close
+  - Existing account mappings and statement formulas
+  - Calculated values at monthly grain
+
+  ## Modeling requirements
+
+  - Use native editable tables, not read-only Canvas tables.
+  - Use the system Date axis, not a source date column.
+  - Preserve source signs exactly.
+  - Preserve currencies, units, decimal precision, and number formats.
+  - Preserve Actuals and Forecast logic.
+  - Keep meaningful business dimensions and mappings.
+  - Use existing statement subtotals when available.
+  - Do not double-count source rollups and their children.
+  - Use correct monthly aggregation for flows.
+  - Use closing-value behavior for balance-sheet stocks such as Cash Balance.
+  - Calculate margins only when the denominator exists and is nonzero.
+  - Do not invent tax rates or unsupported relationships.
+  - Keep observed source data, formulas, and editable assumptions distinct.
+  - If a requested line is unavailable, omit it and explain why.
+  - Only create a clearly labeled editable assumption when it is necessary and useful to complete the report.
+
+  ## After saving
+
+  Verify:
+
+  - All three tables exist on the page.
+  - The monthly Date axis and requested window are correct.
+  - Actuals and Forecast periods align with Last close.
+  - Income statement subtotals and margins calculate correctly.
+  - Cash flow subtotals and Cash Balance continuity are supported.
+  - Balance Sheet totals and Balance Check reconcile.
+  - Early, middle, and late periods have been checked.
+  - Unexpected zeros, blanks, and unchanged values have been traced to their formula origins.
+  - Any missing mappings, source gaps, omitted rows, formula gaps, assumptions, or reconciliation residuals are reported.
+
+  ## Final response
+
+  Include:
+
+  - Links to the saved page and tables
+  - Selected scenario and reporting window
+  - Currency and formatting basis
+  - The verified variable used for each statement line
+  - Omitted lines and reasons
+  - Assumptions, mappings, formula gaps, and residuals
+  - Whether Actuals/Forecast boundaries were verified
+  - Whether the balance check and cash-flow reconciliation passed or remain unverified
+
+  Do not create a Canvas visualization unless separately requested.
+  ```
+</Accordion>
+
+## forecast-simulator
+
+Builds an interactive forecast Page with sliders, where the simulated numbers match your Model exactly at the default settings and the sliders never change the Model.
+
+**Description**
+
+```text wrap
+Build an interactive forecast tool whose scenario ties exactly to the model baseline. Use for what-if pages, scenario explorers, or any page with controls over model variables.
+```
+
+<Accordion title="Instructions">
+  ```markdown expandable wrap
+  # Forecast simulator
+
+  ## The requirement that matters
+  At default slider settings the simulated series must sit **exactly** on the baseline. If
+  it drifts, every delta the user reads is contaminated by model error and the tool loses
+  credibility.
+
+  Two ways to achieve it, in order of preference:
+
+  **A. Re-run the recurrence.** Rebuild the series in component code using the model's own
+  inputs and the scenario control. At the control's default value this reproduces the model
+  exactly because it is the same recurrence:
+
+      const mwS = [];
+      for (let i = 0; i < n; i++) {
+        if (i === 0) { mwS.push(mwB[0] || 0); continue; }
+        const contPrev = (contB[i-1] || 0) * Math.pow(live.contract, i-1);
+        mwS.push(mwS[i-1] + Math.max(0, contPrev - mwS[i-1]) * live.act);
+      }
+
+  **B. Ratio against baseline.** Where a recurrence is impractical, scale the baseline by
+  the ratio of scenario to default:
+
+      const g = ((1 + live.traffic) * (1 + live.price)) / ((1 + D.traffic) * (1 + D.price));
+      const sim = base[i] * Math.pow(g, i);
+
+  At defaults `g === 1`, so `sim === base`.
+
+  Read cost rates, life, and load factors from a `rates` dataset rather than hardcoding, so
+  the component stays in sync when the model changes.
+
+  ## Dataset rules
+  - **One breakdown per dataset.** Multiple variables each broken down by the same dimension
+    in a single dataset collapses the duplicate child labels — you get the totals and one set
+    of children, and the rest render blank. Split into one dataset per variable.
+  - Max 8 datasets per block. Check `dataset_evidence` in the write receipt: `series_count`
+    and `series_names` tell you what actually came back.
+  - A series with empty `segments` is the variable **total**; populated `segments` are
+    breakdown items. Filter to `segments.length` before stacking, or the total
+    double-counts against its children.
+  - `layout.rows` become series; `layout.columns` (Date) become plotted points.
+
+  ## Component contract
+  - `Block({ data, state, emit })`. React and its hooks are lexical bindings — no imports,
+    no `window.React`.
+  - `Slider` fires `onChange(v)` for a local draft and `onCommit(v)` for an accepted change.
+    **Persist only on commit** via `emit({ type: "setState", patch: { key: v } })`.
+  - Sliders must never write to the model. The scenario is a local preview.
+  - Provide a reset that restores defaults and clears saved state (`patch` values to `null`).
+  - Show a status pill so the viewer always knows whether they're looking at baseline or a
+    scenario.
+
+  ## After writing
+  Saving a Canvas block does not check that it renders. Always run `validate_code_blocks` on the
+  block id — it renders in Chromium in light and dark and returns real runtime errors. Fix
+  anything it reports before calling the work done.
+
+  ## Chart selection
+  Before shipping charts, check whether any two are the same curve rescaled. If per-unit
+  economics are uniform across a dimension, then "units by dimension", "revenue by
+  dimension", and "profit by dimension" are one shape drawn three times. Replace duplicates
+  with **ratios that diverge** — cost as % of revenue, support headcount per 100 units,
+  profit per employee. A quotient of two things growing at different rates carries
+  information a level chart cannot. Every chart must have an explicit, descriptive title
+  inside the chart configuration.
+  ```
+</Accordion>
+
+## headcount-from-capacity
+
+Plans headcount as a ratio to what your business grows on, such as accounts or stores, instead of a monthly growth rate that compounds out of control.
+
+**Description**
+
+```text wrap
+Model headcount as a ratio to the business activity that sets it, not a growth rate. Use for hiring plans, workforce forecasts, personnel cost models, or org plans.
+```
+
+<Accordion title="Instructions">
+  ```markdown expandable wrap
+  # Headcount from capacity
+
+  ## Why not a growth rate
+  A monthly hiring rate compounds. Fitting one to a fast-growth year and running it 48
+  months produces absurd totals — a 7.7%/month rate that matches one year of real hiring
+  yields 30,000 employees four years out.
+
+  Anchor headcount to whatever the business actually scales on: megawatts, stores,
+  shipments, accounts, ARR.
+
+  ## Structure
+
+      `Headcount per Unit` [Department]  — input, seeded at the first period
+      `Headcount` [Department] = `Headcount per Unit` * `Total Units`$[Date.Month = this.Date.Month]
+      `Average Salary` [Department]      — input constants
+      `Personnel Cost` [Department] = `Headcount` * `Average Salary` / 12 * `Payroll Load Multiplier`
+
+  `Headcount` needs no separate parent and child formulas — the parent computes correctly as parent-ratio ×
+  units. `Personnel Cost` does: parent is a sum, children are the explicit product.
+
+  Note the `$[Date.Month = this.Date.Month]` on the units read. The unit total lives outside
+  Department space; without it, the exact-reach seed on the spine won't reach a
+  Department-coordinated cell and every row reads zero.
+
+  ## Let the ratio move
+  A flat ratio understates early scaling and overstates late. Give the ratio its own
+  decaying trend:
+
+      `Ratio Growth` = `Ratio Growth`[-1] * `Ratio Decay`        // seeded positive, decay ~0.94
+      `Headcount per Unit` [Dept] = `Headcount per Unit`[-1] * (1 + `Ratio Growth`$[Date.Month = this.Date.Month])
+
+  This reproduces a hiring surge early and flattens into operating leverage later, without
+  exploding. Tune the seed to hit year-1 actuals and the decay to keep the terminal ratio sane.
+
+  ## Diagnostics worth surfacing
+  - **Revenue per employee** — sanity check against comparables.
+  - **Units per employee** — the productivity trend.
+  - **Support ratio** (corporate heads per 100 units) — whether the org is outgrowing what
+    it serves.
+  - **Profit per corporate employee** — returns on overhead headcount. This one often
+    declines, and saying so is more useful than hiding it.
+
+  ## Reconcile to the P&L
+  If the P&L carries labor as a % of revenue, either drive that line from this build
+  (`Units * Cost per Unit`) or add an explicit reconciliation row showing the implied
+  percentage. Never let a bottom-up headcount plan sit beside a top-down labor percentage
+  with no tie between them.
+  ```
+</Accordion>
+
+## interactive-profitability-bridge
+
+Builds a Canvas block that walks from revenue to net income using your own income statement lines, with preview sliders that never change the Model.
+
+**Description**
+
+```text wrap
+Build a reusable interactive Canvas visual from the organization's existing income statement, with local preview controls that never write back to the model. Use for what-if profitability views, scenario walkthroughs of the income statement, or margin bridges.
+```
+
+<Accordion title="Instructions">
+  ```markdown expandable wrap
+  # Interactive profitability bridge
+
+  Create a custom workspace skill called `interactive-profitability-bridge`.
+
+  The skill should create or update a reusable interactive Canvas visual based on the organization's existing income statement. It should work across different organizations and must not assume specific line-item names such as Subscription Revenue, Total COGS, Gross Profit, EBIT, or Net Income.
+
+  ## When the skill runs
+
+  1. Inspect the current page, saved income statement tables, variables, formulas, dimensions, mappings, reporting grain, currency, and Last close.
+  2. Identify the organization's available equivalents for:
+     - Revenue or total income
+     - Direct costs or cost of sales
+     - Gross profit or contribution profit
+     - Operating expenses
+     - Operating profit or EBIT
+     - Pretax profit
+     - Tax expense
+     - Net income or net profit
+  3. Prefer variables already used by the organization's saved income statement.
+  4. Preserve the organization's actual labels, formulas, accounting signs, currency, number formats, dimensions, and Actuals/Forecast logic.
+  5. If a stage is unavailable, omit it instead of inventing a value. Do not use generic tax rates, hardcoded currencies, or assumed financial categories.
+
+  ## Canvas block
+
+  Create a saved Canvas block titled "Interactive Income Statement Funnel" or an equivalent organization-specific title.
+
+  The Canvas visual should:
+
+  - Connect to a live dataset containing the supported statement variables and system Date.
+  - Allow the user to select an available reporting period at the statement's existing grain.
+  - Identify the selected period as Actuals or Forecast using Last close.
+  - Show supported profitability stages in order:
+    - Top-line revenue or income
+    - Gross or contribution profit
+    - Operating profit
+    - Pretax profit
+    - Net income or net profit
+  - Display each stage's organization-specific label, value, percentage of the top-line measure, proportional bar, and change from baseline when a preview is active.
+  - Distinguish missing values from zero.
+  - Display losses and negative values honestly.
+  - Show a useful empty state when no supported periods or values are available.
+
+  ## Preview controls
+
+  Add local, non-persisted preview controls only when the required model stages exist:
+
+  - Increase revenue or income
+  - Reduce direct costs
+  - Reduce operating expenses
+
+  The controls should:
+
+  - Start at zero.
+  - Use bounded sliders with clear labels.
+  - Use the organization's terminology.
+  - Recalculate downstream supported stages using the same relationships as the income statement.
+  - Preserve non-operating income and expense unless a specific control exists for them.
+  - Preserve the selected period's tax treatment when tax is available.
+  - Omit unsupported controls or outputs.
+  - Include a reset-to-baseline action.
+  - Never write values, formulas, assumptions, or scenario changes to the model.
+
+  Show local impact summaries for supported outputs, such as top-line, gross or contribution profit, operating profit, and net income. Clearly label these as local preview impacts, not approved forecasts or model changes.
+
+  ## Components and state
+
+  Use cfo.ai Canvas components and theme tokens. Use injected components such as Select, Slider, Button, Card, Text, NumberText, Delta, and appropriate chart or visualization components. Do not use hardcoded USD formatting, a 21% tax rate, FY2026, company-specific variable names, replacement color palettes, or native HTML controls where an injected component is available.
+
+  Store only presentation state in Canvas state, such as the selected period and preview-control values. Keep actual model data read-only.
+
+  ## Validation
+
+  After saving, validate the Canvas block in light and dark themes. Test:
+
+  - Baseline values with all controls at zero
+  - Period selection
+  - Actuals and Forecast labeling
+  - Each enabled preview control
+  - Negative profit or loss
+  - Missing optional stages
+  - Missing values versus zero
+  - Reset behavior
+  - Confirmation that no model values or formulas changed
+
+  ## Final report
+
+  In the final response, report the saved Canvas block, the variables mapped to each profitability stage, omitted stages, preview assumptions, and any unresolved ambiguity or data gap.
+  ```
+</Accordion>
+
+## Related
+
+- [Save a workflow as a Skill](/guides/save-a-skill)
+- [Skills, Triggers, and Guides](/concepts/automation)
+- [Turn on a built-in Skill](/guides/turn-on-built-in-skills)

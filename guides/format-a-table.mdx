@@ -1,0 +1,124 @@
+---
+title: "Format and arrange a table"
+sidebarTitle: "Format a table"
+description: "Show numbers as currency or percentages, set decimals, color and bold rows, and see why numbers turn green or red. Also color a Dimension's items, change date headers, show or pin total columns, hide or reorder rows and columns, resize or pin (freeze) columns, and show values in thousands with Ari."
+---
+
+Use this guide to make a table easy to read: money as currency, margins as percentages, section rows in bold, and the columns your readers need first. Most formatting changes only how the table looks; it never changes a number. To learn which settings belong to a table and which to a Variable, read [Pages, Table blocks, and Canvas blocks](/concepts/pages-and-blocks).
+
+You need a desktop browser and edit access to the Page. Formatting lives in the right-click menu: right-click a row name, a column header, or a cell, and choose **Format and display**. On a Mac, **Control**-click works too.
+
+## Show numbers as currency, percentages, or decimals
+
+<Tabs>
+  <Tab title="Ask Ari">
+    > On the P&L table, show Revenue and Gross Profit as currency with no decimals, and Gross Margin as a percentage with one decimal.
+  </Tab>
+  <Tab title="By hand">
+    <Steps>
+      <Step title="Open the menu">
+        Right-click the row name, such as Revenue, and choose **Format and display**.
+      </Step>
+      <Step title="Choose a format">
+        Choose **Format**, then **Auto**, **Number**, **Currency**, **Percentage**, **Integer**, or **Multiple**. After **Currency**, choose the currency under **Currency**, such as **USD (\$)** or **EUR (€)**.
+      </Step>
+      <Step title="Choose the decimals">
+        Choose **Precision**, then **Default**, **1**, **1.0**, **1.00**, or more decimal places, up to five.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+**Format** and **Precision** apply to this table only, at the place you right-clicked: the row, the column, or the cell. A cell's own setting wins over its column's, and a column's wins over its row's. To remove the setting, choose **Format**, then **Reset**.
+
+Two choices reach further. The currency you pick applies to the Variable on every table. **Date** in the **Format** list makes the Variable a date Variable everywhere, with a calendar in its cells.
+
+A format changes only how numbers look. A row shown as a percentage on one table still adds up in totals; see [Percentages and ratios are not added up](/concepts/totals-and-rollups#percentages-and-ratios-are-not-added-up).
+
+## Show numbers in thousands or millions
+
+cfo.ai has no format that shows numbers in thousands or millions. Ask Ari for a Variable that divides by 1,000, such as Revenue (thousands).
+
+## Format several rows at once
+
+Select several row names: drag down the row-name column, or press **⌘ A** to select the whole table. Right-click one of the selected row names. The menu entry reads **Format [N] variables** and applies to every selected row.
+
+## Color, bold, and indent rows
+
+In **Format and display**, choose **Background** to fill the row, column, or cell with a color, or **No fill** to remove it. Choose **Text style** for **Bold**, **Italic**, **Underline**, or **Strikethrough**. On a row, **Indent** and **Outdent** move the row name in or out, as in an income statement. **Reset formatting** removes everything set at that place on this table.
+
+These settings belong to this table, so the same Variable can look different on another table.
+
+### Color the cells you type into
+
+cfo.ai does not color typed-in cells automatically. It marks a cell that holds its own value with a dashed underline; see [See whether a number is typed or calculated](/guides/enter-values#see-whether-a-number-is-typed-or-calculated). To color your inputs, select those cells or rows and set a **Background**.
+
+## Why a number is green or red
+
+Numbers turn green or red only in comparison columns: **Variance** and **Variance %**. Green means the change is good and red means it is bad, and an increase shows a **+**. Plain values are never colored by their sign.
+
+Which direction counts as good is a setting on the Variable, so it applies on every table:
+
+1. Right-click the Variable's row name and choose **Format and display**.
+2. Choose **Variance colors**, then **Higher is better** or **Lower is better**.
+
+New Variables use **Higher is better**. Set **Lower is better** for costs, so spending less than the plan shows green. To add comparison columns, see [Compare Scenarios side by side](/guides/compare-scenarios). For the colors in the formula editor and on items, see [What colors and marks mean](/reference/table-blocks#what-colors-and-marks-mean).
+
+## Color a Dimension's items, or show them as plain text
+
+Right-click the Dimension's label row, such as **DEPARTMENT** above its items, or right-click one of its items and choose **[Department] dimension settings**. Then choose **Format and display**.
+
+Choose **Dimension color** to set the color of the Dimension's item pills on every table. Choose **Display as** to show the items as a **Pill** or as **Plain text**; that choice applies to this table, and only in your browser.
+
+## Change how dates read in the headers
+
+Right-click a date header, choose **Format and display**, then **Date format**, and pick a style such as **Abbreviated** (`Sep-26`), **Full month** (`September 2026`), or **Compressed year** (`Sep ’26`, or `W35 ’26` for a week). The style applies to this table. Every style, at every grain, is listed in [Date formats](/reference/table-blocks#date-formats).
+
+## Show, hide, or pin total columns
+
+A total column, also called a summary column, sits at the end of each group of columns and summarizes the cells shown in that group, such as each region's months. It is different from a parent row that adds up the rows beneath it; see [Totals, aggregation, and time rollups](/concepts/totals-and-rollups).
+
+- To show or hide them, open the table's **…** menu, **Table block settings**, and choose **Show total columns**.
+- To keep them beside the row names while you scroll, choose **Pin total columns** in the same menu.
+- To choose what a total column shows, right-click its header and choose **None**, **Sum**, **Average**, **Minimum**, **Maximum**, **Count**, or **Last**. Only summaries that fit the Variables are offered. The header names the choice, such as **SUM**, **LAST**, or **TOTAL** for **None**.
+- To show only a group's total, select the arrow in the group's header.
+
+The summary choice is saved with the table. **Show total columns** and **Pin total columns** are not saved: a table always opens with total columns shown and unpinned.
+
+## Hide rows and columns
+
+Select **Show table setup** at the left of the table header. In the panel, point at the row or column and select its eye button (**Hide [name]**). Select it again (**Show [name]**) to bring it back. Hidden rows and columns keep their settings, and the table hides them for everyone.
+
+Hiding a level inside a group of columns keeps the group's total column, so you can hide the months and keep each region's total.
+
+To show or hide the label rows above each Dimension's items, such as **DEPARTMENT**, open **Table block settings** and choose **Show dimension headers**.
+
+## Resize and reorder rows and columns
+
+- To resize a column, drag the right edge of its header. Double-click the edge to fit the column to its content, or choose **Auto-fit all columns** in **Table block settings** to fit every column. Widths are saved for everyone.
+- To reorder rows, point at the left edge of a row and drag its grip. Dragging the items of a Dimension puts the Dimension in a manual order; see [Filter and sort a table](/guides/filter-and-sort-a-table).
+- To reorder columns, drag a column header. Date columns stay in date order.
+
+## Pin (freeze) a column while you scroll
+
+The row names always stay in view while you scroll. To keep another column in view too, such as Department on an employee table, right-click its header and choose **Pin column**. You can also drag the header into the pinned area beside the row names. **Unpin column** releases it. Date columns cannot be pinned. A pin is saved with the table for everyone.
+
+## Flip rows and columns
+
+A table has no transpose button. To flip a table, such as putting the months down the side and the Variables across the top, ask Ari:
+
+> Flip the Cash table so the months run down the rows and the Variables across the columns.
+
+Ari moves the Variables and the dates between the rows and the columns. Moving them changes only the layout; every cell keeps its value. By hand, you can drag an item between **Rows** and **Columns** in the table setup panel. A table must keep all of its Variables on one side, so a full flip is easiest with Ari.
+
+## Change the table's height
+
+Drag the table's bottom edge. Double-click the edge, or select it and press **Enter**, to fit the table to its content again. The height is saved in your browser only.
+
+## Related
+
+- [Table block controls and messages](/reference/table-blocks#format-and-display-options)
+- [Totals, aggregation, and time rollups](/concepts/totals-and-rollups)
+- [Compare Scenarios side by side](/guides/compare-scenarios)
+- [Filter and sort a table](/guides/filter-and-sort-a-table)
+- [Export a Page to Excel](/guides/download-a-spreadsheet)

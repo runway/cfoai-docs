@@ -1,0 +1,75 @@
+---
+title: "Save a workflow as a Skill"
+sidebarTitle: "Save a Skill"
+description: "Teach Ari a process you repeat, such as a monthly board update, so it follows the same steps every time. Save it as a Skill in chat, with Build with Ari, or by writing it yourself, then change or remove it later."
+---
+
+Save a Skill when you repeat the same process and want Ari to follow it the same way every time, such as your monthly board update or your month-end review. A Skill is a named set of instructions shared with everyone in your workspace. Ari uses it on its own whenever a request matches the Skill's description, so nobody has to name it. For how Ari picks a Skill, see [Skills, Triggers, and Guides](/concepts/automation).
+
+<Tabs>
+  <Tab title="Ask Ari">
+    Describe the workflow, paste instructions you already use, or attach a Markdown file, and ask Ari to save it:
+
+    > Every month I send the board a one-page update with cash, burn, and hiring. Save that as a Skill.
+
+    > Save the attached workflow as a Skill named weekly-cash-review.
+
+    After Ari finishes a piece of work you want to repeat, you can also ask:
+
+    > Save what we did here as a Skill.
+
+    Ari picks a name and a description if you do not give them, and saves the Skill without a separate approval step. It confirms the name and when the Skill applies, with a **View skill** link that opens **Settings → Skills**. Ari can use the new Skill from your next message.
+  </Tab>
+  <Tab title="By hand">
+    <Steps>
+      <Step title="Open Skills">
+        Open the account menu, your name or picture at the bottom of the sidebar, choose **Settings**, and select **Skills**.
+      </Step>
+      <Step title="Start a Skill">
+        Select **Write manually**. To have Ari write it with you in a chat instead, select **Build with Ari**.
+      </Step>
+      <Step title="Name the Skill">
+        Enter a **Name**, such as `board-report`: lowercase letters, digits, and single hyphens. Spaces become hyphens as you type. You cannot change the name later.
+      </Step>
+      <Step title="Describe when it applies">
+        In **Description**, say when Ari should use the Skill, starting with "Use when", such as "Use when the user asks for a board or investor report."
+      </Step>
+      <Step title="Write the instructions">
+        In **Instructions**, type or paste the full workflow in Markdown: the steps, the structure of the result, and your conventions. The editor takes no file uploads, so paste a file's contents, or attach the file in a chat with Ari instead.
+      </Step>
+      <Step title="Save">
+        Select **Create skill**. The Skill appears in the list under **Custom skills**, and Ari can use it for everyone in the workspace.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## Write a description that fits
+
+Ari reads every Skill's description on each request to decide which Skill applies. Make the description specific enough that Ari does not use the Skill for unrelated requests, and broad enough to catch the different ways people ask for the same thing:
+
+> Use when the user asks for a board update, investor update, or monthly summary for the board, or asks to prepare board materials.
+
+## Update or remove a Skill
+
+Ask Ari, for example "Update the board-report Skill to include a hiring section" or "Delete the weekly-cash-review Skill." Or open **Settings → Skills**, find the Skill with **Search skills**, and:
+
+- Select **Edit**, change the **Description** or **Instructions**, and select **Save**.
+- Select **Delete** and confirm. Ari stops using the Skill.
+
+A Skill belongs to the workspace, so a change or a deletion applies to everyone's chats with Ari. Built-in Skills cannot be edited or deleted; to change how one works for your team, save your own Skill under a different name.
+
+## Start from a sample
+
+[Sample Skills](/reference/sample-skills) has four complete Skills, such as a three-statement buildout and a headcount plan built from capacity, that you can save as they are or adapt.
+
+## If something goes wrong
+
+Settings explains why a Skill was not saved, for example when the name is already taken or the instructions are too long. For every message and limit, see [Settings](/reference/settings#skills) and [Limits](/reference/limits#skills-triggers-and-guides).
+
+## Related
+
+- [Turn on a built-in Skill](/guides/turn-on-built-in-skills)
+- [Schedule a recurring report with a Trigger](/guides/schedule-a-trigger)
+- [Teach Ari your company's conventions](/guides/teach-ari)
+- [Skills, Triggers, and Guides](/concepts/automation)

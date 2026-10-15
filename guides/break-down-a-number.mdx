@@ -1,0 +1,102 @@
+---
+title: "Break a number down"
+sidebarTitle: "Break a number down"
+description: "Split a row by a Dimension with Segment by, such as Revenue by Region, collapse or expand the breakdown, and see the inputs behind a calculated number with Drill in. Also add, rename, delete, or hide a Dimension's items, and choose which combinations of items a table shows."
+---
+
+Use this guide to split a number into the parts that make it up, such as Revenue by Region. It also shows how to see what a calculated number is made of, such as the headcount and salaries behind Payroll. To learn what Dimensions and segments are, read [Assumptions and breakdowns: Variables and Dimensions](/concepts/variables-and-dimensions).
+
+You need a desktop browser and edit access to the Page.
+
+## Split a row by a Dimension (Segment by)
+
+<Tabs>
+  <Tab title="Ask Ari">
+    > Break Revenue down by Region on the P&L table.
+  </Tab>
+  <Tab title="By hand">
+    <Steps>
+      <Step title="Open Segment by">
+        Point at the row name, such as Revenue, and select the branch button, **Segment by**. Or right-click the row name and choose **Segment by**.
+      </Step>
+      <Step title="Pick the Dimension">
+        Search for the Dimension, such as Region, and select it. To create a new one, type its name and select **Create dimension: [name]**.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+The table updates at once, with a row for each item under Revenue. An item whose values are all empty can be left out; see [Why a table looks empty](/reference/table-blocks#why-a-table-looks-empty). Revenue's own row now adds up the rows beneath it, so a value you change on any item reaches the total; see [Totals, aggregation, and time rollups](/concepts/totals-and-rollups). Columns work the same way: point at a column header and select **Segment by**.
+
+To change a breakdown, select **Segment by** on the row again. The editor that opens, **Segment Revenue by**, lists the levels. Select **Add** to nest another Dimension under the first, such as Product under Region, drag the levels to reorder them, or select **Remove level**.
+
+A Dimension can break down the rows or the columns of one table, not both.
+
+On a column header for one item, such as a single region, **Segment by** breaks down that item only.
+
+## Collapse or expand a breakdown
+
+Select the arrow beside a row name to collapse the rows under it, and select it again to expand them. **Shift**-click the arrow, or **⌘**-click it on a Mac, to do the same for every row at its level under the same parent, such as each department under Revenue. You can also right-click the row and choose **Collapse child rows** or **Expand child rows**.
+
+Collapsing changes only your own view, and your browser remembers it. You cannot set a breakdown to start collapsed for everyone who opens the table. Column groups collapse the same way, with the arrow in the group's header; see [Show, hide, or pin total columns](/guides/format-a-table#show-hide-or-pin-total-columns).
+
+## Remove a breakdown
+
+Right-click the Dimension's label row, such as **REGION**, and choose **Remove dimension**. The rows leave this table; the Variable's values stay in your Model. On the table where the Dimension was created, the action reads **Delete dimension** instead and deletes the Dimension everywhere; see [Build a Table block by hand](/guides/build-a-table#remove-a-row-or-delete-a-variable).
+
+## See the inputs behind a calculated number (Drill in)
+
+Drill in shows what a calculated number is made of without changing the table.
+
+1. Point at the row name of a calculated row, such as Payroll, and select the magnifier button, **Drill in**.
+2. The rows its formula reads, such as Headcount and Salary, open beneath it on a hatched background. Drill in on one of them to keep tracing. For a Variable that reads a connected system, drilling reaches the source records, such as the individual transactions.
+3. Select **Clear drill-in** on the row to close them, or right-click and choose **Remove all drill-in rows**.
+
+Drill-in rows are not saved: they close when you reload the Page, and nobody else sees them. To label each input row with its Variable's name, right-click it and choose **Show variable name**.
+
+Use **Segment by** to ask how a number splits across categories, and **Drill in** to ask which inputs produced it. To have Ari explain a number, see [Ask Ari about a number](/guides/ask-about-a-number).
+
+## Add an item to a Dimension
+
+An item is one entry of a Dimension, such as West in Region.
+
+- At the end of a breakdown's items, select the **+** button, **Create Region item**. Type the name and press **Enter**.
+- Or right-click the Dimension's label row, such as **REGION**, and choose **Create Region item**. From an item, the same entry is under **Region dimension settings**.
+- Or point at the left edge of an item row, select **Insert row below**, type the name, and press **Enter**.
+
+The new item appears on every table that breaks down by that Dimension.
+
+You can add items only to a Dimension of text items, not of numbers, dates, or true-or-false values. While the Dimension is filtered, the action is unavailable until you clear the filter; see [Filter and sort a table](/guides/filter-and-sort-a-table#clear-a-filter-so-every-item-shows-again).
+
+## Rename an item
+
+Double-click the item's name, or right-click it and choose **Rename**. Type the new name and press **Enter**.
+
+You can rename only items you created; items that come from a connected system keep their source name. A rename also updates the formulas, filters, drill-ins, and charts that use the item, and a notice counts what it changed.
+
+## Delete or hide an item
+
+To delete an item you created, right-click it on the table where the Dimension was created and choose **Delete Region item**.
+
+- An item nothing uses is deleted at once. The notice that confirms it offers **Undo**.
+- An item that formulas, filters, or other tables still use opens **Delete item?**, which lists what would break. Choose **Cancel**, or **Delete anyway**.
+
+On any other table, hide the item instead: right-click it and choose **Filter out this item**. Items from a connected system cannot be deleted. Every notice is listed in [Table block controls and messages](/reference/table-blocks#other-notices).
+
+## Choose which combinations of items appear
+
+A breakdown can show only the items and combinations that have data, such as the products each region sells, or every combination. Right-click the Dimension's label row and choose **Segment generation**:
+
+- **Show only matching segments** shows only the combinations that have data. This is the standard choice.
+- **Expand to create all segments** shows every combination, so you can type values into ones that have none yet. For a Dimension of numbers, also set **Start Value** and **End Value**.
+
+## Use a Dimension as a breakdown or a mapping
+
+A Dimension on a table either breaks Variables down, one row per item, or shows which item each row belongs to, such as each employee's department. To switch, right-click the Dimension's label row and choose **Use as**, then **Segmentation** or **Mapping**. See [Map one Dimension's items to another](/guides/map-dimensions).
+
+## Related
+
+- [Assumptions and breakdowns: Variables and Dimensions](/concepts/variables-and-dimensions)
+- [Totals, aggregation, and time rollups](/concepts/totals-and-rollups)
+- [Filter and sort a table](/guides/filter-and-sort-a-table)
+- [Table block controls and messages](/reference/table-blocks)

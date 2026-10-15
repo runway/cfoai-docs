@@ -1,0 +1,105 @@
+---
+title: "Give Ari access to another service with MCP or an API"
+sidebarTitle: "Connect an MCP server or API"
+description: "Connect an MCP server or an API so Ari can look things up or act in another service live, such as a bank balance in Mercury or issues in Linear; control which tools Ari may use; and have Ari save a nightly sync of a service's data into your Model."
+---
+
+Connect an MCP server or an API when you want Ari to look something up or act in another service while you chat. For example, Ari can read today's balance in Mercury, your open issues in Linear, or an exchange rate. Ari calls the service live each time it needs it, and nothing is copied into your Model unless you ask Ari to save a sync setup.
+
+An MCP server or an API does not replace an integration. An integration syncs a source's history into your Model every night; an MCP server answers questions about right now. [How connected data reaches your Model](/concepts/connected-data#integrations-and-mcp-servers-do-different-jobs) explains the difference.
+
+## Before you start
+
+- You need permission to manage connections. Someone without it sees **A workspace admin must connect this service.**
+- For an MCP server: the service's MCP address, and a sign-in to the service or a token. Many common servers are in the catalog with their address filled in.
+- For an API: an API key, unless the API needs none, and an OpenAPI 3 specification for an API that is not in the catalog.
+- MCP servers and APIs use no plan slot until Ari saves a sync setup for one.
+
+## Connect a service
+
+<Tabs>
+  <Tab title="Ask Ari">
+    Name the service and what you want from it:
+
+    > Connect Mercury's MCP server so you can read our bank balances.
+
+    Ari reads the provider's official documentation and posts a card titled **Connect [service]**. The card shows the service's logo, its address, how it signs in, such as **Bearer token** or **API key as Basic username**, and a **Provider documentation** link. Select **Connect**. A service that uses OAuth opens its sign-in window; one that takes a token or key shows a secure field on the card. What you type there goes to cfo.ai's connection service, not to Ari or the chat. Never paste a key into a chat message.
+
+    The card reads **Connecting…**, then **Checking connection…**, then **Connected** for an MCP server or **API saved** for an API. Ari then checks that the tools or endpoints answer before it relies on them. **API saved** means the specification loaded, not that the key works, so Ari tests the key with a read.
+  </Tab>
+  <Tab title="By hand">
+    <Steps>
+      <Step title="Open the MCP or API tab">
+        In the sidebar, point at **Connections**, select **+** (**Add integration**), and choose the **MCP** or **API** tab. You can also go to **Settings → Connections**.
+      </Step>
+      <Step title="Connect a listed service">
+        Search the catalog and select **Connect** on the service's card. An OAuth service opens its sign-in window; a service that uses a token or key asks for it.
+      </Step>
+      <Step title="Or add one manually">
+        Select **Add manually**. For an MCP server, **Add MCP server** asks for a **Name** and the **MCP URL**. Under **Advanced**, choose the **Authentication**: **OAuth**, **Bearer token**, or **API key header**, which also takes a **Header name**, such as `X-API-Key`, and the **API key**.
+
+        For an API, **Add API** asks for a **Display name**, the **Authentication** (**Bearer token**, **API key header**, **Basic authentication**, or **No authentication**), the **API key**, and the **OpenAPI specification**, as a **Specification URL** or with **Paste JSON**. A specification that declares several servers also needs the **Base URL** under **Advanced**.
+      </Step>
+      <Step title="Check that it connected">
+        The service appears in the list with its status, such as **Ready for Ari**. Ask Ari a question that needs it.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+**Add with Ari** on the same tabs opens a chat that starts the Ask Ari path. While the workspace cannot use AI, the button is off and a line under it reads **Add with Ari is unavailable.** with the reason, such as **This workspace is out of AI usage.** **Add manually** still works.
+
+### Rippling's MCP server
+
+Add Rippling's server with **Add manually**. The dialog shows a **Rippling setup** note with three requirements:
+
+- Copy your Remote MCP server URL from **IT → My IT → MCP connectors → Rippling MCP**.
+- Ask a Rippling admin to assign you access in **IT → MCP Gateway → Rippling MCP → Access assignments**.
+- Make sure your company has an active Rippling AI trial or subscription, or its tools return no data.
+
+## Choose what Ari may do
+
+Each tool of an MCP server, and each endpoint of an API, has a permission:
+
+| Permission | What Ari does |
+| --- | --- |
+| **Allow** | Uses it without asking |
+| **Ask first** | Asks you to approve each call. See [Answer Ari's questions and approve its actions](/guides/approve-ari-actions). |
+| **Block** | Never uses it |
+
+A new MCP server starts with every tool on **Ask first**. A new API starts by method: reads (`GET` and `HEAD`) on **Allow**, deletes on **Block**, and every other call on **Ask first**. When Ari asks and you choose **Always allow**, that tool stays on **Allow** for the whole workspace.
+
+To change them, select **Manage** on the service in **Settings → Connections**. Tools are grouped as **Read-only tools** and **Write/delete tools**, and endpoints as **Read endpoints** and **Write/delete endpoints**. **Auto-classify** sets them for you:
+
+- For an MCP server: read-only tools to **Allow**, and write or delete tools to **Ask first**.
+- For an API: reads to **Allow**, writes to **Ask first**, and deletes to **Block**.
+
+When Ari calls a write tool and the answer is lost on the way back, it does not repeat the call on its own. Check the other service before you ask Ari to try again.
+
+## Copy a service's data into your Model every night
+
+To keep a service's data in your Model, rather than look it up live, ask Ari for a sync setup:
+
+> Save a daily sync of our Mercury account balances into the Model.
+
+Ari picks one read-only tool or endpoint, saves how to call it, and runs it. Each night the sync copies the results into your data, and a saved query brings them into your Model as Variables and Dimensions, like an integration. The tool or endpoint must be set to **Allow**. You can give it its own daily time, as with any connection; see [Refresh data](/guides/refresh-data#change-when-a-connection-refreshes).
+
+The service's page lists its setups under **Syncs**, each **Enabled** or **Paused**, with when it last synced. To stop one, ask Ari to remove it; the data it already copied stays. Once a service has a sync setup, it uses one standard plan slot. [How imported data loads](/reference/imported-data#sync-setups-for-mcp-servers-and-apis) lists the sync types and limits.
+
+## Disconnect a service
+
+In **Settings → Connections**, open the service's **…** menu and select **Disconnect**. cfo.ai warns **Ari will no longer be able to use this server's tools until you reconnect.**, or for an API, **Ari will no longer be able to use this API until you reconnect it.**
+
+## If something goes wrong
+
+- **The provider must approve cfo.ai's sign-in URL to connect.** The provider has to allow cfo.ai's sign-in address first; trying again does not help until it does.
+- **This provider signs in only apps registered with it in advance.** The server cannot be connected with OAuth. Use a token if the provider offers one.
+- **Reconnect this source to continue.** The saved sign-in no longer works. Sign in to the server again.
+
+[Connection statuses and actions](/reference/connection-statuses#messages-about-mcp-servers-and-apis) lists every message.
+
+## Related
+
+- [Integrations directory: Connections for Ari](/reference/integrations#connections-for-ari)
+- [How connected data reaches your Model](/concepts/connected-data)
+- [Connect Claude, ChatGPT, Codex, or another AI tool to cfo.ai](/guides/connect-an-ai-client), for the other direction: an outside AI tool working in cfo.ai

@@ -1,0 +1,67 @@
+---
+title: "When Ari is slow, stuck, or wrong"
+sidebarTitle: "Ari is slow, stuck, or wrong"
+description: "What to do when Ari takes a long time, seems stuck, stops with an error, gives a number that looks wrong, or changes something it should not have. Also how to reach a person at cfo.ai."
+---
+
+Use this page when a chat with Ari is not going the way you expect. Find what you see, then follow the steps under it. Changes Ari saved before a problem stay in your Model, and you can take back any of them in version history.
+
+## Ari is taking a long time
+
+Ari keeps working on cfo.ai's servers until it finishes, even if you close the tab or switch chats. A large job, such as building a whole Model or importing a big workbook, takes many steps.
+
+- Check the status line above the message box. While its phrase changes and its meter counts up, Ari is working.
+- To see what Ari has done so far, open **Activity** under your message. Each finished step has a check mark.
+- To change direction without waiting, type your message and press **Enter**. Ari reads it at its next step. See [Steer, stop, or add to Ari's work](/guides/steer-ari).
+- To get a notice when Ari finishes, turn on **Notify me when Ari finishes in this browser** in **Settings → Ari**. See [Settings](/reference/settings).
+
+## Ari seems stuck
+
+1. Read the status line. **Ari hit a temporary connection issue. Retrying now.** and **Ari hit a temporary model-provider issue. Retrying now.** mean Ari is retrying on its own. Wait a moment.
+2. If nothing changes for a long time, type "What are you working on right now?" and press **Enter**. Ari answers at its next step.
+3. If you still get no answer, press **Esc** in the message box, or select **Stop**. Then ask for a smaller piece of the work, such as one Page or one quarter.
+
+Stopping keeps what Ari already saved. To check what it finished, ask "What did you change before I stopped you?"
+
+## Ari stopped or showed an error
+
+- If the chat says **Ari stopped before finishing.**, select **Retry**. Ari picks the work back up.
+- If your message shows **Not sent.**, select **Send again** to send the same text as a new message.
+- If the chat says **This request is too large for Ari to continue.**, the chat has grown too long. Start a new chat with **⌘ /**, restate what you need, and attach only the files the new request needs.
+- If the chat says **No internet connection** or **Connection lost**, reconnect, then select **Retry** if it is offered. Ari keeps working on the server meanwhile.
+- If a reply starts **I had to stop here**, billing stopped the turn. The message names the cause and where to fix it. See [Billing stops](/reference/chat#billing-stops-out-of-ai-usage-or-over-a-limit).
+
+For every message a reply can end with, and what to do about each, see [Chat controls and messages](/reference/chat#when-a-reply-stops-early-or-shows-an-error).
+
+## Ari says web search is unavailable
+
+When web search fails because of a problem on cfo.ai's side, Ari tells you so. Nothing in your request caused it. Ask for the parts of the work that do not need the web, and ask for web research again later. See [How Ari works with you](/concepts/working-with-ari).
+
+## Ari's answer or number looks wrong
+
+1. Ask Ari to show its work, for example "Show me the formula and the inputs behind that number." See [Ask Ari to show its work](/guides/get-better-answers#ask-ari-to-show-its-work).
+2. Trace the number from the table: right-click the cell, choose **Mention cell in chat**, and ask where it comes from. See [Ask Ari about a number](/guides/ask-about-a-number).
+3. If a number does not match your books, ask Ari to compare one closed month with the source. The usual causes are a connection that is still loading and a **Last close** earlier than you expect. See [Check that your numbers match your books](/guides/check-imported-data).
+4. Tell Ari what is wrong and what is right in one message, for example "Churn should be 3% a month, not 3% a year." See [Correct Ari when it guesses](/guides/get-better-answers#correct-ari-when-it-guesses).
+
+## Ari changed something it should not have
+
+- To take the change back, open **Version history**, find Ari's change, and select **…** → **Undo this change**. See [Undo a change or restore an earlier version](/guides/undo-changes).
+- To check a formula change before you keep it, see [Review Ari's formula changes](/guides/review-ari-formula-changes).
+- To get an answer with no change to your Model, say so in your message: "Don't change anything." See [Say whether you want an answer or a change](/guides/get-better-answers#say-whether-you-want-an-answer-or-a-change).
+- To try changes away from your main plan, ask Ari to work in a Scenario. See [Test a decision in a Scenario](/guides/test-a-decision-in-a-scenario).
+
+## A table will not calculate
+
+A table that cannot calculate shows a notice instead of values, usually with **Retry**. Select **Retry**, or wait a moment and try again. When the notice offers **Fix**, select it to ask Ari about the table. Each notice and what to do about it is in [Formula errors and warnings](/reference/formula-errors#table-calculation-notices).
+
+## Ask a person
+
+If none of this helps, press **⌘ ?** to open the Help center, choose **Ask a human** under **Getting started**, and describe what happened. You can attach up to 3 screenshots. You can also email [success@cfo.ai](mailto:success@cfo.ai). See [Ask a human](/reference/interface#ask-a-human).
+
+## Related
+
+- [How Ari works with you](/concepts/working-with-ari)
+- [Steer, stop, or add to Ari's work](/guides/steer-ari)
+- [Get better answers from Ari](/guides/get-better-answers)
+- [Chat controls and messages](/reference/chat)

@@ -1,0 +1,86 @@
+---
+title: "Answer Ari's questions and approve its actions"
+sidebarTitle: "Answer and approve"
+description: "Respond when Ari waits for you and the chat shows Needs your response. Answer a question form, approve or change a plan before a build, allow or decline a call to a connected service, finish a form from an MCP server, and review an email before it is sent."
+---
+
+Use this when a chat shows **Needs your response**, or Ari stops and shows a card. Ari waits for you before details that change the answer, before a large build, before calls to connected services that need approval, and before emailing anyone but you. Answer in the chat, and Ari continues on its own.
+
+## Answer a question form
+
+<Steps>
+  <Step title="Pick or type each answer">
+    Choose an option, or press its letter. To answer in your own words, choose **Other…** and type. If a question takes files, select **Attach files to your answer**.
+  </Step>
+  <Step title="Skip what you do not want to answer">
+    Select **Dismiss** beside a question to skip it. Ari continues without it. **Undo** brings it back before you send.
+  </Step>
+  <Step title="Send your answers">
+    Select **Next** to move through the questions, then **Submit answers** (**Submit** on a one-question form).
+  </Step>
+</Steps>
+
+If you scrolled up when the form arrived, select **Scroll to latest messages** to reach it. To skip every open question at once, select **Dismiss** at the bottom of the form; the answers you already picked are still sent. See [Chat controls and messages](/reference/chat#question-form) for every control.
+
+## Approve a plan
+
+For a larger build, Ari shows a plan card before it starts: what it will create and the assumptions it will use.
+
+<Steps>
+  <Step title="Check the assumptions">
+    Each assumption shows Ari's suggested choices. Pick another, or choose **Other** and type your own value. If the card says **Answer above to continue**, an assumption Ari needs has no answer yet.
+  </Step>
+  <Step title="Approve or ask for changes">
+    Select **Build it** to start. To change something the choices cannot express, such as which Pages to build, select **Make changes** and describe it in the message box.
+  </Step>
+</Steps>
+
+Your approval appears in the chat as **Build it — with these selected assumptions:** followed by the assumptions you changed, so the record of what you approved stays in the conversation.
+
+## Allow or decline a call to a connected service
+
+When Ari wants to use an MCP server or API you connected, and the call needs approval, Ari pauses and shows **Ari is asking to run "[tool]" on [service].**
+
+- Select **Allow** to run this one call.
+- Select **Always allow** to let Ari use this tool on this service without asking again, for the whole workspace. Only people who can manage workspace settings see it.
+- Select **Decline** to skip the call. Ari continues without it.
+
+Anyone in the chat can allow or decline one call. After you choose, Ari continues; you do not need to send another message. If the card can no longer be acted on, for example because a teammate already answered it, a notice says why. See [Chat controls and messages](/reference/chat#tool-call-approval-card). To change which tools ask first, see [Give Ari access to another service](/guides/give-ari-another-service).
+
+## Finish a form from an MCP server
+
+Some MCP servers send their own form, such as a form to create an issue, filled with what Ari proposed. It appears in the chat under **View from [server]: [tool]**. Check the fields and finish it there, for example by selecting its **Create issue** button. If the form asks to run another call, approve it on the card that appears under the form. If it asks to open a page, check the address and select **Open link** or **Cancel**.
+
+These forms appear only in chats in the cfo.ai web app.
+
+## Review an email before it is sent
+
+Ari emails you at your sign-in address as soon as you ask. An email to anyone else waits for you on a **Preview** card.
+
+<Steps>
+  <Step title="Read the draft">
+    Check the recipients, the subject, and the message.
+  </Step>
+  <Step title="Change it if needed">
+    Select **Edit**. Type addresses separated by commas or **Enter**; each becomes a removable chip. Select **Preview email** to see your changes.
+  </Step>
+  <Step title="Send it">
+    Select **Send**. Nothing leaves cfo.ai until you do.
+  </Step>
+</Steps>
+
+Scheduled Triggers work the same way, so a run that would email someone else stops at the preview in its chat.
+
+## Answer questions from a scheduled run
+
+A scheduled Trigger runs without you, so it cannot wait for an answer. Questions it asks stay in its chat, which shows **Needs your response**. When you open the chat, questions the run asked at different points appear together on one form, and one reply answers them all.
+
+## Confirm a Scenario merge, delete, or revert
+
+If you asked Ari to let you confirm before it merges, deletes, or reverts a Scenario, it shows a card with a button you press yourself; see [Scenario confirmation card](/reference/chat#scenario-confirmation-card). See also [Merge a Scenario into Main](/guides/merge-a-scenario) and [Undo a change or restore an earlier version](/guides/undo-changes).
+
+## Related
+
+- [How Ari works with you](/concepts/working-with-ari#what-still-needs-you)
+- [Steer, stop, or add to Ari's work](/guides/steer-ari)
+- [Chat controls and messages](/reference/chat#cards-in-the-chat)

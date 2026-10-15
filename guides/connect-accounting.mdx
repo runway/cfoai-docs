@@ -1,0 +1,120 @@
+---
+title: "Connect QuickBooks, Xero, NetSuite, or Rillet"
+sidebarTitle: "Connect your accounting system"
+description: "Connect QuickBooks Online, Xero, NetSuite, or Rillet so Ari plans from your real books. What you need first, how long the first load takes, what to do while you wait, and how to connect more than one company."
+---
+
+Connect your accounting system when you want Ari to plan from your real books instead of estimates. cfo.ai pulls your profit and loss and balance sheet, refreshes them every night, and never writes anything back to your accounting system.
+
+## Before you start
+
+You need:
+
+- Admin access to your accounting system, or a teammate who has it. The table below shows what each system asks for.
+- A started trial or an active plan with a free connection slot. QuickBooks Online, Xero, and Rillet are standard integrations. NetSuite is a premium integration and needs the Enterprise plan. See [Plans and billing](/reference/plans-and-billing).
+- Time for the first load, from a few minutes to a day or more, depending on the system and the size of your books. See [How long the first load takes](#how-long-the-first-load-takes).
+
+| System | What you sign in with |
+| --- | --- |
+| QuickBooks Online | A login with admin access to the company. You approve the connection yourself, and cfo.ai never sees your password. |
+| Xero | A login with admin access to the organisation |
+| NetSuite | An access token for the **Data Warehouse Integrator** role, which a NetSuite admin creates |
+| Rillet | An API key. Find or create one in Rillet under **Organization Settings → API access**. |
+
+If someone else holds admin access to your books, [invite them to your workspace](/guides/invite-teammates) and ask them to connect, or use one of the [fallbacks below](#if-you-cannot-connect).
+
+## Connect
+
+<Tabs>
+  <Tab title="Ask Ari">
+    Tell Ari what to connect and what you want from it:
+
+    > Connect QuickBooks Online so we can build monthly financial statements.
+
+    Ari opens the connection manager and points you to QuickBooks Online. Select **Connect** on its card and sign in. If you close the window, select **Connect integrations** on the card Ari left in the chat to open it again.
+  </Tab>
+  <Tab title="By hand">
+    <Steps>
+      <Step title="Open the connection manager">
+        In the sidebar, point at **Connections** and select **+** (**Add integration**).
+      </Step>
+      <Step title="Find your accounting system">
+        On the **Integrations** tab, QuickBooks Online, Xero, and Rillet are under **Featured**. Search for NetSuite. Select **Connect** on the card.
+      </Step>
+      <Step title="Sign in and approve">
+        For QuickBooks Online or Xero, a window opens. Sign in, choose the company or organisation, and approve access.
+
+        For NetSuite, Fivetran's setup window opens. Enter your NetSuite account and the access token. A table picker follows. The tables the statements need are locked. Tables for NetSuite features you do not use, **Multiple Currencies**, **Multiple Calendars**, or **Multi-Book Accounting**, start unchecked. Select **Finish setup & sync [N] tables**.
+
+        For Rillet, paste the API key into the card and select **Connect**. The card reads **Verifying API key…**, then **Connected**.
+      </Step>
+      <Step title="Check the sidebar">
+        The window closes, and the connection appears under **Connections** with a blinking orange dot while it syncs.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## How long the first load takes
+
+| System | Usual time until the data reaches your Model |
+| --- | --- |
+| QuickBooks Online | A few minutes |
+| Rillet | A few minutes |
+| Xero | About an hour, and a day or more for a large ledger. Xero limits how many requests an app can make for an organisation. While cfo.ai waits for that allowance to reset, the connection's card says how long it has waited. |
+| NetSuite | Many hours, because Fivetran copies every table's full history first |
+
+For QuickBooks Online and Xero, your three most recent complete months load first, so Ari can start working. The rest of your history, from January 1 of last year through today, follows in the background. To bring in older years, ask Ari for a full-history import later; see [Re-import past months](/guides/refresh-data#re-import-past-months).
+
+During the load, cfo.ai copies your books into its data warehouse. Then it adds saved queries that turn them into your Model's income statement and balance sheet, such as **QuickBooks Profit & Loss** and **QuickBooks Balance Sheet**. See [How connected data reaches your Model](/concepts/connected-data).
+
+## What to do while it loads
+
+You can keep working, and you do not need to stay on the page.
+
+- Start planning now. Ari can start a forecast from what you tell it and from labeled estimates. When your records land, they take the place of those estimates.
+- Do not reconnect or connect the source again to speed things up. Signing in again does not change how fast the data loads, and cfo.ai does not offer **Reconnect** while a sync is running.
+
+## Check that the data is ready
+
+Ari posts in the chat when the first sync finishes or fails. A connection you started from a chat reports to that chat. While your workspace is new, a connection you start from the sidebar reports to your most recent chat.
+
+In the sidebar, the orange dot disappears when the data is in. Point at the row: the card reads **Synced** and shows **Last synced**.
+
+You can also ask:
+
+> Check whether QuickBooks finished syncing and tell me which months are available.
+
+Ari names the periods that loaded, such as January 2025 to September 2026. Then compare one closed month with your books before you rely on the numbers; see [Check that your numbers match your books](/guides/check-imported-data).
+
+## Connect more than one company
+
+If you run several companies or entities (multi-entity), connect each one as its own connection. A workspace can hold more than one QuickBooks Online company, Xero organisation, or NetSuite account, and each connection uses its own plan slot. Rillet allows one connection per workspace, and that connection brings in every subsidiary.
+
+To add another company, open the connection manager, select **Add another** on the source's card, and sign in to the next company.
+
+QuickBooks Online, Xero, and Rillet statement rows carry an **Entity** column, which names the company or subsidiary, and a **Currency** column. When a second company of the same system loads, such as a second QuickBooks Online company, its accounts and entity join the first company's Dimensions. You can then report on each company and on the group. Companies in different systems, such as one in QuickBooks Online and one in Xero, do not share Dimensions on their own. To combine them, or to line up two different charts of accounts, see [Consolidate entities](/guides/consolidate-entities).
+
+You cannot connect the same QuickBooks company or Xero organisation twice. If you sign in to one the workspace already holds, the card reads **[Company] is already connected**.
+
+## If you cannot connect
+
+- If your system is not in the directory, such as QuickBooks Desktop or QuickBooks Enterprise, export a general ledger, or a monthly profit and loss and balance sheet, and [upload it as a CSV](/guides/upload-a-csv). A general ledger with a date, an account, and an amount on each row gives Ari the most to work with. Check the [integrations directory](/reference/integrations#check-whether-your-system-is-supported) first, because Sage Intacct, Acumatica, Zoho Books, and many other systems are there.
+- If you are not an admin in the accounting system, invite the person who is, or export the reports yourself and upload them.
+- If your numbers live in a spreadsheet model, attach it to a chat and [import it](/guides/import-a-spreadsheet-model).
+- If the card shows **Upgrade plan**, **Choose plan**, or a **Premium** badge instead of **Connect**, your plan has no room, or the workspace has no trial or plan yet. The tooltip says what is missing, and [Connection statuses and actions](/reference/connection-statuses#messages-when-a-new-connection-is-refused) lists each message.
+
+An upload does not refresh, so upload a new export each month until you can connect directly.
+
+## If something goes wrong
+
+If the sign-in window closes early, the card reads **[Source] was not connected**, such as **QuickBooks Online was not connected**. Select **Try again**; it reopens the same unfinished connection.
+
+If the connection shows a red triangle or an orange dot, point at it and use the action the card offers. [Fix a connection that needs attention](/guides/fix-a-connection) covers each one, and [Connection statuses and actions](/reference/connection-statuses) lists every message.
+
+## Related
+
+- [Integrations directory](/reference/integrations)
+- [How connected data reaches your Model](/concepts/connected-data)
+- [Replace estimates with your real numbers](/guides/switch-to-real-numbers)
+- [Check that your numbers match your books](/guides/check-imported-data)

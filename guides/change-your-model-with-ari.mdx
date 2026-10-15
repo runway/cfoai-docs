@@ -1,0 +1,70 @@
+---
+title: "Make a precise change with Ari"
+sidebarTitle: "Make a precise change"
+description: "Have Ari change one assumption, formula, or table and leave everything else alone: name the target, fence off what must not move, try risky changes in a Scenario, review what changed, and undo it."
+---
+
+Use this when you want one targeted change, such as a new price, a later start date for two hires, or a fix to one formula, and nothing else touched. Ari does not ask before it changes the Model, because every change can be undone, so a precise request is the best way to get a precise result.
+
+<Steps>
+  <Step title="Point at what should change">
+    Mention the exact cell, row, or table: right-click it and choose **Mention cell in chat** or **Mention in chat**, or select it and press **⌘ L** (**Ctrl L** on Windows and Linux). Ari then edits that place instead of guessing which one you meant. You can also name it: "the Price assumption on the Revenue Page" is clearer than "the price".
+
+    Customers often call the inputs of a forecast "assumptions". In cfo.ai each one is a Variable or a value in a Table block, and you can name it either way.
+  </Step>
+  <Step title="Say what to change, and what to leave alone">
+    State the change and fence off everything else in the same message:
+
+    > Change the Starter plan price to \$49 from January. Only change that price. Leave the other plans, the dashboard, and the table layout as they are.
+
+    > Move the start dates of the two Q1 engineering hires to April. Don't change salaries or any other hire.
+
+    > Fix the formula for Gross margin in the Downside Scenario only. Don't rename anything and don't add Pages.
+  </Step>
+  <Step title="For a risky change, work in a Scenario">
+    If you are not sure you want the change, have Ari make it in a Scenario, so Main, your plan, stays as it is until you decide:
+
+    > Create a Scenario called Price test, change the Starter price to \$49 there, and compare cash with Main.
+
+    See [Test a decision in a Scenario](/guides/test-a-decision-in-a-scenario).
+  </Step>
+  <Step title="For a large change, ask for the plan first">
+    Before a change that touches many tables, ask Ari to show its plan before it changes anything:
+
+    > Before you change anything, show me your plan for restructuring the expense tables.
+
+    Ari shows a plan card. Read what it will create and the assumptions it will use, change any that are wrong, and select **Build it**, or select **Make changes** to describe what to do differently. See [Answer Ari's questions and approve its actions](/guides/approve-ari-actions#approve-a-plan).
+  </Step>
+  <Step title="Review what changed">
+    While Ari works, each edit plays on the Page with a caption showing the old and new value, such as `5% → 4%`. When it finishes, ask:
+
+    > What exactly did you change? List every table, formula, and value.
+
+    Every change is also listed in version history, newest first, with who made it. See [Chat controls and messages](/reference/chat#edits-playing-on-the-page) for what the captions and cards show.
+  </Step>
+</Steps>
+
+## Take a change back
+
+If Ari changed more than you wanted, ask:
+
+> Undo that last change.
+
+Ari undoes the most recent change as a whole. To undo an older change, or one change among several, use version history. See [Undo a change or restore an earlier version](/guides/undo-changes).
+
+## If Ari keeps changing things you did not ask for
+
+- Stop it as soon as you see it: select **Stop**, then say what to leave alone. See [Steer, stop, or add to Ari's work](/guides/steer-ari).
+- Make the fence part of the request every time, such as "Only change X" or "Work in the Price test Scenario only".
+- Ask Ari to remember a lasting preference, such as "Never rename Variables without asking", so it carries the preference into later chats. See [Teach Ari your company's conventions](/guides/teach-ari).
+
+## Make the change yourself
+
+To change a value or formula by hand, see [Enter, paste, and clear values](/guides/enter-values) and [Write a formula](/guides/write-a-formula).
+
+## Related
+
+- [How Ari works with you](/concepts/working-with-ari)
+- [Ask Ari about a number](/guides/ask-about-a-number)
+- [Have Ari write, change, or explain formulas](/guides/change-formulas-with-ari)
+- [Review Ari's formula changes](/guides/review-ari-formula-changes)

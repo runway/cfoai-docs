@@ -1,0 +1,73 @@
+---
+title: "Change a chart or Canvas block"
+sidebarTitle: "Change a chart"
+description: "Change a chart, scorecard, or other Canvas block by asking Ari. Point Ari at one part with Select element, restyle an existing chart block yourself, and keep a control's setting after you reload the Page."
+---
+
+To change a chart, a scorecard, or any other Canvas block, tell Ari what you want, such as stacked bars instead of a line, or one segment instead of all of them. Canvas blocks are the custom visuals Ari builds from your Model's data, and they have no code editor. If a Page already has a chart block, you can also restyle it yourself in its sidebar.
+
+<Tabs>
+  <Tab title="Ask Ari">
+    <Steps>
+      <Step title="Point Ari at the block">
+        Hover the block and select **Mention in chat** at its top corner, or open the block's menu from the six-dot handle at its left edge and choose **Mention canvas in chat**. The block appears in the message box as a chip.
+      </Step>
+      <Step title="Point at one part, if the change is small">
+        To change one bar, number, label, or control, select **Select element** at the block's corner and then click that part. It joins the message box as its own chip, so Ari changes that part and leaves the rest alone.
+      </Step>
+      <Step title="Describe the change">
+        Say what you want to see, and send:
+
+        > Turn this into stacked bars by customer segment.
+
+        > Make this bar orange and start the axis at zero.
+
+        > Show this quarterly instead of monthly.
+      </Step>
+    </Steps>
+
+    Ari changes the block in place, so it keeps its position on the Page. A blank Canvas block offers **Mention block in chat** instead, so Ari can build it from your description. To learn how Ari checks a visual it changed, see [How Ari checks a visual](/concepts/pages-and-blocks#how-ari-checks-a-visual).
+  </Tab>
+  <Tab title="By hand (chart blocks)">
+    You can restyle a chart block that a Page already has. You cannot add a new chart block yourself; ask Ari for a new chart.
+
+    <Steps>
+      <Step title="Open the chart's sidebar">
+        Select **Show chart setup** at the left of the chart's header.
+      </Step>
+      <Step title="Change what the chart shows">
+        On the **Setup** tab, pick the chart type, such as **Line**, **Bar**, **Bar Stacked**, **Area**, **Pie**, **Combo**, or **Waterfall**. Under **X-Axis**, change the date grain. Under **Y-Axis**, add or remove Variables, select a Variable's swatch (**Pick color**) to change its color, or select **Segment by** to split it by a Dimension. In a combo chart, each series can be a line or bars.
+      </Step>
+      <Step title="Change how it looks">
+        On the **Display** tab, turn on or off **Show chart title**, **Show legend**, **Show X axis**, **Show Y axis**, **Show horizontal grid lines**, and the axis titles, and type the title in **Chart title text**.
+      </Step>
+      <Step title="Compare Scenarios, if you want">
+        Select **Compare** in the chart's header and choose **Scenarios** to show other Scenarios beside the one you are viewing.
+      </Step>
+    </Steps>
+
+    A chart's numbers use each Variable's own number format. To show values differently everywhere, ask Ari to change the Variable's format. To start over, open the sidebar's **…** menu (**Open Chart Options**) and choose **Reset chart**.
+  </Tab>
+</Tabs>
+
+## Keep a control's setting
+
+Sliders, toggles, and menus in a Canvas block change only what you see, unless the block was built to save that setting. If a setting goes back when you reload the Page, ask Ari to keep it:
+
+> Make this chart remember whether I pick monthly or quarterly.
+
+A saved setting belongs to that block in that Scenario, so everyone who opens the Page in that Scenario sees it. A control never changes a value in your Model. To change an assumption, such as a hiring date, edit it in a Table block or ask Ari. See [Pages, Table blocks, and Canvas blocks](/concepts/pages-and-blocks#controls-change-the-view-never-the-model).
+
+## If a block shows an error
+
+- If the block says **This block failed to render.**, select **Fix** to hand the block to Ari.
+- If it says the block **didn't start** or was **still loading its libraries**, the block's software did not finish loading. Select **Retry**.
+- If it says the block's data **failed to load**, select **Mention in chat** and ask Ari to check the data the block reads.
+
+Every Canvas block message is listed in [The cfo.ai interface](/reference/interface#canvas-blocks).
+
+## Related
+
+- [Build a dashboard or board report](/guides/build-a-dashboard)
+- [Prompt library](/reference/prompt-library)
+- [Format and arrange a table](/guides/format-a-table)

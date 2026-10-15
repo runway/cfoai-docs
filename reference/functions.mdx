@@ -1,0 +1,504 @@
+---
+title: "Formula functions"
+description: "Every function you can use in a cfo.ai formula, such as sum, average, if, and eomonth, with its arguments, what it returns, its limits, and an example. Includes older names and what to write instead of Excel functions cfo.ai does not have, such as SUMIF, VLOOKUP, and TODAY."
+---
+
+cfo.ai formulas have 38 functions, listed here by category. Function names are not case-sensitive, so `SUM` and `sum` are the same function; write them in lowercase in new formulas. Each argument can be any expression, including a lookup, another function, or a condition. For operators, lookups, and filters, see [Formula syntax](/reference/formula-syntax).
+
+In the formula editor, press **⌥ F12** (**Alt F12**) to see the syntax and an example of the function under the cursor.
+
+## All functions at a glance
+
+| Function | Returns | Arguments |
+| --- | --- | --- |
+| [`sum`](#sum) | The total of the values | 1 to 10 |
+| [`product`](#product) | The values multiplied together | 1 to 10 |
+| [`average`](#average) | The mean of the values | 1 to 10 |
+| [`min`](#min) | The smallest value, or the earliest date | 1 to 10 |
+| [`max`](#max) | The largest value, or the latest date | 1 to 10 |
+| [`count`](#count) | How many values are not empty | 1 to 10 |
+| [`first`](#first) | The first value that is not empty | 1 or more |
+| [`last`](#last) | The last value that is not empty | 1 or more |
+| [`median`](#median) | The middle value | Exactly 1 |
+| [`stdev`](#stdev) | The sample standard deviation | 1 to 10 |
+| [`var`](#var) | The sample variance | 1 to 10 |
+| [`abs`](#abs) | The value without its sign | Exactly 1 |
+| [`sqrt`](#sqrt) | The square root | Exactly 1 |
+| [`ceiling`](#ceiling) | The number rounded up to a multiple | Exactly 2 |
+| [`floor`](#floor) | The number rounded down to a multiple | Exactly 2 |
+| [`round`](#round) | The number rounded to a number of digits | Exactly 2 |
+| [`if`](#if) | One of two values, depending on a condition | Exactly 3 |
+| [`iferror`](#iferror) | A value, or a fallback when it is an error | Exactly 2 |
+| [`year`](#year) | The year of a date | Exactly 1 |
+| [`month`](#month) | The month of a date, 1 to 12 | Exactly 1 |
+| [`day`](#day) | The day of the month, 1 to 31 | Exactly 1 |
+| [`quarter`](#quarter) | The calendar quarter, 1 to 4 | Exactly 1 |
+| [`half`](#half) | The half-year, 1 or 2 | Exactly 1 |
+| [`weekday`](#weekday) | The day of the week as a number | 1 or 2 |
+| [`weeknum`](#weeknum) | The week of the year | 1 or 2 |
+| [`isoweeknum`](#isoweeknum) | The ISO 8601 week of the year | Exactly 1 |
+| [`startofday`](#startofday) | The start of the day | Exactly 1 |
+| [`startofweek`](#startofweek) | The Monday that starts the week | Exactly 1 |
+| [`startofmonth`](#startofmonth) | The first day of the month | Exactly 1 |
+| [`startofquarter`](#startofquarter) | The first day of the quarter | Exactly 1 |
+| [`startofhalf`](#startofhalf) | January 1 or July 1 | Exactly 1 |
+| [`startofyear`](#startofyear) | January 1 of the year | Exactly 1 |
+| [`dateadd`](#dateadd) | A date moved by a number of units | Exactly 3 |
+| [`datedif`](#datedif) | The difference between two dates | Exactly 3 |
+| [`daysin`](#daysin) | The number of days in a period | Exactly 2 |
+| [`date`](#date) | A date built from a year, month, and day | Exactly 3 |
+| [`edate`](#edate) | A date moved by whole months | Exactly 2 |
+| [`eomonth`](#eomonth) | The last day of a month | Exactly 2 |
+
+A call with the wrong number of arguments shows `#VALUE!` in its cells, and the editor names the limit, such as **SUM requires between 1 and 10 arguments**. A name that is not on this list shows `#NAME?`. See [Formula errors and warnings](/reference/formula-errors).
+
+## Aggregation functions
+
+Aggregation functions combine several values into one, such as every department's revenue. The values usually come from a lookup that selects several items, such as `Revenue[Department in any]`. Empty values are skipped. Most take 1 to 10 arguments; `median` takes exactly one.
+
+For example, when Revenue is 50 for Sales, 30 for Marketing, and 20 for Engineering:
+
+| Formula | Result |
+| --- | --- |
+| `sum(Revenue[Department in any])` | 100 |
+| `average(Revenue[Department in any])` | 33.33 |
+| `min(Revenue[Department in any])` | 20 |
+| `max(Revenue[Department in any])` | 50 |
+| `median(Revenue[Department in any])` | 30 |
+| `count(Revenue[Department in any])` | 3 |
+| `product(Revenue[Department in any])` | 30,000 |
+| `stdev(Revenue[Department in any])` | 15.28 |
+| `var(Revenue[Department in any])` | 233.33 |
+
+### sum
+
+`sum` adds numbers and always returns a number: a sum with no values returns 0.
+
+```text
+sum(value, value2, ...)
+sum(Revenue[Department in any])
+```
+
+It takes 1 to 10 arguments and adds the values of all of them: `` sum(Revenue[Region in any], `Other Income`[Region in any]) ``.
+
+### product
+
+`product` multiplies numbers. It returns 0 when there are no values.
+
+```text
+product(value, value2, ...)
+product(`Growth Factor`[Date.Month in [-2]:[0]])
+```
+
+It takes 1 to 10 arguments.
+
+### average
+
+`average` returns the arithmetic mean of numbers, or an empty value when there are none. `avg` is an older spelling that still works.
+
+```text
+average(value, value2, ...)
+average(Revenue[Department in any])
+```
+
+It takes 1 to 10 arguments. With several arguments, it averages all their values together, so each value counts once.
+
+### min
+
+`min` returns the smallest number, or an empty value when there are none.
+
+```text
+min(value, value2, ...)
+min(Revenue[Department in any])
+```
+
+It takes 1 to 10 arguments. With one argument that holds dates, it returns the earliest date; when values mix numbers and dates, the numbers decide. With several arguments, every argument must be a number.
+
+### max
+
+`max` returns the largest number, or an empty value when there are none.
+
+```text
+max(value, value2, ...)
+max(`Observed On`[Employee in any])
+```
+
+It takes 1 to 10 arguments. With one argument that holds dates, it returns the latest date, so the example returns the newest observation. When values mix numbers and dates, the numbers decide. With several arguments, every argument must be a number.
+
+### count
+
+`count` returns how many values are not empty, of any type. It works like Excel's COUNTA, not Excel's COUNT.
+
+```text
+count(value, value2, ...)
+count(`Deal Amount`[Deal in any])
+```
+
+It takes 1 to 10 arguments. A value of 0 counts.
+
+### first
+
+`first` returns the first value that is not empty, in the order of the series, or an empty value when there is none.
+
+```text
+first(value, source2, ...)
+first(Revenue[Date.Month in any])
+```
+
+Over an imported table's rows, the order is the source's date column. Rows on the same date keep the source's order.
+
+`first` takes several arguments only when each one is an imported column or a plain reference to a Variable or Dimension, with no arithmetic around it. It then returns the value from the input whose row is earliest. A dated row wins over an undated one, and when dates tie, the earlier argument wins.
+
+### last
+
+`last` returns the last value that is not empty, in the order of the series, or an empty value when there is none. Use it for a balance or a headcount, where the period's value is its latest one.
+
+```text
+last(value, source2, ...)
+last(`Cash Balance`[Date.Month in any])
+```
+
+Over an imported table's rows, `last` returns the row with the latest date in the source's date column. Rows on the same date keep the source's order. A reference to an imported column with no function around it reads the same way as `last`.
+
+`last` takes several arguments only when each one is an imported column or a plain reference to a Variable or Dimension, with no arithmetic around it. It then returns the value from the input whose row is latest. A dated row wins over an undated one, and when dates tie, the later argument wins. Each input keeps its own filters, so `` last(`Vendor A`, `Vendor B`) `` returns whichever vendor has the latest entry. This is how a Dimension combined from two accounting sources reads; see [Dimension mappings and shared Dimensions](/concepts/dimension-mappings).
+
+### median
+
+`median` returns the middle number, or an empty value when there are none. With an even count of values, it returns the mean of the two middle ones.
+
+```text
+median(value)
+median(`Annual Salary`[Employee in any])
+```
+
+It takes exactly one argument.
+
+### stdev
+
+`stdev` returns the sample standard deviation, which divides by the count minus one. It returns an empty value when there are fewer than two values. `stddev` is an older spelling that still works.
+
+```text
+stdev(value, value2, ...)
+stdev(Revenue[Region in any])
+```
+
+It takes 1 to 10 arguments and pools all their values into one result.
+
+### var
+
+`var` returns the sample variance, which divides by the count minus one. It returns an empty value when there are fewer than two values. `variance` is an older spelling that still works.
+
+```text
+var(value, value2, ...)
+var(Revenue[Region in any])
+```
+
+It takes 1 to 10 arguments and pools all their values into one result.
+
+## Math functions
+
+### abs
+
+`abs` returns a number without its sign, so -5 becomes 5. An empty value stays empty.
+
+```text
+abs(value)
+abs(Actual - Budget)
+```
+
+### sqrt
+
+`sqrt` returns the square root of a number. Use it on zero or a positive number, and guard a value that can be negative.
+
+```text
+sqrt(value)
+if(`Spread` >= 0, sqrt(`Spread`), 0)
+```
+
+### ceiling
+
+`ceiling` rounds a number up to the nearest multiple of a significance, as Excel's CEILING does.
+
+```text
+ceiling(number, significance)
+ceiling(`Unit Price`, 0.05)
+```
+
+A positive number with a negative significance returns `#NUM!`.
+
+### floor
+
+`floor` rounds a number down to the nearest multiple of a significance, as Excel's FLOOR does.
+
+```text
+floor(number, significance)
+floor(`Unit Price`, 0.05)
+```
+
+A positive number with a negative significance returns `#NUM!`.
+
+### round
+
+`round` rounds a number to a number of digits, as Excel's ROUND does. A negative digit count rounds to the left of the decimal point.
+
+```text
+round(number, num_digits)
+round(Revenue, -3)
+```
+
+The example rounds to the nearest thousand.
+
+## Conditional functions
+
+### if
+
+`if` returns one value when a condition is true and another when it is false. It needs all three arguments; unlike Excel, the third one is not optional.
+
+```text
+if(condition, value_if_true, value_if_false)
+if(Revenue > 0, `Gross Profit` / Revenue, 0)
+```
+
+A condition that compares with an empty value is not true, so `if` returns the third argument. To test for an empty value, compare with `null`: `` if(`End Date` = null, 1, 0) ``. You can nest calls: `if(Revenue > 100, "high", if(Revenue > 50, "medium", "low"))`.
+
+### iferror
+
+`iferror` returns a value, or a fallback when that value is an error such as a division by zero.
+
+```text
+iferror(value, value_if_error)
+iferror(`Gross Profit` / Revenue, 0)
+```
+
+It takes exactly two arguments. An empty value is not an error, so `iferror` returns it unchanged.
+
+## Date-part functions
+
+Date-part functions return one part of a date as a number. Each takes exactly one date, except `weekday` and `weeknum`.
+
+### year
+
+`year` returns the four-digit year of a date, as Excel's YEAR does.
+
+```text
+year(Date.Month)
+```
+
+### month
+
+`month` returns the month of a date as a number from 1 to 12.
+
+```text
+month(Date.Month)
+```
+
+### day
+
+`day` returns the day of the month as a number from 1 to 31.
+
+```text
+day(Date.Day)
+```
+
+### quarter
+
+`quarter` returns the calendar quarter of a date as a number from 1 to 4.
+
+```text
+quarter(Date.Month)
+```
+
+### half
+
+`half` returns 1 for a date from January to June and 2 for a date from July to December. It returns 2 when the date is empty.
+
+```text
+half(Date.Month)
+```
+
+### weekday
+
+`weekday` returns the day of the week as a number, as Excel's WEEKDAY does. By default Sunday is 1 and Saturday is 7.
+
+```text
+weekday(date, return_type)
+weekday(Date.Day, 2)
+```
+
+The optional return type sets the numbering: 1 (Sunday is 1, the default), 2 (Monday is 1), 3 (Monday is 0), or 11 to 17 (the week starts on Monday through Sunday).
+
+### weeknum
+
+`weeknum` returns the week of the year, from 1 to 54, as Excel's WEEKNUM does. Except with return type 21, week 1 is the week that contains January 1.
+
+```text
+weeknum(date, return_type)
+weeknum(Date.Week, 21)
+```
+
+The optional return type sets the first day of the week: 1 (Sunday, the default), 2 (Monday), or 11 to 17 (Monday through Sunday). Return type 21 uses ISO 8601 weeks.
+
+### isoweeknum
+
+`isoweeknum` returns the ISO 8601 week of the year, from 1 to 53. It is the same as `weeknum(date, 21)`.
+
+```text
+isoweeknum(Date.Week)
+```
+
+## Date-truncation functions
+
+Date-truncation functions return the first day of the period that contains a date. Each takes exactly one date. Use them to line up dates from a source with the Model's periods.
+
+### startofday
+
+`startofday` returns the start of the day that contains a date.
+
+```text
+startofday(Date.Day)
+```
+
+### startofweek
+
+`startofweek` returns the Monday that starts the week containing a date.
+
+```text
+startofweek(Date.Week)
+```
+
+### startofmonth
+
+`startofmonth` returns the first day of the month containing a date.
+
+```text
+startofmonth(Date.Month)
+```
+
+### startofquarter
+
+`startofquarter` returns the first day of the calendar quarter containing a date.
+
+```text
+startofquarter(Date.Month)
+```
+
+### startofhalf
+
+`startofhalf` returns January 1 or July 1 of the half-year containing a date.
+
+```text
+startofhalf(Date.Month)
+```
+
+### startofyear
+
+`startofyear` returns January 1 of the year containing a date.
+
+```text
+startofyear(Date.Month)
+```
+
+## Date arithmetic and construction
+
+### dateadd
+
+`dateadd` moves a date by a signed number of units.
+
+```text
+dateadd(date, amount, "unit")
+dateadd(Date.Month, -1, "month")
+```
+
+The unit must be in quotes: `"day"`, `"week"`, `"month"`, `"quarter"`, `"half"`, or `"year"`. The amount is a whole number; a negative amount moves back.
+
+### datedif
+
+`datedif` returns the whole number of units between a start date and an end date, as Excel's DATEDIF does.
+
+```text
+datedif(start_date, end_date, "unit")
+datedif(`Start Date`, Date.Month, "M")
+```
+
+The unit is `"Y"`, `"M"`, `"D"`, `"MD"`, `"YM"`, or `"YD"`. The count leaves out the end day, so add 1 to count both ends. A start date after the end date returns `#NUM!`, and a value that is not a date returns `#VALUE!`.
+
+### daysin
+
+`daysin` returns the number of days in the period that contains a date.
+
+```text
+daysin(date, "unit")
+daysin(Date.Month, "month")
+```
+
+The unit is one of the `dateadd` units, in quotes. Use it to spread an amount by calendar days, such as `` `Annual Fee` / 365 * daysin(Date.Month, "month") ``.
+
+### date
+
+`date` builds a date from a year, a month, and a day, as Excel's DATE does.
+
+```text
+date(year, month, day)
+date(year(Date.Month), 12, 31)
+```
+
+A month or day outside its range rolls into the next or previous month or year, so `date(2026, 13, 1)` is January 1, 2027. A year from 0 to 1899 has 1900 added. Unlike Excel, February 29, 1900 does not exist. A result outside the supported range returns `#NUM!`, and a value that is not a number returns `#VALUE!`.
+
+### edate
+
+`edate` moves a date by whole months and keeps the day inside the new month, as Excel's EDATE does.
+
+```text
+edate(date, months)
+edate(`Start Date`, 3)
+```
+
+A fraction of a month is dropped, so 2.7 moves two months.
+
+### eomonth
+
+`eomonth` returns the last day of the month a signed number of months from a date, as Excel's EOMONTH does.
+
+```text
+eomonth(date, months)
+eomonth(Date.Month, 0)
+```
+
+Use 0 for the date's own month, 1 for the next month, and -1 for the previous month. A fraction of a month is dropped.
+
+## Older spellings
+
+These names still work in existing formulas. Write the preferred name in new ones.
+
+| Older spelling | Preferred name |
+| --- | --- |
+| `avg` | [`average`](#average) |
+| `stddev` | [`stdev`](#stdev) |
+| `variance` | [`var`](#var) |
+
+## Excel functions that are not available
+
+cfo.ai has no function by these names. A formula that uses one shows `#NAME?`. Write the cfo.ai form instead.
+
+| Excel function | What to write in cfo.ai |
+| --- | --- |
+| `SUMIF`, `SUMIFS` | A filtered `sum`: `sum(Revenue[Region = "West"])`, or with a test, `sum(Revenue[Department in any] where Revenue > 10000)` |
+| `COUNTIF`, `COUNTIFS` | A filtered `count`: `` count(`Deal Amount`[Deal in any] where `Deal Amount` > 0) `` |
+| `AVERAGEIF`, `AVERAGEIFS` | A filtered `average`: `average(Revenue[Region in {"East", "West"}])` |
+| `VLOOKUP`, `XLOOKUP`, `INDEX` and `MATCH` | A lookup in brackets, such as `` `List Price`$[Plan = this.Plan] ``, or a Dimension mapping; see [Map one Dimension's items to another](/guides/map-dimensions) |
+| `AND()`, `OR()`, `NOT()` | The operators `and`, `or`, and `not`: `Revenue > 0 and Margin > 0.2` |
+| `IFS`, `SWITCH`, `CHOOSE` | Nested `if` calls, or a separate formula for each item of a Dimension; see [Write a formula](/guides/write-a-formula#open-the-editor-in-the-right-place) |
+| `TODAY()`, `NOW()` | No current-date function. A formula calculates for every period, and `Date.Month` is the period being calculated. |
+| `OFFSET`, or a reference to the cell above | A period offset: `Revenue[-1]` |
+| `MOD` | The `%` operator between two numbers: `17 % 5` is 2 |
+| `POWER` | The `^` operator: `2 ^ 3` is 8 |
+| `ROUNDUP`, `ROUNDDOWN` | [`ceiling`](#ceiling) or [`floor`](#floor) with a significance, such as `ceiling(Price, 1)` |
+| `SUMPRODUCT` | A Variable for the product on each item, then a `sum`: `` sum(`Line Revenue`[Product in any]) `` where `` `Line Revenue` `` is `Units * Price` |
+| Text functions such as `CONCAT`, `LEFT`, or `TEXT` | No text functions. Keep text as the values of a text Variable or as the items of a Dimension. |
+| Financial functions such as `NPV`, `IRR`, or `PMT` | No financial functions. Build the schedule with period formulas, such as a balance that reads `[-1]`, or ask Ari to calculate the figure. |
+
+## Related
+
+- [Formula syntax](/reference/formula-syntax)
+- [Formula errors and warnings](/reference/formula-errors)
+- [Write a formula](/guides/write-a-formula)

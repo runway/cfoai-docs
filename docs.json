@@ -16,167 +16,299 @@
     "dark": "/logo/cfo-ai-logo-dark.svg"
   },
   "navigation": {
-    "pages": [
-      "index",
+    "tabs": [
       {
-        "group": "Get started",
-        "pages": [
-          "getting-started/quickstart",
-          "getting-started/first-10-minutes",
-          "getting-started/your-first-week",
-          "getting-started/understand-your-workspace",
-          "getting-started/build-by-hand",
-          "getting-started/build-your-financial-model",
-          "getting-started/import-a-spreadsheet-model",
-          "glossary",
-          "use-cases"
-        ]
-      },
-      {
-        "group": "Work with Ari",
-        "pages": [
-          "ari/meet-ari",
-          "ari/during-a-conversation",
-          "ari/ask-better-questions",
-          "ari/read-and-change-your-model",
-          "ari/what-ari-remembers",
-          "workspace-settings/file-attachments-in-chat",
-          "ari/prompts"
-        ]
-      },
-      {
-        "group": "Formulas",
-        "pages": [
+        "tab": "Get started",
+        "icon": "rocket",
+        "groups": [
           {
             "group": "Get started",
             "pages": [
-              "formulas/get-started/understand-the-formula-model",
-              "formulas/get-started/write-your-first-formula"
-            ]
-          },
-          {
-            "group": "Core concepts",
-            "pages": [
-              "formulas/core-concepts/segments-and-segmentations",
-              "formulas/core-concepts/choose-where-a-formula-applies",
-              {
-                "group": "Variables and dimensions",
-                "pages": [
-                  "formulas/core-concepts/variables-and-dimensions/what-is-a-variable",
-                  "formulas/core-concepts/variables-and-dimensions/financial-model-to-variables-and-dimensions",
-                  "formulas/core-concepts/variables-and-dimensions/dimensional-modeling-to-variables-and-dimensions",
-                  "formulas/core-concepts/variables-and-dimensions/choose-variable-or-dimension",
-                  "formulas/core-concepts/variables-and-dimensions/worked-example-revenue-by-department"
-                ]
-              },
-              "formulas/core-concepts/how-cfoai-chooses-a-formula",
-              "formulas/core-concepts/actuals-forecast-and-formula-ranges",
-              "formulas/core-concepts/how-aggregation-works",
-              "formulas/core-concepts/dimension-mappings"
-            ]
-          },
-          {
-            "group": "Formula guides",
-            "pages": [
-              "formulas/formula-guides/reference-variables-and-dimensions",
-              "formulas/formula-guides/filter-by-dimension-items",
-              "formulas/formula-guides/work-with-dates",
-              "formulas/formula-guides/use-conditional-logic",
-              "formulas/formula-guides/common-formula-patterns"
-            ]
-          },
-          {
-            "group": "Work with formulas using Ari",
-            "pages": [
-              "formulas/work-with-ari/use-ari-for-formula-work",
-              "formulas/work-with-ari/ask-ari-to-explain-existing-formulas",
-              "formulas/work-with-ari/explore-calculations-without-saving",
-              "formulas/work-with-ari/ask-ari-to-create-or-update-formulas",
-              "formulas/work-with-ari/review-and-troubleshoot-aris-formula-changes"
-            ]
-          },
-          {
-            "group": "Formula reference",
-            "pages": [
-              "formulas/formula-reference/formula-syntax-and-operators",
-              "formulas/formula-reference/formula-errors-and-troubleshooting",
-              {
-                "group": "Function reference",
-                "pages": [
-                  "formulas/formula-reference/function-reference/aggregation-functions",
-                  "formulas/formula-reference/function-reference/math-functions",
-                  "formulas/formula-reference/function-reference/conditional-functions",
-                  "formulas/formula-reference/function-reference/date-part-functions",
-                  "formulas/formula-reference/function-reference/date-truncation-functions",
-                  "formulas/formula-reference/function-reference/date-and-time-functions"
-                ]
-              },
-              "formulas/formula-reference/formula-glossary"
-            ]
-          },
-          {
-            "group": "Formula guidance for agents",
-            "pages": [
-              "formulas/agent-docs/authoring-overview",
-              "formulas/agent-docs/read-and-explain",
-              "formulas/agent-docs/evaluate-without-saving",
-              "formulas/agent-docs/create-and-update",
-              "formulas/agent-docs/resolve-scope",
-              "formulas/agent-docs/work-with-formula-ranges",
-              "formulas/agent-docs/validate-and-verify"
+              "index",
+              "tutorials/first-model",
+              "tutorials/first-week",
+              "tutorials/first-table-by-hand"
             ]
           }
         ]
       },
       {
-        "group": "Integrations",
-        "pages": [
-          "integrations/connect-and-sync-data",
-          "integrations/integrations-directory",
-          "integrations/mcp-server",
-          "agent-instructions"
+        "tab": "How-to guides",
+        "icon": "list-check",
+        "groups": [
+          {
+            "group": "How-to guides",
+            "pages": [
+              "guides/index"
+            ]
+          },
+          {
+            "group": "Bring in your data",
+            "pages": [
+              "guides/connect-accounting",
+              "guides/connect-other-sources",
+              "guides/connect-a-google-sheet",
+              "guides/upload-a-csv",
+              "guides/import-a-spreadsheet-model",
+              "guides/switch-to-real-numbers"
+            ]
+          },
+          {
+            "group": "Keep your data current",
+            "pages": [
+              "guides/refresh-data",
+              "guides/fix-a-connection",
+              "guides/choose-synced-tables",
+              "guides/check-imported-data"
+            ]
+          },
+          {
+            "group": "Ask Ari",
+            "pages": [
+              "guides/ask-about-a-number",
+              "guides/find-things",
+              "guides/get-better-answers",
+              "guides/attach-files"
+            ]
+          },
+          {
+            "group": "Guide Ari's work",
+            "pages": [
+              "guides/change-your-model-with-ari",
+              "guides/steer-ari",
+              "guides/ari-is-slow-stuck-or-wrong",
+              "guides/approve-ari-actions",
+              "guides/teach-ari",
+              "guides/use-ari-in-slack"
+            ]
+          },
+          {
+            "group": "Build plans with Ari",
+            "pages": [
+              "guides/build-a-forecast",
+              "guides/forecast-cash",
+              "guides/build-a-headcount-plan",
+              "guides/build-financial-statements",
+              "guides/budget-vs-actuals",
+              "guides/close-the-month",
+              "guides/consolidate-entities"
+            ]
+          },
+          {
+            "group": "Change the Model with Ari",
+            "pages": [
+              "guides/change-formulas-with-ari",
+              "guides/review-ari-formula-changes",
+              "guides/undo-changes"
+            ]
+          },
+          {
+            "group": "Edit Pages and tables yourself",
+            "pages": [
+              "guides/create-pages-and-blocks",
+              "guides/build-a-table",
+              "guides/enter-values",
+              "guides/format-a-table",
+              "guides/filter-and-sort-a-table",
+              "guides/break-down-a-number",
+              "guides/map-dimensions"
+            ]
+          },
+          {
+            "group": "Write formulas yourself",
+            "pages": [
+              "guides/write-a-formula",
+              "guides/actuals-and-forecast-formulas",
+              "guides/fix-formula-errors"
+            ]
+          },
+          {
+            "group": "Plan with Scenarios",
+            "pages": [
+              "guides/test-a-decision-in-a-scenario",
+              "guides/compare-scenarios",
+              "guides/merge-a-scenario",
+              "guides/save-a-snapshot"
+            ]
+          },
+          {
+            "group": "Report and share",
+            "pages": [
+              "guides/build-a-dashboard",
+              "guides/change-a-visual",
+              "guides/share-a-page",
+              "guides/download-a-spreadsheet",
+              "guides/get-a-pdf-or-slides",
+              "guides/create-a-guide",
+              "guides/brand-your-workspace"
+            ]
+          },
+          {
+            "group": "Automate recurring work",
+            "pages": [
+              "guides/schedule-a-trigger",
+              "guides/save-a-skill",
+              "guides/turn-on-built-in-skills"
+            ]
+          },
+          {
+            "group": "Manage your workspace and account",
+            "pages": [
+              "guides/invite-teammates",
+              "guides/manage-workspaces",
+              "guides/set-dates-and-last-close",
+              "guides/choose-a-plan",
+              "guides/manage-ai-usage",
+              "guides/cancel-or-delete",
+              "guides/personalize-cfoai"
+            ]
+          },
+          {
+            "group": "Connect AI tools",
+            "pages": [
+              "guides/connect-an-ai-client",
+              "guides/give-ari-another-service"
+            ]
+          }
         ]
       },
       {
-        "group": "Scenarios",
-        "pages": [
-          "scenarios/understand-scenarios",
-          "scenarios/create-and-compare-scenarios"
+        "tab": "Concepts",
+        "icon": "lightbulb",
+        "groups": [
+          {
+            "group": "Concepts",
+            "pages": [
+              "concepts/index",
+              "concepts/how-cfoai-works"
+            ]
+          },
+          {
+            "group": "Ari",
+            "pages": [
+              "concepts/working-with-ari",
+              "concepts/ari-memory"
+            ]
+          },
+          {
+            "group": "The Model",
+            "pages": [
+              "concepts/variables-and-dimensions",
+              "concepts/formulas",
+              "concepts/actuals-and-forecast",
+              "concepts/totals-and-rollups",
+              "concepts/dimension-mappings",
+              "concepts/scenarios"
+            ]
+          },
+          {
+            "group": "Data, Pages, and sharing",
+            "pages": [
+              "concepts/connected-data",
+              "concepts/pages-and-blocks",
+              "concepts/sharing-and-access"
+            ]
+          },
+          {
+            "group": "Automation and plans",
+            "pages": [
+              "concepts/automation",
+              "concepts/plans-and-usage"
+            ]
+          }
         ]
       },
       {
-        "group": "Dashboards",
-        "pages": [
-          "dashboards/pages-and-blocks",
-          "dashboards/build-and-format-tables",
-          "dashboards/charts-and-custom-visualizations",
-          "dashboards/table-view-grammar",
-          "dashboards/share-pages-and-scenarios"
+        "tab": "Reference",
+        "icon": "book",
+        "groups": [
+          {
+            "group": "Reference",
+            "pages": [
+              "reference/index",
+              "reference/glossary"
+            ]
+          },
+          {
+            "group": "Using cfo.ai",
+            "pages": [
+              "reference/interface",
+              "reference/settings",
+              "reference/keyboard-shortcuts",
+              "reference/chat",
+              "reference/table-blocks",
+              "reference/scenarios-and-history",
+              "reference/limits"
+            ]
+          },
+          {
+            "group": "Formulas",
+            "pages": [
+              "reference/formula-syntax",
+              "reference/functions",
+              "reference/formula-errors"
+            ]
+          },
+          {
+            "group": "Data",
+            "pages": [
+              "reference/integrations",
+              "reference/connection-statuses",
+              "reference/imported-data"
+            ]
+          },
+          {
+            "group": "Account",
+            "pages": [
+              "reference/plans-and-billing",
+              "reference/privacy-and-legal"
+            ]
+          },
+          {
+            "group": "Examples",
+            "pages": [
+              "reference/prompt-library",
+              "reference/sample-skills"
+            ]
+          }
         ]
       },
       {
-        "group": "Automation",
-        "pages": [
-          "automation/skills",
-          "automation/triggers",
-          "automation/guides"
-        ]
-      },
-      {
-        "group": "Headcount",
-        "pages": [
-          "headcount/build-a-headcount-page"
-        ]
-      },
-      {
-        "group": "Workspace settings",
-        "pages": [
-          "workspace-settings/personal-theme",
-          "workspace-settings/team-and-workspace",
-          "workspace-settings/billing"
+        "tab": "For AI agents",
+        "icon": "robot",
+        "groups": [
+          {
+            "group": "For AI agents",
+            "pages": [
+              "agents/index",
+              "agent-instructions"
+            ]
+          },
+          {
+            "group": "Reference",
+            "pages": [
+              "agents/mcp-tools",
+              "agents/canvas-blocks",
+              "agents/table-view-grammar"
+            ]
+          },
+          {
+            "group": "Formulas",
+            "pages": [
+              "agents/formulas-overview",
+              "agents/read-formulas",
+              "agents/write-formulas",
+              "agents/formula-scope",
+              "agents/analyze-without-saving",
+              "agents/validate-and-verify"
+            ]
+          }
         ]
       }
     ]
+  },
+  "styling": {
+    "eyebrows": "breadcrumbs"
   },
   "navbar": {
     "links": [
@@ -197,38 +329,453 @@
   },
   "redirects": [
     {
+      "source": "/getting-started/quickstart",
+      "destination": "/tutorials/first-model",
+      "permanent": true
+    },
+    {
+      "source": "/getting-started/first-10-minutes",
+      "destination": "/tutorials/first-model",
+      "permanent": true
+    },
+    {
+      "source": "/getting-started/your-first-week",
+      "destination": "/tutorials/first-week",
+      "permanent": true
+    },
+    {
+      "source": "/getting-started/understand-your-workspace",
+      "destination": "/concepts/how-cfoai-works",
+      "permanent": true
+    },
+    {
+      "source": "/getting-started/build-by-hand",
+      "destination": "/guides/build-a-table",
+      "permanent": true
+    },
+    {
+      "source": "/getting-started/build-your-financial-model",
+      "destination": "/guides/build-a-forecast",
+      "permanent": true
+    },
+    {
+      "source": "/getting-started/import-a-spreadsheet-model",
+      "destination": "/guides/import-a-spreadsheet-model",
+      "permanent": true
+    },
+    {
+      "source": "/glossary",
+      "destination": "/reference/glossary",
+      "permanent": true
+    },
+    {
+      "source": "/use-cases",
+      "destination": "/reference/prompt-library",
+      "permanent": true
+    },
+    {
+      "source": "/ari/meet-ari",
+      "destination": "/concepts/working-with-ari",
+      "permanent": true
+    },
+    {
+      "source": "/ari/during-a-conversation",
+      "destination": "/guides/steer-ari",
+      "permanent": true
+    },
+    {
+      "source": "/ari/ask-better-questions",
+      "destination": "/guides/get-better-answers",
+      "permanent": true
+    },
+    {
+      "source": "/ari/read-and-change-your-model",
+      "destination": "/concepts/working-with-ari",
+      "permanent": true
+    },
+    {
+      "source": "/ari/what-ari-remembers",
+      "destination": "/concepts/ari-memory",
+      "permanent": true
+    },
+    {
+      "source": "/workspace-settings/file-attachments-in-chat",
+      "destination": "/guides/attach-files",
+      "permanent": true
+    },
+    {
+      "source": "/ari/prompts",
+      "destination": "/reference/prompt-library",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/get-started/understand-the-formula-model",
+      "destination": "/concepts/formulas",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/get-started/write-your-first-formula",
+      "destination": "/tutorials/first-table-by-hand",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/core-concepts/segments-and-segmentations",
+      "destination": "/concepts/variables-and-dimensions",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/core-concepts/choose-where-a-formula-applies",
+      "destination": "/concepts/formulas",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/core-concepts/variables-and-dimensions/what-is-a-variable",
+      "destination": "/concepts/variables-and-dimensions",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/core-concepts/variables-and-dimensions/financial-model-to-variables-and-dimensions",
+      "destination": "/concepts/variables-and-dimensions",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/core-concepts/variables-and-dimensions/dimensional-modeling-to-variables-and-dimensions",
+      "destination": "/concepts/variables-and-dimensions",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/core-concepts/variables-and-dimensions/choose-variable-or-dimension",
+      "destination": "/concepts/variables-and-dimensions",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/core-concepts/variables-and-dimensions/worked-example-revenue-by-department",
+      "destination": "/concepts/variables-and-dimensions",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/core-concepts/how-cfoai-chooses-a-formula",
+      "destination": "/concepts/formulas",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/core-concepts/actuals-forecast-and-formula-ranges",
+      "destination": "/concepts/actuals-and-forecast",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/core-concepts/how-aggregation-works",
+      "destination": "/concepts/totals-and-rollups",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/core-concepts/dimension-mappings",
+      "destination": "/concepts/dimension-mappings",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/formula-guides/reference-variables-and-dimensions",
+      "destination": "/reference/formula-syntax",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/formula-guides/filter-by-dimension-items",
+      "destination": "/reference/formula-syntax",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/formula-guides/work-with-dates",
+      "destination": "/reference/formula-syntax",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/formula-guides/use-conditional-logic",
+      "destination": "/reference/functions",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/formula-guides/common-formula-patterns",
+      "destination": "/guides/write-a-formula",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/work-with-ari/use-ari-for-formula-work",
+      "destination": "/guides/change-formulas-with-ari",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/work-with-ari/ask-ari-to-explain-existing-formulas",
+      "destination": "/guides/change-formulas-with-ari",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/work-with-ari/explore-calculations-without-saving",
+      "destination": "/guides/ask-about-a-number",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/work-with-ari/ask-ari-to-create-or-update-formulas",
+      "destination": "/guides/change-formulas-with-ari",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/work-with-ari/review-and-troubleshoot-aris-formula-changes",
+      "destination": "/guides/review-ari-formula-changes",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/formula-reference/formula-syntax-and-operators",
+      "destination": "/reference/formula-syntax",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/formula-reference/formula-errors-and-troubleshooting",
+      "destination": "/guides/fix-formula-errors",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/formula-reference/function-reference/aggregation-functions",
+      "destination": "/reference/functions",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/formula-reference/function-reference/math-functions",
+      "destination": "/reference/functions",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/formula-reference/function-reference/conditional-functions",
+      "destination": "/reference/functions",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/formula-reference/function-reference/date-part-functions",
+      "destination": "/reference/functions",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/formula-reference/function-reference/date-truncation-functions",
+      "destination": "/reference/functions",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/formula-reference/function-reference/date-and-time-functions",
+      "destination": "/reference/functions",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/formula-reference/formula-glossary",
+      "destination": "/reference/glossary",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/agent-docs/authoring-overview",
+      "destination": "/agents/formulas-overview",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/agent-docs/read-and-explain",
+      "destination": "/agents/read-formulas",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/agent-docs/evaluate-without-saving",
+      "destination": "/agents/analyze-without-saving",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/agent-docs/create-and-update",
+      "destination": "/agents/write-formulas",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/agent-docs/resolve-scope",
+      "destination": "/agents/formula-scope",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/agent-docs/work-with-formula-ranges",
+      "destination": "/agents/formula-scope",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/agent-docs/validate-and-verify",
+      "destination": "/agents/validate-and-verify",
+      "permanent": true
+    },
+    {
+      "source": "/integrations/connect-and-sync-data",
+      "destination": "/guides/connect-accounting",
+      "permanent": true
+    },
+    {
+      "source": "/integrations/integrations-directory",
+      "destination": "/reference/integrations",
+      "permanent": true
+    },
+    {
+      "source": "/integrations/mcp-server",
+      "destination": "/guides/connect-an-ai-client",
+      "permanent": true
+    },
+    {
+      "source": "/scenarios/understand-scenarios",
+      "destination": "/concepts/scenarios",
+      "permanent": true
+    },
+    {
+      "source": "/scenarios/create-and-compare-scenarios",
+      "destination": "/guides/test-a-decision-in-a-scenario",
+      "permanent": true
+    },
+    {
+      "source": "/dashboards/pages-and-blocks",
+      "destination": "/concepts/pages-and-blocks",
+      "permanent": true
+    },
+    {
+      "source": "/dashboards/build-and-format-tables",
+      "destination": "/guides/build-a-table",
+      "permanent": true
+    },
+    {
+      "source": "/dashboards/charts-and-custom-visualizations",
+      "destination": "/guides/build-a-dashboard",
+      "permanent": true
+    },
+    {
+      "source": "/dashboards/table-view-grammar",
+      "destination": "/agents/table-view-grammar",
+      "permanent": true
+    },
+    {
+      "source": "/dashboards/share-pages-and-scenarios",
+      "destination": "/guides/share-a-page",
+      "permanent": true
+    },
+    {
+      "source": "/automation/skills",
+      "destination": "/guides/save-a-skill",
+      "permanent": true
+    },
+    {
+      "source": "/automation/triggers",
+      "destination": "/guides/schedule-a-trigger",
+      "permanent": true
+    },
+    {
+      "source": "/automation/guides",
+      "destination": "/guides/create-a-guide",
+      "permanent": true
+    },
+    {
+      "source": "/headcount/build-a-headcount-page",
+      "destination": "/guides/build-a-headcount-plan",
+      "permanent": true
+    },
+    {
+      "source": "/workspace-settings/personal-theme",
+      "destination": "/guides/personalize-cfoai",
+      "permanent": true
+    },
+    {
+      "source": "/workspace-settings/team-and-workspace",
+      "destination": "/guides/invite-teammates",
+      "permanent": true
+    },
+    {
+      "source": "/workspace-settings/billing",
+      "destination": "/reference/plans-and-billing",
+      "permanent": true
+    },
+    {
+      "source": "/getting-started",
+      "destination": "/tutorials/first-model",
+      "permanent": true
+    },
+    {
+      "source": "/tutorials",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/formulas",
-      "destination": "/formulas/get-started/understand-the-formula-model",
+      "destination": "/concepts/formulas",
       "permanent": true
     },
     {
       "source": "/formulas/get-started",
-      "destination": "/formulas/get-started/understand-the-formula-model",
+      "destination": "/concepts/formulas",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/core-concepts",
+      "destination": "/concepts/formulas",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/core-concepts/variables-and-dimensions",
+      "destination": "/concepts/variables-and-dimensions",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/formula-guides",
+      "destination": "/guides/write-a-formula",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/work-with-ari",
+      "destination": "/guides/change-formulas-with-ari",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/formula-reference",
+      "destination": "/reference/formula-syntax",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/formula-reference/function-reference",
+      "destination": "/reference/functions",
+      "permanent": true
+    },
+    {
+      "source": "/formulas/agent-docs",
+      "destination": "/agents",
       "permanent": true
     },
     {
       "source": "/integrations",
-      "destination": "/integrations/integrations-directory",
+      "destination": "/reference/integrations",
       "permanent": true
     },
     {
       "source": "/ari",
-      "destination": "/ari/meet-ari",
+      "destination": "/concepts/working-with-ari",
       "permanent": true
     },
     {
       "source": "/scenarios",
-      "destination": "/scenarios/understand-scenarios",
+      "destination": "/concepts/scenarios",
       "permanent": true
     },
     {
       "source": "/dashboards",
-      "destination": "/dashboards/pages-and-blocks",
+      "destination": "/concepts/pages-and-blocks",
       "permanent": true
     },
     {
       "source": "/automation",
-      "destination": "/automation/skills",
+      "destination": "/concepts/automation",
+      "permanent": true
+    },
+    {
+      "source": "/headcount",
+      "destination": "/guides/build-a-headcount-plan",
+      "permanent": true
+    },
+    {
+      "source": "/workspace-settings",
+      "destination": "/reference/settings",
       "permanent": true
     },
     {
@@ -238,52 +785,52 @@
     },
     {
       "source": "/formulas/core-concepts/properties-metrics-and-dimensions",
-      "destination": "/formulas/core-concepts/variables-and-dimensions/what-is-a-variable",
+      "destination": "/concepts/variables-and-dimensions",
       "permanent": true
     },
     {
       "source": "/formulas/core-concepts/properties-metrics-and-dimensions/what-is-a-property",
-      "destination": "/formulas/core-concepts/variables-and-dimensions/what-is-a-variable",
+      "destination": "/concepts/variables-and-dimensions",
       "permanent": true
     },
     {
       "source": "/formulas/core-concepts/properties-metrics-and-dimensions/fpa-model-to-properties",
-      "destination": "/formulas/core-concepts/variables-and-dimensions/financial-model-to-variables-and-dimensions",
+      "destination": "/concepts/variables-and-dimensions",
       "permanent": true
     },
     {
       "source": "/formulas/core-concepts/properties-metrics-and-dimensions/dimensional-modeling-to-properties",
-      "destination": "/formulas/core-concepts/variables-and-dimensions/dimensional-modeling-to-variables-and-dimensions",
+      "destination": "/concepts/variables-and-dimensions",
       "permanent": true
     },
     {
       "source": "/formulas/core-concepts/properties-metrics-and-dimensions/choose-metric-or-dimension",
-      "destination": "/formulas/core-concepts/variables-and-dimensions/choose-variable-or-dimension",
+      "destination": "/concepts/variables-and-dimensions",
       "permanent": true
     },
     {
       "source": "/formulas/core-concepts/properties-metrics-and-dimensions/worked-example-revenue-by-department",
-      "destination": "/formulas/core-concepts/variables-and-dimensions/worked-example-revenue-by-department",
+      "destination": "/concepts/variables-and-dimensions",
       "permanent": true
     },
     {
       "source": "/formulas/formula-guides/reference-properties",
-      "destination": "/formulas/formula-guides/reference-variables-and-dimensions",
+      "destination": "/reference/formula-syntax",
       "permanent": true
     },
     {
       "source": "/formulas/formula-guides/filter-by-dimension-values",
-      "destination": "/formulas/formula-guides/filter-by-dimension-items",
+      "destination": "/reference/formula-syntax",
       "permanent": true
     },
     {
       "source": "/formulas/core-concepts/formula-periods-actuals-and-forecast",
-      "destination": "/formulas/core-concepts/actuals-forecast-and-formula-ranges",
+      "destination": "/concepts/actuals-and-forecast",
       "permanent": true
     },
     {
       "source": "/formulas/agent-docs/work-with-formula-periods",
-      "destination": "/formulas/agent-docs/work-with-formula-ranges",
+      "destination": "/agents/formula-scope",
       "permanent": true
     }
   ]

@@ -1,0 +1,157 @@
+---
+title: "Formula errors and warnings"
+description: "What each formula error code means (#DIV/0!, #VALUE!, #REF!, #NAME?, #NUM!, #CIRC!, #ERR!, #NO_ROLLUP), the formula editor's messages, Ari's save refusals and warnings, and the notices a table shows when it cannot calculate."
+---
+
+When a formula cannot produce a value, its cells show an error code such as `#DIV/0!` or `#REF!`. The formula editor shows messages as you type, and a table that cannot calculate shows a notice instead of values. This page lists each code, message, and notice, and what it means. For the steps to fix a formula, see [Fix a formula that shows an error or a wrong number](/guides/fix-formula-errors).
+
+## Cell error codes
+
+A cell shows an error code when its formula cannot produce a value. Point at the cell to see the message. When the error started in another cell, the message adds lines that begin with **originating in** and **via**, naming the Variable and items where it started and each step it passed through. Right-click the cell and choose **Fix** to start a chat with Ari about it.
+
+An error spreads: a cell that reads a cell with an error shows the same code and message. `iferror` catches an error and returns a fallback; see [`iferror`](/reference/functions#iferror).
+
+When a cell has no message of its own, it reads **Formula evaluation failed. The formula contains an error or references invalid data.**
+
+### #DIV/0!
+
+`#DIV/0!` means the formula divides by zero or by an empty value. The message reads **division by zero**. The `%` remainder operator and a zero raised to a negative power cause it too. Guard the divisor with `if(Revenue <> 0, ..., 0)`, or wrap the division in `iferror`.
+
+### #VALUE!
+
+`#VALUE!` means a value has the wrong type, a function has the wrong number of arguments, or the formula text cannot be read. The message names the problem, for example **IF requires exactly 3 arguments**, **SUM requires between 1 and 10 arguments**, **DATE expects numeric values**, **DATEDIF expects date values**, **DAYSIN expects a date value**, or **Invalid string escape**. A formula with a syntax mistake shows the editor's message for it.
+
+### #REF!
+
+`#REF!` means the formula names a Variable or Dimension that does not exist, for example one that was deleted or a name with a typo. The message begins with **Variable or dimension not found**, or reads **Unsupported reference** or **Expected a property reference**. Point the reference at a Variable that exists.
+
+### #NAME?
+
+`#NAME?` means the formula calls a function cfo.ai does not have, such as `VLOOKUP` or `SUMIF`. The message reads **Unknown function**. See [Excel functions that are not available](/reference/functions#excel-functions-that-are-not-available).
+
+### #NUM!
+
+`#NUM!` means a calculation has no valid number as its answer. The message names the case:
+
+| Message | Cause |
+| --- | --- |
+| **0^0 is undefined** | Zero raised to the power of zero |
+| **DATEDIF start date is after end date** | `datedif` with its dates in the wrong order |
+| **DATE result is out of range** | `date` built a date outside the supported range |
+| **invalid rounding significance** | `ceiling` or `floor` with a positive number and a negative significance |
+
+### #CIRC!
+
+`#CIRC!` means a circular reference: the cell's formula reads the cell itself, directly or through other formulas, in the same period. The message reads **Circular reference**. Common causes are a running balance written without `[-1]`, two Variables that read each other in the same month, and a total formula that also runs on the rows beneath it. See [Fix a circular reference](/guides/fix-formula-errors#the-cell-shows-circ-a-circular-reference).
+
+### #ERR!
+
+`#ERR!` means the calculation failed for a reason that has no more specific code. Point at the cell for the message, or right-click it and choose **Fix**.
+
+### #NO_ROLLUP
+
+`#NO_ROLLUP` appears only in Ari's reads of a table by quarter, half-year, or year. It means no formula calculates the Variable at that grain, so its months are not added into the longer period. The app shows 0 in those cells. Ask Ari to give the Variable a time rollup, such as a sum of its months; see [Why a quarterly view shows zeros](/concepts/totals-and-rollups#why-a-quarterly-view-shows-zeros).
+
+## Formula editor messages
+
+The formula editor checks what you type and underlines problems in red. A formula with a problem still saves, and its cells show an error code until you fix it.
+
+### Syntax messages
+
+| Message | Meaning | Fix |
+| --- | --- | --- |
+| **missing closing ')' for '(' opened at line 1:3** | A parenthesis, bracket, or brace has no closing partner. The message names where it opened. | Add the closing `)`, `]`, or `}` |
+| **unmatched ')'** | A closing parenthesis has no opening partner | Remove it, or add the opening one |
+| **expected a value, found ...** | Something is missing, such as the number after `+` or an argument between two commas | Add the missing value |
+| **expected ')' or ',', found ...** | Two values sit side by side with no operator or comma | Add the operator or comma |
+| **expected end of formula, found ...** | Extra text follows a complete formula | Remove it, or join it with an operator |
+| **unexpected character '@'** | The formula has a character formulas do not use | Remove the character. Wrap a name with punctuation in backticks |
+| **'and' joins conditions: (condition) and (condition). It cannot be called as a function.** | `AND(...)` was written as a function. The same message exists for `or`. | Write `a and b` |
+| **A selector in [ ] attaches directly to a variable reference, as in Revenue[-1]. Here it follows ')'.** | A lookup or period offset follows a calculation or a value instead of a Variable's name | Put the selector on each Variable: `Revenue[-1] - Cost[-1]` |
+| **expected a reference, found end of formula** | A dot with nothing after it | Finish the name after the dot, or remove the dot |
+
+### Name and argument messages
+
+| Message | Meaning |
+| --- | --- |
+| **Unknown variable or dimension name** | No Variable or Dimension has this name. Names match capital letters exactly; a name with spaces needs backticks. |
+| **Ambiguous variable or dimension name** | Several Variables share the name. Pick the one you mean from autocomplete, which adds a short `#` code. |
+| **Unable to resolve variable or dimension reference** | The reference points at something that cannot be loaded, such as a deleted Variable |
+| **Unknown function** | The function name is not one of cfo.ai's functions |
+| **SUM requires between 1 and 10 arguments** | The function has too many or too few arguments. Each function names its own limit, such as **IF requires exactly 3 arguments**. |
+
+### Dimension not in the formula's condition
+
+This message is a warning, not an error, and does not block the save. It says a formula reads a Dimension, such as Employee, that its condition does not include. Where the formula runs on a row that has that Dimension, the reference reads that row's item. The formula also runs on the row above the breakdown, where there is no single item, so that row shows one looked-up item's result instead of a total. Give the rows above their own formula, or add the Dimension to where the formula applies.
+
+### Other editor messages
+
+| Message | Meaning |
+| --- | --- |
+| **This variable lives on a table you don’t have access to.** | The Variable a reference names is on a table you cannot open, so its source cannot be shown |
+| **This variable is in the model but has not been added to a table yet.** | The Variable exists but no table shows it |
+| **This is a source record, not a modeled formula cell.** | The row is an imported record shown by drilling in, which has no formula to open |
+| **This input doesn't map to one formula address, so it can't be opened here.** | The input row read by drilling in combines several formulas, so no single one opens |
+| **Propagate?** and **Would you like to propagate this formula to parent rows?** | Asked after you save a formula on a lower row of a breakdown; see [Propagate a formula to the rows above](/guides/write-a-formula#propagate-a-formula-to-the-rows-above) |
+
+When the server refuses to save a cell or formula, the notice is listed in [Table block controls and messages](/reference/table-blocks).
+
+## Ari's save refusals
+
+A formula you type in a table always saves, even with a mistake. A formula Ari or a connected AI agent writes is checked first, and the write is refused when it has one of these problems. Ari reads the reason and usually corrects the formula itself.
+
+| Refused because | What it means |
+| --- | --- |
+| A syntax mistake | A missing parenthesis or quote, or another problem from the editor's syntax messages |
+| A name that matches nothing | No Variable or Dimension has the name in that Scenario. A name that differs only in capital letters is refused too, and the refusal names the Variable it matches. |
+| A name several Variables share | The write must name the one it means, with its `#` code |
+| The wrong number of arguments | A function was called with more or fewer arguments than it takes |
+| An Actuals or Forecast formula with no months | A formula for one range must cover periods. A Variable on a table without months has one formula for every period. |
+| A number function over text or dates | `sum`, `product`, `average`, `stdev`, `var`, and `median` add up numbers, so they refuse a text or date value. `first`, `last`, and `count` work on any value, and `min` and `max` also take dates. |
+| A formula aimed at the rows with no item | The rows a table shows as **None** have no value for a Dimension. They cannot have a formula of their own; the formula on the row above them reaches them. |
+
+When Ari writes several formulas at once, a refusal can stop the whole batch or only the formulas that failed, depending on the request. Ask Ari which changes were saved.
+
+## Ari's save warnings
+
+A warning means Ari saved the formula, but it may not do what the wording suggests. Ari sees each warning in its save receipt. If a number looks wrong right after a change, ask Ari to read back the warnings.
+
+| Warning | What it means |
+| --- | --- |
+| An imported Variable is read in Forecast months | The imported Variable has no saved formula, as with some older imports, so it reads its source only through **Last close**. The formula reads 0 in Forecast months, or an empty value for a date or text Variable. Give the Variable a Forecast formula. See [How imported data loads](/reference/imported-data). |
+| A filter value matches no item | A condition such as `Step = "Committed"` saves, but no item is spelled that way, so the cells it reaches read 0. The warning shows how the items are spelled. For a Dimension of timestamps, it explains that `date(y, m, d)` is a date, not a timestamp. |
+| A read finds no value there | A plain reference reads the input at every Dimension of the cell, months included. An input saved once per employee has no months, so a monthly formula reads 0. The warning names the fixed reference that reaches it, such as `` `Annual Wage`$[Employee = this.Employee] ``. |
+| What the first Forecast month read | When the formula reads a previous period or an imported source, the receipt states what it calculated in the first Forecast month and what each input returned there. A roll-forward that starts from an empty last Actuals month shows up here. |
+| Two formulas tie | Two saved formulas are equally specific and reach the same cells, so the more recently saved one wins. Saving either again flips the result. The warning names the other formula. |
+| A shared formula was replaced | A formula belongs to its Variable, so saving a new one changes every table that shows the Variable. The warning names the formula it replaced. If the new formula reads its own Variable, the cells where that read lands on themselves show `#CIRC!`. |
+| Rows with no value for a Dimension are left out | A test such as `this.Department = "Sales"` is empty for rows with no department, so the formula does not reach them. Those rows show as **None**. |
+| A formula saved at a coarser grain | A formula written through a table by year, in a monthly Model, is saved at year grain. The year cells calculate it, whatever their months hold, and the month cells do not read it. |
+| A row above does not read an override | A formula saved on one lower row is not read by a total above it that calculates from other rows. The warning names those totals. |
+| A latest-date filter sees only one month | A filter that picks the latest date with `max` over an imported column, inside a formula with months, sees only that month's rows, so it often matches nothing. Read the Variable that holds the column's latest value instead. |
+| The Scenario the write used | When the request named no Scenario, the receipt says which one Ari used: the one you were viewing. |
+
+A receipt also states formulas the save wrote for you, such as the time rollup a new monthly row gets and the formulas that make a breakdown's rows above add up the rows beneath them. See [Totals, aggregation, and time rollups](/concepts/totals-and-rollups).
+
+## Table calculation notices
+
+When a table cannot calculate, it shows a notice over or above the grid instead of values. Nothing is wrong with your formulas unless the notice says so.
+
+| Notice | Meaning | Action |
+| --- | --- | --- |
+| **Calculation capacity was full when this calculation ran. We're looking into it — try again in a moment.** | The shared calculation capacity was used up | **Retry**, or wait |
+| **Calculation results are temporarily busy; this failure is transient. We're looking into it — try again in a moment.** | The results store was busy for a moment | **Retry** |
+| **Calculations are temporarily unavailable. We're looking into it — try again in a moment.** | No calculation service answered | **Retry**, or wait |
+| **This calculation stopped before it finished because the worker running it ended. The calculation service ends a worker whose calculation runs past its time or memory limit.** | The calculation is too large. Retrying runs into the same limit. | Narrow the table, for example by filtering the items it shows, or ask Ari why the table is large |
+| **This table didn't load because the connection to cfo.ai failed.** | Your network dropped or no answer arrived. The table and formulas are fine. | **Retry**. The table also reloads when your connection returns. |
+| **We couldn't calculate this table because of a model misconfiguration.** | Something in the Model's setup stops the calculation | **Fix** starts a chat with Ari about the table |
+| **We couldn't calculate this table.** | The calculation failed for another reason | **Retry**, or ask Ari |
+| **We couldn't load this table**, with a sentence that names the problem and **If you recently added an item in the sidebar, try removing it.** | The table's setup cannot be calculated as it is | Remove the item you last added to the table's setup, then select **Retry** |
+
+One setup problem names an imported source that has no date column. The table cannot place the source's rows in periods. Tell Ari which column dates the rows, or add a date column at the source and sync again; see [Check what a connection brought in](/guides/check-imported-data).
+
+## Related
+
+- [Fix a formula that shows an error or a wrong number](/guides/fix-formula-errors)
+- [Formula syntax](/reference/formula-syntax)
+- [Formula functions](/reference/functions)
+- [Review Ari's formula changes](/guides/review-ari-formula-changes)

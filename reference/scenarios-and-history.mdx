@@ -1,0 +1,107 @@
+---
+title: "Scenario and version history controls"
+sidebarTitle: "Scenarios and history"
+description: "Every control, label, and message for Scenarios (versions of your plan), Snapshots, and version history: the Scenario picker and its actions menu, the Take snapshot and merge dialogs, and the version history panel where you undo a change or restore an earlier version."
+---
+
+Scenarios, Snapshots, and version history each have their own controls: the Scenario picker in the sidebar, the **Take snapshot** and merge dialogs, and the version history panel. This page lists every control and message, in the order the app shows them. For what each one is for, see [Scenarios, Snapshots, and version history](/concepts/scenarios).
+
+## Scenario picker
+
+The Scenario picker is the **Main Scenario** control in the sidebar's **Model** section, above the list of Pages. It shows the Scenario you are viewing. Selecting another Scenario switches every Page to it and changes the address bar, so you can bookmark the address or share it with a teammate.
+
+| Control | What it does |
+| --- | --- |
+| A Scenario's row | Switches to that Scenario. |
+| **Open actions for [Scenario]** (gear icon on a row) | Opens the [Scenario actions menu](#scenario-actions-menu). |
+| **Take snapshot** | Opens the [Take snapshot dialog](#take-snapshot-dialog) for the Scenario you are viewing. Not shown while you view a Snapshot. |
+| **Create scenario** | Adds a row where you type the new Scenario's name. **Enter** creates it from Main and switches to it. |
+| **Merge** (beside the picker, while you view a Scenario) | Opens the [merge dialog](#merge-dialog). Its tooltip reads **Merge all changes into [target]**, **No changes to merge**, or **Checking for changes…**. Not shown for Main or a Snapshot. |
+
+You must have permission to create Scenarios to see **Take snapshot** and **Create scenario**. Neither is offered on a phone.
+
+### Scenario actions menu
+
+| Control | What it does |
+| --- | --- |
+| **Version history** | Opens the Scenario's [version history panel](#version-history-panel). |
+| **Last close** | Sets the Scenario's Last close date, the boundary between Actuals and Forecast. |
+| **Rename** | Renames the Scenario. Main cannot be renamed. |
+| **Delete** | Deletes the Scenario. Main, and a Scenario that has child Scenarios, cannot be deleted. |
+
+Items you do not have permission for are not shown.
+
+## Take snapshot dialog
+
+The dialog is titled **Take snapshot**, with **Keep a version for an approved budget or board meeting.** It says what it pins: **Pins [Scenario] at its latest saved version.**, or **Pins [Scenario] at [time].** when you open it from a version history entry. Then it reads **Later changes and integration syncs will stop flowing into this snapshot. You can still edit the snapshot manually.**
+
+| Control | What it does |
+| --- | --- |
+| **Snapshot name** | The new Snapshot's name. It starts as **[Scenario] snapshot**. |
+| **Create snapshot** | Creates the Snapshot. Reads **Creating…** while it saves. |
+| **Cancel** | Closes the dialog. |
+
+## Merge dialog
+
+The dialog is titled **Merge "[Scenario]" into [target]?**. The target is the Scenario this one branched from, usually Main. It reads **Every change in "[Scenario]" moves into [target]:**, followed by a summary of the changes across the Model, and the note **"[Scenario]" is deleted after the merge.**
+
+| Control | What it does |
+| --- | --- |
+| **Merge [n] changes** (or **Merge scenario**) | Merges the Scenario. Stays off while the summary refreshes, and when there is nothing to merge. |
+| **Cancel** | Closes the dialog. |
+
+| Message | Meaning |
+| --- | --- |
+| **scenario cannot be merged while it has [n] child scenario**, followed by the children's names | The Scenario has editable child Scenarios, so the merge is refused. Snapshots taken from the Scenario do not block a merge. |
+
+## Confirmation cards in the chat
+
+When you ask Ari to merge, delete, or revert a Scenario and to let you confirm first, Ari posts a card with a button you press yourself. See [Scenario confirmation card](/reference/chat#scenario-confirmation-card).
+
+## Version history panel
+
+The version history panel lists every change to the Model, yours and Ari's. Open it with **Version history**, the clock icon in the Page header, or from a Scenario's actions menu.
+
+| Control | What it does |
+| --- | --- |
+| **Filter version history** | Shows or hides changes by person; by **Ari**, **Data syncs**, and **Imports**; and by kind: **Formulas and values**, **Variables and dimensions**, **Pages and blocks**, **Scenarios**, and **Settings**. |
+| **Jump to date** | Moves the list to a day. |
+| **Close version history** | Closes the panel. |
+| Scenario line | Names the Scenario and shows **Live**, or the version you are viewing. |
+| **Show Main Scenario changes** | In a Scenario other than Main, also lists the changes it inherited from Main. |
+
+Each entry names who made the change, when, and what it touched. A formula entry names the Variable. For a formula with a condition, the entry also names the condition and its reach: **includes additional dimensions** when it also covers cells that carry more Dimensions, or **exact grain** when it matches exactly the Dimensions it names.
+
+### Entry actions
+
+Point at an entry and select its **…** button (**Actions for [entry]**).
+
+| Control | What it does |
+| --- | --- |
+| **Undo this change** | Reverses this change and keeps everything after it. Asks **Undo this change?** when later changes depend on it. Not offered for a change the Scenario inherited from Main. |
+| **Redo this change** | Shown instead of **Undo this change** on an entry that undid a change. |
+| **Restore this version** | Returns the Scenario to this point and rolls back every later change. Needs full access to the Scenario; otherwise its tooltip reads **Only people with full access to this scenario can restore it.** |
+| **Take snapshot here** | Opens the [Take snapshot dialog](#take-snapshot-dialog), pinned at this entry. |
+| **Copy link to version** | Copies a link that opens the Model as it was at this entry. |
+
+**⌘ Z** undoes only your own last change in the current browser tab; see [Keyboard shortcuts](/reference/keyboard-shortcuts#undo-and-redo).
+
+### Viewing a past version
+
+Selecting an entry shows the Model as it was at that moment, read-only, with a banner that offers **Restore this version** and **Back to current**. The restore dialog previews the result.
+
+| Message | Meaning |
+| --- | --- |
+| **Loading restore preview…** | The preview is loading. |
+| **This is already the current version.** | Restoring would change nothing. |
+| **Changes made in Main Scenario stay as they are.** | Shown in a Scenario other than Main. Restoring leaves the changes made in Main as they are. |
+| **Restored to [time]** | The restore finished. |
+| **Couldn’t restore this version** | The restore failed. |
+
+## Related
+
+- [Scenarios, Snapshots, and version history](/concepts/scenarios)
+- [Test a decision in a Scenario](/guides/test-a-decision-in-a-scenario)
+- [Merge a Scenario into Main](/guides/merge-a-scenario)
+- [Save a plan as a Snapshot](/guides/save-a-snapshot)
+- [Undo a change or restore an earlier version](/guides/undo-changes)

@@ -1,0 +1,183 @@
+---
+title: "Connect Claude, ChatGPT, Codex, or another AI tool to cfo.ai"
+sidebarTitle: "Connect an AI tool"
+description: "Use your cfo.ai workspace from Claude Code, Claude's desktop or web app, ChatGPT, Codex, Cursor, or another AI tool: add the cfo.ai MCP server, approve it in your browser, choose the workspace, and fix sign-in problems. cfo.ai has no API keys."
+---
+
+Connect another AI tool when you want to work on your cfo.ai workspace from the tool you already use. For example, ask Claude to update this month's forecast, or have Codex build a table. The tool connects to the cfo.ai MCP server at `https://api.cfo.ai/mcp`, and you approve it once in your browser. After that it can read your Model and make the changes you ask for, as you.
+
+## Is there a cfo.ai API or API key?
+
+No. cfo.ai does not issue API keys or access tokens to paste into a project, a script, or an environment variable. Outside software, including an agent you build yourself, works with a workspace through the cfo.ai MCP server. It connects as a remote MCP client, and a person signs in and approves it in a browser. The connection then acts as that person, in the workspaces their account can open.
+
+If you are building your own agent, [MCP tools and call shapes](/agents/mcp-tools) lists the server's sign-in details and every tool it offers.
+
+## What you need
+
+- A cfo.ai account that can open the workspace. If you don't have one, sign up at [app.cfo.ai](https://app.cfo.ai).
+- A workspace that has started its free trial or a plan. Until then, the AI tool's requests fail with **Start the free trial in cfo.ai before using its MCP tools**. See [Start a trial or choose a plan](/guides/choose-a-plan).
+- An AI tool that can add a remote MCP server. Some tools call this a custom connector.
+- The server address, `https://api.cfo.ai/mcp`. You can also copy it in cfo.ai: open the account menu at the bottom of the sidebar, choose **Settings**, then **Connections**. The address is under **Connect via MCP**, beside its copy button, **Copy cfo.ai MCP URL**.
+
+## Connect Claude Code
+
+<Steps>
+  <Step title="Add the server">
+    In a terminal, run:
+
+    ```bash
+    claude mcp add --transport http cfoai https://api.cfo.ai/mcp
+    ```
+  </Step>
+  <Step title="Start Claude Code">
+    ```bash
+    claude
+    ```
+  </Step>
+  <Step title="Sign in">
+    Type `/mcp`, select `cfoai`, and choose **Authenticate**. A browser window opens. [Approve the connection](#approve-the-connection-in-your-browser).
+  </Step>
+</Steps>
+
+## Connect Codex
+
+<Steps>
+  <Step title="Add the server">
+    ```bash
+    codex mcp add cfoai --url https://api.cfo.ai/mcp
+    ```
+  </Step>
+  <Step title="Sign in">
+    ```bash
+    codex mcp login cfoai
+    ```
+
+    A browser window opens. [Approve the connection](#approve-the-connection-in-your-browser).
+  </Step>
+  <Step title="Check the connection">
+    Start Codex with `codex`, then type `/mcp` and check that `cfoai` is listed.
+  </Step>
+</Steps>
+
+## Connect Claude's desktop or web app
+
+Claude's desktop app and claude.ai add outside servers as custom connectors. On a Claude Free, Pro, or Max plan, you add the connector yourself:
+
+<Steps>
+  <Step title="Add a custom connector">
+    In Claude, go to **Customize** > **Connectors**, select **+ Add**, then **Add custom connector**.
+  </Step>
+  <Step title="Enter cfo.ai's address">
+    Name the connector `cfo.ai`, enter `https://api.cfo.ai/mcp` as the server URL, and select **Continue**. Review the sign-in settings Claude detected, and select **Continue** again.
+  </Step>
+  <Step title="Sign in">
+    Under **Authentication**, choose **Sign in now**, then select **Add**. [Approve the connection](#approve-the-connection-in-your-browser) in the browser.
+  </Step>
+  <Step title="Turn it on in a chat">
+    In a chat, select the **+** button, then **Connectors**, and turn on cfo.ai.
+  </Step>
+</Steps>
+
+On a Claude Team or Enterprise plan, an owner adds the connector for the organization under **Organization settings** > **Connectors**. Each member then finds it under **Customize** > **Connectors**, selects **Connect**, and approves the connection with their own cfo.ai account. Claude's menus change from time to time; Anthropic's [custom connector instructions](https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp) have the current steps.
+
+## Connect ChatGPT
+
+ChatGPT can add a custom remote MCP server on the plans and workspaces that allow it, and a workspace admin may need to turn on developer mode first. ChatGPT calls these servers apps, connectors, or plugins, depending on your version.
+
+Add a custom MCP server named `cfo.ai`, with the server URL `https://api.cfo.ai/mcp` and **OAuth** as the authentication. ChatGPT then sends you to cfo.ai to [approve the connection](#approve-the-connection-in-your-browser). Where this setting lives depends on your ChatGPT plan, so follow OpenAI's [steps for adding a custom MCP server](https://help.openai.com/en/articles/12584461-developer-mode-and-mcp-apps-in-chatgpt).
+
+## Connect Cursor
+
+<Steps>
+  <Step title="Add the server to Cursor's MCP file">
+    Add cfo.ai to `~/.cursor/mcp.json` to use it in every project, or to `.cursor/mcp.json` in one project:
+
+    ```json
+    {
+      "mcpServers": {
+        "cfoai": {
+          "url": "https://api.cfo.ai/mcp"
+        }
+      }
+    }
+    ```
+  </Step>
+  <Step title="Sign in">
+    Restart Cursor if it does not pick up the change. When Cursor asks you to sign in to cfo.ai, a browser window opens. [Approve the connection](#approve-the-connection-in-your-browser).
+  </Step>
+</Steps>
+
+[Cursor's MCP documentation](https://cursor.com/docs/mcp) shows where its MCP settings are.
+
+## Connect another AI tool
+
+Any AI tool or agent framework that supports remote MCP servers over HTTP with browser sign-in can connect. Follow your tool's steps for adding a remote MCP server: add `https://api.cfo.ai/mcp`, then sign in when the browser opens. A tool that only accepts an API key or a fixed token cannot connect, because cfo.ai has no API keys.
+
+## Approve the connection in your browser
+
+Every AI tool signs in the same way:
+
+1. Your browser opens cfo.ai. If you are not signed in, sign in first. cfo.ai then shows the approval page.
+2. The page is headed **Connect CFO.ai** and says an external MCP client is asking to use your account. Continue only if you started this connection from your AI tool, and check that you are signed in to the cfo.ai account you want the tool to use.
+3. Select **Connect CFO.ai**. cfo.ai finishes the sign-in and returns you to your AI tool. Select **Cancel** instead to stop.
+
+The approval page stays valid for 60 minutes. It still works if it loads twice or you have several open.
+
+## Choose the workspace
+
+If your account belongs to one workspace, the AI tool uses it automatically. If you belong to several, tell the tool which workspace to use. It can list your workspaces by name and then works in the one you chose.
+
+Changes apply to the live workspace right away. To try something without changing your main plan, ask the tool to work in a Scenario. See [Test a decision in a Scenario](/guides/test-a-decision-in-a-scenario).
+
+## Check that it works
+
+Ask the AI tool to list the Pages in your workspace. If it shows your Pages, the connection works.
+
+If the tool does not list cfo.ai at all, restart it or start a new session, and check its list of MCP servers again.
+
+## Let your AI tool set itself up
+
+To have your AI tool do the setup, paste this prompt into it. It walks you through every step, from creating an account to a working connection, and tells you when it needs you:
+
+```text
+Set up cfo.ai for me. Fetch https://docs.cfo.ai/agent-instructions.md and follow the instructions there. If I don't have a cfo.ai account yet, walk me through creating one first, then connect the cfo.ai MCP server to this harness and verify it's working.
+```
+
+If you are an AI agent reading this page, fetch `https://docs.cfo.ai/agent-instructions.md` and follow it.
+
+## What a connected AI tool can do
+
+- It uses the same workspace tools Ari uses, under your account. It can read your Model and, when you ask, change Pages, tables, formulas, Scenarios, and connections.
+- You, Ari, and the AI tool work on one Model. What the tool builds appears in your workspace right away, where you can check it, edit it, or keep going with Ari.
+- Every change it makes to the Model is recorded in version history, so you can take it back. See [Undo a change or restore an earlier version](/guides/undo-changes).
+- Many AI tools ask you before they run something that changes your workspace. cfo.ai marks its read-only tools, so the tool can tell a lookup from a change.
+- A few things only work inside cfo.ai: Ari asking you questions in the chat, playing a Guide, showing you a Scenario or table rows on screen, and downloading a Page as a spreadsheet.
+
+## If sign-in fails
+
+If the approval page shows one of these messages, nothing was approved. Start the sign-in again from your AI tool.
+
+| The page says | What happened |
+| --- | --- |
+| **No cfo.ai account is signed in to this browser, so the approval was not recorded.** | The browser signed out of cfo.ai. Sign in at [app.cfo.ai](https://app.cfo.ai) in the same browser, then start again. |
+| **This approval page was opened under a different cfo.ai account than the one signed in to this browser now, so the approval was not recorded.** | You switched cfo.ai accounts after the page opened. Sign in to the account the tool should use, then start again. |
+| **This approval page was opened** … **minutes ago. An approval page is valid for 60 minutes, so the approval was not recorded.** | The page was more than an hour old. |
+| **This approval does not match the sign-in request it was sent for, so it was not recorded.** | The approval did not belong to this sign-in request. |
+| **This approval did not come from a cfo.ai approval page that is still current, so it was not recorded.** | The page was out of date. |
+| **Unable to complete MCP login** | cfo.ai accepted your approval but could not hand the sign-in back to your AI tool. If it happens again, ask Ari what happened. |
+
+Other problems:
+
+- If the AI tool says to start the free trial, start the workspace's free trial or a plan, then try again. See [Start a trial or choose a plan](/guides/choose-a-plan).
+- If the tool says you do not have access to the workspace, it is signed in with a cfo.ai account that is not a member of that workspace. Sign in again from the tool with the right account, or ask someone in the workspace to [invite you](/guides/invite-teammates).
+- If it worked before and now fails to authorize, repeat your AI tool's sign-in step, such as **Authenticate** in Claude Code or `codex mcp login cfoai` in Codex.
+
+### Ask Ari what happened
+
+In cfo.ai, ask Ari why your AI tool cannot connect. Ari can list your own sign-in attempts to the cfo.ai MCP server from the last 30 days, ten newest first. Each one shows as approved, refused with its reason, approved but not completed, or an AI tool that connected under its own name. Nobody else sees your attempts, not even a workspace administrator. A sign-in that never reached the approval page leaves no record.
+
+## Related
+
+- [Give Ari access to another service with MCP or an API](/guides/give-ari-another-service), for the other direction: Ari calling an outside MCP server or API
+- [cfo.ai for AI agents](/agents)
+- [How cfo.ai works](/concepts/how-cfoai-works)

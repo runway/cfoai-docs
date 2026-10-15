@@ -1,0 +1,63 @@
+---
+title: "Choose which tables a source syncs"
+sidebarTitle: "Choose synced tables"
+description: "Pick the tables a database or app syncs when you connect it, then ask Ari to add or remove tables later, such as syncing one more table from Postgres or dropping one you do not need."
+---
+
+Use this guide when you connect a database or an app through Fivetran, which can offer hundreds of tables, or when you want to add or drop a table later. Each connection syncs only the tables selected for it. You choose them in the table picker when you connect, and ask Ari to add or remove tables later. Fewer tables make the first sync faster, and you can always add one later.
+
+## Which sources let you choose
+
+| Source | Table choice |
+| --- | --- |
+| Databases and data warehouses, and most apps through Fivetran, such as Shopify or Sage Intacct | A table picker at setup. Every table starts selected. |
+| NetSuite SuiteAnalytics | A table picker at setup. The tables the statements need are locked; tables for NetSuite features you do not use start unchecked. Tables that already sync cannot be removed later. |
+| HubSpot, Salesforce, Rippling | No picker. cfo.ai selects the tables its reports need and keeps them locked. Ask Ari to add other tables later. |
+| QuickBooks Online, Xero, Rillet, Stripe (Direct), HR and payroll systems through Merge, Google Sheets, Google Drive, CSV uploads | No table choice |
+
+The [integrations directory](/reference/integrations) lists what each source syncs.
+
+## Choose tables when you connect
+
+<Steps>
+  <Step title="Review the list">
+    After you sign in, the table picker lists every table the source offers, grouped by schema. Search with **Search tables**. The count reads, for example, **84 of 312 tables selected (max 100)**.
+  </Step>
+  <Step title="Uncheck what you do not need">
+    Keep the tables that hold the records your plan reads, such as transactions and their lines, invoices and payments, customers and subscriptions, orders and products, and employees and pay. Also keep the lookup tables they refer to, such as accounts or departments. Leave out logs, audit trails, sessions, webhooks, staging tables, and personal data you have no use for. A connection syncs at most 100 tables, so a source that offers more makes you uncheck some before you can finish.
+  </Step>
+  <Step title="Finish setup">
+    Select **Finish setup & sync [N] tables**. The button names how many tables it will sync, and a larger selection makes the first sync longer.
+  </Step>
+</Steps>
+
+The picker cannot be opened again after setup; change the selection by asking Ari. **Cancel setup** ends the setup: a new connection that never finished is removed, and a connection that was already linked is kept.
+
+## Add or remove tables later
+
+Ask Ari, naming the connection and the tables:
+
+> Also sync the subscriptions table from our Postgres database.
+
+> Stop syncing the audit_log table from Postgres.
+
+Tables you do not name keep their state. When you add a table:
+
+- It loads its full history, as far back as the connection's other tables reach. Ari starts a sync for it.
+- It reaches the warehouse first and your Model only once a saved query reads it. Ask Ari for a query over it, such as "Load the subscriptions table into the Model."
+
+## What Ari refuses, and why
+
+- Removing a table a saved query reads. The query would keep showing the rows that last landed while the source moves on. Ask Ari to delete the query first.
+- Removing the last selected table. To stop syncing a source, remove the connection instead.
+- Changing a connection whose setup is not finished. Finish setup in the picker first.
+- Adding a table past the 100-table limit.
+- Removing a table HubSpot, Salesforce, Rippling, or NetSuite needs for cfo.ai's reports.
+
+To see what a connection syncs, ask Ari "Which tables does our HubSpot connection sync?" Ari lists them in the source's own names and says whether cfo.ai or you chose them.
+
+## Related
+
+- [Connect payroll, HR, CRM, payments, or a database](/guides/connect-other-sources)
+- [Integrations directory](/reference/integrations)
+- [How connected data reaches your Model](/concepts/connected-data)

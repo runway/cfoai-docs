@@ -1,0 +1,101 @@
+---
+title: "Table view grammar"
+description: "For agents: the breakdown notation that describes a Table block's rows and columns, and the typed layout fields that carry it in edit_table_blocks and Canvas datasets, with orientation rules and why a table comes back empty."
+searchable: false
+---
+
+A table's view is its rows and columns. Tools take them as typed lists: each entry names one Variable, one Dimension, the Date axis at a grain, a blank row, or a fork into side-by-side branches, and a Variable entry can carry its own breakdown of Dimension levels. The same shapes have a compact written form, the breakdown notation, which the `build-model` skill uses and which reads well in an explanation. Requests always use the typed fields, never the bracket string.
+
+## The written notation
+
+| Form | Meaning |
+| --- | --- |
+| `[Department]` | Split by one Dimension: one row per Department item. |
+| ``[`Spend Type`]`` | Backticks quote a Dimension name that is not a single word. Written bare, the parse stops at the second word. |
+| `[Department, Level]` | A comma nests: Levels sit under each Department. |
+| `[Department, {Level, Owner}]` | Braces fork: under each Department, a Level breakdown and an Owner breakdown sit side by side. Whatever follows the brace applies to every branch. Each path from the top of a breakdown to its end can fork once. |
+| `[Department, {Level[Department = "Engineering"], Owner}]` | A branch condition: Level sits under Engineering only, while Owner applies under every Department. A branch condition names one item of an earlier Dimension on the same path; a condition over several items is not accepted. |
+| `{Level, [Owner, Date.Month]}` | A branch that nests is bracketed: Owner splits by month, while Level does not. |
+| `[Region in {East, West}]` | An item filter keeps only the listed items instead of every item in the Dimension. |
+| `[Date.Month]` | A grain buckets a date Dimension: Day, Week, Month, Quarter, Half, or Year. A table has one Date axis. |
+
+In a layout, an item filter is always a list of items to keep. Ranges, exclusions, and `where` conditions have no layout field. To narrow an existing axis by a condition, such as `Region not in {"West"}`, set the axis's `members` condition with `row_updates` or `column_updates`, as [Filter the items an axis shows](/agents/write-formulas#filter-the-items-an-axis-shows) describes.
+
+## Table layout fields
+
+`edit_table_blocks` `create` and `reshape`, and `structure.insert` on `update`, take rows and columns as lists of nodes. `inspect_table_blocks` returns the same saved shape under `layout.rows` and `layout.columns`.
+
+| Node field | Meaning |
+| --- | --- |
+| `variable` | A Variable row or column, by name or reference. |
+| `breakdown` | The levels nested beneath that Variable, outermost first, up to 10. Each level is a Dimension name, a level object, or a `branches` fork. |
+| `dimension` | A Dimension node: a breakdown level, or the value axis of a record table. A name that matches one Dimension reuses it; an unmatched name creates it, with `items` and `data_type` when given. |
+| `time` | The Date axis at `DAY`, `WEEK`, `MONTH`, `QUARTER`, `HALF`, or `YEAR`. It creates the Date Dimension when the Model has none. |
+| `filter` | `{"include": [...]}`: the items of a Dimension this node declares or places that stay visible. List order does not set display order. A retained node takes `members` instead. |
+| `when` | `{"dimension": ..., "equals": ...}`: a branch condition that restricts this level to one item of an ancestor Dimension on the same path. |
+| `branches` | A fork: 2 to 10 sibling paths, each a list of up to 10 levels. A path from the top to the end may fork once. |
+| `space` | `true`: a blank separator row on create, or a saved empty slot on reshape. |
+| `summary` | `NONE` keeps the parent's own modeled value. `SUM`, `AVG`, `MIN`, `MAX`, `COUNT`, or `LAST` combine the children instead, independently of the time rollup. |
+| `role` | `DIMENSION` lists a Dimension's items; `VARIABLE` holds one value of the Dimension for each item on the other axis. |
+
+A breakdown in the written notation and in the typed fields:
+
+```text
+[Department, {Level[Department = "Engineering"], Owner}]
+```
+
+```json
+{
+  "variable": "Headcount",
+  "breakdown": [
+    "Department",
+    {
+      "branches": [
+        [{ "dimension": "Level", "when": { "dimension": "Department", "equals": "Engineering" } }],
+        [{ "dimension": "Owner" }]
+      ]
+    }
+  ]
+}
+```
+
+Levels that a mapping relates pair each key item with its mapped item. Levels that one source table's rows carry together pair as in those rows. Levels that neither relates pair in every combination.
+
+## Canvas dataset layouts
+
+A Canvas dataset declares the same visible shape in a flatter form, under its `layout.rows` and `layout.columns`:
+
+| Entry field | Meaning |
+| --- | --- |
+| `variable` | An existing Variable to read. |
+| `breakdown` | The shared levels beneath it, outermost first, up to 10. A level is a Dimension name, or an object with `dimension` or `time`, and optional `include` and `when`. |
+| `branches` | Sibling paths as one list of levels. Each level names its path with `branch`, a number from 1 to 10; levels with the same number form one path in list order. A fork takes 2 to 10 paths, each of up to 10 levels. |
+| `after_branches` | Levels that follow every branch. Each complete path is `breakdown`, then one branch, then `after_branches`. |
+| `include` | The items to keep on that level, up to 50, written directly on the level. |
+| `dimension`, `time` | A standalone grouping axis entry, such as the shared dates on `columns`. |
+
+An entry with `branches` and no `variable` forms a shared grouping axis. [Canvas blocks for agents](/agents/canvas-blocks#datasets) covers the rest of a dataset.
+
+## Variables and Dimensions as rows
+
+Each row in a table's view is either:
+
+- a **Variable**, which measures something, such as Revenue, Headcount, or Gross Margin; or
+- a **Dimension used as a mapping**, where each cell shows that Dimension's item for its row and column instead of a number. This suits a database-style list of entities and their attributes.
+
+A Variable row can carry its own breakdown, splitting only that row differently from the rest of the table. A mapping row takes no breakdown; a `breakdown` on a Dimension is refused before anything saves, with an explanation of the record-key and mapped-field roles.
+
+## Orientation
+
+A view with a measured Variable keeps values on rows, and its Dimensions, including time, on columns. A mapping-only view already reads down the rows: source keys on rows, and their mapped attributes across the columns.
+
+There is no separate transpose action. To flip a table, reshape it by moving the Variables between rows and columns. Moving an axis changes the presentation, not the grain of any cell.
+
+## When a table comes back empty
+
+An empty result on a table with dates often means the table's window, the date range and grain it is set to show, does not cover the dates that hold values. Writing dated values does not move the window, and a wrong window is fixed on the table itself, with `window`. Two other causes are common:
+
+- An item whose cells are all empty is hidden when the table hides empty items.
+- An item outside a formula's condition reads empty.
+
+Check the table's window before you rework its breakdown.

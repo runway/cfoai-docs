@@ -1,0 +1,73 @@
+---
+title: "Dimension mappings and shared Dimensions"
+sidebarTitle: "Dimension mappings"
+description: "How a mapping groups the items of one Dimension, such as GL accounts, into the items of another, such as P&L lines; how catch-alls and conditions work; and how accounting connections share Entity, Currency, and other Dimensions."
+---
+
+How do 300 accounts in your books become 12 lines on your P&L? A **Dimension mapping** assigns each item of one Dimension to an item of another. Map account 5001 to COGS and account 6001 to Payroll, and every table that reports by the mapped Dimension groups those accounts' amounts under COGS and Payroll. People also call this grouping accounts into categories, or mapping a chart of accounts.
+
+## A mapping groups items into categories
+
+A mapping is a lookup from a source Dimension, such as Account, to a target Dimension, such as Reporting Line:
+
+| Account (source) | Reporting Line (target) |
+| --- | --- |
+| 4000 Subscription revenue | Revenue |
+| 5001 Hosting | COGS |
+| 6001 Salaries | Payroll |
+| 6002 Payroll taxes | Payroll |
+
+The classification lives in one place. Change account 6002 to another line in the mapping, and every table, formula, and chart that reads Reporting Line follows. Statement lines read their accounts through a mapping this way, so a new account in your books needs one new mapping row, not a new formula.
+
+A mapping does the same job for any set of labels that should report together: two systems' department names into one list, or each employee into a department.
+
+## Mappings go one way
+
+A mapping always runs from source to target. Pick the shared reporting Dimension as the target, and map each source into it. If two companies' accounts must land in one reporting structure, map each company's Account Dimension into the same target. A mapping that would lead back to where it started is refused.
+
+## What a mapping can say
+
+- An assignment applies in every period. Mappings have no effective dates.
+- An assignment names a fixed target item. It cannot calculate which item to use.
+- One assignment can match several items at once with a condition, such as "8001 or 8002 maps to Other Income."
+- An assignment can match a pair of items, such as an account together with a company, so two companies' account 6000 can land on different lines.
+- A condition tests the source items only. It cannot test a Variable's value, so a list of exceptions that depends on an amount stays a list of items.
+- One target can be fed by a one-key lookup and a two-key lookup, such as Account alone and Account with Account ID. A row that the two-key lookup has no assignment for falls back to the one-key assignment.
+
+A Dimension whose items come from a formula cannot also be a mapping target.
+
+## The catch-all covers everything else
+
+Each target can have one **catch-all**: the item that every unmatched source item maps to, such as Other. Without a catch-all, an unmatched item stays unmapped, and its cell in a mapping column is blank, so you can see what is left to classify.
+
+## How mapped items show in tables
+
+A table can show a mapping in two ways:
+
+- As a mapping column beside each source item, such as accounts on rows and Reporting Line as a column. Each cell shows that row's assignment, and picking another item there changes the mapping for every table.
+- As a breakdown that nests the target over the source, such as Department, then Role. Each Role shows once, under the Department its mapping gives it, so subtotals count each item once. A Role that no assignment matches and no catch-all covers forms no row, and neither does a Department that no Role maps to.
+
+Renaming an item, on a table or through Ari, also renames it in the mapping and in formulas that compare against it, as one change that one undo reverses.
+
+## Shared Dimensions across accounting connections
+
+When a connection's accounting statements load for the first time, each category column, such as **Entity**, **Currency**, or **Vendor**, joins an existing Dimension that matches it. A match has the same accounting system, column name, type, and aggregation. If several match, it joins the one that the most sources already feed, and the older one when two are tied. So two QuickBooks Online companies share one Entity Dimension and one Currency Dimension, and a Model can report on each company and on the group.
+
+A few limits apply:
+
+- Joining happens once, when a statement first loads. Later syncs never regroup, so a Dimension that stayed separate stays separate.
+- Dates and amounts are never combined.
+- Two companies with the same name keep separate Entity Dimensions.
+- Different accounting systems, such as one QuickBooks Online company and one Xero organisation, get separate Dimensions.
+
+Ari can combine compatible Dimensions into one, or split a combined one apart:
+
+- Combining joins Dimensions with matching types and aggregation, keeps each item's exact label, and rewrites the formulas and tables that read the others. Amounts are never combined, and nothing is saved if the combine is refused. Canvas blocks are not rewritten; Ari lists the ones that may read a retired Dimension so it can check them.
+- Splitting turns a combined Dimension back into one Dimension per source column. Formulas that read amounts stay as they are, so a breakdown may no longer add up to its total, and Ari says so.
+
+## Related
+
+- [Map one Dimension's items to another](/guides/map-dimensions)
+- [Model several entities and consolidate them](/guides/consolidate-entities)
+- [Variables and Dimensions](/concepts/variables-and-dimensions)
+- [How connected data reaches your Model](/concepts/connected-data)

@@ -87,6 +87,62 @@ test("accepts cash runway as ordinary financial language", async () => {
   }
 });
 
+test("accepts escaped dollar signs and dollar signs in code", async () => {
+  const fixture = baseFixture();
+  fixture["index.mdx"] = [
+    "---",
+    'title: "Usage"',
+    'description: "Buy extra AI usage."',
+    "---",
+    "",
+    "A purchase is \\$5 to \\$10,000, and one cost is $5.",
+    "Write `price$ * units$` in a formula.",
+    "```text",
+    "$5 to $10,000",
+    "```"
+  ].join("\n");
+  const root = await writeFixture(fixture);
+  try {
+    const result = await checkRepository(root, {
+      expectedLogoSha256: null
+    });
+    assert.deepEqual(result.findings, []);
+  } finally {
+    await rm(root, { force: true, recursive: true });
+  }
+});
+
+test("accepts tabs whose pages sit in their page-type folders", async () => {
+  const fixture = baseFixture();
+  fixture["docs.json"] = JSON.stringify({
+    navigation: {
+      tabs: [
+        {
+          tab: "Get started",
+          groups: [{ group: "Start", pages: ["index", "tutorials/lesson"] }]
+        },
+        {
+          tab: "How-to guides",
+          groups: [{ group: "Data", pages: ["guides/connect"] }]
+        }
+      ]
+    }
+  });
+  const page = (title) =>
+    `---\ntitle: "${title}"\ndescription: "A page."\n---\nBody.`;
+  fixture["tutorials/lesson.mdx"] = page("Lesson");
+  fixture["guides/connect.mdx"] = page("Connect");
+  const root = await writeFixture(fixture);
+  try {
+    const result = await checkRepository(root, {
+      expectedLogoSha256: null
+    });
+    assert.deepEqual(result.findings, []);
+  } finally {
+    await rm(root, { force: true, recursive: true });
+  }
+});
+
 test("reports a missing configured favicon", async () => {
   const fixture = baseFixture();
   fixture["docs.json"] = JSON.stringify({
@@ -210,6 +266,47 @@ const failureCases = [
     "dark-logo-drift",
     () => ({
       "logo/cfo-ai-logo-dark.svg": '<svg><path fill="red"/></svg>'
+    })
+  ],
+  [
+    "page-type-folder",
+    () => ({
+      "docs.json": JSON.stringify({
+        navigation: {
+          tabs: [{ tab: "How-to guides", groups: [{ group: "G", pages: ["index"] }] }]
+        }
+      })
+    })
+  ],
+  [
+    "unknown-tab",
+    () => ({
+      "docs.json": JSON.stringify({
+        navigation: {
+          tabs: [{ tab: "Misc", groups: [{ group: "G", pages: ["index"] }] }]
+        }
+      })
+    })
+  ],
+  [
+    "orphan-page",
+    () => ({
+      "guides/unlisted.mdx":
+        '---\ntitle: "Title"\ndescription: "Description."\n---\nBody.'
+    })
+  ],
+  [
+    "unescaped-dollar",
+    () => ({
+      "index.mdx":
+        '---\ntitle: "Title"\ndescription: "Description."\n---\nA purchase is $5 to $10,000.'
+    })
+  ],
+  [
+    "unescaped-dollar",
+    () => ({
+      "index.mdx":
+        '---\ntitle: "Title"\ndescription: "From $5 to $10,000."\n---\nBody.'
     })
   ]
 ];

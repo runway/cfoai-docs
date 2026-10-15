@@ -1,0 +1,111 @@
+---
+title: "How Ari works with you"
+description: "What Ari, your AI finance coworker, can and cannot do, what it can see, when it reads your Model and when it changes it, what still needs you, and what happens during a long build."
+---
+
+"What can you do?" is one of the first things people ask Ari. The short answer: Ari answers business questions about hiring, cash, growth, and costs by reading and building your Model, the live financial model of your company that you can open and change yourself. This page explains what Ari can see, when it changes your numbers, where it needs you, and where its job ends.
+
+## What Ari can do for you
+
+Ari works on the same Model you do, so most of what it does leaves something behind that you can open and check:
+
+- Explain a number, a formula, a table, or an unusual change, and trace a number to its source.
+- Build a forecast, a hiring plan, financial statements, or a cash outlook from your data, your files, or a description of your business, or rebuild a spreadsheet model you already have.
+- Connect accounting, payroll, CRM, and other systems, and tell you when their data has loaded.
+- Create Scenarios to test a decision, and compare them with Main.
+- Build Pages with Table blocks and Canvas blocks, such as a board summary with charts.
+- Save a workflow you repeat as a Skill, schedule a Trigger that runs on its own, and build a Guide that walks someone through a Page.
+- Read files you attach, search the web for public information, and email you or message you in Slack.
+
+For prompts that get each of these, see the [Prompt library](/reference/prompt-library).
+
+## What Ari and cfo.ai do not do
+
+cfo.ai works from your books and your other systems, and the jobs below stay in those systems.
+
+### Bookkeeping
+
+cfo.ai reads your accounting system. It does not record transactions, categorize them, or post journal entries there.
+
+### Posting changes back to QuickBooks or other systems
+
+Accounting, payroll, and other data connections bring data into cfo.ai and send nothing back. To change a number at its source, change it in that system; the next refresh brings it in. Ari can act in another service only through an MCP server or API you connect for it, and it asks before calls that need your approval. See [Give Ari access to another service](/guides/give-ari-another-service).
+
+### Month-end close
+
+You close the books in your accounting system. After the close, cfo.ai reads the new Actuals, and Ari can compare them with your forecast and explain the differences. See [Actuals, Forecast, and Last close](/concepts/actuals-and-forecast).
+
+### Taxes and VAT
+
+cfo.ai does not prepare or file tax or VAT returns. You can plan tax payments in your forecast like any other cost.
+
+## What Ari can see
+
+When you ask Ari something, it can use:
+
+- The Page you have open, and any cell, row, block, or Page you mention in the chat.
+- Your whole Model: its Pages, Table blocks, Variables, Dimensions, formulas, Scenarios, and the history of every change.
+- The data your connections brought in, down to the rows each source synced.
+- Files attached in this chat and in your other chats in the workspace. See [What Ari remembers](/concepts/ari-memory).
+- Facts you or your team asked it to remember, and the workspace's saved Skills.
+- Public web pages, through web search, and these docs, when you ask how cfo.ai works.
+
+Ari acts as you. It can open and change what you can, and nothing more. It cannot read a teammate's private memory or the files in a teammate's chats.
+
+If web search fails because of a problem on cfo.ai's side, such as its search provider account running out of credit, Ari tells you so. Nothing in your request caused it, and web search stays unavailable until cfo.ai fixes it.
+
+## Reading the Model versus changing it
+
+A question such as "Why did revenue fall in March?" can be answered by reading what the Model already holds, and nothing changes. A request such as "Build a revenue forecast" asks Ari to add to the Model, and the change is visible on your Pages.
+
+Some questions sit in between. The answer may need a calculation the Model does not have yet, such as gross margin by product when no table shows it. Then Ari has to add that calculation to the Model to work it out. Every calculated number in the Model comes from cfo.ai's calculation engine and a saved formula, so a new calculation needs a saved formula. If you want Main left alone, ask Ari to do the work in a Scenario. See [Ask Ari about a number](/guides/ask-about-a-number).
+
+Ari does not ask before each change to the Model, because every change is recorded and can be undone. It asks first before things it cannot take back, such as an email to someone other than you or a change to who can see your data.
+
+## How your numbers stay right
+
+Ari does not type finished results into your tables. It writes formulas and inputs, and the calculation engine computes every number from them, the same way for you, Ari, and anyone else. That is why you can trace any value: to the formula behind it, to the inputs that formula reads, and from an input to the source rows it came from. When an input is an estimate, Ari labels it as an assumption so you know which numbers to replace with real ones.
+
+To check a whole Model before your board sees it, ask Ari to review it, or turn on the built-in **Model audit** Skill. See [Turn on a built-in Skill](/guides/turn-on-built-in-skills).
+
+## Your plan and Ari's proposals
+
+A number you typed, imported, or agreed to is part of your plan. Ari changes it only when you ask for the change or agree to it. A number Ari produces is a proposal until you have seen it. Your plan is what the Model showed the last time you looked, so a value Ari saved without your asking does not become your plan until you have looked at it.
+
+When two things you entered disagree, such as a growth rate beside monthly amounts you typed in full, Ari shows you both with its recommendation and keeps your plan until you choose.
+
+## What still needs you
+
+Ari does most of the work, but some steps are yours:
+
+- You connect each outside system yourself, by signing in to it or by entering its API key or access token. Ari cannot sign in for you.
+- You answer Ari's questions when a detail changes the answer, and approve its plan before a large build. See [Answer Ari's questions and approve its actions](/guides/approve-ari-actions).
+- You approve calls to connected services that need approval, and emails Ari drafts to anyone other than you.
+- You add a password to a share link or turn a link off. Ari can create a read-only link to a Page, but it cannot do either. See [Share a Page outside your workspace](/guides/share-a-page).
+
+Every change Ari makes is recorded in version history, so you can take back any of it. See [Undo a change or restore an earlier version](/guides/undo-changes).
+
+## During a long build
+
+A large build, such as a full Model from your accounting data, can take a while. A turn has no fixed length: it ends when the work is done or when Ari needs you. While Ari works, the chat shows its steps as they happen. The Pages it builds appear in the sidebar one at a time, so you can read the first while the next one forms.
+
+Ari works on cfo.ai's servers, so you can close the tab, switch chats, or leave, and Ari keeps going. When you come back, the chat shows everything Ari did, and the Pages it built are in the sidebar.
+
+The chat list marks each chat with what Ari is doing:
+
+- **Ari is working…** while it works.
+- **Needs your response** when it is waiting for an answer, an approval, or a sign-in.
+- **Unread response** when it has finished.
+
+If a chat seems paused, look for **Needs your response**: the question or card Ari is waiting on is at the bottom of the chat. To be told when Ari finishes, turn on browser notifications. See [Chat controls and messages](/reference/chat#while-ari-works).
+
+You can redirect Ari at any point without waiting. See [Steer, stop, or add to Ari's work](/guides/steer-ari).
+
+## Related
+
+- [How cfo.ai works](/concepts/how-cfoai-works)
+- [What Ari remembers](/concepts/ari-memory)
+- [Scenarios, Snapshots, and version history](/concepts/scenarios)
+- [Get better answers from Ari](/guides/get-better-answers)
+- [Make a precise change with Ari](/guides/change-your-model-with-ari)
+- [Chat controls and messages](/reference/chat)

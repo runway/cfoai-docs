@@ -1,0 +1,61 @@
+---
+title: "Replace estimates with your real numbers"
+sidebarTitle: "Replace estimates with real numbers"
+description: "Move a Model that Ari built from estimates or a sample business onto your real numbers. Bring in your books, a spreadsheet, or exports, have Ari rebuild on Actuals while keeping the assumptions you want, check a closed month, and set Last close."
+---
+
+If Ari built your first Model from estimates, or from a sample business so you could see what cfo.ai does, you can move it onto your real numbers at any time. Ari replaces the estimated history with your records and keeps the forecast assumptions you choose, so the plan you worked on carries over.
+
+## Choose where your real numbers come from
+
+| Your numbers are in | Do this |
+| --- | --- |
+| QuickBooks Online, Xero, NetSuite, or Rillet | [Connect your accounting system](/guides/connect-accounting) |
+| A payroll, HR, CRM, or payments system | [Connect it](/guides/connect-other-sources) |
+| A system cfo.ai does not connect to | Export a report and [upload it as a CSV](/guides/upload-a-csv) |
+| Your own spreadsheet model | [Import it](/guides/import-a-spreadsheet-model) |
+
+Your books give Ari the most to work with, because they hold every month's actual revenue, costs, and cash.
+
+## Switch the Model
+
+<Steps>
+  <Step title="Bring in your data">
+    Connect, upload, or attach your source as the guides above describe. Ari tells you in the chat when the data has loaded. For QuickBooks Online and Xero, your three most recent complete months arrive first, and the rest of your history follows.
+  </Step>
+  <Step title="Ask Ari to rebuild on Actuals">
+    Say which assumptions to keep:
+
+    > Rebuild the Model on our QuickBooks actuals. Keep the hiring plan and the growth rate we set, and list every estimate you replace.
+
+    Ari replaces the estimated months with your records, keeps the assumptions you named as inputs you can still edit, and lists what it changed and what is still an estimate. Labeled estimates that a source now covers give way to that source's numbers.
+  </Step>
+  <Step title="Check one closed month against your books">
+    Pick a month you have closed and ask:
+
+    > Compare September in the Model with QuickBooks and list every account that differs.
+
+    See [Check that your numbers match your books](/guides/check-imported-data) for the common causes of a difference.
+  </Step>
+  <Step title="Set Last close">
+    Set **Last close** to your latest closed month, your month-end, so closed months read your books and later months read your forecast. See [Set Last close and date defaults](/guides/set-dates-and-last-close).
+  </Step>
+</Steps>
+
+To find anything that is still typed in or estimated, turn on the optional **Model audit** Skill and ask Ari to audit the Model. See [Turn on a built-in Skill](/guides/turn-on-built-in-skills).
+
+## If you started with a sample business
+
+A Model built from **Something hypothetical** describes a sample business, labeled as a sample, and holds none of your numbers. Rather than convert it, ask Ari to build a Model of your own business once your data is in:
+
+> Build a 12-month model of our business from our QuickBooks data.
+
+## Take a change back
+
+Every change Ari makes is recorded in Version history, so you can undo the rebuild or restore the Model as it was before. See [Undo a change or restore an earlier version](/guides/undo-changes).
+
+## Related
+
+- [Actuals, Forecast, and Last close](/concepts/actuals-and-forecast)
+- [How connected data reaches your Model](/concepts/connected-data)
+- [Build your first Model](/tutorials/first-model)

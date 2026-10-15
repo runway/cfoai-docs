@@ -1,0 +1,105 @@
+---
+title: "Limits and file types"
+sidebarTitle: "Limits"
+description: "Every size, count, and time limit in cfo.ai: chat attachments and file types, uploads, connections and syncs, tables and Pages, share links, exports, Skills, Triggers, Guides, connected AI tools, the free trial, and sign-in codes."
+---
+
+This page lists every size, count, and time limit in cfo.ai, grouped by part of the product. Each section ends with links to the pages that explain its limits. For what each plan includes, such as integration slots and AI usage, see [Plans and billing](/reference/plans-and-billing).
+
+## Chat with Ari
+
+| Limit | Value |
+| --- | --- |
+| Files attached to one message | 5 |
+| Size of one image file | 10 MB |
+| Size of one other file, such as a PDF, Excel workbook, CSV, or text file | 50 MB |
+| Quoted excerpts in one message | 5, each up to 2,000 characters |
+| Size of a text file or CSV that Ari reads in the conversation | 64 KiB; a larger one opens in Ari's private workspace instead |
+| Recipients of one email Ari drafts | 10 |
+| Size of a page of conventions you ask Ari to remember | 32 KiB of text, saved as up to 12 separate facts at a time |
+| Files Ari delivers at once | 10, each up to 50 MB, and 250 MB in all |
+| Time a download link for a file in a chat works | 5 minutes after you select the file; select it again for a new link |
+| Length of one chat | No fixed limit; when a chat grows too large for Ari to read in one request, the chat says so, and you start a new chat |
+
+See [Attach files to a chat](/guides/attach-files) and [Chat controls and messages](/reference/chat).
+
+## Connections, syncs, and uploads
+
+| Limit | Value |
+| --- | --- |
+| Size of a CSV uploaded as a data source | 50 MB, in a `.csv` file |
+| Size of a connected Google Sheet | 50 MB, read as an Excel workbook |
+| Size of an Excel or CSV file read from Google Drive | 10 MB |
+| Tables one connection syncs | 100, for sources with a table picker |
+| Time cfo.ai waits for a provider's own first sync | 20 hours, checking every 10 minutes |
+| Time to plan a saved query | 40 seconds |
+| History in the first load of QuickBooks Online or Xero | From January 1 of the previous year; the 3 most recent complete months arrive first |
+| Months the nightly refresh of QuickBooks Online reads again | The last 3; ask Ari for a full-history import to correct older months |
+| History in a full-history import of QuickBooks Online or Xero | Back to 2015 at the earliest |
+| Rillet connections in one workspace | 1 |
+| Start of the nightly refresh of connected sources | 02:00 UTC |
+| OpenAPI specification for an API connection | An `https` address that answers within 20 seconds, with a document of 12 MiB or less |
+| Time one run of a sync setup for an MCP server or API can take | 10 minutes |
+
+See [How imported data loads](/reference/imported-data) and [Integrations directory](/reference/integrations).
+
+## Tables, Pages, sharing, and exports
+
+| Limit | Value |
+| --- | --- |
+| Items on one table axis before Ari notes that the table may be slow | About 1,000 |
+| Scenarios one Canvas block can read | 3 |
+| External links on one Page | 100 |
+| Pages one share link opens | 50 |
+| Length of a share link's memorable address | 3 to 64 characters: lowercase letters, digits, and single hyphens |
+| Pages in one workbook Ari exports | 64 |
+| Spreadsheet exports a workspace prepares at once | 1 |
+| Time one spreadsheet export can run | 45 minutes |
+| Length of a formula in an exported workbook | 8,192 characters, Excel's limit; a longer formula is exported as its value |
+
+See [Export a Page to Excel](/guides/download-a-spreadsheet), [Share a Page outside your workspace](/guides/share-a-page), and [Table block controls and messages](/reference/table-blocks).
+
+## Skills, Triggers, and Guides
+
+| Limit | Value |
+| --- | --- |
+| Saved Skills in one workspace | 100 |
+| Length of a Skill's name | 64 characters: lowercase letters, digits, and single hyphens |
+| Length of a Skill's description | 1,024 characters |
+| Length of a Skill's instructions | 49,152 characters |
+| Length of a Trigger's name | 200 characters |
+| Length of a Trigger's instructions | 10,000 characters |
+| Precision of a Trigger's schedule | 1 minute; the schedule is stored in UTC, so a local time can shift by an hour when daylight saving time changes |
+| Time a download link in a scheduled run's message works | 24 hours |
+| Saved Guides in one workspace | 200 |
+| Length of a Guide's name | 64 characters: lowercase letters, digits, and hyphens |
+
+See [Save a workflow as a Skill](/guides/save-a-skill), [Schedule a recurring report with a Trigger](/guides/schedule-a-trigger), and [Walk someone through a Page with a Guide](/guides/create-a-guide).
+
+## AI tools connected to cfo.ai
+
+| Limit | Value |
+| --- | --- |
+| Calls to one cfo.ai tool | 60 a minute for each person in each workspace; past that, the tool answers `rate limit exceeded for` and the tool's name |
+| Size of one request | 1 MiB; a larger request gets **The MCP request is too large.** |
+| Time the browser page where you approve a connection works | 60 minutes after it opens |
+
+See [Connect Claude, ChatGPT, Codex, or another AI tool to cfo.ai](/guides/connect-an-ai-client).
+
+## Workspace, account, and sign-in
+
+| Limit | Value |
+| --- | --- |
+| Length of the free trial | 14 days, once per workspace |
+| Amount of one extra AI usage purchase or one auto-reload | \$5 to \$10,000 |
+| Length of a welcome note in an invitation | 600 characters, with up to 3 questions of 200 characters each |
+| People Ari invites in one request | 50 |
+| Sign-in codes for one email address | 5 sent and 10 checked in 15 minutes; past that, sign-in answers **Too many requests** until the 15 minutes pass |
+| Time a sign-in code works | 10 minutes |
+| Length of an **Ask a human** message | 4,000 characters, with up to 3 PNG, JPG, or WebP screenshots of 5 MB or less each |
+| Length of a **Share feedback** message | 20,000 characters, with up to 3 screenshots |
+| Workspace search results | 8 in each group |
+| Length of a workspace brand's name | 40 characters |
+| Size of a workspace brand's logo | 1 MB and 2,000 pixels on each side, in a PNG, JPEG, or WebP image |
+
+See [Plans and billing](/reference/plans-and-billing), [The cfo.ai interface](/reference/interface), and [Brand your workspace](/guides/brand-your-workspace).

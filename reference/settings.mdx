@@ -1,0 +1,224 @@
+---
+title: "Settings"
+description: "Every section and field in cfo.ai Settings, in the order the app shows them: General, Workspace, Profile, Ari, Connections, Skills, Billing, and Usage. Covers the workspace name and brand, Last close and date defaults, light or dark mode, inviting teammates, who sees each section, its messages, and what Settings has no setting for, such as a fiscal year or an API key."
+---
+
+Settings holds the workspace's options and your own preferences. To open it, select your name or picture at the bottom of the sidebar, then **Settings**. Settings opens on **General**, with the sections listed down the left side in this order.
+
+| Section | Who sees it | What it holds |
+| --- | --- | --- |
+| **General** | Everyone | The workspace name and brand, date defaults and Last close, and your appearance |
+| **Workspace** | Administrators | Inviting, removing, and listing administrators |
+| **Profile** | Everyone | Your name and sign-in email |
+| **Ari** | Everyone | Ari's thinking animation, sound, notifications, and Slack |
+| **Connections** | Everyone, once the workspace has started its trial or a plan | The cfo.ai MCP server address, and the MCP servers and APIs Ari can call |
+| **Skills** | Everyone | Your workspace's saved Skills and the optional built-in Skills |
+| **Billing** | Workspaces billed in the app | Plan, payment methods, billing history, and cancellation |
+| **Usage** | Workspaces billed in the app | AI usage, extra usage, spend limit, auto-reload, and integration slots |
+
+Every member of a workspace is an administrator, so everyone sees **Workspace**. A workspace billed outside the app has no **Billing** or **Usage** section.
+
+## General
+
+### Workspace name
+
+The **Workspace** section of **General** holds the workspace's name.
+
+| Control | What it does |
+| --- | --- |
+| **Name** | The workspace's name. **Save** saves a new name. Renaming also changes the workspace's web address: bookmarks to the old address stop working, and share links keep working. |
+
+| Message | Meaning |
+| --- | --- |
+| **Workspace renamed** / **Your workspace is now “[name]”.** | The new name is saved. |
+| **Couldn’t rename workspace** | The rename failed; the reason follows. |
+| **Only admins can change the name.** | You cannot change the name. |
+| **I’m finding a better name for your workspace — you can pick one yourself anytime.** | cfo.ai is naming a new workspace from your company's details. |
+
+### Brand
+
+A brand gives the workspace a name, logo, colors, and heading typeface that everyone who opens it sees, including people reading a shared Page. See [Brand your workspace](/guides/brand-your-workspace).
+
+| Control | What it does |
+| --- | --- |
+| **Website address** and **Build from a website** | Shown with no brand. Opens a chat in which Ari builds a brand from the website you typed. |
+| **Set up by hand** | Shown with no brand. Opens the brand form. |
+| Brand form | **Name** (up to 40 characters), **Logo**, **Logo for dark mode**, **Light mode colors** and **Dark mode colors** (**Page surface**, **Panel surface**, **Text**, **Accent**), **Heading typeface** (**cfo.ai default**, **Source Serif**, **Newsreader**, **Fraunces**, **Zilla Slab**, or **DM Sans**), and **Corner shape** (**Square**, **Soft**, or **Round**), with **Save** and **Cancel**. |
+| **Edit** | Shown with a brand. Opens the brand form. |
+| **Copy to other workspaces** | Shown with a brand. Copies it to workspaces you choose. |
+| **Remove brand** | Shown with a brand. After you confirm, everyone sees their own theme again. |
+
+Someone who cannot change the brand sees **This workspace uses the** [name] **brand. Workspace admins set the brand.**
+
+### Date and time
+
+The section is headed **Date & Time**. Its settings belong to the Scenario you are viewing in the sidebar's Scenario picker. A Scenario follows Main's settings until someone changes them in that Scenario. See [Set Last close and date defaults](/guides/set-dates-and-last-close).
+
+| Control | What it does |
+| --- | --- |
+| **Default date granularity** | The period new tables show: **Raw**, **Day**, **Week**, **Month**, **Quarter**, **Half**, or **Year**. **Month** unless changed. Last close snaps to the end of a period at this granularity. |
+| **Default date range** | The first and last dates new tables show. A new workspace starts from January 1 of the year six months ago through December 31 of the year six months ahead. Existing tables keep their own range. |
+| **Last close** | The end of the last period you closed, your month-end. Periods up to it are Actuals, and later periods are Forecast. Pick a period; cfo.ai saves its last day. A new workspace starts at the last day of the previous calendar month, and Last close never moves on its own. See [Actuals, Forecast, and Last close](/concepts/actuals-and-forecast). |
+
+There is no fiscal-year setting: quarters, half-years, and years follow the calendar year, January to December. See [Fiscal years](/concepts/actuals-and-forecast#fiscal-years-quarters-and-years-follow-the-calendar).
+
+| Message | Meaning |
+| --- | --- |
+| **Loading…** / **Couldn’t load** | Shown in **Last close** while it loads, or when it cannot be read. |
+| **Failed to save date settings** | The change was not saved; the settings return to what is saved. |
+| **Failed to load date settings** | The settings could not be read. Reopen Settings. |
+
+### Appearance
+
+| Control | What it does |
+| --- | --- |
+| **Color mode** | Light or dark mode: **Auto**, **Light**, or **Dark**. **Auto** follows your device's setting. Saved in this browser. The account menu's **Appearance** item sets the same thing. |
+| **Theme** | **Warm paper**, cfo.ai's own theme, **Prism**, **Pid Girl**, **Hot Dog Stand**, **50s CFO**, **Columnar Pad**, **Spreadsheet**, or **Custom**. Saved to your account and seen only by you. |
+| **Create a custom theme** box and **Personalize** | Shown when **Theme** is **Custom**. **Personalize** opens a chat where Ari builds a theme from what you typed. See [Change your theme, sounds, and notifications](/guides/personalize-cfoai). |
+
+In a workspace with a brand, **Theme** is replaced by **This workspace uses the** [name] **brand. Your own theme applies in workspaces without a brand.** If a theme change cannot be saved, a notice reads **Failed to save theme**.
+
+## Workspace
+
+### Invite admin
+
+**Invite admin** adds a teammate to the workspace. The section reads **Admins can see and edit all pages in the workspace, invite others, and manage billing and other settings.** See [Invite or remove teammates](/guides/invite-teammates).
+
+| Control | What it does |
+| --- | --- |
+| **Email address** | The address to invite. |
+| **Add admin** | Creates the invitation and emails it. The form then reads **Admin invitation created for** [address]. Adding an address that already has a pending invitation sends the email again. An address that already belongs to the workspace is refused. |
+
+cfo.ai has no other role to invite someone to: every invitation is for an administrator. For read-only access, use a share link; see [Share a Page outside your workspace](/guides/share-a-page).
+
+### Admins
+
+| Control | What it does |
+| --- | --- |
+| **Ask Ari** | Starts a chat in which Ari lists the people in the workspace and the pending invitations, then asks what you want to change. Ari changes nothing until you answer. |
+| A row | A person's name and email, marked **(you)** for you, with **Admin** for someone who joined or **Invited** for a pending invitation. |
+| **Remove member** | On an **Admin** row's menu. Opens **Remove member?**: **They will lose access to this workspace. Any pending invitations for this email will also be cancelled. Their other workspaces are unaffected.** Your own row has no menu. |
+| **Cancel invitation** | On an **Invited** row's menu. Opens **Cancel invitation?**: **They will no longer be able to join through this invitation. If they have already joined, their membership stays unchanged.** |
+
+| Message | Meaning |
+| --- | --- |
+| [email] **was removed from this workspace.** | The person was removed, and the list reloaded. |
+| [email] **invitation was cancelled.** | The invitation was cancelled, and the list reloaded. |
+| **Couldn’t load the admins of this workspace. Please try again.** | The list could not load. |
+
+## Profile
+
+| Control | What it does |
+| --- | --- |
+| **Profile** | Your picture, from the account you sign in with. |
+| **Name** | Your name. **Edit** opens the field, and **Save** saves it. |
+| **Email** | The email you sign in with. **Edit** opens **Change email**, with **New email** and **Send verification code**, then a **Verification code** field under **Verify your new email** for the code sent to the new address. cfo.ai may also ask for a **Sign-in code** under **Verify it’s you**. Your email changes only after the new address is verified. |
+
+| Message | Meaning |
+| --- | --- |
+| **Name updated** / **Could not update name** | The name change was saved, or it failed. |
+| **Email updated** | The new email is verified and saved. |
+
+## Ari
+
+The sections appear in this order.
+
+### Thinking animation
+
+| Control | What it does |
+| --- | --- |
+| **Show Ari's edits as they happen** | On by default. **Ari points at each change on the page and explains it in a short note. When off, only the finished edits are marked.** Saved in this browser. See [Review Ari's formula changes](/guides/review-ari-formula-changes). |
+
+### Sound
+
+| Control | What it does |
+| --- | --- |
+| **Play sound when Ari is done** | Plays a short sound when Ari finishes a reply. |
+| Volume | **Quiet**, **Normal**, or **Louder**. |
+| **Alert sound** | **Default** or **Beep Me**. |
+
+Each change plays the sound. These settings are saved in this browser.
+
+### Notifications
+
+Shown in browsers that support notifications.
+
+| Control | What it does |
+| --- | --- |
+| **Notify me when Ari finishes in this browser** | Shows a browser notification when Ari replies, or needs your answer, in a chat you are not looking at. **Applies to this browser only. Ari stays quiet while you’re looking at the chat.** |
+
+When the browser blocks notifications, the switch is unavailable and reads **Notifications are blocked for cfo.ai. Allow them in your browser’s site settings to turn this on.** For the notifications themselves, see [Chat controls and messages](/reference/chat#notifications-when-ari-finishes).
+
+### Slack
+
+| Status | What the section shows |
+| --- | --- |
+| Not connected | **Add Ari to Slack** with **Add to Slack** and **Enable messages to and from Ari via DM.** While Slack's sign-in window is open, the button reads **Cancel**. |
+| Connected | **Connected to** [Slack workspace] and **Ari can now DM you in this Slack workspace.**, with **Disconnect**. |
+| Disconnecting | **Disconnect "[Slack workspace]"?** with **cfo.ai Agent will no longer be able to post to this workspace until you reconnect.** |
+
+Anyone whose Slack profile email matches a member of the workspace can message Ari in Slack, and Ari works as that person, in direct messages only. See [Talk to Ari from Slack](/guides/use-ari-in-slack).
+
+## Connections
+
+| Control | What it does |
+| --- | --- |
+| **Connect via MCP** | The cfo.ai MCP server address, `https://api.cfo.ai/mcp`, with **Copy cfo.ai MCP URL**. AI tools such as Claude or Codex connect to it and sign in through the browser; cfo.ai issues no API key. See [Connect Claude, ChatGPT, Codex, or another AI tool to cfo.ai](/guides/connect-an-ai-client). |
+| **Add connections** | Tabs **MCP** and **APIs** for other services whose tools Ari can call. Each tab offers **Add manually** and **Add with Ari**. See [Give Ari access to another service with MCP or an API](/guides/give-ari-another-service). |
+
+While Ari cannot be used, for example when the workspace is out of AI usage, **Add with Ari** is unavailable, and a line reads **Add with Ari is unavailable.** followed by the reason. Data sources such as QuickBooks are connected from **Connections** in the sidebar; see [Connect QuickBooks, Xero, NetSuite, or Rillet](/guides/connect-accounting).
+
+## Skills
+
+The section reads **Teach Ari reusable workflows for this workspace.** See [Save a workflow as a Skill](/guides/save-a-skill).
+
+| Control | What it does |
+| --- | --- |
+| **Write manually** | Opens the Skill editor, headed **New skill**. |
+| **Build with Ari** | Opens a new chat that starts with **Help me build a reusable skill for this workspace.** Unavailable while Ari cannot be used. |
+| **Search skills** | Filters both lists by name and description. |
+
+### Custom skills
+
+Each saved Skill shows its name and description, with **Edit** and **Delete**. With none saved, the list reads **No skills yet. Build one with Ari by describing a workflow, pasting instructions, or attaching a Markdown file.**
+
+| Editor field | Note in the editor |
+| --- | --- |
+| **Name** | **Lowercase letters, digits, and hyphens. The name can't be changed later.** |
+| **Description** | **Phrase it as an activation trigger ("Use when…") — Ari uses it to decide when the skill applies.** |
+| **Instructions** | **Markdown. The full workflow, steps, and conventions Ari should follow when the skill activates.** |
+
+The editor saves with **Create skill** for a new Skill and **Save** for an existing one. **Delete** opens **Delete** [name]**?** with **Ari will no longer use this skill. This affects everyone in the workspace.**
+
+| Message | Meaning |
+| --- | --- |
+| **Name must be 1-64 lowercase letters or digits, with single hyphens between them (e.g. "board-report").** | The name breaks the naming rule. |
+| **Description is required.** / **Instructions are required.** | A field is empty. |
+| **Description must be at most 1024 characters.** / **Instructions must be at most 49,152 characters.** | A field is too long. |
+| **A skill with this name already exists** | Another Skill uses the name, or it is a built-in Skill's name. |
+| **a workspace can have at most 100 custom skills** | The workspace has 100 saved Skills. Delete one first. |
+| **Failed to load skills** / **Failed to delete skill** | The list or a deletion failed. Try again. |
+
+### Built-in skills
+
+The section reads **Enable ready-made workflows for everyone in this workspace. Skills stay up to date with improvements from cfo.ai.** Each optional built-in Skill has a switch: **Model audit**, **Flash report**, and **Model migration tie-out**. A switch applies to everyone in the workspace. Built-in Skills cannot be edited. See [Turn on a built-in Skill](/guides/turn-on-built-in-skills).
+
+## Billing and Usage
+
+**Billing** shows **Current plan**, **Payment methods**, **Billing history**, and **Cancel subscription**. **Usage** shows **Included plan usage**, **Extra usage**, and **Integrations**. Every field and message is on [Plans and billing](/reference/plans-and-billing).
+
+## What Settings has no setting for
+
+- A fiscal year that starts in a month other than January. See [Fiscal years](/concepts/actuals-and-forecast#fiscal-years-quarters-and-years-follow-the-calendar).
+- A view-only or other lower role, access to single Pages for one person, or user groups. Use a share link for read-only access; see [Sharing and access](/concepts/sharing-and-access).
+- An API key or access token for cfo.ai. AI tools connect to the MCP server and sign in through the browser; see [Is there a cfo.ai API or API key?](/guides/connect-an-ai-client#is-there-a-cfoai-api-or-api-key)
+- Deleting a workspace or an account. See [Cancel your subscription or delete your data](/guides/cancel-or-delete).
+- Pausing a subscription. See [Plans and billing](/reference/plans-and-billing#rules-and-limits).
+- Moving Last close automatically. Ask Ari, or schedule a Trigger that does it; see [Schedule a recurring report with a Trigger](/guides/schedule-a-trigger).
+- Folders or groups for workspaces. See [Create a second workspace or switch workspaces](/guides/manage-workspaces).
+
+## Related
+
+- [Plans and billing](/reference/plans-and-billing)
+- [The cfo.ai interface](/reference/interface)
+- [Limits and file types](/reference/limits)

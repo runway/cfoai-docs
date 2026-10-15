@@ -1,0 +1,62 @@
+---
+title: "cfo.ai for AI agents"
+sidebarTitle: "Overview"
+description: "For AI agents connected to cfo.ai through its MCP server, and the developers who set them up: what the server offers, how an agent shares the Model with Ari and the user, how to start, and every agent page."
+searchable: false
+---
+
+The cfo.ai MCP server, at `https://api.cfo.ai/mcp`, gives an AI agent the same product tools Ari uses. With them an agent can read a company's financial Model and, when the user asks, change it: Pages, Table blocks, Canvas blocks, formulas, Variables, Dimensions, Scenarios, connections, Skills, Triggers, and memory. These pages describe those tools for the agent and for the developer who connects it.
+
+## One Model for the user, Ari, and the agent
+
+The agent works in the user's live workspace, signed in as that user. There is no separate copy of the Model for agents. Whatever the agent builds appears in the workspace right away, where the user can inspect the assumptions, change the result, or continue the work with Ari. Every change is recorded in the Model's changelog under the user's name and can be undone.
+
+## How to start
+
+1. Connect the client and verify access with the [Agent instructions](/agent-instructions). A person setting up their own tool can follow [Connect an AI tool](/guides/connect-an-ai-client) instead.
+2. Read the `build-model` skill through `inspect_skills` before you change model logic, as the server's instructions ask.
+3. Inspect the existing workspace before you create anything, and reuse its Variables, Dimensions, and Pages.
+
+## Pages for agents
+
+<CardGroup cols={2}>
+  <Card title="Agent instructions" href="/agent-instructions">
+    Connect a client, get the user's browser approval, choose the workspace, and work safely.
+  </Card>
+  <Card title="MCP tools and call shapes" href="/agents/mcp-tools">
+    Every published tool, the one-action-block call shape, workspace selection, results, and pagination.
+  </Card>
+  <Card title="Canvas blocks for agents" href="/agents/canvas-blocks">
+    Create, patch, and render-check Canvas blocks, and name blocks in page edits.
+  </Card>
+  <Card title="Table view grammar" href="/agents/table-view-grammar">
+    The breakdown notation for a table's rows and columns, and the typed layout fields that carry it.
+  </Card>
+</CardGroup>
+
+### Formulas
+
+<CardGroup cols={2}>
+  <Card title="Formula authoring for agents" href="/agents/formulas-overview">
+    Which tool answers which formula question, and the rules every formula write follows.
+  </Card>
+  <Card title="Read and explain formulas" href="/agents/read-formulas">
+    Read a Variable's saved formulas and the table values they produce, then explain them.
+  </Card>
+  <Card title="Create and update formulas" href="/agents/write-formulas">
+    Write formulas through saved tables or on a Variable, with every request and receipt shape.
+  </Card>
+  <Card title="Formula scope and formula ranges" href="/agents/formula-scope">
+    Conditions that say where a formula applies, and Actuals and Forecast ranges.
+  </Card>
+  <Card title="Analyze saved values without changing the Model" href="/agents/analyze-without-saving">
+    Answer from saved tables, and know when a new result needs a saved row.
+  </Card>
+  <Card title="Validate and verify formula writes" href="/agents/validate-and-verify">
+    Check a write before and after it saves, read its receipt, and confirm the numbers.
+  </Card>
+</CardGroup>
+
+## Reading these pages
+
+These pages are left out of the site search, so they do not crowd the answers customers look for. Every page has a Markdown version: add `.md` to its address, such as `https://docs.cfo.ai/agent-instructions.md`. [llms.txt](https://docs.cfo.ai/llms.txt) lists every page on the site.

@@ -1,0 +1,65 @@
+---
+title: "Set Last close and date defaults"
+sidebarTitle: "Set Last close and dates"
+description: "Move Last close, your month-end date, after each close so your books show as Actuals; set the default grain and date range for new tables; and work with a fiscal year that does not start in January."
+---
+
+Move Last close, your month-end date, forward after you finish each month's close, so that month's numbers from your books show as Actuals and your Forecast starts after it. Last close does not move on its own; until you or Ari move it, a newly closed month stays in the Forecast. For how Last close splits your Model, see [Actuals, Forecast, and Last close](/concepts/actuals-and-forecast).
+
+## Move Last close
+
+<Tabs>
+  <Tab title="Ask Ari">
+    Ask Ari, naming the month you closed:
+
+    > We finished closing September. Set Last close to September 30, 2026.
+
+    Ari changes Last close in the Scenario your chat is in. To change another Scenario, name it.
+  </Tab>
+  <Tab title="By hand">
+    <Steps>
+      <Step title="Check the Scenario">
+        In the sidebar's Scenario picker, choose the Scenario to change, usually Main.
+      </Step>
+      <Step title="Open Date & Time">
+        Open the account menu, your name or picture at the bottom of the sidebar, choose **Settings**, and stay on **General**. Find **Date & Time**.
+      </Step>
+      <Step title="Pick the date">
+        Select **Last close** and pick the month you closed. When the default date granularity is not **Month**, the calendar shows that period instead, such as quarters. cfo.ai saves the last day of the period, such as September 30.
+      </Step>
+    </Steps>
+
+    You can also set it from the Scenario picker: select the gear on the Scenario's row, then **Last close**. See [Scenario and version history controls](/reference/scenarios-and-history#scenario-actions-menu).
+  </Tab>
+</Tabs>
+
+Each Scenario has its own Last close. A Scenario follows Main's Last close until someone changes it in that Scenario.
+
+To keep Last close current, schedule a Trigger that asks Ari to move it each month, on a day after your books usually close. See [Schedule a recurring report with a Trigger](/guides/schedule-a-trigger).
+
+## Set the default grain and date range for new tables
+
+In **Settings → General → Date & Time**:
+
+- **Default date granularity** sets the period new tables show, such as **Month** or **Quarter**. It is **Month** unless you change it.
+- **Default date range** sets the first and last periods new tables show. Pick both on the calendar.
+
+These defaults apply to Table blocks you create from now on. A table you already have keeps its own grain and range until you change them on the table. Like Last close, the defaults belong to the Scenario you are viewing, so set them while viewing Main to change them for your plan.
+
+## If your fiscal year does not start in January
+
+cfo.ai has no fiscal-year setting. Quarters, half-years, and years always follow the calendar, January to December. To work in a fiscal year that starts in another month, such as April:
+
+1. Keep your Model monthly. Monthly numbers are the same in any fiscal year.
+2. Set **Default date range** to start in the first month of your fiscal year, such as April, so new tables open on your year.
+3. Ask Ari for fiscal-year totals, naming the months, such as "Add a total for our fiscal year, April 2026 through March 2027."
+4. Tell Ari when your fiscal year starts and ask it to remember that for the workspace, so its answers use your year; see [Teach Ari your company's conventions](/guides/teach-ari).
+
+For why years follow the calendar and other ways to show fiscal years, see [Fiscal years](/concepts/actuals-and-forecast#fiscal-years-quarters-and-years-follow-the-calendar).
+
+## Related
+
+- [Actuals, Forecast, and Last close](/concepts/actuals-and-forecast)
+- [Use different formulas for Actuals and Forecast](/guides/actuals-and-forecast-formulas)
+- [Settings](/reference/settings#date-and-time)
+- [Scenario and version history controls](/reference/scenarios-and-history)

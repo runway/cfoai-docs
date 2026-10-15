@@ -1,0 +1,65 @@
+---
+title: "Skills, Triggers, and Guides"
+description: "How Skills, Triggers, and Guides let Ari repeat work: what each one is for, how Ari picks a Skill, how a Trigger runs with nobody watching, what a run cannot do on its own, and the record each run keeps."
+---
+
+Skills, Triggers, and Guides let Ari repeat work, so you explain a job once instead of every month, and the work happens on time even when you are not there. A **Skill** tells Ari how to do a job. A **Trigger** tells Ari when to do it. A **Guide** shows a person around the work, one step at a time.
+
+Take a month-end review. A Skill holds your steps: compare Actuals with Forecast for the closed month, flag any line more than 10% off, and write the summary in your usual format. A Trigger runs the review on the fifth of each month and emails you the summary. A Guide walks your board through the variance Page before the meeting.
+
+## How Ari picks a Skill
+
+A Skill has a name, a description, and instructions. On every request, Ari sees the name and description of each Skill available in the workspace. When a request matches a description, Ari reads that Skill's instructions and follows them. Nobody has to name the Skill. That is why a description works best when it is written as "Use when…": it is what Ari matches against.
+
+Skills come in two kinds:
+
+- Built-in Skills come with cfo.ai, which keeps them up to date. Nobody can edit them. Most are always on; three optional ones, **Model audit**, **Flash report**, and **Model migration tie-out**, stay off until someone in the workspace turns them on.
+- Saved Skills are your workspace's own. They are shared by everyone in the workspace, so a change to one changes how Ari works in everyone's chats. A saved Skill cannot reuse a built-in Skill's name.
+
+A new or changed Skill takes effect from the next message you send Ari. A Skill holds a process. A short fact, such as how your company defines bookings, belongs in Ari's memory instead; see [What Ari remembers](/concepts/ari-memory).
+
+## How a Trigger runs with nobody watching
+
+A Trigger is a saved request with a schedule. The schedule is stored in UTC. At each scheduled time, cfo.ai starts a new chat for the run and Ari works through the saved instructions, with the access of the person who set up the Trigger. The saved instructions are the authorization for the run.
+
+A run starts with no Page open and works in Main, unless the instructions name another Scenario. It works on exactly what the instructions name. If a Page or a connection the instructions name was renamed or removed, the run reports that instead of picking something that looks similar.
+
+Nobody reads the chat while a run works, so nobody can answer it. When Ari would ask you a question, it makes a reasonable assumption, keeps going, and states the assumption in its result. Its questions, plans, and buttons stay in the chat for you to read later. Answering one later starts a new turn in that chat; it does not change what the run already did.
+
+## What a run cannot do on its own
+
+A run never waits for a person, so anything that needs a person's approval stops short:
+
+- A Scenario merge or deletion that the run prepares waits in its chat until someone presses the confirmation button.
+- An email to anyone but you waits as a preview in the chat until someone presses **Send**.
+- A run can message only you, by email or in Slack, and only when its instructions name that channel. It cannot post in a Slack channel.
+
+A Trigger does one run at a time. When a run is still going at the next scheduled time, that time is skipped. Runs use AI usage like any chat with Ari; see [Plans, AI usage, and connection slots](/concepts/plans-and-usage).
+
+## The record each run keeps
+
+Each run's chat is its record, listed in the Trigger's history. A run ends by reporting its outcome: the saved task was done, it was not done, with the run's own sentence for why, or the run ended without reporting either. Only a run that reports the task done counts as a success. A Trigger that refreshes a connection succeeds only when the import that run started finishes.
+
+Each finished run also saves a summary to Ari's memory, tagged with the Trigger and the date. You can ask Ari about earlier runs in any chat, such as "What did my cash Trigger find last month?" The next run reads the last run's record: what it found, how long that has held, and what it already told you. A report the instructions ask for every time goes out every time. A warning goes out when something changes, so the same warning does not repeat on every run.
+
+## Guides show people around
+
+A Guide is a saved walkthrough that spotlights parts of the workspace, such as a Page, a block, or one cell, with a short note at each stop. A Guide can be a step-by-step tour, a walkthrough of an analysis, or a single explanation. Ari builds Guides from your description, and they are saved in the workspace for everyone. People start a saved Guide by asking Ari for it, or with the **Start tour** or **Start walkthrough** button Ari posts in the chat. A button in a Canvas block, or **Take the tour** on an invitation, can also start one. Saved Guides are not listed in the Help center. See [Walk someone through a Page with a Guide](/guides/create-a-guide).
+
+## Choosing between them
+
+| You want | Use |
+| --- | --- |
+| Ari to follow your steps whenever a certain job comes up | A Skill |
+| A job done on a schedule, without asking | A Trigger |
+| Your steps followed on a schedule | A Skill for the steps, and a Trigger that asks for the job |
+| A teammate or your board shown around a Page | A Guide |
+| Ari to remember a fact or a preference | Memory; see [What Ari remembers](/concepts/ari-memory) |
+
+## Related
+
+- [Save a workflow as a Skill](/guides/save-a-skill)
+- [Turn on a built-in Skill](/guides/turn-on-built-in-skills)
+- [Schedule a recurring report with a Trigger](/guides/schedule-a-trigger)
+- [Walk someone through a Page with a Guide](/guides/create-a-guide)
+- [Sample Skills](/reference/sample-skills)

@@ -1,0 +1,54 @@
+---
+title: "Model several entities and consolidate them"
+sidebarTitle: "Consolidate entities"
+description: "Report each legal entity and the group total in one Model, also called multi-entity consolidation. Connect more than one QuickBooks Online company or Xero organisation, ask Ari for a P&L by entity, and handle shared Dimensions, account mapping, currencies, and intercompany transactions."
+---
+
+Ask Ari for a P&L by entity when your business has more than one legal entity, such as a US company and a UK subsidiary. You get each entity's results and the group total in one Model. People call this multi-entity reporting or consolidation.
+
+Before you start, connect each entity's books. Connect each QuickBooks Online company or Xero organisation as its own connection; a workspace can hold several of each. Rillet is different: a workspace holds one Rillet connection, and it brings in every subsidiary. See [Connect QuickBooks, Xero, NetSuite, or Rillet](/guides/connect-accounting). Each connection uses an integration slot on your plan, so check that your plan has a slot for every company you connect; see [Plans, AI usage, and connection slots](/concepts/plans-and-usage).
+
+<Steps>
+  <Step title="Ask Ari for the group report">
+    > Build a P&L Page by entity, with a group total for each month.
+
+    The group total adds up the entities. For a balance sheet and cash flow statement too, see [Get your P&L, balance sheet, and cash flow statement](/guides/build-financial-statements).
+  </Step>
+  <Step title="Check that the entities share Dimensions">
+    Every row of a connected company's statements carries **Entity**, the company's name, and **Currency**. When another company from the same accounting system loads for the first time, its Entity and Currency columns join the Dimensions the first company created. One Entity Dimension then lists every company. Rillet's statements carry one set of rows for each subsidiary, with Entity naming the subsidiary.
+
+    Companies in different accounting systems, such as one in QuickBooks Online and one in Xero, get separate Dimensions. So do two companies with the same name. To combine two compatible Dimensions, ask Ari:
+
+    > Combine the Entity Dimensions from QuickBooks Online and Xero into one.
+
+    For how Dimensions are shared and combined, see [Dimension mappings and shared Dimensions](/concepts/dimension-mappings).
+  </Step>
+  <Step title="Check that every entity's accounts map into one structure">
+    Each company has its own chart of accounts, so each company's accounts must map into the same reporting lines. If they do not, ask Ari:
+
+    > Map both companies' accounts into one set of P&L lines: Revenue, COGS, Payroll, Software, Rent, and Other. Where the same account number means different things in the two companies, map by company and account together.
+
+    See [Map one Dimension's items to another](/guides/map-dimensions).
+  </Step>
+  <Step title="Convert currencies, if your entities use more than one">
+    cfo.ai does not convert currencies on its own. Each entity's amounts stay in its own currency, so a total across currencies adds unlike numbers. Ask Ari to convert to your reporting currency at a rate you choose:
+
+    > Convert the UK company's results from GBP to USD at 1.27, and show the group total in USD.
+
+    Ari keeps the rate as an assumption you can change.
+  </Step>
+  <Step title="Remove intercompany transactions">
+    Adding entities up does not remove the transactions between them. When the US company charges the UK company a management fee, the fee is revenue in one and expense in the other, and both stay in a simple sum. cfo.ai does not eliminate them on its own. Rillet removes them only in its own consolidated reports, so adding Rillet's subsidiaries up does not match Rillet's consolidated numbers.
+
+    Ask Ari to add the eliminations as their own lines:
+
+    > Add an eliminations line that removes the management fee between the US and UK companies from the group total.
+  </Step>
+</Steps>
+
+## Related
+
+- [Dimension mappings and shared Dimensions](/concepts/dimension-mappings)
+- [Map one Dimension's items to another](/guides/map-dimensions)
+- [Connect QuickBooks, Xero, NetSuite, or Rillet](/guides/connect-accounting)
+- [How connected data reaches your Model](/concepts/connected-data)

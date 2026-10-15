@@ -1,0 +1,76 @@
+---
+title: "Use different formulas for Actuals and Forecast"
+sidebarTitle: "Actuals and Forecast formulas"
+description: "Give a Variable one formula for closed months (Actuals) and another for later months (Forecast), such as imported payroll before Last close and headcount times salary after it."
+---
+
+Use separate formulas when closed months should show what your books recorded and later months should show a plan. For example, Payroll can read QuickBooks through **Last close** and calculate Headcount times Average Salary after it. Every workspace has two formula ranges: Actuals, the months through Last close, and Forecast, the months after it. A Variable can have a formula for each. To understand the boundary, read [Actuals, Forecast, and Last close](/concepts/actuals-and-forecast). To move it, see [Set Last close and date defaults](/guides/set-dates-and-last-close).
+
+A formula range needs months. A formula you save on a row of a table with months already covers them, and a row on a table with no periods has one formula for every period. Write range formulas on a table by month. A formula written on a table by year is saved at year grain and fills only the year cells; the month cells do not read it.
+
+<Tabs>
+  <Tab title="Ask Ari">
+    Name the Variable and both calculations:
+
+    > Use imported Payroll for Actuals and Headcount times Average Salary for Forecast.
+
+    To change only one range, name it:
+
+    > Forecast Software Spend as 4% of Revenue. Leave Actuals as they are.
+
+    Ari saves each formula for its range and tells you if a Variable cannot take a range-specific formula, for example because the table it sits on has no months. A range formula Ari saves on a Variable outside any table covers the Model's base periods, usually months.
+  </Tab>
+  <Tab title="By hand">
+    <Steps>
+      <Step title="Open the row's formula">
+        On a table with months, point at the row name and select the **fx** button, **Edit variable formula**. The editor shows one section for each range, **Actuals** and **Forecast**.
+
+        You can also double-click the row's cell in the **Actuals Formula** or **Forecast Formula** column. The editor opens with that section expanded.
+      </Step>
+      <Step title="Open the section you want to change">
+        Select a section's name to expand or collapse it.
+      </Step>
+      <Step title="Type the formula for that range">
+        For the example, leave **Actuals** reading the imported values and type this in **Forecast**:
+
+        ```text
+        Headcount * `Average Salary`
+        ```
+
+        Each section reads what you type the way a cell does: a leading `=` marks a formula, `1,000` saves as the number 1000, and plain words in a text Variable save as text.
+      </Step>
+      <Step title="Save">
+        Press **Enter**.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+Check the first Forecast month after you save. A formula that reads the previous month, such as `` `Cash Balance`[-1] + `Net Cash Flow` ``, starts from the last Actuals month, so that month needs a value.
+
+## When a section shows a dimmed formula
+
+A section with no formula of its own shows the formula it inherits, dimmed. Point at it to see the source: **Inherited from Actuals formula** (or **Forecast**), and the address that owns it.
+
+- Select **Edit source formula** to open the formula it inherits and change it there. Saving it updates that formula instead of creating a second copy.
+- Click the dimmed formula, press **→**, or press **Tab** to copy it into this section and change it for this range only.
+- Start typing to replace it.
+
+A formula the section owns opens at full strength and edits in place.
+
+## Show the Actuals and Forecast formulas side by side
+
+On a table with months, the formula column splits into **Actuals Formula** and **Forecast Formula**. To show the formula columns, see [Show or hide the formula columns](/guides/write-a-formula#show-or-hide-the-formula-columns).
+
+- To hide one, right-click its header and choose **Hide column**.
+- To bring it back, right-click the other one's header and choose **Show Actuals column** or **Show Forecast column**.
+- **Hide all formula columns** hides both.
+
+A row that cannot split by range, such as a row with no months, shows its one formula in the first formula column shown.
+
+## Related
+
+- [Actuals, Forecast, and Last close](/concepts/actuals-and-forecast)
+- [Write a formula](/guides/write-a-formula)
+- [Fix a formula that shows an error or a wrong number](/guides/fix-formula-errors)
+- [Formula syntax](/reference/formula-syntax)

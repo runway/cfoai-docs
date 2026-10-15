@@ -1,0 +1,103 @@
+---
+title: "How formulas work"
+description: "How a formula calculates a Variable, where it applies, how cfo.ai picks one when several could fill a cell, and why a cell can have its own value, a different formula from its parent, or a circular reference."
+---
+
+A formula tells cfo.ai how to calculate a Variable. It works like a spreadsheet formula, but it names what the numbers mean instead of where they sit. Gross Profit's formula is:
+
+```text
+Revenue - `Cost of Goods Sold`
+```
+
+That one formula calculates Gross Profit in every month and for every department, so there is nothing to copy across a row. Names that contain spaces are wrapped in backticks. For the full syntax and every function, see [Formula syntax and operators](/reference/formula-syntax) and [Formula functions](/reference/functions).
+
+## A formula has an expression and a place where it applies
+
+Every formula has two parts. The **expression** says what to calculate, such as `Revenue - Expenses`. The formula's **scope** says which of the Variable's cells it calculates: every cell, one department, every department when the Variable is broken down by Department, only the Forecast months, or a single cell.
+
+Where you write a formula decides its scope. A formula on a Variable's row applies to the whole row. A formula on one item's row, such as Sales, applies to that item. A formula typed into one cell applies to that cell alone. See [Write a formula](/guides/write-a-formula).
+
+## Names in a formula follow the cell being calculated
+
+A plain name in a formula reads the other Variable at the same address as the cell being calculated. When cfo.ai calculates Revenue for Sales in March, `Headcount` in Revenue's formula reads Headcount for Sales in March.
+
+Brackets change part of that address and keep the rest. `Revenue[Department = "Sales"]` reads Sales whatever row the formula runs on, and `Revenue[-1]` reads the previous period.
+
+A plain name can only find a value that exists at that address. A value typed into a cell exists only at that cell's address. If Price was typed in month by month with no department, there is no Sales price, and `Price` in a Sales cell reads 0. A formula on Price's row covers every department, so it does not leave that gap. A **fixed reference**, written with `$` after the name, does not follow the cell being calculated and keeps only the parts of the address you name. For example, `` `Reported June MRR`$ `` reads the same value in every row and every period.
+
+## A Variable can have several formulas
+
+A Variable can use different formulas in different parts of the Model:
+
+- One default for the whole Variable.
+- A different formula for one item, such as Sales.
+- One formula for Actuals and another for Forecast; see [Actuals, Forecast, and Last close](/concepts/actuals-and-forecast).
+- A value typed into one cell.
+
+Keep one clear default, and add other formulas only where the business really works differently. Many overlapping exceptions make a Model hard to follow.
+
+## How cfo.ai picks the formula for each cell
+
+When several formulas could fill a cell, cfo.ai uses the most specific one. It compares them in this order:
+
+1. A value or formula typed into one cell wins in that cell.
+2. A formula that names more Dimensions beats one that names fewer. A formula for every department in every region beats a formula for every department, which beats the Variable's default.
+3. Among formulas that name the same Dimensions, a formula for a named item beats one that covers every item, so a formula for Sales beats a formula for every department. One item beats a list of items.
+4. When two formulas are still tied, the one saved most recently wins.
+
+Formulas that cfo.ai generates, such as the read of a connected column or the 0 for an empty cell, rank below every formula someone saved. A formula range, Actuals or Forecast, decides when a formula applies, not how it ranks.
+
+For example, Payroll has a default formula, a formula for every department, and a formula for Sales. The Sales cells use the Sales formula, Engineering uses the formula for every department, and the company total, which has no department, uses the default.
+
+## Why a cell has a different formula from its parent
+
+Each row and cell takes the most specific formula that covers it, so a row often has a different formula from the row above it. That is usually by design. Three reasons are common:
+
+- The parent is a breakdown total. When a table breaks a Variable down, the parent row adds up the rows beneath it, while the bottom rows use the Variable's own formula.
+- Someone gave the row or cell its own formula, such as a different price for one product, or typed a value into it. That is an override.
+- The cells fall in different formula ranges. A closed month uses the Actuals formula, and a later month uses the Forecast formula.
+
+To see which formula a cell uses and where that formula is saved, open the cell's formula, or ask Ari about the cell; see [Ask Ari about a number](/guides/ask-about-a-number).
+
+## A typed value is the cell's own formula: overrides
+
+When you or Ari type a number into a cell, cfo.ai saves it as that cell's own formula. The number is the expression. The scope is the cell's full address: its Variable, its items, and its period. A typed value is a formula that happens to be constant, so cfo.ai ranks it like every other formula. Nothing is more specific than one cell, so the typed value wins in that cell and nowhere else. This is an **override**: it overrides the formula the cell would otherwise take from its row.
+
+A dashed underline marks a cell whose formula is saved for that cell alone, such as a typed number. A cell that follows its row's formula has no underline, and neither does a cell where someone picked an item or a date from a list.
+
+An override appears when someone types or pastes into a cell, or when Ari sets a value for one period, such as an opening cash balance. To remove one, clear the cell's own value; the cell then follows its row's formula again. See [Enter, paste, and clear values](/guides/enter-values). If you are not sure which cells hold their own values, ask Ari to list the overrides on a Variable.
+
+## Breakdown totals and summary columns calculate differently
+
+A breakdown total, the parent row above a breakdown such as Revenue above its products, is a formula that cfo.ai saves with the table. You can replace it with your own, such as a ratio. A summary column at the end of a group of columns, headed **SUM** or **LAST**, for example, saves no formula and summarizes only the cells shown on that table. For how each kind of total calculates, and why a percentage is never added up, see [Totals, aggregation, and time rollups](/concepts/totals-and-rollups).
+
+## A cell that no formula covers
+
+A cell that no formula covers and that holds no value reads a default that depends on the Variable's type: 0 for a number, and an empty value for text or a date. So a Salary nobody entered adds 0 to a total, and an End Date entered only for people who left is empty for everyone still employed.
+
+An imported Variable reads its connected column instead; see [How imported data loads](/reference/imported-data). A quarter or year cell of a monthly Variable that has no time rollup also reads 0; see [Why a quarterly view shows zeros](/concepts/totals-and-rollups#why-a-quarterly-view-shows-zeros).
+
+## A formula belongs to its Variable, so changing it changes every table
+
+A formula is saved on the Variable, not on the table where you wrote it. Every table, chart, and Page that shows the Variable reads the same formulas, so changing a formula from one table changes the number everywhere. That is how one fix reaches every report.
+
+When one report needs a different calculation, use a different Variable, or a formula for a narrower part of the Model. Placing an existing Variable on another table leaves its formulas alone. Ari tells you when a change it makes replaces a formula that other tables read.
+
+## Why a formula shows a circular reference
+
+A circular reference means that calculating a cell needs that same cell's result, so cfo.ai cannot finish. The cell shows `#CIRC!`. Three shapes cause most of them:
+
+- Two Variables read each other in the same period: Interest reads this month's Cash, and Cash reads this month's Interest.
+- A Variable reads itself in the same period, such as a new formula for Cash that reads `Cash`.
+- A parent's formula reaches the rows beneath it. A formula written on a parent row also applies to the rows beneath it that have no formula of their own. If it adds those rows up, each of them ends up adding itself.
+
+A formula that reads the previous period is not circular, because last month's value is already known. A running balance such as ``Cash[-1] + `Net Cash Flow` `` works for that reason. To break a loop, read the previous period instead of the current one, or give the rows beneath a parent their own formula. To have Ari find and fix it, see [Fix a formula that shows an error](/guides/fix-formula-errors). Every error code is listed in [Formula errors and warnings](/reference/formula-errors).
+
+## Related
+
+- [Variables and Dimensions](/concepts/variables-and-dimensions)
+- [Actuals, Forecast, and Last close](/concepts/actuals-and-forecast)
+- [Totals, aggregation, and time rollups](/concepts/totals-and-rollups)
+- [Write a formula](/guides/write-a-formula)
+- [Have Ari write, change, or explain formulas](/guides/change-formulas-with-ari)
+- [Formula syntax and operators](/reference/formula-syntax)

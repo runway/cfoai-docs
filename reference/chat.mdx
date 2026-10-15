@@ -1,0 +1,415 @@
+---
+title: "Chat controls and messages"
+sidebarTitle: "Chat with Ari"
+description: "Every control and message in a chat with Ari: starting a chat and mentions, the message box and attachments, what the chat shows while Ari works, question forms, plan, approval, email, and download cards, every stop and error message, the chat list, Ari in Slack, and the Welcome chat."
+---
+
+This page lists what you see in a chat with Ari, in the order you meet it: starting a chat, the message box, the chat while Ari works, the cards Ari shows, the messages that end a reply early, and the chat list. For keyboard shortcuts, see [Keyboard shortcuts](/reference/keyboard-shortcuts#chat-with-ari). For file and size limits, see [Limits and file types](/reference/limits#chat-with-ari).
+
+## Start a chat
+
+| Control | What it does |
+| --- | --- |
+| **New chat** | The button at the top of the **Chats** section of the sidebar. Opens an empty chat. |
+| **Mention cell in chat** | In a cell's right-click menu, and on the small toolbar above a single selected cell. Adds the cell to the message box of the current chat. |
+| **Mention in chat** | In a row or column label's right-click menu, and in a Canvas block's hover toolbar. A blank Canvas block offers **Mention block in chat**. |
+| **Mention table in chat** / **Mention canvas in chat** | In a block's menu, opened from the six-dot handle at its left edge. |
+| **Mention page in chat** | On a Page in the sidebar. |
+| **Mention formula in chat** | The **@** button in the formula editor. Adds the formula you are editing to the message box. |
+| **Explain with Ari** | In a block's menu. Starts a new chat that asks Ari what the block shows, how it is built, and how to read it. |
+
+A mention appears in the message box as a chip. Ari reads the exact cell, row, block, or Page it points to, so you do not have to describe it. See [Ask Ari about a number](/guides/ask-about-a-number).
+
+## The empty chat
+
+A new chat shows the heading **How can I help you?** and the placeholder **Ask anything about your business or data...** in the message box. Four chips below it open suggested prompts for four kinds of question: **Explain** (what something means), **Benchmark** (whether a number is good), **Decide** (what to do), and **Pressure-test** (whether you are wrong). Selecting a suggestion puts it in the message box.
+
+## The message box
+
+| Control | What it does |
+| --- | --- |
+| **Send** | Sends your message. While Ari is working, its tooltip reads **Steer Ari (Enter) · Queue for after this turn (⌥ Enter)** (**Alt+Enter** on Windows and Linux). |
+| **Stop** | Replaces **Send** while Ari is working and the message box is empty. Its tooltip reads **Stop Ari**. **Esc** in the message box does the same. Changes Ari already saved stay in the Model. |
+| **Attach files** | Opens a file picker. You can also paste a file, such as a screenshot, or drop it on the message box. A message can carry files with no text. |
+| **Data source** / **Chat only** | On a CSV file's tile. **Data source**, the default, also imports the file into cfo.ai when you send. **Chat only** shares it with Ari in this chat alone. |
+| **Browse Canvas block library** | The palette icon at the bottom left. Opens templates for Canvas blocks. See [Build a dashboard or board report](/guides/build-a-dashboard). |
+| Suggested reply | After Ari answers, the empty message box can show a suggested next message in faint text, followed by **Tab** or **→**. Press either key to place it in the box; it is never sent until you send it. |
+| Excerpt | A passage you quoted from one of Ari's answers. See [Reply to part of an answer](#reply-to-part-of-an-answer). |
+
+### Why Send is unavailable
+
+When **Send** cannot be used, its tooltip says why.
+
+| Message | Meaning |
+| --- | --- |
+| **No internet connection.** | Your browser is offline. |
+| **Sending your last message.** | The previous message is still on its way. |
+| **Wait for attachments to finish uploading.** | A file is still uploading. |
+| **Resolve attachment upload errors before sending.** | A file failed to upload. Remove it or attach it again. |
+| **Write a message to send with this excerpt.** | A quoted excerpt must be sent with a question or comment. |
+
+### Attachment messages
+
+| Message | Meaning |
+| --- | --- |
+| **File is too large. Images must be 10MB or smaller.** | The image is over the size limit and was not attached. |
+| **File is too large. Documents must be 50MB or smaller.** | A file that is not an image is over the size limit and was not attached. |
+| **You can attach up to 5 files per message. Remove a file or select fewer files.** | The files you picked would take the message over five files, so none of them were attached. |
+| **Attachment upload failed** | A notice with the file's name and the reason. The file's tile turns red. |
+| **cfo.ai did not confirm this upload. Check your connection and attach it again. If only this file keeps failing, a security filter may be blocking its contents. Contact support@cfo.ai.** | The upload never finished, for example after a dropped connection. Attaching the same file again replaces the failed tile. |
+| **Wait for attachments to finish uploading before sending.** | You tried to send while a file was uploading. |
+
+## While Ari works
+
+Ari keeps working on cfo.ai's servers until it finishes, even if you close the tab or switch chats. When you come back, the chat shows everything Ari did.
+
+| What you see | Where | Meaning |
+| --- | --- | --- |
+| **Thinking…** | Status line above the message box | Ari has your message and has not taken its first step yet. |
+| A short phrase and a meter | Status line | Ari is working. The phrase changes with what Ari is doing, such as reading results or writing its answer, and the meter counts the time and tokens used so far. |
+| **Ari hit a temporary connection issue. Retrying now.** | Status line | A connection inside cfo.ai failed for a moment. Ari retries on its own. |
+| **Ari hit a temporary model-provider issue. Retrying now.** | Status line | The AI model did not answer for a moment. Ari retries on its own. |
+| **Activity** | Under your message | Ari's steps, each with a check mark when done. See [Activity group](#activity-group). |
+| A line of text, such as a sync in progress | Above the message box, under the status line | Work running beside the conversation. Select it to open its card. |
+| **Ari is working…** | Chat list, and a pill near the bottom of the Page | Ari is still working in that chat. |
+
+### Activity group
+
+Ari's reasoning and actions collect in an **Activity** group under your message. The group is open while Ari works and while it is on your screen. Once you scroll past it, it closes and stays closed. Your own click to open or close it always wins, and groups in an earlier conversation start closed.
+
+A closed group reads as one sentence naming up to three things Ari did, such as "Searched the web, checked memory and integrations", followed by **and N more** for the rest, then the time and tokens the turn used. A group with only reasoning reads **Thought it through**. A step that was stopped reads **Cancelled**.
+
+The group does not report failed steps. A failed step shows the normal check mark and folds into **and N more**, because Ari often recovers by retrying or reading the data another way. Anything you need to know about a failure is in Ari's answer.
+
+### Messages you send while Ari works
+
+| Status | Meaning |
+| --- | --- |
+| **Sending to the current turn** | You pressed **Enter**. Ari reads the message at its next step. |
+| **Queued for after this turn** | You pressed **⌥ Enter**. Ari reads the message after it finishes. |
+
+| Control | What it does |
+| --- | --- |
+| **Steer now** | On a queued message. Sends it to the current turn instead. If Ari already took it, a notice says **Ari already picked this message up**. |
+| **Edit pending message** | Takes the message back into the message box so you can change it and send it again. |
+| **Delete pending message** | Removes the message before Ari reads it. |
+
+Waiting messages sit above the message box until Ari takes them. A message that started a turn cannot be edited or deleted. Some waiting messages cannot be edited, only deleted, and editing says why:
+
+| Message | What to do |
+| --- | --- |
+| **Messages that are still sending can't be edited yet.** | Wait a moment and try again. |
+| **Messages with attachments can't be edited yet.** | Delete it and send a new message. |
+| **Messages that reply to an excerpt can't be edited yet.** | Delete it and send a new message. |
+| **Plan approvals and answers to Ari's questions can't be edited.** | Delete it and answer again. |
+| **Finish editing the other queued message first.** | You are already editing one; finish it first. |
+| **Clear the current draft before editing a queued message.** | The message box has text in it; clear it first. |
+
+For when to steer, queue, or stop, see [Steer, stop, or add to Ari's work](/guides/steer-ari).
+
+### Edits playing on the Page
+
+When Ari edits a table you are looking at, it plays each edit on the Page. A caption moves to the cell, the editor opens, the new value or formula is typed in, and the changed cells are highlighted. The caption's first line is Ari's note for the change. Its second line says what changed:
+
+| Second line | Meaning |
+| --- | --- |
+| `Churn [Starter] 5% → 4%` | A value replaced a value. |
+| `set to 4%` | A new value where there was none. |
+| `cleared (was $15,000)` | A value was removed. |
+| A formula followed by `(was …)` | A formula replaced an earlier one. |
+| `Filling 24 cells in Revenue with …` | One formula or value filled many cells. |
+
+While a change is still running, the caption shows Ari's note alone, and adds **· Still working** after about eight seconds.
+
+The first edit of each kind in a turn plays at full speed with a short explanation; repeated edits play at twice the speed. Rest the pointer on the caption to pause. If your system asks for reduced motion, captions and highlights appear without movement.
+
+The caption's **…** button (**Thinking animation options**) offers **Hide for this turn** and **Turn off animation for all turns**. Turning the animation off applies to this browser and is the same switch as **Show Ari's edits as they happen** in [Settings](/reference/settings). With the animation off, edited cells are still highlighted, and the chat shows Page and **Formulas** cards for Ari's changes.
+
+While Ari works, the Page follows it to each table it edits. Scrolling by about a third of the screen stops following; a smaller scroll, a click, or typing only pauses it. A pill near the bottom of the Page then reads **Stopped following · Click to follow Ari** (**Tap** on a touch screen) and then **Ari is working…**. Select the pill to jump to Ari's newest edit and follow again. You can drag the pill to another spot, and the spot is remembered. A text block Ari rewrites while you have its Page open updates in place; if you are typing in that block, your save replaces Ari's version.
+
+## Cards in the chat
+
+### Question form
+
+Ari asks for details it needs as a short form in the chat.
+
+| Control | What it does |
+| --- | --- |
+| An option | Chooses that answer. Each option shows a letter; press the letter to choose it. A question that takes one answer moves on to the next question. |
+| **Other…** | Type your own answer. While the box is empty, the form says **Type your answer to continue.**, or **Type your answer or attach a file to continue.** when the question takes files. |
+| **Attach files to your answer** | Appears when a question takes files. Files sent without text read **See attached files**. |
+| **Dismiss** beside a question | Skips that question. The record of your answers marks it **Declined**. **Undo** brings it back before you send. |
+| **Dismiss** in the footer | Sends the answers you picked and declines the questions still open. |
+| **Next** | Moves to the next question, answered or not. |
+| **Submit answers** (**Submit** on a one-question form) | Sends your answers. It stays off until every question is answered or dismissed. |
+
+Your answers appear in the chat as a record of the form, each question above your answer. If you scrolled up when a form arrived, select **Scroll to latest messages** to reach it. When a scheduled Trigger run asked questions at more than one point, they appear together on one form in its chat, and your one reply answers all of them.
+
+### Plan card
+
+For a larger piece of work, Ari shows a plan before it starts. Under **Will create:**, the card lists what Ari intends to build, such as Pages and tables. Under **Assumptions**, it lists each assumption Ari intends to use, with suggested choices.
+
+| Control | What it does |
+| --- | --- |
+| **Other** | On an assumption. Type your own value (**Write your own answer**). |
+| **Make changes** | Puts text in the message box so you can describe changes the choices cannot express. |
+| **Build it** | Approves the plan. Your message reads **Build it — with these selected assumptions:** followed by any assumptions you changed. |
+
+While Ari works through an approved plan, a plan card lists its steps with a count such as **2/5**. An **Assumptions** group under the steps names the decisions the plan rests on.
+
+| Status | Meaning |
+| --- | --- |
+| **Answer above to continue** | An assumption Ari marked as required has no answer yet. |
+| **Changes requested** | You selected **Make changes**. |
+| **Approved** | You selected **Build it**. |
+| **Paused** | Ari stopped with steps left, for example to ask you a question. |
+| **Blocked** | A step cannot go ahead. |
+
+### Tool-call approval card
+
+When Ari wants to call a service you connected under **Settings → Connections**, such as an MCP server or an API, it pauses and shows **Ari is asking to run "[tool]" on [service].**
+
+| Control | What it does |
+| --- | --- |
+| **Allow** | Runs this one call. Anyone in the chat can choose it. |
+| **Always allow** | Runs the call and lets Ari use this tool on this service without asking again, for the whole workspace. Only people who can manage workspace settings see it. Other cards waiting for the same tool then read **Always allowed**. |
+| **Decline** | Skips the call. Ari continues without it. |
+
+After you choose, the card reads **Allowed**, **Always allowed**, or **Declined**, and the chat sends Ari a short message for you, such as **I approved the pending tool request — please go ahead and run it.** Ari then continues on its own.
+
+If the call can no longer be acted on, a notice titled **Could not approve tool call** or **Could not decline tool call** (**Could not approve API call** or **Could not decline API call** for an API) says why:
+
+| Message | Meaning |
+| --- | --- |
+| **This tool call was already approved.** | Someone already allowed it. |
+| **This tool call was already declined.** | Someone already declined it. |
+| **The MCP connection for this tool was removed, so this call can no longer run.** | The connection was removed after Ari asked. |
+| **A workspace setting now blocks this tool, so this call cannot be approved.** | The tool was blocked in Settings after Ari asked. |
+| **This approval request is not part of this chat.** | The card belongs to another chat. |
+
+If the approval saved but the message to Ari did not go out, a notice reads **Approved, but Ari was not prompted to continue**. Send any message to have Ari run the call.
+
+### View from an MCP server
+
+Some MCP servers bring their own form, such as an issue form. It appears under **View from [server]: [tool]**, filled with what Ari proposed, and you finish it there. The note under it reads **Runs in a sandbox. Calls it makes use your [server] connection and its approvals.**
+
+- A call the view makes that needs approval shows its own card, **The [server] view is asking to run "[tool]" on [server].**, with the call's **Arguments**, **Allow**, and **Decline**. A view's call never offers **Always allow**.
+- A link the view wants to open asks first with **The [server] view is asking to open a page on [site].**, the full address, **Open link**, and **Cancel**.
+- A view from an earlier turn, or after a reload, starts closed with **Open view**. Opening it shows the original call again.
+- Views appear only in chats in the cfo.ai web app, not in Slack or in scheduled work.
+
+### Email preview card
+
+Ari emails you at your sign-in address as soon as you ask. An email to anyone else waits for you: Ari shows a card headed **Preview** with the recipients (**To**), **Subject**, and message, and the footer **Review the recipient and message before sending.**
+
+| Control | What it does |
+| --- | --- |
+| **Edit** | Opens the draft. Addresses you type become removable chips when you press **Enter** or type a comma. |
+| **Preview email** / **Cancel editing** | Saves your edits back to the preview, or drops them. |
+| **Send** | Sends the email. Nothing leaves cfo.ai until you press it. |
+
+| Message | Meaning |
+| --- | --- |
+| **Enter a valid email address.** | An address you typed is not valid. |
+| **Sent** / **Ari sent this message.** | The email was sent. |
+| **Email wasn’t sent. Try again.** | Sending failed. |
+
+If the mail provider accepted only some addresses, the card keeps only the addresses it refused, so you can send to them again without emailing the others twice. Scheduled Triggers work the same way, so a run that addresses someone else stops at the preview.
+
+### Email and Slack messages to you
+
+When Ari emails you or messages you on Slack, the step in its activity group has one of these titles.
+
+| Message | Meaning |
+| --- | --- |
+| **Notification request accepted** | The email service or Slack took the message. It does not confirm that the message reached your inbox. |
+| **Notification accepted on some channels** | One channel took the message, and another refused it or did not answer. |
+| **Notification outcome unconfirmed** | The provider did not answer. |
+| **Couldn’t send the notification** | No channel took the message. |
+| **Prepared an email preview and reported another channel** | An email waits in a preview card for you to send, and the step also reports how another channel did. |
+
+### Download a file Ari made
+
+A file Ari makes for you, such as a workbook, an image, or a document, appears as a card with its name and size directly under the answer that ends the turn. PNG, JPEG, GIF, and WebP images show a preview. When the answer names the file by its exact file name, with the same letter case and extension and outside a code block, that name is a link to the same download.
+
+Selecting a file makes a download address that works for 5 minutes without a sign-in. A link Ari sends you, for example in a scheduled run's message, works for 24 hours for anyone who has it, and stops sooner if the file or its chat is deleted. An expired link opens a page that says **This download link has expired or is not valid.** A file that was not deleted is still in its chat.
+
+### Scenario confirmation card
+
+When you ask Ari to merge, delete, or revert a Scenario and to let you confirm first, Ari posts a card instead of acting. You press its one button yourself.
+
+| Card | Button |
+| --- | --- |
+| **Merge [Scenario]** | **Merge** |
+| **Delete [Scenario]** | **Delete** |
+| **Revert [Scenario]**, or **Revert [Scenario] and its branches** when its child Scenarios go back too | **Revert** |
+
+The button turns off when the action is no longer possible, for example because the Scenario changed after Ari's summary. See [Scenario and version history controls](/reference/scenarios-and-history).
+
+### Other cards
+
+| Card | What it shows |
+| --- | --- |
+| Page card | A Page Ari created or changed, with a button to open it. Shown when the edit animation is off. |
+| **Formulas** | Every formula Ari wrote in the turn, closed by default; open it to read each formula. Shown when the edit animation is off. |
+| Connection card | Opens the sign-in for a system you are connecting. Ari cannot sign in for you. See [Connect QuickBooks, Xero, NetSuite, or Rillet](/guides/connect-accounting). |
+| **Start walkthrough** / **Start tour** | Starts a Guide Ari built or presented. See [Walk someone through a Page with a Guide](/guides/create-a-guide). |
+
+## Reply to part of an answer
+
+A **Reply** button appears above words you select in one of Ari's finished answers. **Reply**, or **⌘ L**, quotes the passage in the message box as an excerpt, for you to send with your question. The sent message shows the excerpt above your words, and selecting an excerpt scrolls to the original passage and highlights it. For the steps, see [Steer, stop, or add to Ari's work](/guides/steer-ari#reply-to-one-part-of-an-answer).
+
+- A message can quote up to 5 excerpts; past that, a notice says **A message can reply to up to 5 excerpts.** A long passage is cut to 2,000 characters.
+- **Reply** is not offered while the answer is still being written, when the selection spans two answers, or in a read-only chat.
+
+## When a reply stops early or shows an error
+
+| Message | Meaning | What to do |
+| --- | --- | --- |
+| **Conversation interrupted - tell Ari what to do differently.** | You stopped Ari, or the reply was interrupted. | Say what you want next. Changes saved before the interruption stay. |
+| **Couldn't stop Ari. Please try again.** | The stop did not reach Ari, so it is still working. | Select **Stop** again. |
+| **Ari stopped before finishing.** with **Retry** | The reply was cut off. | Select **Retry** to have Ari pick the work back up. |
+| **I stopped before finishing this reply. It was interrupted, and repeated attempts to continue it did not finish. Changes I saved before the interruption are kept. Sending the message again starts a new reply.** | cfo.ai tried on its own to continue an interrupted reply, for example after a restart, and could not. | Send the request again. |
+| **No internet connection. Reconnect to continue with Ari.** | Your browser is offline. Ari keeps working on the server. | Reconnect. The chat catches up. |
+| **Connection lost. Reconnect to continue with Ari.** | The chat lost its connection to cfo.ai. | Reconnect, then select **Retry** if it is offered. |
+| **Ari is temporarily unavailable. Please try again in a moment.** | The service that runs Ari failed for a moment or is restarting. | Try again in a moment. |
+| **Ari hit an error while reconnecting. Please try again in a moment.** | The chat could not reconnect to a reply in progress. | Try again in a moment. |
+| **Ari is having trouble reaching the model provider. This is usually temporary. Please try again in a moment.** | The AI model kept failing after retries. | Try again in a moment. |
+| **Ari hit a temporary connection problem and could not recover. Please try again in a moment.** | A connection inside cfo.ai kept failing after retries. | Try again in a moment. |
+| **Ari hit an unexpected error. Please try again.** | Another failure. | Send the request again. |
+| **Ari could not finish its latest reply. Please try again.** | The reply ended without a visible answer. | Send the request again, or ask for a smaller piece first. |
+| **Ari's reply stopped: the model reached its output limit of [N] tokens after [M] minutes of reasoning, before it wrote a reply. Your conversation is saved.** | The model spent its whole output on reasoning twice. | Ask for a smaller piece of the work. |
+| **This request is too large for Ari to continue. Start a new chat with a shorter request or fewer attachments.** | The chat outgrew what Ari can read in one request. No **Retry** is offered. | Start a new chat with **⌘ /** and restate what you need. Attach a file again only if the new request needs it. |
+| **Your session expired. Please sign in again.** | You were signed out. | Sign in again. |
+| **Start your free trial to continue.** / **Verify your work email to continue.** | A new workspace has a step left before Ari can continue. | Finish that step. |
+
+For what to try when Ari is slow or stuck, see [When Ari is slow, stuck, or wrong](/guides/ari-is-slow-stuck-or-wrong).
+
+### Billing stops: out of AI usage or over a limit
+
+When billing stops a turn, the reply ends with Ari's own explanation, which starts **I had to stop here**. No **Retry** is offered, because the same request would stop again. Fix the cause, then send a new message. The **AI usage recovery** panel and the low-usage notices that appear above the message box are listed in [Plans and billing](/reference/plans-and-billing#notices-in-the-chat); to add usage, see [Buy AI usage, set a spend limit, or turn on auto-reload](/guides/manage-ai-usage).
+
+| Message | Meaning |
+| --- | --- |
+| **I had to stop here: this workspace is out of AI usage. Buy more usage or upgrade the plan in Settings → Billing, then send a new message and I'll pick up where we left off.** | No AI usage left |
+| **I had to stop here: this workspace reached its monthly AI spend limit. Raise the limit in Settings → Billing, then send a new message and I'll pick up where we left off.** | Spend limit reached |
+| **I had to stop here: this workspace has reached a limit of its current plan. Upgrade the plan in Settings → Billing, then send a new message and I'll pick up where we left off.** | Plan limit reached |
+| **I had to stop here: the workspace's last usage purchase failed, so no more AI usage could be added. Update the payment method in Settings → Billing, then send a new message and I'll pick up where we left off.** | A usage purchase failed |
+| **I had to stop here while more AI usage is on the way. Send a new message in a moment and I'll pick up where we left off.** | Usage is being added, for example by auto-reload |
+| **I had to stop here: this workspace has not started its trial yet. Start the trial, then send a new message and I'll pick up where we left off.** | Trial not started |
+| **I had to stop here: this workspace doesn't have an active plan. Choose one — or fix the payment method if a charge has failed — in Settings → Billing, then send a new message and I'll pick up where we left off.** | No active plan |
+| **I had to stop here: the workspace's subscription payment is failing, so usage is paused. Update the payment method in Settings → Billing, then send a new message and I'll pick up where we left off.** | Subscription payment failing |
+| **I had to stop here: this would not fit the limits of the plan this workspace is switching to. Keep the current plan in Settings → Billing, then send a new message and I'll pick up where we left off.** | A plan change is pending |
+| **I had to stop here: the workspace's billing status could not be checked. Wait a moment, then send a new message and I'll pick up where we left off.** | Billing could not be checked |
+
+### A message that never reached Ari
+
+A message that could not be delivered shows **Not sent.** under it, with the reason. **Send again** sends the same text as a new message, and the delete button removes it.
+
+| Message | Meaning |
+| --- | --- |
+| **It waited more than a day without reaching Ari.** | It was queued for over a day. |
+| **Ari could not start a reply, so this message never reached Ari.** | cfo.ai's attempts to start the reply failed. |
+| **This message never reached Ari.** | The reason was not recorded. |
+
+### Earlier messages
+
+A chat opens on its newest messages, and scrolling up loads older ones.
+
+| Message | Meaning |
+| --- | --- |
+| **Loading earlier messages…** | Older messages are loading. |
+| **Earlier messages didn't load.** with **Load earlier messages** | Older messages failed to load. Select **Load earlier messages** to try again. |
+| **This chat's history didn't load.** with **Load history** | The saved chat's history could not be read at all. Select **Load history** to try again. |
+
+## The chat list: find, rename, and archive chats
+
+The **Chats** section of the sidebar lists your chats, newest activity first. A chat moves up only when something happens in it, not when you open it. You cannot pin a chat to the top of the list, and you cannot delete a chat you sent a message in: **Archive chat** hides it and keeps its messages and files. To have data deleted, see [Cancel your subscription or delete your data](/guides/cancel-or-delete).
+
+| Control | What it does |
+| --- | --- |
+| Filter | Shows **Active** chats (the default), **Archived** chats, or **All**. |
+| **Show more** | The list starts with your newest chats. After you expand it, scrolling to the bottom loads older chats, showing **Loading older chats…**, or **Retry loading chats** if a page fails. |
+| **Archive chat** | Hides the chat from the active list. Its messages and files stay stored. |
+| **Unarchive chat** | Returns an archived chat to the active list. |
+| **Discard chat** | Offered instead of **Archive chat** on a chat you have not sent anything in. |
+| Chat name | Double-click it to rename the chat. **Enter** saves the name and **Esc** cancels. Ari sees the new name when it looks back at past chats. |
+
+Changing the filter, or closing the **Chats** section and opening it again, returns the list to its short form.
+
+A mark beside a chat shows its status. Point at it to read the status.
+
+| Status | Meaning |
+| --- | --- |
+| **Ari is working…** | Ari is still working in the chat. |
+| **Needs your response** | Ari is waiting for you, such as an answer, an approval, or a sign-in. |
+| **Unread response** | Ari answered since you last looked. |
+| **Something went wrong** | The last turn ended with an error. |
+
+An empty list says **No chats yet.**, **No active chats.**, or **No archived chats.**
+
+### Chats you can only read
+
+A chat you can open but did not start sits under **Shared with me**, above your own chats under **My sessions**. It is read-only and shows **You can view this shared conversation, but can’t send messages.** Start your own chat to ask Ari about what you see. You cannot create a share link to a chat; share links open Pages. See [Share a Page outside your workspace](/guides/share-a-page).
+
+## Notifications when Ari finishes
+
+After a turn that ran longer than 20 seconds ends while you are watching, a line above the message box offers **Get a heads-up when Ari finishes** with **Turn on**. Turning it on asks your browser for permission. From then on, when Ari finishes a chat you are not looking at, the browser shows a notification from **Ari** that reads **Replied in “[chat name]”** or **Needs your response in “[chat name]”**. Selecting it opens the chat. The switch is per browser; see [Change your theme, sounds, and notifications](/guides/personalize-cfoai).
+
+| Message | Meaning |
+| --- | --- |
+| **Notifications aren’t available** | This workspace's server is not set up to send them. |
+| **Couldn’t turn on notifications** | Turning them on failed. Try again in a moment. |
+
+## Ari in Slack
+
+Ari chats in Slack direct messages once your workspace is connected in **Settings → Ari → Slack**. See [Talk to Ari from Slack](/guides/use-ari-in-slack).
+
+| Message | Meaning |
+| --- | --- |
+| **is typing…** | Ari is working on your message. Its reply posts in the same thread when the turn ends. |
+| **I couldn't find a CFO.ai account for your Slack email. Ask an admin to invite you to CFO.ai, then message me again.** | No cfo.ai account uses the email address on your Slack profile. |
+| **Your CFO.ai account doesn't have access to this workspace's CFO.ai. Ask an admin for access, then message me again.** | Your cfo.ai account does not belong to the cfo.ai workspace this Slack workspace is connected to. |
+| **I can only chat in DMs right now. Send me a direct message and I'll pick this up there.** | You mentioned Ari in a channel. Ari does not read or answer channel messages. |
+| **I can't read files or images in Slack yet. Paste the text into a message and I'll take it from there.** | You sent a file or image. Ari reads nothing in that message. |
+| **Something went wrong on my end and I couldn't finish that. Please try again.** | Ari's turn failed. |
+
+Slack shows the text, bold, and links of Ari's replies, and prints tables and headings as the characters typed. Question forms, approval cards, plan cards, download cards, and Guides do not appear in Slack; open the chat in cfo.ai to see them. A link to a Page or block opens it in your browser, under your own access.
+
+## The Welcome chat and the starting card
+
+A new workspace opens on a chat named **Welcome**, with Ari's greeting and a starting card docked above the message box.
+
+### Company research and brief
+
+When you verify your email, cfo.ai starts a public web search for the email address and, for a work address, for the company behind its domain. While the search runs, the Welcome chat shows a **Searching the web** step. When it finishes, Ari posts a short brief about you and your company. The brief ends with a **Sources** list: your signup's email domain first, then each public page the research used, linked by its site and labeled with what ties it to you.
+
+| Label | Meaning |
+| --- | --- |
+| **shows your full email address** | The page shows your exact email address. |
+| **on your email domain** | The page is on your company's own website. |
+| **found by searching your email domain** | The page came up in the search for your company. |
+| **matches your name only** | The page shares only your name. |
+
+When cfo.ai could not research a company for your email, for example a personal address such as a Gmail address, a page that matches only your name is left out. The brief is researched for the person who created the workspace; a teammate who joins later gets a greeting and the starting card without a brief. To correct what the research found, see [Teach Ari your company's conventions](/guides/teach-ari#correct-what-ari-found-about-your-company).
+
+### Starting card
+
+The card asks one question, and your answer picks one follow-up. Answer and select **Get started** to send your answers. **Dismiss** sends the answers you already picked and declines only the open questions. When your answer can take files, **Attach files to your answer** appears beside **Dismiss** and **Get started**; files sent without text read **See attached files**.
+
+| Question | Options |
+| --- | --- |
+| **Where would you like to start?** | **My business** plans the company the research found or that you describe. **Something hypothetical** builds a small sample model to show what Ari can do. **Other…** takes a longer answer in your own words, with files. |
+| **What should I work from?** (after **My business**) | **Connect my data** builds from your own records, such as an accounting system or a file. **Upload an existing model** adds the attach button so you can send your workbook. **I want to type or upload context** takes your own description, with files. The note reads **Dismiss this to start from estimates and what you tell me.** |
+| **Which business should I use?** (after **Something hypothetical**) | **A business like mine** builds a sample that resembles yours, labeled as a sample. **Another business, I'll choose** takes a name. A name everyone ties to one well-known company means that company; for any other name, Ari builds from what you say about it. |
+
+When nothing has established which business you run, for example a personal email address and no company named, Ari asks what the business does before it builds. A number Ari had to estimate is labeled as an assumption. For a guided first run, see [Build your first Model](/tutorials/first-model).
+
+## Related
+
+- [How Ari works with you](/concepts/working-with-ari)
+- [Steer, stop, or add to Ari's work](/guides/steer-ari)
+- [Answer Ari's questions and approve its actions](/guides/approve-ari-actions)
+- [Attach files to a chat](/guides/attach-files)
+- [Keyboard shortcuts](/reference/keyboard-shortcuts)
+- [Limits and file types](/reference/limits)

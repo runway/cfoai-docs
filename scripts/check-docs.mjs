@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { createHash } from "node:crypto";
 import { existsSync } from "node:fs";
-import { readFile } from "node:fs/promises";
+import { readdir, readFile } from "node:fs/promises";
 import { join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -30,15 +30,44 @@ function frontmatterValue(contents, key) {
     .replace(/^["']|["']$/g, "");
 }
 
+// Each navigation tab holds one Diátaxis page type, and its pages live in that
+// type's folder, so a page's path says what kind of page it is. Two pages keep
+// root paths: the home page, and agent-instructions, which external agents fetch
+// by URL.
+const TAB_FOLDERS = {
+  "Get started": "tutorials/",
+  "How-to guides": "guides/",
+  Concepts: "concepts/",
+  Reference: "reference/",
+  "For AI agents": "agents/"
+};
+const ROOT_PAGE_TABS = { index: "Get started", "agent-instructions": "For AI agents" };
+
 function collectPages(value, pages = []) {
   if (typeof value === "string") {
     pages.push(value);
   } else if (Array.isArray(value)) {
     for (const item of value) collectPages(item, pages);
   } else if (value && typeof value === "object") {
-    if ("pages" in value) collectPages(value.pages, pages);
+    for (const key of ["tabs", "groups", "pages"]) {
+      if (key in value) collectPages(value[key], pages);
+    }
   }
   return pages;
+}
+
+async function collectMdxFiles(root, folder = "", files = []) {
+  for (const entry of await readdir(join(root, folder), { withFileTypes: true })) {
+    const path = folder ? `${folder}/${entry.name}` : entry.name;
+    if (entry.isDirectory()) {
+      if (!entry.name.startsWith(".") && entry.name !== "node_modules") {
+        await collectMdxFiles(root, path, files);
+      }
+    } else if (entry.name.endsWith(".mdx")) {
+      files.push(path.slice(0, -".mdx".length));
+    }
+  }
+  return files;
 }
 
 function collectRootRelativeAssets(value, assets = []) {
@@ -56,6 +85,24 @@ function collectRootRelativeAssets(value, assets = []) {
 
 function isRootRelativeAsset(value) {
   return typeof value === "string" && value.startsWith("/");
+}
+
+// Mintlify renders the text between two dollar signs on one line as LaTeX math,
+// in the body and in the frontmatter description, so a line with two currency
+// amounts must escape them. Code is left as written.
+function lineWithUnescapedDollarPair(contents) {
+  const lines = contents.split("\n");
+  let inFence = false;
+  for (let index = 0; index < lines.length; index += 1) {
+    if (lines[index].trimStart().startsWith("```")) {
+      inFence = !inFence;
+      continue;
+    }
+    if (inFence) continue;
+    const prose = lines[index].replace(/`[^`]*`/g, "").replaceAll("\\$", "");
+    if ((prose.match(/\$/g) ?? []).length >= 2) return index + 1;
+  }
+  return null;
 }
 
 function sha256(contents) {
@@ -83,7 +130,35 @@ export async function checkRepository(
     return { ok: false, findings };
   }
 
-  const pages = collectPages(config.navigation?.pages);
+  const pages = collectPages(config.navigation);
+  for (const tab of config.navigation?.tabs ?? []) {
+    const folder = TAB_FOLDERS[tab.tab];
+    if (folder === undefined) {
+      findings.push(
+        finding("unknown-tab", "docs.json", `Tab "${tab.tab}" is not a page type.`)
+      );
+      continue;
+    }
+    for (const page of collectPages(tab)) {
+      if (!page.startsWith(folder) && ROOT_PAGE_TABS[page] !== tab.tab) {
+        findings.push(
+          finding(
+            "page-type-folder",
+            "docs.json",
+            `${page} is in the "${tab.tab}" tab, so it belongs in ${folder}.`
+          )
+        );
+      }
+    }
+  }
+  const navigated = new Set(pages);
+  for (const file of await collectMdxFiles(root)) {
+    if (!navigated.has(file)) {
+      findings.push(
+        finding("orphan-page", `${file}.mdx`, "Page is not in the navigation.")
+      );
+    }
+  }
   for (const page of pages) {
     const pagePath = join(root, `${page}.mdx`);
     const displayPage = `${page}.mdx`;
@@ -147,6 +222,16 @@ export async function checkRepository(
       );
     }
     LEGACY_TERM.lastIndex = 0;
+    const mathLine = lineWithUnescapedDollarPair(contents);
+    if (mathLine !== null) {
+      findings.push(
+        finding(
+          "unescaped-dollar",
+          displayPage,
+          `Line ${mathLine} has two unescaped dollar signs, which render as math. Write \\$ for a currency sign.`
+        )
+      );
+    }
   }
 
   const configuredAssets = new Set([

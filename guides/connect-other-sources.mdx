@@ -1,0 +1,108 @@
+---
+title: "Connect payroll, HR, CRM, payments, or a database"
+sidebarTitle: "Connect payroll, CRM, payments, or a database"
+description: "Connect Gusto, Rippling, or another payroll or HR system, HubSpot or Salesforce, Stripe, or a database so Ari plans from your records. What each one needs, how long the first sync takes, what reaches your Model, and what to do when you cannot connect."
+---
+
+Connect your other business systems when your plan needs more than your books: payroll and HR for headcount and pay, a CRM for pipeline and bookings, a payments system for revenue detail, or a database for your own records. Each one syncs every night, and cfo.ai only reads from it. To connect QuickBooks, Xero, NetSuite, or Rillet, see [Connect your accounting system](/guides/connect-accounting).
+
+## Before you start
+
+You need:
+
+- Admin access or credentials for the source, as the table below shows.
+- A started trial or an active plan with a free connection slot. Most of these sources are standard integrations. Databases, data warehouses, and the other sources the [integrations directory](/reference/integrations) marks premium need the Enterprise plan. See [Plans and billing](/reference/plans-and-billing).
+- Time for the first sync, from minutes to a day or more, depending on the source and how much history it holds. See [How long the first sync takes](#how-long-the-first-sync-takes).
+
+| Source | What you need |
+| --- | --- |
+| Gusto, Justworks, ADP Workforce Now, Paychex, Hibob, UKG, BambooHR, Deel, and the other HR and payroll systems that connect through Merge | Admin access to the company in the HR or payroll system |
+| Rippling | A Rippling API key. API access may need to be turned on as a paid feature in your Rippling account. |
+| HubSpot, Salesforce | A HubSpot or Salesforce login, which you use in Fivetran's setup window |
+| Stripe (Direct) | A Stripe login that can install apps on the account |
+| A database or data warehouse, such as PostgreSQL, MySQL, Snowflake, or BigQuery | The database's connection details and a user that can read the tables you want |
+| Shopify, Square, PayPal, Brex, Ramp, and the other sources that connect through Fivetran | The sign-in or credentials that the source's setup window asks for |
+
+The [integrations directory](/reference/integrations) lists every source and how it connects.
+
+## Connect
+
+<Tabs>
+  <Tab title="Ask Ari">
+    Name the source and what you want to do with it:
+
+    > Connect Gusto so we can build a headcount plan from our payroll.
+
+    Ari opens the connection manager and points you to the source. Select **Connect** on its card and sign in. If you close the window, select **Connect integrations** on the card Ari left in the chat.
+  </Tab>
+  <Tab title="By hand">
+    <Steps>
+      <Step title="Open the connection manager">
+        In the sidebar, point at **Connections** and select **+** (**Add integration**).
+      </Step>
+      <Step title="Find the source">
+        On the **Integrations** tab, search by name, or filter by type, such as **HR & Payroll** or **CRM**. Select **Connect** on the card.
+      </Step>
+      <Step title="Sign in">
+        An HR or payroll system opens its own sign-in window: sign in and choose the company. Rippling first shows **Before you connect Rippling**; select **Proceed** when you have the API key. Stripe (Direct) opens Stripe, where you install cfo.ai's Stripe app with read-only access. Most other sources open Fivetran's setup window, where you sign in or enter the source's credentials.
+      </Step>
+      <Step title="Choose tables, if asked">
+        Databases and most sources through Fivetran show a table picker. Every table starts selected; uncheck the ones you do not need, keep 100 or fewer, and select **Finish setup & sync [N] tables**. See [Choose which tables a source syncs](/guides/choose-synced-tables).
+      </Step>
+      <Step title="Check the sidebar">
+        The connection appears under **Connections** with a blinking orange dot while it syncs.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## How long the first sync takes
+
+| Source | Usual time |
+| --- | --- |
+| HR and payroll through Merge | Minutes, or hours when Merge is still building its first sync of your account. cfo.ai waits up to 20 hours, and the card says how long it has waited. |
+| Rippling | Minutes |
+| HubSpot, Salesforce | Minutes to an hour |
+| Stripe (Direct) | A day or more for an account with a long history, because the first sync lists every object |
+| Databases and other sources through Fivetran | Depends on size. Fivetran copies each table's full history first, which can take many hours. |
+
+## What to do while it syncs
+
+You can keep working while it syncs.
+
+- When you connect from a chat, Ari posts there when the first sync finishes or fails. In the sidebar, the orange dot disappears when the data is in.
+- Ask Ari whether the load is still running before you treat a long wait as a failure.
+- Do not connect the source again to speed things up. cfo.ai does not offer **Reconnect** while a sync is running.
+
+## What reaches your Model
+
+| Source | What lands |
+| --- | --- |
+| HR and payroll systems | An employee roster with jobs, pay, and groups such as departments, through the **HRIS Employees** saved query. Payroll systems also bring each employee's gross and net pay for each payroll run. |
+| HubSpot | Deals with their pipelines, stages, owners, contacts, companies, line items, and invoices, through **HubSpot Deals** |
+| Salesforce | Opportunities, accounts, and users, through **Salesforce Opportunities** |
+| Stripe, Shopify, databases, and other apps | The tables they sync. Ari writes the saved queries that bring them into your Model after the first sync. |
+
+If a connection reads **No queries yet**, its data synced but nothing brings it into your Model yet. Select **Set up queries with Ari** on its card.
+
+## If you cannot connect
+
+- If your system is not in the directory, such as Toast or bill.com, export the data and [upload it as a CSV](/guides/upload-a-csv). For payroll, a payroll register or an employee list with one row per employee or pay run works well. For payments, use a transactions export with a date and an amount on each row. You can also attach the export to a chat and ask Ari to load it.
+- If you are not an admin in the system, [invite the person who is](/guides/invite-teammates) to your workspace and ask them to connect it, or export the data yourself and upload it.
+- If you cannot get a Rippling API key, upload an employee export as a CSV. To let Ari look up people in Rippling without syncing, connect Rippling's MCP server, which needs a Rippling AI trial or subscription. See [Give Ari access to another service](/guides/give-ari-another-service).
+- If your data is in a database cfo.ai does not list, copy it into a PostgreSQL-compatible database if you can, and connect that database.
+- If you only need a live lookup, such as today's balance or an open invoice, connect the service's MCP server or API instead. See [How connected data reaches your Model](/concepts/connected-data#integrations-and-mcp-servers-do-different-jobs).
+- If the card shows **Upgrade plan**, **Choose plan**, or a **Premium** badge, or the setup says **start the free trial to add integrations**, your workspace needs a trial or a plan with room first. [Connection statuses and actions](/reference/connection-statuses#messages-when-a-new-connection-is-refused) lists each message.
+
+An upload does not refresh, so upload a new export when the numbers change.
+
+## If something goes wrong
+
+Point at the connection in the sidebar and use the action its card offers. [Fix a connection that needs attention](/guides/fix-a-connection) covers each one, including a first sync that is not ready and a source that is missing access.
+
+## Related
+
+- [Integrations directory](/reference/integrations)
+- [Choose which tables a source syncs](/guides/choose-synced-tables)
+- [How connected data reaches your Model](/concepts/connected-data)
+- [Connection statuses and actions](/reference/connection-statuses)

@@ -1,18 +1,21 @@
 ---
 title: "Agent instructions"
 sidebarTitle: "Agent instructions"
-description: "Help a user connect the cfo.ai MCP server, complete browser-based authentication, select the correct workspace, and work safely."
+description: "For an AI agent helping a user connect the cfo.ai MCP server: confirm access, register the server, get browser approval, verify the connection and workspace, understand the Model, shape calls, work safely, and troubleshoot."
+searchable: false
 ---
 
-You are helping a user connect cfo.ai to an external AI client. The cfo.ai MCP server exposes the same workspace tools Ari uses, including tools that can read and change a live financial Model.
+You are helping a user connect cfo.ai to an AI client and work in their workspace. The cfo.ai MCP server exposes the same workspace tools Ari, cfo.ai's AI finance coworker, uses. Those tools can read and change a live financial Model.
 
-You can configure the MCP client. The user completes account creation, sign-in, any required plan setup, and browser-based authorization. A connection is complete only when the client lists the server and can use an authorized cfo.ai tool.
+You configure the MCP client. The user creates their account, signs in, sets up their plan, and approves the connection in a browser. A connection is complete only when the client lists the server and an authorized cfo.ai tool call succeeds.
+
+Every page linked here also has a Markdown version: add `.md` to its address, such as `https://docs.cfo.ai/agents/mcp-tools.md`.
 
 ## Confirm account access
 
-Ask whether the user can already sign in to [app.cfo.ai](https://app.cfo.ai). If they cannot, direct them to create or access their account and complete any required setup in the browser.
-
-Wait for the user to finish browser-only steps. Never ask for their password, verification code, payment details, or authorization token.
+1. Ask whether the user can sign in to [app.cfo.ai](https://app.cfo.ai). If they cannot, direct them to create or open their account there and finish setup in the browser.
+2. The workspace must have started its free trial or a plan. Until it has, every tool call answers **Start the free trial in cfo.ai before using its MCP tools**.
+3. Wait for the user to finish browser-only steps. Never ask for their password, verification code, payment details, or an authorization token. cfo.ai has no API keys, so there is no key to ask for.
 
 ## Register the MCP server
 
@@ -34,41 +37,54 @@ For Codex:
 codex mcp add cfoai --url https://api.cfo.ai/mcp
 ```
 
-For another client, add `https://api.cfo.ai/mcp` as a remote HTTP MCP server named `cfoai`.
+For another client, add `https://api.cfo.ai/mcp` as a remote HTTP MCP server named `cfoai`. Claude's desktop and web apps add it as a custom connector, and ChatGPT and Cursor have their own forms; [Connect an AI tool](/guides/connect-an-ai-client) gives the steps for each.
 
-If you cannot execute a setup command, give the matching command to the user and wait for them to complete it.
+If you cannot run a setup command, give the matching command to the user and wait for them to run it.
 
-## Complete browser authentication
+## Have the user approve the connection
 
 The user approves the connection in a browser while signed in to cfo.ai.
 
 - In Claude Code, restart the session if needed, open `/mcp`, select `cfoai`, and choose **Authenticate**.
-- In Codex, run `codex mcp login cfoai` and approve the connection in the browser.
-- In another client, follow its normal OAuth or remote-MCP authorization flow.
+- In Codex, run `codex mcp login cfoai`.
+- In another client, follow its normal OAuth or remote-MCP sign-in flow.
 
-## Verify the connection and workspace
+The browser shows a cfo.ai page headed **Connect CFO.ai**. Tell the user to check that they are signed in to the cfo.ai account the client should use, then select **Connect CFO.ai**. The page is valid for 60 minutes. If it reports that the approval was not recorded, start the sign-in again; [If sign-in fails](/guides/connect-an-ai-client#if-sign-in-fails) explains each message.
 
-Confirm that the client lists `cfoai` and exposes its tools. A user with one workspace can usually use that workspace automatically. If the user has access to more than one workspace, call `list_orgs` and pass the intended workspace's ID or slug as `org_id` on subsequent calls.
+## Verify the connection and the workspace
 
-Use a read-only inspection call to verify access before reporting success. If the client does not see the newly registered server, restart the session and check its MCP server list again.
+1. Confirm that the client lists `cfoai` and exposes its tools. If it does not, restart the session and check its MCP server list again.
+2. Call `list_orgs`. It returns the user's workspaces, each with `org_id`, `name`, `slug`, and `role`.
+3. If the user has one workspace, tools select it automatically. If they have several, ask which one to use, and pass its ID or slug as `org_id` on every later call.
+4. Make one read-only call before you report success, such as `inspect_pages` with:
+
+   ```json
+   { "list": {} }
+   ```
 
 ## Understand the Model before changing it
 
-The MCP connection provides cfo.ai's modeling instructions during initialization. Read them first. Before creating or changing model logic, call `inspect_skills` with its `list` block to find the `build-model` skill, then its `instructions` block to read it. Use `inspect_pages`, `inspect_table_blocks`, `inspect_dimension_mappings`, and `inspect_scenarios` to understand the existing workspace before creating or changing content.
+The server sends cfo.ai's modeling instructions when the client connects. Read them first. Then read the built-in skill that covers the work, with `inspect_skills`:
 
-The important mental model is:
+- `build-model` before you create or change model logic, Variables, Dimensions, or saved tables.
+- `build-visualizations` before you add a Canvas block.
+- `import-model` before you rebuild a model from a workbook or an export.
+
+List the skills with `{"list": {}}`, and read one with `{"instructions": {"target": "build-model"}}`. Workspace skills hold the company's own playbooks; read the relevant ones before substantial work.
+
+Then inspect the existing workspace with `inspect_pages`, `inspect_table_blocks`, `inspect_dimension_mappings`, and `inspect_scenarios`. The mental model:
 
 - A workspace contains a financial Model, Pages, Scenarios, Variables, Dimensions, and connected data.
 - Main is the primary working Scenario. Use a different Scenario when the user wants a saved alternative.
 - `inspect_pages`, `inspect_table_blocks`, `inspect_dimension_mappings`, and `inspect_scenarios` read the existing Model.
-- `edit_table_blocks` creates and changes visible saved tables, including their Variables, Dimensions, and formulas. Every model formula is written through it.
+- `edit_table_blocks` creates and changes saved tables, including their Variables, Dimensions, and formulas. Every model formula is written through it.
 - `edit_pages`, `edit_dimension_mappings`, and `edit_scenarios` change Pages, Dimension mappings, and Scenarios.
 - `inspect_canvas_library` and `edit_canvas_blocks` read the Canvas component library and create or update Canvas blocks, the charts and custom visuals on a Page.
 - Write operations apply to the user's live Model and must match the user's request and workspace access.
 
 ## Shape each call as one action block
 
-A multi-action tool takes exactly one block named for the action, with that action's fields inside it. There is no flat `action` field. For example, read a saved table with `inspect_table_blocks`:
+A tool with several actions takes exactly one block named for the action, with that action's fields inside it. There is no flat `action` field. For example, read a saved table with `inspect_table_blocks`:
 
 ```json
 { "read": { "target": "Operating Plan" } }
@@ -90,15 +106,23 @@ and set a row's formula with `edit_table_blocks`:
 }
 ```
 
-A row on a dated table takes `default_formulas` with `actuals`, `forecast`, or both; a row on a timeless table takes `formula`. Several dependent tables can go in one `create` as a `tables` list. A `delete` that lists `variables` or `dimensions` removes only those objects; when other formulas, blocks, or settings read one, the delete is refused until `force: true` is set, on the delete to cover every listed entry or on one entry to cover that entry alone. Fields that every action accepts, such as `scenario`, sit beside the block, and `scenario` is also accepted inside it. Copy names and `Name#hex` references from an inspection result instead of inventing IDs. See [Create and update formulas as an agent](/formulas/agent-docs/create-and-update) for the full shapes.
+Copy names and references, such as `Gross Profit#3f2`, from inspection results instead of inventing IDs. [MCP tools and call shapes](/agents/mcp-tools) lists every tool, its blocks, the fields beside them, and the refusals a wrong shape gets. [Create and update formulas](/agents/write-formulas) has the full formula shapes, and [Canvas blocks for agents](/agents/canvas-blocks) the Canvas ones.
 
-A Canvas block is named in the call that makes it: `edit_canvas_blocks` `create` requires `page`, `title`, and `source`. The reference the receipt prints, such as `Pipeline by stage#a74`, keeps naming the block in later `edit_pages` calls even after a rename. Before writing a Canvas block, call `inspect_canvas_library` with a `list` block whose `query` is a few search words, such as `"slider chart kpi"`; an entry matches when any one word appears in its title, description, tags, or aliases. Then `read` the entries you plan to use. One `read` takes up to 16 targets, so a template and the components it needs come back in one call. A Canvas write that no browser rendered returns a `render_unverified` warning naming `validate_code_blocks`, the tool that renders saved blocks in a browser and reports errors and a screenshot; a write sent with `validate: true` carries that browser result under `validation` instead. The result's `observed` sentence states what the check saw: each block rendered once per theme, with its saved state, in a 1200 px wide frame, so clicks, typing, links, and guide launches did not run and the layout at other widths is unseen. One call renders up to 8 blocks, and a batch that reads a lot of calculated data is split into several renders. A block that alone reads more than 20 MiB of calculated data is not rendered: its result is `valid: false` with one message per theme that states its size and that nothing about how it renders was observed, the other blocks in the call still render, and the `observed` sentence counts how many did. `guideAnchors` lists at most the first 64 distinct anchor IDs per theme in document order, and `guide_anchors_cut` says how many more the render had. A render run that failed returns the error code `browser_validation_unavailable` with `transient: true` and a message that names the validator stage that failed and the error behind it, so the same call can be sent again. To change part of a saved block, `edit_canvas_blocks` `update` takes `source_patches`, a list of exact `old` to `new` text replacements applied in order, each of which must occur exactly once; the block saves only when every patch applies, and `source` replaces the whole component instead. A Canvas `navigate` accepts a page or block reference in the form tool results return, and opens it the way a link chip does. `inspect_history` `changelog` takes `search` to find entries by text in the headline or in the names of the objects they changed, newest first, and reports how many entries it read in `entries_searched`; one read loads at most 100 entries, and without `limit` the result holds as many of those as fit one result, with `next.before` continuing them. A list that `inspect_pages`, `inspect_queries`, `inspect_scenarios`, or an `inspect_jobs` task page returns in pages says what ended the page in `truncation.by`: `response_budget` when the next item did not fit one result, so continue with the list's `next` cursor (`next.after`, or `next.task_after` for a job's tasks), or `count_limit` when the page reached the `limit` you set. `inspect_dimension_mappings` without `limit` reports every row of each lookup, or as many per lookup as fit one result; each lookup's `row_count` is its true total and its `next` continues it. A dataset row carries each Variable's own value: a finite number, text, an ISO day such as `2026-01-30` for a date, `"true"` or `"false"` for a boolean, and `null` for an empty cell or a calculation error. Source may name a fixed color; the write saves it and its result's `source_notes` names the first one and says that colors from `theme.tokens`, `theme.design`, or `--cb-*` CSS variables follow the viewer's light or dark mode instead.
+## Work safely
 
-In `edit_pages`, a block action names its page with `page`; `add_text` may omit it, and then uses the page of an `after_block` reference it was given, else the page in view, else the Scenario's only page. `reorder_blocks` still takes the page it arranges as `target`, and its `block_order` accepts the block references other results print. A `delete_block` aimed at a block that another saved change already deleted answers `not_found` and changed nothing; its message names that change and, when the block went with its page, the page: `Block <id> is already deleted in scenario "Main": saved change <n> deleted it together with its page "<name>". This call changed nothing.` The result carries `block_id`, `layer_id`, and `deleted_by_change_log_id`. An `edit_canvas_blocks` `create` result names the new block two ways: `target` is the block's name-form selector, which the page and Canvas tools accept wherever they take a block as `target`, and `ref` is the block's pasteable reference, which they accept wherever a result's block reference is accepted, such as `reorder_blocks` `block_order`. When an `inspect_pages` page list is cut short, the result returns `next.after`; pass that value back as `after`, under the same `scenario` and `target`, to continue the list.
+- Writes apply to the live Model immediately and are recorded in its changelog under the user's name. `edit_history` undoes, redoes, or reverts them, so reverse a wrong change rather than patching over it.
+- Use a Scenario other than Main when the user wants to try a change without altering the current plan.
+- Connections, access changes, invitations, share links, and emails have effects outside model undo. Confirm those with the user before you make them.
+- Honor read-only and review-before-write requests. [Analyze saved values without changing the Model](/agents/analyze-without-saving) covers answering from what is saved.
+- When a call creates or changes something, end your reply with the link the tool returned for it, exactly as printed. A link you build yourself will not open.
 
-## Troubleshoot access
+## Troubleshoot
 
-- If `cfoai` is missing, restart the client and check whether the server registration succeeded.
-- If browser authentication fails, confirm that the user is signed in to the intended cfo.ai account and has access to the intended workspace.
-- If tools report authorization errors after a previous success, repeat the client's authentication flow.
-- If a workspace is ambiguous, call `list_orgs` and pass the intended workspace as `org_id`.
+- **`cfoai` is missing from the client.** Restart the client and check whether the server registration succeeded.
+- **Browser approval fails.** Confirm that the user is signed in to the intended cfo.ai account and can open the intended workspace, then start the sign-in again. In cfo.ai, Ari can list the user's own recent sign-in attempts and why each one failed.
+- **Tools report authorization errors after a previous success.** Repeat the client's sign-in flow.
+- **A call answers `org_id is required`.** The user belongs to several workspaces. Call `list_orgs` and pass the intended workspace as `org_id`.
+- **A call answers `you do not have access to this workspace`.** The signed-in account is not a member of that workspace. Check `list_orgs` and the account the user approved with.
+- **A call answers `Start the free trial in cfo.ai before using its MCP tools`.** The user must start the workspace's free trial or a plan in cfo.ai.
+- **A call answers `rate limit exceeded for` a tool.** Wait and send it again. Each tool accepts up to 60 calls a minute per user and workspace.
+- **Calls built from the client's tool list are refused as unknown or retired shapes.** The client's tool definitions are stale. Refresh its tool list or start a new conversation, then call again.

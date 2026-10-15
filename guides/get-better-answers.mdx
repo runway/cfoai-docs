@@ -1,0 +1,89 @@
+---
+title: "Get better answers from Ari"
+sidebarTitle: "Get better answers"
+description: "How to write prompts that get Ari to the right answer the first time. Write a good first message, name the decision, the period, and the detail you need, fence off what Ari may change, and correct Ari when it guesses."
+---
+
+Use these habits when Ari's answers miss what you meant, or you want to get it right the first time. Talk to Ari the way you would brief a finance coworker: say what you are deciding, point at what you mean, and say whether you want an answer or a change. Ari works out the details and asks when it needs something.
+
+## Write a good first message
+
+In a new workspace, you do not need a long brief that spells out every table and formula. A good first message names the decision, gives a few facts, and says where your numbers are:
+
+> We sell [an annual software subscription] to [small accounting firms] for about [\$6,000 a year]. We have [9] employees and about [\$1.2 million] in the bank. Our books are in [QuickBooks]. Build a 12-month plan so I can see how long our cash lasts and whether we can hire two engineers in Q1.
+
+Ari labels every number you did not give it as an assumption you can change later, and asks about anything that changes the answer. If you already have a model in a spreadsheet, attach it instead. See [Import an existing spreadsheet model](/guides/import-a-spreadsheet-model).
+
+## Say what decision the answer is for
+
+Ari builds a better Model when it knows what the answer is for.
+
+| Instead of | Try |
+| --- | --- |
+| "Build a forecast." | "Build a 12-month forecast so I can see whether we can hire two engineers in Q1." |
+| "Show me expenses." | "Which departments drove the increase in operating expenses last month?" |
+| "Revenue report." | "Which customer segments explain the gap between our Forecast and Actuals?" |
+
+## Name the period, the comparison, and the detail
+
+Say which period matters and what to compare it with:
+
+> Compare March Actuals with the March Forecast and with February Actuals.
+
+Ask for the business categories that explain the result, such as department, customer, product, or region:
+
+> Break payroll down by department, then show the employees behind the largest change.
+
+If you are working in a Scenario other than the one you are viewing, name it.
+
+## Point at what you mean
+
+Mention the exact cell instead of describing it. Right-click the cell, choose **Mention cell in chat**, and ask "Why is this lower than last month?" A description such as "the revenue number in that table" leaves Ari to guess which one you mean. See [Ask Ari about a number](/guides/ask-about-a-number).
+
+## Say whether you want an answer or a change
+
+Ari reads the Model to answer a question and changes it when you ask for something new. Make the difference explicit, and fence off what must not move:
+
+| You want | Say |
+| --- | --- |
+| An answer, with nothing changed | "Read only. Don't change anything. Why did gross margin fall in March?" |
+| A change in a safe place | "Work in the Downside Scenario only, and don't change Main." |
+| A change to the layout but not the numbers | "Reorder these tables, but don't change any model numbers." |
+| One targeted change | "Only change the Starter price. Leave everything else as it is." |
+| A check before saving | "Draft the formula and check whether it is valid, but wait before applying it." |
+
+To try a change without risk, use a Scenario. See [Test a decision in a Scenario](/guides/test-a-decision-in-a-scenario) and [Make a precise change with Ari](/guides/change-your-model-with-ari).
+
+## Ask Ari to show its work
+
+Follow-ups that make an answer easy to check:
+
+- "Which source data supports that conclusion?"
+- "Which assumptions did you make, and which did you estimate?"
+- "What changed compared with the prior period?"
+- "Which formula applies to this cell?"
+- "Can you reconcile this total to the detail below it?"
+- "Where can I change this assumption and compare another outcome?"
+
+## Correct Ari when it guesses
+
+Instead of starting over in a new chat, tell Ari what is true and ask it to remember:
+
+> Our customers pay annually up front, not monthly. Fix the revenue timing, and remember this for the whole workspace.
+
+See [Teach Ari your company's conventions](/guides/teach-ari).
+
+## Redirect a long build instead of waiting
+
+If a build is going the wrong way, type the correction while Ari works, or select **Stop** and say what you want instead. See [Steer, stop, or add to Ari's work](/guides/steer-ari).
+
+## Undo instead of starting over
+
+If a change goes wrong, do not delete the Page. Ask "Undo that last change", or undo it in version history. See [Undo a change or restore an earlier version](/guides/undo-changes).
+
+## Related
+
+- [Update your plan after you close the month](/guides/close-the-month)
+- [Prompt library](/reference/prompt-library)
+- [How Ari works with you](/concepts/working-with-ari)
+- [Your first week](/tutorials/first-week)

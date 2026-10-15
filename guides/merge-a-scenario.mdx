@@ -1,0 +1,52 @@
+---
+title: "Merge a Scenario into Main"
+sidebarTitle: "Merge a Scenario"
+description: "Adopt a Scenario as your plan: review what it would change, merge it into Main (or the Scenario it branched from), and undo a merge if you need to."
+---
+
+Merge a Scenario when you decide to adopt it as your plan. Merging applies every change the Scenario holds to the Scenario it branched from, and then deletes the merged Scenario. For most Scenarios, that is Main, the Scenario that holds your current plan.
+
+<Tabs>
+  <Tab title="Ask Ari">
+    Ask Ari what the merge would change first:
+
+    > Is the Hiring freeze Scenario ready to merge into Main? What would change?
+
+    Ari summarizes the differences. Then tell it to merge:
+
+    > Merge the Hiring freeze Scenario into Main.
+
+    Ari merges directly. To confirm the merge yourself, ask Ari to let you confirm. It then adds a **Merge** button to the chat for you to press.
+  </Tab>
+  <Tab title="By hand">
+    <Steps>
+      <Step title="Open the Scenario">
+        Select the Scenario in the Scenario picker in the sidebar.
+      </Step>
+      <Step title="Start the merge">
+        Select **Merge** beside the Scenario picker. Its tooltip names where the changes go, such as **Merge all changes into Main Scenario**.
+      </Step>
+      <Step title="Review the changes">
+        The dialog lists every change the Scenario holds, across the whole Model, not only the Page you are on. It also reminds you that the Scenario is deleted after the merge.
+      </Step>
+      <Step title="Confirm">
+        Select the confirm button, which counts the changes, such as **Merge 12 changes**.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## Undo a merge
+
+A merge is one entry in Main's version history. Undo that entry to take the changes back out of Main and bring the merged Scenario back. See [Undo a change or restore an earlier version](/guides/undo-changes).
+
+## If the merge is not available
+
+- **Merge** is dimmed with **No changes to merge** when the Scenario holds no changes.
+- A Scenario that has its own editable child Scenario cannot be merged. The refusal names the child, such as **scenario cannot be merged while it has 1 child scenario**. Merge or delete the child first. A Snapshot taken from the Scenario does not block the merge.
+- Main and Snapshots cannot be merged.
+
+## Related
+
+- [Scenarios, Snapshots, and version history](/concepts/scenarios)
+- [Scenario and version history controls](/reference/scenarios-and-history)

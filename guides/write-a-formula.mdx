@@ -1,0 +1,264 @@
+---
+title: "Write a formula"
+description: "Write a formula in a Table block yourself: open the editor for a row, a breakdown, or one cell, reference other Variables, and save. Also filter, fix, or repoint a reference, override one cell or remove a row's formula, and copy common formula patterns."
+---
+
+Write a formula when a number should be calculated from other numbers, such as Gross Profit from Revenue and Cost of Goods Sold. A formula names Variables, not cells, so one formula on a row fills every month and every item that row shows. To learn how cfo.ai decides which formula fills a cell, read [How formulas work](/concepts/formulas).
+
+<Tip>
+  To have Ari write the formula for you, see [Have Ari write, change, or explain formulas](/guides/change-formulas-with-ari).
+</Tip>
+
+You need a desktop browser and edit access to the Page.
+
+## Open the editor in the right place
+
+Where you open the editor decides which cells the formula fills. Start with a formula for the whole row. Give one cell its own formula only for a real exception, because that cell stops following its row.
+
+- For a whole row, every period and item it shows: point at the row name and select the **fx** button, **Edit variable formula**. Or right-click the row name and choose **Edit formula**.
+- For each item under a breakdown, such as each department under Revenue: right-click the Revenue row and choose **Edit formula for Department**. When there is more than one level below, choose **Edit child formula** and pick the level.
+- For one cell only: double-click the cell, or select it and press **Enter**.
+
+The editor's title names the Variable and where the formula applies, such as **All Months**, one item such as **Sales**, or **Any Segment** for every item. Every other place that opens the editor, such as the formula bar or a Dimension's label row, is listed in [Where to open the formula editor](/reference/table-blocks#where-to-open-the-formula-editor).
+
+## Write the formula
+
+<Steps>
+  <Step title="Open the editor">
+    Open it from the place that matches the cells you want to fill.
+  </Step>
+  <Step title="Type the calculation">
+    Type the formula with the names you see in cfo.ai:
+
+    ```text
+    Revenue - `Cost of Goods Sold`
+    ```
+
+    Wrap a name in backticks when it contains spaces or punctuation. Names must match exactly, including capital letters. As you type, autocomplete suggests Variables, Dimensions, items, functions, and keywords. Press **Ctrl Space** to open it, and **⌥ F12** (**Alt F12**) to see the syntax and an example of the function under the cursor.
+  </Step>
+  <Step title="Save">
+    Press **Enter**. If Revenue is 100 and Cost of Goods Sold is 40, Gross Profit shows 60.
+  </Step>
+</Steps>
+
+A leading `=` is optional, and cfo.ai removes it when it saves: `=Revenue * 1.1` saves as `Revenue * 1.1`. In a cell of a text Variable, start a formula with `=`; without it, cfo.ai saves the words as text.
+
+For every operator and lookup, see [Formula syntax](/reference/formula-syntax). For every function, see [Formula functions](/reference/functions).
+
+## Click or point at a cell to reference it
+
+While the editor is open, you can insert a reference by clicking, the way a spreadsheet does. A reference can go where the cursor sits in an empty editor, or after an operator, a bracket, a comma, or `and`.
+
+- With the cursor in such a place, click another cell, a row name, or a period header. Clicking the previous month's Revenue cell inserts `Revenue[-1]`, and clicking a period header inserts a date such as **Last month**. When the cursor is anywhere else, a click saves the formula and closes the editor.
+- In the editor that opens on a cell, put the cursor in such a place and press an arrow key to point at the neighboring cell. Keep pressing to move. **F2** also starts pointing. Press **Enter** to keep the reference, or **Esc** to cancel. Once you type after the reference, the arrow keys move the cursor again.
+- Double-clicking a cell opens that cell for editing instead. The editor saves first, without the reference the first click inserted.
+
+Each reference and the cell it reads share a color. The cell gets a dashed outline in that color, so you can see which part of a long formula reads which cell.
+
+When the cell you click has fewer Dimensions than the cell you are editing, such as a rate with no months, cfo.ai inserts a fixed reference. Every month then reads that one cell.
+
+## Filter a reference
+
+A filter limits a reference to some items or dates, such as Revenue for the West region.
+
+1. Select the reference in the editor. Its panel opens.
+2. Select **Add filter**, choose a Dimension, and choose the items. The filter reads like a sentence: **Where** Region **is** West.
+3. For a date, choose a preset: **Last 3 months of actuals**, **Last 6 months of actuals**, **Last 12 months of actuals**, **Year to date**, **Quarter to date**, or **Custom range**. In a Forecast formula, the "last months of actuals" presets read the months up to **Last close**, which gives you a run rate. See [Date filter presets](/reference/formula-syntax#date-filter-presets).
+
+Press **⌥ ↓** (**Alt ↓**) to open the filters of the reference at the cursor. **Reset** removes the filters, so the reference follows the cell again. The typed form of a filter is `Revenue[Region = "West"]`.
+
+## Fix a reference so it reads one value everywhere
+
+A fixed reference reads the same value in every row and period. Use it for an input such as a single tax rate or a reported figure:
+
+```text
+`Reported June MRR`$
+```
+
+To fix or release a reference, select it and press the pin button in its panel, whose tooltip reads **Fixed: does not follow the current row or period. Only its own filters apply. (F4)**. Or press **F4** with the cursor on the reference. Filters you wrote stay either way. A column of an imported table cannot be fixed.
+
+## Point a reference at something else
+
+1. Select the reference to open its panel.
+2. Select the reference's name, and search for the Variable or Dimension you want.
+3. Choose a result. It replaces the reference.
+
+**Toggle details** in the search shows which table and Page own the highlighted result. Inside a filter, the same search lists Dimensions only.
+
+## Go to a reference's source
+
+Point at a Variable's reference and select the arrow at its end to go to that Variable's row. The arrow reads **Go to its row in this table**, **Go to its row on this page**, or **Go to source in** and the table's name. Your draft stays open, and **Back to cell** (or **Back to table**) returns you to it. When the source is on another Page, a card holds your draft until you go back.
+
+For an imported Variable that is on no table, the arrow opens **About this variable’s source**, with **Open connection**.
+
+## Save, cancel, or open the larger editor
+
+- **Enter** saves. In the editor that opens on a cell, **Tab** and **Shift Tab** save and move right or left. Clicking elsewhere also saves.
+- **Esc** closes the editor without saving. In the larger editor, the close button also discards your changes.
+- To get more room, select the expand button (**Open full editor**) in the editor that opens on a cell.
+
+The formula saves in the Scenario shown in the sidebar's Scenario picker. A formula with a mistake still saves. A red line under the editor describes the problem as you type, and the cells show an error code such as `#NAME?` until you fix it. See [Fix a formula that shows an error or a wrong number](/guides/fix-formula-errors). When the server refuses a save, the editor reopens with your draft and a notice says why; see [When a change is not saved](/reference/table-blocks#when-a-change-is-not-saved).
+
+## Override one cell
+
+When you open a cell that has no formula of its own, the editor shows the formula it inherits, dimmed, as a suggestion.
+
+- Point at the dimmed formula to see where it comes from: **Inherited from** and the address that owns it. **Edit source formula** opens that formula.
+- Click the dimmed formula, press **→**, or press **Tab** to copy it into this cell and edit it.
+- Start typing to replace it.
+
+Saving gives the cell its own formula, called an override. The cell keeps it when the row's formula changes, and a dashed underline marks it.
+
+## Remove an override or a row's formula
+
+To make one cell follow its row again, select the cell and press **Delete** or **Backspace**; see [Clear a value or a cell's own formula](/guides/enter-values#clear-a-value-or-a-cells-own-formula).
+
+To remove a row's own formula, open the row's formula, delete all the text, and press **Enter**. The row then follows the formula it inherits, or its imported values.
+
+To find who added a formula or an override, and when, open version history; see [Undo a change or restore an earlier version](/guides/undo-changes).
+
+## Propagate a formula to the rows above
+
+After you save a formula on a lower row of a breakdown, the editor can ask **Propagate?** with **Would you like to propagate this formula to parent rows?**
+
+- Choose **Yes** to give the cells above it formulas that add up the rows beneath them, with `sum`.
+- Choose **No** to leave the rows above as they are.
+
+Press **⌘ Enter** (**Ctrl Enter** on Windows and Linux) while saving to propagate without the question. A breakdown's rows above already add up the rows beneath them unless they have a formula of their own; see [Totals, aggregation, and time rollups](/concepts/totals-and-rollups).
+
+## Show or hide the formula columns
+
+The formula columns start hidden.
+
+- Rest the pointer on the **fx** button, **Show formulas**, at the top of the row-name column to peek at them. They stay while the pointer is on them.
+- Click the button to keep them open. Click it again, **Hide formulas**, to hide them. The choice is saved for this browser.
+- In a phone browser, open the table's **…** menu and choose **Show formula columns**.
+
+On a table with months, the formula column splits into **Actuals Formula** and **Forecast Formula**. To hide one of them or bring it back, see [Show the Actuals and Forecast formulas side by side](/guides/actuals-and-forecast-formulas#show-the-actuals-and-forecast-formulas-side-by-side).
+
+## Common patterns
+
+Replace the example names with your own Variables and Dimensions. Before you save a pattern, check the Variable it belongs to, where it applies, and whether it is for Actuals, Forecast, or both.
+
+### Gross profit and gross margin
+
+```text
+Revenue - `Cost of Goods Sold`
+```
+
+```text
+if(Revenue <> 0, (Revenue - `Cost of Goods Sold`) / Revenue, 0)
+```
+
+### Change from the previous month
+
+```text
+Revenue - Revenue[-1]
+```
+
+At monthly grain, `[-1]` reads the previous month. The same formula on a quarterly row reads the previous quarter.
+
+### Growth rate
+
+```text
+iferror(Revenue / Revenue[-1] - 1, 0)
+```
+
+### Same month last year
+
+```text
+Revenue[-12]
+```
+
+### Running balance
+
+```text
+`Cash Balance`[-1] + `Net Cash Flow`
+```
+
+Give the first month an opening balance of its own, or the balance starts from 0. A balance that reads itself without `[-1]` is a circular reference.
+
+### Total across a Dimension
+
+```text
+sum(Revenue[Department in any])
+```
+
+### Share of the total
+
+```text
+iferror(Revenue / sum(Revenue[Department in any]), 0)
+```
+
+On each department's row, the plain `Revenue` reads that department, so the result is its share.
+
+### Average of chosen items
+
+```text
+average(Revenue[Region in {"East", "West"}])
+```
+
+### Trailing 12 months and trailing average
+
+```text
+sum(Revenue[Date.Month in [-11]:[0]])
+```
+
+```text
+average(Revenue[Date.Month in [-3]:[-1]])
+```
+
+The first sums the current month and the 11 before it. The second averages the three months before the current one.
+
+### Year to date
+
+```text
+sum(Revenue[Date.Month in startofyear([0]):[0]])
+```
+
+### Read a per-item input that has no months
+
+```text
+`Annual Salary`$[Employee = this.Employee] / 12
+```
+
+A salary typed once per employee has no months. A plain `` `Annual Salary` `` in a monthly formula looks for it in each month, finds nothing, and reads 0. Inside the filter, `this.Employee` means the employee of the cell being calculated, so each employee's row reads that employee's salary. For more on `this`, see [Lookups and filters](/reference/formula-syntax#lookups-and-filters).
+
+### Payroll from headcount and salary
+
+```text
+Headcount * `Average Salary`
+```
+
+Use this in Forecast when Actuals should keep reading imported payroll; see [Use different formulas for Actuals and Forecast](/guides/actuals-and-forecast-formulas).
+
+### Tiered rate
+
+```text
+if(Revenue > 100000, Revenue * 0.05, Revenue * 0.03)
+```
+
+### Missing date
+
+```text
+if(`End Date` = null, 1, 0)
+```
+
+This marks people with no end date, such as current employees.
+
+### Period boundaries
+
+```text
+eomonth(Date.Month, 0)
+date(year(Date.Month), 12, 31)
+```
+
+The first returns the last day of the month. The second returns December 31 of the period's year.
+
+## Related
+
+- [How formulas work](/concepts/formulas)
+- [Formula syntax](/reference/formula-syntax)
+- [Formula functions](/reference/functions)
+- [Fix a formula that shows an error or a wrong number](/guides/fix-formula-errors)
+- [Keyboard shortcuts](/reference/keyboard-shortcuts#formulas-and-filters)

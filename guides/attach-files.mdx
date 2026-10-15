@@ -1,0 +1,62 @@
+---
+title: "Attach files to a chat"
+description: "Send Ari a screenshot, Excel workbook, PDF, CSV, or other file in a chat, choose whether a CSV becomes a data source, use a file from another chat, download files again, and fix a failed upload."
+---
+
+Use this when you want Ari to read something that is not in your Model yet, such as a screenshot of a report, a bank statement PDF, an Excel model, or a CSV export. You can attach any type of file. For the number of files per message and the size limits, see [Limits and file types](/reference/limits#chat-with-ari).
+
+<Steps>
+  <Step title="Add the files">
+    Select **Attach files** in the message box and choose the files, or paste a file such as a screenshot, or drop files on the message box. Each file shows as a tile while it uploads.
+  </Step>
+  <Step title="For a CSV, choose how Ari uses it">
+    A CSV tile shows **Data source** and **Chat only**. **Data source**, the default, also imports the file into cfo.ai when you send, so its rows can feed your Model. **Chat only** shares the file with Ari in this chat and imports nothing.
+  </Step>
+  <Step title="Say what the file is for, and send">
+    Add a message that says what you want, then send. A file can also go on its own, with no text.
+
+    > Here is our 2026 budget workbook. Rebuild the Revenue and Headcount tabs as Pages in cfo.ai.
+
+    > What does this screenshot show, and does it match the cash number on my Board summary Page?
+  </Step>
+</Steps>
+
+You can attach files while Ari is working on an earlier message, for example a screenshot of what you see.
+
+## How Ari reads each kind of file
+
+- Images and PDFs reach Ari directly, and it reads them like a page.
+- Short text files and CSVs are included in the conversation as text.
+- Excel workbooks, long text files, and other files open in Ari's private workspace, where Ari reads sheets, formulas, cached values, and the rest of the contents with code. Nothing Ari runs there can be reached from outside cfo.ai, and what Ari makes there reaches you only as a file it delivers to the chat.
+
+For a large workbook, tell Ari which sheet, date range, or question matters most. To rebuild a whole spreadsheet model in cfo.ai, see [Import an existing spreadsheet model](/guides/import-a-spreadsheet-model). To bring in a CSV as a data source that you refresh by uploading again, see [Upload a CSV as a data source](/guides/upload-a-csv).
+
+## Use a file from another chat
+
+You do not need to attach a file again in a new chat. Ari can read the files you attached in your other chats in this workspace, and the files it made for you there. Ask for the file by name:
+
+> Use the March bank statement I sent last week.
+
+If two files share a name, Ari tells them apart by the chat they are in and when they arrived. Ari cannot read files in a teammate's chats.
+
+## Download a file again
+
+Each file you sent shows as a tile in the chat. Select the tile's download button to get the file back, for example to hand a colleague the workbook a decision was based on. Files Ari makes for you appear as a download card under its answer. See [Chat controls and messages](/reference/chat#download-a-file-ari-made).
+
+Archiving a chat keeps its files.
+
+## If an upload fails
+
+A file that fails to upload shows a red tile, and a notice titled **Attachment upload failed** gives the file's name and the reason. **Send** stays off until you remove the file or attach it again. Attaching a file with the same name replaces the failed tile.
+
+If one file fails every time while others upload normally, a security filter may be blocking its contents; send it to [support@cfo.ai](mailto:support@cfo.ai). If Ari says it cannot open a file, such as a damaged or password-protected workbook, attach an unprotected copy or a different export. For every attachment message, see [Chat controls and messages](/reference/chat#attachment-messages).
+
+<Note>
+  Ari cannot read files sent in Slack. Attach them in a chat in the cfo.ai web app. See [Talk to Ari from Slack](/guides/use-ari-in-slack).
+</Note>
+
+## Related
+
+- [What Ari remembers](/concepts/ari-memory#files-from-your-other-chats)
+- [Limits and file types](/reference/limits#chat-with-ari)
+- [Chat controls and messages](/reference/chat)

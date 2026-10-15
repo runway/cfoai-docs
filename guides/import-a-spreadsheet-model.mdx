@@ -1,0 +1,95 @@
+---
+title: "Import an existing spreadsheet model"
+sidebarTitle: "Import a spreadsheet model"
+description: "Move your financial model from Excel, Google Sheets, or another planning tool into cfo.ai. Give Ari the workbook, review its plan, check that the rebuilt Model ties to your spreadsheet, and keep it in sync."
+---
+
+If your financial model lives in a spreadsheet, Ari can rebuild it as a cfo.ai Model with its tabs, assumptions, formulas, and cases, then check each section against your workbook. Use this when you are moving off a spreadsheet, or off another planning tool that exports to Excel or Google Sheets. Ari rebuilds the logic in cfo.ai's structure, so the layout will not match your spreadsheet cell for cell.
+
+## Before you start
+
+- Have the workbook ready: an Excel file to attach to a chat, or a Google Sheet to [connect](/guides/connect-a-google-sheet). A workbook with its formulas gives Ari the most to work from. From another planning tool, export the model to Excel or Google Sheets first.
+- A PDF or a values-only export also works, but Ari has to infer the logic, and it labels every relationship it inferred as an assumption.
+- If your accounting or payroll system is already connected, Ari can use its Actuals instead of rebuilding the workbook's actuals tabs.
+- Expect a large workbook to take a while. Ari rebuilds it in stages that run well past one reply, and you can keep working meanwhile.
+
+## Import the workbook
+
+<Steps>
+  <Step title="Give Ari the workbook">
+    Attach the workbook to a chat and say what to build. In a new workspace, you can instead choose **Upload an existing model** on the starting card and attach the file there.
+
+    > Import this workbook into cfo.ai. Build everything in Main.
+
+    If your books are connected, add:
+
+    > Use our connected QuickBooks data for actuals instead of rebuilding the actuals tabs.
+  </Step>
+  <Step title="Review Ari's plan">
+    Ari reads the whole workbook first and tells you what it found. It names the tabs that hold inputs, data, calculations, and reports, the repeated sections that are really one list, the cases that become Scenarios, and anything it cannot carry over. For a larger build it shows a plan card. Correct anything that is wrong, then select **Build it**.
+  </Step>
+  <Step title="Let Ari build">
+    Each tab you are importing becomes a Page with the same name. Each labeled section on it becomes a table named after that section, so you can compare them side by side. Pages appear in the sidebar as Ari finishes them.
+  </Step>
+  <Step title="Check that it ties">
+    Turn on the optional **Model migration tie-out** Skill; see [Turn on a built-in Skill](/guides/turn-on-built-in-skills). Then ask, with the workbook attached:
+
+    > Does this tie to my workbook? Build the tie-out page.
+
+    Ari builds a Page with a bridge from your workbook's numbers to cfo.ai's. The differences are grouped so you can drill into each one, and buttons hand each decision to Ari. Building the page changes nothing in your Model. Without the Skill, ask:
+
+    > Reconcile revenue, payroll, and cash to the attached workbook for every quarter, and explain each difference.
+  </Step>
+  <Step title="Decide each difference">
+    A rebuilt model can be more correct than the spreadsheet, so a difference is not always a mistake. Ari tells you which differences come from errors it corrected in the workbook, which from stale or broken links, and which it cannot explain. Tell Ari which result to keep.
+  </Step>
+  <Step title="Set Last close">
+    Set **Last close** to the last month your workbook treats as actual, so closed months read as Actuals and later months as Forecast. See [Set Last close and date defaults](/guides/set-dates-and-last-close).
+  </Step>
+</Steps>
+
+## What carries over
+
+| In your spreadsheet | In cfo.ai |
+| --- | --- |
+| A tab of inputs, data, or calculations | A Page with the same name, with a table for each labeled section |
+| Copies of one layout, such as one tab per product or department | One Page and one Variable segmented by a Dimension, such as Product |
+| Revenue, payroll, balances, and other line items | Variables |
+| Spreadsheet formulas | cfo.ai formulas that keep the same method and inputs, written with names instead of cell addresses |
+| Lookup tables | Dimension mappings |
+| Case selectors and copies of tabs per case | Scenarios |
+| Assumptions you tune | Editable inputs |
+| Statement and dashboard tabs | Pages with Table blocks, rebuilt to read from the Model |
+
+Values that came from macros or from links to other workbooks arrive as values; Ari says which ones it could not rebuild as formulas. Ari keeps the source's forecasting method. If it thinks another method fits better, it proposes the change instead of making it silently.
+
+## Update the Model after the spreadsheet changes
+
+A connected Google Sheet is re-read every night. When a section changed, Ari updates that section's tables, formulas, and inputs, and leaves sections that did not change as they are, including edits you made in cfo.ai. For an Excel file, attach the new version and ask:
+
+> Here is the new version of the workbook. Update the import.
+
+## Read a workbook without building anything
+
+To have Ari explain a model before you import it, say so:
+
+> Review this workbook and explain how the forecast works. Do not change the Model.
+
+## Import a large workbook in passes
+
+For a very large workbook, you can scope the first pass to the core model, check that it ties, and add reports and Scenarios after:
+
+> Import the inputs, revenue, payroll, and cash tabs first. Skip the summary and dashboard tabs for now.
+
+## If something goes wrong
+
+- If Ari stopped partway, select **Retry** on the message, or ask Ari to continue. Anything it saved stays in your Model.
+- If a rebuilt number does not match, ask Ari to trace it to its source cells. See [Check that your numbers match your books](/guides/check-imported-data).
+- If you want to start over, undo the import's changes from Version history. See [Undo a change or restore an earlier version](/guides/undo-changes).
+
+## Related
+
+- [Replace estimates with your real numbers](/guides/switch-to-real-numbers)
+- [Connect a Google Sheet or Drive file](/guides/connect-a-google-sheet)
+- [Attach files to a chat](/guides/attach-files)
+- [How formulas work](/concepts/formulas)

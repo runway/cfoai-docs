@@ -42,8 +42,9 @@ When several formulas could fill a cell, cfo.ai uses the most specific one. It c
 
 1. A value or formula typed into one cell wins in that cell.
 2. A formula that names more Dimensions beats one that names fewer. A formula for every department in every region beats a formula for every department, which beats the Variable's default.
-3. Among formulas that name the same Dimensions, a formula for a named item beats one that covers every item, so a formula for Sales beats a formula for every department. One item beats a list of items.
-4. When two formulas are still tied, the one saved most recently wins.
+3. Among formulas that name the same Dimensions, one that applies to its own rows only beats one that also applies to the rows beneath it.
+4. Then a formula for a named item beats one that covers every item, so a formula for Sales beats a formula for every department. One item beats a list of items.
+5. When two formulas are still tied, the one saved most recently wins.
 
 Formulas that cfo.ai generates, such as the read of a connected column or the 0 for an empty cell, rank below every formula someone saved. A formula range, Actuals or Forecast, decides when a formula applies, not how it ranks.
 
@@ -53,7 +54,7 @@ For example, Payroll has a default formula, a formula for every department, and 
 
 Each row and cell takes the most specific formula that covers it, so a row often has a different formula from the row above it. That is usually by design. Three reasons are common:
 
-- The parent is a breakdown total. When a table breaks a Variable down, the parent row adds up the rows beneath it, while the bottom rows use the Variable's own formula.
+- The parent is a breakdown total. When a table breaks a number down, the parent row adds up the rows beneath it, while the bottom rows use the Variable's own formula. A percentage is never added up, and text and dates get no total; see [Percentages and ratios are not added up](/concepts/totals-and-rollups#percentages-and-ratios-are-not-added-up).
 - Someone gave the row or cell its own formula, such as a different price for one product, or typed a value into it. That is an override.
 - The cells fall in different formula ranges. A closed month uses the Actuals formula, and a later month uses the Forecast formula.
 
@@ -79,7 +80,7 @@ An imported Variable reads its connected column instead; see [How imported data 
 
 ## A formula belongs to its Variable, so changing it changes every table
 
-A formula is saved on the Variable, not on the table where you wrote it. Every table, chart, and Page that shows the Variable reads the same formulas, so changing a formula from one table changes the number everywhere. That is how one fix reaches every report.
+A formula is saved on the Variable, not on the table where you wrote it. Every table, chart, and Page that shows the Variable reads the same formulas, so changing a formula from one table changes the number everywhere in the same Scenario. That is how one fix reaches every report. A change in Main also reaches the Scenarios that read that formula from Main; see [Scenarios, Snapshots, and version history](/concepts/scenarios#a-scenario-holds-only-what-is-different).
 
 When one report needs a different calculation, use a different Variable, or a formula for a narrower part of the Model. Placing an existing Variable on another table leaves its formulas alone. Ari tells you when a change it makes replaces a formula that other tables read.
 

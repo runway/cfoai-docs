@@ -87,7 +87,7 @@ test("accepts cash runway as ordinary financial language", async () => {
   }
 });
 
-test("accepts escaped dollar signs and dollar signs in code", async () => {
+test("accepts escaped dollar signs and dollar signs in backtick and tilde code", async () => {
   const fixture = baseFixture();
   fixture["index.mdx"] = [
     "---",
@@ -99,7 +99,19 @@ test("accepts escaped dollar signs and dollar signs in code", async () => {
     "Write `price$ * units$` in a formula.",
     "```text",
     "$5 to $10,000",
-    "```"
+    "```",
+    "~~~markdown",
+    "```text",
+    "$5 to $10,000",
+    "```",
+    "$5 to $10,000",
+    "~~~",
+    "````markdown",
+    "```",
+    "$5 to $10,000",
+    "```",
+    "$5 to $10,000",
+    "````"
   ].join("\n");
   const root = await writeFixture(fixture);
   try {
@@ -307,6 +319,13 @@ const failureCases = [
     () => ({
       "index.mdx":
         '---\ntitle: "Title"\ndescription: "From $5 to $10,000."\n---\nBody.'
+    })
+  ],
+  [
+    "unescaped-dollar",
+    () => ({
+      "index.mdx":
+        '---\ntitle: "Title"\ndescription: "Description."\n---\n~~~text\n$5\n~~~\nA purchase is $5 to $10,000.'
     })
   ]
 ];

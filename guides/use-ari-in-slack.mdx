@@ -12,7 +12,7 @@ You need:
 
 - Permission to add connections in your cfo.ai workspace, the same permission you need to connect a data source.
 - A Slack workspace you can add apps to. If your Slack workspace requires approval for new apps, a Slack admin may need to approve the install.
-- The same email address on your Slack profile as the one you sign in to cfo.ai with.
+- To message Ari, a Slack profile email that belongs to a cfo.ai account in this workspace, usually the email you sign in with. If your Slack email is a different address, see [If your Slack email differs from your cfo.ai email](#if-your-slack-email-differs-from-your-cfoai-email).
 
 ## Connect Slack to your workspace
 
@@ -74,10 +74,15 @@ Ari answers only in direct messages. It does not read or answer messages in Slac
 
 ## If your Slack email differs from your cfo.ai email
 
-Ari matches you by the email address on your Slack profile. When it differs from your cfo.ai sign-in email, Ari cannot find your account. Messages you send get a reply that Ari could not find a cfo.ai account for your Slack email, and Ari cannot send you Slack messages. Do one of these:
+Ari matches you by the email address on your Slack profile. When it differs from your cfo.ai sign-in email, Ari cannot match you to your account, and it cannot send you Slack messages. The reply to your messages depends on that address:
+
+- If no cfo.ai account uses it, Ari replies that it could not find a cfo.ai account for your Slack email.
+- If it belongs to a cfo.ai account outside this workspace, Ari replies that your account does not have access to this workspace's cfo.ai.
+
+Either way, do one of these:
 
 - Change the email on your Slack profile to your cfo.ai sign-in email.
-- Invite your Slack email address to the cfo.ai workspace, then accept the invitation from that address. That address becomes a second cfo.ai account, with its own chats and memory. See [Invite or remove teammates](/guides/invite-teammates).
+- Invite your Slack email address to the cfo.ai workspace, then accept the invitation from that address. That address is a separate cfo.ai account, with its own chats and memory. See [Invite or remove teammates](/guides/invite-teammates).
 
 ## Disconnect Slack
 

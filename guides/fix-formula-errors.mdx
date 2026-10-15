@@ -36,7 +36,7 @@ A renamed Variable does not cause `#REF!`: formulas follow the Variable, not its
 
 ## The cell shows #NAME?
 
-The formula calls a function cfo.ai does not have, often a spreadsheet function such as `VLOOKUP`, `SUMIF`, or `AND`. Use the cfo.ai form listed in [Excel functions that are not available](/reference/functions#excel-functions-that-are-not-available).
+The formula calls a function cfo.ai does not have, often a spreadsheet function such as `VLOOKUP` or `SUMIF`. Use the cfo.ai form listed in [Excel functions that are not available](/reference/functions#excel-functions-that-are-not-available).
 
 ## The cell shows #VALUE!
 
@@ -77,7 +77,7 @@ A cell, or a row under a breakdown, has a formula or value of its own, called an
 The formula saved, but the cells you are looking at still show another value. Work through these checks in order:
 
 1. Check the formula range. A formula saved for Actuals does not fill Forecast months, and the reverse. Open the row's formula and check both sections.
-2. Check the months. A formula for one range must cover months. A formula written on a table by year is saved at year grain and fills only the year cells; the month cells do not read it.
+2. Check the grain. A formula for one range must cover the Model's base periods, usually months. In a monthly Model, a formula written on a table by year is saved at year grain and fills only the year cells; the month cells do not read it.
 3. Check for a more specific formula. A formula for one item or one cell replaces the row's formula there; see [A cell does not follow its row's formula](#a-cell-does-not-follow-its-rows-formula).
 4. Check the Scenario. A formula saves in the Scenario shown in the sidebar's Scenario picker. Check that you are viewing the Scenario you changed.
 

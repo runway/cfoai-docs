@@ -15,7 +15,7 @@ Before you start, connect each entity's books. Connect each QuickBooks Online co
     The group total adds up the entities. For a balance sheet and cash flow statement too, see [Get your P&L, balance sheet, and cash flow statement](/guides/build-financial-statements).
   </Step>
   <Step title="Check that the entities share Dimensions">
-    Every row of a connected company's statements carries **Entity**, the company's name, and **Currency**. When another company from the same accounting system loads for the first time, its Entity and Currency columns join the Dimensions the first company created. One Entity Dimension then lists every company. Rillet's statements carry one set of rows for each subsidiary, with Entity naming the subsidiary.
+    Every row of a QuickBooks Online or Xero company's statements carries **Entity**, the company's name, and **Currency**. When another company from the same accounting system loads for the first time, its Entity and Currency columns join the Dimensions the first company created. One Entity Dimension then lists every company. Rillet's statements carry one set of rows for each subsidiary, with Entity naming the subsidiary. NetSuite's statements have no Entity or Currency column: the **NetSuite Income Statement** names each row's subsidiary in **Subsidiary** and its currency in **Currency Name**.
 
     Companies in different accounting systems, such as one in QuickBooks Online and one in Xero, get separate Dimensions. So do two companies with the same name. To combine two compatible Dimensions, ask Ari:
 
@@ -31,7 +31,7 @@ Before you start, connect each entity's books. Connect each QuickBooks Online co
     See [Map one Dimension's items to another](/guides/map-dimensions).
   </Step>
   <Step title="Convert currencies, if your entities use more than one">
-    cfo.ai does not convert currencies on its own. Each entity's amounts stay in its own currency, so a total across currencies adds unlike numbers. Ask Ari to convert to your reporting currency at a rate you choose:
+    cfo.ai does not convert currencies on its own. Amounts load in the currency the source reports them in, so a total across companies that report in different currencies adds unlike numbers. Ask Ari to convert to your reporting currency at a rate you choose:
 
     > Convert the UK company's results from GBP to USD at 1.27, and show the group total in USD.
 

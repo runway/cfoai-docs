@@ -50,7 +50,7 @@ So is your bank balance nightly? Through your accounting system, yes: it is the 
 
 ## Integrations and MCP servers do different jobs
 
-An integration answers questions about history: how much revenue came in each month, how payroll grew, where cash went. It brings every period in, keeps it current, and turns it into Variables your formulas and Scenarios can use.
+An integration answers questions about history: how much revenue came in each month, how payroll grew, where cash went. It brings in past periods, keeps recent ones current, and turns them into Variables your formulas and Scenarios can use. How far back each source loads is listed in [How much history loads](/reference/imported-data#how-much-history-loads).
 
 An MCP server or an API answers questions about now, or acts in another tool: what is in the bank today, which invoices are open, which issues are blocked. Ari calls it live, so the answer is current, but nothing stays in your Model unless Ari writes a value into a table, and that value is a plain number that does not update.
 

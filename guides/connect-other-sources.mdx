@@ -78,7 +78,7 @@ You can keep working while it syncs.
 
 | Source | What lands |
 | --- | --- |
-| HR and payroll systems | An employee roster with jobs, pay, and groups such as departments, through the **HRIS Employees** saved query. Payroll systems also bring each employee's gross and net pay for each payroll run. |
+| HR and payroll systems | An employee roster with jobs, pay, and groups such as departments, through the **HRIS Employees** saved query. Payroll systems that connect through Merge, such as Gusto, also sync each payroll run with each employee's gross and net pay; ask Ari for a saved query to bring them into your Model. Rippling syncs the roster tables, without payroll runs. |
 | HubSpot | Deals with their pipelines, stages, owners, contacts, companies, line items, and invoices, through **HubSpot Deals** |
 | Salesforce | Opportunities, accounts, and users, through **Salesforce Opportunities** |
 | Stripe, Shopify, databases, and other apps | The tables they sync. Ari writes the saved queries that bring them into your Model after the first sync. |
@@ -92,7 +92,7 @@ If a connection reads **No queries yet**, its data synced but nothing brings it 
 - If you cannot get a Rippling API key, upload an employee export as a CSV. To let Ari look up people in Rippling without syncing, connect Rippling's MCP server, which needs a Rippling AI trial or subscription. See [Give Ari access to another service](/guides/give-ari-another-service).
 - If your data is in a database cfo.ai does not list, copy it into a PostgreSQL-compatible database if you can, and connect that database.
 - If you only need a live lookup, such as today's balance or an open invoice, connect the service's MCP server or API instead. See [How connected data reaches your Model](/concepts/connected-data#integrations-and-mcp-servers-do-different-jobs).
-- If the card shows **Upgrade plan**, **Choose plan**, or a **Premium** badge, or the setup says **start the free trial to add integrations**, your workspace needs a trial or a plan with room first. [Connection statuses and actions](/reference/connection-statuses#messages-when-a-new-connection-is-refused) lists each message.
+- If the card shows **Upgrade plan** or **Choose plan**, or the setup says **start the free trial to add integrations**, your workspace needs a trial or a plan with room first. If the card shows a **Premium** badge, the source needs the Enterprise plan; a trial does not unlock it. [Connection statuses and actions](/reference/connection-statuses#messages-when-a-new-connection-is-refused) lists each message.
 
 An upload does not refresh, so upload a new export when the numbers change.
 

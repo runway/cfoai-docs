@@ -6,7 +6,7 @@ description: "Give a Variable one formula for closed months (Actuals) and anothe
 
 Use separate formulas when closed months should show what your books recorded and later months should show a plan. For example, Payroll can read QuickBooks through **Last close** and calculate Headcount times Average Salary after it. Every workspace has two formula ranges: Actuals, the months through Last close, and Forecast, the months after it. A Variable can have a formula for each. To understand the boundary, read [Actuals, Forecast, and Last close](/concepts/actuals-and-forecast). To move it, see [Set Last close and date defaults](/guides/set-dates-and-last-close).
 
-A formula range needs months. A formula you save on a row of a table with months already covers them, and a row on a table with no periods has one formula for every period. Write range formulas on a table by month. A formula written on a table by year is saved at year grain and fills only the year cells; the month cells do not read it.
+A formula range needs the Model's base periods: months, unless your Model uses another grain. A formula you save on a row of a table with those periods already covers them, and a row on a table with no periods has one formula for every period. Write range formulas on a table at the base grain. In a monthly Model, a formula written on a table by year is saved at year grain and fills only the year cells; the month cells do not read it.
 
 <Tabs>
   <Tab title="Ask Ari">

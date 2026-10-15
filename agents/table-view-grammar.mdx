@@ -87,7 +87,7 @@ A Variable row can carry its own breakdown, splitting only that row differently 
 
 ## Orientation
 
-A view with a measured Variable keeps values on rows, and its Dimensions, including time, on columns. A mapping-only view already reads down the rows: source keys on rows, and their mapped attributes across the columns.
+By default, a view with a measured Variable keeps values on rows, and its Dimensions, including time, on columns. A flipped view puts the Variables on columns instead. A mapping-only view already reads down the rows: source keys on rows, and their mapped attributes across the columns.
 
 There is no separate transpose action. To flip a table, reshape it by moving the Variables between rows and columns. Moving an axis changes the presentation, not the grain of any cell.
 

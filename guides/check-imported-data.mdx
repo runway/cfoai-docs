@@ -24,7 +24,7 @@ QuickBooks Online and Xero load your three most recent complete months first and
 
 ### Last close is not the month you think
 
-Your Model's **Last close**, your month-end, decides which months read as Actuals. Months after it read your forecast formulas instead of your books. If last month still shows forecast numbers, move Last close; see [Set Last close and date defaults](/guides/set-dates-and-last-close) and [Actuals, Forecast, and Last close](/concepts/actuals-and-forecast).
+Your Model's **Last close**, your month-end, decides which months read as Actuals. In months after it, a Variable with a Forecast formula calculates that formula instead of reading your books. A Variable that only reads its connected column keeps showing the source's rows after Last close, so moving Last close does not change what it shows. If last month still shows forecast numbers, move Last close; see [Set Last close and date defaults](/guides/set-dates-and-last-close) and [Connected data before and after Last close](/concepts/actuals-and-forecast#connected-data-before-and-after-last-close).
 
 ### A saved query filters rows on purpose
 

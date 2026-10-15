@@ -5,11 +5,11 @@ description: "For AI agents connected to cfo.ai through its MCP server, and the 
 searchable: false
 ---
 
-The cfo.ai MCP server, at `https://api.cfo.ai/mcp`, gives an AI agent the same product tools Ari uses. With them an agent can read a company's financial Model and, when the user asks, change it: Pages, Table blocks, Canvas blocks, formulas, Variables, Dimensions, Scenarios, connections, Skills, Triggers, and memory. These pages describe those tools for the agent and for the developer who connects it.
+The cfo.ai MCP server, at `https://api.cfo.ai/mcp`, gives an AI agent the same product tools Ari uses. With them an agent can read a company's financial Model and, when the user asks, change it: Pages, Table blocks, Canvas blocks, formulas, Variables, Dimensions, and Scenarios, along with the workspace's connections, Skills, Triggers, and memory. These pages describe those tools for the agent and for the developer who connects it.
 
 ## One Model for the user, Ari, and the agent
 
-The agent works in the user's live workspace, signed in as that user. There is no separate copy of the Model for agents. Whatever the agent builds appears in the workspace right away, where the user can inspect the assumptions, change the result, or continue the work with Ari. Every change is recorded in the Model's changelog under the user's name and can be undone.
+The agent works in the user's live workspace, signed in as that user. There is no separate copy of the Model for agents. Whatever the agent builds appears in the workspace right away, where the user can inspect the assumptions, change the result, or continue the work with Ari. Every change to the Model, such as a formula, a Table block, or a Page edit, is recorded in the Model's changelog under the user's name and can be undone. Actions outside the Model are not in that changelog, and undo cannot reverse them: changes to connections, Skills, Triggers, memory, and access, such as invitations and share links, and emails sent. See [Work safely](/agent-instructions#work-safely).
 
 ## How to start
 

@@ -170,6 +170,8 @@ iferror(Revenue / Revenue[-1] - 1, 0)
 Revenue[-12]
 ```
 
+At monthly grain, `[-12]` reads the same month a year earlier. On a quarterly row it reads twelve quarters back, so use `[-4]` there.
+
 ### Running balance
 
 ```text

@@ -173,9 +173,15 @@ When a table breaks a Variable down, `child_defaults` on the deepest axis row is
 
 When a write changes a shared mapping row, the receipt's `shared_mapping_changed` notice names the first changed row and its item before and after, and counts the rest: "The shared mapping changed: EMP-001's Department moved from Engineering to Operations, and 3 more rows changed. Other tables and periods that use it can also change." A first assignment reads "is now Sales", and a cleared cell "was cleared; it was Sales". Every table that reads the mapping recalculates in the background after the call returns; `inspect_dimension_mappings` lists those tables.
 
-### A timeless formula on a dated row is refused the same way everywhere
+### Where a timeless formula is written
 
-`formula` and `clear_formula` write a Variable's timeless formula. A `create` writes it for a Variable it makes, and an `update` writes it on an undated row or column. A dated row's formulas are `default_formulas.actuals` and `default_formulas.forecast`, which `create` and `update` both accept; both refuse a timeless `formula` on a dated row with the same sentence. A `child_defaults` clear on `create` goes through the same planner an update uses, so a child that owns no formula reports `unchanged`.
+`formula` and `clear_formula` write a Variable's timeless formula, which applies in every period, Actuals and Forecast alike. `default_formulas.actuals` and `default_formulas.forecast` write formulas limited to Actuals or to Forecast, and `create` and `update` both accept them.
+
+- A `create` writes a timeless `formula` for a Variable it makes, including on a row of a table with Date columns. It refuses one on a row that places an existing Variable.
+- An `update` writes a timeless `formula` on an undated row or column, and refuses one on a dated row or column.
+- Both refusals use the same sentence, which says where each kind of formula is written.
+
+A `child_defaults` clear on `create` goes through the same planner an update uses, so a child that owns no formula reports `unchanged`.
 
 ## An axis that only lists items has no formula to edit
 

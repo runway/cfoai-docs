@@ -87,18 +87,32 @@ function isRootRelativeAsset(value) {
   return typeof value === "string" && value.startsWith("/");
 }
 
+// A code fence opens with three or more backticks or tildes. It closes only at
+// a line of the same character, at least as long, with nothing after it, so a
+// tilde fence can show a backtick fence inside it.
+const FENCE = /^(`{3,}|~{3,})/;
+
 // Mintlify renders the text between two dollar signs on one line as LaTeX math,
 // in the body and in the frontmatter description, so a line with two currency
 // amounts must escape them. Code is left as written.
 function lineWithUnescapedDollarPair(contents) {
   const lines = contents.split("\n");
-  let inFence = false;
+  let openFence = null;
   for (let index = 0; index < lines.length; index += 1) {
-    if (lines[index].trimStart().startsWith("```")) {
-      inFence = !inFence;
+    const line = lines[index].trimStart();
+    const marker = line.match(FENCE)?.[1];
+    if (openFence !== null) {
+      const closes =
+        marker?.[0] === openFence[0] &&
+        marker.length >= openFence.length &&
+        line.slice(marker.length).trim() === "";
+      if (closes) openFence = null;
       continue;
     }
-    if (inFence) continue;
+    if (marker) {
+      openFence = marker;
+      continue;
+    }
     const prose = lines[index].replace(/`[^`]*`/g, "").replaceAll("\\$", "");
     if ((prose.match(/\$/g) ?? []).length >= 2) return index + 1;
   }

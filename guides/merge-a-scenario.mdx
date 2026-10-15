@@ -1,7 +1,7 @@
 ---
 title: "Merge a Scenario into Main"
 sidebarTitle: "Merge a Scenario"
-description: "Adopt a Scenario as your plan: review what it would change, merge it into Main (or the Scenario it branched from), and undo a merge if you need to."
+description: "Adopt a Scenario as your plan: review what it would change, merge it into Main (or the Scenario it branched from), and keep a Snapshot of the plan from before the merge."
 ---
 
 Merge a Scenario when you decide to adopt it as your plan. Merging applies every change the Scenario holds to the Scenario it branched from, and then deletes the merged Scenario. For most Scenarios, that is Main, the Scenario that holds your current plan.
@@ -36,9 +36,9 @@ Merge a Scenario when you decide to adopt it as your plan. Merging applies every
   </Tab>
 </Tabs>
 
-## Undo a merge
+## Keep a way back before you merge
 
-A merge is one entry in Main's version history. Undo that entry to take the changes back out of Main and bring the merged Scenario back. See [Undo a change or restore an earlier version](/guides/undo-changes).
+A merge does not appear in version history, so you cannot undo it there. To keep the plan exactly as it was, take a Snapshot of the Scenario you are merging into, usually Main, before you merge. See [Save a plan as a Snapshot](/guides/save-a-snapshot).
 
 ## If the merge is not available
 

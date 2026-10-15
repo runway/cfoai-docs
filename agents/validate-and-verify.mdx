@@ -31,13 +31,14 @@ To validate without saving, send a `create` with `dry_run: true`. It checks the 
 Inspect the write's result before you move on. A table write's receipt reports:
 
 - **What it touched.** Each row and column touched, with the formula it now carries per range.
-- **`formula_warning` issues** for formulas that saved but need attention. A `create` reports the same cases as `creation_warning`. The cases:
+- **`formula_warning` issues** for formulas that need attention. Most follow a formula that saved, but the last case below follows a write that saved nothing. A `create` reports the same cases as `creation_warning`. The cases:
   - an imported Variable read in Forecast months;
   - a constant that matches no Dimension item;
   - a tie with an existing formula;
   - a shared formula the write replaced;
   - a read that lands on the generated default, 0, or null for a date or text Variable, because the input lacks one of the read's coordinates;
-  - a default saved at a grain coarser than the Model's base grain.
+  - a default saved at a grain coarser than the Model's base grain;
+  - a write in a Scenario other than Main that sets the value the Scenario already inherits. The write stores nothing, and the cell keeps following the Scenario it inherits from: "`<Scenario>` already reads this value from `<parent>`, so the write stored no value of its own: the cell keeps following `<parent>` and changes when `<parent>` changes."
 - **Dates used as lookup keys.** A date used as a lookup key against a Dimension of timestamps is not reported when an item sits at that day's midnight and every item of the Dimension comes from its source rows, because the engine then selects that item. A Dimension with its own item list or formula keeps exact matching, and the same date in a condition is still reported.
 - **`read_note` entries.** One per imported source that the written formulas read, stating where that source's rows sit on the calendar and which formulas read it. And one for the first Forecast month when the formula reads a prior period, a source, or a Variable with no value there, stating what the formula computed and what each read returned. A note describes the read the formulas asked for; it is not a problem to fix.
 - **`scenario_warning`**, naming the Scenario the write used when the call left out `scenario`. [Write in a Scenario](/agents/write-formulas#write-in-a-scenario) quotes it.

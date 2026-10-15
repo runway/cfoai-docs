@@ -61,7 +61,7 @@ Reach describes Dimension coverage only; time coverage is the separate Date grai
 
 ## Actuals and Forecast ranges
 
-Formula ranges separate parts of the timeline that use different calculations. Actuals and Forecast are defined relative to the workspace's Last close date.
+Formula ranges separate parts of the timeline that use different calculations. Actuals and Forecast are defined relative to a Scenario's Last close, and each Scenario has its own. Interpret a formula range against the boundary of the Scenario you read or write: the one `scenario` names, or the Scenario in view when the call leaves `scenario` out.
 
 ### Let the visible target choose the range
 
@@ -85,7 +85,7 @@ The range is chosen by where the formula sits: `default_formulas.actuals` or `de
 
 Every table `read` returns the Scenario's `calendar`: `last_close`, its default `granularity`, and its default range. Read it when you need to confirm Last close, because the boundary decides which dates count as Actuals and which belong to Forecast. `edit_table_blocks` `update_calendar` changes these settings for the Scenario; every table in the Scenario shares them.
 
-If Last close is missing, explain the missing workspace setting before you build a result that depends on the range.
+If the Scenario has no Last close, explain the missing setting before you build a result that depends on the range.
 
 ### Keep the Model's time grain
 

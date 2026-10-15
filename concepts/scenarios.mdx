@@ -12,7 +12,7 @@ Every Model has one **Main** Scenario. Main holds the numbers your team treats a
 
 ## A Scenario holds only what is different
 
-A Scenario branches from Main, or from another Scenario. It stores only the values, formulas, and table settings that differ from the Scenario it branched from, and reads everything else from there.
+A Scenario branches from Main, or from another Scenario. It stores only what differs from the Scenario it branched from, such as values, formulas, Variables, Pages, and blocks, and reads everything else from there. A Page you add in a Scenario stays in that Scenario until you merge it.
 
 Take a hiring Scenario in which two engineers start in January. When QuickBooks syncs new Actuals overnight, Main updates, and so does the hiring Scenario, because it reads those Actuals from Main. The two extra salaries stay in the Scenario alone. You never have to copy new data into your Scenarios by hand.
 
@@ -23,7 +23,7 @@ Two consequences follow:
 
 ## Merging brings a Scenario into Main
 
-When you decide to adopt a Scenario, you merge it. Merging applies every change the Scenario holds to the Scenario it branched from, which is Main for most Scenarios, then deletes the merged Scenario. The merge is recorded in version history, so undoing it brings the Scenario back.
+When you decide to adopt a Scenario, you merge it. Merging applies every change the Scenario holds to the Scenario it branched from, which is Main for most Scenarios, then deletes the merged Scenario. A merge does not appear in version history, so to keep the plan as it was before the merge, take a Snapshot of the Scenario you merge into first.
 
 A Scenario that has its own editable child Scenario cannot be merged until that child is merged or deleted. A Snapshot taken from the Scenario does not block the merge.
 
@@ -56,7 +56,7 @@ A change a Scenario inherited from Main cannot be undone from inside the Scenari
 | Compare a plan with the current one | A Scenario, shown side by side with Main on a table |
 | Keep a plan exactly as it was on a date | A Snapshot |
 | Take back a change you or Ari just made | Undo in version history |
-| Go back to how the Model looked last week | Restore in version history |
+| Go back to how Main or a Scenario looked last week | Restore it in version history |
 
 ## Where Scenarios show up
 

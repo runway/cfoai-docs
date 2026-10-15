@@ -18,7 +18,7 @@ Mapping rules have no effective dates: a rule applies in every period. A Dimensi
 
 ## When a plain pair isn't enough
 
-Some rows need a real condition instead of a simple equality, like a set of accounts ("8001 or 8002 maps to Other Income"). Ask Ari to write these as a condition instead of a pair; Ari carries this through into the same formula-style logic used elsewhere in the Model. A rule that spans more than one key at once, such as Account together with Company, needs no condition: Ari matches the pair of items directly.
+Some rows need a real condition instead of a simple equality, like a set of accounts ("8001 or 8002 maps to Other Income"). Ask Ari to write these as a condition instead of a pair; Ari carries this through into the same formula-style logic used elsewhere in the Model. A rule that spans more than one key at once, such as Account together with Company, needs no condition: Ari matches the pair of items directly. A condition compares the lookup's keys, which are Dimensions such as Account or Company; it cannot test a Variable's value, so an exception list that depends on a number stays a list of items.
 
 When one target is fed by a one-key lookup and a two-key lookup, such as Account alone and Account together with Account ID, a row the two-key lookup has no rule for falls back to the one-key rule, and only a row neither lookup matches goes to the catch-all. A rule Ari saved before this fallback existed keeps its narrower behavior until a mapping change names that row again.
 

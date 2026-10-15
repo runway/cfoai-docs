@@ -23,7 +23,7 @@ Two consequences follow:
 
 ## Merging brings a Scenario into Main
 
-When you decide to adopt a Scenario, you merge it. Merging applies every change the Scenario holds to the Scenario it branched from, which is Main for most Scenarios, then deletes the merged Scenario. A merge does not appear in version history, so to keep the plan as it was before the merge, take a Snapshot of the Scenario you merge into first.
+When you decide to adopt a Scenario, you merge it. Merging applies every change the Scenario holds to the Scenario it branched from, which is Main for most Scenarios, then deletes the merged Scenario. The merge shows in the version history of the Scenario it merged into, and undoing it takes the changes back out and brings the merged Scenario back.
 
 A Scenario that has its own editable child Scenario cannot be merged until that child is merged or deleted. A Snapshot taken from the Scenario does not block the merge.
 

@@ -1,0 +1,77 @@
+agent-instructions.mdx
+  s_7bc7ffe9a85257::t_b774b1c6f56bdc 95,97
+ari/during-a-conversation.mdx
+  s_7bc7ffe9a85257::t_6dbbbd7eafe8e8 21-22,43,107-108
+ari/meet-ari.mdx
+  s_7bc7ffe9a85257::t_ea76efd2bc1907 34,72
+automation/guides.mdx
+  s_7bc7ffe9a85257::t_fac44d21f887d5 44
+automation/triggers.mdx
+  s_7bc7ffe9a85257::t_9fb98299286abe 27-29,43,46-47,49,55-57
+dashboards/charts-and-custom-visualizations.mdx
+  s_7bc7ffe9a85257::t_26cbf65b78c7c4 31,39,59-66
+dashboards/pages-and-blocks.mdx
+  s_7bc7ffe9a85257::t_c92f01c92152ef 28-29
+formulas/agent-docs/create-and-update.mdx
+  s_7bc7ffe9a85257::t_5e4237788d80b9 40-41,89,127,141,165,187,235,241
+formulas/agent-docs/read-and-explain.mdx
+  s_7bc7ffe9a85257::t_90d0ff40a279f2 63-65,86
+formulas/agent-docs/resolve-scope.mdx
+  s_7bc7ffe9a85257::t_8d71a75e2d5eda 67
+formulas/agent-docs/validate-and-verify.mdx
+  s_7bc7ffe9a85257::t_5e5ae662735b49 35,39
+formulas/core-concepts/dimension-mappings.mdx
+  s_7bc7ffe9a85257::t_2c4cd8a927b577 23-24,48-51
+formulas/core-concepts/how-aggregation-works.mdx
+  s_7bc7ffe9a85257::t_91eb5ed7bfed51 25
+formulas/core-concepts/how-cfoai-chooses-a-formula.mdx
+  s_7bc7ffe9a85257::t_2444a9d77602ce 42-53
+formulas/core-concepts/variables-and-dimensions/financial-model-to-variables-and-dimensions.mdx
+  s_7bc7ffe9a85257::t_41e518f4bb526f 31-32
+formulas/formula-reference/formula-errors-and-troubleshooting.mdx
+  s_7bc7ffe9a85257::t_b4df458792b943 80,109-116,121-122
+getting-started/build-by-hand.mdx
+  s_4ccf2f3f54d6f0::t_ae275f47b537eb 15-16,34,346,358,365,466-467
+getting-started/quickstart.mdx
+  s_7bc7ffe9a85257::t_b84b31b107d16f 11,25,30
+getting-started/understand-your-workspace.mdx
+  s_7bc7ffe9a85257::t_c0fcee00f91158 52
+integrations/connect-and-sync-data.mdx
+  s_4ccf2f3f54d6f0::t_c3a36c9da456ac 57-58,67,71-73,105-110,147,149,186,188
+integrations/integrations-directory.mdx
+  s_7bc7ffe9a85257::t_bad703fc93f930 129,151,153,155-157,161-164
+integrations/mcp-server.mdx
+  s_4ccf2f3f54d6f0::t_3c869aee08b8e9 71,78-83,94
+workspace-settings/billing.mdx
+  s_7bc7ffe9a85257::t_ec9e364a1022be 30,32,34,60-62,74,86-87
+workspace-settings/file-attachments-in-chat.mdx
+  s_7bc7ffe9a85257::t_5bd66cd96df593 24,43,47
+workspace-settings/personal-theme.mdx
+  s_7bc7ffe9a85257::t_8a3bede245f366 16-18,20,24
+workspace-settings/team-and-workspace.mdx
+  s_7bc7ffe9a85257::t_b33ae51f6eb832 54
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "18a2e782199bb5e611e675645cb7ad0d63b9528b",
+  "prompts": {},
+  "sessions": {
+    "s_4ccf2f3f54d6f0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9ea705e5-61be-4c12-92b1-031ffbf8a052",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Siqi Chen <blader@gmail.com>"
+    },
+    "s_7bc7ffe9a85257": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "43b1e043-3d0e-40c3-bacc-de97b588da35",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Siqi Chen <blader@gmail.com>"
+    }
+  }
+}

@@ -13,7 +13,7 @@ Shifts a date by a signed amount.
 dateadd(Date.Month, -1, "month")
 ```
 
-Supported units are `"day"`, `"week"`, `"month"`, `"quarter"`, `"half"`, and `"year"`. The amount is a signed whole number, and the unit must be quoted.
+Supported units are `"day"`, `"week"`, `"month"`, `"quarter"`, `"half"`, and `"year"`. The amount is a signed whole number. The unit must be quoted and lowercase; `"Month"` is not accepted.
 
 ## datedif
 
@@ -23,7 +23,7 @@ Returns the difference between a start date and end date using an Excel-style un
 datedif(`Start Date`, Date.Month, "M")
 ```
 
-Supported codes include `Y`, `M`, `D`, `MD`, `YM`, and `YD`. The start date must not be after the end date.
+The supported codes are `Y`, `M`, `D`, `MD`, `YM`, and `YD`, in either case. The start date must not be after the end date. Like Excel, the count excludes the end day, so add 1 when you need an inclusive count.
 
 ## daysin
 
@@ -33,7 +33,7 @@ Returns the number of days in the aligned period containing a date.
 daysin(Date.Month, "month")
 ```
 
-Supported units are day, week, month, quarter, half, and year.
+Supported units are `"day"`, `"week"`, `"month"`, `"quarter"`, `"half"`, and `"year"`, quoted and lowercase as in `dateadd`. `"day"` always returns 1 and `"week"` always returns 7; `"year"` returns 365 or 366.
 
 ## date
 
@@ -44,7 +44,7 @@ date(2026, 12, 31)
 date(year(Date.Month), 12, 31)
 ```
 
-Month and day values can roll into adjacent periods, following Excel `DATE` behavior for normal supported dates.
+Month and day values roll into adjacent months and years, following Excel `DATE` behavior. A year from 0 to 1899 has 1900 added, as in Excel. A result outside years 1 to 9999 returns a `#NUM!` error. The real calendar is used, so February 29, 1900 does not exist.
 
 ## edate
 

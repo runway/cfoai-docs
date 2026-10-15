@@ -64,6 +64,12 @@ A block whose own source fails shows **This block failed to render.** with the e
 
 When a block's data request gets no answer, the block shows **This block's "Revenue" data didn't load because the connection to cfo.ai failed.**, naming the data view, and asks for the data again when the connection returns. Any other data failure reads **This block's "Revenue" data failed to load.** with a **Mention in chat** button.
 
+A block that the server no longer has in the Scenario you are viewing, because a saved change deleted it after the Page loaded, reads **This Canvas block no longer exists in this scenario.** with no **Retry**, and asks for it once rather than on every refresh of the Page. Any other failure to load the block's saved settings keeps **This Canvas block couldn't be loaded.** with **Retry**.
+
+## See the data behind a visual
+
+A Canvas block that reads Model data has an **Inspect data** button in its hover toolbar, with the tooltip **Inspect the data behind this Canvas block**. It opens a **Canvas data** dialog that shows each data view the block declares as its own read-only table, with the table's usual header: its title, date and grain controls, and settings. The dialog works on a shared or read-only Page too. Each table's header offers **Add to page**, which puts an editable copy of that table on the Page just before the Canvas block without a trip through Ari, then reads **Added to page**. The copy keeps the view's time comparison, Scenario variance measures, and empty-item setting. **Add to page** is unavailable on a Page you cannot edit, in a historical view, and for a view that reads a Scenario other than the one you are viewing, which you can inspect but not add.
+
 ## Change a visual you did not build
 
 There is no code editor for a custom visual. Hover the block and use **Select element** to point at the exact chart, number, or control you mean, then **Mention in chat** and describe the change to Ari. A blank block offers **Mention block in chat** so Ari can build it.

@@ -26,6 +26,8 @@ When one target is fed by a one-key lookup and a two-key lookup, such as Account
 
 Every target Dimension can have one **catch-all**: the target item used when no explicit mapping rule matches. Ask Ari to set or clear it. Without a catch-all, an unmatched source item remains unmapped.
 
+A mapping rule's condition must be one calculation can read. Ari refuses to save a rule or catch-all whose condition calculation cannot read, with the engine's reason, such as a condition that uses `this.` where there is no formula segmentation to resolve it. A rule saved earlier with such a condition stays saved but takes part in no calculation, and Ari's read of the mapping marks that row with the same reason. In the formula editor the condition is underlined, and **Save** still works. A lookup over two or more source columns calculates however many key combinations it holds, including thousands; a key that cannot be read as the source column's type, such as text against a number column, matches no row rather than stopping the read.
+
 ## Remove mappings
 
 Ask Ari to:

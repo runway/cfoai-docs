@@ -54,7 +54,7 @@ weekday(Date.Day)
 weekday(Date.Day, 2)
 ```
 
-Without a return type, Sunday is 1 and Saturday is 7. Optional Excel-compatible return types control the starting day and numbering.
+Without a return type, Sunday is 1 and Saturday is 7. The optional return type follows Excel: `1` (Sunday = 1), `2` (Monday = 1), `3` (Monday = 0), or `11` through `17` (weeks starting Monday through Sunday, first day = 1).
 
 ## weeknum
 
@@ -65,7 +65,7 @@ weeknum(Date.Week)
 weeknum(Date.Week, 21)
 ```
 
-The optional return type follows Excel. Return type 21 uses ISO weeks.
+Without a return type, weeks start on Sunday and week 1 is the week containing January 1. The optional return type follows Excel: `1` (Sunday), `2` (Monday), `11` through `17` (Monday through Sunday), or `21` for ISO 8601 weeks.
 
 ## isoweeknum
 

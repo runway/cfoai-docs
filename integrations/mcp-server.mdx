@@ -84,7 +84,7 @@ If a sign-in does not take, ask Ari in cfo.ai what happened. Ari can list your o
 
 If your account belongs to one workspace, the connection can use it automatically. If your account belongs to several workspaces, ask the agent to call `list_orgs`, select the correct workspace by its ID or slug, and pass that value as `org_id` on each later tool call.
 
-Writes apply to the selected live workspace. Use a Scenario when you want an external agent to work on an alternative plan without changing Main.
+Writes apply to the selected live workspace. Use a Scenario when you want an external agent to work on an alternative plan without changing Main. Every tool's `scenario` field accepts `"Main"` for the base Scenario whatever the workspace calls it, a Scenario's name, or the id that Page and block links print after `?layer=`; a Scenario literally named Main or stored under a name that matches an id keeps its own meaning.
 
 ## What the connection exposes
 

@@ -28,9 +28,7 @@ Sales is a Dimension item. Revenue for Sales is the segment. Several Dimensions 
 
 A cell address identifies a Variable, one item from each applicable Dimension, and a time period.
 
-For example:
-
-> Revenue for Sales in the West for March 2026.
+For example, Revenue for Sales in the West for March 2026 is one cell address.
 
 That address is more precise than a segment because it also identifies the exact period and every Dimension needed for that cell.
 
@@ -38,13 +36,13 @@ That address is more precise than a segment because it also identifies the exact
 
 Use **Segment by** when you want a Table Block to expose a Variable's segments by another Dimension. For example, segment Revenue by Department to see Sales, Engineering, and Marketing separately.
 
-The **Segmentation** option in the **Use as** control identifies a Dimension's display role. A Dimension used as **Mapping** instead shows its item as a cell value.
+Right-click a Dimension row or column and open **Use as** to choose its display role. **Segmentation** splits the Variable into one row or column per item. **Mapping** instead shows each record's mapped item as a cell value. The **Use as** menu appears only for Dimensions.
 
-## Formula scope follows the business rule
+## Formula scope follows the business behavior
 
 A default formula can apply broadly. A more specific formula can apply when a Variable is segmented by Department, or only when Department is Sales.
 
-Start with the broadest rule that expresses the actual business behavior. Add a segment-specific formula only when that segment genuinely needs a different calculation.
+Start with the broadest formula that expresses the actual business behavior. Add a segment-specific formula only when that segment genuinely needs a different calculation.
 
 ## Related
 

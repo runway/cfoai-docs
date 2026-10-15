@@ -28,7 +28,7 @@ A visual resolves its data in the Page's Scenario unless one of its data views n
 
 A button inside a visual can do a few things when you click it: open another Page or block in your workspace, including a Page or block Ari named in a chat; prepare a draft message for Ari that you review before sending; or start a new chat that sends its message at once, for example to ask Ari to present a saved Guide. That new chat opens even when the Page has not finished loading the block's name; in that case the message goes without a reference to the block. A button that hands work to Ari can be marked as an Ari action: it shows a trailing arrow and lights up when you hover or click it, so you can tell it from a button that only changes the view.
 
-When Ari checks a visual it built, it renders the block once per light and dark theme at a width of 1200 px with the block's saved state, and reads the errors and warnings from those renders. It does not click buttons, type into inputs, follow links, or launch Guides, so what those do is not checked, and neither is the layout at other widths. A Canvas block cannot show an image: its frame allows no image from the web or from a data URL, and a block that tries fails Ari's check, which names how many images did not load and from where. Draw a logo or an icon with the block's own shapes and text instead.
+When Ari checks a visual it built, it renders the block once per light and dark theme at a width of 1200 px with the block's saved state, and reads the errors and warnings from those renders. It does not click buttons, type into inputs, follow links, or launch Guides, so what those do is not checked, and neither is the layout at other widths. A Canvas block cannot show an image: its frame allows no image from the web or from a data URL, and a block that tries fails Ari's check, which names how many images did not load and from where. Draw a logo or an icon with the block's own shapes and text instead. A visual that alone reads more than 20 MiB of calculated data is not rendered in that check: Ari is told its size and that nothing about it was observed, and the other visuals in the same check still render. If the check's own browser cannot start the Canvas runtime, the result says that the runtime did not start and that the block's source did not run, rather than reporting the block as broken; the block still does not pass for that theme. The check also warns when two or more series in one data view name the same Variable and the same dimension items, because only their keys then tell them apart.
 
 ## Start from a template
 
@@ -36,7 +36,7 @@ The **Browse Canvas block library** button in the chat composer opens the Canvas
 
 ## Colors
 
-A visual takes its colors from the app theme, so it follows your light or dark mode. If you ask for a fixed color, such as a brand hex code, Ari can use it. A fixed color keeps its value in both modes. When Ari saves the block, the save result names the fixed color and says that it will not follow the mode, so Ari can warn you if the result would be hard to read in one of them.
+A visual takes its colors, heading typeface, and corner shape from the theme in effect, so it follows your light or dark mode and your personal theme, including the chart series colors a custom theme sets; see [Personal theme and Ari sounds](/workspace-settings/personal-theme). A visual cannot set its own typeface: its headings and titles use the theme's heading typeface. If you ask for a fixed color, such as a brand hex code, Ari can use it. A fixed color keeps its value in both modes. When Ari saves the block, the save result names the fixed color and says that it will not follow the mode, so Ari can warn you if the result would be hard to read in one of them.
 
 <span id="update-a-code-block" />
 
@@ -55,6 +55,14 @@ A custom visual can carry sliders, toggles, and other controls. Moving one chang
 A control never writes into your Model on its own. To change a saved assumption, edit the Variable or the value in a Table Block, or ask Ari.
 
 A button in a visual can also open the browser's own dialogs. A print button prints that block's frame alone, not the whole Page, and a visual can ask you to confirm a step or type a short answer in a browser dialog. The dialog belongs to the block, not to cfo.ai, so read it as the block asking.
+
+## When a visual does not load
+
+A Canvas block runs in its own frame, which first loads its libraries from esm.sh. When that start fails, the block says why with one of three sentences, each with a **Retry** button: **This Canvas block didn't start because its libraries from esm.sh failed to load.**, **This Canvas block didn't start because its runtime stopped with an error before it was ready.**, or **This Canvas block was still loading its libraries from esm.sh after 15 seconds.** A block whose start failed with an error loads itself again once after 2 seconds, and any block whose start failed loads again when your connection to cfo.ai returns. A failed start says nothing about the block itself, so it is not saved as the block's error and Ari is not told about it.
+
+A block whose own source fails shows **This block failed to render.** with the error and a **Fix** button that hands it to Ari. An error raised by a browser extension running inside the frame, such as a wallet extension, does not count as the block's failure.
+
+When a block's data request gets no answer, the block shows **This block's "Revenue" data didn't load because the connection to cfo.ai failed.**, naming the data view, and asks for the data again when the connection returns. Any other data failure reads **This block's "Revenue" data failed to load.** with a **Mention in chat** button.
 
 ## Change a visual you did not build
 

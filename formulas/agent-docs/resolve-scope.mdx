@@ -64,7 +64,7 @@ A condition without `$` can continue to match a richer cell address. A condition
 $[Department = "Sales"]
 ```
 
-In a saved table, the exact form is what a cell-level write produces: a `cell_updates` entry on one cell saves an exact-address rule, while a `row_updates` entry saves the row's own relative rule. In an expression, the same `$` marks an absolute reference.
+In a saved table, the exact form is what a cell-level write produces: a `cell_updates` entry saves one exact-address rule per selected cell, so one row across 60 period columns saves 60 rules, and `clear_formula` removes them. A `row_updates` entry's `default_formulas` saves one relative rule that covers every period in its range. On a timeless row with one value column, the cell's coordinates are the row's own, so the edit writes or removes the row's formula. In an expression, the same `$` marks an absolute reference.
 
 The leading `$` is part of the condition grammar. In an expression, an absolute Variable reference instead places `$` after its name: `Revenue$[Department = "Sales"]`.
 

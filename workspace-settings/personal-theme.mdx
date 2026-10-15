@@ -13,12 +13,15 @@ A theme is intentionally narrow. It sets:
 - **Page and panel colors**, for both light and dark mode.
 - **Text color** ("ink"), for both modes.
 - **One interface accent** color, for both modes.
+- **A heading typeface**, optional, from Source Serif, Newsreader, Fraunces, Zilla Slab, and DM Sans. Without one, headings use cfo.ai's own typeface.
+- **A corner shape**, optional: square, soft (cfo.ai's own shape), or round.
+- **Up to three chart series colors**, optional, for both modes. They replace the first three colors that charts and Canvas blocks draw with, so every saved chart follows your theme.
 
-It does not touch the colors used for data series, or the built-in success and error colors on charts and Table Blocks — those stay consistent across every workspace so a red variance reads as a variance no matter who's looking at it.
+Beyond those series colors, it does not touch the built-in success and error colors on charts and Table Blocks — those stay consistent across every workspace so a red variance reads as a variance no matter who's looking at it.
 
 ## Set a theme
 
-Ask Ari to set a personal theme and describe the look you want, like "give me a deep teal accent with a near-black dark mode." Ari reads your current recipe first (if you have one) and replaces it as a whole — a theme can't be partially patched, so if you only want to change the accent, say so and Ari will carry the rest of your existing recipe forward.
+Ask Ari to set a personal theme and describe the look you want, like "give me a deep teal accent with a near-black dark mode." Ari reads your current recipe first (if you have one) and replaces it as a whole — a theme can't be partially patched, so if you only want to change the accent, say so and Ari will carry the rest of your existing recipe forward. The heading typeface, corner shape, and series colors are part of that recipe: when you ask for one change, Ari carries them forward with the rest, and a recipe that leaves them out removes them.
 
 Give it a short, sentence-case label too, like "Teal dark," so you can recognize it later in Settings.
 

@@ -68,11 +68,18 @@ You need a cfo.ai account with access to the intended workspace. If you do not h
 
 Any harness that supports remote MCP servers can connect. Add `https://api.cfo.ai/mcp` as a custom connector or MCP server in your agent's settings, then sign in with your cfo.ai account when the browser prompt appears.
 
+
 ## How sign-in works
 
 Every client signs in the same way: a browser window opens, you sign in to your cfo.ai account, and you approve the connection. The client then acts as you, in the workspaces your account can open.
 
 Browser sign-in is the only way to authorize a connection. cfo.ai does not issue API keys or access tokens to copy into a project, a script, or an environment variable, and the MCP server is the documented way for outside software to work with a workspace. An app or agent you build connects as a remote MCP client and signs in through the same browser step.
+
+## Approve the connection in the browser
+
+Whichever client you use, the browser opens a page headed **Connect CFO.ai** that says an external MCP client is asking to use your account. Select its **Connect CFO.ai** button while signed in to the cfo.ai account you want the client to use. The page stays valid for 60 minutes and still works if it loads twice or you have several tabs open. If the approval is not recorded, the page says why: no cfo.ai account is signed in to this browser, the page was opened under a different cfo.ai account than the one signed in now, the approval does not match the sign-in request it was sent for, or the page was opened more than 60 minutes ago. Start the sign-in again from your client in those cases.
+
+If a sign-in does not take, ask Ari in cfo.ai what happened. Ari can list your own sign-in attempts to the cfo.ai MCP server over the last 30 days, ten newest first, each as approved, refused with its reason, approved but not completed, or a client that connected under its own name. Nobody else's attempts are shown, not even to a workspace administrator, and a sign-in that never reached the approval page leaves no record.
 
 ## Choose the correct workspace
 
@@ -84,7 +91,7 @@ Writes apply to the selected live workspace. Use a Scenario when you want an ext
 
 The server publishes Ari's public workspace tools, such as `inspect_table_blocks`, `edit_table_blocks`, `inspect_pages`, `edit_pages`, `inspect_canvas_library`, `edit_canvas_blocks`, `inspect_scenarios`, `edit_scenarios`, `edit_dimension_mappings`, `inspect_integrations`, `edit_integrations`, `inspect_skills`, `edit_triggers`, and `inspect_documentation`, plus `list_orgs`. Tools that only make sense inside the cfo.ai app, such as the ones that ask you a question in chat or play a Guide, are not published.
 
-A tool with several actions takes exactly one block named for the action, for example `{"read": {"target": "Operating Plan"}}` for `inspect_table_blocks`. The [agent instructions](/agent-instructions) show the shape.
+A tool with several actions takes exactly one block named for the action, for example `{"read": {"target": "Operating Plan"}}` for `inspect_table_blocks`. The [agent instructions](/agent-instructions) show the shape. A call whose input has the wrong shape is refused with a message that names the field, what it received, and what it accepts there, such as a string of 9 characters where an object with named keys is expected; the message never repeats the value itself.
 
 ## Agent instructions
 

@@ -20,6 +20,8 @@ Mapping rules have no effective dates: a rule applies in every period. A Dimensi
 
 Some rows need a real condition instead of a simple equality, like a set of accounts ("8001 or 8002 maps to Other Income"). Ask Ari to write these as a condition instead of a pair; Ari carries this through into the same formula-style logic used elsewhere in the Model. A rule that spans more than one key at once, such as Account together with Company, needs no condition: Ari matches the pair of items directly. A condition compares the lookup's keys, which are Dimensions such as Account or Company; it cannot test a Variable's value, so an exception list that depends on a number stays a list of items.
 
+When one target is fed by a one-key lookup and a two-key lookup, such as Account alone and Account together with Account ID, a row the two-key lookup has no rule for falls back to the one-key rule, and only a row neither lookup matches goes to the catch-all. A rule Ari saved before this fallback existed keeps its narrower behavior until a mapping change names that row again.
+
 ## Set a catch-all
 
 Every target Dimension can have one **catch-all**: the target item used when no explicit mapping rule matches. Ask Ari to set or clear it. Without a catch-all, an unmatched source item remains unmapped.
@@ -42,6 +44,10 @@ Ask Ari to read a target Dimension's mappings. It reports every lookup feeding t
 In a Table Block whose column shows a mapped Dimension, selecting a cell opens a picker with a **Search \[Dimension] items** field. Picking an item saves that row's assignment in the mapping, so every table that reads the mapping changes with it. The table cannot create a lookup, set a catch-all, or remove rows; ask Ari for those.
 
 Renaming a Dimension item, whether you rename it on a table or Ari renames it, also renames it in the mapping's assignments and in formulas that compare against it, in one change that one undo reverses. Ari's rename receipt says how many mapping rows and formulas moved with it.
+
+## Nest a mapped Dimension with its key
+
+A table that nests a mapped Dimension with its key, such as Department, then Role, shows each Role item once, under the Department its mapping gives it. Role items from a source and Role items entered by hand follow the same rule, so subtotals count each item once. A Role item that no mapping rule matches and that the catch-all does not cover forms no row, and a Department that no Role maps to forms no row either. A Dimension mapped from two different keys pairs each key's items with that key's mapping alone.
 
 ## Share one Dimension across accounting sources
 

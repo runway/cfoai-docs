@@ -18,6 +18,8 @@ You can type while Ari works. A message sent during a turn is **Queued for after
 
 Hover a queued message to edit or delete it before Ari reaches it. Two kinds of queued message cannot be edited, only deleted: a plan approval and a set of answers to Ari's questions. A message that started a turn cannot be edited or deleted; it is already on its way to Ari.
 
+A message that never reaches Ari does not wait forever. After the transcript, the chat shows it with **Not sent.** and the reason: **It waited more than a day without reaching Ari.** when a day passed without delivery, or **Ari could not start a reply, so this message never reached Ari.** when cfo.ai's attempts to start the reply failed. Select **Send again** to send the same text as a new message, or the delete button to remove it. Someone viewing the chat read-only sees neither action.
+
 ## Follow Ari's activity
 
 Ari's reasoning and the actions it takes collect in an **Activity** group under your message. The group opens while Ari works and stays open as long as it is on your screen, so the rows never vanish while you read them. Once you scroll past it, it collapses out of view and stays collapsed when you scroll back. Your own click to open or close a group always wins, and groups loaded from an earlier conversation start collapsed.
@@ -38,7 +40,7 @@ While Ari works, the page follows it to each table it edits. Scrolling the page 
 
 ## Answer Ari's questions
 
-When Ari needs a few details before it can continue, it asks them as a short form in the chat. The form is part of the chat history: it follows the last message at its full height and scrolls with the conversation, so if you have scrolled up when it arrives, select **Scroll to latest messages** to reach it. Fill in the answers you know and select **Dismiss** on any question you would rather not answer; Ari continues without it and the transcript marks that question as **Declined**. **Undo** restores a dismissed question before you send.
+When Ari needs a few details before it can continue, it asks them as a short form in the chat. The form is part of the chat history: it follows the last message at its full height and scrolls with the conversation, so if you have scrolled up when it arrives, select **Scroll to latest messages** to reach it. Fill in the answers you know and select **Dismiss** on any question you would rather not answer; Ari continues without it and the transcript marks that question as **Declined**. **Undo** restores a dismissed question before you send. The form's own **Dismiss** button, beside the submit button, closes the whole form: the answers you already picked are sent, and only the questions still open are declined. When a scheduled Trigger run saved questions at more than one point before you opened its chat, they appear together on one form there, and your one reply carries every answer.
 
 A question that offers **Other…** takes an answer in your own words. While that box is empty, the form says **Type your answer to continue.** (or **Type your answer or attach a file to continue.** when the question accepts a file), and the send button, whether it reads **Submit**, **Submit answers**, or **Next**, stays dimmed. Pressing the dimmed button puts the cursor in the empty box instead of sending.
 
@@ -101,6 +103,8 @@ The list starts compact, with your newest chats behind a **Show more** row. Once
 Open a conversation's menu to **Archive chat**, which hides it from the active list without deleting anything, or **Unarchive chat** to bring it back. A conversation you have not sent anything in yet offers **Discard chat** instead. You can also rename a conversation inline.
 
 A conversation shared with you is read-only: the chat says **You can view this shared conversation, but can't send messages.** Start your own chat to ask Ari about what you see.
+
+A chat opens on its newest messages. Scroll up to read earlier ones: the chat shows **Loading earlier messages…** while it fetches them, and **Earlier messages didn't load.** with a **Load earlier messages** button when that fails. If a saved chat's history cannot be read at all, the chat shows **This chat's history didn't load.** with a **Load history** button.
 
 ## Keyboard shortcuts
 

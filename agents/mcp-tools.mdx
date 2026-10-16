@@ -19,7 +19,7 @@ The cfo.ai MCP server publishes 34 tools: Ari's public product tools plus `list_
 | Tool list | Fixed for each server process. The tool list carries a five-minute private cache hint, and the server advertises `listChanged: false`. When a client's definitions are stale, refresh its tool list or start a new conversation. |
 | Request size | A request body holds at most 1 MiB. A larger one is refused with **The MCP request is too large.** |
 | Batches | JSON-RPC batch requests are refused with **JSON-RPC batches are not supported.** |
-| Rate limit | 60 calls a minute for each tool, per user and workspace. A call past the limit fails with **rate limit exceeded for** followed by the tool name. |
+| Rate limit | 60 calls a minute for each tool, per user and workspace; `list_orgs` has no limit. A call past the limit fails with **rate limit exceeded for** followed by the tool name. |
 
 ## Published tools
 
@@ -61,7 +61,7 @@ A tool marked read-only never changes saved state. The **Actions or fields** col
 | Tool | What it does | Actions or fields |
 | --- | --- | --- |
 | `inspect_integrations` | Read-only. Reads saved connections with their readiness and safe next action, the integration catalog, the saved settings of API and MCP connections, permitted API endpoints, connection-link progress, ingestion status, sync setups, and a connection's saved queries, their rows, and their jobs. `outcomes` also lists the user's own recent sign-ins to this MCP server. | `catalog`, `connections`, `configurations`, `outcomes`, `endpoints`, `connect_progress`, `ingestion`, `sync_setups`, `queries`, `query_results`, `jobs`, `query_deletion_preview` |
-| `edit_integrations` | Opens connection setup for the user; connects, re-links, and deletes connections; edits a saved API or MCP connection's name, address, and authentication type; saves, edits, and runs saved queries and starts and cancels ingestion jobs; starts ingestion; ingests a CSV; saves API and MCP sync setups; chooses synced tables; and sets daily refresh times. | `request`, `connect`, `relink`, `update`, `delete`, `delete_query`, `start_ingestion`, `start_raw_sync`, `save_query`, `set_query_column_role`, `start_query`, `cancel_job`, `apply_query_templates`, `ingest_csv`, `save_setup`, `delete_setup`, `select_source_tables`, `set_refresh_time`, `clear_refresh_time` |
+| `edit_integrations` | Opens connection setup for the user; connects, re-links, and deletes connections and saved queries; edits a saved API or MCP connection's name, and the address and authentication type of one added with a key or token (a connection that signs in through the provider takes a new name only); saves, edits, and runs saved queries and starts and cancels ingestion jobs; starts ingestion; ingests a CSV; saves API and MCP sync setups; chooses synced tables; and sets daily refresh times. | `request`, `connect`, `relink`, `update`, `delete`, `delete_query`, `start_ingestion`, `start_raw_sync`, `save_query`, `set_query_column_role`, `start_query`, `cancel_job`, `apply_query_templates`, `ingest_csv`, `save_setup`, `delete_setup`, `select_source_tables`, `set_refresh_time`, `clear_refresh_time` |
 | `call_connected_api` | Calls one endpoint of a connected third-party API. The server supplies the credentials and enforces permissions. | `connection`, `endpoint`, `grantId`, `pathParams`, `query`, `body` |
 
 ### Workspace, people, and automation

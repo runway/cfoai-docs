@@ -79,7 +79,7 @@ A formula for Actuals or Forecast needs Date in its condition, at the Model's ba
 [Department = "Sales", Date.Month in any]
 ```
 
-The range is chosen by where the formula sits: `default_formulas.actuals` or `default_formulas.forecast` on a row or a column, or in a `variables` entry of `edit_table_blocks`. A formula saved through a `variables` entry gets one Date term at the Model's base grain automatically, whether or not the call also names a table.
+The range is chosen by where the formula sits: `default_formulas.actuals` or `default_formulas.forecast` on a row or a column, or in a `variables` entry of `edit_table_blocks`. A formula saved through a `variables` entry gets one Date term at the Model's base grain automatically, whether or not the call also names a table, because the formula belongs to the Variable and not to a table. Only a formula written on a row or column of a table whose periods are coarser than the base grain is saved at that table's grain; [Create and update formulas](/agents/write-formulas) describes that warning.
 
 ### Read Last close when it matters
 

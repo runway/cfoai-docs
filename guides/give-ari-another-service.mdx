@@ -88,7 +88,7 @@ The service's page lists its setups under **Syncs**, each **Enabled** or **Pause
 
 ## Change a connection's name, address, or authentication
 
-When a service changes its address, or you set up its authentication the wrong way, change the saved connection instead of disconnecting and adding it again. The connection keeps its ID, its tools, its tool permissions, and its sync setups.
+When a service changes its address, or you set up its authentication the wrong way, change the saved connection instead of disconnecting and adding it again. The connection keeps its ID, its tools, its tool permissions, and its sync setups. This applies to a connection you added with a key or token. A connection that signs in through the provider takes a new name only; when its sign-in breaks, use [Reconnect an MCP server](#reconnect-an-mcp-server) instead.
 
 <Tabs>
   <Tab title="Ask Ari">
@@ -96,7 +96,7 @@ When a service changes its address, or you set up its authentication the wrong w
 
     > Change the Light API connection so the key is sent as the Basic username.
 
-    Ari changes the name, provider name, address, and authentication type. A new key or token goes through the secure form Ari hands you, never through the chat.
+    Ari changes the name, provider name, address, and authentication type of a connection you added with a key or token, and only the name of one that signs in through the provider. A new key or token goes through the secure form Ari hands you, never through the chat.
   </Tab>
   <Tab title="By hand">
     In **Settings → Connections**, open the service's **…** menu and select **Edit configuration**. Change the fields you need and save. To replace a key, type it in **Replacement API key**; leave that field blank to keep the saved one. A connection that signs in through the provider takes a new name only. Every field is listed in [Settings](/reference/settings#connections).

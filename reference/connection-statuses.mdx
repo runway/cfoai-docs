@@ -117,6 +117,17 @@ In **Settings → Connections** and on the **MCP** and **API** tabs, a server or
 | **Needs attention** | Something broke; the next step says what to do. |
 | **Unavailable** | The status could not be read. |
 
+An MCP server's row also shows the state of its saved sign-in. The state describes the saved credential, not whether the provider answered or how fresh its data is.
+
+| Sign-in state | Meaning |
+| --- | --- |
+| **Sign-in saved** | The saved sign-in is current. |
+| **Sign-in saved · expiry unknown** | The saved sign-in works, and the provider did not say when it expires. |
+| **Access expired · renewal on next use** | The access token has expired, and cfo.ai renews it the next time it uses the server. Nothing to do. |
+| **Reconnect required** | The provider refused to renew the sign-in. Select **Reconnect**, which opens the provider's sign-in again and keeps the connection and its sync setups. |
+| **Sign-in incomplete** | The server was added but its sign-in never finished. |
+| **Provider access not checked** | The server does not sign in with OAuth, so there is no credential state to show. |
+
 | Next step | When |
 | --- | --- |
 | **Reconnect this source to continue.** | The saved sign-in has no usable token. |

@@ -1,0 +1,88 @@
+---
+title: "Walk someone through a Page with a Guide"
+sidebarTitle: "Create a Guide"
+description: "Have Ari build, run, update, or remove a Guide: a saved, step-by-step walkthrough that points at blocks, table cells, rows, columns, Canvas elements, or parts of the app, with a short card at each step."
+---
+
+Use a Guide to walk someone through a Page one step at a time, such as a new teammate learning your Model or your board reviewing this quarter's numbers. A Guide is a saved walkthrough, or tour. It points at one thing at a time, such as a table row or a chart, with a short card of text beside it. Ari builds, runs, and changes Guides for you; there is no Guide editor in the app. For how Guides relate to Skills and Triggers, see [Skills, Triggers, and Guides](/concepts/automation).
+
+## Create a Guide
+
+Tell Ari who the Guide is for, which Page it covers, and the stops in order, with what each card should say:
+
+> Build a walkthrough of the Board summary Page for a new analyst. Start with a short welcome, then point at the Revenue row of the P&L table and explain where revenue comes from, then the cash chart, then the Hiring plan Page's headcount column. End with a note on where to ask questions.
+
+Ari saves the Guide under a name and tells you what it saved. To try it, ask Ari to start it, as in [Run a Guide](#run-a-guide).
+
+### Choose the kind of Guide
+
+| Kind | Card buttons | Use it for |
+| --- | --- | --- |
+| Tour (the default) | **Back**, **Next**, **Skip tour**, and **Done** on the last step, with progress | Onboarding and feature tours |
+| Walkthrough | **Back**, **Continue**, **Exit walkthrough**, and **Done**, with progress | Narrating an analysis, such as board prep |
+| Explanation | **Got it** | One quick spotlight, opened on request |
+
+A Guide can switch to a set Scenario when it starts, so its numbers match what the cards say. Ari uses the Scenario you are viewing unless you name another.
+
+### What a step can point at
+
+| Target | Example |
+| --- | --- |
+| A whole block on a Page | The cash chart |
+| One cell, row, or column of a Table block, named by its Variables and Dimension items | The Revenue row, the March column, or a Scenario comparison column |
+| One element inside a Canvas block | A KPI tile or a slider. Ask Ari to give the element a stable name when it builds the block, so a Guide can find it. |
+| A part of the app | The **Share** button or the chat list in the sidebar |
+| Nothing | A centered card, for a welcome or a closing note |
+
+A step whose target is on another Page opens that Page first. A step whose target is not on screen when the Guide reaches it, such as a row the table no longer shows, is skipped.
+
+### What a step contains
+
+| Part | What it is |
+| --- | --- |
+| Title | The card's heading |
+| Text | The card's body. Line breaks you include show in the card. |
+| Richer content | Instead of a title and text, a sequence of headings, small labels, and paragraphs |
+| Card position | Above, below, left, or right of the target, or chosen automatically. The card moves if it would not fit. |
+| Card width | Standard, narrow, or narrowest |
+| Step key | A short readable name, such as `roster`, so you can start the Guide at that step later |
+| Action | Optional. The step does something in the app, described below. |
+
+A step can carry one of these actions instead of only pointing:
+
+- Open the chat with suggested prompts to try.
+- Open the Canvas block library with templates already picked.
+- Show the formula behind one table cell.
+- Open a table's **Compare** settings to show where Scenarios are compared. This step is skipped on a phone and for anyone who cannot change the table.
+- Light up a Canvas control, such as a slider, for the reader to try, and move on when it reaches a value you name.
+- Open version history on a recorded change.
+- Walk through the Model: its Scenarios, then its Pages.
+
+## Run a Guide
+
+Ask Ari to start it by name, or at a step:
+
+> Start the Board summary walkthrough.
+
+> Start the onboarding tour at the roster step.
+
+A tour or walkthrough waits for you: select **Start tour** or **Start walkthrough** under Ari's answer. An explanation opens at once. While it runs, use the card's buttons, or ask Ari to go to the next step, go back, or stop. A floating chat moves out of the way of each step and returns when the Guide ends.
+
+If a Guide cannot open, a notice reads **Couldn't open that guide** because the Guide or one of its targets was deleted or is no longer accessible. Ask Ari to update the Guide.
+
+A Guide never starts by itself when someone opens a Page. To offer one:
+
+- Ask Ari to add a button to a Canvas block on the Page that starts the Guide. The button opens a new chat that asks Ari for the Guide, and a tour still waits for its **Start tour** button.
+- Name the Guide when you ask Ari to invite a teammate. Their first visit shows a **Take the tour** button. See [Invite or remove teammates](/guides/invite-teammates).
+
+Saved Guides are not listed in the Help center. A walkthrough or explanation you ran since the app last loaded appears under **Recently viewed** in the Help center, with a button that asks Ari to refresh it with your latest numbers.
+
+## Update or remove a Guide
+
+Ask Ari for the change, such as "Add a step about gross margin after the Revenue step" or "Update the board walkthrough with this month's numbers." Ari saves the Guide again with your changes. To remove one, ask Ari to delete it. To see what you have, ask "Which Guides do we have?"
+
+## Related
+
+- [Skills, Triggers, and Guides](/concepts/automation)
+- [Build a dashboard or board report](/guides/build-a-dashboard)
+- [The cfo.ai interface](/reference/interface#help-center)

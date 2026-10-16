@@ -1,0 +1,62 @@
+---
+title: "Review Ari's formula changes"
+sidebarTitle: "Review Ari's formulas"
+description: "Check that a formula Ari saved changed the right Variable, in the right place and Scenario, and gives the right numbers; read Ari's warnings; and fix or undo the change."
+---
+
+After Ari changes a formula, check four things: the Variable it changed, where the formula applies, the Scenario it landed in, and the numbers it now produces. A formula Ari saves has passed its checks, but only the numbers show that it does what you meant.
+
+## Watch the change on the Page
+
+When the Page that Ari is changing is open, Ari points at each change on the table and explains it in a short note. To see only the finished edits marked instead, turn off **Show Ari's edits as they happen** under **Thinking animation** in **Settings → Ari**. The setting is saved for this browser.
+
+## Read the Formulas card in the chat
+
+With **Show Ari's edits as they happen** turned off, Ari's formula saves in a turn collect under a **Formulas** card in the chat. Expand it to see one row for each save, and expand a row to see one card per formula it saved. Each card shows:
+
+- The Variable's name.
+- Where the formula applies, as pills: an item such as **Sales**, or a Dimension's name, such as **Department**, when the formula applies to every item. A **+ any** pill means it also applies to finer breakdowns under them. **Any Segment** means it applies everywhere.
+- The formula itself.
+- The formula range, **Actuals** or **Forecast**, when the formula is limited to one. A card with no range applies to every period.
+
+The card does not name the Scenario. Unless you named another, Ari saves in the Scenario your chat is in, which the Scenario picker in the sidebar shows. If you named another Scenario, select it in the picker to check the change.
+
+## Check the formula in the table
+
+Open the formula the way you would to edit it, for example by pointing at the row name and selecting the **fx** button, **Edit variable formula**. Read the editor's title: it names the Variable and where the formula applies. To see every row's formula at once, show the formula columns; see [Show or hide the formula columns](/guides/write-a-formula#show-or-hide-the-formula-columns).
+
+## Check the numbers
+
+Ask Ari to check the result against what you expect:
+
+> Check the resulting values in the P&L table and compare them with Revenue minus Cost of Goods Sold.
+
+> Verify this formula for Sales and Engineering for the next three months.
+
+Look in particular at:
+
+- The first Forecast month, where a formula that reads the previous month starts from the last Actuals month.
+- The totals above a breakdown, which should match the rows beneath them.
+- A few items of each Dimension the formula applies to, not only the first.
+
+## Read Ari's warnings
+
+Some saves come with a warning. The formula saved, but it may not do what its wording suggests, such as a filter that matches no item or an imported Variable read in Forecast months. If a number looks wrong right after a change, ask:
+
+> Read back any warnings from that change.
+
+Every refusal and warning is listed in [Formula errors and warnings](/reference/formula-errors#aris-save-warnings).
+
+## Fix or take back a change
+
+- To find the cause before anything changes, ask Ari: "Explain why this formula works for Sales but not Marketing. Do not change anything yet."
+- To correct the change, describe the formula you want and where it applies, then check the numbers again.
+- When Ari changed several formulas at once, ask which changes were saved and whether any were refused.
+- To undo the change, ask Ari, "Undo that last change," or open **Version history** from the clock icon in the Page header, select the change's **…** actions button, and choose **Undo this change**. **⌘ Z** does not undo Ari's changes. See [Undo a change or restore an earlier version](/guides/undo-changes).
+
+## Related
+
+- [Have Ari write, change, or explain formulas](/guides/change-formulas-with-ari)
+- [Fix a formula that shows an error or a wrong number](/guides/fix-formula-errors)
+- [Formula errors and warnings](/reference/formula-errors)
+- [Scenarios, Snapshots, and version history](/concepts/scenarios)

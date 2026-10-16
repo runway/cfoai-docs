@@ -1,0 +1,84 @@
+---
+title: "Find a Page, number, or file"
+sidebarTitle: "Find things"
+description: "Find a Page (sheet or tab), a table, a Variable, a chat, or a file Ari made: workspace search with ⌘ K, the sidebar, and asking Ari. Also what to check when a Page, a chat, or your Model seems to be gone."
+---
+
+Use workspace search, the sidebar, or Ari to find a Page, a number, a chat, or a file Ari made for you, such as the P&L Ari built last week or the workbook it exported. If something you expect is missing, see [If a Page or your Model seems to be gone](#if-a-page-or-your-model-seems-to-be-gone).
+
+## Search your workspace
+
+<Steps>
+  <Step title="Open search">
+    Press **⌘ K** (**Ctrl K** on Windows and Linux), or select **Search** at the top of the sidebar. Before you type, the window lists the Pages you opened recently in this browser.
+  </Step>
+  <Step title="Type what you remember">
+    Type part of what you remember:
+
+    - A Page title, or a word from a Page's text
+    - A table or chart title
+    - A Variable, such as Revenue
+    - A Dimension, or one of its items, such as a customer's name
+    - A chat's title
+    - The name of another workspace
+
+    `rev` finds Revenue, and a small typo is forgiven in longer words.
+  </Step>
+  <Step title="Open the result">
+    Use **↑** and **↓** to move and **Enter** to open, or **⌘ Enter** to open it in a new tab. A Variable opens the table that shows it, with its row marked. A block or a passage of text scrolls into view.
+  </Step>
+</Steps>
+
+Search looks in the Scenario the sidebar shows and lists only what you can open. It finds a Variable or Dimension only when a table on a Page shows it; to list every one, [ask Ari](#ask-ari-where-something-is). Search is not available while you view a past version. For every result group and matching rule, see [Workspace search](/reference/interface#workspace-search).
+
+## Browse the sidebar
+
+The sidebar's **Model** section lists the Pages of the Scenario chosen in its Scenario picker. To see the subpages inside a Page, point at the Page and select the arrow that replaces its icon. The **Chats** section lists your chats, newest activity first.
+
+On a Page, select the Page's name in the Page header to open the same list of Pages with a **Search pages** field.
+
+## Ask Ari where something is
+
+Ari can search your Model and reply with links you can open:
+
+> Where is our P&L?
+
+> Which Page shows headcount by department?
+
+> Where is the Gross margin Variable used?
+
+> List every Variable and Dimension in the Model.
+
+Ari answers with links to the Pages it finds, and can tell you which tables and Pages use a Variable. Its list of Variables and Dimensions includes the ones no table shows, which workspace search cannot find. Ari can also find a file from your other chats when you name it or describe it, such as "the board report PDF you made last Tuesday."
+
+## Find a file Ari made
+
+A file Ari makes for you, such as an Excel workbook, a PDF, or an image, is in the chat where Ari made it: a download card under the answer that ends that turn.
+
+1. Open the chat. Search for its title with **⌘ K**, or look in the **Chats** section.
+2. Scroll to Ari's answer and select the file's card to download it.
+
+If you do not remember the chat, ask Ari in any chat to find the file by name or by what it holds.
+
+If Ari mentions a file but no card appears under its answer, the file was not handed over. Ask Ari to send you the file in the chat. A download link Ari sent you, such as one in a scheduled run's email, stops working after a while, but the card in the chat keeps working. See [Download a file Ari made](/reference/chat#download-a-file-ari-made) for how long each kind of link lasts.
+
+## If a Page or your Model seems to be gone
+
+Check these in order:
+
+1. Check the Scenario. The sidebar lists the Pages of the Scenario in its Scenario picker, and a Page built in a Scenario does not appear in Main until that Scenario is merged. Open the picker in the **Model** section and choose the Scenario where the Page was built, or **Main Scenario**.
+2. Check the workspace. If you belong to more than one workspace, you may be in another one. Open the account menu at the bottom of the sidebar and choose the workspace under **Workspaces**.
+3. Check the sidebar itself. If the **Model** section is closed, select **Model** to open it. If the sidebar is folded to a narrow strip, press **⌘ \\** (**Ctrl \\**) or select **Expand navigation**. On a phone, select **Open navigation**.
+4. Check whether you are viewing a past version. If a banner says so, select **Back to current**.
+5. Check for a deletion. Deleting a Page is recorded in version history. Open any Page, select **Version history** in its header, filter to **Pages and blocks**, and undo the deletion to bring the Page back. See [Undo a change or restore an earlier version](/guides/undo-changes).
+
+In a new workspace, the **Model** section appears once the workspace has its first Page.
+
+If a chat is missing, it may be archived: the chat list shows active chats by default, so open the list's filter and choose **Archived** or **All**. Your chat list never shows a teammate's chats, because each chat belongs to the person who started it. Ask them to share the Page the chat built; see [Sharing and access](/concepts/sharing-and-access).
+
+## Related
+
+- [The cfo.ai interface](/reference/interface)
+- [Pages, Table blocks, and Canvas blocks](/concepts/pages-and-blocks)
+- [Ask Ari about a number](/guides/ask-about-a-number)
+- [Keyboard shortcuts](/reference/keyboard-shortcuts)

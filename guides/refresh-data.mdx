@@ -1,0 +1,61 @@
+---
+title: "Refresh data or change when it refreshes"
+sidebarTitle: "Refresh or schedule a sync"
+description: "Sync QuickBooks or another connected source now (there is no Sync now button), stop a running sync, re-import past months after you fix them in your books, and change the time a connection refreshes each night."
+---
+
+Use this guide when you need new numbers before the nightly sync, when you corrected a past month in your books, or when a source publishes its data after the nightly run and lands a day late. Integrations sync once a day on their own. Uploads, Google files, and MCP servers work differently; see [Sources that refresh differently](#sources-that-refresh-differently).
+
+## Refresh a connection now
+
+There is no **Sync now** button. Ask Ari:
+
+> Refresh QuickBooks and tell me when the import has finished.
+
+A line above the message box reads **Syncing** with the connection's name. Select it to see the sync's two steps, **Sync source data** and **Run saved queries**, with **View connection** and **Stop**. You can keep working. When the sync finishes or fails, Ari tells you in the same chat.
+
+A refresh reruns the connection's saved queries as they are. If the refresh brings in a table nothing reads yet, ask Ari for a saved query over it.
+
+## Stop a running sync
+
+Select the **Syncing** line above the message box, then **Stop**. The connection reads **Stopped**, with **This sync was stopped before it finished.** Nothing broke, and the data from the last finished sync stays. Select **Retry** on the connection when you want to run it again.
+
+## Re-import past months
+
+The nightly refresh does not always re-read your whole history. QuickBooks Online re-reads the last three months, so a correction to an older month reaches cfo.ai only when you re-import the full history. Xero re-reads its whole range every night. Sources that sync through Fivetran keep each table's full history.
+
+To re-import QuickBooks Online or Xero, ask Ari:
+
+> I corrected last year's books in QuickBooks. Re-import the full history.
+
+To reach further back than January 1 of last year, name the first year, 2015 or later:
+
+> Re-import QuickBooks' full history from 2021.
+
+The months a full-history import brings in stay through later refreshes. A full-history import is slower than a routine refresh.
+
+## Change when a connection refreshes
+
+All connections refresh in a shared nightly run that starts at 02:00 UTC, which is 7 PM Pacific the evening before during daylight saving time. If a source publishes the day's data after that, give the connection its own time:
+
+> Refresh QuickBooks at 6:30 AM Pacific every day.
+
+Ari saves the time and time zone on the connection. From the next nightly run, the connection refreshes once a day at that time and reruns its saved queries when the refresh finishes. A time you set this morning takes effect tomorrow. To return the connection to the shared run, ask Ari to clear its refresh time. Ari tells you each connection's refresh time when you ask about your connections.
+
+## Sources that refresh differently
+
+- CSV uploads never refresh. Upload the new version; see [Upload a CSV as a data source](/guides/upload-a-csv#replace-the-file-with-a-newer-version).
+- Google Sheets and Google Drive files are re-read every night, and when you ask Ari. An unchanged file starts no update.
+- MCP servers and APIs are called live when Ari needs them. A sync setup Ari saved for one refreshes nightly like an integration, and can take its own time.
+
+## If a refresh does not run
+
+If the workspace has no active plan, or its billing is locked, the nightly refresh skips the workspace. A refresh you ask for gets the answer **data syncing is paused for this workspace — choose a plan, or settle the outstanding payment, to resume syncing**. Syncing resumes as soon as the workspace has an active plan.
+
+If the sync fails, the connection shows why and offers the fix. See [Fix a connection that needs attention](/guides/fix-a-connection).
+
+## Related
+
+- [How connected data reaches your Model](/concepts/connected-data#when-data-updates)
+- [How imported data loads](/reference/imported-data#refresh-schedule)
+- [Connection statuses and actions](/reference/connection-statuses)

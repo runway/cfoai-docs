@@ -1,0 +1,62 @@
+---
+title: "Map one Dimension's items to another"
+sidebarTitle: "Map Dimensions"
+description: "Group GL accounts into P&L lines, or two systems' department names into one list, by mapping each item of one Dimension to an item of another, with Ari or by hand in a table."
+---
+
+Use a mapping when several labels should report as one category, such as grouping your accounts into P&L lines, or two systems' department names into one list of departments. To understand how mappings work, see [Dimension mappings and shared Dimensions](/concepts/dimension-mappings).
+
+<Tabs>
+  <Tab title="Ask Ari">
+    Name the items and where each one goes:
+
+    > Map account 5001 to COGS and account 6001 to Payroll in Reporting Line.
+
+    Or describe the structure you want and let Ari propose the assignments:
+
+    > Group our GL accounts into these P&L lines: Revenue, COGS, Payroll, Software, Rent, and Other. Put any account that doesn't fit in Other.
+
+    If the target Dimension does not exist yet, Ari creates it with the lines you named as its items. Mapping an item that is already mapped replaces its assignment. Each change saves every row it names, or none of them.
+
+    Ari can also do what the table cannot:
+
+    - Map several items with one condition: "Map accounts 8001 and 8002 to Other Income."
+    - Map by a pair of items: "Map account 6000 to Payroll for the US company and to Contractors for the UK company."
+    - Set or clear the catch-all: "Set the catch-all for Reporting Line to Other."
+    - Remove rows or a whole mapping: "Unmap account 5001," or "Remove the mapping from Account to Reporting Line."
+
+    To check a mapping before you change it, ask:
+
+    > Show me how Account maps to Reporting Line, and which tables use it.
+
+    Ari lists every lookup that feeds the target, with its rows, and every table that shows, groups by, or calculates from the mapping.
+  </Tab>
+  <Tab title="By hand">
+    <Steps>
+      <Step title="List the source items">
+        Add a new, empty Table block to a Page; see [Create and organize Pages and blocks](/guides/create-pages-and-blocks). Select **Add row**, search for the source Dimension, such as Account, and select it. Choose **List dimension items**. Each account becomes a row, and because the table holds no Variables, it has no months.
+      </Step>
+      <Step title="Add the target as a mapping column">
+        Select **Add column** and type the target Dimension's name, such as Reporting Line. Select it, or select **Create dimension:** with the name to create a new one. Choose **Add as mapping**.
+      </Step>
+      <Step title="Assign each row">
+        Select a cell in the mapping column. In the picker, search the target's items and choose one, or type a new name and select **Add** with that name.
+
+        The cell saves that row's assignment in the mapping, and every table that reads the mapping changes with it.
+      </Step>
+      <Step title="Repeat for each row">
+        Fill in every row you want to map. A row you leave blank stays unmapped.
+      </Step>
+    </Steps>
+
+    To change a column you already added, right-click its header and set **Use as** to **Mapping** or **Segmentation**. For a catch-all, a condition, or removing a mapping, ask Ari.
+  </Tab>
+</Tabs>
+
+To map two companies' accounts into one reporting structure, map each company's Account Dimension into the same target; see [Model several entities and consolidate them](/guides/consolidate-entities).
+
+## Related
+
+- [Dimension mappings and shared Dimensions](/concepts/dimension-mappings)
+- [Build a Table block by hand](/guides/build-a-table)
+- [Get your P&L, balance sheet, and cash flow statement](/guides/build-financial-statements)

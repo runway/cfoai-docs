@@ -1,0 +1,99 @@
+---
+title: "Build a budget and compare it with actuals"
+sidebarTitle: "Budget vs. actuals"
+description: "Build an annual or department budget, compare each closed month's actuals with it, show the variance in dollars and percent, and have Ari explain the largest differences."
+---
+
+Ask Ari to build a budget, for the year or by department, and then compare each closed month's actual results with it. You see the variance in dollars and percent, and the reasons behind the biggest differences. Actuals come from your connected accounting system; see [Connect QuickBooks, Xero, NetSuite, or Rillet](/guides/connect-accounting).
+
+## Build the budget
+
+<Tabs>
+  <Tab title="Ask Ari">
+    Describe the budget and where its numbers come from:
+
+    > Build a 2027 operating expense budget by department as its own Variables, starting from this year's actuals plus 10%.
+
+    Or attach the budget you already have:
+
+    > Load the attached board-approved budget as Budget Variables by department and month.
+
+    Ari labels every number it had to assume. See [Attach files to a chat](/guides/attach-files).
+  </Tab>
+  <Tab title="By hand">
+    <Steps>
+      <Step title="Add a budget Variable">
+        On a table with months, add a row and create a Variable such as `Budget Operating Expense`; see [Build a Table block by hand](/guides/build-a-table). To budget by department, break it down by Department; see [Break a number down](/guides/break-down-a-number).
+      </Step>
+      <Step title="Enter the budget">
+        Type or paste the monthly amounts into the budget rows; see [Enter, paste, and clear values](/guides/enter-values).
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+For a budget you compare every month, keep it in its own Variables, such as Budget Operating Expense, beside the Variables that hold your actuals. The budget then stays as you entered it while actuals keep arriving, and the variance is a formula on the same table. To keep an approved budget exactly as it was on the day it was approved, also save a Snapshot; see [Save a plan as a Snapshot](/guides/save-a-snapshot).
+
+## Compare actuals with the budget
+
+<Tabs>
+  <Tab title="Ask Ari">
+    > Add a budget vs. actuals table for operating expenses by department, with Actual, Budget, Variance, and Variance %.
+
+    Ari adds the variance as formulas on the table, so it updates when new actuals arrive.
+  </Tab>
+  <Tab title="By hand">
+    <Steps>
+      <Step title="Show actuals and budget on one table">
+        Add the actual Variable and the budget Variable as rows on the same table.
+      </Step>
+      <Step title="Add the variance">
+        Add a row named `Variance` with this formula; see [Write a formula](/guides/write-a-formula):
+
+        ```text
+        `Operating Expense` - `Budget Operating Expense`
+        ```
+      </Step>
+      <Step title="Add the variance percentage">
+        Add a row named `Variance %` with this formula, and format it as a percentage; see [Format and arrange a table](/guides/format-a-table):
+
+        ```text
+        if(`Budget Operating Expense` <> 0, (`Operating Expense` - `Budget Operating Expense`) / abs(`Budget Operating Expense`), null)
+        ```
+
+        Dividing by the budget's absolute value keeps the sign right for a negative budget. A month with a budget of 0 has a variance but no percentage, so the cell stays blank.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+Variance is actual minus budget. For a cost, a positive variance means you spent more than you budgeted; for revenue, it means you earned more.
+
+## Compare after each month-end close
+
+A month shows its actuals once your books for it are closed and **Last close** has moved past it; see [Set Last close and date defaults](/guides/set-dates-and-last-close). Compare complete months. When you ask Ari, it uses the latest month that both the actuals and the budget cover, and it labels a comparison of a month that is not complete.
+
+To read the current month before it closes, use the built-in **Flash report** Skill, which compares the month so far with your plan; see [Turn on a built-in Skill](/guides/turn-on-built-in-skills).
+
+## Explain the largest differences
+
+Ask Ari about the variance after each close:
+
+> Compare last month's operating expenses with our budget by department. Explain the five largest differences and tell me which ones appear likely to repeat.
+
+> Explain the budget-to-actual gap for operating expense as a waterfall.
+
+Ari reports the largest differences with the accounts, teams, or transactions behind them, and labels which explanations are supported by your data and which are guesses. Without an approved budget, Ari can compare with your forecast or a draft plan, and says that the comparison is a what-if.
+
+## Keep another version of the budget in a Scenario
+
+Use a Scenario to try other versions of the plan, such as a budget with slower hiring. A Scenario reads everything it does not change from Main, including new actuals. Values you want to keep fixed must be entered in the Scenario itself; see [Scenarios, Snapshots, and version history](/concepts/scenarios).
+
+To compare a budget that lives in a Scenario, show the Scenario beside Main on the table with **Compare**, and turn on **Variance** and **Variance %**; see [Compare Scenarios side by side](/guides/compare-scenarios).
+
+## Related
+
+- [Get your P&L, balance sheet, and cash flow statement](/guides/build-financial-statements)
+- [Compare Scenarios side by side](/guides/compare-scenarios)
+- [Actuals, Forecast, and Last close](/concepts/actuals-and-forecast)
+- [Ask Ari about a number](/guides/ask-about-a-number)

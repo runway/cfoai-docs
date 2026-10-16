@@ -1,0 +1,83 @@
+---
+title: "Totals, aggregation, and time rollups"
+sidebarTitle: "Totals and rollups"
+description: "How cfo.ai adds numbers up: breakdown totals on parent rows, summary columns on a table, time rollups for quarters and years, and the aggregation of imported rows. Why percentages are not summed, and why a quarterly view can show zeros."
+---
+
+cfo.ai adds numbers up in four places, and each one follows its own arithmetic. Knowing which kind of total you are looking at explains why a year column can add up monthly percentages, or why a quarterly view can show zeros:
+
+| Kind of total | Where you see it | How it calculates |
+| --- | --- | --- |
+| Breakdown total | A parent row above its breakdown, such as Revenue above its products | A formula saved with the table that adds up the rows directly beneath it |
+| Summary column | A total column at the end of a group of columns, headed **SUM**, **LAST**, or **TOTAL**, for example | A summary of the cells shown in the group, on that table only; no formula is saved |
+| Time rollup | Quarter, half-year, and year cells | A formula of the Variable's own at each coarser grain: the sum, last value, or average of its months |
+| Source aggregation | A Variable that reads a connected system | How the source's rows in one period combine into one value |
+
+## Breakdown totals: parent rows add up the rows beneath them
+
+When a table breaks a number down, such as Revenue by Product and then Customer, each row above the bottom rows adds up the rows directly beneath it. Each customer row adds its lines, each product row adds its customers, and the Revenue row adds its products. These sums are ordinary formulas that cfo.ai saves for you, one for each level, and you can open them from the row.
+
+When the bottom rows hold numbers you typed, cfo.ai also saves a formula of 0 on them, which every typed number overrides. A blank bottom row then counts as 0, and every total still adds up. Because each level adds the level beneath it, a change on any row reaches every total above it: set one line to 0, and its customer, its product, and Revenue all go down. A line that appears under two customers is counted under each of them.
+
+When adding up is the wrong arithmetic, give the parent its own formula. Revenue per customer, for example, is total revenue divided by customer count, not a sum; a formula you write on a parent replaces the sum at its level, and cfo.ai keeps your version. Removing a level from the table removes that level's sum, and the level above then adds up the next level that remains.
+
+Not every Variable gets these formulas:
+
+- Text, date, true-or-false, and ID Variables get neither the sums nor the 0.
+- An imported Variable gets no 0, because its bottom rows read the source.
+- A formula of your own on the Variable's row gives every row its value, so the sums and the 0 are removed.
+- A formula you write on one bottom row wins in that row only; the other rows keep the 0, and every total keeps its sum.
+- A default for every child of one parent, such as every customer under one product, covers that parent's children alone and saves no totals.
+
+A table of weeks in a monthly Model gets the same sums at week grain. A table that is saved without changing which levels it shows, for example after sorting or formatting, changes no formulas.
+
+## Percentages and ratios are not added up
+
+Three rates of 5% do not make a rate of 15%, so a Variable whose own format is a percentage is never summed above its breakdown. Each row above the bottom rows gets one of two formulas instead:
+
+- The bottom rows' formula, calculated from the row's own inputs, when one formula calculates the bottom rows and everything it reads has a value on that row. A margin of `Profit / Revenue` above the segments then reads total profit over total revenue: the ratio of the totals.
+- A blank everywhere else. That covers bottom rows that hold typed-in rates, bottom rows that several formulas calculate, and a formula that needs the row's own item of a Dimension the row does not have. cfo.ai does not average rates, because no rate for the whole follows from the parts' rates without weights.
+
+A rate you type on one bottom row blanks the rows above it; remove it, and the formula returns.
+
+The Variable's own format decides this, not a table's. Formatting a row as a percentage on one table changes only how it looks there, and the Variable keeps adding up. To make a ratio stop adding up, ask Ari to make the Variable a percentage. A ratio written with no time in its formula, such as `` iferror(Revenue / `Paying customers`, NULL) ``, is right at every level and in every period, quarters and years included.
+
+## Summary columns: total columns at the end of a group
+
+A summary column summarizes the cells shown in its column group, such as the months under each year, on that one table. It saves no formula, so it never changes a number anywhere else. Its header names the summary it uses, such as **SUM**, **AVG**, or **LAST**. The **None** summary is headed **TOTAL** and shows the Variable's own value for the whole group, such as its year value beside its months. Every summary, and the one each table starts with, is listed in [Table block controls and messages](/reference/table-blocks#total-columns). To change a column's summary, see [Format and arrange a table](/guides/format-a-table).
+
+For a full-year total, the two most useful summaries differ. **Sum** adds the months the table shows. **None** shows the Variable's own year value, which comes from its time rollup or from a formula that applies to years. They agree for a flow such as revenue when the table shows all twelve months. They differ for a balance, for a ratio, and for a table that shows part of a year. A year column on Sum adds up monthly percentages, which is wrong; on None, a margin written with no time in its formula shows the year's profit over the year's revenue.
+
+## Time rollups: how months become quarters and years
+
+A formula written for months fills month cells only. Quarter, half-year, and year cells read the Variable's **time rollup**: a formula of its own at each coarser grain that combines the months.
+
+| Rollup | What a quarter or year shows | Fits |
+| --- | --- | --- |
+| **SUM** | The months added up | Flows, such as revenue and expenses |
+| **LAST** | The last month's value | Balances and counts, such as cash and headcount |
+| **AVERAGE** | The average of the months | Means, such as average deal size |
+
+**LAST** keeps a missing closing month empty instead of borrowing an earlier month's value.
+
+When Ari adds a new number to a monthly table, it gives the Variable a rollup in the same save. It uses **SUM** in most cases, and **LAST** for a Variable that takes the last value of its source rows, such as a balance. Some Variables get no rollup: a percentage, text, a date, a true-or-false value, and a number aggregated another way. A Variable whose formula has no time in it gets none either, because that formula calculates quarters and years directly. A Variable you create by hand from a table gets no rollup. Ask Ari to add or change a Variable's rollup.
+
+## Why a quarterly view shows zeros
+
+A table that shows quarters or years reads each Variable's quarter or year value. A Variable with no time rollup, and no formula that applies at that grain, has no such value. Its quarter and year cells show 0, or a blank for text and dates. cfo.ai does not add up the months on its own. When Ari reads such a cell, it reports that the Variable has no time rollup instead of treating the 0 as a total.
+
+To fix it, ask Ari to give the Variable a rollup, such as **SUM** for revenue or **LAST** for cash. Or show the months on the table with summary columns, which add up the months shown without a rollup.
+
+## Source aggregation: how imported rows become one value
+
+A Variable that reads a connected system combines the source rows that fall in each period by its **aggregation**, a setting on the Variable. Sum adds the rows, which is right for transaction amounts. Last takes the latest row, which is right for a balance or for an employee's current department. The right setting depends on the source: changing every Variable to Last would break the sums of a transaction ledger. See [How imported data loads](/reference/imported-data).
+
+Formulas can also combine values on purpose. `sum(Revenue[Department in any])` adds up every department's revenue, and `average`, `min`, `max`, `count`, `median`, `first`, and `last` work the same way. If Sales has 50, Marketing 30, and Engineering 20, the sum is 100, the average is about 33.33, and the median is 30. Every aggregation function is listed in [Formula functions](/reference/functions).
+
+## Related
+
+- [How formulas work](/concepts/formulas)
+- [Variables and Dimensions](/concepts/variables-and-dimensions)
+- [Actuals, Forecast, and Last close](/concepts/actuals-and-forecast)
+- [Break a number down](/guides/break-down-a-number)
+- [Format and arrange a table](/guides/format-a-table)

@@ -1,0 +1,123 @@
+---
+title: "Create and organize Pages and blocks"
+sidebarTitle: "Create and organize Pages"
+description: "Create, rename, nest, reorder, and delete Pages, use a Page with subpages as a folder, keep the Pages Ari creates in order, and add, move, copy, or delete the Table, Text, and Canvas blocks on a Page."
+---
+
+Use this guide to set up the Pages your team reads, such as a Board Page with one subpage per meeting, and to arrange the blocks on each Page. A Page is a report made of blocks. To learn what Pages and blocks are, read [Pages, Table blocks, and Canvas blocks](/concepts/pages-and-blocks).
+
+You need a desktop browser. A phone browser shows Pages read-only.
+
+## Create a Page
+
+<Tabs>
+  <Tab title="Ask Ari">
+    Name the Page and, if it belongs inside another Page, name that one too:
+
+    > Create a Page called Board pack inside the Plans Page.
+
+    Ari gives each Page it creates an icon and a color. Ari can also rename a Page, change its icon, move it under another Page or out to the top level, or delete it.
+  </Tab>
+  <Tab title="By hand">
+    <Steps>
+      <Step title="Create the Page">
+        In the sidebar's **Model** section, select the **+** button, **New page**. cfo.ai creates a Page named **New Page** and opens it.
+
+        To create a Page inside another one, point at that Page in the sidebar and select its **+** button, **New subpage**.
+      </Step>
+      <Step title="Name it">
+        Click the title at the top of the Page, type a name, and press **Enter**.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+A workspace with no Pages yet has no **Model** section. Its empty screen reads **Ready to model, [your name]?** Choose **Create with Ari**, or choose **Add block** and a block type to create the first Page with that block on it.
+
+## Rename a Page
+
+Click the title at the top of the Page, type, and press **Enter**. Press **Esc** to cancel. You can also double-click the Page in the sidebar, or select it and press **F2**.
+
+Clicking the Page name in the Page header does not rename it. It opens the list of Pages so you can switch to another one.
+
+## Change a Page's icon
+
+Select the icon beside the Page name in the Page header. In the picker, search with **Search icons**, pick a color and a category, select **Shuffle icon** for a random one, or select **Remove page icon**.
+
+## Put Pages in folders by nesting them
+
+cfo.ai has no folders. A Page that holds other Pages works as one: create a Page such as **Board** and put a subpage inside it for each meeting. You can ask Ari to do the moving:
+
+> Move the March, April, and May board Pages inside a new Page called Board.
+
+By hand:
+
+- To nest a Page, drag it onto another Page in the sidebar. Its subpages move with it.
+- To reorder Pages, drag a Page between two others. While you drag, move the pointer left or right to choose how deeply the Page nests.
+- To use the keyboard, select a Page in the sidebar and press **⌥ ↑** or **⌥ ↓** to move it among its neighbors, **⌥ →** to nest it under the Page above it, or **⌥ ←** to move it out one level. On Windows and Linux, use **Alt**.
+- To show or hide a Page's subpages, point at the Page. Its icon turns into an arrow; select it (**Expand subpages** or **Collapse subpages**).
+
+## Keep the Pages Ari creates in order
+
+Ari creates Pages as it builds, so tell it where new work goes before it starts:
+
+> Put any new Pages you create today inside the Q3 forecast Page.
+
+To make that a standing instruction, see [Teach Ari your company's conventions](/guides/teach-ari). Ari can also move the Pages it already created, or delete the ones you no longer need; name them in your request. Ari usually gives a subpage the same icon color as its parent, and Pages on one subject a shared color, so related Pages stand out together in the sidebar.
+
+While Ari is still writing a Page, its sidebar row shows a mark labeled **Ari is building this page**, and the Page header shows **Building…**. **Add block** stays hidden on that Page until Ari finishes.
+
+## Delete a Page
+
+Point at the Page in the sidebar and select its trash button, **Delete page**.
+
+- The Page and its blocks are deleted. Its subpages move up one level and stay.
+- When you are viewing a Scenario other than Main, the Page is deleted in that Scenario only. Main keeps it.
+- Most deletes happen without a question. cfo.ai asks first only when the Page holds the table where a Variable or Dimension was created and something else still uses it. See [Delete a table that other content uses](#delete-a-table-that-other-content-uses).
+
+To bring a Page back, press **⌘ Z** (**Ctrl Z**) in the same browser tab, or undo the change in version history. See [Undo a change or restore an earlier version](/guides/undo-changes).
+
+## Add a block to a Page
+
+- Select **Add block** at the bottom of the Page and choose **Table block**, **Text block**, or **Canvas block**.
+- To add a block in a particular place, point at the left edge of the block above that place and select the **+** button, **New block below**. Choose **Table**, **Text**, or **Canvas**.
+- On an empty Page, select one of the **Table block**, **Text block**, or **Canvas block** cards.
+
+The block menu has no chart block. Ask Ari for a chart, and it builds one in a Canvas block; see [Change a chart or Canvas block](/guides/change-a-visual). To build a table, see [Build a Table block by hand](/guides/build-a-table).
+
+## Move, copy, or delete a block
+
+Point at the left edge of a block to show its handle, a grip of six dots. Drag the handle up or down to reorder the block. Click the handle to open the block menu; with a block selected, **Shift F10** opens it too.
+
+- To move the block to another Page, choose **Move to page**, then a Page, or **New page** to move it to a new one.
+- To copy the block, choose **Duplicate block**. A copy of a table shows the same Variables, not new ones, so a value you type in either table appears in both. To try different numbers without changing the plan, use a Scenario; see [Test a decision in a Scenario](/guides/test-a-decision-in-a-scenario).
+- To delete the block, choose **Delete block**.
+
+Moving a block, on its Page or to another Page, keeps all its settings. Deleting a block and building it again does not.
+
+There is no command to copy a whole Page. Duplicate its blocks and move them to a new Page.
+
+### Delete a table that other content uses
+
+Each Variable and Dimension you create on a table has that table as its original table. When you delete a table or a Page:
+
+- A Variable or Dimension that another table still shows is kept. One of those tables becomes its original table.
+- One that no other table shows is deleted with the table. If formulas, other blocks, or Canvas blocks still use it, cfo.ai first asks **Delete variable or dimension?** and counts what would break. Choose **Cancel** to keep everything, or **Delete anyway**. See [Removing and deleting](/reference/table-blocks#removing-and-deleting).
+
+To keep a Variable while you remove its table, first add it to another table, or move the table to another Page instead of deleting it.
+
+## Write and format text in a Text block
+
+Click into a Text block and type. The text saves as you type.
+
+Select some text to show the formatting toolbar: **Heading** (**Heading 1**, **Heading 2**, **Heading 3**, or **Normal**), **Bold**, **Italic**, **Underline**, **Strikethrough**, **Code**, **Link**, and **Bullet list**. **Link** asks for a web address; select it on linked text to remove the link. **Add selection to chat** hands the selected text to Ari, for example to rewrite it.
+
+A link to a Page in this workspace opens that Page in the app. **⌘**-click, **Ctrl**-click, or **Shift**-click opens a link in a new tab.
+
+## Related
+
+- [Pages, Table blocks, and Canvas blocks](/concepts/pages-and-blocks)
+- [Build a Table block by hand](/guides/build-a-table)
+- [Build a dashboard or board report](/guides/build-a-dashboard)
+- [Keyboard shortcuts](/reference/keyboard-shortcuts#pages-and-blocks)
+- [The cfo.ai interface](/reference/interface)

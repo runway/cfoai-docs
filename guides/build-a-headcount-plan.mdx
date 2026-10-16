@@ -1,0 +1,54 @@
+---
+title: "Build a headcount plan"
+description: "Turn your HR system's employee records, or an uploaded roster, into a roster and a monthly headcount and payroll table, then add planned hires and see what they cost."
+---
+
+Ask Ari for a headcount plan to see who is employed each month, what they cost, and what planned hires will add. Ari builds a headcount Page from your employee records, with the formulas behind every number.
+
+Before you start, connect your HR or payroll system, such as Rippling, or upload an employee roster as a CSV; see [Connect payroll, HR, CRM, payments, or a database](/guides/connect-other-sources) or [Upload a CSV as a data source](/guides/upload-a-csv). Then set Last close to your last closed month, so the months in your books read the records and later months read your plan; see [Set Last close and date defaults](/guides/set-dates-and-last-close).
+
+<Steps>
+  <Step title="Ask Ari for the plan">
+    > Build a headcount plan by department from our Rippling data, with loaded payroll cost.
+
+    Ari reads the connection's fields and finds what the plan needs:
+
+    - Employee ID, which tells people apart. Two people with the same name stay two people.
+    - Start date and termination date, which decide who is employed in each month. An empty termination date means the person is still employed.
+    - Pay and how it is paid: annual, monthly, or hourly. Hourly pay needs an hours assumption, which Ari keeps as an input you can edit.
+    - Department, which groups people on the monthly table.
+
+    Job title, employment type, location, pay currency, and other fields come along when the source has them. Name the Page you want, or accept Ari's name for it.
+  </Step>
+  <Step title="Check the two tables">
+    The Page has two tables built from the same records:
+
+    - A roster, with one row per Employee ID and each field in its own column. It shows each person's latest values.
+    - A monthly table of headcount and payroll cost, grouped by department. Each month reads the records dated in that month.
+
+    A connected HR system adds each sync's values as that period's record, so a raise or a transfer shows in the month it happened. A one-time roster upload has no history, so each person's latest pay and department carry into every month they are employed. Their start and termination dates still decide which months count them.
+  </Step>
+  <Step title="Check how Ari counts and pays">
+    Ari follows these conventions unless you tell it otherwise:
+
+    - A month's headcount counts everyone employed at any point in the month, so the start month and the termination month both count. If you report month-end headcount, say so.
+    - Annual pay divided by twelve is a full month's pay, and a monthly rate is a month's pay as it stands. Partial months follow the employment dates.
+    - Loaded cost, such as taxes and benefits, comes from the records when they have it. Otherwise it comes from an assumption Ari states in the Model, where you can change it.
+  </Step>
+  <Step title="Add planned hires">
+    > Add three sales hires starting in March at \$120,000 a year each.
+
+    Ari adds each planned hire as its own labeled row with a department, start date, and pay you can edit, kept separate from the people in your records. To try a hiring plan without changing your main plan, ask for it in a Scenario:
+
+    > Create a Scenario with three more sales hires and show how they affect payroll and cash over the next two quarters.
+  </Step>
+</Steps>
+
+If you have no roster at all, tell Ari how many people you employ, in which departments, and roughly what they cost. Ari creates placeholder employees named as placeholders, such as Placeholder hire 1, that add up to the numbers you gave.
+
+## Related
+
+- [Build a revenue and expense forecast](/guides/build-a-forecast)
+- [Forecast cash and cash runway](/guides/forecast-cash)
+- [Test a decision in a Scenario](/guides/test-a-decision-in-a-scenario)
+- [Actuals, Forecast, and Last close](/concepts/actuals-and-forecast)

@@ -1,0 +1,272 @@
+---
+title: "Connection statuses and actions"
+sidebarTitle: "Connection statuses"
+description: "What each connection status in cfo.ai means, such as Syncing, Sync failed, or Needs attention, what the orange dot or red triangle in the sidebar means, and the action that fixes it, plus the exact messages you can see while connecting, syncing, or uploading."
+---
+
+A connection's status says whether its data is current and whether you must act. Every connection shows one status. You see it on the connection's row in the sidebar's **Connections** section, on the card that opens when you point at the row, on the connection's page, and on the source's card in the connection manager. Ari reads the same status when you ask about a connection. To fix a problem step by step, see [Fix a connection that needs attention](/guides/fix-a-connection).
+
+## Sidebar marks
+
+The mark at the right end of a connection's row in the sidebar says whether anything needs you.
+
+| Mark | Meaning |
+| --- | --- |
+| No mark | The data is in and current (**Synced**), or an MCP server or API is ready (**Connected**). |
+| Blinking orange dot | A sync is running (**Syncing**). |
+| Steady orange dot | Something is incomplete but needs nothing from you: the sync resumes by itself, cfo.ai must fix it, or someone else must act. |
+| Red triangle | A problem you must act on. The card names it and offers the fix. |
+| Gray dot | Setup was not finished, someone stopped the latest sync, or the source was added but not connected. |
+
+With no connections, the section reads **No connections yet**. The **Connections** section shows one row per app. An app you connected more than once, such as one QuickBooks company per entity, gets a parent row with its connections nested under it, and the parent shows the mark of its most urgent connection.
+
+## Statuses
+
+### Synced
+
+The data reached your Model, and the last sync finished. Mark: none. Action: none. The card also shows **Last synced** and **Used in**.
+
+### Connected
+
+An MCP server or an API is ready for Ari to call. Nothing syncs from it, so it has no **Last synced** time. Mark: none.
+
+### Syncing
+
+A sync is running, or a first sync is queued. Mark: blinking orange dot. The connection's page reads **A sync is running now.** No **Reconnect** or **Retry** is offered while it runs. While cfo.ai waits on the provider, the line says how long it has waited:
+
+- **Waiting [time] so far for [source]’s first sync to finish.** It may add what the provider last reported, then **If it hasn’t finished by [date and time], this sync stops at its next check after that.** cfo.ai checks every 10 minutes and waits up to 20 hours.
+- **Waiting [time] so far for cfo.ai’s request allowance at [source] to reset. The allowance for this organization is used up or nearly used up, and the sync resumes on its own when it resets.** It ends the same way. Xero, for example, limits how many requests an app can make each day.
+
+### Partly synced
+
+The last sync finished without some of the source's tables. The data that arrived is usable. Mark: steady orange dot. Line: **[Source]’s last sync couldn’t refresh [tables]. Everything else is up to date, and cfo.ai will try again on the next sync.** It names up to three tables and counts the rest. Action: none; the next sync retries the missing tables.
+
+### Setup not finished
+
+Someone started connecting the source and did not finish. The setup may have failed, been abandoned, or still be open in someone's tab. Mark: gray dot. Line: **Syncing won’t begin until setup is finished.** Actions: **Finish setup** continues the same connection, and **Cancel setup** removes it without asking, because it holds no data yet.
+
+A source whose setup cannot be resumed, such as Stripe (Direct), offers only **Cancel setup** on the card, with **Setup wasn’t finished. Cancel it and connect [source] again.** On the connection's page, the line says **Remove it** and the button is **Remove connection**. People who cannot manage connections see the line and no button.
+
+### Connection failed
+
+Setup failed before the source linked. Mark: red triangle. Line: the failure's reason, or **Retry to set it up again.** Action: **Retry**.
+
+### cfo.ai lost access
+
+The source revoked cfo.ai's access, for example after a password change or an expired authorization. Mark: red triangle. Line: **Reconnect to start syncing again.** Action: **Reconnect**, then sign in to the same company the connection already holds.
+
+### Missing access in [source]
+
+The source is not sharing some tables the reports need, such as **Missing access in NetSuite SuiteAnalytics**. Mark: red triangle. Line on the card: **[Source] isn’t sharing some tables the reports need. Open the connection for the steps to fix it.** The connection's page shows an **Access missing** badge and the steps. For NetSuite they read: **NetSuite isn't sharing some tables cfo.ai needs for your financial statements. Have your NetSuite admin create an access token for the Data Warehouse Integrator role, then reconnect NetSuite with that token. Changing only the role ID won't work. Missing tables: …** Action: fix the access in the source, then **Reconnect**.
+
+### Sync failed
+
+There are two kinds:
+
+- The provider's own sync failed, often for a moment. Mark: steady orange dot. Line: **[Source]’s sync hit an error. cfo.ai will try again on the next scheduled sync.** When the provider gave a reason, its report sits between the two sentences, for example **BigQuery’s sync hit an error. Fivetran reports: The user cannot access BigQuery tables/project. cfo.ai will try again on the next scheduled sync.** Action: none, or **Retry** to run it now. When the report names something to fix at the source, fix that first.
+- cfo.ai could not tell why the sync failed. Mark: red triangle. Line: the source's own reason, or **The last sync couldn’t finish.** Actions: **Retry** and **Investigate with Ari**.
+
+### First sync not ready
+
+The provider had not finished its own first sync of your account 20 hours after cfo.ai began waiting. Mark: steady orange dot. Line: **[Source]’s data still wasn’t ready when cfo.ai stopped waiting for its first sync, so this sync ended without data. The next scheduled sync tries again.** Action: none, or **Retry** to start a new wait.
+
+### Paused until next sync
+
+The source's daily request allowance ran out. Mark: steady orange dot. Line: **[Source]’s daily limit was reached. Progress is saved, and syncing picks up on the next scheduled run.** Action: none. Signing in again would not change the limit, so **Reconnect** is not offered.
+
+### Sync stopped
+
+cfo.ai's data warehouse refused the data. Mark: steady orange dot. Line: **Contact cfo.ai support if it isn’t fixed soon.** Action: none; only cfo.ai can fix it.
+
+When several causes apply at once, this one is shown, because nothing else helps until it is fixed.
+
+### Stopped
+
+Someone stopped the latest sync. Nothing broke. Mark: gray dot. Line: **This sync was stopped before it finished.** Action: **Retry**.
+
+### No queries yet
+
+The source's data synced, but no saved query brings it into your Model yet. Mark: red triangle, or a steady orange dot when someone else must set up the queries. Line: **Data synced. No queries saved yet.**, or **Data synced. Someone with access can set up queries with Ari.** Action: **Set up queries with Ari**, for people who can edit the connection.
+
+### No data found
+
+The sync finished, but neither the source nor its queries returned any rows. Mark: red triangle. Line: **The last sync finished but found no data.** Action: **Investigate with Ari**.
+
+### Upload incomplete
+
+A file upload connection has no file attached yet. Upload the file again.
+
+### Needs attention
+
+The general status for a connection that stopped short of your Model. MCP servers and APIs show it with a next step, such as **Reconnect this source to continue.** for a server whose saved sign-in no longer works.
+
+### Not connected
+
+A source was added, for example from a list Ari asked you to connect, but nothing was connected yet. Mark: gray dot.
+
+## Statuses for MCP servers and APIs
+
+In **Settings → Connections** and on the **MCP** and **API** tabs, a server or API reads one of these, followed by its next step when it has one.
+
+| Status | Meaning |
+| --- | --- |
+| **Ready for Ari** | Ari can call its tools or endpoints. |
+| **Synced** | A sync setup Ari saved has brought its data in. |
+| **Connecting** | Setup is still in progress. |
+| **Waiting for you** | Someone must finish setup, such as signing in. |
+| **Needs attention** | Something broke; the next step says what to do. |
+| **Unavailable** | The status could not be read. |
+
+| Next step | When |
+| --- | --- |
+| **Reconnect this source to continue.** | The saved sign-in has no usable token. |
+| **Finish authorization to continue.** | Sign-in was started and not finished. |
+| **Retry authorization to continue.** | Sign-in failed. |
+| **Allow at least one API endpoint to continue.** | No endpoint of the API is allowed yet. |
+| **Grant access to the missing source tables to continue.** | A synced source, such as NetSuite, hides tables the reports need. See [Missing access in [source]](#missing-access-in-source). |
+| **Refresh the API definition to continue.** | The API's specification needs to be loaded again. |
+| **Verify the available tools to continue.** | The server's tool list needs checking. |
+| **Retry the import to continue.** | A data import failed. |
+| **Import data to continue.** | Nothing has been imported yet. |
+| **Review the imported data to continue.** | The import finished, and what it produced needs a look. |
+| **Review the source data to continue.** | The source's data needs a look before it can be imported. |
+| **Attach a file to continue.** | A file upload has no file. |
+| **No action is needed while setup finishes.** | Setup is running. |
+
+## Connection actions
+
+| Action | What it does | Offered when |
+| --- | --- | --- |
+| **Finish setup** | Continues the unfinished setup on the same connection. No second connection is created. | Setup was not finished and the source can resume it. |
+| **Cancel setup** | Removes an unfinished connection at once. It frees the plan slot the connection held. | Setup was not finished. |
+| **Reconnect** | Opens the source's sign-in again for the same connection. | The source revoked access, or a failed sync needs a new sign-in. |
+| **Retry** | Runs the import again with the same sign-in, or starts setup again after **Connection failed**. It does not use another plan slot. | A sync failed and only the import needs to run again, a sync was stopped, or setup failed. |
+| **Update file** | Replaces an uploaded CSV with a new file. | On a file upload. It is the only action when the file could not be read. |
+| **Set up queries with Ari** | Opens a new chat with a request for Ari to review what synced, propose saved queries, and set them up. You review the request before you send it. | **No queries yet** |
+| **Investigate with Ari** | Opens a new chat and asks Ari to find out why the sync failed or found nothing, and start it again if that helps. | **No data found**, or a **Sync failed** with no known cause |
+| **Remove connection** | Asks **Do you want to remove this connection? This stops future imports and cannot be undone.** Data already in your Model stays, and stops updating. | On the connection's page, for people who can manage connections |
+| **Remove file** | Asks **Do you want to remove this file? This cannot be undone.** | On a file upload's row and page |
+| **Manage**, **Disconnect** | Open an MCP server's or API's tools and permissions, or disconnect it. Disconnecting a server warns **Ari will no longer be able to use this server's tools until you reconnect.** | MCP servers and APIs |
+
+A connection never offers both **Retry** and **Reconnect**. No action appears while a sync is running, when only cfo.ai support can fix the failure, when cfo.ai has turned the source off, or for people who cannot manage connections. To rename a connection, open its page and select its name.
+
+## The connection's page
+
+Select a connection's row to open its page. Its sections, top to bottom:
+
+| Section | What it shows |
+| --- | --- |
+| **Status** | The status, the line under it, any setup warning, and the actions. **Last synced** reads a time such as **Just now**, or **Not yet**. **Used in** lists the Pages that use the connection's data. **Added** gives the date it was connected, and **File** names an uploaded file. |
+| **Source tables** | **When each table from this source last synced.** Each row gives the **Table**, its **Last synced** time, and the date its **Data through** reaches. It appears once two or more tables have synced. |
+| **Import** | **What Ari imported from this connection.** It appears for Google Sheets and Google Drive connections. |
+| **Syncs** | **What Ari copies from this connection into your data.** It appears for MCP servers and APIs with sync setups. |
+| **Queries** | **Ari writes these queries to bring this data into your model. They are read-only.** Each saved query shows its last run, such as **Ran 2 hours ago · Completed**, **Queued**, **Running**, or **Never run**, with **Show SQL** and **Copy SQL**. With no queries, it reads **No saved queries yet.** |
+
+At the bottom, people who can manage connections see **Remove connection**, or **Remove file** for an upload.
+
+## Directory cards
+
+The connection manager's **Integrations** tab shows one card per source.
+
+| Label | Meaning |
+| --- | --- |
+| **Connect** | Starts connecting this source. |
+| **Add another** | The source already has a connection; adds one more, such as a second company. |
+| **Upload CSV**, **Add CSV** | Uploads CSV files as data sources. |
+| **Finish setup** | Continues a setup that was not finished. |
+| **Retry** | Repairs a connection whose setup failed. |
+| **Added**, with a connection count | The source has connections. Each connection's own page holds its actions. |
+| **[N] connections max** | The source allows at most that many connections in a workspace. |
+| **Limit reached** | The source already has its maximum number of connections. Rillet allows one. |
+| **Upgrade plan**, **Choose plan**, **Manage plan** | Your plan has no room for this connection. The button's tooltip says why. |
+| **Premium** | A premium source your plan does not include. Its tooltip reads **This integration is only available for premium plan.** |
+| **Unavailable** | This source cannot be connected from here. |
+| **Temporarily unavailable** | cfo.ai has turned this source off for now. |
+
+## Messages when a new connection is refused
+
+These appear in the plan tooltip on a directory card:
+
+- **Your plan includes [N] standard integrations and all are in use. Upgrade to add more.** (or premium integrations)
+- **Your plan has reached its integration limit. Upgrade to add more.**
+- **Integrations aren't included in your plan. Upgrade to connect this one.**
+- **Premium integrations aren't included in your plan. Upgrade to connect this one.**
+- **Unable to resolve an active plan for this workspace. Choose a plan to connect integrations.**
+- **Your plan is scheduled to change to [plan] on [date], [what it includes]. Keep your current plan to connect this one.**
+
+These come from cfo.ai when a setup starts:
+
+- **your plan has no room for another integration of this kind — upgrade your plan to add more**
+- **this workspace has reached this integration's connection limit**
+- **start the free trial to add integrations**
+- **this workspace has no active plan — choose one, or settle the outstanding payment, to add integrations**
+- **this workspace has a plan change scheduled, and the upcoming plan has no room for this integration — keep your current plan to add it**
+- **this integration is temporarily disabled by cfo.ai; contact support to re-enable it**
+
+Signing in to a company the workspace already holds shows **[Company] is already connected**, with **Use the existing connection instead of adding another.**, or **It is connected as “[name]”. Use that connection instead of adding another.**, or **It needs reconnecting. Reconnect it instead of adding another.** with a **Reconnect** button.
+
+## Messages while connecting
+
+| Message | Meaning |
+| --- | --- |
+| **[Source] was not connected**, **The [source] window closed before authorization finished.** | The sign-in window closed early. **Try again** reopens it on the same unfinished connection. |
+| **[Source] was not reconnected**, **Choose “Relink integration” on the [source] screen and sign in to [company]. “Finish” keeps the current authorization.** | On a reconnect, the provider's screen showed **Finish**, which keeps the old authorization. **Try again** and choose **Relink integration**. For Xero, the card adds how to disconnect the app under **Connected apps** in Xero first. |
+| **Fivetran setup was interrupted** | Fivetran's setup lost track, for example because you finished it in another tab. The page offers **Go to cfo.ai** or **Return to cfo.ai**. The connection was saved; select **Finish setup** on it. |
+| **Rillet rejected this API key. Check the key and try again.** | The Rillet key was wrong or revoked. |
+| **Browser blocked the [provider] authentication popup** | Allow pop-ups for cfo.ai and try again. |
+| **Before you connect Rippling** | Rippling needs an API key; see [Rippling](/reference/integrations#rippling). |
+
+The Google flow reads **Opening Google authentication…**, **Choosing in Google…**, **Completing connection…**, and **Connected**. Rillet reads **Creating connection…**, **Verifying API key…**, and **Connected**. Fivetran sources read **Creating connection...** and **Opening Fivetran...**, and a failure reads **Connection failed**.
+
+## Messages about uploaded files
+
+| Message | Meaning |
+| --- | --- |
+| **Choose non-empty .csv files up to 50 MB each.** | A file was not a CSV, was empty, or was larger than 50 MB. |
+| **[N] of [M] CSV files imported. [K] couldn't be imported. Try [files] again.** | Some files in a batch failed to upload. |
+| **The file couldn’t load: [what was wrong]. Fix the file and upload it again.** | The loader could not read the file as one table. What was wrong reads **the file has no rows**, **the file has no header row**, **the file has a header row and no data rows**, or **the header row has [N] columns and row [M] has [K]**. |
+| **The CSV file could not be processed. Check that it has a valid header row and consistent columns, then retry or upload it again.** | Another problem with the file. |
+
+Google Sheets and Google Drive connections report their import on the row and in the page's **Import** section:
+
+| Message | Meaning |
+| --- | --- |
+| **Waiting for the first sync to read this file…** | Connected from the connection manager; the first sync has not run yet. |
+| **Ari is importing this file…** | Ari is rebuilding the file in your Model. |
+| **Imported to [Page]. Ari updates the model when the file changes.** | The import finished. **The last sync found no change.** is added when the latest sync found the file unchanged. |
+| **Attached to the chat that connected it. Ari imports it there.** | Connected from a chat; that chat handles the import. Afterward it reads **The chat that connected it handles later changes.** |
+| **Ari stopped before finishing this import. The next sync tries again.** | A background import stopped; the next sync resumes it. |
+| **Ari stopped before finishing this import. Continue in the chat that connected it.** | An import in a chat stopped; continue it there. |
+| **This file is too large to import. Make it smaller and the next sync imports it.** | The file is over the limit: 50 MB for a Google Sheet, 10 MB for an Excel or CSV file in Drive. |
+
+## Messages about MCP servers and APIs
+
+| Message | Meaning |
+| --- | --- |
+| **A workspace admin must connect this service.** | You cannot manage connections. |
+| **The provider must approve cfo.ai's sign-in URL to connect.** | The provider has to allow cfo.ai's sign-in address first. Trying again does not help until it does. |
+| **This provider signs in only apps registered with it in advance. It offers neither automatic registration nor client metadata documents, the two ways cfo.ai identifies itself, so sign-in cannot start.** | The server cannot be connected with OAuth. |
+| **This server's address, or an address it gave for sign-in, is a non-public address. cfo.ai did not contact it.** | cfo.ai connects only to public addresses. |
+| **This MCP server requires sign-in. Disconnect it and add it again with OAuth or a bearer token.** | The server was added without sign-in. |
+| **The MCP server rejected authorization (it answered HTTP 401). Reconnect this server and try again.** | The saved sign-in was refused. The status code is the one the server answered. |
+| **Could not load tools from the MCP server (it answered HTTP 404). Try again shortly.** | The server did not return its tools. |
+| **API saved** | The API's specification loaded. It does not prove the key works. |
+| **Retry to finish this setup. A retry keeps any connection already saved.** | An API setup failed partway. |
+| **The specification URL is not an https address.** | The OpenAPI address must start with `https://`. |
+| **The specification URL answered HTTP 404, not the document.** | The address returned an error status instead of the specification. |
+| **The specification document is larger than the 12 MiB this connection accepts.** | The specification is too large. |
+| **Could not load the OpenAPI specification. Check its URL or paste the document as JSON.** | The address did not answer. |
+
+## Messages in a chat
+
+When Ari syncs a connection, a line above the message box reads **Syncing** with the connection's name. Selecting it opens a card with the run's two steps, **Sync source data** and **Run saved queries**, its progress, such as **Step 1 of 2**, and **View connection** and **Stop**. A failed run reads **Couldn't finish** and keeps the connection's own status and action. A run you stopped reads **Stopped**.
+
+When a scheduled sync finds that a source you connected stopped updating and a repair needs you, cfo.ai opens a chat titled **[Connection name] stopped updating** in your chat list.
+
+When a workspace has no active plan, a refresh you ask for answers **data syncing is paused for this workspace — choose a plan, or settle the outstanding payment, to resume syncing**, and the nightly refresh skips the workspace until it has a plan again.
+
+## Related
+
+- [Fix a connection that needs attention](/guides/fix-a-connection)
+- [Integrations directory](/reference/integrations)
+- [How connected data reaches your Model](/concepts/connected-data)

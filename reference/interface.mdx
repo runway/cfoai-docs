@@ -1,0 +1,475 @@
+---
+title: "The cfo.ai interface"
+sidebarTitle: "Interface"
+description: "Every part of the cfo.ai app and what it does: the sign-in page and its code messages, the sidebar and its Page list, the account menu and workspace switcher, the Triggers page, the Help center and how to contact support, workspace search, the Page header, Download spreadsheet (export to Excel) and Share messages, Canvas and chart blocks, and the phone and tablet layout."
+---
+
+The cfo.ai app has a navigation sidebar on the left and the chat or Page you are working in beside it. This page describes each part in the order you meet it, starting with signing in, with every label and message. It describes a desktop browser; for phones and tablets, see [Phones and tablets](#phones-and-tablets). For keyboard shortcuts, see [Keyboard shortcuts](/reference/keyboard-shortcuts).
+
+## Sign-in page
+
+The page is titled **Sign in to cfo.ai**.
+
+| Control | What it does |
+| --- | --- |
+| **Continue with Google** / **Sign in with Microsoft** | Signs you in with that account. When these are offered, the page reads **Choose how you want to continue.** |
+| **Work email** | Your work address, with the note **Use the address where you want to receive cfo.ai workspace updates.** When only email sign-in is offered, the page reads **Enter your work email and we’ll send a six-digit code.** |
+| **Send code** | Emails you a six-digit code and opens the code page. |
+
+A Google or Microsoft sign-in that fails shows **We couldn’t complete sign-in. Please try again.**
+
+### Sign-in code page
+
+The page is titled **Enter your code**, with **We sent a six-digit code to [email].** Its footer reads **Codes expire quickly. You can request a new one if needed.**
+
+| Control | What it does |
+| --- | --- |
+| Code boxes | The code is checked as soon as you type the sixth digit. |
+| **Continue** | Checks the code. It stays off while the boxes hold a code that was already refused. |
+| **Change email** | Goes back to the email step. |
+| **Resend code** | Sends a new code and says **We sent a fresh code to [email].** |
+
+When a Google or Microsoft sign-in matches an account that already exists, a code links the two sign-in methods. The page then says **We sent a six-digit code to [email] to safely link your sign-in methods.** and **This protects your existing cfo.ai account when adding another sign-in method.**, and offers **Start over** instead of **Change email**.
+
+### Sign-in code messages
+
+| Message | Meaning | What to do |
+| --- | --- | --- |
+| **That code does not match the one that was sent.** | The code is wrong. | Check the code, or check that you entered the right email. |
+| **That code expired. A code works for 10 minutes after it is sent.** | The code is more than 10 minutes old. | Select **Resend code**. |
+| **That code was not accepted. [n] codes were sent to this address in the last 10 minutes, and only the newest one works.** | You typed an older code. | Use the code in the newest email. |
+| **That code was already used. A code works once.** | The code was used before. | Select **Resend code**. |
+| **Too many wrong codes were entered, so that code no longer works.** | Too many wrong codes were tried. | Select **Resend code**. |
+| **We couldn’t find the email for this verification step. Head back and start from the email step again.** | The sign-in lost track of your email. | Select **Start over**. |
+
+For how many codes you can request and check, see [Limits and file types](/reference/limits#workspace-account-and-sign-in).
+
+## Navigation sidebar
+
+From top to bottom:
+
+| Control | What it does |
+| --- | --- |
+| Logo | The cfo.ai logo, or your workspace brand's logo, is a link. Pointing at it shows where it goes: **New chat** when you can start a chat, or **Open** followed by the first Page's name when you cannot. **⌘**-click opens it in a new tab. |
+| **Collapse navigation** | Folds the sidebar to a narrow strip (**⌘ \\**, or **Ctrl \\** on Windows and Linux). On the strip, **Expand navigation** brings it back; pointing at the strip shows the sidebar over the page, and **Keep navigation open** pins it. Dragging the sidebar's edge resizes it, and dragging it narrow enough folds it. In a chat on a narrow window, the sidebar stays folded and the strip offers **Open navigation**. |
+| **Search** | Opens [workspace search](#workspace-search). |
+| **Chats** | Your chats, newest activity first, with **New chat** and a filter. See [The chat list](/reference/chat#the-chat-list-find-rename-and-archive-chats). |
+| **Model** | Select **Model** to open or close the section. It holds the Scenario picker (**Main Scenario** until you pick another) and the Pages of that Scenario, and **New page** (**+**) creates a Page. The section appears once the workspace has its first Page. See [Scenario and version history controls](/reference/scenarios-and-history) and [Create and organize Pages and blocks](/guides/create-pages-and-blocks). |
+| **Connections** | Your connected systems, each with its status, and **Add integration** (**+**). See [Connection statuses and actions](/reference/connection-statuses). |
+| **Feedback** | Opens [Share feedback](#share-feedback). |
+| **Powered by cfo.ai** | Shown in a workspace with a brand. |
+| Your name and picture | Opens the [account menu](#account-menu). |
+
+The sidebar remembers its Scenario for each workspace, so opening a chat does not change which Pages it lists. A Page you pick in the sidebar opens full-screen in the sidebar's Scenario and closes the chat you had open.
+
+### Pages in the sidebar
+
+| Control | What it does |
+| --- | --- |
+| A Page row | Opens the Page. Pointing at it shows **New subpage**, **Mention page in chat**, and **Delete page**, and, on a Page with subpages, **Expand subpages** or **Collapse subpages**. |
+
+| Message | Meaning |
+| --- | --- |
+| **Ari is building this page** | A mark on a Page that Ari is still building. |
+| **No pages in this scenario.** | The Scenario you are viewing has no Pages. |
+| **Loading pages…** / **Couldn’t load pages.** with **Retry** | The list is loading, or it could not load. |
+| **Creating page…** / **Could not create the page.** | A new Page is being created, or it could not be created. |
+
+To move, nest, or rename Pages with the keyboard, see [Keyboard shortcuts](/reference/keyboard-shortcuts#pages-and-blocks). To organize Pages, see [Create and organize Pages and blocks](/guides/create-pages-and-blocks).
+
+### A workspace with no Pages
+
+A workspace with no Pages opens on **Ready to model, [your name]?**, with **Create with Ari** and **Add block** (**Table block**, **Text block**, or **Canvas block**). Someone who cannot create Pages sees **No pages yet** and the reason, such as **This workspace has no pages.** or **Pages are read-only in this browser. Use Desktop Site to create a page.**
+
+## Account menu
+
+Select your name and picture at the bottom of the sidebar. From top to bottom:
+
+| Control | What it does |
+| --- | --- |
+| Your name and email | Shows which account you are signed in with. |
+| **Appearance** | **Auto**, **Light**, or **Dark** for you alone. The current choice shows beside it. |
+| **Settings** | Opens Settings. See [Settings](/reference/settings). |
+| **Help center** | Opens the [Help center](#help-center) (**⌘ ?**). |
+| **Manage memories** | Starts a chat in which Ari shows what it remembers about you and the workspace and helps you change it. See [What Ari remembers](/concepts/ari-memory). |
+| **Manage triggers** | Opens the [Triggers page](#triggers-page). |
+| **Workspaces** | Every workspace you belong to, with a check beside the one you are in. Select another to switch to it; **⌘**-click opens it in a new tab. |
+| **Create workspace** | Opens a **Workspace name** field. Press **Enter** to create the workspace and open it. If it fails, the field says **Unable to create workspace right now.** See [Create a second workspace or switch workspaces](/guides/manage-workspaces). |
+| **Log out** | Signs you out. |
+
+The list under **Workspaces** is the workspace switcher; there is no other switcher control. Workspace search also finds your other workspaces by name.
+
+## Triggers page
+
+**Manage triggers** in the account menu opens **Triggers**, marked **Preview**. It lists only your own Triggers. To set one up, see [Schedule a recurring report with a Trigger](/guides/schedule-a-trigger).
+
+| Control | What it does |
+| --- | --- |
+| **Write manually** | Opens **New trigger**. |
+| **Build with Ari** | Opens a chat that starts with **Help me create a trigger for recurring work. Ask what I want Ari to do and when it should run, then set it up.** |
+| A row in **Your triggers** | The Trigger's name, its schedule or **Paused**, and what happened last. |
+| **Run now** | Starts one run right away, even when the Trigger is paused. The schedule does not change. |
+| **Edit trigger** (pencil) | Opens **Edit trigger**. |
+| **Delete trigger** (trash can) | Opens **Delete [name]?**: **This trigger will stop running on its schedule. Runs already started will continue.** |
+| **Schedule** / **Next scheduled** | The schedule in your time zone, and the next run, or **Nothing upcoming**. **Schedule and history are shown in your timezone.** |
+| **Instructions** | The saved instructions, with **Show full instructions** and **Show less**. |
+| **History** | **Open a run to see its conversation.** Every run, newest first, with its start time, its status, and, for a run that did not complete, its reason. **Show earlier** loads older runs. With none: **No history yet. Ari’s scheduled work will appear here.** |
+
+With no Triggers, the page reads **Put recurring work on a schedule** and **Build a trigger with Ari or write the instructions and schedule manually.**
+
+### Run statuses
+
+| Status | Meaning |
+| --- | --- |
+| **Pending** | Queued and waiting to start. |
+| **Running** | Ari is working on it. |
+| **Finished** | The run reported the saved task done. |
+| **Did not complete** | The run reported it could not do the task; its reason shows below. |
+| **Ended without a report** | The run ended without reporting done or not done. |
+| **Failed** | The run stopped with an error. |
+| **Interrupted** | The run stopped, and nothing is working on it. |
+| **Needs response** | The run's chat has a question or card waiting for you. |
+
+A row in **Your triggers** shows the latest run's status, or one of these labels about the last scheduled attempt:
+
+| Status | Meaning |
+| --- | --- |
+| **Failed to start** | The last scheduled attempt could not start a run. |
+| **Skipped: Ari was still busy** | The last scheduled attempt came while an earlier run of the Trigger was still going or waiting, so no run started. |
+| **Started** | The last scheduled attempt started a run. |
+| **No history yet** | The Trigger has not run. |
+
+When the last scheduled attempt did not start a run, the Trigger's details explain why:
+
+| Message | Meaning |
+| --- | --- |
+| **The last scheduled attempt could not start**, with the error, or **Open a recent conversation or ask Ari to help check this trigger.** | An error kept the run from starting. |
+| **The last scheduled attempt was skipped**, with **The run that started [time] was still going. No run has started since then.**, **The run queued [time] was still waiting to start. No run has been queued since then.**, or **Ari was still working on the previous task.** | An earlier run of the Trigger was still going or waiting, so no new run started. |
+
+### New trigger and Edit trigger
+
+The form has **Name** (placeholder **Weekday cash brief**), **Instructions**, and **Schedule**. **Repeat** offers:
+
+- **Every few minutes**: 1, 2, 3, 5, 10, 15, 20, or 30.
+- **Hourly**: every 1, 2, 3, 4, 6, 8, or 12 hours, **At minute**.
+- **Daily**, **Weekdays**, or **Weekly** (**On these days**).
+- **Monthly**: **Day of month**, including **Last day**.
+- **Advanced schedule**: **Edit advanced rule**, **Schedule expression (UTC)**.
+
+The note under the schedule reads **Times in [your time zone]. Saved in UTC.**, or **Advanced rules use UTC.** A monthly day after the 28th adds **Months without this day are skipped. Choose Last day to run every month.** **Edit trigger** also has an **Enable trigger** switch (**Enabled** or **Disabled**). The buttons are **Create trigger** or **Save changes**, and **Cancel**.
+
+### Trigger messages
+
+| Message | Meaning |
+| --- | --- |
+| **Add a name, instructions, and schedule.** | A field is empty. |
+| **Use up to 200 characters for the name and 10,000 for instructions.** | A field is too long. |
+| **This trigger already has a queued or active run. Open its latest conversation.** | You selected **Run now** while a run is going. |
+| **This trigger is no longer available.** / **This trigger is no longer available. Close this dialog and refresh the list.** | The Trigger was deleted. |
+| **Could not save the trigger. Please try again.** / **Could not start the trigger. Please try again.** | The change or the run failed. |
+| **Could not load triggers.** with **Retry triggers**; **Could not load history.** with **Retry history** | The page could not load. |
+| **Creating a trigger requires permission to create chats in this workspace.** | You cannot create Triggers in this workspace. |
+
+## Help center
+
+Open it with **Help center** in the account menu, or press **⌘ ?** (**Ctrl ?**). It lists short interactive walkthroughs of the app. **Search help** at the top narrows the list as you type; with no match it says **No help found** and links to these docs. The sections, from top to bottom:
+
+| Section | What it holds |
+| --- | --- |
+| **Recently viewed** | Walkthroughs and explanations you ran since the app last loaded, including ones Ari made. Each has a button that asks Ari to refresh it with your latest numbers. |
+| **Getting started** | **Get to know navigating your workspace**, **Ask Ari to change your model**, **Start from a Canvas template**, **Find your way around the model**, and **Ask a human**. |
+| **Tables & formulas** | **Get to know table blocks**, **Ask Ari about any number**, **Compare scenarios side by side**, and **See how a number is calculated**. |
+| **Collaboration** | **Share pages & see who has access** and **Find and undo a change**. |
+| **Data & integrations** | **Connect your data sources**. |
+| **Keyboard shortcuts** | The common shortcuts. |
+| **Additional resources** | **cfo.ai Docs** (these pages) and **System status** (service availability and incidents). Both open in a new tab. |
+
+**Ask Ari to change your model** opens a new chat with suggested prompts, such as **Explain my cash** and **Plan next year’s hiring**, and puts the one you pick in the message box. **Start from a Canvas template** points at the palette button under the message box and opens the Canvas block library.
+
+An entry added in the last 30 days shows **New** until you complete it, and a completed entry shows a check. Selecting an entry shows what it covers, its number of steps, and **Start walkthrough**. If the walkthrough needs something the workspace lacks, the button is off and a line says what to add, such as **This needs a table. Add a table to a page to try this.**, **This needs a page. Add a page to your model, then start this again.**, or **Open a page with a table, then start this again.** Add it, then select **Check again**.
+
+Guides your team saved are not listed in the Help center; ask Ari to start one. See [Walk someone through a Page with a Guide](/guides/create-a-guide).
+
+### Contact support
+
+You can reach a person at cfo.ai three ways.
+
+| Control | What it does |
+| --- | --- |
+| **Help center → Getting started → Ask a human** | Opens [Ask a human](#ask-a-human), which sends a message straight to the cfo.ai team. |
+| **Feedback** in the sidebar | Sends product feedback to the cfo.ai team. |
+| Email [success@cfo.ai](mailto:success@cfo.ai) | The **Support** link at the top of these docs. |
+
+### Ask a human
+
+The dialog is titled **Ask a human**, with **Tell us what's going on — this goes straight to our team.**
+
+| Control | What it does |
+| --- | --- |
+| **What can we help with?** | Your message, up to 4,000 characters. |
+| Screenshots | Up to 3 PNG, JPG, or WebP files of 5 MB or less each. Paste them, drop them on the dialog, or select **Attach screenshots**. |
+| **Send** (**⌘ Enter**) / **Cancel** | Sends the message, or closes the dialog. |
+
+| Message | Meaning |
+| --- | --- |
+| **Message sent** | The message was sent to the cfo.ai team. |
+| **Could not send your message**, with the reason | The message was not sent. |
+| **Could not attach screenshot**, with **Attach up to 3 screenshots.**, **Screenshots must be PNG, JPG, or WebP files.**, or **Screenshots must be 5 MB or smaller.** | The screenshots you added were not attached: the message would have more than 3, a file is another type, or a file is larger than 5 MB. |
+
+### Share feedback
+
+**Feedback** in the sidebar opens **Share feedback**, with the placeholder **Write your feedback and include any links here**, the same screenshot rules and messages as **Ask a human**, and **Submit feedback** (**⌘ Enter**). It confirms with **Feedback sent**, or shows **Could not send feedback** with the reason.
+
+## Workspace search
+
+Press **⌘ K** (**Ctrl K**) or select **Search** in the sidebar. Press **⌘ K** again or **Esc** to close it; a touch screen shows a close button. The box reads **Search pages, chats, and more**, and the window is marked **Preview**.
+
+Search covers the Scenario the sidebar shows and lists only what you can open. It is not offered while you view a past version, or before you finish signing up.
+
+### Before you type
+
+The window lists the Pages you opened recently in this browser, under **Today**, **Yesterday**, **Past week**, and **Past 30 days**. The Page you have open is left out.
+
+### Results
+
+Results are grouped, up to eight in each group. The group with the best match comes first.
+
+| Group | What it finds |
+| --- | --- |
+| **Pages** | Pages by title, and from two characters also by the words in their text. A Page found by its text shows the passage. |
+| **Blocks** | Named tables, and titled charts and Canvas blocks |
+| **Variables** | Variables that a table on one of your Pages shows |
+| **Dimensions** | Dimensions that a table on one of your Pages shows |
+| **Dimension items** | Items, such as a customer or a vendor, whose Dimension a table shows on its rows. Each names its Dimension and, for imported items, the connection it came from. |
+| **Workspaces** | Your other workspaces, by name |
+| **Chats** | Your chats by title. When none of the chats already loaded match, search also looks through your older chats once you pause typing. |
+
+### How words match
+
+- Every word you type must match.
+- Case, accents, and punctuation are ignored: `paid in` finds Paid-In Capital.
+- A word matches the start of a word: `rev` finds Revenue.
+- From three letters, a word also matches inside a word: `count` finds Headcount.
+- From five letters, a small typo is forgiven: `salry` finds Salary.
+
+### Search keys and what a result opens
+
+| Shortcut | What it does |
+| --- | --- |
+| **↑** / **↓** | Move through results |
+| **Enter** | Open the result |
+| **⌘ Enter**, or **⌘**-click | Open the result in a new browser tab |
+| **Esc** | Close search |
+
+A Page opens full-screen in the sidebar's Scenario. A block opens its Page, scrolls to the block, and flashes it. A Variable or a Dimension item opens the table that shows it and marks its row. A Page found by its text scrolls to the passage. A workspace switches to that workspace. A chat opens.
+
+### Search messages
+
+| Message | Meaning |
+| --- | --- |
+| **Type to search your workspace.** | Nothing typed and no recent Pages |
+| **No results for “…”** | Nothing matched every word |
+| **Loading pages…** | The Page list is still loading |
+| **Couldn’t load pages. Try again from the sidebar.** | The Page list failed to load |
+| **Searching dimension items…** / **Searching chats…** | A slower search is still running |
+| **Couldn’t search dimension items.** / **Couldn’t search chats.** | That part of the search failed; the other results still show |
+
+## Page header
+
+The bar above a Page, from left to right:
+
+| Control | What it does |
+| --- | --- |
+| Scenario picker and **/** | Shown only when a chat is open beside the Page. Switches the Page's Scenario. |
+| Page icon | Pick or change the Page's icon. |
+| Page name | Opens **Pages**, the list of Pages in this Scenario, with **Search pages** and **New page**. |
+| **Merge** | Shown when a chat is open beside a Page in a Scenario other than Main. See [Merge a Scenario into Main](/guides/merge-a-scenario). |
+| **Building…** | Ari is building this Page. |
+| **Download spreadsheet** | The download icon, on a Page with a Table block. See [Download spreadsheet](#download-spreadsheet). |
+| **Share** | Opens the [Share panel](#share-panel). Shown to people who can share the Page. A link icon on the button means an external link to the Page is on. |
+| **Version history** | The clock icon. Opens the version history panel. See [Scenario and version history controls](/reference/scenarios-and-history). |
+| **New chat** | On a full-screen Page with no chat open. Opens a floating chat over the Page. |
+| **Collapse model pane** | When the Page is beside a chat. Folds the Page to a narrow rail; **Expand model pane** opens it again. |
+
+Below the header, the Page's title row holds the **Page title**, which you can click to rename the Page, and, on a Page with a table, a chart, or a Canvas block with data, the **Page date range**. Changing the date range sets it on every table, chart, and Canvas dataset on the Page.
+
+### A chat and a Page together
+
+| Control | What it does |
+| --- | --- |
+| **Expand model pane** / **Collapse model pane** | In a chat, shows or folds the Page beside the conversation. |
+| **Show page navigation** / **Hide page navigation** | In a chat, shows or hides a list of Pages beside the Page. |
+| **Expand chat** | On a floating chat, docks it beside the Page. |
+| **Minimize chat** / **Close chat** | On a floating chat. Minimize keeps the conversation; a chat with nothing sent yet offers **Close chat**. |
+
+## Download spreadsheet
+
+**Download spreadsheet**, the download icon in the Page header, exports the Page's tables as an Excel workbook. Its tooltip reads **Download tables as a spreadsheet**. cfo.ai has no button that downloads a Page as a PDF or a CSV; ask Ari for one. For what the workbook contains, see [Export a Page to Excel](/guides/download-a-spreadsheet); for a PDF, see [Get a PDF report or slide deck](/guides/get-a-pdf-or-slides).
+
+While an export runs, the button spins and its tooltip shows the stage:
+
+| Message | Meaning |
+| --- | --- |
+| **Waiting for another spreadsheet to finish** | Another export in this workspace is running; yours starts when it ends. |
+| **Spreadsheet queued** | Your export is waiting to start. |
+| **Preparing spreadsheet** | Your export is running. |
+
+When it finishes:
+
+| Message | Meaning |
+| --- | --- |
+| **Spreadsheet download started**, with the file name | The workbook downloaded. |
+| **Spreadsheet download started**, with **[file]: [n] cells hold values instead of a formula. The Export notes sheet lists them.** and **Ask Ari to fix** | Some formulas could not be written as Excel formulas. **Ask Ari to fix** opens a chat that asks Ari to export the Page again and write a working formula into each of those cells. |
+| **Could not download spreadsheet**, with **[Page]: [reason]** | The export failed. |
+
+A failed export's reason has up to three parts:
+
+- **The export failed while [stage] and produced no workbook.** The stage is **starting**, **loading the saved model**, **reading the model calendar**, **calculating the page tables**, **calculating the inputs the page tables read**, **writing the workbook**, or **storing the workbook**.
+- The cause, such as a formula whose input has no cell in the workbook, a formula that could not be written for Excel, **The export reached its time limit**, or a Dimension whose list of items was larger than the export could read.
+- When it is known, whether to try again: **The failure is temporary: a new export of the same pages can succeed.** or **A new export fails the same way while the saved model is unchanged.**
+
+Two reasons stand alone:
+
+| Message | Meaning |
+| --- | --- |
+| **Add a table to this page before downloading a spreadsheet.** | The Page's last table was removed during the download. |
+| **The export was cancelled before it produced a workbook.** | The export was cancelled. |
+
+For time and size limits, see [Limits and file types](/reference/limits#tables-pages-sharing-and-exports).
+
+## Share panel
+
+**Share** in the Page header opens the panel, titled **Share [Page]**, or **Share [n] pages** when the link opens several, with **Close**. From top to bottom:
+
+| Part | What it does |
+| --- | --- |
+| **Pages to share** | Lists the Page you started from, marked **Opens here**, and the other Pages in this Scenario you can share. Select Pages to add them to the link. Below it: **The first page opens when someone follows the link. Up to 50 pages can be shared.** |
+| **External access** | **Create link**, and the links that already exist. With none, it says **No one outside your workspace has link access.** A Page can have up to 100 links. |
+| A link | Its address; **Anyone with this link can view. Updated [time]**; the names of the Pages it opens; **Copy external link**; and **Turn off external link** (the trash icon). |
+| **Edit share preview** | On a link without a password. Opens the [Share preview](#share-preview) dialog. |
+| **Link settings** | Opens under a new link. **Shared scenario** picks the link's Scenario. **Require password** turns the password on; turning it on fills in a generated password. The password field has **Show password** (**Hide password**) and **Generate password**. **Save changes** appears after a change; saving replaces the link with a new address, and the old address stops working. |
+| Footer | **Model data on this page may also be used on other pages.** |
+
+Turning a link off opens **Turn off this external link?**, which says **Anyone who has the link will no longer be able to open it.** The checkbox **Also remove access already granted by this link** is checked, with **Recommended for financial information. Direct invitations stay unchanged.** Select **Cancel** or **Turn off link**.
+
+An old link that opens a Page in every Scenario shows **All scenarios** as its **Shared scenario**, and only someone with full access to the Page can turn it off: **Only a page-wide owner can turn off this legacy link.**
+
+### Share panel messages
+
+| Message | Meaning |
+| --- | --- |
+| **Checking external link access…** | The panel is loading the Page's links. |
+| **External link access could not be fully verified.** | Not every link could be checked; **Create link** stays off. |
+| **External links could not be loaded. Try again later.** | The links failed to load. |
+| **Checking page access…** | The panel is checking which Pages you can share. |
+| **Access to a selected page could not be verified. Remove it or retry after access refreshes.** | One of the Pages you picked could not be checked. |
+| **Could not check access to some other pages. Retry after access refreshes.** | Some Pages are missing from **Pages to share**. |
+| **Remove [n] pages before creating a link.** | More than 50 Pages are selected. |
+| **Could not create an external link. Try again.** | Creating the link failed. |
+| **Enter a password before saving link settings.** | **Require password** is on with an empty password. |
+| **This link password could not be revealed.** / **This link password could not be loaded.** | The saved password could not be read. |
+| **Could not update this external link. Its old settings are unchanged.** | Saving settings failed and the old link still works. |
+| **Could not copy the external link.** | Your browser refused the copy. |
+| **Could not turn off this external link. Try again.** | Turning the link off failed. |
+
+### Share preview
+
+**Edit share preview** opens **Share preview**: **This is how your page appears when someone shares the link.**
+
+| Part | What it does |
+| --- | --- |
+| **Preview** | Shows the card's picture, **Built from the content on this page.**, with **Live**, **Ready to publish**, or **Creating artwork…**. **This page changed after the preview was made. Create new artwork to bring it up to date.** appears when the Page changed. **Social apps may take a while to refresh a preview they have already seen.** |
+| **Social copy** | **Written from the shared page. Edit it before publishing if you like.** with **Headline** and **Description** |
+| **Publish changes** | Saves the card. Confirms with **Preview published.** |
+| **Create new artwork** | Makes three new pictures (**Creating three new options from this page.**). They appear under **New artwork**: **Choose an option, then publish it with your social copy.** Selecting one says **Option selected. Publish when it looks right.** If some fail: **Some covers could not be generated. You can use a ready option or generate new ones.** |
+| **Public link** | **Anyone with this link can view the page. We do not list it publicly.** with the address and **Copy link** (**Link copied.**) |
+| **Memorable address** | A readable address, such as `revenue-plan`, with **Update** (**Public address updated.**). **Optional. Memorable addresses can be guessed. Changing one retires the old address.** |
+
+A memorable address has 3 to 64 lowercase letters, digits, or single hyphens between them; capital letters are made lowercase. Some words, such as `admin`, `docs`, `help`, `login`, `settings`, `share`, and `support`, are reserved.
+
+| Message | Meaning |
+| --- | --- |
+| **use 3–64 characters: letters, numbers, or single hyphens between them** | The address breaks the rule above. |
+| **this address is reserved** | The address is a reserved word. |
+| **this address is already reserved** | Another link uses the address, or used it before it was retired. |
+
+### What a link's reader sees
+
+| Screen | What it shows |
+| --- | --- |
+| Opening | **Opening shared link…**, then **Taking you in…** |
+| Password | **Enter the link password**, with **Ask the person who shared this page for its password.**, a **Password** field, and **Open shared page**. A wrong password shows **That password does not match** and **Check the password you were given and try again.** |
+| Link turned off or wrong | **Link not found**, with **This share link may have been revoked or never existed.** |
+| Link expired | **Link expired**, with **Ask the sharer for a fresh link.** |
+| A memorable address that cannot load | **This shared page is temporarily unavailable. Please try again.** |
+| Other failure | **Something went wrong**, with **Please try again in a moment.** |
+| Strip above the Page | For a reader who is not signed in: your brand's logo and name with **Powered by cfo.ai**, or, without a brand, **Like what you see? Build a model like this for your own business.** with **Start your free trial now**, which the reader can dismiss |
+| **Keep your access** | A card for a reader who is not signed in: **Sign in to hold on to the pages shared with you.**, with an email field |
+
+A link's preview card in chat and social apps shows **Shared page unavailable** and **This link has expired or is no longer available.** once the link is off.
+
+## Canvas blocks
+
+### Canvas block controls
+
+| Control | What it does |
+| --- | --- |
+| **Add** | At the block's top corner, for people who can edit the Page. Opens the Canvas block library to pick components and templates for Ari to add. |
+| **Select element** | At the block's top corner. Click one part of the block to add it to the chat as a reference. |
+| **Mention in chat** | At the block's top corner. Adds the block to the chat's message box. |
+| **Browse library** and **Mention block in chat** | On a blank block, under **Build something custom** and **Chat with Ari to generate custom visuals and interactive tools**. |
+
+A blank block on a deleted Page that you open from version history reads **This Canvas block was empty when the page was deleted.**, and a blank block you cannot edit reads **This Canvas block is empty.**
+
+A button inside a Canvas block can open another Page or block, put a message for Ari in the message box for you to review and send, or start a new chat that sends its message at once, such as a request to start a Guide. A button that hands work to Ari shows a trailing arrow. No button changes the Model.
+
+A Canvas block can open your browser's own dialogs: a print button prints that block alone, and a block can ask you to confirm a step or type a short answer. These dialogs come from the block, not from cfo.ai. A Canvas block cannot show images from the web or from a file.
+
+### Canvas block messages
+
+| Message | Meaning | What to do |
+| --- | --- | --- |
+| **This Canvas block didn't start because its libraries from esm.sh failed to load.** | The block's software did not load. | Select **Retry**. |
+| **This Canvas block didn't start because its runtime stopped with an error before it was ready.** | The block's software stopped before the block started. | Select **Retry**. |
+| **This Canvas block was still loading its libraries from esm.sh after 15 seconds.** | The block's software is loading slowly. | Select **Retry**, or wait. |
+| **This block failed to render.**, with the error | The block stopped with an error while drawing. | Select **Fix** to hand the block to Ari, or **Mention in chat**. |
+| **This block's "[data]" data didn't load because the connection to cfo.ai failed.** | Your connection to cfo.ai failed. | Wait. The block asks again when your connection returns. |
+| **This block's "[data]" data failed to load.** | The data the block reads failed to load. | Select **Mention in chat** and ask Ari to check the data the block reads. |
+
+A block that stopped with an error tries again by itself once after 2 seconds, and any block that did not start tries again when your connection to cfo.ai returns.
+
+## Chart blocks
+
+New charts are Canvas blocks; the **Add block** menu has no chart option. A chart block a Page already has can still be restyled:
+
+| Control | What it does |
+| --- | --- |
+| **Show chart setup** / **Hide chart setup** | At the left of the chart's header. Opens the chart's sidebar. |
+| Chart title | Type to rename the chart. |
+| **Compare** | In the chart's header. **None** or **Scenarios**, and whether colors follow the **Dimension item** or the **Scenario**. |
+| **Setup** tab | The chart type (**Line**, **Bar**, **Bar Stacked**, **Bar Stacked Normalized**, **Pie**, **Combo**, **Donut**, **Nightingale**, **Area**, **Area Stacked**, **Area Stacked Normalized**, **Waterfall**); **X-Axis** with the date grain; **Y-Axis** (or **Values** on a pie, donut, or Nightingale chart) with each Variable's **Pick color**, **Segment by**, and **Remove**; a combo chart's line or bar choice per series; a waterfall's **Positive**, **Negative**, and **Total** colors. |
+| **Display** tab | **Show chart title** and **Chart title text**; **Show legend** and its **Position**; **Show X axis**, **Show X axis title**, and **X axis title**; **Show Y axis**, **Show horizontal grid lines**, **Show Y axis title**, and **Y axis title** |
+| **Open Chart Options** (**…**) | **Reset chart** |
+
+## Phones and tablets
+
+A phone or tablet browser opens the same workspace in a reading layout, one screen at a time. A tablet gets the desktop layout only when its browser asks for the desktop site.
+
+| Control | What it does |
+| --- | --- |
+| **Open navigation** | Opens a drawer with the logo, **Search**, your chats, the **Model** section with its Pages, and **Connections**. Picking a chat, a search result, or **New chat** closes it; so does **Close navigation**. |
+| **Open page panel** | In a chat's header. Opens the Page beside the conversation. |
+| **Back to chat** | On a Page opened from a chat. Returns to the conversation. |
+| **New chat** | On a Page. Starts a chat. |
+
+Pages are read-only in this layout, whatever your access. You can read tables and Canvas blocks, and a table's **Table block settings** menu offers **Show formula bar** and **Show formula columns**, but you cannot edit cells, add rows or blocks, or create Pages or Scenarios. The Page header shows only the Page's name: **Share**, **Download spreadsheet**, and **Version history** are not offered. Empty states say **Pages are read-only in this browser. Use Desktop Site to create a page.** and **Scenarios are read-only in this browser. Use Desktop Site to create one.**
+
+To edit on a phone or tablet, ask your browser for its desktop site. You get the full desktop app, editing included.
+
+## Related
+
+- [Find a Page, number, or file](/guides/find-things)
+- [Keyboard shortcuts](/reference/keyboard-shortcuts)
+- [Chat controls and messages](/reference/chat)
+- [Settings](/reference/settings)
+- [Sharing and access](/concepts/sharing-and-access)

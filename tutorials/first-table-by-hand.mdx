@@ -1,0 +1,76 @@
+---
+title: "Build a table yourself"
+sidebarTitle: "Build a table yourself"
+description: "A 15-minute lesson for spreadsheet users: build a small Table block by hand, type values, write a formula, and watch the Model recalculate."
+---
+
+Everything Ari builds, you can also build yourself. In this lesson we build a small revenue table for an imaginary coffee cart, without Ari, so you can see how cfo.ai's Variables and formulas differ from spreadsheet cells. By the end you will have a Page with a table that calculates revenue from cups sold and price, and recalculates when you change a number.
+
+You need about 15 minutes and a desktop browser. Pages cannot be edited in a phone browser.
+
+<Note>
+  In a workspace with no Pages yet, the sidebar has no **Model** section. On the empty screen, choose **Add block**, then **Table block**. cfo.ai creates a Page with a table on it. Rename the Page from its title, then continue from step 3.
+</Note>
+
+<Steps>
+  <Step title="Create a Page">
+    In the sidebar's **Model** section, select the **+** button labeled **New page**. cfo.ai creates a Page named **New Page** and opens it.
+
+    Click the **New Page** title at the top of the Page, type `Coffee cart`, and press **Enter**.
+  </Step>
+  <Step title="Add a Table block">
+    On the empty Page, choose **Table block**.
+
+    Notice the hint **Build your table**. A new table is blank until you add rows or columns.
+  </Step>
+  <Step title="Add your first Variable">
+    Select **Add row** at the bottom of the table. In the search field, type `Cups Sold`, then select **Create variable: Cups Sold**.
+
+    Notice that cfo.ai adds a row of months across the top, or of your workspace's default period, such as quarters. A Variable is a named line of the Model, and it has one value for each period.
+  </Step>
+  <Step title="Type some values">
+    Select the first month's cell in the **Cups Sold** row and type `1000`. Press **Tab** to move to the next month, type `1200`, press **Tab**, type `1500`, and press **Enter**.
+
+    Notice the dashed underline under each number. It marks a cell that holds its own value.
+  </Step>
+  <Step title="Give a Variable one value for every month">
+    Add another row and create a Variable named `Price per Cup`. Point at its row name and select the **fx** icon, **Edit variable formula**.
+
+    The editor has two sections, **Actuals** and **Forecast**: the months up to your workspace's Last close, and the months after it. Type `4` in **Actuals**, select **Forecast** to open it, type `4` there too, and press **Enter**.
+
+    Notice that every month now shows 4, with no underline. The row's formula fills every month for you; in a spreadsheet you would have copied the value across.
+  </Step>
+  <Step title="Write a formula">
+    Add a third row and create a Variable named `Cart Revenue`. Open its formula editor the same way, and type this in both sections:
+
+    ```text
+    `Cups Sold` * `Price per Cup`
+    ```
+
+    As you type, autocomplete suggests the Variable names. Backticks wrap a name that contains spaces. Press **Enter**.
+
+    Notice that **Cart Revenue** fills in for every month: 4,000 in the first month, 4,800 in the second, and 6,000 in the third. Later months show 0, because **Cups Sold** has no value there yet. The formula refers to Variables by name, not to cells such as `B7`, so it works in every month at once.
+  </Step>
+  <Step title="Change an input">
+    Select the first month of **Cups Sold**, type `2000`, and press **Enter**.
+
+    Notice that **Cart Revenue** for that month changes to 8,000 right away. Every number that depends on a value you change recalculates.
+  </Step>
+  <Step title="See what a number is made of">
+    Point at the **Cart Revenue** row name and select the magnifier icon, **Drill in**.
+
+    Notice the shaded rows that open beneath it: **Cups Sold** and **Price per Cup**, the inputs of its formula. Select **Clear drill-in** to close them.
+  </Step>
+</Steps>
+
+## What you built
+
+You built a working piece of a Model by hand: three Variables, typed values, a formula that applies to the whole row, and a calculation that updates when an input changes. The tables Ari builds for you work the same way, so you can open any of them, read its formulas, and change them.
+
+## Next steps
+
+- Learn what Variables and Dimensions are and how formulas pick their inputs: [Variables and Dimensions](/concepts/variables-and-dimensions) and [How formulas work](/concepts/formulas).
+- Split a row by product or region: [Break a number down](/guides/break-down-a-number).
+- Format numbers as currency and arrange the table: [Format and arrange a table](/guides/format-a-table).
+- Look up every formula function: [Formula functions](/reference/functions).
+- Delete the practice Page when you are done: point at it in the sidebar and select **Delete page**.

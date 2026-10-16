@@ -1,0 +1,99 @@
+---
+title: "Talk to Ari from Slack"
+sidebarTitle: "Use Ari in Slack"
+description: "Connect Slack to cfo.ai and chat with Ari in Slack direct messages. Who in your Slack workspace can message Ari, why Ari answers only in DMs and not in channels, and what to do when your Slack email differs from your cfo.ai email."
+---
+
+Use this to ask Ari questions from Slack, and to have Ari send you messages there, such as a weekly cash summary from a Trigger. Ari works in Slack direct messages, as the cfo.ai person whose email matches the Slack account that writes to it.
+
+## Before you start
+
+You need:
+
+- Permission to add connections in your cfo.ai workspace, the same permission you need to connect a data source.
+- A Slack workspace you can add apps to. If your Slack workspace requires approval for new apps, a Slack admin may need to approve the install.
+- To message Ari, a Slack profile email that belongs to a cfo.ai account in this workspace, usually the email you sign in with. If your Slack email is a different address, see [If your Slack email differs from your cfo.ai email](#if-your-slack-email-differs-from-your-cfoai-email).
+
+## Connect Slack to your workspace
+
+<Steps>
+  <Step title="Open the Slack setting">
+    Open the account menu, your name or picture at the bottom of the sidebar, choose **Settings**, and select **Ari**. Find the **Slack** section, which reads **Add Ari to Slack**.
+  </Step>
+  <Step title="Add the app">
+    Select **Add to Slack**. A Slack window opens; choose your Slack workspace and approve the app. If nothing opens, allow pop-ups for cfo.ai in your browser and try again.
+  </Step>
+  <Step title="Check the connection">
+    A notice reads **Slack connected**, and the section shows **Connected to** your Slack workspace's name, with **Ari can now DM you in this Slack workspace.**
+  </Step>
+</Steps>
+
+A cfo.ai workspace connects to one Slack workspace. The connection serves everyone in your cfo.ai workspace, so each person does not need to connect it again.
+
+## Message Ari in Slack
+
+In Slack, open a direct message with the cfo.ai app and write to Ari as you would in cfo.ai:
+
+> How much cash did we burn last month, and how many months of cash runway do we have?
+
+While Ari works, Slack shows that it **is typing…**. Its reply posts in the same thread when the turn ends. Reply in that thread to continue the same conversation; a new message outside the thread starts a new conversation.
+
+## What you can do in Slack
+
+You can ask Ari anything you can ask in cfo.ai: explain a number, build or change the Model, or schedule a Trigger. In Slack, Ari works in Main unless you name another Scenario.
+
+Some things show only in cfo.ai, not in Slack:
+
+- Question forms, plan cards, approval cards, and download cards. When Ari needs an answer or an approval, open the conversation in cfo.ai.
+- Files. Ari cannot read a file or image sent in Slack. Paste the text into your message, or attach the file in a chat in cfo.ai.
+- Formatting. Slack shows the text, bold, and links of Ari's replies, and prints tables and headings as plain characters.
+
+A link in Ari's reply to a Page or a table opens it in your browser, under your own access.
+
+## Continue a Slack conversation in cfo.ai
+
+Every conversation you have with Ari in Slack is also a chat in cfo.ai, in your chat list under your other chats. Open it there to see the cards Slack cannot show, answer Ari's questions, or keep working on a larger screen.
+
+## Have Ari message you in Slack
+
+Ari can send you a direct message in Slack, for example the result of a scheduled Trigger:
+
+> Every Monday at 8am, summarize last week's cash in and out and send it to my Slack direct messages.
+
+Ari can message only you, the person who asked, and it finds you in Slack by your cfo.ai email address. See [Schedule a recurring report with a Trigger](/guides/schedule-a-trigger).
+
+## Who can message Ari
+
+Anyone in your Slack workspace whose Slack profile email matches the email of someone in your cfo.ai workspace can message Ari. Ari works as that person, with that person's access, so each person's Slack conversations, memory, and permissions stay their own.
+
+Someone without a matching cfo.ai account gets a reply that Ari could not find a cfo.ai account for their Slack email. To let them use Ari, invite the email address on their Slack profile to your workspace. Once they accept, they can message Ari. See [Invite or remove teammates](/guides/invite-teammates).
+
+## Ari answers only in direct messages
+
+Ari answers only in direct messages. It does not read or answer messages in Slack channels, public or private, and it cannot post to a channel for you. You can add the app to a channel, but if someone mentions Ari there, Ari only replies in that thread that it chats in direct messages. To share an answer with a channel, copy it there, or share the Page it built. See [Share a Page outside your workspace](/guides/share-a-page).
+
+## If your Slack email differs from your cfo.ai email
+
+Ari matches you by the email address on your Slack profile. When it differs from your cfo.ai sign-in email, Ari cannot match you to your account, and it cannot send you Slack messages. The reply to your messages depends on that address:
+
+- If no cfo.ai account uses it, Ari replies that it could not find a cfo.ai account for your Slack email.
+- If it belongs to a cfo.ai account outside this workspace, Ari replies that your account does not have access to this workspace's cfo.ai.
+
+Either way, do one of these:
+
+- Change the email on your Slack profile to your cfo.ai sign-in email.
+- Invite your Slack email address to the cfo.ai workspace, then accept the invitation from that address. That address is a separate cfo.ai account, with its own chats and memory. See [Invite or remove teammates](/guides/invite-teammates).
+
+## Disconnect Slack
+
+In **Settings → Ari → Slack**, select **Disconnect**, then confirm. Ari can no longer post to that Slack workspace until someone connects it again.
+
+## If something goes wrong
+
+For every message Ari can send you in Slack, and what each one means, see [Chat controls and messages](/reference/chat#ari-in-slack).
+
+## Related
+
+- [How Ari works with you](/concepts/working-with-ari)
+- [Settings](/reference/settings)
+- [Change your theme, sounds, and notifications](/guides/personalize-cfoai)

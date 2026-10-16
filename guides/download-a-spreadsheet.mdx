@@ -1,0 +1,69 @@
+---
+title: "Export a Page to Excel"
+sidebarTitle: "Export to Excel"
+description: "Export a Page, or several Pages, to an Excel workbook with live formulas: select Download spreadsheet in the Page header or ask Ari. What the workbook contains, whether formulas stay live, and how to get CSV or Google Sheets."
+---
+
+To export a Page to Excel, select **Download spreadsheet** in the Page header, or ask Ari to export it. You get an Excel workbook (`.xlsx`) with one sheet for each table on the Page, and its numbers are live Excel formulas, not pasted values. To put several Pages in one workbook, such as your three financial statements, ask Ari.
+
+<Tabs>
+  <Tab title="Ask Ari">
+    Name the Page, or several Pages for one workbook:
+
+    > Export the Board summary Page to Excel.
+
+    > Export the P&L, Balance sheet, and Cash flow Pages to one Excel workbook, in the Downside Scenario.
+
+    Ari exports the Scenario your chat is in unless you name another. The finished workbook appears in the chat as a download card, and Ari can open it again later. One workbook can hold up to 64 Pages; their formulas link across the sheets, and they share one **Model inputs** sheet.
+
+    If the export fails, Ari tells you which step and which table stopped it, and whether trying again can help.
+  </Tab>
+  <Tab title="By hand">
+    <Steps>
+      <Step title="Open the Page in the right Scenario">
+        Open the Page, and check that the sidebar's Scenario picker shows the Scenario you want in the workbook.
+      </Step>
+      <Step title="Select Download spreadsheet">
+        Select **Download spreadsheet**, the download icon in the Page header. The button appears only on a Page that has a Table block.
+      </Step>
+      <Step title="Wait for the file">
+        The export runs in the background, and pointing at the button shows its progress. You can open other Pages while you wait, but closing or reloading the browser tab loses the download. When the file is ready, it downloads and a **Spreadsheet download started** notice names it.
+      </Step>
+    </Steps>
+
+    A workspace prepares one spreadsheet at a time. If someone else's export is running, yours waits and starts by itself when theirs ends.
+  </Tab>
+</Tabs>
+
+## Are the formulas live?
+
+Yes. Each number a formula calculates in cfo.ai is an Excel formula in the workbook. The numbers those formulas read from outside the Page, such as typed assumptions and imported Actuals on other tables, sit on a **Model inputs** sheet. Change an input in Excel and every cell that depends on it recalculates.
+
+The workbook is a copy. Changes you make in Excel do not flow back into cfo.ai.
+
+Formulas and the **Model inputs** sheet need access to every Variable and Dimension in the Scenario. Someone without it, such as a person who opens the Page through a share link, gets the numbers the Page shows as plain values, with no **Model inputs** sheet.
+
+A few formulas cannot be written as Excel formulas, such as one longer than Excel allows. Those cells keep their calculated value instead of a formula, and an **Export notes** sheet lists each one. The download notice counts them and offers **Ask Ari to fix**, which asks Ari to export the Page again and write a working formula into each of those cells.
+
+## What you get
+
+- One worksheet for each table on the Page, in the Scenario you exported. A table's Scenario comparison columns come along, and rows and columns hidden on the table are left out.
+- Text blocks, charts, and Canvas blocks are left out, because a workbook holds tables.
+- Each number keeps its format: currency, percentage, or a multiple such as `3.5x`, with up to five decimal places. Negative currency amounts and plain numbers show in parentheses.
+- A blank input stays blank rather than becoming 0, and an input that holds text, such as a customer name, stays text.
+
+## Other formats
+
+- For Google Sheets, upload the workbook to Google Drive and open it with Google Sheets.
+- For a CSV file, ask Ari for a CSV of a table, and it gives you the file in the chat. There is no CSV button.
+- For a PDF, see [Get a PDF report or slide deck](/guides/get-a-pdf-or-slides).
+
+## If something goes wrong
+
+A failed export shows **Could not download spreadsheet** with the Page's name and the reason. Every progress label and message is listed in [The cfo.ai interface](/reference/interface#download-spreadsheet). For export time and size limits, see [Limits and file types](/reference/limits#tables-pages-sharing-and-exports).
+
+## Related
+
+- [Share a Page outside your workspace](/guides/share-a-page)
+- [Find a Page, number, or file](/guides/find-things)
+- [Pages, Table blocks, and Canvas blocks](/concepts/pages-and-blocks)

@@ -1,0 +1,109 @@
+---
+title: "Schedule a recurring report with a Trigger"
+sidebarTitle: "Schedule a Trigger"
+description: "Have Ari do the same job on a schedule, such as a Monday cash summary: create a Trigger, write instructions that work unattended, get the result by email or Slack, change or pause it, and check whether it ran."
+---
+
+Use a Trigger when you want Ari to do the same job on a schedule without being asked. For example, Ari can write a cash summary every Monday, or check last month's spending after each close. A Trigger is a saved instruction with a schedule. Each time it runs, Ari works through it in a new chat of its own, and you read the result when it suits you. For how unattended runs work, see [Skills, Triggers, and Guides](/concepts/automation).
+
+<Tabs>
+  <Tab title="Ask Ari">
+    Tell Ari what to do, when, and where to send the result:
+
+    > Every Monday at 8am Pacific, summarize the prior week's cash activity and flag expenses that differ from our recent pattern. Email me the summary.
+
+    Ari asks about anything it is missing, saves the Trigger, and tells you its name and schedule. A new Trigger is on, and it first runs at the next scheduled time. You can also set one up by messaging Ari in Slack; see [Talk to Ari from Slack](/guides/use-ari-in-slack).
+  </Tab>
+  <Tab title="By hand">
+    <Steps>
+      <Step title="Open the Triggers page">
+        Open the account menu, your name or picture at the bottom of the sidebar, and choose **Manage triggers**.
+      </Step>
+      <Step title="Start a new Trigger">
+        Select **Write manually**. To work it out with Ari in a chat instead, select **Build with Ari**.
+      </Step>
+      <Step title="Name it and write the instructions">
+        Enter a **Name**, such as Weekday cash brief. In **Instructions**, describe what Ari should check, update, or prepare each time. See [Write instructions that work unattended](#write-instructions-that-work-unattended).
+      </Step>
+      <Step title="Set the schedule">
+        Under **Schedule**, choose how often it runs in **Repeat**, such as **Weekly**, then the days and the time. You pick times in your own time zone, and cfo.ai saves them in UTC.
+      </Step>
+      <Step title="Save">
+        Select **Create trigger**. The Trigger appears in the list, and its details show when it runs next under **Next scheduled**.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## Write instructions that work unattended
+
+Nobody is in a Trigger's chat while it runs, so Ari cannot ask you anything. When something is unclear, it makes a reasonable assumption, keeps going, and says what it assumed in its result. Write instructions that need no follow-up:
+
+- Name what to read: the Page, table, or Variable, and the Scenario if it is not Main. A run has no Page open.
+- Name the period, such as "the last closed month" or "the prior week".
+- Say what to return and how to judge it, such as "flag any expense line more than 10% over Forecast".
+- Say where to send it: "email me" or "send it to my Slack direct messages". Without that, the result stays in the run's chat.
+
+> Compare Actuals with Forecast for Operating Expense in the last closed month on the Monthly P&L Page. Flag any line more than 10% over Forecast, and send the summary to my Slack direct messages.
+
+If you want a report on every run, say so. A run sends a warning only when something has changed since the last run, so the same warning does not arrive week after week; see [The record each run keeps](/concepts/automation#the-record-each-run-keeps).
+
+## Choose where the result goes
+
+Every run's result is saved in its own chat, listed in the Trigger's **History**. A copy goes somewhere else only when the instructions name the channel:
+
+| The instructions say | What happens |
+| --- | --- |
+| Email me | Ari emails your sign-in address. Headings, lists, tables, and links in the message show in the email. |
+| Send it to my Slack direct messages | Ari sends you a Slack direct message, once Slack is connected. See [Talk to Ari from Slack](/guides/use-ari-in-slack). |
+| Email someone else | Nothing is sent. The run leaves an email preview in its chat, and the email goes only when you open the chat and select **Send**. See [Email preview card](/reference/chat#email-preview-card). |
+
+A Trigger can message only you, and it cannot post to a Slack channel. To share a result with others, have the Trigger update a Page and [share the Page](/guides/share-a-page). A Trigger can also export a Page as a spreadsheet. The file is saved in the run's chat, and the email or Slack message can carry a download link that works for a limited time. See [Limits](/reference/limits#skills-triggers-and-guides).
+
+## Change, pause, or delete a Trigger
+
+Ask Ari, for example "Pause my weekly cash Trigger", "Move it to Tuesdays at 9am", or "Delete the old variance Trigger". Or open the account menu, choose **Manage triggers**, and select the Trigger:
+
+- To change its name, instructions, or schedule, select **Edit trigger** (the pencil), make the change, and select **Save changes**.
+- To pause it, select **Edit trigger**, turn off the switch so it reads **Disabled**, and select **Save changes**. Turn the switch back on to resume. A paused Trigger reads **Paused** in the list.
+- To run it once right away, select **Run now**. This works on a paused Trigger too and leaves the schedule as it is.
+- To delete it, select **Delete trigger** (the trash can) and confirm. A run that already started still finishes.
+
+You see and manage only your own Triggers. Your teammates' Triggers do not appear on your Triggers page, and you do not appear on theirs.
+
+## Check whether a Trigger ran
+
+Open the account menu and choose **Manage triggers**. Each Trigger in the list shows what happened last, such as **Finished**, **Did not complete**, or **Skipped: Ari was still busy**. Select a Trigger to see **Next scheduled** and its **History**: every run, newest first, with its status. A run that did not complete shows its own one-sentence reason. Select a run to read its chat. For what each status means, see [The cfo.ai interface](/reference/interface#triggers-page).
+
+You can also ask Ari:
+
+> Did my Monday cash Trigger run last week, and did it finish?
+
+Ari tells a run that only started apart from a run that finished its task.
+
+A Trigger does one run at a time. When a run is still going at the next scheduled time, that scheduled run is skipped, and the Trigger's details read **The last scheduled attempt was skipped**.
+
+## Reply to a run that needs you
+
+A run never waits for an answer. When it has a question, such as which bank account to use, it works on an assumption and leaves the question in its chat. The run then reads **Needs response** in **History**. Open the run and answer there; Ari picks up from your reply. From your first reply, the chat is listed with your other chats. Your reply does not change the result the run recorded.
+
+## If something goes wrong
+
+<AccordionGroup>
+  <Accordion title="The Trigger runs an hour early or late">
+    Schedules are saved in UTC, so a run set for a local time moves by an hour when daylight saving time starts or ends. Edit the Trigger's time after the change.
+  </Accordion>
+  <Accordion title="No email or Slack message arrived">
+    Check that the instructions name the channel. Then open the run from **History**: Ari's activity in the chat shows whether the email service or Slack accepted the message. For Slack, check that Slack is connected and that your Slack email matches your cfo.ai email; see [Talk to Ari from Slack](/guides/use-ari-in-slack).
+  </Accordion>
+  <Accordion title="Run now says the Trigger already has a run">
+    The message reads **This trigger already has a queued or active run. Open its latest conversation.** Open that run from **History**, or wait for it to finish.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+- [Skills, Triggers, and Guides](/concepts/automation)
+- [Save a workflow as a Skill](/guides/save-a-skill)
+- [Talk to Ari from Slack](/guides/use-ari-in-slack)
+- [Plans, AI usage, and connection slots](/concepts/plans-and-usage)

@@ -1,0 +1,77 @@
+---
+title: "Scenarios, Snapshots, and version history"
+sidebarTitle: "Scenarios and Snapshots"
+description: "Scenario, Snapshot, or version history: which one to use to test a decision, keep a plan as it was, or undo a change. How Main, Scenarios, and Snapshots relate, and what flows between them."
+---
+
+A Scenario answers a "what if" question, such as "What if we hire two engineers in Q1?", without changing Main, the plan your team relies on. A Snapshot pins a plan at one moment, such as the budget your board approved, so later syncs and later edits to that plan do not reach it. Version history records every change, yours or Ari's, so you can undo any of it, and nothing you try is permanent by accident.
+
+## Main is the plan
+
+Every Model has one **Main** Scenario. Main holds the numbers your team treats as the current plan, and it is what Pages show unless you pick another Scenario.
+
+## A Scenario holds only what is different
+
+A Scenario branches from Main, or from another Scenario. It stores only what differs from the Scenario it branched from, such as values, formulas, Variables, Pages, and blocks, and reads everything else from there. A Page you add in a Scenario stays in that Scenario until you merge it.
+
+Take a hiring Scenario in which two engineers start in January. When QuickBooks syncs new Actuals overnight, Main updates, and so does the hiring Scenario, because it reads those Actuals from Main. The two extra salaries stay in the Scenario alone. You never have to copy new data into your Scenarios by hand.
+
+Two consequences follow:
+
+- A value that the Scenario inherits from Main changes when Main changes. If you set a cell in a Scenario to the value it already inherits, nothing is saved, and the cell keeps following Main. To make a number hold still while Main moves, give the Scenario a different value.
+- Connected data is shared. A Scenario changes Model formulas, values, and presentation; it never makes a private copy of an integration. Saved queries that read your connections also belong to Main, so every ordinary Scenario sees the same imported rows.
+
+## Merging brings a Scenario into Main
+
+When you decide to adopt a Scenario, you merge it. Merging applies every change the Scenario holds to the Scenario it branched from, which is Main for most Scenarios, then deletes the merged Scenario. The merge shows in the version history of the Scenario it merged into, and undoing it takes the changes back out and brings the merged Scenario back.
+
+A Scenario that has its own editable child Scenario cannot be merged until that child is merged or deleted. A Snapshot taken from the Scenario does not block the merge.
+
+## A Snapshot pins a moment
+
+A **Snapshot** pins Main or a Scenario at one point in its history. After that point, nothing from the source reaches it:
+
+- Integration syncs. When QuickBooks syncs, Main updates and the Snapshot keeps the numbers it had.
+- Edits. A formula or value someone changes in the source later stays out of the Snapshot.
+- Table setup. Later changes to a table's settings or column widths in the source do not carry over.
+
+Use a Snapshot to keep the budget you submitted, the plan your board approved, or a reporting baseline you will compare against later.
+
+A Snapshot is not read-only. You and Ari can still type values over its numbers, and those edits save, so treat a Snapshot as a copy your team agrees not to touch. A Snapshot cannot be merged into Main, cannot be restored to an earlier point, and cannot itself be snapshotted. To pin an earlier moment of a Scenario, take the Snapshot from that point in its version history.
+
+## Version history records every change
+
+Every write to a Scenario is recorded, whether you made it or Ari did. Version history gives you two ways to go back:
+
+- **Undo** reverses one change, or one related batch of changes, and leaves everything after it in place. If later changes depended on it, cfo.ai asks before undoing.
+- **Restore** returns the whole Scenario to an earlier point and rolls back every change made after it. The restore is itself a recorded change, so you can undo it too. Ari calls this a revert.
+
+A change a Scenario inherited from Main cannot be undone from inside the Scenario. Undo it in Main.
+
+## Scenario, Snapshot, or version history: which one to use
+
+| You want to | Use |
+| --- | --- |
+| Try a change and maybe adopt it | A Scenario, then merge it |
+| Compare a plan with the current one | A Scenario, shown side by side with Main on a table |
+| Keep a plan exactly as it was on a date | A Snapshot |
+| Take back a change you or Ari just made | Undo in version history |
+| Go back to how Main or a Scenario looked last week | Restore it in version history |
+
+## Where Scenarios show up
+
+- A Page shows the Scenario you are viewing in the sidebar's Scenario picker.
+- A Table block can show other Scenarios beside its own, and a Canvas block can read up to three Scenarios at once.
+- A share link shows the one Scenario you choose for it. See [Sharing and access](/concepts/sharing-and-access).
+- Ari makes changes in the Scenario your chat is in, unless you name another one.
+
+So if a Page or a change seems to be missing, check the Scenario picker: it may be in another Scenario.
+
+## Related
+
+- [Test a decision in a Scenario](/guides/test-a-decision-in-a-scenario)
+- [Compare Scenarios side by side](/guides/compare-scenarios)
+- [Merge a Scenario into Main](/guides/merge-a-scenario)
+- [Save a plan as a Snapshot](/guides/save-a-snapshot)
+- [Undo a change or restore a version](/guides/undo-changes)
+- [Scenario and version history controls](/reference/scenarios-and-history)

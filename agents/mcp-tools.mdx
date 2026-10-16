@@ -1,0 +1,271 @@
+---
+title: "MCP tools and call shapes"
+sidebarTitle: "MCP tools"
+description: "Reference for agents and developers: the cfo.ai MCP server's address, sign-in, and limits; every published tool and its actions; the one-action-block call shape and its refusals; workspace selection; results; pagination and truncation; and what is not published."
+searchable: false
+---
+
+The cfo.ai MCP server publishes 34 tools: Ari's public product tools plus `list_orgs`. This page describes the server, each tool, and the conventions every call follows. To connect a client, follow the [Agent instructions](/agent-instructions).
+
+## Server
+
+| Fact | Value |
+| --- | --- |
+| Address | `https://api.cfo.ai/mcp`. `https://api.cfo.ai/mcp/v2` serves the same tools; use `/mcp` for new connections. |
+| Transport | Streamable HTTP, stateless. Each request authenticates and selects its workspace on its own, and the server neither issues nor requires an `Mcp-Session-Id`. |
+| Sign-in | OAuth. A person approves the client in a browser, and the client sends the token it receives in the `Authorization` header. The protected resource metadata is at `https://api.cfo.ai/.well-known/oauth-protected-resource/mcp`, and clients register themselves through dynamic client registration or a client ID metadata document. |
+| API keys | None. cfo.ai issues no API keys or access tokens to copy; every client signs in as a person and acts as that person. |
+| Instructions | The server sends cfo.ai's modeling instructions when a client connects. |
+| Tool list | Fixed for each server process. The tool list carries a five-minute private cache hint, and the server advertises `listChanged: false`. When a client's definitions are stale, refresh its tool list or start a new conversation. |
+| Request size | A request body holds at most 1 MiB. A larger one is refused with **The MCP request is too large.** |
+| Batches | JSON-RPC batch requests are refused with **JSON-RPC batches are not supported.** |
+| Rate limit | 60 calls a minute for each tool, per user and workspace. A call past the limit fails with **rate limit exceeded for** followed by the tool name. |
+
+## Published tools
+
+A tool marked read-only never changes saved state. The **Actions or fields** column lists a multi-action tool's blocks; for a single-purpose tool it lists the fields it takes directly.
+
+### Tables, formulas, and mappings
+
+| Tool | What it does | Actions or fields |
+| --- | --- | --- |
+| `inspect_table_blocks` | Read-only. Lists saved tables, reads cells with their formulas and sources, compares a table with an earlier saved state, and reads Variables, Dimensions, and their items. | `list`, `read`, `compare`, `variable`, `dimension`, `items`, `bounds` |
+| `edit_table_blocks` | Creates, updates, reshapes, copies, or deletes saved tables in one atomic change each. Writes every model formula, and sets time rollups and the Scenario's calendar. | `create`, `update`, `reshape`, `copy`, `delete`, `set_time_rollup`, `update_calendar` |
+| `inspect_dimension_mappings` | Read-only. Lists the mappings a reporting Dimension owns, or reads one lookup chosen by its exact source keys. | `target`, `keys`, `limit`, `after`, `scenario`, `as_of_point` |
+| `edit_dimension_mappings` | Maps items of source Dimensions to a reporting Dimension's items, sets or clears the catch-all, removes rules or lookups, and combines or splits compatible source Dimensions. | `map`, `unmap`, `catch_all`, `clear_catch_all`, `drop_mapping`, `combine_dimension`, `split_dimension` |
+
+### Pages and Canvas blocks
+
+| Tool | What it does | Actions or fields |
+| --- | --- | --- |
+| `inspect_pages` | Read-only. Reads the page tree, each Page's blocks in order, saved table settings, and reusable references. | `list`, `read` |
+| `edit_pages` | Creates, renames, moves, shares, and deletes Pages; sets page icons and date ranges; adds and edits Text blocks; reorders and removes blocks; creates share links. | `create`, `update`, `move`, `share`, `create_share_link`, `delete`, `add_text`, `update_text`, `delete_block`, `reorder_blocks` |
+| `inspect_canvas_blocks` | Read-only. Reads selected Canvas blocks: saved source, dataset layouts and Scenario bindings, display state, position, revision, and references. | `target`, `page`, `scenario`, `as_of_point`, `source_offset` |
+| `edit_canvas_blocks` | Creates a Canvas block on a Page, or changes one. | `create`, `update` |
+| `inspect_canvas_library` | Read-only. Finds Canvas components and templates, and reads their instructions and props. | `list`, `read` |
+| `validate_code_blocks` | Read-only. Renders up to 8 saved Canvas blocks in a browser and reports errors, warnings, guide anchors, and, on request, a screenshot. | `target`, `scenario`, `visual_review` |
+
+[Canvas blocks for agents](/agents/canvas-blocks) covers these tools in detail.
+
+### Scenarios and history
+
+| Tool | What it does | Actions or fields |
+| --- | --- | --- |
+| `inspect_scenarios` | Read-only. Reads Scenarios, their owners, Snapshots, and descendant trees. | `list`, `read`, `subtree` |
+| `edit_scenarios` | Creates, renames, snapshots, merges, or deletes Scenarios. | `create`, `rename`, `snapshot`, `merge`, `delete` |
+| `inspect_history` | Read-only. Reads the changelog, the net difference between two points in time, and what a Scenario would merge into its parent. | `changelog`, `changes_between_points`, `scenario_summary`, `read` |
+| `edit_history` | Undoes or redoes changes, or reverts a Scenario to a past changelog entry. Each operation returns its new changelog entry and the action that reverses it. | `undo`, `redo`, `revert` |
+
+### Connected data
+
+| Tool | What it does | Actions or fields |
+| --- | --- | --- |
+| `inspect_integrations` | Read-only. Reads saved connections with their readiness and safe next action, the integration catalog, permitted API endpoints, connection-link progress, ingestion status, and sync setups. `outcomes` also lists the user's own recent sign-ins to this MCP server. | `catalog`, `connections`, `outcomes`, `endpoints`, `connect_progress`, `ingestion`, `sync_setups`, `query_deletion_preview`, `read` |
+| `edit_integrations` | Opens connection setup for the user, connects, re-links, and deletes connections and saved queries, starts ingestion, ingests a CSV, saves API and MCP sync setups, chooses synced tables, and sets daily refresh times. | `request`, `connect`, `relink`, `delete`, `delete_query`, `start_ingestion`, `ingest_csv`, `save_setup`, `delete_setup`, `select_source_tables`, `set_refresh_time`, `clear_refresh_time` |
+| `call_connected_api` | Calls one endpoint of a connected third-party API. The server supplies the credentials and enforces permissions. | `connection`, `endpoint`, `grantId`, `pathParams`, `query`, `body` |
+
+### Workspace, people, and automation
+
+| Tool | What it does | Actions or fields |
+| --- | --- | --- |
+| `list_orgs` | Read-only, MCP only. Lists the user's workspaces with each one's ID, name, slug, and role. | none |
+| `inspect_skills` | Read-only. Lists workspace and built-in Skills, and reads their instructions and supporting files. Reading a skill does not run it. | `list`, `instructions`, `file`, `read` |
+| `edit_skills` | Creates, updates, or deletes workspace Skills. Built-in skills cannot be edited. | `create`, `update`, `delete` |
+| `inspect_triggers` | Read-only. Reads the user's own scheduled Triggers, their schedules, and their last runs. | `query` |
+| `edit_triggers` | Creates, updates, pauses, resumes, runs, or deletes the user's own Triggers. | `create`, `update`, `run`, `delete` |
+| `inspect_guides` | Read-only. Reads the workspace's saved Guides. | `query`, `include_content` |
+| `edit_guides` | Creates, replaces, or deletes saved Guides. | `create`, `update`, `delete` |
+| `inspect_memory` | Read-only. Searches saved memories: the user's private facts and the workspace's shared facts. | `query`, `scope`, `tags`, `batch`, `include_superseded`, `limit` |
+| `edit_memory` | Saves 1 to 12 facts, saves a document, replaces facts, or forgets them. | `retain`, `retain_document`, `forget` |
+| `inspect_team` | Read-only. Reads the people and pending invitations in the workspace. | `query`, `target` |
+| `edit_team` | Invites admins, promotes members, removes members, or cancels invitations. Every change needs the user's explicit confirmation. | `invite`, `update_member`, `remove_member`, `cancel_invite` |
+| `edit_org` | Renames the workspace, or sets, clears, or copies its brand. | `rename`, `brand` |
+| `inspect_billing` | Read-only. Reads the plan, AI usage, spending settings, integration allowances, and available plans. It cannot change billing. | `read` |
+| `inspect_profile` | Read-only. Reads the user's profile, personal theme, and the workspace brand. | none |
+| `edit_profile` | Updates the user's display name, personal theme, or both. | `name`, `personal_theme` |
+| `notify_user` | Emails the user at their verified address or sends them a Slack DM. Email to anyone else waits as a preview until the user presses Send. | `email`, `slack` |
+| `inspect_documentation` | Read-only. Searches the cfo.ai documentation and reads whole pages. | `search`, `read` |
+
+## Fields every tool accepts
+
+Every tool except `list_orgs` also accepts these two fields at the root. The server removes them before the tool runs.
+
+| Field | Meaning |
+| --- | --- |
+| `org_id` | The workspace, by ID or slug. Optional when the user belongs to one workspace. See [Choose the workspace](#choose-the-workspace). |
+| `_context` | The in-app editing context, all optional: `layerId` (the active Scenario's ID), `pageId` (the active Page's ID), `timeZone` (such as `America/New_York`), and `utcOffset` (such as `-04:00`). Send `timeZone` or `utcOffset` when relative dates matter. Any other key is refused with **_context must contain only layerId, pageId, timeZone, and utcOffset**. |
+
+### The Scenario a call uses
+
+Most model tools take `scenario`, by name or returned reference. When a call omits it, the tool uses the Scenario in view: the one `_context.layerId` names, or Main when `_context` names none. Pass `scenario` on every write so the target does not depend on context. [Create and update formulas](/agents/write-formulas#write-in-a-scenario) quotes the sentence a table write adds when `scenario` was omitted.
+
+## Shape each call as one action block
+
+A tool with several actions takes exactly one block named for the action, with that action's fields inside it. There is no flat `action` field.
+
+```json
+{ "read": { "target": "Operating Plan", "rows": ["Revenue"] }, "scenario": "Main" }
+```
+
+- Each tool's input schema says, in its description, which blocks exist and which fields sit beside them: "Fill exactly one action block: list, read. Fields beside the block apply to it: as_of_point, scenario."
+- An empty block selects an action that needs no fields, such as `{"list": {}}`. A block set to `null` counts as not filled.
+- Fields beside the block apply to it: `scenario` on most model tools, `as_of_point` on `inspect_pages` and `inspect_scenarios`, `validate` on `edit_canvas_blocks`, `target` on `edit_dimension_mappings`, and `idempotency_key` on `edit_memory`. A block that takes such a field also accepts it inside; when both places carry it, the two values must match.
+- Single-purpose tools take their fields directly at the root, as the table above shows. `notify_user` takes an `email` block, a `slack` block, or both.
+- The schema root is a plain object, so every client can see the blocks. The rule that exactly one block is filled is enforced when the call runs.
+- Unknown fields and retired request shapes are refused before anything runs. Nothing is translated from an older shape.
+
+### Refusals for a wrong shape
+
+A refused call changes nothing. Its message names the problem without repeating any value you sent.
+
+| Mistake | Message |
+| --- | --- |
+| No block filled | `no action block is filled; the call takes exactly one of [...]` |
+| Two blocks filled | `the call takes exactly one action block; [...] are filled` |
+| A flat `action` field | `action "read" is the read block; the fields of that action belong inside it: {"read": {"target": ...}}` |
+| `action` inside a block | `the read block takes no action field; the block name selects the action` |
+| A block that is not an object | `read must be an object holding that action's fields` |
+| A root field that is not a block | `<name> is not an action block; the blocks are [...]` |
+| A field the block does not take | `<field> is not a field of the <block> block` |
+| A beside-field inside a block that does not take it | `<field> belongs beside the <block> block, not inside it` |
+| The same field beside and inside, with different values | `<field> is <value> beside the <block> block and <value> inside it; a call carries one <field>, in either place` |
+| A value of the wrong type or shape | `<path> received <what>; it accepts <what>`, such as `/sections/0 received a string of 9 characters; it accepts an object whose section is one of …`. At an action's root, the path reads `the input`. |
+
+A shape is described by type: a string by its length, an array by its item count, an object by up to 8 of its key names, and a number, boolean, or null by its type.
+
+The refusal arrives with `isError: true` and this structure:
+
+```json
+{
+  "error": {
+    "code": "invalid_input",
+    "message": "the call takes exactly one action block; [\"list\" \"read\"] are filled",
+    "transient": false,
+    "validation": {
+      "issues": [{ "path": "", "code": "invalid_value", "message": "..." }],
+      "accepted_fields": ["..."],
+      "required_fields": ["..."],
+      "truncated": false
+    }
+  },
+  "state_changed": "no"
+}
+```
+
+`validation` lists at most 20 issues; `truncated` is true when there were more. `accepted_fields` lists the chosen block's own fields plus the fields beside it.
+
+## Choose the workspace
+
+`list_orgs` takes no input and returns the workspaces the user can use through MCP:
+
+```json
+{ "orgs": [{ "org_id": "4127", "name": "Example Co", "slug": "example-co", "role": "admin" }] }
+```
+
+Pass a returned ID or slug as `org_id` on later calls. A number, or a string of digits, always names a workspace ID; anything else is read as a slug.
+
+| Situation | Answer |
+| --- | --- |
+| `org_id` omitted, one workspace | That workspace is used. |
+| `org_id` omitted, several workspaces | `org_id is required: you belong to <n> cfo.ai workspaces — pass one of [<ID> (<name>), …] (or call list_orgs)` |
+| `org_id` omitted, no workspace | `no org_id supplied and you are not a member of any cfo.ai workspace` |
+| A workspace the user is not a member of, or a slug that matches none | `you do not have access to this workspace`. Unknown and inaccessible workspaces get the same answer. |
+| A numeric `org_id` that is not a positive whole ID | `a numeric org_id must be a positive whole cfo.ai workspace ID; pass slugs as strings`, or for zero `org_id must be a positive numeric cfo.ai workspace ID` |
+| `org_id` neither a string nor a number | `org_id must be a string or number` |
+| A workspace that has not started its free trial or a plan | `Start the free trial in cfo.ai before using its MCP tools`. `list_orgs` leaves such workspaces out, and answers with this message when none remain. |
+| A deactivated workspace | `This workspace has been deactivated. Contact help@cfo.ai for assistance.` |
+| A workspace paused while cfo.ai investigates an issue | `This workspace is temporarily unavailable while we investigate an issue. We'll report back soon.` |
+
+## References and links
+
+- Selectors accept readable names, returned references, or IDs, unless a field says it takes less. Copy references from inspection results instead of building IDs.
+- A returned reference has the form `Name#hex`, such as `Revenue#a1b`. The suffix is a prefix of the object's identity, at least three hex digits, and unique among objects of its kind when the result was written. Later creates can lengthen it; an older reference keeps resolving while it stays unique, and a fresh inspection carries the current spelling.
+- A name that is ambiguous or matches nothing is refused with `error.candidates` when alternatives are known: each with `display_name`, `ref` to pass back, `kind`, and, when ranked, `score` and `match`.
+- A result names each object with `ref`, the selector to pass back, and `url`, the address that opens it in cfo.ai.
+- A write also returns a resource link for each thing it created or changed, described "Open in cfo.ai" and meant for the user. End your reply with the link a tool returned, exactly as printed; a link you assemble yourself will not open.
+
+## Results
+
+Every result is JSON text. A result that is a JSON object also arrives as `structuredContent`. A `validate_code_blocks` call with `visual_review` also returns the render as image content.
+
+### Write receipts
+
+A write receipt opens with a shared head. Tool-specific sections sit beside it.
+
+| Field | Values |
+| --- | --- |
+| `status` | `applied`: everything asked for is saved. `partially_applied`: some items are saved; `items` says which. `rejected`: nothing is saved because the request or every item was refused. `no_op`: nothing is saved because saved state already matched. `blocked`: nothing is saved because a dependency or a rule refused the write. |
+| `state_changed` | `yes`, `no`, or `unknown` |
+| `counts` | `requested`, and when nonzero `created`, `reused`, `applied`, `skipped`, `rejected`, `unchanged`, and `unknown` |
+| `items[]` | One entry per requested item, in request order: `ref`, `display_name`, `status` (`created`, `reused`, `applied`, `skipped`, `rejected`, `unchanged`, or `unknown`), and `reason` when it did not land |
+| `readback` | `status`: `complete`, `partial`, `unavailable`, or `not_needed`, with `reason`. A write whose readback is unavailable still saved. |
+| `warnings[]` | `code`, `message`, and `ref`: things the saved write will not do as asked |
+| `error` | Present exactly when `status` is `rejected` or `blocked` |
+
+An item whose status is `unknown` may or may not have landed. Read current state before you repeat it.
+
+### Refusals and failures
+
+- A refusal carries `error` with `code`, `message`, `transient`, and, when known, `candidates` and `hint`, beside `state_changed`. Codes include `ambiguous`, `not_found`, `invalid`, `blocked`, `conflict`, `stale_target`, `selection_too_wide`, `file_too_large`, `result_unavailable`, and `browser_validation_unavailable`.
+- `result_unavailable` reads **The call's outcome is unavailable. Read current state before repeating a write; repeating it could apply it again.**
+- A result with `ok: false` and an `error_kind` is an answer, not a crash. Use its message and `hint` to choose the next call.
+- Refusals and fully rejected writes arrive with `isError: true`. A write that saved some items stays a success, with each item's status.
+- `transient: true` means the same call can succeed later without changes. A failure that knows whether it is retryable adds `Transient: true.` or `Transient: false.` to its text and `{"error": {"message", "transient"}}` to its structured content. The server never retries for you.
+
+## Pagination and truncation
+
+A list cut short carries `truncation` and, when it can continue, `next`:
+
+- `truncation.by` says what cut it: `response_budget` (the next item did not fit one result), `count_limit` (the page reached the `limit` you set), `row_limit`, or `depth`.
+- `truncation.shown` counts what came back, and `truncation.total`, when counted, what the selection matched. No `truncation` means the result is complete.
+- `next` holds the values that continue the read. Pass a cursor back unchanged, with the same tool, action, target, filters, and snapshot.
+
+| Tool and action | Page size | Continue with |
+| --- | --- | --- |
+| `inspect_pages` `list` | `limit`. Without it, every page summary that fits one result; `truncation.total` counts all pages. | `next.after` as `after`, with the same `scenario` and `target` |
+| `inspect_pages` `read` | A page whose block list was cut carries its own `truncation`. | — |
+| `inspect_scenarios` `list` | `limit`. Without it, every visible Scenario that fits one result. | `next.after` as `after` |
+| `inspect_history` `changelog` | At most 100 entries per read; `limit` takes up to 100. Without it, as many of those as fit one result. | `next.before` as `before` |
+| `inspect_history` `changelog` with `search` | Each read searches up to 1,000 entries, newest first, and reports how many it read in `entries_searched`. | The `before` value the result carries |
+| `inspect_table_blocks` `list` | `limit` up to 500. Without it, every table that fits one result. | `next.after` as `after` |
+| `inspect_table_blocks` `read` and `compare` | `limit` up to 500 grid rows; default 500. Parents and descendants count separately. | `next.after` as `after`; it binds the table, selection, Scenario, and snapshot |
+| `inspect_table_blocks` `items` | `limit` up to 500 items; default 500. | The last item's spelling as `after`, including an empty string |
+| `inspect_table_blocks` `variable` and `dimension` | `limit` up to 100 saved formula definitions per page; default 100. | `next.after` as `after`, with the same `target` |
+| `inspect_dimension_mappings` | `limit` rows per lookup. Without it, every row of each lookup, or as many per lookup as fit one result. Each lookup's `row_count` is its true total. | That lookup's `next` as `after`, with the same `keys` |
+| `inspect_canvas_blocks` | A selection larger than one result is cut short. See [Canvas blocks for agents](/agents/canvas-blocks#read-saved-canvas-blocks). | `next` holds the arguments that read the rest |
+
+A table `read` that selects rows, columns, or periods, limits `depth`, continues from `after`, or stops early returns `partial: true` at its root. `coverage.delivery` says whether the response reached the end of that selection, and `coverage.calculation` whether its values finished calculating.
+
+A changelog entry larger than one page keeps its place in the list. Without `include_details`, it comes back with an empty `changes` list and no `blocks` list, and `changes_truncation` and `blocks_truncation` beside them count what each list held. With `include_details`, it keeps every change, and a result larger than the allowance is replaced whole by the allowance marker.
+
+## Read the Model at an earlier point
+
+`inspect_pages`, `inspect_table_blocks` (every action except `bounds`), `inspect_canvas_blocks`, `inspect_dimension_mappings`, and `inspect_scenarios` take `as_of_point`. Without it they read the current state. It holds exactly one point type:
+
+| Point type | Meaning |
+| --- | --- |
+| `change_log_id` | One of the workspace's changes, as a write receipt or `inspect_history` reports it. The snapshot is the Model right after that change. |
+| `timestamp` | An exact instant in RFC 3339 with a time zone, supplied by the user, the context, or a tool result. |
+| `calendar_boundary` | `unit` (`day`, `week`, `month`, `quarter`, or `year`), `offset` (0 this period, -1 the previous, 1 the next), and `boundary` (`start` or `end`), in the user's time zone from `_context`, or UTC without one. Weeks start on Monday. Use it for "yesterday" or "last month". |
+| `relative_duration` | `amount`, `unit` (`minute`, `hour`, `day`, or `week`), and `direction` (`ago` or `from_now`), from server time. A day is 24 hours and a week seven days. |
+
+`inspect_history` `changes_between_points` takes a `start` point and an optional `end` point, which may also be `latest: true`. A `change_log_id` there resolves to the workspace's latest change at or before it.
+
+## Safety annotations
+
+Each tool carries standard MCP annotations, which clients use to decide which calls need the user's approval:
+
+- `readOnlyHint: true` on every `inspect_*` tool, `validate_code_blocks`, and `list_orgs`.
+- `openWorldHint: true` on tools that can reach outside cfo.ai, notify a person, send an invitation, or change an outside integration: `edit_pages`, `edit_triggers`, `edit_profile`, `edit_integrations`, `edit_team`, `edit_org`, `call_connected_api`, `notify_user`, and `validate_code_blocks`.
+- `destructiveHint: false` only on `notify_user`. Every other write keeps the MCP default, which treats it as possibly destructive.
+
+## What the server does not publish
+
+Ari has tools that an outside agent does not get, because they need the cfo.ai app, belong to cfo.ai's own agents, or are switched on per workspace by a release setting that the server's single tool list cannot follow.
+
+| Kind | Not published | Instead |
+| --- | --- | --- |
+| Cards and views shown in the cfo.ai chat | Asking the user questions in a card, playing a Guide, showing a Scenario or table rows on screen, scenario confirmation cards, and sign-up steps | Ask the user in your own conversation, and describe what to open. |
+| cfo.ai's own agents | Delegating to background agents, task tools, the ingestion agent's query, source, and job tools, and reports to cfo.ai engineering | Request the outcome, such as `edit_integrations` `start_ingestion`, and read its progress with `inspect_integrations` `ingestion`. cfo.ai runs the workers and jobs. |
+| Ari's own runtime tools | Its code sandbox and files, web search, chat attachments and spreadsheets, calling other MCP servers, and reading past chats | Use your own client's tools. |
+| Tools switched on per workspace | Downloading a Page as a spreadsheet, image generation, and the publication library | None through MCP. The user can download a Page as a spreadsheet in cfo.ai, or ask Ari for one. |

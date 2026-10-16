@@ -1,0 +1,86 @@
+---
+title: "Validate and verify formula writes"
+sidebarTitle: "Validate and verify"
+description: "For agents: how cfo.ai validates a formula write before it saves, dry-run a new table, read everything a write receipt reports, handle deadlines and readbacks, and verify that the calculated values match the business rule."
+searchable: false
+---
+
+Validation checks a formula's syntax and references before a write saves. Verification checks whether the resulting values match the business rule. Do both: a formula that saves can still calculate the wrong thing.
+
+## Validate before you save
+
+Every `edit_table_blocks` write validates before it saves, and a write is atomic: the whole change saves, or none of it does. A refused write saves nothing and says which field caused the refusal. Validation errors block a write; formula warnings do not.
+
+Validation checks:
+
+- expression syntax,
+- condition syntax,
+- Variable and Dimension references,
+- function names and arguments, and
+- semantic compatibility.
+
+To validate without saving, send a `create` with `dry_run: true`. It checks the new table's structure, references, and formula syntax, and returns `valid`, `warnings`, and `model_effects`.
+
+- A dry run returns no values, because calculation does not run, and it does not detect circular references.
+- Its `model_effects` carry the totals statements the committed receipt would put under `level_defaults`.
+- With a `tables` list, `dry_run` applies to every table in the request.
+- `update`, `reshape`, and `delete` take no `dry_run`. A call that sends one is refused, because edits to saved tables and deletions have no preview. Correct any reported error, then send the intended change.
+
+## Read the receipt
+
+Inspect the write's result before you move on. A table write's receipt reports:
+
+- **What it touched.** Each row and column touched, with the formula it now carries per range.
+- **`formula_warning` issues** for formulas that need attention. Most follow a formula that saved, but the last case below follows a write that saved nothing. A `create` reports the same cases as `creation_warning`. The cases:
+  - an imported Variable read in Forecast months;
+  - a constant that matches no Dimension item;
+  - a tie with an existing formula;
+  - a shared formula the write replaced;
+  - a read that lands on the generated default, 0, or null for a date or text Variable, because the input lacks one of the read's coordinates;
+  - a default saved at a grain coarser than the Model's base grain;
+  - a write in a Scenario other than Main that sets the value the Scenario already inherits. The write stores nothing, and the cell keeps following the Scenario it inherits from: "`<Scenario>` already reads this value from `<parent>`, so the write stored no value of its own: the cell keeps following `<parent>` and changes when `<parent>` changes."
+- **Dates used as lookup keys.** A date used as a lookup key against a Dimension of timestamps is not reported when an item sits at that day's midnight and every item of the Dimension comes from its source rows, because the engine then selects that item. A Dimension with its own item list or formula keeps exact matching, and the same date in a condition is still reported.
+- **`read_note` entries.** One per imported source that the written formulas read, stating where that source's rows sit on the calendar and which formulas read it. And one for the first Forecast month when the formula reads a prior period, a source, or a Variable with no value there, stating what the formula computed and what each read returned. A note describes the read the formulas asked for; it is not a problem to fix.
+- **`scenario_warning`**, naming the Scenario the write used when the call left out `scenario`. [Write in a Scenario](/agents/write-formulas#write-in-a-scenario) quotes it.
+- **`default_rollup`**, naming the time rollup each new dated row received, and the statement of the level defaults a breakdown's save wrote or removed.
+- **Each default formula's scope**: its condition, its range, its Date grain when it is dated, and its reach. [How results describe a formula's reach](/agents/formula-scope#how-results-describe-a-formulas-reach) explains the wording.
+- **A refusal**, when nothing saved. A receipt whose `status` is `rejected` or `blocked` saved nothing, and carries the same `error` object a refusal carries, beside `items[].reason`. A refusal that fits no branch of a union names the one field or shape that was wrong, and a refusal from the calculation service names the formula it was checking. [Refusals for a wrong shape](/agents/mcp-tools#refusals-for-a-wrong-shape) gives the wording of shape refusals.
+
+To see the calculated values without a second read, ask for a readback in the same call with `readback.rows` and `readback.columns`. A selector the readback cannot resolve appears in the issues as `readback_selector_unresolved`, with the nearest coordinates, and the other selections still read.
+
+## Deadlines and readbacks
+
+An MCP request runs under the server's request deadline, a little under two minutes. A table write keeps part of that time, about 10 seconds, to deliver its own account of what happened, so the receipt arrives before the request ends.
+
+- Every step after the commit runs under that answer deadline: the readback, the saved-layout echo, and the calendar checks. A write that committed answers with a receipt that says it saved.
+- A write that has not committed by the answer deadline is rolled back and saves nothing. It answers: "This write saved nothing. Its transaction had not committed `<n>` seconds after it began, when the tool's answer was due, so it was stopped and rolled back."
+- The optional readback stops after at most 30 seconds, or 2 seconds before the answer deadline, whichever comes first.
+- A write whose readback did not finish reports the outcome `committed_with_readback_unavailable`, with its saved revision and a `readback.reason`, such as "The readback's deadline passed while the table was still calculating. The calculation had not failed, and the committed change does not depend on it." The change is saved: do not send it again.
+- When the calendar checks did not all finish, the receipt carries one more `creation_warning` on a create, or `formula_warning` on an edit: "The calendar checks of this write's formulas had finished N of M checks when this result was due. Those checks state where the source rows a formula reads sit on the calendar and which forecast periods a read of a source column leaves empty; no other part of this result depends on them."
+
+If your client stops waiting before the answer arrives, wait until two minutes have passed since you sent the call. By then the write has either committed in full or saved nothing. Read the table, or `inspect_history` `changelog`, to see which, and only then decide whether to send it again.
+
+## Verify the calculated values
+
+After a material change, use `inspect_table_blocks` on the saved table. Check representative dates, segments, formula origins, and source information.
+
+Every `read` result carries `calculation.source`, which says how its values were obtained: `cached`, `promoted`, `derived`, `seeded`, `full`, or `recalculated`.
+
+When a value disagrees with what the user sees, with another read, or with arithmetic you can check, and the source is anything but `full` or `recalculated`, read once more with `recalculate: true`. That read:
+
+- calculates the table from scratch, ignoring every cached or reused result;
+- makes the fresh result the cached one, so the page shows it too;
+- reports in `recalculated` whether the cached result differed, and in how many cells.
+
+It needs `comparison: "none"` and costs a full calculation, so it is not for routine reads.
+
+Examples of checks:
+
+- Compare Gross Profit with Revenue minus Cost of Goods Sold.
+- Check a Department formula for two different Departments.
+- Check both sides of Last close after a formula-range change.
+- Compare the intended Scenario with the Scenario that was written.
+
+## Report clearly
+
+State what was written, and whether verification matched the request. Disclose any inferred table, Scenario, or business assumption that materially affects the result.

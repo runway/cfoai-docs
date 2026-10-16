@@ -1,0 +1,100 @@
+---
+title: "Build a revenue and expense forecast"
+sidebarTitle: "Build a forecast"
+description: "Have Ari forecast revenue and expenses from how your business works, such as customers, pipeline, ARR, churn, hiring, and vendors, starting from your connected actuals, with every assumption labeled. Includes changing a run rate and planning a new business with no data yet."
+---
+
+Ask Ari for a monthly forecast of revenue and expenses, such as a 12-month operating plan. Ari builds it from what moves your numbers: customers and price, deals in your pipeline, or people and vendors. The forecast lands in your Model as Pages you can open, trace, and edit.
+
+Before you start, connect your accounting system so the forecast starts from your actuals; see [Connect QuickBooks, Xero, NetSuite, or Rillet](/guides/connect-accounting). Then check that Last close is the last month you have closed; see [Set Last close and date defaults](/guides/set-dates-and-last-close). If your business has no data yet, skip to [Plan a new business that has no data yet](#plan-a-new-business-that-has-no-data-yet).
+
+<Steps>
+  <Step title="Ask Ari for the forecast">
+    Tell Ari what creates revenue, what creates cost, and what decision the forecast is for. Name the time span you want; otherwise Ari covers the past 12 months and the next 24.
+
+    > We sell annual software subscriptions in three plans. Forecast revenue for the next 12 months from customers by plan: new customers each month, churn, and renewals. Forecast expenses from headcount and our five largest vendors. Label every assumption you make.
+
+    For a larger build, Ari first shows a plan card that lists the assumptions it intends to use. Change any that are wrong, and select **Build it**. Pages appear in the sidebar as Ari builds them.
+  </Step>
+  <Step title="Ask for the method that fits each part">
+    Say how each part of the business really works, so the forecast follows it:
+
+    | Your revenue comes from | Ask Ari to forecast it from |
+    | --- | --- |
+    | Subscriptions or ARR | Customers by plan: opening customers, new customers, churn, renewals, and price |
+    | A sales pipeline | Bookings from your deals: won deals in the month they closed, and open deals weighted by their probability in the month each is expected to close. Revenue then follows each contract's start date and terms. |
+    | Usage or transactions | Volume times price |
+    | Projects or services | Projects or billable people times their rate |
+    | A steady history | A run rate or growth rate from your recent actuals |
+
+    Costs work the same way. Payroll follows headcount, hosting follows customers or usage, and a percentage of revenue fits only a cost that really moves with revenue. When several methods would work, Ari recommends one, uses it, and tells you what the others would change.
+  </Step>
+  <Step title="Check the starting month">
+    Ari reads your connected actuals through Last close, and the forecast starts the month after. A forecast that grows from the last actual month repeats anything unusual in it, such as a one-time bill or a large refund. Ask Ari to start from an average instead when that month is not typical.
+  </Step>
+  <Step title="Check the assumptions">
+    > Which numbers in this forecast are assumptions, and where did each one come from?
+
+    Ari lists each assumption and its source: your books, something you told it, research, or its own estimate. Change any of them by typing the new value in its cell, or by telling Ari.
+  </Step>
+  <Step title="Check that the totals tie">
+    > Check that revenue by plan adds up to total revenue, that department payroll matches the employee detail, and that quarterly and yearly totals add up correctly.
+
+    Ari reads the tables, compares the totals, and tells you what ties and what does not. For why a total might not add up, see [Totals, aggregation, and time rollups](/concepts/totals-and-rollups).
+  </Step>
+</Steps>
+
+## Change the forecast method, such as a 3-month to a 6-month run rate
+
+<Tabs>
+  <Tab title="Ask Ari">
+    Name the Variable and the new method:
+
+    > Change the forecast for Software spend from the average of the last 3 months of actuals to the average of the last 6 months.
+
+    Ari changes the Variable's Forecast formula, and every forecast month recalculates.
+  </Tab>
+  <Tab title="By hand">
+    <Steps>
+      <Step title="Open the Forecast formula">
+        On a table with months, point at the Variable's row name and select the **fx** button, **Edit variable formula**. Expand the **Forecast** section. See [Use different formulas for Actuals and Forecast](/guides/actuals-and-forecast-formulas).
+      </Step>
+      <Step title="Change the date range">
+        In the formula, select the date filter that reads **Last 3 months of actuals**, and choose **Last 6 months of actuals**. The other choices are **Last 12 months of actuals**, **Year to date**, **Quarter to date**, and **Custom range**.
+      </Step>
+      <Step title="Save">
+        Press **Enter**. Every forecast month recalculates.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## Plan a new business that has no data yet
+
+With no books to start from, Ari builds the forecast from your description of the product, its price, and its costs. It labels every number it estimates as an assumption you can change.
+
+In a new workspace, the starting card asks **Where would you like to start?**
+
+- Choose **My business**, then **I want to type or upload context**, and describe your product, price, costs, team, and cash. Ari builds a complete first plan from your words, with every number it estimated labeled as an assumption.
+- Choose **Something hypothetical** to see a small, simple sample first. Choose **A business like mine**, or **Another business, I'll choose** and type a name. Ari builds a few Pages, labeled as a sample, and a short walkthrough of them. Ask for more when you want it.
+
+In a workspace you already use, describe the business in a chat:
+
+> I'm launching a meal-kit subscription next spring at \$60 a month. I expect 200 subscribers in the first month and 15% growth each month after. Food and shipping cost about \$35 per box. Two founders, no salaries for the first six months, and \$250,000 in the bank. Build a 24-month plan with cash runway, and label every assumption.
+
+Then test prices and hiring plans in Scenarios, so your base plan stays as it is:
+
+> Create a Scenario where the price is \$70 a month and growth is 10%, and compare cash runway with Main.
+
+> Create a Scenario where we hire two engineers in month 6 at \$140,000 a year each, and show the month cash runs out.
+
+See [Test a decision in a Scenario](/guides/test-a-decision-in-a-scenario).
+
+## Related
+
+- [Forecast cash and cash runway](/guides/forecast-cash)
+- [Build a headcount plan](/guides/build-a-headcount-plan)
+- [Build a budget and compare it with actuals](/guides/budget-vs-actuals)
+- [Get your P&L, balance sheet, and cash flow statement](/guides/build-financial-statements)
+- [Actuals, Forecast, and Last close](/concepts/actuals-and-forecast)
+- [Assumptions and breakdowns: Variables and Dimensions](/concepts/variables-and-dimensions)

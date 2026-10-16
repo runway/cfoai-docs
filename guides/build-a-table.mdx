@@ -1,0 +1,126 @@
+---
+title: "Build a Table block by hand"
+sidebarTitle: "Build a table by hand"
+description: "The exact clicks to add a Table block, create a Variable or Dimension without Ari, add, insert, rename, and remove rows and columns, set the dates and the time grain, show quarters and years, and delete a Variable safely."
+---
+
+Use this guide to build or extend a table yourself, such as a hiring plan with Salary, Headcount, and Payroll by month. You can create Variables and Dimensions, add rows and columns, and set the dates without Ari. To learn what Variables and Dimensions are, read [Assumptions and breakdowns: Variables and Dimensions](/concepts/variables-and-dimensions).
+
+<Tip>
+  To have Ari build the table, describe it in a chat: "Add a table to this Page with Revenue, Cost of Goods Sold, and Gross Profit by month."
+</Tip>
+
+You need a desktop browser and edit access to the Page.
+
+## Add a Table block
+
+On the Page, select **Add block** and choose **Table block**. For other ways to add a block, see [Create and organize Pages and blocks](/guides/create-pages-and-blocks#add-a-block-to-a-page).
+
+The new table is blank and reads **Build your table** and **Add a row below or a column above**. It starts with the default date range and time grain of the Scenario you are viewing, months unless that Scenario uses another; see [Set Last close and date defaults](/guides/set-dates-and-last-close).
+
+## Create a new Variable without Ari
+
+A Variable is one line of your Model, such as Revenue or Headcount. You create one by adding a row with a new name.
+
+<Steps>
+  <Step title="Open the search">
+    Select **Add row** at the bottom of the table. To add the Variable as a column instead, select the **+** button at the right end of the column headers, **Add column**.
+  </Step>
+  <Step title="Type the name">
+    In the search field, **Create or search**, type the new name, such as `Headcount`.
+  </Step>
+  <Step title="Create it">
+    Select **Create variable: Headcount**.
+  </Step>
+</Steps>
+
+The Variable appears on the table, ready for values. When it is the first row of a blank table, cfo.ai also adds date columns, one for each period in the table's date range, such as one per month.
+
+A new Variable holds numbers. To show it as currency, a percentage, or a date, see [Format and arrange a table](/guides/format-a-table). A Variable that holds text, such as notes or job titles, can be created by Ari, not by hand.
+
+Variables belong to the whole Model, not to one table. To use an existing Variable on another table, add it the same way and select its name from the results. Changing its values or formula on any table changes it everywhere.
+
+## Add a row or column in a particular place
+
+- Point at the left edge of a row and select the **+** button, **Insert row below**. A blank row opens with **Type a name or / to search**. Type a new name and press **Enter** to create a Variable there, or type `/` to search for an existing one. Below an item row, such as the Sales row of a Department breakdown, the name creates a new item of that Dimension instead.
+- Right-click a row name and choose **Insert above** or **Insert below**. On a column header, choose **Insert left** or **Insert right**. The same search opens.
+- Open the table setup panel with the **Show table setup** button at the left of the table header, and select **Add** under **Rows** or **Columns**.
+
+A table can hold Variables in its rows or in its columns, not both. When Variables are in the rows, the column search offers only Dimensions, and the reverse.
+
+## Create a Dimension for a breakdown or a mapping
+
+A Dimension is a list of categories, such as Department or Region.
+
+<Steps>
+  <Step title="Type the name">
+    Select **Add row** (or **Add column**), and type the name, such as `Department`.
+  </Step>
+  <Step title="Create it">
+    Select **Create dimension: Department**.
+  </Step>
+  <Step title="Choose how the table uses it">
+    If cfo.ai asks, choose **List dimension items** to give each item its own row or column, or **Add as mapping** to show which item each row belongs to, such as each employee's department.
+  </Step>
+</Steps>
+
+A new Dimension shows **No items** until you add some. To add items, or to split an existing row such as Revenue by Department, see [Break a number down](/guides/break-down-a-number). To change the choice later, right-click the Dimension's label row (or choose **[Dimension] dimension settings** from one of its items), then **Use as**, then **Segmentation** or **Mapping**. For mappings, see [Map one Dimension's items to another](/guides/map-dimensions).
+
+## Rename a row, column, or table
+
+To rename a Variable, double-click its row name or column header, type, and press **Enter**. The new name shows on every table, and formulas that use it keep working. To rename a Dimension item you created, double-click its name, or right-click it and choose **Rename**.
+
+To rename the table, click the title in the table header, type, and press **Enter**. An unnamed table reads **New Table Block**. To have cfo.ai suggest a title from what the table shows, point at the title and select the sparkle button, **Regenerate title**.
+
+## Add a blank row between sections
+
+Right-click a row name and choose **Insert space**. The empty row reads **Space** when you point at it. Click it to replace it with a row, or right-click it and choose **Remove space**.
+
+## Set the dates and the time grain
+
+The table header has two date controls:
+
+- Select the date button to set the range: pick the first and last period on the calendar. A complete range applies at once, and **Today** jumps the calendar to the current period.
+- Select the grain button to choose **Raw**, **Daily**, **Weekly**, **Monthly**, **Quarterly**, **Half-yearly**, or **Yearly**. **Raw** shows each date without grouping it into periods. The button reads **Mixed** when the table's Date axes use different grains.
+
+A Page that holds a table also has a date range beside its title. Changing it sets the same range on every table, chart, and Canvas block with data on the Page.
+
+To change one Date axis without changing the others, right-click a date header, choose **Date dimension settings**, then **Date granularity**. **Inherit** follows the table's grain.
+
+Quarter and year cells read each Variable's time rollup, which adds up or carries forward its months. A Variable you create by hand has no time rollup, so its quarters and years show 0 until you ask Ari to give it one. See [Why a quarterly view shows zeros](/concepts/totals-and-rollups#why-a-quarterly-view-shows-zeros).
+
+### Show quarters and years at the same time
+
+Each Date axis shows one grain at a time. To see quarters and years side by side, copy the table. Open the block menu (the six-dot handle at the table's left edge), choose **Duplicate block**, and set one table to **Quarterly** and the other to **Yearly**. Both tables show the same Variables, so they always agree.
+
+## Remove a row or delete a Variable
+
+Right-click the row name and choose **Remove item and drill-ins**. The row, and any breakdown rows under it, leave this table only; the Variable stays in your Model and on every other table. In the table setup panel, point at the row and select **Remove from table**.
+
+The table where a Variable was created is its original table. There, removing its last row reads **Delete variable** instead. It deletes the Variable from your Model and from every table. If formulas or other blocks still use it, cfo.ai first asks **Delete variable or dimension?** and counts what would break; choose **Cancel** to keep it, or **Delete anyway**. A Dimension works the same way with **Remove dimension** and **Delete dimension**.
+
+To find a Variable's original table, right-click its row on another table and choose **Go to original table**. When you point at a row whose Variable also appears on other tables, a link mark appears beside its name. Point at the mark to see how many tables show it and which one is the original. Deleting a whole table or Page keeps every Variable that another table still shows; see [Delete a table that other content uses](/guides/create-pages-and-blocks#delete-a-table-that-other-content-uses).
+
+## Keep a large table fast
+
+Every Variable on a table is calculated for each item of each Dimension on the table. A Dimension with more than about 1,000 items, such as every transaction or every customer, can make the table slow. Filter the Dimension to the items you need; see [Filter and sort a table](/guides/filter-and-sort-a-table).
+
+## If something goes wrong
+
+<Accordion title="A row or column I added disappears">
+  The notice **Couldn't apply that change** says why. The layout is not allowed, for example Variables in both the rows and the columns, so cfo.ai restores the previous table.
+</Accordion>
+
+<Accordion title="The search offers no Create variable option">
+  The table already has Variables on the other axis. Add the new Variable on the same side as the Variables already there.
+</Accordion>
+
+Every notice and its meaning is listed in [Table block controls and messages](/reference/table-blocks#when-a-change-is-not-saved).
+
+## Related
+
+- [Assumptions and breakdowns: Variables and Dimensions](/concepts/variables-and-dimensions)
+- [Enter, paste, and clear values](/guides/enter-values)
+- [Write a formula](/guides/write-a-formula)
+- [Format and arrange a table](/guides/format-a-table)
+- [Table block controls and messages](/reference/table-blocks)

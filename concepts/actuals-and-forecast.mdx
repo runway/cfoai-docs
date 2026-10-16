@@ -1,0 +1,60 @@
+---
+title: "Actuals, Forecast, and Last close"
+sidebarTitle: "Actuals and Forecast"
+description: "How Last close, your month-end boundary, splits the timeline into Actuals and Forecast, why a Variable can use a different formula on each side, what moving Last close changes, why it never moves on its own, and how fiscal years work."
+---
+
+Why does January show your books while February shows a forecast? Every Model splits time at one date, **Last close**: the end of the last period you have closed, your month-end. Periods up to and including Last close are **Actuals**, which usually come from your accounting system. Later periods are the **Forecast**, calculated from your assumptions. A forecast is not a separate model: it is the later part of the same Model's timeline.
+
+## Last close is your month-end boundary
+
+Last close is the end of the last period whose books you have closed, such as March 31 when you have finished closing March. A new workspace starts with Last close at the end of the previous calendar month.
+
+Each Scenario has its own Last close. A new Scenario follows Main's Last close until someone changes it in that Scenario. To set it, see [Set Last close and date defaults](/guides/set-dates-and-last-close).
+
+## Last close does not move on its own
+
+Last close stays where it is until you or Ari move it. Connected systems keep sending new data every night, but a month joins Actuals only when Last close moves past it. That is deliberate: closing a month is your decision, and a month whose books are still open would otherwise show partial numbers as Actuals.
+
+So to have the Model pick up last month's actuals, move Last close forward when you finish each month's close. You can change it yourself, ask Ari to change it, or schedule a [Trigger](/guides/schedule-a-trigger) that asks Ari to move it on the same day every month, after your books usually close.
+
+## A Variable can use one formula for Actuals and another for Forecast
+
+Actuals and Forecast are the two **formula ranges** of the timeline. A Variable can have one formula for each. Payroll, for example, can read your accounting system in Actuals and calculate this formula in Forecast:
+
+```text
+Headcount * `Average Salary`
+```
+
+The Variable keeps one meaning across both ranges: it is Payroll on both sides of Last close.
+
+A formula range is a span of time, so it applies only to a formula whose scope includes time. A formula written for Sales alone, with no time in its scope, cannot be limited to Actuals or Forecast, and Ari refuses to save it with a range. Once a formula's scope includes time, a range combines with the rest of it, so Sales can have its own Forecast formula while every other department uses a broader one. See [How formulas work](/concepts/formulas) and [Use different formulas for Actuals and Forecast](/guides/actuals-and-forecast-formulas).
+
+## What moving Last close changes
+
+Moving Last close changes which months use the Actuals formulas and which use the Forecast formulas. No formula is rewritten; each formula range follows Last close wherever it moves.
+
+Say Last close moves from January 31 to February 28. February now reads your books through the Actuals formulas, and the Forecast starts in March. A forecast that grows from the last actual month now grows from February's actual instead of January's. Every table, chart, and Page shows the new split, because they all read the same Model.
+
+## Connected data before and after Last close
+
+What a Variable shows after Last close depends on whether it has a Forecast formula:
+
+- A Variable with a Forecast formula uses it in every month after Last close. Rows from your accounting system dated after Last close, such as this month's postings so far, are not read in those months.
+- A Variable that only reads its connected column shows the source's rows in every month that has them, including months after Last close. Columns that connections bring in today start this way.
+
+Some older imported Variables read their source only through Last close, and show 0 in Forecast months until they get a Forecast formula. For how each imported column gets its starting formula, see [How imported data loads](/reference/imported-data).
+
+## Fiscal years: quarters and years follow the calendar
+
+cfo.ai has no fiscal-year setting. Quarters, half-years, and years always follow the calendar, January to December, in every table and formula. The **Descriptive** date format labels periods as FY2026 or Q3 FY2026, but those labels name calendar years and calendar quarters.
+
+If your fiscal year starts in another month, such as February, keep the Model monthly and ask Ari for fiscal-year totals. Ari can add them as formulas that add up your fiscal months, such as February 2026 through January 2027, or as a Canvas block that groups months into your fiscal years. You can also set a table's date range to start in the first month of your fiscal year. Monthly numbers are the same either way; only the yearly grouping differs.
+
+## Related
+
+- [Set Last close and date defaults](/guides/set-dates-and-last-close)
+- [Use different formulas for Actuals and Forecast](/guides/actuals-and-forecast-formulas)
+- [How connected data reaches your Model](/concepts/connected-data)
+- [Totals, aggregation, and time rollups](/concepts/totals-and-rollups)
+- [Scenarios, Snapshots, and version history](/concepts/scenarios)

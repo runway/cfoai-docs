@@ -1,0 +1,45 @@
+agent-instructions.mdx
+  s_0dca993f1c27b8::t_b4a88de15b7eb9 73
+agents/mcp-tools.mdx
+  s_df1569215e4e12::t_4ab62439b600f9 72-73
+concepts/automation.mdx
+  s_df1569215e4e12::t_310a4ee71e9480 12,17,19-21
+concepts/working-with-ari.mdx
+  s_0dca993f1c27b8::t_5e90be0a57cfc9 50
+guides/manage-workspaces.mdx
+  s_0dca993f1c27b8::t_3779f69d64ed8c 52
+guides/save-a-skill.mdx
+  s_df1569215e4e12::t_cdf4982eae5309 4,7,21,40-42,44,60-65,67
+guides/turn-on-built-in-skills.mdx
+  s_df1569215e4e12::t_11e5afbc835a46 14,35
+reference/limits.mdx
+  s_0dca993f1c27b8::t_3d2b1675b2fe77 68
+reference/sample-skills.mdx
+  s_0dca993f1c27b8::t_23ee6543bdf311 6
+reference/settings.mdx
+  s_df1569215e4e12::t_33516dc27d8260 173,178,181,183-189,197,204-207
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "262406357f7fe38af64a91b034316730662eafb0",
+  "prompts": {},
+  "sessions": {
+    "s_0dca993f1c27b8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "2af58c39-e1ce-4d65-8ccb-190360efc357",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Siqi Chen <blader@gmail.com>"
+    },
+    "s_df1569215e4e12": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "0a6b7fe3-6310-49d5-a464-a4fb824aea3d",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Siqi Chen <blader@gmail.com>"
+    }
+  }
+}

@@ -60,8 +60,8 @@ A tool marked read-only never changes saved state. The **Actions or fields** col
 
 | Tool | What it does | Actions or fields |
 | --- | --- | --- |
-| `inspect_integrations` | Read-only. Reads saved connections with their readiness and safe next action, the integration catalog, permitted API endpoints, connection-link progress, ingestion status, and sync setups. `outcomes` also lists the user's own recent sign-ins to this MCP server. | `catalog`, `connections`, `outcomes`, `endpoints`, `connect_progress`, `ingestion`, `sync_setups`, `query_deletion_preview`, `read` |
-| `edit_integrations` | Opens connection setup for the user, connects, re-links, and deletes connections and saved queries, starts ingestion, ingests a CSV, saves API and MCP sync setups, chooses synced tables, and sets daily refresh times. | `request`, `connect`, `relink`, `delete`, `delete_query`, `start_ingestion`, `ingest_csv`, `save_setup`, `delete_setup`, `select_source_tables`, `set_refresh_time`, `clear_refresh_time` |
+| `inspect_integrations` | Read-only. Reads saved connections with their readiness and safe next action, the integration catalog, the saved settings of API and MCP connections, permitted API endpoints, connection-link progress, ingestion status, sync setups, and a connection's saved queries, their rows, and their jobs. `outcomes` also lists the user's own recent sign-ins to this MCP server. | `catalog`, `connections`, `configurations`, `outcomes`, `endpoints`, `connect_progress`, `ingestion`, `sync_setups`, `queries`, `query_results`, `jobs`, `query_deletion_preview` |
+| `edit_integrations` | Opens connection setup for the user; connects, re-links, and deletes connections; edits a saved API or MCP connection's name, address, and authentication type; saves, edits, and runs saved queries and starts and cancels ingestion jobs; starts ingestion; ingests a CSV; saves API and MCP sync setups; chooses synced tables; and sets daily refresh times. | `request`, `connect`, `relink`, `update`, `delete`, `delete_query`, `start_ingestion`, `start_raw_sync`, `save_query`, `set_query_column_role`, `start_query`, `cancel_job`, `apply_query_templates`, `ingest_csv`, `save_setup`, `delete_setup`, `select_source_tables`, `set_refresh_time`, `clear_refresh_time` |
 | `call_connected_api` | Calls one endpoint of a connected third-party API. The server supplies the credentials and enforces permissions. | `connection`, `endpoint`, `grantId`, `pathParams`, `query`, `body` |
 
 ### Workspace, people, and automation
@@ -97,7 +97,7 @@ Every tool except `list_orgs` also accepts these two fields at the root. The ser
 
 ### The Scenario a call uses
 
-Most model tools take `scenario`, by name or returned reference. When a call omits it, the tool uses the Scenario in view: the one `_context.layerId` names, or Main when `_context` names none. Pass `scenario` on every write so the target does not depend on context. [Create and update formulas](/agents/write-formulas#write-in-a-scenario) quotes the sentence a table write adds when `scenario` was omitted.
+Most model tools take `scenario`, by name or returned reference. `"Main"` names the base Scenario whatever name the workspace stores for it, and the id that Page and block links print after `?layer=` is accepted too; a stored name wins, so a Scenario literally named Main keeps its own meaning. When a call omits `scenario`, the tool uses the Scenario in view: the one `_context.layerId` names, or Main when `_context` names none. Pass `scenario` on every write so the target does not depend on context. [Create and update formulas](/agents/write-formulas#write-in-a-scenario) quotes the sentence a table write adds when `scenario` was omitted.
 
 ## Shape each call as one action block
 
@@ -249,6 +249,8 @@ A changelog entry larger than one page keeps its place in the list. Without `inc
 | `calendar_boundary` | `unit` (`day`, `week`, `month`, `quarter`, or `year`), `offset` (0 this period, -1 the previous, 1 the next), and `boundary` (`start` or `end`), in the user's time zone from `_context`, or UTC without one. Weeks start on Monday. Use it for "yesterday" or "last month". |
 | `relative_duration` | `amount`, `unit` (`minute`, `hour`, `day`, or `week`), and `direction` (`ago` or `from_now`), from server time. A day is 24 hours and a week seven days. |
 
+A `change_log_id` the workspace does not have is refused with `not_found`: `as_of_point.change_log_id: no change with id <n> exists in this workspace.`, with the hint `Change ids come from write receipts and inspect_history.` and, when one exists, `The workspace's latest change before <n> is <m>.`
+
 `inspect_history` `changes_between_points` takes a `start` point and an optional `end` point, which may also be `latest: true`. A `change_log_id` there resolves to the workspace's latest change at or before it.
 
 ## Safety annotations
@@ -266,6 +268,6 @@ Ari has tools that an outside agent does not get, because they need the cfo.ai a
 | Kind | Not published | Instead |
 | --- | --- | --- |
 | Cards and views shown in the cfo.ai chat | Asking the user questions in a card, playing a Guide, showing a Scenario or table rows on screen, scenario confirmation cards, and sign-up steps | Ask the user in your own conversation, and describe what to open. |
-| cfo.ai's own agents | Delegating to background agents, task tools, the ingestion agent's query, source, and job tools, and reports to cfo.ai engineering | Request the outcome, such as `edit_integrations` `start_ingestion`, and read its progress with `inspect_integrations` `ingestion`. cfo.ai runs the workers and jobs. |
+| cfo.ai's own agents | Delegating to background agents, task tools, the ingestion worker's reads of raw source data, and reports to cfo.ai engineering | Read a connection's saved queries, their rows, and their jobs with `inspect_integrations` `queries`, `query_results`, and `jobs`; save and run a query with `edit_integrations` `save_query` and `start_query`; start a sync with `start_ingestion` and read its progress with `inspect_integrations` `ingestion`. cfo.ai runs the workers and jobs. |
 | Ari's own runtime tools | Its code sandbox and files, web search, chat attachments and spreadsheets, calling other MCP servers, and reading past chats | Use your own client's tools. |
 | Tools switched on per workspace | Downloading a Page as a spreadsheet, image generation, and the publication library | None through MCP. The user can download a Page as a spreadsheet in cfo.ai, or ask Ari for one. |

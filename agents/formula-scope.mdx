@@ -41,8 +41,8 @@ $[Department = "Sales"]
 
 In a saved table, the exact form is what a cell write produces:
 
-- A `cell_updates` entry saves one exact formula per selected cell, so one row across 60 period columns saves 60 formulas, and `clear_formula` removes them.
-- A `row_updates` entry's `default_formulas` saves one inheriting formula that covers every period in its range.
+- A `cell_updates` entry saves one formula per selected cell at that cell's exact address, so one row across 60 period columns saves 60 formulas, and `clear_formula` removes them. When a formula already sits at that address, the write replaces its text and keeps its saved matching mode.
+- A `row_updates` entry's `default_formulas` saves one inheriting formula that covers every period in its range. A formula the row already owns keeps its saved scope and matching mode.
 - On a timeless row with one value column, the cell's coordinates are the row's own, so the edit writes or removes the row's formula.
 
 The leading `$` belongs to the condition grammar. In an expression, an absolute reference puts `$` after the Variable's name instead: `Revenue$[Department = "Sales"]`.
@@ -79,11 +79,11 @@ A formula for Actuals or Forecast needs Date in its condition, at the Model's ba
 [Department = "Sales", Date.Month in any]
 ```
 
-The range is chosen by where the formula sits: `default_formulas.actuals` or `default_formulas.forecast` on a row or a column, or in a `variables` entry of `edit_table_blocks`. A formula saved through a `variables` entry, with no table named, gets one Date term at the Model's base grain automatically.
+The range is chosen by where the formula sits: `default_formulas.actuals` or `default_formulas.forecast` on a row or a column, or in a `variables` entry of `edit_table_blocks`. A formula saved through a `variables` entry gets one Date term at the Model's base grain automatically, whether or not the call also names a table.
 
 ### Read Last close when it matters
 
-Every table `read` returns the Scenario's `calendar`: `last_close`, its default `granularity`, and its default range. Read it when you need to confirm Last close, because the boundary decides which dates count as Actuals and which belong to Forecast. `edit_table_blocks` `update_calendar` changes these settings for the Scenario; every table in the Scenario shares them.
+A `dimension` read of Date, and each Scenario in `inspect_scenarios`, returns the Scenario's `calendar`: `last_close`, its default `granularity`, and its default range. A table grid `read` does not carry it. Read the calendar when you need to confirm Last close, because the boundary decides which dates count as Actuals and which belong to Forecast. `edit_table_blocks` `update_calendar` changes these settings for the Scenario; every table in the Scenario shares them.
 
 If the Scenario has no Last close, explain the missing setting before you build a result that depends on the range.
 

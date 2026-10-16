@@ -124,5 +124,5 @@ Copy names and references, such as `Gross Profit#3f2`, from inspection results i
 - **A call answers `org_id is required`.** The user belongs to several workspaces. Call `list_orgs` and pass the intended workspace as `org_id`.
 - **A call answers `you do not have access to this workspace`.** The signed-in account is not a member of that workspace. Check `list_orgs` and the account the user approved with.
 - **A call answers `Start the free trial in cfo.ai before using its MCP tools`.** The user must start the workspace's free trial or a plan in cfo.ai.
-- **A call answers `rate limit exceeded for` a tool.** Wait and send it again. Each tool accepts up to 60 calls a minute per user and workspace.
+- **A call answers `rate limit exceeded for` a tool.** Wait and send it again. Each tool accepts up to 60 calls a minute per user and workspace; `list_orgs` has no limit.
 - **Calls built from the client's tool list are refused as unknown or retired shapes.** The client's tool definitions are stale. Refresh its tool list or start a new conversation, then call again.

@@ -23,15 +23,15 @@ Two tools cover formula work. Each takes one action block named for the action.
 | Check a new table's formulas without saving | `edit_table_blocks` `create` with `dry_run: true` | [Validate and verify formula writes](/agents/validate-and-verify) |
 | Get an answer from what is already saved | `inspect_table_blocks` reads only | [Analyze saved values without changing the Model](/agents/analyze-without-saving) |
 
-A question that existing values can answer stays read-only. A new calculated result needs a visible, saved formula and the user's authorization to create it.
+A question that existing values can answer stays read-only. A new calculated result needs a visible, saved formula. The user's request is the authorization to create it; a change that is easy to undo from the changelog needs no separate confirmation.
 
 ## Start from the visible table
 
-Read the relevant Table block once, reuse the row and column references it returns, and send related edits together. The server derives the Variable, the formula's scope, its time range, and the write permissions from that visible target, so you never build them yourself.
+Read the relevant Table block once, reuse the row and column references it returns, and send related edits together. The server derives the Variable, the formula's scope, and its Date grain from that visible target, and the read tells you whether each cell is writable, so you never build those yourself. The range is the one you name: `default_formulas.actuals` or `default_formulas.forecast`.
 
 When the work has no table yet, read the existing Variables and Dimensions first, and reuse their returned references, such as `Revenue#3f2`, when you compose a formula.
 
-Write expressions with readable Variable names. Put backticks around a name that contains spaces, punctuation, an operator, or a reserved word, such as `` `Gross Profit` ``. Add a returned reference's short suffix only when two names collide.
+Write expressions with readable Variable names. Put backticks around a name that contains spaces, punctuation, or a reserved word, such as `` `Gross Profit` ``. Add a returned reference's short suffix only when two names collide.
 
 ## Respect the Scenario
 

@@ -86,6 +86,27 @@ Ari picks one read-only tool or endpoint, saves how to call it, and runs it. Eac
 
 The service's page lists its setups under **Syncs**, each **Enabled** or **Paused**, with when it last synced. To stop one, ask Ari to remove it; the data it already copied stays. Once a service has a sync setup, it uses one standard plan slot. [How imported data loads](/reference/imported-data#sync-setups-for-mcp-servers-and-apis) lists the sync types and limits.
 
+## Change a connection's name, address, or authentication
+
+When a service changes its address, or you set up its authentication the wrong way, change the saved connection instead of disconnecting and adding it again. The connection keeps its ID, its tools, its tool permissions, and its sync setups.
+
+<Tabs>
+  <Tab title="Ask Ari">
+    Name the connection as Ari lists it and say what to change:
+
+    > Change the Light API connection so the key is sent as the Basic username.
+
+    Ari changes the name, provider name, address, and authentication type. A new key or token goes through the secure form Ari hands you, never through the chat.
+  </Tab>
+  <Tab title="By hand">
+    In **Settings → Connections**, open the service's **…** menu and select **Edit configuration**. Change the fields you need and save. To replace a key, type it in **Replacement API key**; leave that field blank to keep the saved one. A connection that signs in through the provider takes a new name only. Every field is listed in [Settings](/reference/settings#connections).
+  </Tab>
+</Tabs>
+
+## Reconnect an MCP server
+
+When a server's row in **Settings → Connections** reads **Reconnect required**, select **Reconnect** and sign in to the provider again. The connection and its sync setups stay as they are, and the new sign-in replaces the saved one when it completes. A row that reads **Access expired · renewal on next use** needs nothing from you; cfo.ai renews the sign-in the next time it uses the server.
+
 ## Disconnect a service
 
 In **Settings → Connections**, open the service's **…** menu and select **Disconnect**. cfo.ai warns **Ari will no longer be able to use this server's tools until you reconnect.**, or for an API, **Ari will no longer be able to use this API until you reconnect it.**

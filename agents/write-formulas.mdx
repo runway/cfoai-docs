@@ -161,7 +161,10 @@ When a table breaks a Variable down, `child_defaults` on the deepest axis row is
 - The sums exist only while a line formula claims the lines. Clearing the line formula removes the sums left in its range.
 - A Variable with `format: PERCENTAGE` gets no sums and no `0` on its lines. Each level above them gets the line formula or `NULL`, and the receipt states which: "saved the line formula on [rows], so each of those rows computes that formula from its own inputs", or "saved NULL on [rows], which reads blank, where the lines hold typed-in numbers or several formulas, or where their formula takes its own row's item of a dimension that row lacks or reads a variable with no value on that row".
 - A row's `numberFormat` is display only and changes no formula.
-- A `create` dry run runs the same totals step and rolls it back, so its `model_effects` carry the statements the committed receipt puts under `level_defaults`.
+- Each sum adds up the one shown level beneath it, never every line dimension at once. A total above lines whose formula has no Date is saved without Date too.
+- A sum a person or Ari saved at a level is left alone, even when it is spelled exactly as the sync spells its own sums. The sync replaces or removes only the formulas it wrote itself, which a `variable` read marks `writer: "level_default_sync"`.
+- When one call creates several tables, each table's receipt lists the level defaults for every Variable that table shows, including a Variable a row names only by reference.
+- A `create` dry run runs the same totals step and rolls it back, so its `model_effects` carry the statements the committed receipt puts under `level_defaults`, for each table in the call.
 
 [Totals, aggregation, and time rollups](/concepts/totals-and-rollups) explains why totals work this way.
 
@@ -267,6 +270,8 @@ Where an imported source's rows sit on the calendar is one fact about the source
 ## Declare a mapping in the create that reads it
 
 A `create` whose formulas read a mapped Dimension can declare the mapping in the same call, instead of calling `edit_dimension_mappings` first. The create's `dimensions` entry takes `target`, `keys`, `items`, and `catch_all`, as `edit_dimension_mappings` `map` takes them:
+
+A table formula or mapping write that would give a Dimension a second lookup reaching the same imported table is refused, and nothing saves, because the calculation could not choose between the two for a row both match. The refusal names the Dimension and both lookups: `target dimension "Direct Cash Flow Group" already has a mapping input keyed by [CF Classification Basis] that reaches the same imported source as the proposed input keyed by [CF Line ID]. Both inputs would match every source row, so "Direct Cash Flow Group" would have no defined mapping result`. A key that is itself a mapped Dimension counts through the import it reaches.
 
 ```json
 {

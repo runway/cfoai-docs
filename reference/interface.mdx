@@ -179,7 +179,7 @@ Open it with **Help center** in the account menu, or press **⌘ ?** (**Ctrl ?**
 | **Recently viewed** | Walkthroughs and explanations you ran since the app last loaded, including ones Ari made. Each has a button that asks Ari to refresh it with your latest numbers. |
 | **Getting started** | **Get to know navigating your workspace**, **Ask Ari to change your model**, **Start from a Canvas template**, **Find your way around the model**, and **Ask a human**. |
 | **Tables & formulas** | **Get to know table blocks**, **Ask Ari about any number**, **Compare scenarios side by side**, and **See how a number is calculated**. |
-| **Collaboration** | **Share pages & see who has access** and **Find and undo a change**. |
+| **Collaboration** | **Share pages with a link** and **Find and undo a change**. |
 | **Data & integrations** | **Connect your data sources**. |
 | **Keyboard shortcuts** | The common shortcuts. |
 | **Additional resources** | **cfo.ai Docs** (these pages) and **System status** (service availability and incidents). Both open in a new tab. |
@@ -417,6 +417,7 @@ A link's preview card in chat and social apps shows **Shared page unavailable** 
 | **Add** | At the block's top corner, for people who can edit the Page. Opens the Canvas block library to pick components and templates for Ari to add. |
 | **Select element** | At the block's top corner. Click one part of the block to add it to the chat as a reference. |
 | **Mention in chat** | At the block's top corner. Adds the block to the chat's message box. |
+| **Inspect data** | At the block's top corner, on a block that reads Model data, for workspace admins only; its tooltip reads **Inspect the data behind this Canvas block**. Opens the **Canvas data** dialog, which shows each data view the block reads as its own read-only table. A table's header offers **Add to page**, which puts an editable copy of that table on the Page just before the Canvas block and then reads **Added to page**. **Add to page** needs edit access to the Page and is unavailable in a historical view and for a view that reads another Scenario. |
 | **Browse library** and **Mention block in chat** | On a blank block, under **Build something custom** and **Chat with Ari to generate custom visuals and interactive tools**. |
 
 A blank block on a deleted Page that you open from version history reads **This Canvas block was empty when the page was deleted.**, and a blank block you cannot edit reads **This Canvas block is empty.**
@@ -435,6 +436,7 @@ A Canvas block can open your browser's own dialogs: a print button prints that b
 | **This block failed to render.**, with the error | The block stopped with an error while drawing. | Select **Fix** to hand the block to Ari, or **Mention in chat**. |
 | **This block's "[data]" data didn't load because the connection to cfo.ai failed.** | Your connection to cfo.ai failed. | Wait. The block asks again when your connection returns. |
 | **This block's "[data]" data failed to load.** | The data the block reads failed to load. | Select **Mention in chat** and ask Ari to check the data the block reads. |
+| **This Canvas block no longer exists in this scenario.** | A saved change deleted the block after the Page loaded. | Nothing. The block leaves the Page when it next loads. |
 
 A block that stopped with an error tries again by itself once after 2 seconds, and any block that did not start tries again when your connection to cfo.ai returns.
 

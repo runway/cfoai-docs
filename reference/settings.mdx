@@ -166,6 +166,15 @@ Anyone whose Slack profile email matches a member of the workspace can message A
 | **Connect via MCP** | The cfo.ai MCP server address, `https://api.cfo.ai/mcp`, with **Copy cfo.ai MCP URL**. AI tools such as Claude or Codex connect to it and sign in through the browser; cfo.ai issues no API key. See [Connect Claude, ChatGPT, Codex, or another AI tool to cfo.ai](/guides/connect-an-ai-client). |
 | **Add connections** | Tabs **MCP** and **APIs** for other services whose tools Ari can call. Each tab offers **Add manually** and **Add with Ari**. See [Give Ari access to another service with MCP or an API](/guides/give-ari-another-service). |
 
+Each connected MCP server or API has a **…** menu with **Edit configuration** and **Disconnect**, and a **Manage** button for its tools or endpoints once it is linked.
+
+| Control | What it does |
+| --- | --- |
+| **Edit configuration** | Opens **Edit [name]**. You can change the **Display name**, an API's **Provider name**, the **Base URL** of an API or the **MCP URL** of a server, and the **Authentication**: **Bearer token**, **API key header** with its **Header name**, **Basic: key as username**, or **No authentication**. A **Replacement API key** field reads **Leave blank to keep the saved credential.** A connection that signs in through the provider shows **Provider sign-in** and takes a new name only. A name longer than 160 characters is refused with **Use a name of at most 160 characters.** The connection keeps its ID, its saved API specification, its discovered tools, and its tool permissions. |
+| Sign-in state, on an MCP server's row | **Sign-in saved**, **Sign-in saved · expiry unknown**, **Access expired · renewal on next use** (cfo.ai renews it the next time the server is used), **Reconnect required**, **Sign-in incomplete**, or **Provider access not checked**. The state describes the saved sign-in, not whether the provider answered or how fresh its data is. |
+| **Reconnect** | On a server that reads **Reconnect required**. Opens the provider's sign-in again. The connection and its sync setups are kept; the new sign-in replaces the saved one only when it completes. Reconnecting runs no data sync. |
+| **Data freshness**, in a connection's details | The last successful sync of each of its sync setups, or **Sync history is unavailable for this workspace.** |
+
 While Ari cannot be used, for example when the workspace is out of AI usage, **Add with Ari** is unavailable, and a line reads **Add with Ari is unavailable.** followed by the reason. Data sources such as QuickBooks are connected from **Connections** in the sidebar; see [Connect QuickBooks, Xero, NetSuite, or Rillet](/guides/connect-accounting).
 
 ## Skills

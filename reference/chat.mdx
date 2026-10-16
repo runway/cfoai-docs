@@ -34,6 +34,8 @@ A new chat shows the heading **How can I help you?** and the placeholder **Ask a
 | **Data source** / **Chat only** | On a CSV file's tile. **Data source**, the default, also imports the file into cfo.ai when you send. **Chat only** shares it with Ari in this chat alone. |
 | **Browse Canvas block library** | The palette icon at the bottom left. Opens templates for Canvas blocks. See [Build a dashboard or board report](/guides/build-a-dashboard). |
 | Suggested reply | After Ari answers, the empty message box can show a suggested next message in faint text, followed by **Tab** or **→**. Press either key to place it in the box; it is never sent until you send it. |
+
+The message box shows Markdown formatting as you type and keeps it when you send. Typing `1. ` or `* ` at the start of a line starts a numbered or bulleted list, `**bold**`, `_italic_`, and `` `code` `` show as formatted text, and headings, quotes, and dividers work the same way. A sent message keeps its formatting when you open it again. **Shift Enter** starts a new paragraph, continues a list, or leaves a list from an empty item; inside code it inserts a line break. **⌘ Enter** inserts a line break. Underlining is not kept, because Markdown has no underline.
 | Excerpt | A passage you quoted from one of Ari's answers. See [Reply to part of an answer](#reply-to-part-of-an-answer). |
 
 ### Why Send is unavailable
@@ -109,15 +111,19 @@ For when to steer, queue, or stop, see [Steer, stop, or add to Ari's work](/guid
 
 ### Edits playing on the Page
 
-When Ari edits a table you are looking at, it plays each edit on the Page. A caption moves to the cell, the editor opens, the new value or formula is typed in, and the changed cells are highlighted. The caption's first line is Ari's note for the change. Its second line says what changed:
+When Ari edits a table you are looking at, it plays each edit on the Page. A caption moves to the cell, the editor opens, the new value or formula is typed in, and the changed cells are highlighted. The caption's first line is Ari's note for the change. Its second line is a sentence that says what the edit does, and it turns to the past tense once the edit is saved:
 
 | Second line | Meaning |
 | --- | --- |
-| `Churn [Starter] 5% → 4%` | A value replaced a value. |
-| `set to 4%` | A new value where there was none. |
-| `cleared (was $15,000)` | A value was removed. |
-| A formula followed by `(was …)` | A formula replaced an earlier one. |
-| `Filling 24 cells in Revenue with …` | One formula or value filled many cells. |
+| **Lowering Churn for Starter from 5% to 4%**, or **Raising …** | A number replaced a number. The verb says which way it moved. |
+| **Changing … from … to …** | Text, a date, or another value that is not a number replaced an earlier one. |
+| **Setting … to 4%** | A new value where there was none. |
+| **Clearing …** | A value was removed. |
+| **Setting … to [formula], instead of [formula]** | A formula replaced an earlier one. |
+| **Filling 24 cells in Revenue with …** | One formula or value filled many cells. |
+| **Adding a COGS row below Revenue**, **Moving …**, **Removing …**, **Renaming … to …**, **Creating …** | A row, column, block, Page, Variable, Dimension item, or Scenario was added, moved, removed, renamed, or created. |
+
+A formula in a caption is drawn the way the table draws it, with reference chips, rather than as its source text. A command Ari runs in its workspace is captioned with the line Ari wrote for it, not the command itself.
 
 While a change is still running, the caption shows Ari's note alone, and adds **· Still working** after about eight seconds.
 
@@ -147,12 +153,12 @@ Your answers appear in the chat as a record of the form, each question above you
 
 ### Plan card
 
-For a larger piece of work, Ari shows a plan before it starts. Under **Will create:**, the card lists what Ari intends to build, such as Pages and tables. Under **Assumptions**, it lists each assumption Ari intends to use, with suggested choices.
+For a larger piece of work, Ari shows a plan before it starts. Under **Included in this plan**, the card lists what the plan covers, such as Pages and tables, whether Ari will create them or change ones you have. Under **Assumptions**, it lists each assumption Ari intends to use, with suggested choices.
 
 | Control | What it does |
 | --- | --- |
 | **Other** | On an assumption. Type your own value (**Write your own answer**). |
-| **Make changes** | Puts text in the message box so you can describe changes the choices cannot express. |
+| **Make changes** | Fills the message box with **Please revise the plan with these changes and show me the updated plan:** and a bullet for you to complete, so you can describe changes the choices cannot express. Until you write a change after that line, **Send** stays dimmed and its tooltip reads **No plan changes written yet.** |
 | **Build it** | Approves the plan. Your message reads **Build it — with these selected assumptions:** followed by any assumptions you changed. |
 
 While Ari works through an approved plan, a plan card lists its steps with a count such as **2/5**. An **Assumptions** group under the steps names the decisions the plan rests on.
@@ -172,7 +178,7 @@ When Ari wants to call a service you connected under **Settings → Connections*
 | Control | What it does |
 | --- | --- |
 | **Allow** | Runs this one call. Anyone in the chat can choose it. |
-| **Always allow** | Runs the call and lets Ari use this tool on this service without asking again, for the whole workspace. Only people who can manage workspace settings see it. Other cards waiting for the same tool then read **Always allowed**. |
+| **Always allow** | Runs the call and lets Ari use this tool on this service without asking again, for the whole workspace. Only people who can manage workspace settings see it. Other cards waiting for the same tool then read **Always allowed**, and Ari's next call to the tool, even later in the same reply, runs without asking. |
 | **Decline** | Skips the call. Ari continues without it. |
 
 After you choose, the card reads **Allowed**, **Always allowed**, or **Declined**, and the chat sends Ari a short message for you, such as **I approved the pending tool request — please go ahead and run it.** Ari then continues on its own.
@@ -291,8 +297,8 @@ When billing stops a turn, the reply ends with Ari's own explanation, which star
 
 | Message | Meaning |
 | --- | --- |
-| **I had to stop here: this workspace is out of AI usage. Buy more usage or upgrade the plan in Settings → Billing, then send a new message and I'll pick up where we left off.** | No AI usage left |
-| **I had to stop here: this workspace reached its monthly AI spend limit. Raise the limit in Settings → Billing, then send a new message and I'll pick up where we left off.** | Spend limit reached |
+| **I had to stop here: this workspace is out of AI usage. Buy more usage in Settings → Usage or upgrade the plan in Settings → Billing, then send a new message and I'll pick up where we left off.** | No AI usage left |
+| **I had to stop here: this workspace reached its monthly AI spend limit. Raise the limit in Settings → Usage, then send a new message and I'll pick up where we left off.** | Spend limit reached |
 | **I had to stop here: this workspace has reached a limit of its current plan. Upgrade the plan in Settings → Billing, then send a new message and I'll pick up where we left off.** | Plan limit reached |
 | **I had to stop here: the workspace's last usage purchase failed, so no more AI usage could be added. Update the payment method in Settings → Billing, then send a new message and I'll pick up where we left off.** | A usage purchase failed |
 | **I had to stop here while more AI usage is on the way. Send a new message in a moment and I'll pick up where we left off.** | Usage is being added, for example by auto-reload |

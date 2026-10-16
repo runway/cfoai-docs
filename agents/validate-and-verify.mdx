@@ -44,7 +44,7 @@ Inspect the write's result before you move on. A table write's receipt reports:
 - **`scenario_warning`**, naming the Scenario the write used when the call left out `scenario`. [Write in a Scenario](/agents/write-formulas#write-in-a-scenario) quotes it.
 - **`default_rollup`**, naming the time rollup each new dated row received, and the statement of the level defaults a breakdown's save wrote or removed.
 - **Each default formula's scope**: its condition, its range, its Date grain when it is dated, and its reach. [How results describe a formula's reach](/agents/formula-scope#how-results-describe-a-formulas-reach) explains the wording.
-- **A refusal**, when nothing saved. A receipt whose `status` is `rejected` or `blocked` saved nothing, and carries the same `error` object a refusal carries, beside `items[].reason`. A refusal that fits no branch of a union names the one field or shape that was wrong, and a refusal from the calculation service names the formula it was checking. [Refusals for a wrong shape](/agents/mcp-tools#refusals-for-a-wrong-shape) gives the wording of shape refusals.
+- **A refusal**, when nothing saved. A receipt whose `status` is `rejected` or `blocked` saved nothing, and carries the same `error` object a refusal carries, beside `items[].reason`. A write that fails on the calculation service says whether it saved anything: `state_changed: "no"` when the failure stopped the write before anything saved, for example in a formula or mapping-condition check, and `"yes"` when the call had already saved a change. A refusal that fits no branch of a union names the one field or shape that was wrong, and a refusal from the calculation service names the formula it was checking. [Refusals for a wrong shape](/agents/mcp-tools#refusals-for-a-wrong-shape) gives the wording of shape refusals.
 
 To see the calculated values without a second read, ask for a readback in the same call with `readback.rows` and `readback.columns`. A selector the readback cannot resolve appears in the issues as `readback_selector_unresolved`, with the nearest coordinates, and the other selections still read.
 
@@ -71,6 +71,8 @@ When a value disagrees with what the user sees, with another read, or with arith
 - calculates the table from scratch, ignoring every cached or reused result;
 - makes the fresh result the cached one, so the page shows it too;
 - reports in `recalculated` whether the cached result differed, and in how many cells.
+
+`recalculated` compares the fresh values with the one result the cache held for this read's own calculation request. A read of the same table with other options, such as `include_inputs`, other columns, or `formula_origins`, sends a different request, and the cache holds its result separately, so `cached: "same"` on one read says nothing about what another read showed. To check a value that a read with `include_inputs` showed, recalculate with the same options.
 
 It needs `comparison: "none"` and costs a full calculation, so it is not for routine reads.
 

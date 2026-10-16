@@ -170,17 +170,23 @@ While Ari cannot be used, for example when the workspace is out of AI usage, **A
 
 ## Skills
 
-The section reads **Teach Ari reusable workflows for this workspace.** See [Save a workflow as a Skill](/guides/save-a-skill).
+The section reads **Teach Ari workflows you repeat. Your skills go with you to every workspace you work in.** Your Skills belong to you: every workspace where you are a member shows the same list, and nobody else sees it. See [Save a workflow as a Skill](/guides/save-a-skill).
 
 | Control | What it does |
 | --- | --- |
 | **Write manually** | Opens the Skill editor, headed **New skill**. |
-| **Build with Ari** | Opens a new chat that starts with **Help me build a reusable skill for this workspace.** Unavailable while Ari cannot be used. |
+| **Build with Ari** | Opens a new chat that starts with **Help me build a reusable skill.** Unavailable while Ari cannot be used. |
 | **Search skills** | Filters both lists by name and description. |
 
-### Custom skills
+### Your skills
 
-Each saved Skill shows its name and description, with **Edit** and **Delete**. With none saved, the list reads **No skills yet. Build one with Ari by describing a workflow, pasting instructions, or attaching a Markdown file.**
+Each of your Skills shows its name, its description, where it applies, **Edit**, and **Delete**. The list includes Skills limited to your other workspaces. With none saved, the list reads **No skills yet. Build one with Ari by describing a workflow, pasting instructions, or attaching a Markdown file.** The heading **Your skills** shows when the workspace offers built-in Skills below it.
+
+| Where it applies | Meaning |
+| --- | --- |
+| **All your workspaces** | Ari follows the Skill in every workspace where you are a member. |
+| **Only in** [workspace] | Ari follows the Skill only in that workspace. |
+| **Not in use: you're no longer a member** | The Skill is limited to a workspace you left. Ari follows it there again if you rejoin. You can still edit it, change **Use in**, or delete it. |
 
 | Editor field | Note in the editor |
 | --- | --- |
@@ -188,15 +194,17 @@ Each saved Skill shows its name and description, with **Edit** and **Delete**. W
 | **Description** | **Phrase it as an activation trigger ("Use when…") — Ari uses it to decide when the skill applies.** |
 | **Instructions** | **Markdown. The full workflow, steps, and conventions Ari should follow when the skill activates.** |
 
-The editor saves with **Create skill** for a new Skill and **Save** for an existing one. **Delete** opens **Delete** [name]**?** with **Ari will no longer use this skill. This affects everyone in the workspace.**
+**Use in** offers **All your workspaces**, the default for a new Skill, and **Only in** one workspace: the Skill's own workspace when it already has a limit, otherwise the workspace you are in. The editor saves with **Create skill** for a new Skill and **Save** for an existing one. **Delete** opens **Delete** [name]**?** with **Ari will stop using this skill in all your workspaces.** or, for a Skill limited to one workspace, **Ari will stop using this skill in** [workspace]**.**
 
 | Message | Meaning |
 | --- | --- |
 | **Name must be 1-64 lowercase letters or digits, with single hyphens between them (e.g. "board-report").** | The name breaks the naming rule. |
 | **Description is required.** / **Instructions are required.** | A field is empty. |
 | **Description must be at most 1024 characters.** / **Instructions must be at most 49,152 characters.** | A field is too long. |
-| **A skill with this name already exists** | Another Skill uses the name, or it is a built-in Skill's name. |
-| **a workspace can have at most 100 custom skills** | The workspace has 100 saved Skills. Delete one first. |
+| **A skill with this name already exists** | One of your Skills that applies here uses the name, or it is a built-in Skill's name. |
+| **You have another skill with this name in another workspace. Choose another name, or keep this one in one workspace.** | A Skill for all your workspaces cannot share a name with one of your Skills limited to a workspace. |
+| **You can have at most 100 skills. Delete one first.** | You have 100 Skills across all your workspaces. |
+| **Only members of a workspace can save skills there** | You are a guest in this workspace, or you chose a workspace you are not a member of. |
 | **Failed to load skills** / **Failed to delete skill** | The list or a deletion failed. Try again. |
 
 ### Built-in skills

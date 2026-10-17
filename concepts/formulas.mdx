@@ -23,7 +23,7 @@ A plain name in a formula reads the other Variable at the same address as the ce
 
 Brackets change part of that address and keep the rest. `Revenue[Department = "Sales"]` reads Sales whatever row the formula runs on, and `Revenue[-1]` reads the previous period.
 
-A plain name can only find a value that exists at that address. A value typed into a cell exists only at that cell's address. If Price was typed in month by month with no department, there is no Sales price, and `Price` in a Sales cell reads 0. A formula on Price's row covers every department, so it does not leave that gap. A **fixed reference**, written with `$` after the name, does not follow the cell being calculated and keeps only the parts of the address you name. For example, `` `Reported June MRR`$ `` reads the same value in every row and every period.
+A plain name can only find a value that exists at that address. A value typed into a cell exists only at that cell's address. If Price was typed in month by month with no department, there is no Sales price, and `Price` in a Sales cell reads 0. A formula on Price's row covers every department, so it does not leave that gap. An **absolute reference**, written with `$` after the name, does not adjust to the cell being calculated and keeps only the parts of the address you name. For example, `` `Reported June MRR`$ `` reads the same value in every row and every period.
 
 ## A Variable can have several formulas
 

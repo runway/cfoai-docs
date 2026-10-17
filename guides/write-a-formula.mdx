@@ -1,6 +1,6 @@
 ---
 title: "Write a formula"
-description: "Write a formula in a Table block yourself: open the editor for a row, a breakdown, or one cell, reference other Variables, and save. Also filter, fix, or repoint a reference, override one cell or remove a row's formula, and copy common formula patterns."
+description: "Write a formula in a Table block yourself: open the editor for a row, a breakdown, or one cell, reference other Variables, and save. Also filter a reference, make it absolute, or repoint it, override one cell or remove a row's formula, and copy common formula patterns."
 ---
 
 Write a formula when a number should be calculated from other numbers, such as Gross Profit from Revenue and Cost of Goods Sold. A formula names Variables, not cells, so one formula on a row fills every month and every item that row shows. To learn how cfo.ai decides which formula fills a cell, read [How formulas work](/concepts/formulas).
@@ -53,9 +53,9 @@ While the editor is open, you can insert a reference by clicking, the way a spre
 - In the editor that opens on a cell, put the cursor in such a place and press an arrow key to point at the neighboring cell. Keep pressing to move. **F2** also starts pointing. Press **Enter** to keep the reference, or **Esc** to cancel. Once you type after the reference, the arrow keys move the cursor again.
 - Double-clicking a cell opens that cell for editing instead. The editor saves first, without the reference the first click inserted.
 
-Each reference and the cell it reads share a color. The cell gets a dashed outline in that color, so you can see which part of a long formula reads which cell.
+Each reference and the cells it reads share a color. Every cell the reference reads gets a dashed outline in that color, so you can see which part of a long formula reads which cells: `sum(Units[Channel in any])` outlines each channel's Units cell, and a plain `Price` outlines the Price cell that matches the row you are editing. A reference with a `where` clause, a mapping path such as `Employee.Department`, a date range, or a calculated filter value outlines only a cell that a click would insert as exactly that reference.
 
-When the cell you click has fewer Dimensions than the cell you are editing, such as a rate with no months, cfo.ai inserts a fixed reference. Every month then reads that one cell.
+When the cell you click has fewer Dimensions than the cell you are editing, such as a rate with no months, cfo.ai inserts an absolute reference. Every month then reads that one cell.
 
 ## Filter a reference
 
@@ -67,15 +67,15 @@ A filter limits a reference to some items or dates, such as Revenue for the West
 
 Press **⌥ ↓** (**Alt ↓**) to open the filters of the reference at the cursor. **Reset** removes the filters, so the reference follows the cell again. The typed form of a filter is `Revenue[Region = "West"]`.
 
-## Fix a reference so it reads one value everywhere
+## Make a reference absolute so it reads one value everywhere
 
-A fixed reference reads the same value in every row and period. Use it for an input such as a single tax rate or a reported figure:
+An absolute reference does not adjust to the row or period being calculated. With no filter or period offset, it reads the same value in every row and period, so use it for an input such as a single tax rate or a reported figure:
 
 ```text
 `Reported June MRR`$
 ```
 
-To fix or release a reference, select it and press the pin button in its panel, whose tooltip reads **Fixed: does not follow the current row or period. Only its own filters apply. (F4)**. Or press **F4** with the cursor on the reference. Filters you wrote stay either way. A column of an imported table cannot be fixed.
+To make a reference absolute or release it, select it and press the pin button in its panel, whose tooltip reads **Absolute reference: doesn't adjust to the current row or period (F4)**. Or press **F4** with the cursor on the reference. The `$` is what makes the reference absolute, and the chip shows a pin after its name while it is. Filters you wrote stay either way, and a filter that reads the current cell, such as `` `List Price`$[Plan = this.Plan] ``, still changes with that cell's Plan. A column of an imported table cannot be made absolute.
 
 ## Point a reference at something else
 
@@ -87,7 +87,7 @@ To fix or release a reference, select it and press the pin button in its panel, 
 
 ## Go to a reference's source
 
-Point at a Variable's reference and select the arrow at its end to go to that Variable's row. The arrow reads **Go to its row in this table**, **Go to its row on this page**, or **Go to source in** and the table's name. Your draft stays open, and **Back to cell** (or **Back to table**) returns you to it. When the source is on another Page, a card holds your draft until you go back.
+Point at a Variable's reference and select the arrow at its end to go to that Variable's row. The arrow reads **Go to its row in this table**, **Go to its row on this page**, or **Go to source in** and the table's name. Your draft stays open. In the full editor, **Back to cell** appears whenever the cell you are editing is off screen, after following the arrow or after scrolling away by hand, and returns you to it; it reads **Back to table** when you are editing a whole row or column. The editor that opens on a cell does not offer it. When the source is on another Page, a card holds your draft until you go back.
 
 For an imported Variable that is on no table, the arrow opens **About this variable’s source**, with **Open connection**.
 

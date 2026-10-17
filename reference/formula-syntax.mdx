@@ -78,6 +78,8 @@ A lookup in brackets after a name changes which items the reference reads. Every
 
 When a lookup reads several items, wrap it in a function that says how to combine them, such as `sum`, `average`, or `count`: `average(Revenue[Department in any])`. See [Aggregation functions](/reference/functions#aggregation-functions).
 
+A lookup key matches items by the same `=` rule as the rest of the formula, whatever kind the item is. The number key in `Amount[Entity = 3019681]` reads a text item named `3019681`, a text key such as `"1"` reads the number item 1, and an aggregation over a lookup, such as `sum(Amount[Entity = 1])`, adds every item the key equals this way. A formula's condition, which says where the formula applies, matches only items of the key's own kind; see [Ari's save warnings](/reference/formula-errors#aris-save-warnings).
+
 Inside `where`, a plain name refers to the item being tested, and `this.` to the cell being calculated: `sum(Revenue[Department in any] where Revenue > this.Revenue)` adds the departments with more revenue than this one.
 
 A lookup or offset attaches to a Variable's name, not to a calculation. `(Revenue - Cost)[-1]` is an error; write `Revenue[-1] - Cost[-1]`.
@@ -86,17 +88,17 @@ A lookup or offset attaches to a Variable's name, not to a calculation. `(Revenu
 
 When a mapping assigns each item of one Dimension to an item of another, such as accounts to reporting lines, a dot follows the mapping: `Account.Bucket` is the line the cell's account belongs to. A lookup on the mapped Dimension gathers every item the mapping puts there: `sum(Amount[Bucket = "COGS"])` adds every account in COGS. See [Dimension mappings and shared Dimensions](/concepts/dimension-mappings).
 
-## Fixed references
+## Absolute references
 
-A `$` right after a name makes a fixed reference. It reads only the items you name and does not follow the cell being calculated.
+A `$` right after a name makes an absolute reference. It reads only the items you name and does not adjust to the cell being calculated.
 
 | You write | It reads |
 | --- | --- |
 | `` `Tax Rate`$ `` | The same value in every cell |
 | `Revenue$[Department = "Sales"]` | Sales, with no other Dimension from the cell |
-| `Revenue$[-1]` | A fixed reference with a period offset |
+| `Revenue$[-1]` | An absolute reference with a period offset |
 
-In the formula editor, a fixed reference shows a pin in place of its icon. **F4** or the pin button fixes or releases the reference at the cursor, and the saved text is the same as typing the `$`. A column of an imported table cannot be fixed.
+In the formula editor, an absolute reference's chip keeps its icon and shows a pin after the name, where the `$` sits in the text. Pointing at the pin reads **Absolute reference: doesn't adjust to the current row or period**. **F4** or the pin button in the reference's panel makes the reference at the cursor absolute or releases it, and the saved text is the same as typing the `$`. A column of an imported table cannot be made absolute.
 
 ## Period offsets
 
@@ -193,7 +195,7 @@ Every saved formula has a condition that says which cells it fills. You usually 
 
 Ari's formula cards in the chat show the same condition a little differently. A Dimension that applies to every item shows its name, such as **Department**. A **+ any** pill marks a condition that names a Dimension and also applies to finer breakdowns, which is every such condition without a leading `$`. `[]` reads **Any Segment** and `$[]` reads **Empty Segment**.
 
-A `$` in front of a condition limits it to exactly the Dimensions it names. A `$` after a name in a formula makes a fixed reference. They are different things.
+A `$` in front of a condition limits it to exactly the Dimensions it names. A `$` after a name in a formula makes an absolute reference. They are different things.
 
 When several formulas could fill a cell, the more specific one wins; see [How formulas work](/concepts/formulas).
 
@@ -220,17 +222,17 @@ Inside a formula, `=` compares two values. Docs and Ari sometimes write a relati
 
 Enter only the part after `=` as the formula of the Variable before it. Typed as one formula, the whole line would be a comparison.
 
-## Preferred spellings
+## Preferred operator forms
 
-Older formulas may use other spellings of some operators. They still work, but write the preferred ones in new formulas.
+Older formulas may write some operators another way. Those forms still work, but write the preferred ones in new formulas.
 
-| Preferred | Older spelling that still works |
+| Preferred | Older form that still works |
 | --- | --- |
 | `^` | `**` |
 | `=` | `==` |
 | `<>` | `!=` |
 
-Older function names, such as `avg` for `average`, are listed in [Formula functions](/reference/functions#older-spellings).
+Older function names, such as `avg` for `average`, are listed in [Formula functions](/reference/functions#older-names).
 
 ## How cfo.ai formulas differ from Excel and other spreadsheets
 

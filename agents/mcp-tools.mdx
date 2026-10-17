@@ -69,8 +69,8 @@ A tool marked read-only never changes saved state. The **Actions or fields** col
 | Tool | What it does | Actions or fields |
 | --- | --- | --- |
 | `list_orgs` | Read-only, MCP only. Lists the user's workspaces with each one's ID, name, slug, and role. | none |
-| `inspect_skills` | Read-only. Lists workspace and built-in Skills, and reads their instructions and supporting files. Reading a skill does not run it. | `list`, `instructions`, `file`, `read` |
-| `edit_skills` | Creates, updates, or deletes workspace Skills. Built-in skills cannot be edited. | `create`, `update`, `delete` |
+| `inspect_skills` | Read-only. Lists the built-in Skills and the signed-in user's own Skills that apply in the selected workspace, and reads their instructions and supporting files. Each of the user's Skills says where it applies, `all` or `this`. Reading a skill does not run it. | `list`, `instructions`, `file`, `read` |
+| `edit_skills` | Creates, updates, or deletes the signed-in user's own Skills. `workspaces` sets where a Skill applies: `all`, the default, for every workspace where the user is a member, or `this` for the selected workspace only. Built-in skills cannot be edited. | `create`, `update`, `delete`, `workspaces` |
 | `inspect_triggers` | Read-only. Reads the user's own scheduled Triggers, their schedules, and their last runs. | `query` |
 | `edit_triggers` | Creates, updates, pauses, resumes, runs, or deletes the user's own Triggers. | `create`, `update`, `run`, `delete` |
 | `inspect_guides` | Read-only. Reads the workspace's saved Guides. | `query`, `include_content` |

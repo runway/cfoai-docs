@@ -1,10 +1,10 @@
 ---
 title: "Save a workflow as a Skill"
 sidebarTitle: "Save a Skill"
-description: "Teach Ari a process you repeat, such as a monthly board update, so it follows the same steps every time. Save it as a Skill in chat, with Build with Ari, or by writing it yourself, then change or remove it later."
+description: "Teach Ari a process you repeat, such as a monthly board update, so it follows the same steps every time, in every workspace you work in. Save it as a Skill in chat, with Build with Ari, or by writing it yourself, limit it to one workspace when it fits only one company, then change or remove it later."
 ---
 
-Save a Skill when you repeat the same process and want Ari to follow it the same way every time, such as your monthly board update or your month-end review. A Skill is a named set of instructions shared with everyone in your workspace. Ari uses it on its own whenever a request matches the Skill's description, so nobody has to name it. For how Ari picks a Skill, see [Skills, Triggers, and Guides](/concepts/automation).
+Save a Skill when you repeat the same process and want Ari to follow it the same way every time, such as your monthly board update or your month-end review. A Skill is a named set of instructions that belongs to you. Ari uses it on its own whenever a request of yours matches the Skill's description, in every workspace where you are a member unless you limit it to one, so you save it once. Other people in your workspaces have their own Skills. For how Ari picks a Skill, see [Skills, Triggers, and Guides](/concepts/automation).
 
 <Tabs>
   <Tab title="Ask Ari">
@@ -18,7 +18,7 @@ Save a Skill when you repeat the same process and want Ari to follow it the same
 
     > Save what we did here as a Skill.
 
-    Ari picks a name and a description if you do not give them, and saves the Skill without a separate approval step. It confirms the name and when the Skill applies, with a **View skill** link that opens **Settings → Skills**. Ari can use the new Skill from your next message.
+    Ari picks a name and a description if you do not give them, and saves the Skill without a separate approval step. When the steps are built on this company's own accounts, systems, people, or figures, Ari limits the Skill to this workspace; otherwise the Skill applies in all your workspaces. To choose, say so: "Save that as a Skill for this workspace only." Ari confirms the name, when the Skill applies, and where, with a **View skill** link that opens **Settings → Skills**. A new chat has the Skill at once, and a chat already open within a message or two.
   </Tab>
   <Tab title="By hand">
     <Steps>
@@ -37,8 +37,11 @@ Save a Skill when you repeat the same process and want Ari to follow it the same
       <Step title="Write the instructions">
         In **Instructions**, type or paste the full workflow in Markdown: the steps, the structure of the result, and your conventions. The editor takes no file uploads, so paste a file's contents, or attach the file in a chat with Ari instead.
       </Step>
+      <Step title="Choose where it applies">
+        Under **Use in**, keep **All your workspaces**, or choose **Only in** this workspace for a procedure that fits only this company.
+      </Step>
       <Step title="Save">
-        Select **Create skill**. The Skill appears in the list under **Custom skills**, and Ari can use it for everyone in the workspace.
+        Select **Create skill**. The Skill appears under **Your skills**, and Ari uses it in your chats wherever it applies.
       </Step>
     </Steps>
   </Tab>
@@ -54,10 +57,14 @@ Ari reads every Skill's description on each request to decide which Skill applie
 
 Ask Ari, for example "Update the board-report Skill to include a hiring section" or "Delete the weekly-cash-review Skill." Or open **Settings → Skills**, find the Skill with **Search skills**, and:
 
-- Select **Edit**, change the **Description** or **Instructions**, and select **Save**.
-- Select **Delete** and confirm. Ari stops using the Skill.
+- Select **Edit**, change the **Description**, the **Instructions**, or **Use in**, and select **Save**.
+- Select **Delete** and confirm. Ari stops using the Skill wherever it applied.
 
-A Skill belongs to the workspace, so a change or a deletion applies to everyone's chats with Ari. Built-in Skills cannot be edited or deleted; to change how one works for your team, save your own Skill under a different name.
+A Skill is yours, so a change or a deletion applies to your chats with Ari and nobody else's. **Settings → Skills** lists all your Skills, including ones limited to other workspaces. A Skill limited to a workspace you have left is not in use; you can still edit it, change **Use in**, or delete it. Built-in Skills cannot be edited or deleted; to change how one works for you, save your own Skill under a different name.
+
+## Share a fact with your team
+
+A Skill holds your own process. A fact everyone at a company should share, such as how the company defines bookings or when its fiscal year starts, belongs in workspace memory, which applies to every chat for everyone in that workspace. Ask Ari: "Remember for the whole workspace that bookings count signed contracts." See [What Ari remembers](/concepts/ari-memory).
 
 ## Start from a sample
 

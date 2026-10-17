@@ -60,7 +60,7 @@ A `read` returns each entry's instructions, its props skeleton, and its runtime 
 - `page` is the Page that receives the block, by name or as `inspect_pages` prints it. `after_block` places the block under another one; without it the block goes last.
 - `title` is the block's name. Later updates and page edits name the block by it.
 - The receipt names the new block two ways. `target` is the block's name-form selector, which the page and Canvas tools accept wherever they take a block as `target`. `ref` is the block's pasteable reference, such as `Pipeline by stage#a74`, which they accept wherever a result's block reference is accepted, such as `reorder_blocks` `block_order`. The reference keeps naming the block in later `edit_pages` calls even after a rename.
-- The receipt also carries `dataset_evidence`, one series and one row per dataset as the block receives them, and `source_notes`.
+- The receipt also carries `dataset_evidence`, one series and one row per dataset as the block receives them, and `source_notes`. A dataset still calculating when the result was due is listed with `status: "unavailable"` and `error`: **this dataset's calculation had not finished when this result was due, so it was stopped**. The block is saved either way, and the other datasets keep their evidence.
 
 ### What the source must be
 
@@ -133,7 +133,7 @@ Each row carries each Variable's own value under its series key:
 A saved block compiles, but only a browser shows whether it renders.
 
 - A Canvas write that no browser rendered returns a `render_unverified` warning: **The block is saved and compiles; whether it renders is proven only when validate_code_blocks opens it in a browser.**
-- `validate: true` beside the write returns the browser's result for the saved revision under `validation` instead. A render check that fails or is unavailable leaves the edit saved. If validation has not finished when the result is due, the receipt says **The Canvas edit saved. Browser validation had not finished when this result was due, so it was stopped and the render was not observed.**
+- `validate: true` beside the write returns the browser's result for the saved revision under `validation` instead. A render check that fails or is unavailable leaves the edit saved. The dataset readback and the render check share one answer deadline, about 10 seconds before the call's 119-second limit, so the receipt arrives instead of a timeout. If validation has not finished when the result is due, `validation.note` reads **The Canvas edit saved. Browser validation had not finished when this result was due, so it was stopped and the render was not observed.** If the result is due before validation begins, it reads **The Canvas edit saved. This result was due before browser validation began, so validation did not run and the render was not observed.** Either way `validation.enabled` is `false`, the receipt carries the `render_unverified` warning, and the saved block stays saved.
 - `validate_code_blocks` checks saved blocks on their own:
 
 ```json
@@ -143,7 +143,8 @@ A saved block compiles, but only a browser shows whether it renders.
 ### What `validate_code_blocks` reports
 
 - It renders up to 8 blocks per call in Chromium, with live calculated datasets, once per theme (light and dark). Each render uses the block's saved state, Scenario, number formats, and Last close, in a frame 1200 px wide. Each result names the revision and source hash it rendered.
-- The result's `observed` sentence states what the check saw, such as: "Each block was rendered once per theme, with its saved state, in a 1200 px wide frame. Errors, warnings, guide anchors, and any visual review come from those renders. Clicks, typing, links, and guide launches did not run, so what they do is unobserved, and the layout at other widths is unseen."
+- The result's `observed` sentence states what the check saw, such as: "Each block was rendered once per theme, with its saved state, in a 1200 px wide frame. Errors, warnings, plotted chart values, guide anchors, and any visual review come from those renders. Clicks, typing, links, and guide launches did not run, so what they do is unobserved, and the layout at other widths is unseen."
+- A block that rendered cleanly carries `plotted`: one entry per chart the render drew, with `chart` naming the chart by its title, when it has one, and its source position, such as `Chart "Pipeline" at source L12`, and `series` holding one entry per numeric value field of every visible series, with `name`, `count`, and the `first`, `last`, `low`, and `high` plotted points as `{x, y}`. The values are the ones the chart was given. The chart draws stacked and normalized series, waterfall running totals, and histogram bin counts from them, so the drawn shape of such a series differs from the list.
 - Errors are failures the render reported: runtime errors, widget errors, a stalled render, console errors, and failed element loads. Warnings may be intended: console warnings, blank or error-code cells, empty or zero-only data, missing series keys, hidden series, and content past the frame's edge.
 - A clean render does not check that the values are financially correct.
 - `guide_targets` lists the copyable guide anchors visible in at least one theme, and `guideAnchors` keeps each theme's visibility and ambiguity. `guideAnchors` lists at most the first 64 distinct anchor IDs per theme, in document order. When the render had more, `guide_anchors_cut` says how many, and `guide_targets` draws only on the listed ones.

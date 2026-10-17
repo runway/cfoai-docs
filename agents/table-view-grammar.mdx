@@ -13,7 +13,7 @@ A table's view is its rows and columns. Tools take them as typed lists: each ent
 | `[Department]` | Split by one Dimension: one row per Department item. |
 | ``[`Spend Type`]`` | Backticks quote a Dimension name that is not a single word. Written bare, the parse stops at the second word. |
 | `[Department, Level]` | A comma nests: Levels sit under each Department. |
-| `[Department, {Level, Owner}]` | Braces fork: under each Department, a Level breakdown and an Owner breakdown sit side by side. Whatever follows the brace applies to every branch. Each path from the top of a breakdown to its end can fork once. |
+| `[Department, {Level, Owner}]` | Braces fork: under each Department, a Level breakdown and an Owner breakdown sit side by side. Whatever follows the brace applies to every branch. The notation can nest a fork inside a branch; a request can save one fork per path, as `branches` below says. |
 | `[Department, {Level[Department = "Engineering"], Owner}]` | A branch condition: Level sits under Engineering only, while Owner applies under every Department. A branch condition names one item of an earlier Dimension on the same path; a condition over several items is not accepted. |
 | `{Level, [Owner, Date.Month]}` | A branch that nests is bracketed: Owner splits by month, while Level does not. |
 | `[Region in {East, West}]` | An item filter keeps only the listed items instead of every item in the Dimension. |
@@ -23,7 +23,7 @@ In a layout, an item filter is always a list of items to keep. Ranges, exclusion
 
 ## Table layout fields
 
-`edit_table_blocks` `create` and `reshape`, and `structure.insert` on `update`, take rows and columns as lists of nodes. `inspect_table_blocks` returns the same saved shape under `layout.rows` and `layout.columns`.
+`edit_table_blocks` `create` and `reshape` take `rows` and `columns` as lists of nodes. `structure.insert` on `update` takes one node per entry, with the `side` it joins, `rows` or `columns`, and an optional `parent`, `before`, or `after`. `inspect_table_blocks` returns the same saved shape under `layout.rows` and `layout.columns`.
 
 | Node field | Meaning |
 | --- | --- |
@@ -31,12 +31,15 @@ In a layout, an item filter is always a list of items to keep. Ranges, exclusion
 | `breakdown` | The levels nested beneath that Variable, outermost first, up to 10. Each level is a Dimension name, a level object, or a `branches` fork. |
 | `dimension` | A Dimension node: a breakdown level, or the value axis of a record table. A name that matches one Dimension reuses it; an unmatched name creates it, with `items` and `data_type` when given. |
 | `time` | The Date axis at `DAY`, `WEEK`, `MONTH`, `QUARTER`, `HALF`, or `YEAR`. It creates the Date Dimension when the Model has none. |
-| `filter` | `{"include": [...]}`: the items of a Dimension this node declares or places that stay visible. List order does not set display order. A retained node takes `members` instead. |
+| `filter` | `{"include": [...]}`: the items of a Dimension this node declares or places that stay visible, 1 to 10,000 of them. List order does not set display order. A retained node takes `members` instead. |
 | `when` | `{"dimension": ..., "equals": ...}`: a branch condition that restricts this level to one item of an ancestor Dimension on the same path. |
 | `branches` | A fork: 2 to 10 sibling paths, each a list of up to 10 levels. A path from the top to the end may fork once. |
-| `space` | `true`: a blank separator row on create, or a saved empty slot on reshape. |
+| `space` | `true`: a blank separator row on create, or a saved empty slot on reshape. Available only in `rows`. |
 | `summary` | `NONE` keeps the parent's own modeled value. `SUM`, `AVG`, `MIN`, `MAX`, `COUNT`, or `LAST` combine the children instead, independently of the time rollup. |
 | `role` | `DIMENSION` lists a Dimension's items; `VARIABLE` holds one value of the Dimension for each item on the other axis. |
+| `children` | The nodes nested beneath this node, in saved-node form: the same nesting a Variable's `breakdown` declares, and the way a Dimension node nests its levels. |
+
+A `space` node, a `branches` node, and a node kept as saved by `target` alone take none of `children`, `role`, `grain`, `sort`, `summary`, or `members`.
 
 A breakdown in the written notation and in the typed fields:
 
@@ -59,7 +62,7 @@ A breakdown in the written notation and in the typed fields:
 }
 ```
 
-Levels that a mapping relates pair each key item with its mapped item. Levels that one source table's rows carry together pair as in those rows. Levels that neither relates pair in every combination.
+Levels that a mapping relates pair each key item with its mapped item, whether the item was added by hand or comes from a source table, so the rows are the items the mapping resolves, its catch-all included. A hand-added item the mapping does not resolve pairs with every mapped item the rows have. Levels that one source table's rows carry together pair as in those rows. Levels that neither relates pair in every combination.
 
 ## Canvas dataset layouts
 
@@ -68,10 +71,10 @@ A Canvas dataset declares the same visible shape in a flatter form, under its `l
 | Entry field | Meaning |
 | --- | --- |
 | `variable` | An existing Variable to read. |
-| `breakdown` | The shared levels beneath it, outermost first, up to 10. A level is a Dimension name, or an object with `dimension` or `time`, and optional `include` and `when`. |
-| `branches` | Sibling paths as one list of levels. Each level names its path with `branch`, a number from 1 to 10; levels with the same number form one path in list order. A fork takes 2 to 10 paths, each of up to 10 levels. |
-| `after_branches` | Levels that follow every branch. Each complete path is `breakdown`, then one branch, then `after_branches`. |
-| `include` | The items to keep on that level, up to 50, written directly on the level. |
+| `breakdown` | The shared levels beneath it, outermost first. A level is a Dimension name, or an object with `dimension` or `time`; `include` and `when` go only on a `dimension` level. `breakdown`, the `branches` fork counted as one, and `after_branches` together hold at most 10 entries. |
+| `branches` | Sibling paths as one list of 2 to 50 levels. Each level names its path with `branch`, a number from 1 to 10; levels with the same number form one path in list order. A fork takes 2 to 10 paths, each of up to 10 levels. One entry's levels, counting every level inside every path, number at most 50; past that it is refused with **accepts at most 50 combined dimension branches**. |
+| `after_branches` | Levels that follow every branch. Each complete path is `breakdown`, then one branch, then `after_branches`. It needs `variable` and `branches` on the same entry; without both it is refused with **after_branches requires a variable and sibling branches**. |
+| `include` | The items to keep on that level, up to 50, written directly on the level. A table's `filter.include` takes up to 10,000. |
 | `dimension`, `time` | A standalone grouping axis entry, such as the shared dates on `columns`. |
 
 An entry with `branches` and no `variable` forms a shared grouping axis. [Canvas blocks for agents](/agents/canvas-blocks#datasets) covers the rest of a dataset.
@@ -83,19 +86,19 @@ Each row in a table's view is either:
 - a **Variable**, which measures something, such as Revenue, Headcount, or Gross Margin; or
 - a **Dimension used as a mapping**, where each cell shows that Dimension's item for its row and column instead of a number. This suits a database-style list of entities and their attributes.
 
-A Variable row can carry its own breakdown, splitting only that row differently from the rest of the table. A mapping row takes no breakdown; a `breakdown` on a Dimension is refused before anything saves, with an explanation of the record-key and mapped-field roles.
+A Variable row can carry its own breakdown, splitting only that row differently from the rest of the table. A mapping row takes no breakdown. On a table, a `breakdown` on a Dimension node is refused before anything saves with **breakdown belongs to a variable; nest a dimension's levels with children**. On a Canvas dataset the refusal explains the record-key and mapped-field roles instead: consecutive Dimensions on the record axis are the key rows, and a Dimension on the value axis is a field showing the item each record is mapped to.
 
 ## Orientation
 
-By default, a view with a measured Variable keeps values on rows, and its Dimensions, including time, on columns. A flipped view puts the Variables on columns instead. A mapping-only view already reads down the rows: source keys on rows, and their mapped attributes across the columns.
+By default, a view with a measured Variable keeps values on rows, and its Dimensions, including time, on columns. A flipped view puts the Variables on columns instead. A mapping-only view has no Variable to mark a side. The side that carries a `filter`, a `when`, or `branches` is the key side, because only the record breakdown holds those; with none on either side, the longer side shows the mapped fields and the other side the keys. Such an entry on both sides is refused, because the side chosen for the fields cannot hold one. To read keys down the rows, put a `filter`, `when`, or `branches` on the key rows, or keep the `columns` list at least as long as the `rows` list. A node kept from the saved table keeps the saved orientation.
 
 There is no separate transpose action. To flip a table, reshape it by moving the Variables between rows and columns. Moving an axis changes the presentation, not the grain of any cell.
 
 ## When a table comes back empty
 
-An empty result on a table with dates often means the table's window, the date range and grain it is set to show, does not cover the dates that hold values. Writing dated values does not move the window, and a wrong window is fixed on the table itself, with `window`. Two other causes are common:
+An empty result on a table with dates often means the table's window, the date range and grain it is set to show, does not cover the dates that hold values. Writing dated values does not move the window: a `values` write that names a period outside it is refused, and the same request can widen `window` and write the new periods, as [Write values into dated columns](/agents/write-formulas#write-values-into-dated-columns) describes. A wrong window is fixed on the table itself, with `window`. Two other causes are common:
 
-- An item whose cells are all empty is hidden when the table hides empty items.
+- An item whose cells are all empty is hidden when the table hides empty items. `show_empty_members` sets this: `false` asks to hide items whose values are all zero or empty, subject to the workspace policy; omitted, `create` uses the workspace default and `update` keeps the saved setting.
 - An item outside a formula's condition reads empty.
 
 Check the table's window before you rework its breakdown.

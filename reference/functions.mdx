@@ -94,7 +94,7 @@ It takes 1 to 10 arguments.
 
 ### average
 
-`average` returns the arithmetic mean of numbers, or an empty value when there are none. `avg` is an older spelling that still works.
+`average` returns the arithmetic mean of numbers, or an empty value when there are none. `avg` is an older name that still works.
 
 ```text
 average(value, value2, ...)
@@ -175,7 +175,7 @@ It takes exactly one argument.
 
 ### stdev
 
-`stdev` returns the sample standard deviation, which divides by the count minus one. It returns an empty value when there are fewer than two values. `stddev` is an older spelling that still works.
+`stdev` returns the sample standard deviation, which divides by the count minus one. It returns an empty value when there are fewer than two values. `stddev` is an older name that still works.
 
 ```text
 stdev(value, value2, ...)
@@ -186,7 +186,7 @@ It takes 1 to 10 arguments and pools all their values into one result.
 
 ### var
 
-`var` returns the sample variance, which divides by the count minus one. It returns an empty value when there are fewer than two values. `variance` is an older spelling that still works.
+`var` returns the sample variance, which divides by the count minus one. It returns an empty value when there are fewer than two values. `variance` is an older name that still works.
 
 ```text
 var(value, value2, ...)
@@ -466,11 +466,11 @@ eomonth(Date.Month, 0)
 
 Use 0 for the date's own month, 1 for the next month, and -1 for the previous month. A fraction of a month is dropped.
 
-## Older spellings
+## Older names
 
 These names still work in existing formulas. Write the preferred name in new ones.
 
-| Older spelling | Preferred name |
+| Older name | Preferred name |
 | --- | --- |
 | `avg` | [`average`](#average) |
 | `stddev` | [`stdev`](#stdev) |

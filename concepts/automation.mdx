@@ -26,7 +26,7 @@ A Trigger is a saved request with a schedule. The schedule is stored in UTC. At 
 
 A run starts with no Page open and works in Main, unless the instructions name another Scenario. It works on exactly what the instructions name. If a Page or a connection the instructions name was renamed or removed, the run reports that instead of picking something that looks similar.
 
-Nobody reads the chat while a run works, so nobody can answer it. When Ari would ask you a question, it makes a reasonable assumption, keeps going, and states the assumption in its result. Its questions, plans, and buttons stay in the chat for you to read later. Answering one later starts a new turn in that chat; it does not change what the run already did.
+Nobody reads the chat while a run works, so nobody can answer it. When Ari would ask you a question, it makes a reasonable assumption, keeps going, and states the assumption in its result. Its questions, plans, and buttons stay in the chat for you to read later. Answering one later starts a new turn in that chat; it does not change what the run already did. That turn is an ordinary chat turn, so Ari can ask you to approve a call in it.
 
 ## What a run cannot do on its own
 
@@ -35,6 +35,7 @@ A run never waits for a person, so anything that needs a person's approval stops
 - A Scenario merge or deletion that the run prepares waits in its chat until someone presses the confirmation button.
 - An email to anyone but you waits as a preview in the chat until someone presses **Send**.
 - A run can message only you, by email or in Slack, and only when its instructions name that channel. It cannot post in a Slack channel.
+- A tool of an MCP server set to **Ask first** does not run, and no approval card appears in the run's chat. Set the tool to **Allow** before a Trigger needs it; see [Choose what Ari may do](/guides/give-ari-another-service#choose-what-ari-may-do). An API endpoint set to **Ask first** is different: the run holds the call for approval in its chat, where nobody answers it.
 
 A Trigger does one run at a time. When a run is still going at the next scheduled time, that time is skipped. Runs use AI usage like any chat with Ari; see [Plans, AI usage, and connection slots](/concepts/plans-and-usage).
 

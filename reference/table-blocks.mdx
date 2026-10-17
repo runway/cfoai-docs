@@ -14,7 +14,7 @@ The strip above the grid, from left to right.
 
 | Control | What it does |
 | --- | --- |
-| **Show table setup** / **Hide table setup** | Opens or closes the [table setup panel](#table-setup-panel). Whether it is open is remembered in your browser. |
+| **Show table setup** / **Hide table setup** | Opens or closes the [table setup panel](#table-setup-panel). Whether it is open is remembered in your browser, which keeps settings for up to 200 blocks; see [Limits](/reference/limits#tables-pages-sharing-and-exports). |
 | Table title | Click to rename the table. An unnamed table reads **New Table Block**. A new table gets a suggested title when you first add rows or columns. |
 | **Regenerate title** | A sparkle button that appears when you point at the title. Asks cfo.ai for a new title from what the table shows. |
 | **Deleted property reference** | A warning triangle. The table still lists a Variable or Dimension that was deleted; its tooltip reads **This table references a property that no longer exists.** With several, it reads **[N] deleted property references** and its tooltip counts them. Select it to open the setup panel, where each such row reads **Deleted property**. |
@@ -96,7 +96,7 @@ At rest, each item shows small marks for what is set on it: an eye with a line t
 | **Edit formula for [Dimension]** | Button when you point at a Dimension's label row | Opens the formula every item at that level shares. |
 | **Create [Dimension] item** | **+** at the end of a Dimension's items | Adds an item. Reads **Create [Dimension] item under [parent]** inside a nested breakdown. |
 | **Show formulas** / **Hide formulas** | **fx** button at the top of the row-name column | Peeks at, opens, or closes the formula columns. |
-| Arrow beside a row name | A row with rows under it | Expands or collapses them. **Shift**-click, or **⌘**-click on a Mac, does it for every sibling row at that level. Your browser remembers rows you open or close. |
+| Arrow beside a row name | A row with rows under it | Expands or collapses them. **Shift**-click, or **⌘**-click on a Mac, does it for every sibling row at that level. Your browser remembers rows you open or close, for up to 200 blocks; see [Limits](/reference/limits#tables-pages-sharing-and-exports). |
 | Arrow in a column group's header | A group of columns, such as a region over its months | Collapses the group to its total column, or expands it. **Shift**-click, or **⌘**-click on a Mac, does it for every sibling group at that level. |
 | **LC** | Header of the Last close period | **Edit last close** changes Last close for the Scenario you are viewing. See [Set Last close and date defaults](/guides/set-dates-and-last-close). |
 | **Space** | A blank spacer row, when you point at it | Select it to replace the space with a row. |

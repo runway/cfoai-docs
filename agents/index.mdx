@@ -5,7 +5,7 @@ description: "For AI agents connected to cfo.ai through its MCP server, and the 
 searchable: false
 ---
 
-The cfo.ai MCP server, at `https://api.cfo.ai/mcp`, gives an AI agent the same product tools Ari uses. With them an agent can read a company's financial Model and, when the user asks, change it: Pages, Table blocks, Canvas blocks, formulas, Variables, Dimensions, and Scenarios, along with the workspace's connections, Skills, Triggers, and memory. These pages describe those tools for the agent and for the developer who connects it.
+The cfo.ai MCP server, at `https://api.cfo.ai/mcp`, gives an AI agent Ari's public product tools. With them an agent can read a company's financial Model and, when the user asks, change it: Pages, Table blocks, Canvas blocks, formulas, Variables, Dimensions, Dimension mappings, and Scenarios, along with the workspace's connections, Skills, Triggers, memory, team and access, workspace settings, and the changelog's undo and redo. [MCP tools and call shapes](/agents/mcp-tools) lists every tool. These pages describe those tools for the agent and for the developer who connects it.
 
 ## One Model for the user, Ari, and the agent
 
@@ -14,7 +14,7 @@ The agent works in the user's live workspace, signed in as that user. There is n
 ## How to start
 
 1. Connect the client and verify access with the [Agent instructions](/agent-instructions). A person setting up their own tool can follow [Connect an AI tool](/guides/connect-an-ai-client) instead.
-2. Read the `build-model` skill through `inspect_skills` before you change model logic, as the server's instructions ask.
+2. Read the skills the server's instructions name, through `inspect_skills`: `build-model` before you change model logic, Variables, Dimensions, or saved tables; `build-visualizations` before you add a Canvas block; and `import-model` before you rebuild a Model from a workbook or export.
 3. Inspect the existing workspace before you create anything, and reuse its Variables, Dimensions, and Pages.
 
 ## Pages for agents

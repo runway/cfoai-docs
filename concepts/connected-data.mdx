@@ -14,7 +14,7 @@ cfo.ai brings data from your other systems into your Model in three ways, and ea
 | What it is | A sync that copies the source's records into your Model | A one-time copy of a file's rows | A tool Ari calls live when you ask a question |
 | When it updates | Every night, and when you ask Ari | Never; upload a new version | Each time Ari calls it. Nothing is stored unless Ari saves a sync setup. |
 | Where it lands | Variables and Dimensions in your Model | Variables and Dimensions in your Model | Ari's answer in the chat, or a value Ari writes into a table |
-| Plan slot | Uses one | None | None, unless Ari saves a sync setup |
+| Plan slot | Uses one. All connected Google Sheets together use one. | None | None, until Ari saves a sync setup for it |
 
 Integrations and uploads only read from the source, so a number you edit in cfo.ai changes your Model and leaves your books alone. An MCP server or API can also act in its service, such as creating an issue in Linear, but only through the tools you allow Ari to use.
 
@@ -32,15 +32,15 @@ A CSV follows the same path: the upload replaces the warehouse copy, and a saved
 
 ## Connected is not the same as ready
 
-A source becomes useful in three stages, and cfo.ai reports each one separately. First it is linked: you signed in and the connection exists, but no data has moved. Then its tables reach the warehouse, which your Model cannot use until a saved query reads them; that is why a connection can read **No queries yet**. Finally saved queries put rows into your Model, and only then does the sidebar show the connection as **Synced**.
+A source becomes useful in three stages, and cfo.ai reports each one separately. First it is linked: you signed in and the connection exists, but no data has moved. Then its tables reach the warehouse, which your Model cannot use until a saved query reads them; that is why a connection can read **No queries yet**, which someone who can edit the connection must fix. Finally saved queries put rows into your Model, and only then does the sidebar show the connection as **Synced**.
 
-So "I connected QuickBooks" and "my Model has my QuickBooks numbers" can be minutes or hours apart. Some sources load your most recent months first, so Ari can start, and fill in the rest of the history in the background; [How much history loads](/reference/imported-data#how-much-history-loads) lists each source. Ari tells you in the chat when the data is in. Until then, ask Ari where the load stands rather than treating a smaller Model as missing data.
+So "I connected QuickBooks" and "my Model has my QuickBooks numbers" can be minutes or hours apart. QuickBooks Online and Xero load your three most recent complete months first, so Ari can start, and fill in the rest of the history in the background; [How much history loads](/reference/imported-data#how-much-history-loads) lists each source. Ari tells you in the chat when the data is in. Until then, ask Ari where the load stands rather than treating a smaller Model as missing data.
 
 Ready also says nothing about whether the numbers match your books. A query can filter rows on purpose, and your Model's **Last close** decides which months read as Actuals. [Check that your numbers match your books](/guides/check-imported-data) covers both.
 
 ## When data updates
 
-Every integration refreshes once a day, in a shared nightly run that starts at 02:00 UTC. A source that publishes its daily data after that run would always land a day late, so you can give a connection its own daily time, such as 6:30 AM in your time zone. You can also ask Ari to refresh a connection now; there is no button for it.
+Every integration refreshes once a day, in a shared nightly run that starts at 02:00 UTC. A source that publishes its daily data after that run would always land a day late, so you can give a connection its own daily time, such as 6:30 AM in your time zone. You can also ask Ari to refresh a connection now. A healthy connection has no refresh button; **Retry** appears only after a sync stopped or failed.
 
 The nightly refresh does not always re-read your whole history. Some sources, such as QuickBooks Online, re-read only recent months, so a correction to an older period arrives only when you ask Ari for a full-history import. How far back each source re-reads is listed in [How much history loads](/reference/imported-data#how-much-history-loads) and in each source's entry in the [integrations directory](/reference/integrations).
 
@@ -64,13 +64,13 @@ Every ordinary Scenario reads Main's imported rows, so a sync updates Main and t
 
 Most failures fix themselves. A provider's sync that failed for a moment is retried on the next nightly run, and a table that failed to refresh is retried while the rest of the source stays usable. The sidebar marks these with a steady orange dot.
 
-Sometimes the nightly sync of a source you connected from the connection manager fails right after a successful one. No chat is there to hear about it, so cfo.ai starts one background task for Ari, which acts for you with your permissions. Ari checks the connection and repairs what it can, such as a saved query that a change in the source's layout broke. A source counts as restored only when its queries return values again for the records they returned before. If the repair restored the source, it says nothing. If it needs your decision, could not finish, or changed something you should know about, it opens a chat titled **[Connection name] stopped updating** in your chat list. A source that keeps failing starts no further task.
+Sometimes the nightly sync of a source that was not connected from a chat fails right after a successful one. No chat is there to hear about it, so cfo.ai starts one background task for Ari, which acts for you with your permissions. Ari checks the connection and repairs what it can, such as a saved query that a change in the source's layout broke. A source counts as restored only when its queries return values again for the records they returned before. If the repair restored the source, it says nothing. If it needs your decision, could not finish, or changed something you should know about, it opens a chat titled **[Connection name] stopped updating** in your chat list. A source that keeps failing starts no further task.
 
 Problems only you can fix, such as an expired sign-in, wear a red triangle until you act. [Fix a connection that needs attention](/guides/fix-a-connection) walks through each one.
 
 ## Connection slots
 
-Your plan limits how many sources you can sync, so each integration uses one of its connection slots until you remove it; uploads and live MCP servers and APIs use none. Removing a connection stops its syncs, and the data it already loaded stays in your Model. The exact counting rules are in the [integrations directory](/reference/integrations#standard-and-premium-integrations), and how plans set the number of slots is in [Plans, AI usage, and connection slots](/concepts/plans-and-usage#connection-slots-limit-what-you-can-sync).
+Your plan limits how many sources you can sync, so each integration uses one of its connection slots until you remove it. All connected Google Sheets together use one slot. Uploads use none, and an MCP server or API uses none until Ari saves a sync setup for it; the setup creates a connection that counts. Removing a connection stops its syncs, and the data it already loaded stays in your Model. The exact counting rules are in the [integrations directory](/reference/integrations#standard-and-premium-integrations), and how plans set the number of slots is in [Plans, AI usage, and connection slots](/concepts/plans-and-usage#connection-slots-limit-what-you-can-sync).
 
 ## Related
 

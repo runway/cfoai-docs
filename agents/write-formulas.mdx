@@ -222,7 +222,7 @@ When the requested formula has no visible table target, name the Variable in a `
 **A list of item names** replaces the filter, including a saved condition. `[]` clears it.
 
 - The list may name `empty:None`, the rows with no value.
-- Each name is checked against the Dimension's hand-added items and the source's spellings, then, for a name those do not hold, against the calculation's own item list. So an item a formula or mapping computes is saved, and so is a number spelled as the table's rows spell it, such as `13840.0`. Date and number items match by their saved text, such as `"2026-01-01 00:00:00+00"`.
+- Each name is checked against the Dimension's hand-added items and the source's item text, then, for a name those do not hold, against the calculation's own item list. So an item a formula or mapping computes is saved, and so is a number written as the table's rows write it, such as `13840.0`. Date and number items match by their saved text, such as `"2026-01-01 00:00:00+00"`.
 - A name the calculation does not hold either is reported under `unmatched`. A list that names no item at all is refused with the Dimension's first items.
 - Only an item filter may name `empty:None`. `add_items`, `replace_items`, `rename_items`, and a mapped item named `empty:None` are refused with "empty:None is the spelling of a dimension's empty member, which holds the rows with no value and exists without being added".
 
@@ -307,12 +307,13 @@ A `create` whose formulas read a mapped Dimension can declare the mapping in the
 
 - On a `create`, it holds `start`, `end`, and `granularity`. A dated table names its grain, such as `MONTH`; a timeless table names `NO_GRANULARITY`, as the `tables` example above does.
 - On an `update`, the range is `{"type": "ABSOLUTE", "start": …, "end": …}`, and `{"inherit": true}` clears the table's own window.
-- `start` and `end` accept a plain calendar date, such as `2026-02-01`, as well as a full timestamp, and `create` and `update` save the same window for either spelling.
+- `start` and `end` accept a plain calendar date, such as `2026-02-01`, as well as a full timestamp, and `create` and `update` save the same window for either form.
 - `update` with `grain` moves the table's Date columns to that grain, so a monthly table asked for `QUARTER` shows quarter columns, and the receipt reports the moved Date column. A table whose Date header shows two grains at once, such as Year above Month, is refused a new grain.
+- `grain` on a row or column node sets the display grain of a datetime axis only. On a Variable row it is refused, and the refusal states where a Variable's grain comes from, such as "grain on a row or column sets the display grain of a datetime axis; \"Revenue\" has data type FLOAT. A variable's default_formulas save at the table's Date grain: the grain of its Date axis, which time sets on create and grain sets on update or reshape."
 
 ### Write values into dated columns
 
-- A `values` write names each Date column by the start of its period at the table's grain. On a table with yearly columns, `2024-01`, `2024`, `FY2024`, and `2024-01-01` all write the 2024 cell; `2024-02` is refused as a date inside a YEAR period, and the refusal names the spelling that works.
+- A `values` write names each Date column by the start of its period at the table's grain. On a table with yearly columns, `2024-01`, `2024`, `FY2024`, and `2024-01-01` all write the 2024 cell; `2024-02` is refused as a date inside a YEAR period, and the refusal names the form that works.
 - A period outside the table's window is refused with the window and the start or end that would hold it, such as "2025-12 is before this table's window 2026-01…2026-12; a window that starts 2025-12-01 holds it". A call may set `window` and write the new periods together.
 - A whole number such as `2026` also selects a number item printed `2026.0`, and a row renamed in the same request resolves under either name.
 - A JSON number in exponent form saves as the same value in plain decimal digits, so `1.5e-3` saves as `0.0015`; the formula grammar has no exponent literal. A number outside the 64-bit floating-point range is refused with "`<literal>` is outside the 64-bit floating-point range".
@@ -377,7 +378,7 @@ Giving an existing Variable new `default_formulas` by its reference, such as `Re
 
 - A stale table reference whose name no longer exists resolves by its suffix when the suffix has at least three hex digits and exactly one table carries it. `inspect_table_blocks` `list` reports the move in a `renamed` note, such as "Vendors#083: no table has that name; its suffix matches the table now named \"Anomalo Vendors\"".
 - Formula names match case exactly. A formula that names `` `Deferred revenue` `` when only `Deferred Revenue` exists is refused with the object it matches: "`` `Deferred revenue` `` matches the existing `` `Deferred Revenue` `` (names match without case); formula names match case exactly, …".
-- A reference field and formula text accept the same spelling of a namesake. The short suffix a readback prints, such as `Currency#3` beside `Currency#8`, names the object it prints for, and a suffix of three or more hex digits is checked against the object's retained identity, so a reference issued for a deleted object never moves to a new namesake.
+- A reference field and formula text accept the same written form of a namesake. The short suffix a readback prints, such as `Currency#3` beside `Currency#8`, names the object it prints for, and a suffix of three or more hex digits is checked against the object's retained identity, so a reference issued for a deleted object never moves to a new namesake.
 - A backticked name that no object carries, such as `` `Amount#3c2` ``, reads as the reference it quotes. In a table row or column, backticks still mark a literal new name.
 
 ## Check before you save
@@ -386,6 +387,6 @@ A table write is atomic: the whole change saves, or none of it does. Only `creat
 
 ## Read back what you saved
 
-- Ask for a readback in the same write with `readback.rows` and `readback.columns`. `rows` alone reads every column, `columns` alone every top-level row, and a renamed Variable or Dimension resolves under either name. `readback.depth` adds child levels, and `readback.also` reads other saved tables at the same change.
+- Ask for a readback in the same write with `readback.rows` and `readback.columns`. `rows` alone reads every column, `columns` alone every top-level row, and a renamed Variable or Dimension resolves under either name. `readback.depth` adds child levels: `1` adds each row's items, `2` theirs, and `all` every level; omitted reads the selected rows alone. `readback.also` reads up to 3 other saved tables at the same change, each entry `{"target", "rows", "columns", "depth"}` with the readback's own meanings: omitted `rows` reads every top-level row, omitted `columns` every column, and `depth` nests the same way. Each entry's result comes back under `readback_also` in request order.
 - An `update`, `reshape`, or `delete` may carry `based_on`: the `as_of` of the table read, or the `change_log_id` of the table write, it builds on. The edit saves either way. When someone else saved to the table after that point, the receipt adds a `changed_since_read` issue naming each save and who made it: a person by name, "a person in the app", "Ari in another chat", or "an automated process", up to five saves and then a count.
 - Check the intended Scenario, representative dates and segments, formula origins, and the actual numbers. When the receipt carries warnings, read them before moving on. [Validate and verify formula writes](/agents/validate-and-verify) lists them.

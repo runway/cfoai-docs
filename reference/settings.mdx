@@ -37,18 +37,34 @@ The **Workspace** section of **General** holds the workspace's name.
 
 ### Brand
 
-A brand gives the workspace a name, logo, colors, and heading typeface that everyone who opens it sees, including people reading a shared Page. See [Brand your workspace](/guides/brand-your-workspace).
+A brand gives the workspace a name, logo, colors, heading typeface or font, sidebar colors, and corner shape that everyone who opens it sees, including people reading a shared Page. With no brand, the section reads **A brand gives this workspace your name, logo, colors, and heading typeface. Everyone who opens the workspace, or a page shared from it, sees the brand.** See [Brand your workspace](/guides/brand-your-workspace).
 
 | Control | What it does |
 | --- | --- |
-| **Website address** and **Build from a website** | Shown with no brand. Opens a chat in which Ari builds a brand from the website you typed. |
+| **Website address** and **Build from a website** | Shown with no brand. The box reads `yourfirm.com`, and the button is unavailable until you type an address. Opens a chat in which Ari builds a brand from the website you typed. |
 | **Set up by hand** | Shown with no brand. Opens the brand form. |
-| Brand form | **Name** (up to 40 characters), **Logo**, **Logo for dark mode**, **Light mode colors** and **Dark mode colors** (**Page surface**, **Panel surface**, **Text**, **Accent**), **Heading typeface** (**cfo.ai default**, **Source Serif**, **Newsreader**, **Fraunces**, **Zilla Slab**, or **DM Sans**), and **Corner shape** (**Square**, **Soft**, or **Round**), with **Save** and **Cancel**. |
+| Brand form | **Name** (up to 40 characters); **Logo** and **Logo for dark mode**, each with **Upload** (**Replace** once set) and the note **PNG, JPEG, or WebP. Up to 1 MB and 2,000 pixels on each side. The dark mode logo is optional.**; **Light mode colors** and **Dark mode colors**, each with **Page surface**, **Panel surface**, **Text**, **Accent**, **Sidebar**, and **Sidebar text**; **Heading typeface** (**cfo.ai default**, **Source Serif**, **Newsreader**, **Fraunces**, **Zilla Slab**, or **DM Sans**), hidden while a **Brand font** is set; **Brand font**; **Corner shape** (**Square**, **Soft**, or **Round**); **Show the brand on link previews**; and **Save** and **Cancel** (**Done** when nothing changed). A preview beside the form shows the name with **Powered by cfo.ai**. |
+| **Light mode colors** | The note reads **Enter each color as hex or OKLCH. Colors are saved as entered, written in OKLCH. The sidebar colors are optional.** **Sidebar** and **Sidebar text** are filled in together or left empty together. |
+| **Brand font** | Shown with controls only after the brand is saved; before that the row reads **Save the brand to use any Google font, or your own font file.** With no font, the note reads **Any typeface for headings, in place of the typeface above.**, with a **Google Fonts family** box (**Google Fonts family, such as Playfair Display**) and **Import**, a checkbox **Our licence lets cfo.ai host this font and show it to everyone who opens our pages, including people who follow a share link.**, and **Upload a WOFF2 file**, which is unavailable until the checkbox is ticked. With a font, the note reads **Headings use this font.**, and the row shows the font's name, **From Google Fonts** or **Uploaded**, and **Remove**. Each change applies at once, without **Save**. |
+| **Show the brand on link previews** | Shown after the brand is saved. Off unless turned on. **Anyone who sees a link to this workspace’s pages sees the brand, even before opening it: on chat and social cards, on the link’s own page, and on its password prompt.** Applies at once, without **Save**. |
 | **Edit** | Shown with a brand. Opens the brand form. |
 | **Copy to other workspaces** | Shown with a brand. Copies it to workspaces you choose. |
 | **Remove brand** | Shown with a brand. After you confirm, everyone sees their own theme again. |
 
 Someone who cannot change the brand sees **This workspace uses the** [name] **brand. Workspace admins set the brand.**
+
+| Message | Meaning |
+| --- | --- |
+| **In** [light or dark] **mode,** [pair] **reaches** [ratio]**:1 contrast and needs** [ratio]**:1.** | **Save** was refused because two colors are hard to read together; nothing was saved. One line names each pair that falls short, such as **In light mode, the accent on the page color reaches 1.47:1 contrast and needs 3:1.** Text needs 4.5:1 on the page and panel colors, the accent and each chart color need 3:1 on them, and sidebar text needs 4.5:1 on the sidebar color. |
+| **Buttons keep your text color: neither your text color nor your panel color reads on your accent at 4.5:1.** | Under the colors. The brand is saved, and primary buttons do not take the accent. |
+| **Links in Ari’s messages stay blue: your accent does not read as text on your page and panel colors at 4.5:1.** | Under the colors. The brand is saved, and links in Ari's messages do not take the accent. |
+| **The font file is larger than 2 MB.** / **The font must be a WOFF2 file.** | The font upload was refused. |
+| **The font name must be 1 to 64 letters, digits, spaces, hyphens, or underscores.** | The font's name, taken from the file's name, breaks the naming rule. |
+| **Confirm that your licence lets cfo.ai host this font and show it to everyone who opens your pages.** | The upload was sent without the licence checkbox ticked. |
+| **Google Fonts has no family named "**[name]**". Type the name as fonts.google.com shows it.** | **Import** found no family with that name. |
+| **That family has no Latin letters, so it can't set headings here.** | The family exists but has no Latin file to import. |
+| **Couldn't reach Google Fonts. Try again.** | The import failed to reach Google Fonts. |
+| **Couldn’t change link previews** | The switch did not save; the reason follows. |
 
 ### Date and time
 
@@ -87,7 +103,7 @@ In a workspace with a brand, **Theme** is replaced by **This workspace uses the*
 | Control | What it does |
 | --- | --- |
 | **Email address** | The address to invite. |
-| **Add admin** | Creates the invitation and emails it. The form then reads **Admin invitation created for** [address]. Adding an address that already has a pending invitation sends the email again. An address that already belongs to the workspace is refused. |
+| **Add admin** | Unavailable until an address is typed. Creates the invitation and emails it; the form then reads **Admin invitation created for** [address]**.** Adding an address that already has a pending invitation sends the email again. An address that already belongs to the workspace without the administrator role is made an administrator at once, with no email, and the form reads [address] **is now an admin.** The same line appears for an address that is already an administrator, and nothing changes. |
 
 cfo.ai has no other role to invite someone to: every invitation is for an administrator. For read-only access, use a share link; see [Share a Page outside your workspace](/guides/share-a-page).
 
@@ -166,7 +182,7 @@ Anyone whose Slack profile email matches a member of the workspace can message A
 | **Connect via MCP** | The cfo.ai MCP server address, `https://api.cfo.ai/mcp`, with **Copy cfo.ai MCP URL**. AI tools such as Claude or Codex connect to it and sign in through the browser; cfo.ai issues no API key. See [Connect Claude, ChatGPT, Codex, or another AI tool to cfo.ai](/guides/connect-an-ai-client). |
 | **Add connections** | Tabs **MCP** and **APIs** for other services whose tools Ari can call. Each tab offers **Add manually** and **Add with Ari**. See [Give Ari access to another service with MCP or an API](/guides/give-ari-another-service). |
 
-While Ari cannot be used, for example when the workspace is out of AI usage, **Add with Ari** is unavailable, and a line reads **Add with Ari is unavailable.** followed by the reason. Data sources such as QuickBooks are connected from **Connections** in the sidebar; see [Connect QuickBooks, Xero, NetSuite, or Rillet](/guides/connect-accounting).
+Each connected service has a row with **Manage**, which opens its connection page, and a **…** menu with **Edit configuration** and **Disconnect**; see [Connection statuses and the connection page](/reference/connection-statuses#the-connections-page). While Ari cannot be used, for example when the workspace is out of AI usage, **Add with Ari** is unavailable, and a line reads **Add with Ari is unavailable.** followed by the reason. Data sources such as QuickBooks are connected from **Connections** in the sidebar; see [Connect QuickBooks, Xero, NetSuite, or Rillet](/guides/connect-accounting).
 
 ## Skills
 
@@ -194,7 +210,7 @@ Each of your Skills shows its name, its description, where it applies, **Edit**,
 | **Description** | **Phrase it as an activation trigger ("Use when…") — Ari uses it to decide when the skill applies.** |
 | **Instructions** | **Markdown. The full workflow, steps, and conventions Ari should follow when the skill activates.** |
 
-**Use in** offers **All your workspaces**, the default for a new Skill, and **Only in** one workspace: the Skill's own workspace when it already has a limit, otherwise the workspace you are in. The editor saves with **Create skill** for a new Skill and **Save** for an existing one. **Delete** opens **Delete** [name]**?** with **Ari will stop using this skill in all your workspaces.** or, for a Skill limited to one workspace, **Ari will stop using this skill in** [workspace]**.**
+**Use in** offers **All your workspaces**, the default for a new Skill, and **Only in** one workspace: the Skill's own workspace when it already has a limit, otherwise the workspace you are in. The editor saves with **Create skill** for a new Skill and **Save** for an existing one. **Delete** opens **Delete** [name]**?** with **Ari will stop using this skill in all your workspaces.**, or, for a Skill limited to one workspace, **Ari will stop using this skill in** [workspace]**.**, or, when you are no longer a member of that workspace, **Ari already stopped using this skill: you're no longer a member of** [workspace]**.**
 
 | Message | Meaning |
 | --- | --- |

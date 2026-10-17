@@ -28,7 +28,7 @@ Headcount * `Average Salary`
 
 The Variable keeps one meaning across both ranges: it is Payroll on both sides of Last close.
 
-A formula range is a span of time, so it applies only to a formula whose scope includes time. A formula written for Sales alone, with no time in its scope, applies in every period; it cannot be limited to Actuals or Forecast, and Ari refuses to save it with a range. A formula whose scope covers the months but that is saved for neither range applies in Actuals only. Once a formula's scope includes time, a range combines with the rest of it, so Sales can have its own Forecast formula while every other department uses a broader one. See [How formulas work](/concepts/formulas) and [Use different formulas for Actuals and Forecast](/guides/actuals-and-forecast-formulas).
+A formula range is a span of time, so it applies only to a formula whose scope includes time. A formula written for Sales alone, with no time in its scope, applies in every period; it cannot be limited to Actuals or Forecast, and Ari refuses to save it with a range. Once a formula's scope includes time, a range combines with the rest of it, so Sales can have its own Forecast formula while every other department uses a broader one. A formula whose scope spans the months, shown as **All Months** in the editor's title, but that is saved with no range applies in Actuals only, as if it were an Actuals formula. A value saved in one month's cell has no range to choose: it applies in that month, on whichever side of Last close the month falls. See [How formulas work](/concepts/formulas) and [Use different formulas for Actuals and Forecast](/guides/actuals-and-forecast-formulas).
 
 ## What moving Last close changes
 
@@ -36,7 +36,7 @@ Moving Last close changes which months use the Actuals formulas and which use th
 
 Say Last close moves from January 31 to February 28. February now reads your books through the Actuals formulas, and the Forecast starts in March. A forecast that grows from the last actual month now grows from February's actual instead of January's. Every table, chart, and Page shows the new split, because they all read the same Model.
 
-A month that changes side can lose its formula. A Variable with a Forecast formula and no Actuals formula has nothing that covers February once February is in Actuals, so a number there reads 0 and a date or text value reads empty. A balance that reads its previous month, such as cash, then runs forward from that 0. When Ari moves Last close, it tells you which Variables the move leaves without a formula in the months that changed side; a move made by hand does not. See [Ari's save warnings](/reference/formula-errors#aris-save-warnings).
+A month that changes side can lose its formula. A Variable with a Forecast formula and no Actuals formula has nothing that covers February once February is in Actuals, so a number there reads 0 and a date or text value reads empty. A balance that reads its previous month, such as cash, then runs forward from that 0. When Ari moves Last close, it counts the Variables the move leaves without a formula in the months that changed side and names up to 10 of them; a move made by hand does not. See [Ari's save warnings](/reference/formula-errors#aris-save-warnings).
 
 ## Connected data before and after Last close
 

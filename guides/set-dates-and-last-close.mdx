@@ -16,7 +16,7 @@ Move Last close, your month-end date, forward after you finish each month's clos
 
     Ari changes Last close in the Scenario your chat is in. To change another Scenario, name it.
 
-    Ari also tells you which Variables the move leaves with no formula in the months that changed side, such as a cash balance that has only a Forecast formula. Those cells read 0, and a balance that reads its previous month runs forward from that 0; see [What moving Last close changes](/concepts/actuals-and-forecast#what-moving-last-close-changes).
+    Ari also counts the Variables the move leaves with no formula in the months that changed side and names up to 10 of them, such as a cash balance that has only a Forecast formula. A number in those cells reads 0 and a date or text value reads empty, and a balance that reads its previous month runs forward from that 0; see [What moving Last close changes](/concepts/actuals-and-forecast#what-moving-last-close-changes).
   </Tab>
   <Tab title="By hand">
     <Steps>
@@ -31,7 +31,7 @@ Move Last close, your month-end date, forward after you finish each month's clos
       </Step>
     </Steps>
 
-    You can also set it from the Scenario picker: select the gear on the Scenario's row, then **Last close**. The row is not offered on a phone or for a Snapshot. See [Scenario and version history controls](/reference/scenarios-and-history#scenario-actions-menu). Or, on a table with months, select the **LC** badge in the Last close period's header, **Edit last close**.
+    You can also set it from the Scenario picker: select the gear on the Scenario's row, then **Last close**. The row is not offered on a phone or for a Snapshot. See [Scenario and version history controls](/reference/scenarios-and-history#scenario-actions-menu). Or, on a table whose periods are at your default date granularity, usually months, and whose date range includes Last close, select the **LC** badge in the Last close period's header, **Edit last close**. On a table you cannot edit, the badge only labels the period.
 
     A move made by hand gives no warning about Variables left with no formula in the months that changed side, so check the moved months of a Variable that has only a Forecast formula, such as a running balance.
   </Tab>

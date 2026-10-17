@@ -15,7 +15,7 @@ Use this guide when a connection in the sidebar shows a red triangle, an orange 
 
 ## Setup not finished: finish or cancel it
 
-The connection reads **Setup not finished** when someone started connecting and did not finish, for example because the sign-in window was closed. Select **Finish setup** to continue the same connection, or **Cancel setup** to remove it. Canceling asks nothing, because the connection holds no data, and it frees the plan slot the connection was holding. If the card under a QuickBooks Online, Xero, or HR and payroll sign-in says the window asked you to enable third-party cookies, allow them in your browser's settings, or open cfo.ai in a regular Chrome window, then select **Try again**.
+The connection reads **Setup not finished** when someone started connecting and did not finish, for example because the sign-in window was closed. Select **Finish setup** to continue the same connection, or **Cancel setup** to remove it. Canceling asks nothing, because the connection holds no data, and it frees the plan slot the connection was holding. When a QuickBooks Online, Xero, or HR and payroll sign-in window closes early, the chat card reads **[Source] was not connected** and may add a line about third-party cookies. Allow them in your browser's settings, or open cfo.ai in a regular Chrome window, then select **Try again** on that card; it continues the same connection.
 
 Connecting the same source again, from its card, from a link, or by asking Ari, also continues the unfinished connection instead of adding a second one.
 
@@ -73,9 +73,11 @@ HR and payroll systems, and sources that sync through Fivetran, run their own fi
 
 If the provider still has not finished 20 hours after cfo.ai began waiting, the connection reads **First sync not ready**. The next nightly sync starts a new wait, or select **Retry** to start one now.
 
-A later nightly sync can wait too. When a source that syncs through Fivetran is still running its own sync 45 minutes after cfo.ai asked for one, cfo.ai waits for that sync instead of starting another, checking about every 10 minutes for up to 20 hours, and loads it once it finishes. The connection reads **Syncing**, the data from the last loaded sync stays usable, and you do not need to do anything. If the source still reports the sync running after 20 hours, the sync fails with the reason on the card, and the next nightly sync tries again.
-
 A payments system with a long history, such as Stripe, can spend a day or more in its first sync. Ask Ari whether the load is still running before you treat it as a failure.
+
+## A later sync is still running
+
+A later nightly sync can wait too. When a source that syncs through Fivetran is still running its own sync 45 minutes after cfo.ai asked for one, cfo.ai waits for that sync instead of starting another, checking about every 10 minutes for up to 20 hours, and loads it once it finishes. The connection reads **Syncing**, the data from the last loaded sync stays usable, and you do not need to do anything. If the source still reports the sync running after 20 hours, the sync fails with the reason on the card, and the next nightly sync tries again.
 
 ## Partly synced
 

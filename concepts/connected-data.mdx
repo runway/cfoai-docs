@@ -40,7 +40,7 @@ Ready also says nothing about whether the numbers match your books. A query can 
 
 ## When data updates
 
-Every integration refreshes once a day, in a shared nightly run that starts at 02:00 UTC. A source that publishes its daily data after that run would always land a day late, so you can give a connection its own daily time, such as 6:30 AM in your time zone. You can also ask Ari to refresh a connection now. A healthy connection has no refresh button; **Retry** appears only after a sync stopped or failed.
+Every integration refreshes once a day, in a shared nightly run that starts at 02:00 UTC. A source that publishes its daily data after that run would always land a day late, so you can give a connection its own daily time, such as 6:30 AM in your time zone. You can also ask Ari to refresh a connection now. A healthy connection has no refresh button; **Retry** appears when a sync or setup needs another attempt. [Connection actions](/reference/connection-statuses#connection-actions) lists when each action is offered.
 
 The nightly refresh does not always re-read your whole history. Some sources, such as QuickBooks Online, re-read only recent months, so a correction to an older period arrives only when you ask Ari for a full-history import. How far back each source re-reads is listed in [How much history loads](/reference/imported-data#how-much-history-loads) and in each source's entry in the [integrations directory](/reference/integrations).
 

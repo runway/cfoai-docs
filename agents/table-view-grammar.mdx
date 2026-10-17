@@ -62,7 +62,11 @@ A breakdown in the written notation and in the typed fields:
 }
 ```
 
-Levels that a mapping relates pair each key item with its mapped item, whether the item was added by hand or comes from a source table, so the rows are the items the mapping resolves, its catch-all included. A hand-added item the mapping does not resolve pairs with every mapped item the rows have. Levels that one source table's rows carry together pair as in those rows. Levels that neither relates pair in every combination.
+How the items of two nested levels pair depends on what relates the levels:
+
+- **A mapping relates them.** Each key item pairs with the item the mapping gives it, whether the key item was added by hand or comes from a source table. The rows are the items the mapping resolves, the catch-all included. A hand-added key item the mapping does not resolve pairs with every mapped item the rows have.
+- **One source table's rows carry both.** The items pair as they do in those rows.
+- **Neither relates them.** Every item of one level pairs with every item of the other.
 
 ## Canvas dataset layouts
 

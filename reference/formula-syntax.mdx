@@ -78,7 +78,7 @@ A lookup in brackets after a name changes which items the reference reads. Every
 
 When a lookup reads several items, wrap it in a function that says how to combine them, such as `sum`, `average`, or `count`: `average(Revenue[Department in any])`. See [Aggregation functions](/reference/functions#aggregation-functions).
 
-A lookup key matches items by the same `=` rule as the rest of the formula, whatever kind the item is. The number key in `Amount[Entity = 3019681]` reads a text item named `3019681`, a text key such as `"1"` reads the number item 1, and a lookup that adds cells adds every item it meets. A formula's condition, which says where the formula applies, matches only items of the key's own kind; see [Conditions](#conditions-where-a-saved-formula-applies).
+A lookup key matches items by the same `=` rule as the rest of the formula, whatever kind the item is. The number key in `Amount[Entity = 3019681]` reads a text item named `3019681`, a text key such as `"1"` reads the number item 1, and an aggregation over a lookup, such as `sum(Amount[Entity = 1])`, adds every item the key equals this way. A formula's condition, which says where the formula applies, matches only items of the key's own kind; see [Ari's save warnings](/reference/formula-errors#aris-save-warnings).
 
 Inside `where`, a plain name refers to the item being tested, and `this.` to the cell being calculated: `sum(Revenue[Department in any] where Revenue > this.Revenue)` adds the departments with more revenue than this one.
 

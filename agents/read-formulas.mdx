@@ -106,8 +106,6 @@ A `read` result also carries `figures`, facts about the returned numbers that no
 
 Receipts from `edit_table_blocks` carry no `figures`.
 
-A read of a table that shows a mapped Dimension as a value column carries a `mapping_warning` issue when no lookup of that mapping has all its keys on the table's axes, because every cell of the column then reads the catch-all. [Read the receipt](/agents/validate-and-verify#read-the-receipt) quotes the sentence; a table write's receipt carries the same issue.
-
 ## Read a table that compares Scenarios or periods
 
 - A read of a table that compares Scenarios returns every compared Scenario's value when `columns` names periods: one column reference per Scenario and period, each labeled with its Scenario.
@@ -151,6 +149,8 @@ When the calculation service cannot compute a table, `read` still returns the sa
 - A failure the calculation service did not classify carries the error as raised, clipped to 500 characters, with no `category` or `transient` flag, so assume nothing about a retry.
 
 A table whose saved comparison names a Scenario that no longer exists still reads. The comparison columns are dropped for the calculation only, and a `table_problem` issue names the former Scenario. An `edit_scenarios` `delete` lists the readable tables that compared against the deleted Scenario as `tables_comparing_against_it`.
+
+A `read` can also carry a `mapping_warning` issue, the same one a table write's receipt reports. [Read the receipt](/agents/validate-and-verify#read-the-receipt) states when it appears and quotes its sentence.
 
 ## Explain one cell's inputs
 

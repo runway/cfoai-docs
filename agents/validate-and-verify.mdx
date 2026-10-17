@@ -31,7 +31,7 @@ To validate without saving, send a `create` with `dry_run: true`. It checks the 
 Inspect the write's result before you move on. A table write's receipt reports:
 
 - **What it touched.** Each row and column touched, with the formula it now carries per range.
-- **`formula_warning` issues** for formulas that need attention. Most follow a formula that saved. The `update_calendar` case follows a saved Last close change, and the last case below follows a write that saved nothing. A `create` reports the same cases as `creation_warning`. The cases:
+- **`formula_warning` issues** for formulas that need attention. Most follow a formula that saved. The `update_calendar` case follows a saved Last close change, and the last case below follows a write that saved nothing. A `create` reports the same cases as `creation_warning`, except the `update_calendar` case, which only that action produces. The cases:
   - an imported Variable read in Forecast months;
   - a constant that matches no Dimension item. A lookup key is judged by the formula `=` rule across kinds: a number key selects a text item whose text reads as that number, and a true/false item as `1` or `0`, and a text key selects a number or true/false item by its reading. A constant in a condition, which says where a formula applies, is judged within its own kind;
   - a tie with an existing formula;

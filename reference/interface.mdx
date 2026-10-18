@@ -322,11 +322,18 @@ When it finishes:
 | **Spreadsheet download started**, with **[file]: [n] cells hold values instead of a formula. The Export notes sheet lists them.** and **Ask Ari to fix** | Some formulas could not be written as Excel formulas. **Ask Ari to fix** opens a chat that asks Ari to export the Page again and write a working formula into each of those cells. |
 | **Could not download spreadsheet**, with **[Page]: [reason]** | The export failed. |
 
+When you open a Page after reloading or closing the tab that started an export, the button looks for your own newest export of that Page in that Scenario: one still queued or running, or one that ended within the last hour. A running export makes the button busy again, with the tooltips above, and the file downloads when it is ready. An export that already ended shows once per tab:
+
+| Message | Meaning |
+| --- | --- |
+| **Spreadsheet ready**, with **[file], requested at [time]** and **Download** | The export finished after you left. Select **Download** to save the file; it does not download on its own. When some formulas could not be written as Excel formulas, the notice adds the cell count and the **Export notes** sheet, without **Ask Ari to fix**. |
+| **Could not download spreadsheet**, with **[Page], requested at [time]: [reason]** | The export failed after you left. |
+
 A failed export's reason has up to three parts:
 
 - **The export failed while [stage] and produced no workbook.** The stage is **starting**, **loading the saved model**, **reading the model calendar**, **calculating the page tables**, **calculating the inputs the page tables read**, **writing the workbook**, or **storing the workbook**.
-- The cause, such as a formula whose input has no cell in the workbook, a formula that could not be written for Excel, **The export reached its time limit**, or a Dimension whose list of items was larger than the export could read.
-- When it is known, whether to try again: **The failure is temporary: a new export of the same pages can succeed.** or **A new export fails the same way while the saved model is unchanged.**
+- The cause, such as a formula whose input has no cell in the workbook, a formula that could not be written for Excel, **The export reached its time limit**, a Dimension whose list of items was larger than the export could read, or a table calculation that reached a limit: **A calculation in table "[table]" in scenario "[Scenario]" reached its 90-second time limit and was stopped before it finished.** or **A calculation in table "[table]" in scenario "[Scenario]" reached the [n] MiB memory limit of one calculation worker and was stopped before it finished.**
+- When it is known, whether to try again: **The failure is temporary: a new export of the same pages can succeed.** or **A new export fails the same way while the saved model is unchanged.** A calculation that reached its time limit is not tried again, because the next export reaches the same limit; narrow the table, or ask Ari why it is large.
 
 Two reasons stand alone:
 

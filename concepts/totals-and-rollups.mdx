@@ -17,7 +17,7 @@ cfo.ai adds numbers up in four places, and each one follows its own arithmetic. 
 
 When a table breaks a number down, such as Revenue by Product and then Customer, each row above the bottom rows adds up the rows directly beneath it. Each customer row adds its lines, each product row adds its customers, and the Revenue row adds its products. These sums are ordinary formulas that cfo.ai saves for you, one for each level, and you can open them from the row.
 
-When the bottom rows hold numbers you typed, cfo.ai also saves a formula of 0 on them, which every typed number overrides. A blank bottom row then counts as 0, and every total still adds up. Because each level adds the level beneath it, a change on any row reaches every total above it: set one line to 0, and its customer, its product, and Revenue all go down. A line that appears under two customers is counted under each of them.
+When the bottom rows hold numbers you typed, cfo.ai also saves a formula of 0 on them, which every typed number overrides. A blank bottom row then counts as 0, and every total still adds up. Because each level adds the level beneath it, a change on any row reaches every total above it: set one line to 0, and its customer, its product, and Revenue all go down.
 
 When adding up is the wrong arithmetic, give the parent its own formula. Revenue per customer, for example, is total revenue divided by customer count, not a sum; a formula you write on a parent replaces the sum at its level, and cfo.ai keeps your version. Removing a level from the table removes that level's sum, and the level above then adds up the next level that remains.
 
@@ -27,7 +27,7 @@ Not every Variable gets these formulas:
 - An imported Variable gets no 0, because its bottom rows read the source.
 - A formula of your own on the Variable's row gives every row its value, so the sums and the 0 are removed.
 - A formula you write on one bottom row wins in that row only; the other rows keep the 0, and every total keeps its sum.
-- A default for every child of one parent, such as every customer under one product, covers that parent's children alone and saves no totals.
+- A default for every child of one parent, such as every customer under one product, covers that parent's children alone. The other rows keep the 0, and the totals keep their sums.
 
 A table of weeks in a monthly Model gets the same sums at week grain. A table that is saved without changing which levels it shows, for example after sorting or formatting, changes no formulas.
 
@@ -60,11 +60,13 @@ A formula written for months fills month cells only. Quarter, half-year, and yea
 
 **LAST** keeps a missing closing month empty instead of borrowing an earlier month's value.
 
-When Ari adds a new number to a monthly table, it gives the Variable a rollup in the same save. It uses **SUM** in most cases, and **LAST** for a Variable that takes the last value of its source rows, such as a balance. Some Variables get no rollup: a percentage, text, a date, a true-or-false value, and a number aggregated another way. A Variable whose formula has no time in it gets none either, because that formula calculates quarters and years directly. A Variable you create by hand from a table gets no rollup. Ask Ari to add or change a Variable's rollup.
+When Ari adds a new number to a monthly table, it gives the Variable a rollup in the same save. It uses **SUM** in most cases, including for a Variable that sums or counts its source rows, and **LAST** for a Variable that takes the last value of its source rows, such as a balance. Some Variables get no rollup: a percentage, text, a date, a true-or-false value, and a number whose source rows combine by their first, smallest, largest, or any value. A Variable whose formula has no time in it gets none either, because that formula calculates quarters and years directly. A Variable you create by hand from a table gets no rollup. Ask Ari to add or change a Variable's rollup.
 
 ## Why a quarterly view shows zeros
 
 A table that shows quarters or years reads each Variable's quarter or year value. A Variable with no time rollup, and no formula that applies at that grain, has no such value. Its quarter and year cells show 0, or a blank for text and dates. cfo.ai does not add up the months on its own. When Ari reads such a cell, it reports that the Variable has no time rollup instead of treating the 0 as a total.
+
+A Variable that reads a connected system is the exception. Its source read covers quarters and years too: it combines the source rows of the whole quarter or year by the Variable's aggregation, so a Sum adds every row in the quarter, and a Last takes the latest-dated row anywhere in it, even when the quarter's closing month is empty.
 
 To fix it, ask Ari to give the Variable a rollup, such as **SUM** for revenue or **LAST** for cash. Or show the months on the table with summary columns, which add up the months shown without a rollup.
 

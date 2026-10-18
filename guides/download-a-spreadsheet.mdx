@@ -27,7 +27,9 @@ To export a Page to Excel, select **Download spreadsheet** in the Page header, o
         Select **Download spreadsheet**, the download icon in the Page header. The button appears only on a Page that has a Table block.
       </Step>
       <Step title="Wait for the file">
-        The export runs in the background, and pointing at the button shows its progress. You can open other Pages while you wait, but closing or reloading the browser tab loses the download. When the file is ready, it downloads and a **Spreadsheet download started** notice names it.
+        The export runs in the background, and pointing at the button shows its progress. You can open other Pages while you wait. When the file is ready, it downloads and a **Spreadsheet download started** notice names it.
+
+        If you reload or close the tab while the export runs, the export keeps going. Open the Page again, in the same Scenario, and the button picks it up: a running export is busy again and the file downloads when it is ready, and an export that finished within the last hour shows **Spreadsheet ready**, with the file's name, when you asked for it, and a **Download** button. An export that failed shows **Could not download spreadsheet** with the reason. Only you see your own exports this way.
       </Step>
     </Steps>
 

@@ -7,13 +7,13 @@ cfo.ai is built around one shared financial Model of your business. Ari, your AI
 
 ## Your workspace
 
-A workspace is your company's home in cfo.ai. It holds the Model, the Pages that present it, the Scenarios you are testing, the systems you connected, your chats with Ari, saved Skills and Triggers, and your team. Everything you or Ari build belongs to the workspace, not to a single chat. Files are the exception: a file you attach, or one Ari makes for you, stays in its chat, which only you can open. See [What Ari remembers](/concepts/ari-memory#files-from-your-other-chats).
+A workspace is your company's home in cfo.ai. It holds the Model, the Pages that present it, the Scenarios you are testing, the systems you connected, and your team. Everything you or Ari build in the Model belongs to the workspace, not to a single chat. Three things are yours rather than the workspace's: your chats with Ari, and the files in them, which only you can open; your Skills, which go with you to every workspace where you are a member unless you limit one to a single workspace; and your Triggers, which nobody else can see or change. See [What Ari remembers](/concepts/ari-memory#files-from-your-other-chats) and [Skills, Triggers, and Guides](/concepts/automation).
 
 ## How your Model fits together
 
 The Model is a live representation of how your business works across time. Three ideas carry it:
 
-- Variables hold the values you care about, such as Revenue, Headcount, or Cash, and the assumptions behind them, such as a price. Each Variable has a value for every period.
+- Variables hold the values you care about, such as Revenue, Headcount, or Cash, and the assumptions behind them, such as a price. A Variable holds a value in each period it covers, and in each business category it is broken down by.
 - Dimensions organize those values into business categories, such as Department, Product, or Region, so Revenue can be read by Product as well as in total.
 - Formulas connect Variables to each other, so a change in one place flows to everything that depends on it.
 
@@ -27,15 +27,15 @@ A Page is a report built from blocks: Table blocks that show Variables across ti
 
 ## Ari works on the same Model you do
 
-When you ask Ari a question, it reads the Model, your connected data, and the Page you have open. When the answer needs something new, such as a forecast or a hiring Scenario, Ari builds it into the Model as Variables, formulas, and Pages. The result stays after the chat ends, and you can open it, trace any number to its source, and change it yourself. Every change, yours or Ari's, is recorded in version history. See [How Ari works with you](/concepts/working-with-ari).
+When you ask Ari a question, it reads the Model, your connected data, and the Page you have open. When the answer needs something new, such as a forecast or a hiring Scenario, Ari builds it into the Model as Variables, formulas, and Pages. The result stays after the chat ends, and you can open it, trace any number to its source, and change it yourself. Every change to the Model, yours or Ari's, is recorded in version history. See [How Ari works with you](/concepts/working-with-ari).
 
 Ari does not do the arithmetic. It writes formulas, and cfo.ai's calculation engine computes every number from them. That is why you can check a result: open the cell's formula, follow its inputs, and see the data they read.
 
-Other AI tools can work on the same Model too. An AI client such as Claude Code connects through the cfo.ai MCP server and uses the same tools Ari uses, under your account. See [cfo.ai for AI agents](/agents).
+Other AI tools can work on the same Model too. An AI client such as Claude Code connects through the cfo.ai MCP server and uses the tools Ari uses to read and change the Model, under your account. It does not get Ari's own helpers, such as web search or file delivery. See [cfo.ai for AI agents](/agents).
 
 ## Data flows in from your systems
 
-Connected systems, such as QuickBooks, Xero, Rippling, or a Google Sheet, bring Actuals and operating data into the Model, and refresh once a day. Uploaded files bring in a one-time copy. See [How connected data reaches your Model](/concepts/connected-data).
+Connected systems, such as QuickBooks, Xero, Gusto, or a Google Sheet, bring Actuals and operating data into the Model, and refresh once a day. An uploaded file is read once, and again only when you replace it with **Update file**. See [How connected data reaches your Model](/concepts/connected-data).
 
 ## Scenarios hold alternatives
 

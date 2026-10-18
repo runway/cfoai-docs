@@ -64,7 +64,7 @@ Each tool of an MCP server, and each endpoint of an API, has a permission:
 | Permission | What Ari does |
 | --- | --- |
 | **Allow** | Uses it without asking |
-| **Ask first** | Asks you to approve each call. See [Answer Ari's questions and approve its actions](/guides/approve-ari-actions). In a scheduled Trigger run, nobody can approve, so a tool or endpoint on **Ask first** does not run; see [What a run cannot do on its own](/concepts/automation#what-a-run-cannot-do-on-its-own). |
+| **Ask first** | Asks you to approve each call. See [Answer Ari's questions and approve its actions](/guides/approve-ari-actions). In a Trigger run, scheduled or started with **Run now**, nobody can approve, so a tool or endpoint on **Ask first** does not run; see [What a run cannot do on its own](/concepts/automation#what-a-run-cannot-do-on-its-own). |
 | **Block** | Never uses it |
 
 A new MCP server starts with every tool on **Ask first**. A new API starts by method: reads (`GET` and `HEAD`) on **Allow**, deletes on **Block**, and every other call on **Ask first**. When Ari asks and you choose **Always allow**, that tool stays on **Allow** for the whole workspace.

@@ -14,7 +14,7 @@ The mark at the right end of a connection's row in the sidebar says whether anyt
 | --- | --- |
 | No mark | The data is in and current (**Synced**), or an MCP server or API is ready (**Connected**). |
 | Blinking orange dot | A sync is running (**Syncing**). |
-| Steady orange dot | Something is incomplete but needs nothing from you: the sync resumes by itself, cfo.ai must fix it, or someone else must act. |
+| Steady orange dot | Something is incomplete but usually needs nothing from you: the sync resumes by itself, cfo.ai must fix it, or someone else must act. The one exception is a **Partly synced** connection whose source refused access to a table, which offers **Reconnect**. |
 | Red triangle | A problem you must act on. The card names it and offers the fix. |
 | Gray dot | Setup was not finished, someone stopped the latest sync, or the source was added but not connected. |
 
@@ -41,7 +41,7 @@ A sync is running, or a first sync is queued. Mark: blinking orange dot. The con
 
 The last sync finished without some of the source's tables. The data that arrived is usable. Mark: steady orange dot. The line names up to three tables and counts the rest, and it says whose side the cause is on once cfo.ai has read why each table failed:
 
-- Until that cause has loaded: **[Source]’s last sync couldn’t refresh [tables]. Everything else is up to date, and cfo.ai will try again on the next sync.** Action: **Reconnect**, because the connection needs attention and the cause is not yet known.
+- For a moment after the page opens, until cfo.ai has read the cause: **[Source]’s last sync couldn’t refresh [tables]. Everything else is up to date, and cfo.ai will try again on the next sync.** Action: **Reconnect**, as for any connection that needs attention, until the cause replaces this line.
 - The source refused this connection's sign-in or permissions for every missed table, such as a QuickBooks account that cannot read **accounts**: **[Source] refused this connection access to [tables], so the last sync didn’t refresh that data. A reconnect with an account that can read it lets the next sync refresh it. Everything else is up to date.** Action: **Reconnect**.
 - The source refused some tables and the rest failed for another reason: the refusal sentence, then **A problem on cfo.ai’s or [Source]’s side kept [tables] from refreshing, and cfo.ai will try again on the next sync. Everything else is up to date.** Action: **Reconnect**, which repairs only the refused tables.
 - No table was refused: **A problem on cfo.ai’s or [Source]’s side kept the last sync from refreshing [tables]. Reconnecting won’t change it. cfo.ai will try again on the next sync, and everything else is up to date.** Action: none; the next sync retries the missing tables.

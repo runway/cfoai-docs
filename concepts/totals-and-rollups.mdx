@@ -60,13 +60,13 @@ A formula written for months fills month cells only. Quarter, half-year, and yea
 
 **LAST** keeps a missing closing month empty instead of borrowing an earlier month's value.
 
-When Ari adds a new number to a monthly table, it gives the Variable a rollup in the same save. It uses **SUM** in most cases, including for a Variable that sums or counts its source rows, and **LAST** for a Variable that takes the last value of its source rows, such as a balance. Some Variables get no rollup: a percentage, text, a date, a true-or-false value, and a number whose source rows combine by their first, smallest, largest, or any value. A Variable whose formula has no time in it gets none either, because that formula calculates quarters and years directly. A Variable you create by hand from a table gets no rollup. Ask Ari to add or change a Variable's rollup.
+When Ari adds a new number to a table at the Model's base grain, such as a monthly table in a monthly Model, it gives the Variable a rollup in the same save. It uses **SUM** in most cases, including for a Variable that sums or counts its source rows, and **LAST** for a Variable that takes the last value of its source rows, such as a balance. Some Variables get no rollup: a percentage, text, a date, a true-or-false value, and a number whose source rows combine by their first, smallest, largest, or any value. A Variable whose formula has no time in it gets none either, because that formula calculates quarters and years directly. A Variable you create by hand from a table gets no rollup. Ask Ari to add or change a Variable's rollup.
 
 ## Why a quarterly view shows zeros
 
 A table that shows quarters or years reads each Variable's quarter or year value. A Variable with no time rollup, and no formula that applies at that grain, has no such value. Its quarter and year cells show 0, or a blank for text and dates. cfo.ai does not add up the months on its own. When Ari reads such a cell, it reports that the Variable has no time rollup instead of treating the 0 as a total.
 
-A Variable that reads a connected system is the exception. Its source read covers quarters and years too: it combines the source rows of the whole quarter or year by the Variable's aggregation, so a Sum adds every row in the quarter, and a Last takes the latest-dated row anywhere in it, even when the quarter's closing month is empty.
+An imported Variable with a saved starting formula is the exception. Its source read covers quarters and years too: it combines the source rows of the whole quarter or year by the Variable's aggregation, so a Sum adds every row in the quarter, and a Last takes the latest-dated row anywhere in it, even when the quarter's closing month is empty. An imported Variable with no saved formula reads its source only through Last close and shows its type's default after that; see [How imported data loads](/reference/imported-data#starting-formulas).
 
 To fix it, ask Ari to give the Variable a rollup, such as **SUM** for revenue or **LAST** for cash. Or show the months on the table with summary columns, which add up the months shown without a rollup.
 

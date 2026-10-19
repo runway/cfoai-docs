@@ -90,7 +90,7 @@ At rest, each item shows small marks for what is set on it: an eye with a line t
 | **Insert row below** | **+** at a row's left edge | Opens a new row with **Type a name or / to search**. A name and **Enter** creates a Variable there, or an item when the row above is an item. **/** opens the search. |
 | **Reorder row or open row menu** | Grip at a row's left edge | Drag to reorder; click for the row's menu. Dragging a Dimension's items sets its sort to **Manual**. |
 | **Edit variable formula** | **fx** button when you point at a row name or column header | Opens the formula for the whole row or column. |
-| **Segment by** | Branch button when you point at a row name or column header | Breaks the row or column down by a Dimension. On a row that already has a breakdown, opens **Segment [name] by** with **Add**, **Remove level**, and drag to reorder levels. |
+| **Segment by** | Branch button when you point at a row name or column header | Breaks the row or column down by a Dimension, or by a Variable. When the row or column already holds a Variable, the search hides Variables until you turn on its **Variables** filter, because a table can hold Variables on one axis only. On a row that already has a breakdown, opens **Segment [name] by** with **Add**, **Remove level**, and drag to reorder levels. |
 | **Drill in** / **Clear drill-in** | Magnifier button when you point at a calculated row's name | Opens or closes the rows its formula reads. |
 | **More header actions** | Button when you point at a column header | Opens the column's right-click menu. |
 | **Edit formula for [Dimension]** | Button when you point at a Dimension's label row | Opens the formula every item at that level shares. |
@@ -400,7 +400,7 @@ The text of **Couldn't apply that change**:
 
 | Message | Meaning |
 | --- | --- |
-| **"[A]" and "[B]" are both variables, and a table can only have variables in rows or in columns — not both. We restored your previous table.** | Variables went on both axes. |
+| **"[A]" and "[B]" are both variables, and a table can only have variables in rows or in columns — not both. We restored your previous table.** | Variables went on both axes, including a Variable chosen under **Segment by** for one item while the other axis holds a Variable. The breakdown is not saved. |
 | **"[A]" and "[B]" are both variables, and a row or column can only include one variable. We restored your previous table.** | One row or column path held two Variables. |
 | **"[Dimension]" is segmenting both rows and columns, and a dimension can only segment one of them. We restored your previous table.** | A Dimension broke down both axes. |
 | **This change isn't a valid table setup, so we restored your previous table.** | Any other layout cfo.ai cannot calculate. |

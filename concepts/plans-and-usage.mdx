@@ -40,13 +40,13 @@ During a free trial, the trial includes its own amount of AI usage. When it is u
 
 ## Connection slots limit what you can sync
 
-A plan allows a number of standard connections and a number of premium connections. Plans differ in how many connections you can hold, not in what a connection does. Each source that syncs data into your Model takes a slot, while CSV uploads and the MCP servers and APIs that Ari calls live take none. Which systems are premium, and exactly how slots count, such as for Google Sheets or a second company, are listed in the [integrations directory](/reference/integrations#standard-and-premium-integrations).
+A plan allows a number of standard connections and a number of premium connections. Plans differ in how many connections you can hold, not in what a connection does. Each source that syncs data into your Model takes a slot, while CSV uploads and the MCP servers and APIs that Ari calls live take none. Once Ari saves a nightly sync for an MCP server or API, that service syncs like any other source and takes a standard slot. Which systems are premium, and exactly how slots count, such as for Google Sheets or a second company, are listed in the [integrations directory](/reference/integrations#standard-and-premium-integrations).
 
 When every slot is used, a new connection is refused until you remove one or move to a plan with more. You also cannot move to a plan with fewer slots than you use until you disconnect enough. For the messages you see, see [Connection statuses and actions](/reference/connection-statuses#messages-when-a-new-connection-is-refused).
 
 ## What stops when a workspace has no plan
 
-A workspace with no plan, such as after a canceled plan ends, locks: its administrators see the plan chooser, and nobody can work in it until someone chooses a plan. Its connected sources stop refreshing. The data already in the workspace stays. A payment that fails at renewal does not stop syncing; cfo.ai retries the charge, and access stops only if the payment still fails. See [Plans and billing](/reference/plans-and-billing).
+A workspace with no plan, such as after a canceled plan ends, locks: its administrators see the plan chooser, and nobody can work in it until someone chooses a plan. Its connected sources stop refreshing. The data already in the workspace stays. A payment that fails when the trial ends locks the workspace the same way until the card is fixed. In a workspace that has paid before, a payment that fails at renewal does not stop syncing; the charge is retried, and access stops only if the payment still fails. See [Plans and billing](/reference/plans-and-billing).
 
 ## Related
 

@@ -8,7 +8,7 @@ Use this guide when a connection in the sidebar shows a red triangle, an orange 
 
 ## Find out what is wrong
 
-- Look at the mark at the end of the connection's row. A red triangle means you must act. A steady orange dot needs nothing from you: the sync resumes by itself, only cfo.ai can fix it, or someone else must act. A gray dot means setup was not finished, someone stopped the latest sync, or the source was added but never connected. See [Sidebar marks](/reference/connection-statuses#sidebar-marks).
+- Look at the mark at the end of the connection's row. A red triangle means you must act. A steady orange dot usually needs nothing from you: the sync resumes by itself, only cfo.ai can fix it, or someone else must act. The one exception is a **Partly synced** connection whose source refused access to a table, which offers **Reconnect**; see [Partly synced](#partly-synced). A gray dot means setup was not finished, someone stopped the latest sync, or the source was added but never connected. See [Sidebar marks](/reference/connection-statuses#sidebar-marks).
 - Point at the connection's row in the sidebar to read its status and the line under it.
 - Select the row to open the connection's page, which shows every action it offers.
 - Ask Ari: "What's wrong with my Xero connection?" Ari reads the same status, including the provider's own report when it gave one.
@@ -69,7 +69,7 @@ If a missing table belongs to a NetSuite feature you do not use, **Multiple Curr
 
 ## The first sync is taking hours
 
-HR and payroll systems, and sources that sync through Fivetran, run their own first sync of your account before cfo.ai can load anything. While cfo.ai waits, the connection reads **Syncing**, and the line says how long it has waited, what the provider last reported, and when the wait ends. Xero can also wait for its request allowance to reset. You do not need to do anything.
+HR and payroll systems, and sources that sync through Fivetran, run their own first sync of your account before cfo.ai can load anything. While cfo.ai waits, the connection reads **Syncing**, and the line says how long it has waited, what the provider last reported, and when the wait ends. A source such as Pipedrive can run out of API calls partway through its first sync; Fivetran then reschedules the sync, the line names when its next attempt is due, and cfo.ai keeps waiting and starts the sync again once that time has passed. Xero can also wait for its request allowance to reset. You do not need to do anything.
 
 If the provider still has not finished 20 hours after cfo.ai began waiting, the connection reads **First sync not ready**. The next nightly sync starts a new wait, or select **Retry** to start one now.
 
@@ -81,7 +81,13 @@ A later nightly sync can wait too. When a source that syncs through Fivetran is 
 
 ## Partly synced
 
-The connection reads **Partly synced** when the last sync finished without some tables, such as **Stripe’s last sync couldn’t refresh balance transactions. Everything else is up to date, and cfo.ai will try again on the next sync.** The data that arrived is usable, and the next sync retries the missing tables. You do not need to do anything.
+The connection reads **Partly synced** when the last sync finished without some tables. The data that arrived is usable. Until cfo.ai has read why each table failed, for a moment after you open the connection or for as long as cfo.ai cannot read the sync's outcome, the line says only that the last sync could not refresh those tables, and **Reconnect** is offered as for any connection that needs attention. Once the cause is known, the line says whose side it is on:
+
+- If it says the source **refused this connection access** to a table, the account you signed in with cannot read that table. Select **Reconnect** and sign in with an account that can, and the next sync refreshes it. Everything else is already up to date.
+- If it says **A problem on cfo.ai’s or [source]’s side kept the last sync from refreshing** a table, reconnecting does not help, and no **Reconnect** is offered. cfo.ai retries the table on the next sync. You do not need to do anything.
+- If it names both, **Reconnect** repairs only the refused tables.
+
+[Connection statuses and actions](/reference/connection-statuses#partly-synced) lists each line.
 
 ## Paused until next sync
 

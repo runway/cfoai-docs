@@ -14,7 +14,7 @@ The mark at the right end of a connection's row in the sidebar says whether anyt
 | --- | --- |
 | No mark | The data is in and current (**Synced**), or an MCP server or API is ready (**Connected**). |
 | Blinking orange dot | A sync is running (**Syncing**). |
-| Steady orange dot | Something is incomplete but needs nothing from you: the sync resumes by itself, cfo.ai must fix it, or someone else must act. |
+| Steady orange dot | Something is incomplete but usually needs nothing from you: the sync resumes by itself, cfo.ai must fix it, or someone else must act. The one exception is a **Partly synced** connection whose source refused access to a table, which offers **Reconnect**. |
 | Red triangle | A problem you must act on. The card names it and offers the fix. |
 | Gray dot | Setup was not finished, someone stopped the latest sync, or the source was added but not connected. |
 
@@ -34,13 +34,20 @@ An MCP server or an API is ready for Ari to call. Nothing syncs from it, so it h
 
 A sync is running, or a first sync is queued. Mark: blinking orange dot. The connection's page reads **A sync is running now.** No **Reconnect** or **Retry** is offered while it runs. While cfo.ai waits on the provider, the line says how long it has waited:
 
-- **Waiting [time] so far for [source]’s first sync to finish.** It may add what the provider last reported, then **If it hasn’t finished by [date and time], this sync stops at its next check after that.** cfo.ai checks every 10 minutes and waits up to 20 hours.
+- **Waiting [time] so far for [source]’s first sync to finish.** It may add what the provider last reported, then **If it hasn’t finished by [date and time], this sync stops at its next check after that.** cfo.ai checks every 10 minutes and waits up to 20 hours. For a source that syncs through Fivetran, the provider's report reads **Fivetran reports its first historical sync of the account still running**, or, when the source's API has stopped answering Fivetran for now, **Fivetran rescheduled its first historical sync of the account because the source's API allows no more calls for now; its next attempt is due at [time]**. cfo.ai keeps waiting through a rescheduled first sync and asks Fivetran to run it again once that time has passed.
 - **Waiting [time] so far for cfo.ai’s request allowance at [source] to reset. The allowance for this organization is used up or nearly used up, and the sync resumes on its own when it resets.** It ends the same way. Xero, for example, limits how many requests an app can make each day.
 - **Waiting [time] so far for [source] to finish a sync it is still running. cfo.ai loads that sync once it finishes. If [source] still reports it running at the first check after [date and time], this sync stops.** A source that syncs through Fivetran was still running its own sync 45 minutes after cfo.ai asked for one. cfo.ai starts no new sync and checks again about every 10 minutes for up to 20 hours. The data from the last loaded sync stays usable meanwhile.
 
 ### Partly synced
 
-The last sync finished without some of the source's tables. The data that arrived is usable. Mark: steady orange dot. Line: **[Source]’s last sync couldn’t refresh [tables]. Everything else is up to date, and cfo.ai will try again on the next sync.** It names up to three tables and counts the rest. Action: none; the next sync retries the missing tables.
+The last sync finished without some of the source's tables. The data that arrived is usable. Mark: steady orange dot. The line names up to three tables and counts the rest, and it says whose side the cause is on once cfo.ai has read why each table failed:
+
+- Until cfo.ai has read the cause, for a moment after the page opens or for as long as cfo.ai cannot read the connection's sync outcome: **[Source]’s last sync couldn’t refresh [tables]. Everything else is up to date, and cfo.ai will try again on the next sync.** Action: **Reconnect**, as for any connection that needs attention, until the cause replaces this line.
+- The source refused this connection's sign-in or permissions for every missed table, such as a QuickBooks account that cannot read **accounts**: **[Source] refused this connection access to [tables], so the last sync didn’t refresh that data. A reconnect with an account that can read it lets the next sync refresh it. Everything else is up to date.** Action: **Reconnect**.
+- The source refused some tables and the rest failed for another reason: the refusal sentence, then **A problem on cfo.ai’s or [Source]’s side kept [tables] from refreshing, and cfo.ai will try again on the next sync. Everything else is up to date.** Action: **Reconnect**, which repairs only the refused tables.
+- No table was refused: **A problem on cfo.ai’s or [Source]’s side kept the last sync from refreshing [tables]. Reconnecting won’t change it. cfo.ai will try again on the next sync, and everything else is up to date.** Action: none; the next sync retries the missing tables.
+
+A refusal is the source answering a sync request with a sign-in or permission error, such as HTTP 401 or 403, or QuickBooks Online's **Permission Denied**. A rate limit, a timeout, or a failure in cfo.ai's own reader is not a refusal.
 
 ### Setup not finished
 
@@ -154,7 +161,7 @@ An MCP server's row also shows the state of its saved sign-in. The state describ
 | --- | --- | --- |
 | **Finish setup** | Continues the unfinished setup on the same connection. No second connection is created. | Setup was not finished and the source can resume it. |
 | **Cancel setup** | Removes an unfinished connection at once. It frees the plan slot the connection held. | Setup was not finished. |
-| **Reconnect** | Opens the source's sign-in again for the same connection. | The source revoked access, or a failed sync needs a new sign-in. |
+| **Reconnect** | Opens the source's sign-in again for the same connection. | The source revoked access, a failed sync needs a new sign-in, or a **Partly synced** connection's source refused access to a missed table or cfo.ai has not read why the table was missed. |
 | **Retry** | Runs the import again with the same sign-in, or starts setup again after **Connection failed**. It does not use another plan slot. | A sync failed and only the import needs to run again, a sync was stopped, or setup failed. |
 | **Update file** | Replaces an uploaded CSV with a new file. | On a file upload. It is the only action when the file could not be read. |
 | **Set up queries with Ari** | Opens a new chat with a request for Ari to review what synced, propose saved queries, and set them up. You review the request before you send it. | **No queries yet** |

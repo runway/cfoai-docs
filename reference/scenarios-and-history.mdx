@@ -43,7 +43,7 @@ The dialog is titled **Take snapshot**, with **Keep a version for an approved bu
 
 ## Merge dialog
 
-The dialog is titled **Merge "[Scenario]" into [target]?**. The target is the Scenario this one branched from, usually Main. It reads **Every change in "[Scenario]" moves into [target]:**, followed by a summary of the changes across the Model, and the note **"[Scenario]" is deleted after the merge.**
+The dialog is titled **Merge "[Scenario]" into [target]?**. The target is Main, which every Scenario branches from, or, for a Scenario from an older workspace that branched from another Scenario, that Scenario. It reads **Every change in "[Scenario]" moves into [target]:**, followed by a summary of the changes across the Model, and the note **"[Scenario]" is deleted after the merge.**
 
 | Control | What it does |
 | --- | --- |
@@ -78,7 +78,7 @@ Point at an entry and select its **…** button (**Actions for [entry]**).
 
 | Control | What it does |
 | --- | --- |
-| **Undo this change** | Reverses this change and keeps everything after it. Asks **Undo this change?** when later changes depend on it. Not offered for a change the Scenario inherited from Main. |
+| **Undo this change** | Reverses this change and keeps everything after it, except where later changes touched the same things: then it asks **Undo this change?**, with **[subject] goes back to what it was before this change. [n] later changes touched the same things and will be undone for those things too:** and the list. Not offered for a change the Scenario inherited from Main. |
 | **Redo this change** | Shown instead of **Undo this change** on an entry that undid a change. |
 | **Restore this version** | Returns the Scenario to this point and rolls back every later change. Needs full access to the Scenario; otherwise its tooltip reads **Only people with full access to this scenario can restore it.** |
 | **Take snapshot here** | Opens the [Take snapshot dialog](#take-snapshot-dialog), pinned at this entry. |

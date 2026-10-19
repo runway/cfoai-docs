@@ -33,7 +33,7 @@ The [integrations directory](/reference/integrations) lists every source and how
 
     > Connect Gusto so we can build a headcount plan from our payroll.
 
-    Ari opens the connection manager and points you to the source. Select **Connect** on its card and sign in. If you close the window, select **Connect integrations** on the card Ari left in the chat.
+    Ari opens the connection manager and points you to the source. Select **Connect** on its card and sign in. If you close the window, select **Manage** on the card Ari left in the chat, titled **Workspace connections**, or **Connect integrations** while you are setting up your workspace.
   </Tab>
   <Tab title="By hand">
     <Steps>
@@ -44,7 +44,7 @@ The [integrations directory](/reference/integrations) lists every source and how
         On the **Integrations** tab, search by name, or filter by type, such as **HR & Payroll** or **CRM**. Select **Connect** on the card.
       </Step>
       <Step title="Sign in">
-        An HR or payroll system opens its own sign-in window: sign in and choose the company. Rippling first shows **Before you connect Rippling**; select **Proceed** when you have the API key. Stripe (Direct) opens Stripe, where you install cfo.ai's Stripe app with read-only access. Most other sources open Fivetran's setup window, where you sign in or enter the source's credentials.
+        An HR or payroll system opens its own sign-in window: sign in and choose the company. If that window closes before you finish and the card mentions third-party cookies, see [Setup not finished](/guides/fix-a-connection#setup-not-finished-finish-or-cancel-it). Rippling first shows **Before you connect Rippling**; select **Proceed** when you have the API key. Stripe (Direct) opens Stripe, where you install cfo.ai's Stripe app with read-only access. Most other sources open Fivetran's setup window, where you sign in or enter the source's credentials.
       </Step>
       <Step title="Choose tables, if asked">
         Databases and most sources through Fivetran show a table picker. Every table starts selected; uncheck the ones you do not need, keep 100 or fewer, and select **Finish setup & sync [N] tables**. See [Choose which tables a source syncs](/guides/choose-synced-tables).

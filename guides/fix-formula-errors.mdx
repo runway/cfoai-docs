@@ -29,7 +29,7 @@ When Ari saves a formula that reads its own Variable, its receipt warns which ce
 The formula names a Variable or Dimension that does not exist. Someone may have deleted it, or the name has a typo.
 
 1. Open the formula. A name that matches nothing is underlined in red with **Unknown variable or dimension name**.
-2. Check the spelling and capital letters. Names match exactly, and a name with spaces needs backticks.
+2. Check that the name is written exactly like the Variable's or Dimension's, including capital letters. Names match exactly, and a name with spaces needs backticks.
 3. To swap in the right Variable, select the reference and select its name to search; see [Point a reference at something else](/guides/write-a-formula#point-a-reference-at-something-else).
 
 A renamed Variable does not cause `#REF!`: formulas follow the Variable, not its old name.
@@ -58,9 +58,9 @@ if(Revenue <> 0, `Gross Profit` / Revenue, 0)
 
 cfo.ai shows 0 for a number cell that no formula or value covers. A formula reads that 0 when it looks for a value where none is saved. Check these causes:
 
-- The input has no months. A salary typed once per employee has no months, so a monthly formula that names it plainly reads 0. Read it through a fixed reference: `` `Annual Salary`$[Employee = this.Employee] / 12 ``. See [Read a per-item input that has no months](/guides/write-a-formula#read-a-per-item-input-that-has-no-months).
+- The input has no months. A salary typed once per employee has no months, so a monthly formula that names it plainly reads 0. Read it through an absolute reference: `` `Annual Salary`$[Employee = this.Employee] / 12 ``. See [Read a per-item input that has no months](/guides/write-a-formula#read-a-per-item-input-that-has-no-months).
 - The input is imported and the month is in Forecast. An imported Variable has values only where its source has rows, usually through **Last close**, so a formula that reads it in a Forecast month reads 0. Give the imported Variable a Forecast formula; see [Use different formulas for Actuals and Forecast](/guides/actuals-and-forecast-formulas).
-- A filter names an item that is spelled differently. `Step = "Committed"` reaches nothing when the item is `Committed out`. Copy the item's exact spelling, or pick it from the filter's list.
+- A filter names an item that is written differently. `Step = "Committed"` reaches nothing when the item is `Committed out`. Copy the item's exact name, or pick it from the filter's list.
 - The first Forecast month reads an empty last Actuals month. A formula with `[-1]` starts from the last closed month. Give that month a value, such as an opening balance.
 - A quarter or year shows 0 but its months have values. The Variable has no time rollup, so its months are not added into the longer period. Ask Ari to give the Variable a time rollup; see [Why a quarterly view shows zeros](/concepts/totals-and-rollups#why-a-quarterly-view-shows-zeros).
 
@@ -92,7 +92,7 @@ A lookup that reads several items, such as `Revenue[Department in any]`, a set, 
 
 - A more specific formula wins for that item. Open a cell of the item that looks wrong and check where its formula comes from.
 - The input has no value for that item. A formula that reads Commission Rate for each department reads 0 for a department with no rate.
-- The reference follows the cell when it should not, or the reverse. A fixed reference (`$`) reads the same value for every item. A plain reference reads each item's own value. See [Fix a reference so it reads one value everywhere](/guides/write-a-formula#fix-a-reference-so-it-reads-one-value-everywhere).
+- The reference follows the cell when it should not, or the reverse. An absolute reference (`$`) reads the same value for every item. A plain reference reads each item's own value. See [Make a reference absolute so it reads one value everywhere](/guides/write-a-formula#make-a-reference-absolute-so-it-reads-one-value-everywhere).
 
 ## The formula works in Actuals but not in Forecast
 

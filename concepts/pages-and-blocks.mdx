@@ -55,7 +55,7 @@ A block can save a control's setting, such as monthly or quarterly, when it was 
 
 ## How Ari checks a visual
 
-To check a Canvas block it built or changed, Ari renders the saved block in a browser with live data, once in light mode and once in dark mode, at a width of 1,200 pixels. It reads the errors and warnings from those renders, such as a chart series with blank or error cells, and can fix the block before it answers.
+To check a Canvas block it built or changed, Ari renders the saved block in a browser with live data, once in light mode and once in dark mode, at a width of 1,200 pixels. It reads the errors and warnings from those renders, such as a chart series with blank or error cells. When a render finishes without an error, Ari also reads what each chart plotted: for each series the chart shows, how many points it drew and its first, last, lowest, and highest point. It can fix the block before it answers.
 
 The check has limits. It does not click buttons, type into fields, follow links, or start Guides, so what those do is first tried when you use them. It does not check the block at other widths. A clean render also does not prove the numbers are right; that comes from the Model's formulas, which you can trace from any table. See [How Ari works with you](/concepts/working-with-ari).
 

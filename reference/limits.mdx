@@ -31,7 +31,7 @@ See [Attach files to a chat](/guides/attach-files) and [Chat controls and messag
 | Size of a connected Google Sheet | 50 MB, read as an Excel workbook |
 | Size of an Excel or CSV file read from Google Drive | 10 MB |
 | Tables one connection syncs | 100, for sources with a table picker |
-| Time cfo.ai waits for a provider's own first sync | 20 hours, checking every 10 minutes |
+| Time cfo.ai waits for a provider's own first sync, or for a later sync the provider is still running after 45 minutes | 20 hours, checking every 10 minutes; the data from the last sync cfo.ai loaded stays as it is meanwhile |
 | Time to plan a saved query | 40 seconds |
 | History in the first load of QuickBooks Online or Xero | From January 1 of the previous year; the 3 most recent complete months arrive first |
 | Months the nightly refresh of QuickBooks Online reads again | The last 3; ask Ari for a full-history import to correct older months |
@@ -42,6 +42,7 @@ See [Attach files to a chat](/guides/attach-files) and [Chat controls and messag
 | Time one run of a sync setup for an MCP server or API can take | 10 minutes |
 | Results one run of a sync setup can save | 10,000 pages of up to 16 MiB each for a replace or snapshot sync without a changes-since filter; 100 pages, 20,000 records, and 16 MiB in all for any other sync |
 | Size of one page an MCP server returns to a sync setup | 2 MiB |
+| One tool call in a sync page from an MCP server | 45 seconds; connecting, listing the server's tools, and the call each get 45 seconds. A time limit named in the tool's own description is the server's own; cfo.ai's limit applies either way |
 
 See [How imported data loads](/reference/imported-data) and [Integrations directory](/reference/integrations).
 
@@ -58,6 +59,7 @@ See [How imported data loads](/reference/imported-data) and [Integrations direct
 | Spreadsheet exports a workspace prepares at once | 1 |
 | Time one spreadsheet export can run | 45 minutes |
 | Length of a formula in an exported workbook | 8,192 characters, Excel's limit; a longer formula is exported as its value |
+| Blocks whose view settings one browser remembers, such as a table's height, open panes, and expanded rows | 200 per browser, across workspaces; past that, the block whose settings were saved longest ago forgets them first |
 
 See [Export a Page to Excel](/guides/download-a-spreadsheet), [Share a Page outside your workspace](/guides/share-a-page), and [Table block controls and messages](/reference/table-blocks).
 
@@ -103,5 +105,7 @@ See [Connect Claude, ChatGPT, Codex, or another AI tool to cfo.ai](/guides/conne
 | Workspace search results | 8 in each group |
 | Length of a workspace brand's name | 40 characters |
 | Size of a workspace brand's logo | 1 MB and 2,000 pixels on each side, in a PNG, JPEG, or WebP image |
+| Size of a workspace brand's font file | 2 MiB, in a WOFF2 file; the upload message reads **2 MB** |
+| Length of a workspace brand's font name | 64 characters: letters, digits, spaces, hyphens, or underscores |
 
 See [Plans and billing](/reference/plans-and-billing), [The cfo.ai interface](/reference/interface), and [Brand your workspace](/guides/brand-your-workspace).

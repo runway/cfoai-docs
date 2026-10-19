@@ -43,7 +43,7 @@ A tool marked read-only never changes saved state. The **Actions or fields** col
 | `inspect_canvas_blocks` | Read-only. Reads selected Canvas blocks: saved source, dataset layouts and Scenario bindings, display state, position, revision, and references. | `target`, `page`, `scenario`, `as_of_point`, `source_offset` |
 | `edit_canvas_blocks` | Creates a Canvas block on a Page, or changes one. | `create`, `update` |
 | `inspect_canvas_library` | Read-only. Finds Canvas components and templates, and reads their instructions and props. | `list`, `read` |
-| `validate_code_blocks` | Read-only. Renders up to 8 saved Canvas blocks in a browser and reports errors, warnings, guide anchors, and, on request, a screenshot. | `target`, `scenario`, `visual_review` |
+| `validate_code_blocks` | Read-only. Renders up to 8 saved Canvas blocks in a browser and reports errors, warnings, what each chart plotted, guide anchors, and, on request, a screenshot. | `target`, `scenario`, `visual_review` |
 
 [Canvas blocks for agents](/agents/canvas-blocks) covers these tools in detail.
 
@@ -60,8 +60,8 @@ A tool marked read-only never changes saved state. The **Actions or fields** col
 
 | Tool | What it does | Actions or fields |
 | --- | --- | --- |
-| `inspect_integrations` | Read-only. Reads saved connections with their readiness and safe next action, the integration catalog, the saved settings of API and MCP connections, permitted API endpoints, connection-link progress, ingestion status, sync setups, and a connection's saved queries, their rows, and their jobs. `outcomes` also lists the user's own recent sign-ins to this MCP server. | `catalog`, `connections`, `configurations`, `outcomes`, `endpoints`, `connect_progress`, `ingestion`, `sync_setups`, `queries`, `query_results`, `jobs`, `query_deletion_preview` |
-| `edit_integrations` | Opens connection setup for the user; connects, re-links, and deletes connections and saved queries; edits a saved API or MCP connection's name, and the address and authentication type of one added with a key or token (a connection that signs in through the provider takes a new name only); saves, edits, and runs saved queries and starts and cancels ingestion jobs; starts ingestion; ingests a CSV; saves API and MCP sync setups; chooses synced tables; and sets daily refresh times. | `request`, `connect`, `relink`, `update`, `delete`, `delete_query`, `start_ingestion`, `start_raw_sync`, `save_query`, `set_query_column_role`, `start_query`, `cancel_job`, `apply_query_templates`, `ingest_csv`, `save_setup`, `delete_setup`, `select_source_tables`, `set_refresh_time`, `clear_refresh_time` |
+| `inspect_integrations` | Read-only. Reads saved connections with their readiness and safe next action, the integration catalog, permitted API endpoints, connection-link progress, ingestion status, sync setups, saved API and MCP settings (admins only), saved queries, and ingestion jobs. `query_results` runs one saved query and returns its rows without adding data to the Model. `outcomes` also lists the user's own recent sign-ins to this MCP server. `sync_setups` for an MCP server carries `sync_page`, which states how one sync page calls the server and its 45-second allowance. | `catalog`, `connections`, `outcomes`, `endpoints`, `connect_progress`, `ingestion`, `sync_setups`, `configurations`, `queries`, `query_results`, `jobs`, `query_deletion_preview`, `read` |
+| `edit_integrations` | Opens connection setup for the user, connects, re-links, and deletes connections and saved queries, edits saved API and MCP settings, saves queries and sets their column roles, applies query templates, starts and cancels query and raw-sync jobs, starts ingestion, ingests a CSV, saves API and MCP sync setups, chooses synced tables, and sets daily refresh times. | `request`, `connect`, `relink`, `update`, `delete`, `delete_query`, `apply_query_templates`, `save_query`, `set_query_column_role`, `start_query`, `start_raw_sync`, `cancel_job`, `start_ingestion`, `ingest_csv`, `save_setup`, `delete_setup`, `select_source_tables`, `set_refresh_time`, `clear_refresh_time` |
 | `call_connected_api` | Calls one endpoint of a connected third-party API. The server supplies the credentials and enforces permissions. | `connection`, `endpoint`, `grantId`, `pathParams`, `query`, `body` |
 
 ### Workspace, people, and automation
@@ -79,10 +79,10 @@ A tool marked read-only never changes saved state. The **Actions or fields** col
 | `edit_memory` | Saves 1 to 12 facts, saves a document, replaces facts, or forgets them. | `retain`, `retain_document`, `forget` |
 | `inspect_team` | Read-only. Reads the people and pending invitations in the workspace. | `query`, `target` |
 | `edit_team` | Invites admins, promotes members, removes members, or cancels invitations. Every change needs the user's explicit confirmation. | `invite`, `update_member`, `remove_member`, `cancel_invite` |
-| `edit_org` | Renames the workspace, or sets, clears, or copies its brand. | `rename`, `brand` |
-| `inspect_billing` | Read-only. Reads the plan, AI usage, spending settings, integration allowances, and available plans. It cannot change billing. | `read` |
-| `inspect_profile` | Read-only. Reads the user's profile, personal theme, and the workspace brand. | none |
-| `edit_profile` | Updates the user's display name, personal theme, or both. | `name`, `personal_theme` |
+| `edit_org` | Renames the workspace, or sets, clears, or copies its brand: the name, colors, heading typeface or font, corner shape, sidebar colors, logo, and whether link previews show it. Colors are saved as given; a brand with hard-to-read color pairs is refused, naming each pair. | `rename`, `brand` |
+| `inspect_billing` | Read-only. Reads the plan, AI usage, spending settings, integration allowances, and available plans. It cannot change billing. A workspace an operator exempted from billing answers with `ok: false` and `error_kind: not_found`: **this workspace is exempt from billing: there is no plan to choose or pay for, AI usage is not metered, and connections have no plan limits**. | `read` |
+| `inspect_profile` | Read-only. Reads the user's profile, personal theme, and the workspace brand, with `heading_font_url` beside the logo addresses when the brand has its own font. | none |
+| `edit_profile` | Updates the user's display name, personal theme, or both. Theme colors are saved as given, as hex or `oklch(L C H)`; a theme with hard-to-read color pairs is refused, naming each pair. Sidebar colors come as a pair, `navSurface` and `navInk`. | `name`, `personal_theme` |
 | `notify_user` | Emails the user at their verified address or sends them a Slack DM. Email to anyone else waits as a preview until the user presses Send. | `email`, `slack` |
 | `inspect_documentation` | Read-only. Searches the cfo.ai documentation and reads whole pages. | `search`, `read` |
 
@@ -179,7 +179,7 @@ Pass a returned ID or slug as `org_id` on later calls. A number, or a string of 
 ## References and links
 
 - Selectors accept readable names, returned references, or IDs, unless a field says it takes less. Copy references from inspection results instead of building IDs.
-- A returned reference has the form `Name#hex`, such as `Revenue#a1b`. The suffix is a prefix of the object's identity, at least three hex digits, and unique among objects of its kind when the result was written. Later creates can lengthen it; an older reference keeps resolving while it stays unique, and a fresh inspection carries the current spelling.
+- A returned reference has the form `Name#hex`, such as `Revenue#a1b`. The suffix is a prefix of the object's identity, at least three hex digits, and unique among objects of its kind when the result was written. Later creates can lengthen it; an older reference keeps resolving while it stays unique, and a fresh inspection carries the current form.
 - A name that is ambiguous or matches nothing is refused with `error.candidates` when alternatives are known: each with `display_name`, `ref` to pass back, `kind`, and, when ranked, `score` and `match`.
 - A result names each object with `ref`, the selector to pass back, and `url`, the address that opens it in cfo.ai.
 - A write also returns a resource link for each thing it created or changed, described "Open in cfo.ai" and meant for the user. End your reply with the link a tool returned, exactly as printed; a link you assemble yourself will not open.
@@ -229,10 +229,11 @@ A list cut short carries `truncation` and, when it can continue, `next`:
 | `inspect_history` `changelog` with `search` | Each read searches up to 1,000 entries, newest first, and reports how many it read in `entries_searched`. | The `before` value the result carries |
 | `inspect_table_blocks` `list` | `limit` up to 500. Without it, every table that fits one result. | `next.after` as `after` |
 | `inspect_table_blocks` `read` and `compare` | `limit` up to 500 grid rows; default 500. Parents and descendants count separately. | `next.after` as `after`; it binds the table, selection, Scenario, and snapshot |
-| `inspect_table_blocks` `items` | `limit` up to 500 items; default 500. | The last item's spelling as `after`, including an empty string |
+| `inspect_table_blocks` `items` | `limit` up to 500 items; default 500. | The last item's text as `after`, including an empty string |
 | `inspect_table_blocks` `variable` and `dimension` | `limit` up to 100 saved formula definitions per page; default 100. | `next.after` as `after`, with the same `target` |
 | `inspect_dimension_mappings` | `limit` rows per lookup. Without it, every row of each lookup, or as many per lookup as fit one result. Each lookup's `row_count` is its true total. | That lookup's `next` as `after`, with the same `keys` |
 | `inspect_canvas_blocks` | A selection larger than one result is cut short. See [Canvas blocks for agents](/agents/canvas-blocks#read-saved-canvas-blocks). | `next` holds the arguments that read the rest |
+| `inspect_integrations` `query_results` | `limit` up to 100 rows per read; without it, 100. The result holds as many of them as fit one result, with `offset` naming the first row shown. `total_rows` counts every row on the first read only. | `next.offset` as `offset`, with the same `query`. Rows keep one order across offsets only when the saved statement's outermost `SELECT` ends with `ORDER BY`; otherwise `order` says that pages can repeat or skip rows. |
 
 A table `read` that selects rows, columns, or periods, limits `depth`, continues from `after`, or stops early returns `partial: true` at its root. `coverage.delivery` says whether the response reached the end of that selection, and `coverage.calculation` whether its values finished calculating.
 
@@ -244,7 +245,7 @@ A changelog entry larger than one page keeps its place in the list. Without `inc
 
 | Point type | Meaning |
 | --- | --- |
-| `change_log_id` | One of the workspace's changes, as a write receipt or `inspect_history` reports it. The snapshot is the Model right after that change. |
+| `change_log_id` | One of the workspace's changes, as a write receipt or `inspect_history` reports it. The snapshot is the Model right after that change. It accepts the ID as an integer or as a string of digits, as do `before_change_log_id` on `inspect_table_blocks` `compare`, `at_change_log_id` on `edit_scenarios` `snapshot`, and `change_log_ids` and `to_change_log_id` on `edit_history`. Results print the ID in either form. |
 | `timestamp` | An exact instant in RFC 3339 with a time zone, supplied by the user, the context, or a tool result. |
 | `calendar_boundary` | `unit` (`day`, `week`, `month`, `quarter`, or `year`), `offset` (0 this period, -1 the previous, 1 the next), and `boundary` (`start` or `end`), in the user's time zone from `_context`, or UTC without one. Weeks start on Monday. Use it for "yesterday" or "last month". |
 | `relative_duration` | `amount`, `unit` (`minute`, `hour`, `day`, or `week`), and `direction` (`ago` or `from_now`), from server time. A day is 24 hours and a week seven days. |

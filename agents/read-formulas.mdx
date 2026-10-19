@@ -83,15 +83,15 @@ Use the same Scenario for the formula read and the table read. The saved formula
 - Select rows and columns by the references a read prints, by unambiguous names or full paths, or by coordinate predicates. A name in backticks selects the same row as the bare name.
 - An item row is selected by its path from its Variable or axis Dimension, one bracket per breakdown level, as a readback prints it: `Revenue[West]`, `Revenue[West][Enterprise]`, `Employee ID[E-207]`.
 - A nested item written without the items above it, such as `Revenue[Enterprise]` for `Revenue[West][Enterprise]`, selects the one saved coordinate that ends in it. When several do, the read is refused as ambiguous and names each.
-- The item that holds rows with no value displays as **None** and is spelled `empty:None` in a selector, such as `Region[empty:None]`.
-- A text item is printed as written, even when it contains a colon. The read's `member` field, a receipt's `members` list, and a row reference such as `Cash Step[Expected in: open invoice #483]#c00` all spell it `Expected in: open invoice #483`, and a formula matches that exact spelling.
+- The item that holds rows with no value displays as **None** and is written `empty:None` in a selector, such as `Region[empty:None]`.
+- A text item is printed as written, even when it contains a colon. The read's `member` field, a receipt's `members` list, and a row reference such as `Cash Step[Expected in: open invoice #483]#c00` all write it `Expected in: open invoice #483`, and a formula matches that exact text.
 - A read that names rows or columns holds every item of the layout, zero and empty items included, whatever the saved display hides. A read that names none shows what the app displays.
 
 ### Which targets take a write
 
 Each rendered target's formulas say whether `formula` and `clear_formula` can be written there. A target whose cells a direct write would refuse, such as cells read from an integration or cells whose origin the read cannot establish, does not offer those actions. Its formula carries a `readOnlyReason` instead, so a write is not attempted where it would fail.
 
-The spelling differs by level: a rendered target's formula spells it `readOnlyReason`, while a row or column that cannot be written spells its own reason `read_only_reason` beside `writable: false`. Dated Actuals and Forecast defaults keep their own writability.
+The field name differs by level: a rendered target's formula names it `readOnlyReason`, while a row or column that cannot be written names its own reason `read_only_reason` beside `writable: false`. Dated Actuals and Forecast defaults keep their own writability.
 
 ### Facts the read computed
 
@@ -133,11 +133,11 @@ Receipts from `edit_table_blocks` carry no `figures`.
 
 - Each period holds what the Model calculates at that grain: the Variable's time rollup (its base periods summed, closed, or averaged), or a timeless formula recomputed there.
 - A Variable with neither reads `#NO_ROLLUP` in those cells, explained as no formula computing it at that grain, with its values in the table's own periods. The app shows such a cell as 0, and a Scenario or time comparison read at a coarser grain also shows 0 there.
-- The period columns come back `writable: false`, because their references spell the date each period starts and would name the saved month column in a write. A read at the grain the table already shows is the table's plain read, with writable period columns.
+- The period columns come back `writable: false`, because their references name the date each period starts and would name the saved month column in a write. A read at the grain the table already shows is the table's plain read, with writable period columns.
 - A finer grain, or a table with no Date axis, comes back as an `invalid` result rather than a tool error, with its reason: `grain QUARTER is finer than this table's YEAR periods; a read's grain shows the periods at their own grain or rolled up to a coarser one`, or `grain QUARTER sets the grain of a table's Date periods, and this table has no Date axis`.
 - Continuation cursors carry the grain.
 
-A period selector can be spelled the way people write it, and it is read under each column's own grain: `2027` or `FY2027` selects a year column, `Q3 2026` or `2026 Q3` a quarter column, and `Mar 2026` a month column. `2027` never selects January of a monthly axis. The stored spelling, such as `2027-01`, still works everywhere.
+A period selector can be written the way people write it, and it is read under each column's own grain: `2027` or `FY2027` selects a year column, `Q3 2026` or `2026 Q3` a quarter column, and `Mar 2026` a month column. `2027` never selects January of a monthly axis. The stored form, such as `2027-01`, still works everywhere.
 
 ## When the table cannot calculate
 
@@ -150,6 +150,8 @@ When the calculation service cannot compute a table, `read` still returns the sa
 - When the read chose its own comparison, the message says which one the failed calculation used: `The failed calculation used this read's own comparison: scenarios "Main (Evidence)", "Plan+", measures VALUE.`, or `The failed calculation used this read's comparison none, with no compared scenario.` When the table saves a comparison, it adds `The comparison field lists the table's saved comparison.`, because the answer's `comparison` field shows the saved one, not the one requested.
 
 A table whose saved comparison names a Scenario that no longer exists still reads. The comparison columns are dropped for the calculation only, and a `table_problem` issue names the former Scenario. An `edit_scenarios` `delete` lists the readable tables that compared against the deleted Scenario as `tables_comparing_against_it`.
+
+A `read` can also carry a `mapping_warning` issue, the same one a table write's receipt reports. [Read the receipt](/agents/validate-and-verify#read-the-receipt) states when it appears and quotes its sentence.
 
 ## Explain one cell's inputs
 

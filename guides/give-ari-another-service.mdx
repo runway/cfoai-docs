@@ -64,12 +64,12 @@ Each tool of an MCP server, and each endpoint of an API, has a permission:
 | Permission | What Ari does |
 | --- | --- |
 | **Allow** | Uses it without asking |
-| **Ask first** | Asks you to approve each call. See [Answer Ari's questions and approve its actions](/guides/approve-ari-actions). |
+| **Ask first** | Asks you to approve each call. See [Answer Ari's questions and approve its actions](/guides/approve-ari-actions). In a scheduled Trigger run, nobody can approve, so an MCP tool on **Ask first** does not run; see [What a run cannot do on its own](/concepts/automation#what-a-run-cannot-do-on-its-own). |
 | **Block** | Never uses it |
 
 A new MCP server starts with every tool on **Ask first**. A new API starts by method: reads (`GET` and `HEAD`) on **Allow**, deletes on **Block**, and every other call on **Ask first**. When Ari asks and you choose **Always allow**, that tool stays on **Allow** for the whole workspace.
 
-To change them, select **Manage** on the service in **Settings → Connections**. Tools are grouped as **Read-only tools** and **Write/delete tools**, and endpoints as **Read endpoints** and **Write/delete endpoints**. **Auto-classify** sets them for you:
+To change them, open the service's connection page: select its row in the sidebar, or select **Manage** on the service in **Settings → Connections** or on the **MCP** or **API** tab. The page's **Tools** section groups tools as **Read-only tools** and **Write/delete tools**, and its **Endpoints** section groups endpoints as **Read endpoints** and **Write/delete endpoints**. **Auto-classify** sets them for you:
 
 - For an MCP server: read-only tools to **Allow**, and write or delete tools to **Ask first**.
 - For an API: reads to **Allow**, writes to **Ask first**, and deletes to **Block**.
@@ -84,7 +84,7 @@ To keep a service's data in your Model, rather than look it up live, ask Ari for
 
 Ari picks one read-only tool or endpoint, saves how to call it, and runs it. Each night the sync copies the results into your data, and a saved query brings them into your Model as Variables and Dimensions, like an integration. The tool or endpoint must be set to **Allow**. You can give it its own daily time, as with any connection; see [Refresh data](/guides/refresh-data#change-when-a-connection-refreshes).
 
-The service's page lists its setups under **Syncs**, each **Enabled** or **Paused**, with when it last synced. To stop one, ask Ari to remove it; the data it already copied stays. Once a service has a sync setup, it uses one standard plan slot. [How imported data loads](/reference/imported-data#sync-setups-for-mcp-servers-and-apis) lists the sync types and limits.
+The service's page lists its setups under **Syncs**, each **Enabled** or **Paused**, with when it last synced. When a sync brought data in and no saved query reads it yet, the page reads **No queries yet** and offers **Set up queries with Ari** to people who can edit the connection; others see **Data synced. Someone with access can set up queries with Ari.** To stop one, ask Ari to remove it; the data it already copied stays. Once a service has a sync setup, it uses one standard plan slot. [How imported data loads](/reference/imported-data#sync-setups-for-mcp-servers-and-apis) lists the sync types and limits.
 
 ## Change a connection's name, address, or authentication
 
@@ -109,7 +109,7 @@ When a server's row in **Settings → Connections** reads **Reconnect required**
 
 ## Disconnect a service
 
-In **Settings → Connections**, open the service's **…** menu and select **Disconnect**. cfo.ai warns **Ari will no longer be able to use this server's tools until you reconnect.**, or for an API, **Ari will no longer be able to use this API until you reconnect it.**
+In **Settings → Connections**, open the service's **…** menu and select **Disconnect**, or open the service's connection page and select **Remove connection**; both do the same. cfo.ai warns **Ari will no longer be able to use this server's tools until you reconnect.**, or for an API, **Ari will no longer be able to use this API until you reconnect it.**
 
 ## If something goes wrong
 

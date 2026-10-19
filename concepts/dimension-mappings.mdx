@@ -45,7 +45,9 @@ Each target can have one **catch-all**: the item that every unmatched source ite
 A table can show a mapping in two ways:
 
 - As a mapping column beside each source item, such as accounts on rows and Reporting Line as a column. Each cell shows that row's assignment, and picking another item there changes the mapping for every table.
-- As a breakdown that nests the target over the source, such as Department, then Role. Each Role shows once, under the Department its mapping gives it, so subtotals count each item once. A Role that no assignment matches and no catch-all covers forms no row, and neither does a Department that no Role maps to.
+- As a breakdown that nests the target over the source, such as Department, then Role. A Role the mapping assigns shows once, under its Department, so subtotals count it once. A Role that comes from a source table and that no assignment matches and no catch-all covers forms no row, and neither does a Department that no Role maps to. A Role someone added by hand that no assignment matches shows under every Department the table has, so totals over this breakdown count its values once per Department.
+
+A mapping column belongs beside the Dimension it is mapped from. An assignment applies only on a row that carries every Dimension its lookup keys on: a lookup keyed by Account alone needs the account, and one keyed by Account and Account ID needs both. So a mapping column beside a different Dimension's rows, such as Reporting Line beside departments, reads the catch-all on every row, or stays blank when the mapping has none. Ari warns when it reads or builds a table laid out that way.
 
 Renaming an item, on a table or through Ari, also renames it in the mapping and in formulas that compare against it, as one change that one undo reverses.
 

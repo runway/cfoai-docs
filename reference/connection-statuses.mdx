@@ -63,7 +63,7 @@ The source is not sharing some tables the reports need, such as **Missing access
 
 There are two kinds:
 
-- The provider's own sync failed, often for a moment. Mark: steady orange dot. Line: **[Source]’s sync hit an error. cfo.ai will try again on the next scheduled sync.** When the provider gave a reason, its report sits between the two sentences, for example **BigQuery’s sync hit an error. Fivetran reports: The user cannot access BigQuery tables/project. cfo.ai will try again on the next scheduled sync.** Action: none, or **Retry** to run it now. When the report names something to fix at the source, fix that first.
+- The provider's own sync failed, often for a moment. Mark: steady orange dot. Line: **[Source]’s sync hit an error. cfo.ai will try again on the next scheduled sync.** When the provider gave a reason, its report sits between the two sentences, for example **BigQuery’s sync hit an error. Fivetran reports: Problem with view (BigQueryConnectorTask_VIEW_ERROR): [the view Fivetran could not read]. cfo.ai will try again on the next scheduled sync.** Fivetran's report gives each failing task as its message, its code in parentheses, and its details, which name what failed, such as the view or table; several tasks are separated by semicolons. Ari reads the same report. Action: none, or **Retry** to run it now. When the report names something to fix at the source, fix that first.
 - cfo.ai could not tell why the sync failed. Mark: red triangle. Line: the source's own reason, or **The last sync couldn’t finish.** Actions: **Retry** and **Investigate with Ari**.
 
 ### First sync not ready
@@ -116,6 +116,17 @@ In **Settings → Connections** and on the **MCP** and **API** tabs, a server or
 | **Waiting for you** | Someone must finish setup, such as signing in. |
 | **Needs attention** | Something broke; the next step says what to do. |
 | **Unavailable** | The status could not be read. |
+
+An MCP server's row also shows the state of its saved sign-in. The state describes the saved credential, not whether the provider answered or how fresh its data is.
+
+| Sign-in state | Meaning |
+| --- | --- |
+| **Sign-in saved** | The saved sign-in is current. |
+| **Sign-in saved · expiry unknown** | The saved sign-in works, and the provider did not say when it expires. |
+| **Access expired · renewal on next use** | The access token has expired, and cfo.ai renews it the next time it uses the server. Nothing to do. |
+| **Reconnect required** | The provider refused to renew the sign-in. Select **Reconnect**, which opens the provider's sign-in again and keeps the connection and its sync setups. |
+| **Sign-in incomplete** | The server was added but its sign-in never finished. |
+| **Provider access not checked** | The server does not sign in with OAuth, so there is no credential state to show. |
 
 | Next step | When |
 | --- | --- |

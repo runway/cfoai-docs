@@ -15,7 +15,7 @@ Use `inspect_table_blocks` with its `variable` block when a user asks how a Vari
 }
 ```
 
-- The result lists every formula definition saved on the Variable, each with its condition and its Actuals or Forecast range.
+- The result lists every formula definition saved on the Variable, each with its condition and its Actuals or Forecast range. A formula the product's own level-default sync saved, such as a generated sum or `0` on a number or the line formula above a percentage's lines, carries `writer: "level_default_sync"`; a formula a person or Ari wrote has no `writer`. Treat a formula with that writer as the product's: the sync replaces or removes it when the tables or the line formula change.
 - Add `conditions` only when the question needs one exact saved scope, such as `["[Department = \"Sales\"]"]`. Leave it out when the user wants every formula.
 - A Variable with many formulas returns them in pages. To read the next page, copy the response's `next.after` into `after` in the same `variable` block, with the same `target`.
 - Leave out `target` to list every readable Variable in the Scenario, as the same entries, in saved order. `next` continues the listing.
@@ -147,6 +147,7 @@ When the calculation service cannot compute a table, `read` still returns the sa
 - The result carries a `calculation_unavailable` issue. When the calculation service explained the failure, the message includes `The calculation service reported <code>: <message>`, such as `table_config/external_column_not_mapped: external column Class L1 is not mapped in table …`, so you can name the cause instead of guessing.
 - The issue also carries `category` (`capacity`, `model`, `request`, `dependency`, or `internal`), a `transient` flag, and a sentence stating what the category means. Retry only a transient failure: a calculation that did not finish within its time limit is `capacity` and not transient, while a service that did not answer is `dependency` and transient.
 - A failure the calculation service did not classify carries the error as raised, clipped to 500 characters, with no `category` or `transient` flag, so assume nothing about a retry.
+- When the read chose its own comparison, the message says which one the failed calculation used: `The failed calculation used this read's own comparison: scenarios "Main (Evidence)", "Plan+", measures VALUE.`, or `The failed calculation used this read's comparison none, with no compared scenario.` When the table saves a comparison, it adds `The comparison field lists the table's saved comparison.`, because the answer's `comparison` field shows the saved one, not the one requested.
 
 A table whose saved comparison names a Scenario that no longer exists still reads. The comparison columns are dropped for the calculation only, and a `table_problem` issue names the former Scenario. An `edit_scenarios` `delete` lists the readable tables that compared against the deleted Scenario as `tables_comparing_against_it`.
 

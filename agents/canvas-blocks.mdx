@@ -77,7 +77,7 @@ A dataset is a live, read-only table read that the block receives as `data.<name
 
 | Field | Meaning |
 | --- | --- |
-| `name` | The identifier the code uses, `data.<name>`. It must match `^[a-zA-Z][a-zA-Z0-9_]*$`. |
+| `name` | The identifier the code uses, `data.<name>`. It must match `^[a-zA-Z][a-zA-Z0-9_]{0,63}$`: a letter, then letters, digits, or underscores, at most 64 characters in all. |
 | `layout.rows`, `layout.columns` | The visible shape, as a table declares it. Variables, with any breakdown, go on rows; the shared dates or categories go on columns. [Table view grammar](/agents/table-view-grammar#canvas-dataset-layouts) has the layout fields. |
 | `scenario` | Optional Scenario for a comparison dataset. Without it, the dataset reads the current Scenario. A block reads at most three distinct Scenarios, the selected one included. |
 | `window` | Optional `start`, `end` (as `YYYY-MM-DD`), and `granularity`. Without it, the workspace default applies. |
@@ -96,6 +96,7 @@ Each row carries each Variable's own value under its series key:
 | Text | The text |
 | Date | An ISO day, such as `2026-01-30` |
 | Boolean | `"true"` or `"false"` |
+| Date and time | A complete UTC instant in ISO form, such as `2026-01-30T00:00:00.000Z`, for a field that carries a time |
 | Empty cell or calculation error | `null` |
 
 `row.date` is a display label, and `periodStart`, when present, is the ISO start of the period. A dataset that failed has empty `rows` and `series` and an `error` string. A comparison dataset also carries `scenario.label`, `scenario.isCurrent`, and `scenario.lastClose`, and `timeSettings.lastClose` is the current Scenario's close date or `null`.

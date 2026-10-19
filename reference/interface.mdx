@@ -322,11 +322,11 @@ When it finishes:
 | **Spreadsheet download started**, with **[file]: [n] cells hold values instead of a formula. The Export notes sheet lists them.** and **Ask Ari to fix** | Some formulas could not be written as Excel formulas. **Ask Ari to fix** opens a chat that asks Ari to export the Page again and write a working formula into each of those cells. |
 | **Could not download spreadsheet**, with **[Page]: [reason]** | The export failed. |
 
-When you open a Page after reloading or closing the tab that started an export, the button looks for your own newest export of that Page in that Scenario: one still queued or running, or one that ended within the last hour. A running export makes the button busy again, with the tooltips above, and the file downloads when it is ready. An export that already ended shows once per tab:
+When you open a Page, it looks for your own newest export of that Page in that Scenario: one still queued or running, or one that ended within the last hour. It looks even when the Page no longer has a table. A running export makes the button busy again, with the tooltips above. When it finishes, the file downloads if this tab asked for it before a reload; an export that another tab or Ari asked for is offered with **Spreadsheet ready** instead. An export that already ended shows one of these notices. A tab reports an export once, across its reloads, and a new tab reports it again:
 
 | Message | Meaning |
 | --- | --- |
-| **Spreadsheet ready**, with **[file], requested at [time]** and **Download** | The export finished after you left. Select **Download** to save the file; it does not download on its own. When some formulas could not be written as Excel formulas, the notice adds the cell count and the **Export notes** sheet, without **Ask Ari to fix**. |
+| **Spreadsheet ready**, with **[file], requested at [time]** and **Download** | The export finished after you left, or another tab or Ari asked for it. Select **Download** to save the file; it does not download on its own. When some formulas could not be written as Excel formulas, the notice adds the cell count and the **Export notes** sheet, and **Download** then shows **Spreadsheet download started** with **Ask Ari to fix**. |
 | **Could not download spreadsheet**, with **[Page], requested at [time]: [reason]** | The export failed after you left. |
 
 A failed export's reason has up to three parts:

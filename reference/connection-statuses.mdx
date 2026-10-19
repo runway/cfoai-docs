@@ -41,7 +41,7 @@ A sync is running, or a first sync is queued. Mark: blinking orange dot. The con
 
 The last sync finished without some of the source's tables. The data that arrived is usable. Mark: steady orange dot. The line names up to three tables and counts the rest, and it says whose side the cause is on once cfo.ai has read why each table failed:
 
-- For a moment after the page opens, until cfo.ai has read the cause: **[Source]’s last sync couldn’t refresh [tables]. Everything else is up to date, and cfo.ai will try again on the next sync.** Action: **Reconnect**, as for any connection that needs attention, until the cause replaces this line.
+- Until cfo.ai has read the cause, for a moment after the page opens or for as long as cfo.ai cannot read the connection's sync outcome: **[Source]’s last sync couldn’t refresh [tables]. Everything else is up to date, and cfo.ai will try again on the next sync.** Action: **Reconnect**, as for any connection that needs attention, until the cause replaces this line.
 - The source refused this connection's sign-in or permissions for every missed table, such as a QuickBooks account that cannot read **accounts**: **[Source] refused this connection access to [tables], so the last sync didn’t refresh that data. A reconnect with an account that can read it lets the next sync refresh it. Everything else is up to date.** Action: **Reconnect**.
 - The source refused some tables and the rest failed for another reason: the refusal sentence, then **A problem on cfo.ai’s or [Source]’s side kept [tables] from refreshing, and cfo.ai will try again on the next sync. Everything else is up to date.** Action: **Reconnect**, which repairs only the refused tables.
 - No table was refused: **A problem on cfo.ai’s or [Source]’s side kept the last sync from refreshing [tables]. Reconnecting won’t change it. cfo.ai will try again on the next sync, and everything else is up to date.** Action: none; the next sync retries the missing tables.
@@ -146,7 +146,7 @@ In **Settings → Connections** and on the **MCP** and **API** tabs, a server or
 | --- | --- | --- |
 | **Finish setup** | Continues the unfinished setup on the same connection. No second connection is created. | Setup was not finished and the source can resume it. |
 | **Cancel setup** | Removes an unfinished connection at once. It frees the plan slot the connection held. | Setup was not finished. |
-| **Reconnect** | Opens the source's sign-in again for the same connection. | The source revoked access, a failed sync needs a new sign-in, or a **Partly synced** connection's source refused access to a missed table. |
+| **Reconnect** | Opens the source's sign-in again for the same connection. | The source revoked access, a failed sync needs a new sign-in, or a **Partly synced** connection's source refused access to a missed table or cfo.ai has not read why the table was missed. |
 | **Retry** | Runs the import again with the same sign-in, or starts setup again after **Connection failed**. It does not use another plan slot. | A sync failed and only the import needs to run again, a sync was stopped, or setup failed. |
 | **Update file** | Replaces an uploaded CSV with a new file. | On a file upload. It is the only action when the file could not be read. |
 | **Set up queries with Ari** | Opens a new chat with a request for Ari to review what synced, propose saved queries, and set them up. You review the request before you send it. | **No queries yet** |

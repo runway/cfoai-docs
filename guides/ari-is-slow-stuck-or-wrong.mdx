@@ -40,7 +40,7 @@ When web search fails because of a problem on cfo.ai's side, Ari tells you so. N
 
 ## Ari says the memory service is unavailable
 
-Ari's saved memory lives in an outside service. When that service cannot answer, Ari's memory search or save says so with one sentence, such as **The memory service did not answer before the request's deadline.** or **The memory service is unavailable because its provider refused the request over a billing limit on cfo.ai's provider account.** Nothing in your request or your workspace caused it. A timeout or a server error clears on its own, so ask again in a moment; a billing limit on cfo.ai's side does not, and when the service returns is not known. Ari keeps working without its saved facts meanwhile, so restate a convention it should follow. See [Ari's memory and chat history](/concepts/ari-memory).
+Ari's saved memory lives in an outside service. When that service cannot answer, Ari's memory search or save says so in one sentence that names the cause: a timeout, a rate limit, a server error, or a billing limit on cfo.ai's side. Nothing in your request or your workspace caused it. The first three clear on their own, so ask again in a moment; the billing limit does not, and when the service returns is not known. Ari keeps working without its saved facts meanwhile, so restate a convention it should follow. [Chat controls and messages](/reference/chat#memory-service-messages) lists each sentence. See also [Ari's memory and chat history](/concepts/ari-memory).
 
 ## Ari's answer or number looks wrong
 

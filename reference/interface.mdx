@@ -332,7 +332,7 @@ When you open a Page, it looks for your own newest export of that Page in that S
 A failed export's reason has up to three parts:
 
 - **The export failed while [stage] and produced no workbook.** The stage is **starting**, **loading the saved model**, **reading the model calendar**, **calculating the page tables**, **calculating the inputs the page tables read**, **writing the workbook**, or **storing the workbook**.
-- The cause, such as a formula whose input has no cell in the workbook, a formula that could not be written for Excel, **The export reached its time limit**, a Dimension whose list of items was larger than the export could read, or a table calculation that reached a limit: **A calculation in table "[table]" in scenario "[Scenario]" reached its 90-second time limit and was stopped before it finished.** or **A calculation in table "[table]" in scenario "[Scenario]" reached the [n] MiB memory limit of one calculation worker and was stopped before it finished.**
+- The cause, such as a formula whose input has no cell in the workbook, a formula that could not be written for Excel, **The export reached its time limit**, a Dimension whose list of items was larger than the export could read, or a table calculation that reached a limit: **A calculation in table "[table]" in scenario "[Scenario]" reached its 180-second time limit and was stopped before it finished.** or **A calculation in table "[table]" in scenario "[Scenario]" reached the [n] MiB memory limit of one calculation worker and was stopped before it finished.**
 - When it is known, whether to try again: **The failure is temporary: a new export of the same pages can succeed.** or **A new export fails the same way while the saved model is unchanged.** A calculation that reached its time limit is not tried again, because the next export reaches the same limit; narrow the table, or ask Ari why it is large.
 
 Two reasons stand alone:
@@ -406,7 +406,7 @@ A memorable address has 3 to 64 lowercase letters, digits, or single hyphens bet
 | --- | --- |
 | Opening | **Opening shared link…**, then **Taking you in…** |
 | Password | **Enter the link password**, with **Ask the person who shared this page for its password.**, a **Password** field, and **Open shared page**. A wrong password shows **That password does not match** and **Check the password you were given and try again.** When the workspace's **Show the brand on link previews** setting is on, the brand strip shows above the prompt. |
-| Link turned off or wrong | **Link not found**, with **This share link may have been revoked or never existed.** |
+| Link turned off, wrong, or to Pages that were all deleted | **Link not found**, with **This share link may have been revoked or never existed.** A link that opens several Pages keeps opening while one of them exists. |
 | Link expired | **Link expired**, with **Ask the sharer for a fresh link.** |
 | A memorable address that cannot load | **This shared page is temporarily unavailable. Please try again.** |
 | Other failure | **Something went wrong**, with **Please try again in a moment.** |

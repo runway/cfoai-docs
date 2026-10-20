@@ -33,7 +33,7 @@ To export a Page to Excel, select **Download spreadsheet** in the Page header, o
       </Step>
     </Steps>
 
-    A workspace prepares one spreadsheet at a time. If someone else's export is running, yours waits and starts by itself when theirs ends.
+    A workspace prepares one spreadsheet at a time. If someone else's export is running, yours waits and starts by itself when theirs ends. Exports share background workers with the nightly integration syncs. A worker that comes free takes your export before the sync jobs still waiting in line, so your export does not queue behind the nightly refresh; it can still wait for a worker to finish the job it is running. The 45-minute time limit starts when a worker starts the export, not while it waits.
   </Tab>
 </Tabs>
 

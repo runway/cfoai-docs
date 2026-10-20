@@ -234,6 +234,17 @@ When Ari emails you or messages you on Slack, the step in its activity group has
 | **Couldn’t send the notification** | No channel took the message. |
 | **Prepared an email preview and reported another channel** | An email waits in a preview card for you to send, and the step also reports how another channel did. |
 
+### Memory service messages
+
+Ari's saved memory lives in an outside service. When that service cannot answer, the memory search or save step in Ari's activity group carries one of these sentences in its detail, and Ari reads the same sentence.
+
+| Message | Meaning |
+| --- | --- |
+| **The memory service did not answer before the request's deadline.** | A timeout. Asking again can succeed. |
+| **The memory service refused the request because requests arrived faster than it accepts them.** | A rate limit. Asking again in a moment can succeed. |
+| **The memory service answered with a server error.** | A fault in the service. Asking again can succeed. |
+| **The memory service is unavailable because its provider refused the request over a billing limit on cfo.ai's provider account. The cause is on cfo.ai's side, not in this request or this workspace, and when the service returns is not known.** | A billing limit on cfo.ai's side. Waiting does not help until cfo.ai funds the account. |
+
 ### Download a file Ari made
 
 A file Ari makes for you, such as a workbook, an image, or a document, appears as a card with its name and size directly under the answer that ends the turn. PNG, JPEG, GIF, and WebP images show a preview. When the answer names the file by its exact file name, with the same letter case and extension and outside a code block, that name is a link to the same download.
@@ -352,6 +363,8 @@ A mark beside a chat shows its status. Point at it to read the status.
 | **Needs your response** | Ari is waiting for you, such as an answer, an approval, or a sign-in. |
 | **Unread response** | Ari answered since you last looked. |
 | **Something went wrong** | The last turn ended with an error. |
+
+A chat that an AI assistant started through the cfo.ai MCP server carries an **MCP chat** mark; point at it to read **Started from an AI assistant over MCP**. See [Connect an AI tool](/guides/connect-an-ai-client#what-a-connected-ai-tool-can-do).
 
 An empty list says **No chats yet.**, **No active chats.**, or **No archived chats.**
 

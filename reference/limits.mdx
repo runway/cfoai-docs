@@ -57,8 +57,9 @@ See [How imported data loads](/reference/imported-data) and [Integrations direct
 | Length of a share link's memorable address | 3 to 64 characters: lowercase letters, digits, and single hyphens |
 | Pages in one workbook Ari exports | 64 |
 | Spreadsheet exports a workspace prepares at once | 1 |
-| Time one spreadsheet export can run | 45 minutes |
-| Time one table calculation can run | 90 seconds; a calculation that reaches it is stopped, and retrying runs into the same limit |
+| Time one spreadsheet export can run | 45 minutes from when a worker starts it; time waiting in the queue does not count |
+| Time one table calculation can run | 180 seconds; a calculation that reaches it is stopped, and retrying runs into the same limit. A calculation that outlasts one browser request keeps running, and the table keeps its loading state until the result arrives |
+| Time Ari waits for one table read of its own | 119 seconds; Ari reports a timeout on a table whose calculation runs longer, while the Page still loads it |
 | Length of a formula in an exported workbook | 8,192 characters, Excel's limit; a longer formula is exported as its value |
 | Blocks whose view settings one browser remembers, such as a table's height, open panes, and expanded rows | 200 per browser, across workspaces; past that, the block whose settings were saved longest ago forgets them first |
 

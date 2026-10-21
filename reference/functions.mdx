@@ -259,7 +259,7 @@ if(condition, value_if_true, value_if_false)
 if(Revenue > 0, `Gross Profit` / Revenue, 0)
 ```
 
-A condition that compares with an empty value is not true, so `if` returns the third argument. To test for an empty value, compare with `null`: `` if(`End Date` = null, 1, 0) ``. You can nest calls: `if(Revenue > 100, "high", if(Revenue > 50, "medium", "low"))`.
+An ordering comparison with an empty value, such as `` `End Date` < date(2030, 1, 1) ``, is not true, so `if` returns the third argument. `=` and `!=` do compare empty values: `` if(`End Date` = null, 1, 0) `` marks a person with no end date, and `` Section != "G&A" `` is true where Section is empty. You can nest calls: `if(Revenue > 100, "high", if(Revenue > 50, "medium", "low"))`.
 
 ### iferror
 

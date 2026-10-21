@@ -54,7 +54,7 @@ When setup itself failed, the connection reads **Connection failed** with **Retr
 
 ## NetSuite is missing access
 
-The connection reads **Missing access in NetSuite SuiteAnalytics** when NetSuite hides tables the financial statements need. The connection's page lists the missing tables.
+The connection reads **Missing access in NetSuite SuiteAnalytics** when NetSuite hides tables the financial statements need. The connection's page lists the missing tables. While the role hides the raw `ACCOUNT` table, cfo.ai adds no saved queries, so the statements have no rows; the first sync after the role shares it adds **NetSuite Income Statement** and **NetSuite Balance Sheet**.
 
 <Steps>
   <Step title="Get a token for the right role">

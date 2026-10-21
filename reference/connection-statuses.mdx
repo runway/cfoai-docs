@@ -285,6 +285,14 @@ Google Sheets and Google Drive connections report their import on the row and in
 | **The specification URL answered HTTP 404, not the document.** | The address returned an error status instead of the specification. |
 | **The specification document is larger than the 12 MiB this connection accepts.** | The specification is too large. |
 | **Could not load the OpenAPI specification. Check its URL or paste the document as JSON.** | The address did not answer. |
+| **Raw ingestion failed for [connection]. Sync page [N] failed: [cause].** | A page of an MCP sync failed. Ari's chat report states the cause in the words below, and the data from the last completed sync stays in place. |
+| **the connection is no longer linked, or its access for tool "[tool]" is no longer Allow** | Every page checks both, so no page completes until the connection is linked and the tool's permission is **Allow**. |
+| **the server answered HTTP 401 and rejected this connection's authorization when the page connected** | No page completes until the saved authorization changes. Select **Reconnect** on the server's row. |
+| **the server answered HTTP 429 when the page connected; the connection allowance is 45 seconds** | The server limited the rate of requests, which describes the server at that moment; the next sync tries again. An HTTP 5xx status reports a fault in the server. |
+| **the server's current definition of tool "[tool]" is absent or differs from the description and schemas this setup saved** | No page completes while the two differ. Ask Ari to save the sync setup again. |
+| **tool "[tool]" answered these arguments with an error result (isError)** | The tool returns the same error to a call with these arguments. Ask Ari to call the tool with the setup's arguments to read the error. |
+| **the call to tool "[tool]" ended without a result; a call's allowance is 45 seconds** | The call did not finish in time. |
+| **the server's answer is larger than the 2 MiB a sync page holds** | The page stops and saves nothing from that answer. Ask Ari to change the setup's arguments so the tool returns less, such as a narrower date range or fewer fields, before the next sync. |
 
 ## Messages in a chat
 

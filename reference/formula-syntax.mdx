@@ -28,7 +28,7 @@ Names match exactly, including capital letters: `` `Deferred revenue` `` does no
 
 A cell that no formula or value covers has a default. A number reads 0, so sums keep working. A date or text Variable reads empty, so `` `End Date` = null `` is true for a person with no end date.
 
-Arithmetic treats an empty value as 0: `null + 1` is 1. Dividing by an empty value is a division by zero. A minus sign in front, and `abs`, keep an empty value empty. `=` and `!=` treat an empty value as a value of its own, whether it is typed as `null` or calculated: an empty value equals another empty value, `Missing = 1` is false, and `Missing != 1` is true. An ordering comparison with an empty value, `<`, `<=`, `>`, or `>=`, is itself empty, so `if` takes its third argument.
+Arithmetic treats an empty value as 0: `null + 1` is 1. Dividing by an empty value is a division by zero. A minus sign in front, and `abs`, keep an empty value empty. `=` and `<>` treat an empty value as a value of its own, whether it is typed as `null` or calculated: an empty value equals another empty value, `Missing = 1` is false, and `Missing <> 1` is true. An ordering comparison with an empty value, `<`, `<=`, `>`, or `>=`, is itself empty, so `if` takes its third argument.
 
 ## Operators
 

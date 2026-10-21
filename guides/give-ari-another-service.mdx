@@ -86,7 +86,7 @@ Ari picks one read-only tool or endpoint, saves how to call it, and runs it. Eac
 
 The service's page lists its setups under **Syncs**, each **Enabled** or **Paused**, with when it last synced. When a sync brought data in and no saved query reads it yet, the page reads **No queries yet** and offers **Set up queries with Ari** to people who can edit the connection; others see **Data synced. Someone with access can set up queries with Ari.** To stop one, ask Ari to remove it; the data it already copied stays. Once a service has a sync setup, it uses one standard plan slot. [How imported data loads](/reference/imported-data#sync-setups-for-mcp-servers-and-apis) lists the sync types and limits.
 
-When a page of an MCP sync fails, Ari's report in the chat begins **Raw ingestion failed for [connection]** and states what stopped the page, such as **Sync page 30 failed: the server answered HTTP 429 when the page connected; the connection allowance is 45 seconds.** It also says whether the next run meets the same stop: a connection that is no longer linked, a tool whose permission is no longer **Allow**, an authorization the server rejects, or a tool whose definition differs from the one the setup saved stops every page until it is fixed, while a server fault or a rate limit describes the server at that moment. An answer larger than the 2 MiB a page holds depends on the setup's arguments and the server's data.
+When a page of an MCP sync fails, Ari's report in the chat names the connection, the page that stopped, and what stopped it. [Connection statuses and actions](/reference/connection-statuses#messages-about-mcp-servers-and-apis) lists each cause and its next step.
 
 ## Change a connection's name, address, or authentication
 

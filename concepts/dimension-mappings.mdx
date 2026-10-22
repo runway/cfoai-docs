@@ -61,7 +61,7 @@ A few limits apply:
 
 - Joining happens once, when a statement first loads. Later syncs never regroup, so a Dimension that stayed separate stays separate.
 - Dates and amounts are never combined.
-- Two companies with the same name write the same Entity item, because the Entity column holds the company's name as it was when the connection's queries were installed; rename one in its accounting system before connecting it.
+- Two companies with the same name write the same Entity item, because the Entity column holds the company's name as it was when the connection's queries were installed. To keep them apart, see [Model several entities and consolidate them](/guides/consolidate-entities).
 - Different accounting systems, such as one QuickBooks Online company and one Xero organisation, get separate Dimensions.
 
 Ari can combine compatible Dimensions into one, or split a combined one apart:

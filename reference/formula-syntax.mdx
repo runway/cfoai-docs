@@ -80,7 +80,7 @@ When a lookup reads several items, wrap it in a function that says how to combin
 
 A lookup key matches items by the same `=` rule as the rest of the formula, whatever kind the item is. The number key in `Amount[Entity = 3019681]` reads a text item named `3019681`, a text key such as `"1"` reads the number item 1, and an aggregation over a lookup, such as `sum(Amount[Entity = 1])`, adds every item the key equals this way. A formula's condition, which says where the formula applies, matches only items of the key's own kind; see [Ari's save warnings](/reference/formula-errors#aris-save-warnings).
 
-Inside `where`, a plain name refers to the item being tested, and `this.` to the cell being calculated: `sum(Revenue[Department in any] where Revenue > this.Revenue)` adds the departments with more revenue than this one.
+Inside `where`, a plain name refers to the item being tested, and `this.` to the cell being calculated: `sum(Revenue[Department in any] where Revenue > this.Revenue)` adds the departments with more revenue than this one. `where` can also sit inside the brackets, after the Dimension it filters: `` Headcount[Employee where Department[Employee = Employee] = this.Department] `` keeps the employees whose department is this cell's. Within that `where`, the Dimension's own name, as in `Deal = Deal`, is the item being tested.
 
 A lookup or offset attaches to a Variable's name, not to a calculation. `(Revenue - Cost)[-1]` is an error; write `Revenue[-1] - Cost[-1]`.
 

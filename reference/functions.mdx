@@ -138,7 +138,7 @@ It takes 1 to 10 arguments. A value of 0 counts.
 
 A bracketed read keeps each Dimension it filters on, so `count` over a Dimension filtered by another Dimension counts each pair, not each item. `count(Deal[Region in {"East", "West"}])` counts a deal once for every one of those Region items its records carry, so a deal with records in both regions counts twice. On a deal's own row, the condition on Region replaces the row's Region, and the read counts that deal's items among them. To count each deal once:
 
-- For one total, `count(Deal$[Deal where count(Deal[Deal = Deal, Region in {"East", "West"}]) > 0])`. On a deal table, every deal's row shows that same total, because the condition on Deal replaces the row's own deal.
+- For one total, `count(Deal$[Deal where count(Deal[Deal = Deal, Region in {"East", "West"}]) > 0])`: the `where` inside the brackets keeps each deal with a record in either region, and the `$` reads the whole Dimension rather than the cell's own deal (see [where inside the brackets](/reference/formula-syntax#lookups-and-filters)). On a deal table, every deal's row shows that same total, because the condition on Deal replaces the row's own deal.
 - For 1 or 0 on each deal's row, `if(count(Deal[Region in {"East", "West"}]) > 0, 1, 0)`.
 
 ### first

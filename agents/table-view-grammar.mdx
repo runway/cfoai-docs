@@ -98,6 +98,10 @@ By default, a view with a measured Variable keeps values on rows, and its Dimens
 
 There is no separate transpose action. To flip a table, reshape it by moving the Variables between rows and columns. Moving an axis changes the presentation, not the grain of any cell.
 
+## Member tables
+
+A table whose rows are two or more plain Dimension rows and whose `columns` is an explicit empty list is a member table: each row lists one Dimension's items, an empty Dimension included, and no calculated value is on either axis. `create` accepts this shape. A read of such a saved table, the Model page's shared **Dimensions** table included, returns one row per Dimension with `columns: []`, each row named by the qualified reference `create` resolves, such as `Entity#1a2b`, so two Dimensions whose names differ only in case read back as two rows. Two rows that resolve to the same Dimension are refused with `two rows name the same dimension; each row of a member table lists a different dimension's items`. A row narrowed by a formula condition is not a member table row: it reads through the general layout, which keeps its filter. When you cannot read one of the Dimensions, the read says `This saved table includes a dimension you cannot read.` and returns no layout.
+
 ## When a table comes back empty
 
 An empty result on a table with dates often means the table's window, the date range and grain it is set to show, does not cover the dates that hold values. Writing dated values does not move the window: a `values` write that names a period outside it is refused, and the same request can widen `window` and write the new periods, as [Write values into dated columns](/agents/write-formulas#write-values-into-dated-columns) describes. A wrong window is fixed on the table itself, with `window`. Two other causes are common:

@@ -20,9 +20,9 @@ Ari saves the Guide under a name and tells you what it saved. To try it, ask Ari
 | --- | --- | --- |
 | Tour (the default) | **Back**, **Next**, **Skip tour**, and **Done** on the last step, with progress | Onboarding and feature tours |
 | Walkthrough | **Back**, **Continue**, **Exit walkthrough**, and **Done**, with progress | Narrating an analysis, such as board prep |
-| Explanation | **Got it** | One quick spotlight, opened on request |
+| Explanation | **Got it** on its last step, and **Next** before it; no Back button and no progress | One quick spotlight, opened on request |
 
-A Guide can switch to a set Scenario when it starts, so its numbers match what the cards say. Ari uses the Scenario you are viewing unless you name another.
+A Guide can switch to a set Scenario when it starts, so its numbers match what the cards say. Name the Scenario when you ask; a Guide saved without one runs in whatever Scenario the reader has open.
 
 ### What a step can point at
 
@@ -34,7 +34,7 @@ A Guide can switch to a set Scenario when it starts, so its numbers match what t
 | A part of the app | The **Share** button or the chat list in the sidebar |
 | Nothing | A centered card, for a welcome or a closing note |
 
-A step whose target is on another Page opens that Page first. A step whose target is not on screen when the Guide reaches it, such as a row the table no longer shows, is skipped.
+A step whose target is on another Page opens that Page first. A step whose target is not on screen when the Guide reaches it, such as a row the table no longer shows, is skipped, with a notice the first time it happens in a run; see [Guide messages](/reference/interface#help-center).
 
 ### What a step contains
 
@@ -47,6 +47,7 @@ A step whose target is on another Page opens that Page first. A step whose targe
 | Card width | Standard, narrow, or narrowest |
 | Step key | A short readable name, such as `roster`, so you can start the Guide at that step later |
 | Action | Optional. The step does something in the app, described below. |
+| Advance | Optional. Instead of waiting for **Next**, the step moves on when the reader clicks the lit target, selects any table cell, or adds a reference to the chat. |
 
 A step can carry one of these actions instead of only pointing:
 
@@ -68,7 +69,7 @@ Ask Ari to start it by name, or at a step:
 
 A tour or walkthrough waits for you: select **Start tour** or **Start walkthrough** under Ari's answer. An explanation opens at once. While it runs, use the card's buttons, or ask Ari to go to the next step, go back, or stop. A floating chat moves out of the way of each step and returns when the Guide ends.
 
-If a Guide cannot open, a notice reads **Couldn't open that guide** because the Guide or one of its targets was deleted or is no longer accessible. Ask Ari to update the Guide.
+If a Guide cannot open, a notice says so, because the Guide or one of its targets was deleted or is no longer accessible; see [Guide messages](/reference/interface#help-center). Ask Ari to update the Guide.
 
 A Guide never starts by itself when someone opens a Page. To offer one:
 

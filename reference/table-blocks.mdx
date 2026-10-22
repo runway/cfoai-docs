@@ -91,13 +91,13 @@ At rest, each item shows small marks for what is set on it: an eye with a line t
 | **Reorder row or open row menu** | Grip at a row's left edge | Drag to reorder; click for the row's menu. Dragging a Dimension's items sets its sort to **Manual**. The **+** and the grip appear when you point at a row and hide when a mouse-wheel scroll moves that row away from the pointer; they come back on the row under the pointer once you move it. |
 | **Edit variable formula** | **fx** button when you point at a row name or column header | Opens the formula for the whole row or column. |
 | **Segment by** | Branch button when you point at a row name or column header | Breaks the row or column down by a Dimension, or by a Variable. When the row or column already holds a Variable, the search hides Variables until you turn on its **Variables** filter, because a table can hold Variables on one axis only. On a row that already has a breakdown, opens **Segment [name] by** with **Add**, **Remove level**, and drag to reorder levels. |
-| **Drill in** / **Clear drill-in** | Magnifier button when you point at a calculated row's name | Opens or closes the rows its formula reads. |
+| **Drill in** / **Clear drill-in** | Magnifier button when you point at a calculated row's name | Opens or closes the rows its formula reads, within the table's filters and date range; an input with activity only outside the visible cells gets no row. |
 | **More header actions** | Button when you point at a column header | Opens the column's right-click menu. |
 | **Edit formula for [Dimension]** | Button when you point at a Dimension's label row | Opens the formula every item at that level shares. |
 | **Create [Dimension] item** | **+** at the end of a Dimension's items | Adds an item. Reads **Create [Dimension] item under [parent]** inside a nested breakdown. |
 | **Show formulas** / **Hide formulas** | **fx** button at the top of the row-name column | Peeks at, opens, or closes the formula columns. |
 | Arrow beside a row name | A row with rows under it | Expands or collapses them. **Shift**-click, or **⌘**-click on a Mac, does it for every sibling row at that level. Your browser remembers rows you open or close, for up to 200 blocks; see [Limits](/reference/limits#tables-pages-sharing-and-exports). |
-| Arrow in a column group's header | A group of columns, such as a region over its months | Collapses the group to its total column, or expands it. **Shift**-click, or **⌘**-click on a Mac, does it for every sibling group at that level. |
+| Arrow in a column group's header | A group of columns, such as a region over its months | Collapses the group to its total column, or expands it. **Shift**-click, or **⌘**-click on a Mac, does it for every sibling group at that level. The header's **fx**, **Segment by**, and more-actions buttons appear to the right of the arrow and the group's name, so the arrow stays clickable; a group too narrow for both keeps them at its edge. |
 | **LC** | Header of the Last close period | **Edit last close** changes Last close for the Scenario you are viewing. See [Set Last close and date defaults](/guides/set-dates-and-last-close). |
 | **Space** | A blank spacer row, when you point at it | Select it to replace the space with a row. |
 | Bottom edge | Below the last row | Drag to resize the table. Double-click, or press **Enter**, to fit the table to its content. The height is saved in your browser. |
@@ -180,7 +180,7 @@ Opens from a Dimension's label row, such as **DEPARTMENT**, or from **[Dimension
 | **Sort** | **None**, **Ascending**, **Descending**, or **Manual**. Not offered for Date. |
 | **Date granularity** | For Date: **Inherit**, **Raw**, **Day**, **Week**, **Month**, **Quarter**, **Half**, or **Year**. |
 | **Use as** | **Segmentation** or **Mapping**. |
-| **Segment generation** | **Show only matching segments** shows the combinations that have data. **Expand to create all segments** shows every combination; for a Dimension of numbers, set **Start Value** and **End Value**. |
+| **Segment generation** | **Show only matching segments** shows the combinations that have data. **Expand to create all segments** shows every combination; for a Dimension of numbers, set **Start Value** and **End Value**, and for a Dimension of dates, set **Start / End dates**. The range is saved only when both ends are set, and clearing both removes it. |
 | **Format and display** → **Dimension color** | The color of the Dimension's item pills. **All tables.** |
 | **Format and display** → **Display as** | **Pill** or **Plain text**, on this table, in your browser. |
 | **Create [Dimension] item** | Adds an item. **All tables.** Unavailable, with **Clear the filter to create a new item.**, while the Dimension is filtered. |

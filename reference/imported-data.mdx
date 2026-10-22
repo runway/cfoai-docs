@@ -12,6 +12,7 @@ A CSV you upload as a data source loads as one table.
 | Rule | Detail |
 | --- | --- |
 | File type | `.csv` only, not empty, up to 50 MB per file |
+| Encoding | UTF-8, or UTF-16 with a byte order mark, which is how spreadsheet tools save "Unicode text". A UTF-16 file without a byte order mark loads with a `?` between its characters. |
 | First line | Column names. The loader reads the table from the first line of the file. |
 | Separator | Comma |
 | Rows | Every row has as many fields as the first line has column names |

@@ -1,0 +1,19 @@
+reference/integrations.mdx
+  s_3447bce3dbf9b3::t_3617fee940a203 349-350
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "9722f937da026a482b9ae10fda550fc8f17bef0b",
+  "prompts": {},
+  "sessions": {
+    "s_3447bce3dbf9b3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_3447bce3dbf9b3",
+        "model": "unknown"
+      },
+      "human_author": "Siqi Chen <blader@gmail.com>"
+    }
+  }
+}

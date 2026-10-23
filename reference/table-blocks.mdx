@@ -49,7 +49,7 @@ Opened with **Show table setup**. It has four sections, from top to bottom: Layo
 | Control | What it does |
 | --- | --- |
 | **Open Layout Options** (**…**) → **Force refresh** | Calculates the table's values again. |
-| **Open Layout Options** (**…**) → **Show all formulas** | Opens **All Formulas**, which lists the formulas saved in the Model, each with its Variable, where it applies, and when it was created and last changed. **Delete formula** removes one. An empty list reads **No formulas found**. |
+| **Open Layout Options** (**…**) → **Show all formulas** | Opens **All Formulas**, which lists the formulas saved in the Model, each with its Variable, where it applies, and when it was created and last changed. **Delete formula** removes one. An empty list reads **No formulas found**. When the list cannot load, the dialog reads **Could not load formulas.** with a **Retry** button, keeps any formulas it already showed, and does not ask again until you select **Retry**. |
 
 ### Formula section
 
@@ -198,8 +198,8 @@ For actions that change the layout, such as **Filter items**, **Sort**, and **In
 | **Fix** | On a cell that shows an error: starts a chat that asks Ari to fix it. |
 | **Edit formula** | Opens the formula editor for this cell. |
 | **Format and display** | Format options for this cell only. |
-| **Copy formula** | Copies the cell's formula. Shown when it has one. |
-| **Copy value** | Copies the value as the cell shows it. |
+| **Copy** (**⌘ C**) | Copies the cell. Shown when the cell has a formula. The clipboard holds the value the cell shows, so the copy pastes into a spreadsheet as a number; pasting it into a cfo.ai table in the same browser tab writes the formula. |
+| **Copy value** (**⌃ ⌘ C**) | Copies the value as the cell shows it. A paste of this copy writes the value, not the formula. |
 | **Paste** | Pastes into the cell. |
 | **Mention cell in chat** | Adds the cell to the current chat. |
 

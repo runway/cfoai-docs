@@ -382,14 +382,17 @@ After a turn that ran longer than 20 seconds ends while you are watching, a line
 
 ## Ari in Slack
 
-Ari chats in Slack direct messages once your workspace is connected in **Settings → Ari → Slack**. See [Talk to Ari from Slack](/guides/use-ari-in-slack).
+Ari chats in Slack direct messages, and in private channels an administrator adds it to, once your workspace is connected in **Settings → Ari → Slack**. See [Talk to Ari from Slack](/guides/use-ari-in-slack).
 
 | Message | Meaning |
 | --- | --- |
 | **is typing…** | Ari is working on your message. Its reply posts in the same thread when the turn ends. |
 | **I couldn't find a CFO.ai account for your Slack email. Ask an admin to invite you to CFO.ai, then message me again.** | No cfo.ai account uses the email address on your Slack profile. |
 | **Your CFO.ai account doesn't have access to this workspace's CFO.ai. Ask an admin for access, then message me again.** | Your cfo.ai account does not belong to the cfo.ai workspace this Slack workspace is connected to. |
-| **I can only chat in DMs right now. Send me a direct message and I'll pick this up there.** | You mentioned Ari in a channel. Ari does not read or answer channel messages. |
+| **I work in direct messages, and in private channels a cfo.ai admin adds me to. Send me a direct message and I'll pick this up there.** | You mentioned Ari in a channel it has not been added to, such as a public channel. Ari reads nothing else there. |
+| **Hi, I'm Ari. [name] added me, so anyone here can ask me about the company's numbers. I answer when you @mention me, and I join in when I can help. My answers use [name]'s cfo.ai access, and everyone in this channel can read them.** | An administrator added Ari to a private channel. Every answer there uses that administrator's access. |
+| 👀 on a channel message | Ari is working on that message. |
+| **I only work in private channels, so I'm leaving this one. …**, **Only a cfo.ai admin can add me to a channel, so I'm leaving. …**, **A cfo.ai admin needs to disconnect Slack and add it again in cfo.ai Settings before I can work in channels, so I'm leaving. …**, **The admin who added me here no longer has admin access in cfo.ai, so I'm leaving. …** | Ari left the channel. [If Ari leaves a channel](/guides/use-ari-in-slack#if-ari-leaves-a-channel) explains each reason and what to do. |
 | **I can't read files or images in Slack yet. Paste the text into a message and I'll take it from there.** | You sent a file or image. Ari reads nothing in that message. |
 | **Something went wrong on my end and I couldn't finish that. Please try again.** | Ari's turn failed. |
 

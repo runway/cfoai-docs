@@ -340,16 +340,16 @@ Amazon Redshift is not in the catalog.
 
 ### Document stores
 
-Box, Dropbox, and SharePoint connect through Fivetran, and cfo.ai sets each connection up to copy every file in the folder you choose as it is. Ari can then list the folder and read any file in it.
+Box, Dropbox, and SharePoint connect through Fivetran, and cfo.ai sets each connection up to copy every file in the folder you choose as it is. Ari can then list the folder and read any file in it up to the chat file size in [Limits](/reference/limits#chat-with-ari).
 
 | Fact | Detail |
 | --- | --- |
-| How it connects | Fivetran setup window. You sign in to the source, then choose the folder. cfo.ai shows no table picker for these sources. Setup finishes when Fivetran reports the connection working. Until then, the page you return to offers **Continue in Fivetran**, and **Finish setup** on the connection reopens the same setup window. |
+| How it connects | Fivetran setup window. You sign in to the source, then choose the folder. The window opens with file handling set to replicate files; keep that setting so Ari can read the documents. cfo.ai shows no table picker for these sources. Setup finishes when Fivetran reports the connection working. Until then, the page you return to offers **Continue in Fivetran**, and **Finish setup** on the connection reopens the same setup window. |
 | Standard or premium | Standard |
 | What it loads | Every file in the folder, in any format: PDFs, Word documents, spreadsheets, CSV files, and images. Ask Ari about them in a chat, for example "Read the signed contracts in the Sales Contracts folder of my Dropbox and check them against the sponsor schedule." Ari saves each file it reads in that chat, where it opens like a file you attached. A spreadsheet or CSV file becomes part of your Model when you ask Ari to import it, the same way as an attached file. |
 | Refresh | Nightly and when you ask Ari. A file added to or changed in the folder appears after the next sync. |
 | Who can read the files | Anyone who can see the connection. A person whose access to the connection is removed cannot list or read its files. |
-| Limits | Ari reads a file up to the chat file size in [Limits](/reference/limits#chat-with-ari). If you switch the setup window's file handling to extract structured data, the connection loads its tabular files as tables instead, and Ari cannot read the documents. |
+| Limits | Ari reads a file up to the chat file size in [Limits](/reference/limits#chat-with-ari). If you switch the setup window's file handling to extract structured data, the connection loads its tabular files as tables instead, and Ari cannot read the documents. A connection made before cfo.ai set these stores up this way also loads tables only; connect the store again to copy its files. |
 
 ### Other file sources
 

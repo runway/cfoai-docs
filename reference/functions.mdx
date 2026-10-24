@@ -136,6 +136,11 @@ count(`Deal Amount`[Deal in any])
 
 It takes 1 to 10 arguments. A value of 0 counts.
 
+A bracketed read keeps each Dimension it filters on, so `count` over a Dimension filtered by another Dimension counts each Deal and Region pair, not each Deal. `count(Deal[Region in {"East", "West"}])` counts a deal once for every one of those Region items its records carry, so a deal with records in both regions counts twice. On a deal's own row, the condition on Region replaces the row's Region, so the count covers that deal's records in those regions. To count each deal once:
+
+- For one total, `count(Deal$[Deal where count(Deal[Deal = Deal, Region in {"East", "West"}]) > 0])`: the `where` inside the brackets keeps each deal with a record in either region, and the `$` reads the whole Dimension rather than the cell's own deal (see [where inside the brackets](/reference/formula-syntax#lookups-and-filters)). On a deal table, every deal's row shows that same total, because the condition on Deal replaces the row's own deal.
+- For 1 or 0 on each deal's row, `if(count(Deal[Region in {"East", "West"}]) > 0, 1, 0)`.
+
 ### first
 
 `first` returns the first value that is not empty, in the order of the series, or an empty value when there is none.
@@ -147,7 +152,7 @@ first(Revenue[Date.Month in any])
 
 Over an imported table's rows, the order is the source's date column. Rows on the same date keep the source's order. A source with no date column is read in the source's order.
 
-`first` takes several arguments only when each one is an imported column or a plain reference to a Variable or Dimension, with no arithmetic around it. It then returns the value from the input whose row is earliest. A dated row wins over an undated one, and when dates tie, the earlier argument wins.
+`first` takes several arguments only when each one is an imported column or a plain reference to a Variable or Dimension, with no arithmetic around it. It reads each argument with `first` on its own, then returns the first argument's result that is not empty, left to right: `first(A, B)` returns A's first value, and B's only when A has none. Dates order the rows inside one argument; they do not rank one argument against another. An error in the chosen argument is returned as an error, and an error in an argument that was not chosen does not change the result.
 
 ### last
 
@@ -160,7 +165,7 @@ last(`Cash Balance`[Date.Month in any])
 
 Over an imported table's rows, `last` returns the row with the latest date in the source's date column. Rows on the same date keep the source's order. A source with no date column has no dates to compare, so `last` returns the last row in the source's order. A reference to an imported column with no function around it reads the same way as `last`.
 
-`last` takes several arguments only when each one is an imported column or a plain reference to a Variable or Dimension, with no arithmetic around it. It then returns the value from the input whose row is latest. A dated row wins over an undated one, and when dates tie, the later argument wins. Each input keeps its own filters, so `` last(`Vendor A`, `Vendor B`) `` returns whichever vendor has the latest entry. This is how a Dimension combined from two accounting sources reads; see [Dimension mappings and shared Dimensions](/concepts/dimension-mappings).
+`last` takes several arguments only when each one is an imported column or a plain reference to a Variable or Dimension, with no arithmetic around it. It reads each argument with `last` on its own, then returns the last argument's result that is not empty, right to left: `last(A, B)` returns B's last value, and A's only when B has none. Dates order the rows inside one argument; they do not rank one argument against another, so `` last(`Vendor A`, `Vendor B`) `` returns Vendor B's latest entry whenever Vendor B has one, even when Vendor A's is more recent. Each input keeps its own filters. An error in the chosen argument is returned as an error, and an error in an argument that was not chosen does not change the result. This is how a Dimension combined from two accounting sources reads; see [Dimension mappings and shared Dimensions](/concepts/dimension-mappings).
 
 ### median
 
@@ -259,7 +264,7 @@ if(condition, value_if_true, value_if_false)
 if(Revenue > 0, `Gross Profit` / Revenue, 0)
 ```
 
-A condition that compares with an empty value is not true, so `if` returns the third argument. To test for an empty value, compare with `null`: `` if(`End Date` = null, 1, 0) ``. You can nest calls: `if(Revenue > 100, "high", if(Revenue > 50, "medium", "low"))`.
+An ordering comparison with an empty value, such as `` `End Date` < date(2030, 1, 1) ``, is not true, so `if` returns the third argument. For how `=` and `<>` treat an empty value, see [Formula syntax](/reference/formula-syntax#numbers-text-and-empty-values). You can nest calls: `if(Revenue > 100, "high", if(Revenue > 50, "medium", "low"))`.
 
 ### iferror
 

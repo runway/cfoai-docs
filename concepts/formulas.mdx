@@ -92,7 +92,7 @@ A circular reference means that calculating a cell needs that same cell's result
 - A Variable reads itself in the same period, such as a new formula for Cash that reads `Cash`.
 - A parent's formula reaches the rows beneath it. A formula written on a parent row also applies to the rows beneath it that have no formula of their own. If it adds those rows up, each of them ends up adding itself.
 
-A formula that reads the previous period is not circular, because last month's value is already known. A running balance such as ``Cash[-1] + `Net Cash Flow` `` works for that reason. To break a loop, read the previous period instead of the current one, or give the rows beneath a parent their own formula. To have Ari find and fix it, see [Fix a formula that shows an error](/guides/fix-formula-errors). Every error code is listed in [Formula errors and warnings](/reference/formula-errors).
+Every cell in the loop shows `#CIRC!`; [Formula errors and warnings](/reference/formula-errors#circ) says what `iferror` can and cannot do about it. A formula that reads the previous period is not circular, because last month's value is already known. A running balance such as ``Cash[-1] + `Net Cash Flow` `` works for that reason. To break a loop, read the previous period instead of the current one, or give the rows beneath a parent their own formula. To have Ari find and fix it, see [Fix a formula that shows an error](/guides/fix-formula-errors). Every error code is listed in [Formula errors and warnings](/reference/formula-errors).
 
 ## Related
 

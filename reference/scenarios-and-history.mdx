@@ -64,7 +64,7 @@ The version history panel lists every change to the Model, yours and Ari's. Open
 
 | Control | What it does |
 | --- | --- |
-| **Filter version history** | Shows or hides changes by person; by **Ari**, **Data syncs**, and **Imports**; and by kind: **Formulas and values**, **Variables and dimensions**, **Pages and blocks**, **Scenarios**, and **Settings**. |
+| **Filter version history** | Shows or hides changes by person; by **Ari**, **Data syncs**, **Imports**, and the cfo.ai team; and by kind: **Formulas and values**, **Variables and dimensions**, **Pages and blocks**, **Scenarios**, and **Settings**. A change the cfo.ai team makes for you, such as a formula repair you asked for, appears as one entry attributed to the team, with the team's explanation of the change. **Undo this change** on that entry reverses the whole batch. |
 | **Jump to date** | Moves the list to a day. |
 | **Close version history** | Closes the panel. |
 | Scenario line | Names the Scenario and shows **Live**, or the version you are viewing. |
@@ -78,7 +78,7 @@ Point at an entry and select its **…** button (**Actions for [entry]**).
 
 | Control | What it does |
 | --- | --- |
-| **Undo this change** | Reverses this change and keeps everything after it, except where later changes touched the same things: then it asks **Undo this change?**, with **[subject] goes back to what it was before this change. [n] later changes touched the same things and will be undone for those things too:** and the list. Not offered for a change the Scenario inherited from Main. |
+| **Undo this change** | Reverses this change and keeps everything after it. Undo restores only the fields the change wrote, such as a Page's name or one formula's text, so a later edit to another field of the same Page, table, Variable, or formula stays. When a later change edited one of the same fields, nothing is undone, and a notice reads **Couldn’t undo changes** with **A later change edited the [field] of [subject], so this change can’t be undone on its own.**, followed by **Later changes also edited [n] other items.** when there are more. Undo that later change first. Not offered for a change the Scenario inherited from Main. |
 | **Redo this change** | Shown instead of **Undo this change** on an entry that undid a change. |
 | **Restore this version** | Returns the Scenario to this point and rolls back every later change. Needs full access to the Scenario; otherwise its tooltip reads **Only people with full access to this scenario can restore it.** |
 | **Take snapshot here** | Opens the [Take snapshot dialog](#take-snapshot-dialog), pinned at this entry. |
@@ -88,7 +88,7 @@ Point at an entry and select its **…** button (**Actions for [entry]**).
 
 ### Viewing a past version
 
-Selecting an entry shows the Model as it was at that moment, read-only, with a banner that offers **Restore this version** and **Back to current**. The restore dialog previews the result.
+Selecting an entry shows the Model as it was at that moment, read-only, with a banner that offers **Restore this version** and **Back to latest**. The restore dialog previews the result.
 
 | Message | Meaning |
 | --- | --- |

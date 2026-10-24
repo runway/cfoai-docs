@@ -27,7 +27,7 @@ To export a Page to Excel, select **Download spreadsheet** in the Page header, o
         Select **Download spreadsheet**, the download icon in the Page header. The button appears only on a Page that has a Table block.
       </Step>
       <Step title="Wait for the file">
-        The export runs in the background, and pointing at the button shows its progress. You can open other Pages while you wait. When the file is ready, it downloads and a **Spreadsheet download started** notice names it.
+        The export runs in the background, and pointing at the button shows its progress; selecting it again shows a notice with the stage and when you asked, and starts no second export. You can open other Pages while you wait. When the file is ready, it downloads and a **Spreadsheet download started** notice names it.
 
         If you reload or close the tab while the export runs, the export keeps going. Open the Page again, in the same Scenario, and the button picks it up. After a reload, the file still downloads on its own when it is ready. In a new tab, or after you closed the tab that asked, the file is offered instead, with **Spreadsheet ready** and a **Download** button, and so is an export that finished within the last hour. [The cfo.ai interface](/reference/interface#download-spreadsheet) lists each notice and when a tab shows it.
       </Step>
@@ -52,7 +52,7 @@ A few formulas cannot be written as Excel formulas, such as one longer than Exce
 - One worksheet for each table on the Page, in the Scenario you exported. A table's Scenario comparison columns come along, and rows and columns hidden on the table are left out.
 - Text blocks, charts, and Canvas blocks are left out, because a workbook holds tables.
 - Each number keeps its format: currency, percentage, or a multiple such as `3.5x`, with up to five decimal places. Negative currency amounts and plain numbers show in parentheses.
-- A blank input stays blank rather than becoming 0, and an input that holds text, such as a customer name, stays text.
+- A blank input stays blank rather than becoming 0, and an input that holds text, such as a customer name, stays text. A function of a blank, such as `round`, `abs`, or `year` of an empty cell, is written so that Excel also shows blank after it recalculates, instead of 0 or 1900, and an average or median skips those blanks as cfo.ai does.
 - In a workspace with a brand, the filled row at the top of each worksheet that holds the table's title in white takes the brand's text color as its fill, and the first three Dimension colors take the brand's chart colors when it has them. See [Brand your workspace](/guides/brand-your-workspace).
 
 ## Other formats

@@ -12,15 +12,16 @@ A CSV you upload as a data source loads as one table.
 | Rule | Detail |
 | --- | --- |
 | File type | `.csv` only, not empty, up to 50 MB per file |
-| First line | Column names. The loader reads the table from the first line of the file. |
-| Separator | Comma |
-| Rows | Every row has as many fields as the first line has column names |
+| Encoding | UTF-8, or UTF-16 with a byte order mark, which is how spreadsheet tools save "Unicode text". A UTF-16 file without a byte order mark loads with a `?` between its characters. |
+| Where the table is | cfo.ai reads the file to find the line of column names, the last line of the table, and the separator, so a report with title lines above the table and totals below it loads its table alone. When it cannot find a table, it reads the whole file as a comma-separated table from its first line. |
+| Separator | Comma, or the separator the file uses, such as a semicolon or a tab |
+| Rows | Every record has as many fields as the line of column names. A quoted field may hold line breaks, so one record can span several lines. |
 | Repeated column name | Still loads. Names are compared without letter case, and the later column is stored under its name and its own column number, so a second `Amount` in the fourth column becomes `Amount (column 4)`. |
 | Blank column name | Stored as `COLUMN_` and the column's number, such as `COLUMN_4` for the fourth column |
 | Each file | Becomes its own data source, named after the file until you rename it |
 | Refresh | Never. A new upload of the file replaces its rows. |
 
-A report exported from an accounting, payroll, or payments tool often has title lines above the table and totals below it. The loader does not skip those lines, so such a file fails with **The file couldn’t load**. To load it, delete those lines or let Ari clean up a copy; see [Upload a CSV as a data source](/guides/upload-a-csv).
+A file fails with **The file couldn’t load**, followed by what was wrong, when a record has more or fewer fields than the line of column names. To load it, fix those records or let Ari clean up a copy; see [Upload a CSV as a data source](/guides/upload-a-csv). When the table cfo.ai located ends before the file's records do, the load succeeds with the located records only, and Ari's note on the load says how many records loaded out of how many the file holds.
 
 The **Upload** button does not take Excel workbooks or PDFs. Attach those to a chat and ask Ari to load the table you need.
 
@@ -68,7 +69,7 @@ A starting formula has no [formula range](/reference/glossary#formula-range), so
 
 | Source | Saved queries | Columns |
 | --- | --- | --- |
-| QuickBooks Online | **QuickBooks Profit & Loss**, **QuickBooks Balance Sheet** | Amounts split into **Revenue**, **Cost of Goods Sold**, **Expense**, **Other Income**, **Other Expense**, and **Unclassified P&L Amount**, with the account, **Vendor**, **Entity**, and **Currency**. Both are QuickBooks' accrual-basis reports, as QuickBooks returned them when a sync last wrote each month; [How much history loads](#how-much-history-loads) says which months a refresh rewrites. The balance sheet dates each month's balances by the month's last day, so the month in progress keeps one **Period** from its first sync until it closes. |
+| QuickBooks Online | **QuickBooks Profit & Loss**, **QuickBooks Balance Sheet** | Amounts split into **Revenue**, **Cost of Goods Sold**, **Expense**, **Other Income**, **Other Expense**, and **Unclassified P&L Amount**, with the account, **Vendor**, **Entity**, and **Currency**. Both are on the company's accounting basis, cash or accrual; see [QuickBooks Online](/reference/integrations#quickbooks-online) for how the basis is read and switched. Each report is as QuickBooks returned it when a sync last wrote the month; [How much history loads](#how-much-history-loads) says which months a refresh rewrites. The balance sheet dates each month's balances by the month's last day, so the month in progress keeps one **Period** from its first sync until it closes. |
 | Xero | **Xero Income Statement** or **Xero Income Statement by Tracking Category**, **Xero Balance Sheet** | Amounts by account, with **Entity** and **Currency**. The tracking-category statement has one row per journal line and up to three tracking categories as numbered column pairs. See [Xero](/reference/integrations#xero). |
 | NetSuite SuiteAnalytics | **NetSuite Income Statement**, **NetSuite Balance Sheet** | Amounts by account. Income Statement rows also carry **Subsidiary** and **Currency Name**. |
 | Rillet | **Rillet Income Statement**, **Rillet Balance Sheet** | One set of rows per subsidiary, with **Entity** and **Currency** |
@@ -102,7 +103,7 @@ A Variable or Dimension shows its integration's logo on table row and column lab
 | Google Sheets and Google Drive | Nightly and when you ask Ari. An unchanged file starts no update. |
 | CSV uploads | Never |
 | MCP servers and APIs | Live when Ari calls them. A saved sync setup refreshes nightly, like an integration. |
-| Any source, on request | When you ask Ari to refresh it. There is no **Sync now** button. |
+| Any source, on request | When you ask Ari to refresh it, or when someone who manages connections selects **Sync now** on a linked integration's page; see [Refresh data](/guides/refresh-data). |
 
 The nightly refresh and refreshes you ask for work the same on every active plan, including a trial. A workspace with no plan, or whose billing is locked, does not refresh until it has an active plan again. A connection's last loaded time counts only syncs that finished; a failed or canceled sync does not move it.
 

@@ -30,8 +30,8 @@ These are the systems customers ask about most. Search the rest of this page, or
 | Square, PayPal, Braintree, Chargebee, Recurly, Zuora | Supported through Fivetran, standard |
 | Toast | Not available |
 | Mercury | Available to Ari as an [MCP connector](#mcp-connectors) and an [API](#apis) for live lookups, not as a synced integration |
-| Other banks | No direct bank feed. Bank balances reach cfo.ai through your accounting system's balance sheet, or upload a CSV of bank transactions. |
-| Brex, Ramp | Supported through Fivetran, standard. Also MCP connectors for Ari. |
+| Other banks | A US bank connects through Plaid, as a standard connection that uses a slot: pick it in the directory, where it reads **[Bank] (bank accounts)**, and sign in to the bank in the window cfo.ai opens. cfo.ai adds **Plaid Accounts**, the account balances observed at each sync, and **Plaid Transactions**, the posted transactions. Plaid gives no past balances, so balances start on the first sync. Bank balances also reach cfo.ai through your accounting system's balance sheet, or upload a CSV of bank transactions. |
+| Brex, Ramp | Supported through Fivetran, standard. Also MCP connectors for Ari. A Brex connection gets five saved queries; see [Brex](#brex). |
 | Snowflake, BigQuery, Databricks | Supported: [Snowflake](#snowflake), [BigQuery](#bigquery), [Databricks](#databricks), premium |
 | PostgreSQL, MySQL, SQL Server | Supported, premium. See [PostgreSQL](#postgresql) and [Other databases and data warehouses](#other-databases-and-data-warehouses). |
 | Amazon Redshift | Not available |
@@ -49,7 +49,7 @@ The **Integrations** tab of the connection manager holds the same catalog. Open 
 
 | Control | What it does |
 | --- | --- |
-| **Search integrations** | Finds a source by name |
+| **Search integrations** | Finds a source by name. A name that also matches an MCP connector lists it under **Available in MCP**, with **View in MCP** for people who manage MCP connections; it opens the **MCP** tab filtered to that connector, where **Connect** starts its sign-in. |
 | **Upload** | Uploads CSV files as data sources |
 | **Filter integrations** | Shows **All integrations**, or one type: **Accounting**, **CRM**, **Data upload**, **Data Warehouse**, **HR & Payroll**, **Recruiting**, **Support & Ticketing**, or **Other** |
 | **Sort integrations** | **Relevance**, **A–Z**, or **Z–A**. **Relevance** shows a **Featured** group first: QuickBooks Online, Xero, Rillet, Gusto, Rippling, Google Sheets, Justworks, HubSpot, and Salesforce. The other sources follow. In each group, sources you already connected come first; after them, the **Featured** group keeps the order above and the other sources are alphabetical. |
@@ -80,7 +80,7 @@ Each integration that syncs data into your Model is standard or premium, and eac
 These connections do not use a slot:
 
 - CSV uploads.
-- MCP servers and APIs that Ari calls live. If Ari saves a sync setup that copies an MCP server's or an API's data into your Model, that server or API then uses one standard slot.
+- MCP servers and APIs, whether Ari calls them live or has saved a sync setup that copies their data into your Model.
 
 Two rules change the count:
 
@@ -93,6 +93,7 @@ Most sources connect through Merge or Fivetran, outside services that copy a sou
 
 | Method | Sources | What you do |
 | --- | --- | --- |
+| Sign in through Plaid | US banks, listed as **[Bank] (bank accounts)** | Choose the bank in the directory and sign in to it in the window cfo.ai opens. |
 | Sign in through Merge | QuickBooks Online, Xero, Gusto, Justworks, and the other HR and payroll systems that connect through Merge | Sign in to the system in a window cfo.ai opens, choose the company, and approve access. |
 | Fivetran setup window | NetSuite SuiteAnalytics, Rippling, HubSpot, Salesforce, databases, and the other sources this page lists as syncing through Fivetran | Enter the credentials or sign-in the source needs in Fivetran's setup window. Some sources then show a table picker. |
 | API key | Rillet | Paste a Rillet API key into the card. |
@@ -114,6 +115,7 @@ The app's **Accounting** filter also holds payment and commerce sources, such as
 | Standard or premium | Standard |
 | What syncs | Monthly profit and loss and balance sheet, the chart of accounts, vendors, invoices, and journal entries |
 | Saved queries cfo.ai adds | **QuickBooks Profit & Loss** and **QuickBooks Balance Sheet**. Each carries **Entity** and **Currency** columns. |
+| Accounting basis | The P&L and balance sheet sync on the company's own basis, cash or accrual. The connection's first sync reads the **Report Basis** preference from QuickBooks and keeps it; ask Ari to switch the connection to cash or accrual, which re-syncs every month on the new basis. A connection that synced before this preference was read holds accrual statements until its next sync. |
 | History | From January 1 of last year through today. Ask Ari for a full-history import to reach back to a year you name, 2015 or later. A full-history import also takes the balance sheet of the month before that year. |
 | First sync | Your three most recent complete months load first. The rest of the history loads in the background. |
 | Nightly refresh | Re-reads the last three months, or the whole history when the connection has not synced for more than a month |
@@ -143,7 +145,7 @@ The app's **Accounting** filter also holds payment and commerce sources, such as
 | How it connects | Fivetran setup window, with your NetSuite account and an access token |
 | Standard or premium | Premium |
 | What syncs | The NetSuite tables the financial statements need, such as accounts, accounting periods, transactions and their lines, subsidiaries, customers, and vendors. You can ask Ari to add other tables later. |
-| Saved queries cfo.ai adds | **NetSuite Income Statement** and **NetSuite Balance Sheet** |
+| Saved queries cfo.ai adds | **NetSuite Income Statement** and **NetSuite Balance Sheet**, added once a completed sync has landed the raw `ACCOUNT` table. A NetSuite role that hides that table gets no saved queries; the first sync after the role shares it adds them |
 | History | The full history of each table |
 | First sync | Can take many hours, because Fivetran copies every table's full history first |
 | Table choice | Setup shows a table picker. Required tables are locked. Tables for features your account does not use, **Multiple Currencies**, **Multiple Calendars**, or **Multi-Book Accounting**, start unchecked. Tables that already sync cannot be removed. |
@@ -158,9 +160,9 @@ If NetSuite hides a table the statements need, the connection reads **Missing ac
 | --- | --- |
 | How it connects | API key. Find or create one in Rillet under **Organization Settings → API access**. |
 | Standard or premium | Standard |
-| What syncs | Accounts, subsidiaries, custom fields, the income statement and balance sheet reports, customers, contracts, and invoices |
-| Saved queries cfo.ai adds | **Rillet Income Statement** and **Rillet Balance Sheet**, one set of rows per subsidiary, with **Entity** naming the subsidiary and **Currency** taken from each row |
-| Limits | One Rillet connection per workspace. Adding up the subsidiaries does not reproduce Rillet's consolidated view, because Rillet applies intercompany eliminations only there. |
+| What syncs | Accounts, subsidiaries, custom fields, the income statement and balance sheet reports, customers, contracts, and invoices. Journal lines are Rillet's one optional table: each line with the entry's vendor or customer and its reporting fields, such as Department and Class, on the same row, plus a vendors table that names them. Every connection starts with journal lines turned off; you cannot turn them on yourself yet. Ask cfo.ai support to turn them on for your connection, and the next nightly sync loads every month the connection's history covers, newest first. |
+| Saved queries cfo.ai adds | **Rillet Income Statement** and **Rillet Balance Sheet**, one set of rows per subsidiary, with **Entity** naming the subsidiary and **Currency** taken from each row. Once journal lines have synced, **Rillet Income Statement by Journal Line** is offered too: one row per journal-entry line on a P&L account, with its **Vendor** or **Customer**, **Entity**, **Journal Entry**, **Description**, and up to three reporting fields, **Reporting Field 1** through **3**, signed as the statement prints them. |
+| Limits | One Rillet connection per workspace. Adding up the subsidiaries does not reproduce Rillet's consolidated view, because Rillet applies intercompany eliminations only there. Journal-line amounts are in each Entity's own currency: an Entity in the reporting currency ties to its statement rows, and an Entity in another currency is not translated, so do not add it to the statement or to other Entities. A connection with more than three reporting fields shows the first three. |
 | You need first | A Rillet API key |
 | Writes back | No |
 
@@ -196,6 +198,16 @@ If NetSuite hides a table the statements need, the connection reads **Missing ac
 | Standard or premium | Standard |
 | What syncs | The tables you choose in the table picker, up to 100. Ari recommends orders and their lines, refunds, adjustments, discounts, shipping, taxes, tags, fulfillments, customers, products, gift cards, and the shop. Payment transactions are left out of that recommendation because they slow the first sync the most. |
 | Saved queries | Ari writes them after the first sync |
+| Writes back | No |
+
+### Brex
+
+| Fact | Detail |
+| --- | --- |
+| How it connects | Through Fivetran's setup window; enter the credentials Brex asks for there. |
+| Standard or premium | Standard |
+| Saved queries cfo.ai adds | **Brex Cash Transactions**, **Brex Card Transactions**, **Brex Expenses**, **Brex Cash Statements**, and **Brex Card Statements**, each over one of the tables Fivetran lands. Each installs once a completed sync has landed its table, because you choose which Brex tables Fivetran syncs. |
+| Amounts | In currency units, such as dollars for USD. Brex stores every amount in the currency's smallest unit, such as cents, and the queries divide by that unit, so a ¥1,500 expense loads as 1,500. Merchant category codes load as four-digit text, such as `0742`, not as numbers. |
 | Writes back | No |
 
 ### Other accounting, billing, and commerce systems
@@ -362,13 +374,12 @@ ActiveCampaign, Adjust, Adobe Analytics, Adobe Analytics Data Feed (premium), Ad
 ## What cfo.ai does not do with your sources
 
 - cfo.ai does not write back to a synced source. To change a number in QuickBooks, Xero, or any other system, change it there; the next sync brings it in.
-- cfo.ai does not connect bank accounts directly. Use your accounting system's balance sheet, upload bank transactions as a CSV, or connect Mercury's MCP server for live balances.
 - The **Upload** button does not take Excel workbooks or PDFs. Attach them to a chat for Ari instead; see [Upload a CSV as a data source](/guides/upload-a-csv#excel-workbooks-and-pdfs).
-- There is no **Sync now** button. Ask Ari to refresh a connection; see [Refresh data](/guides/refresh-data).
+- Bank accounts connect through Plaid. In the directory, each bank reads **[Bank] (bank accounts)**, so a company such as Carta that also has an MCP connector is told apart from its bank.
 
 ## Connections for Ari
 
-MCP servers and APIs are tools Ari calls live when you ask a question, such as a bank balance in Mercury. Nothing from them is copied into your Model unless you ask Ari to save a sync setup, and they use no plan slot until then. The integrations above, by contrast, sync data into your Model once a day. Add an MCP server or API from the **MCP** and **API** tabs of the connection manager, or from **Settings → Connections**. See [Give Ari access to another service](/guides/give-ari-another-service).
+MCP servers and APIs are tools Ari calls live when you ask a question, such as a bank balance in Mercury. Nothing from them is copied into your Model unless you ask Ari to save a sync setup, and they use no plan slot either way. The integrations above, by contrast, sync data into your Model once a day. Add an MCP server or API from the **MCP** and **API** tabs of the connection manager, or from **Settings → Connections**. See [Give Ari access to another service](/guides/give-ari-another-service).
 
 ### MCP connectors
 

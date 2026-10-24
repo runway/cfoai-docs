@@ -1,0 +1,29 @@
+guides/connect-a-google-sheet.mdx
+  s_4ccf2f3f54d6f0::t_d997d5503bea38 12,58
+reference/integrations.mdx
+  s_e95ad036f5af5a::t_0c635b52016d1e 88,336
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "d67c6ed38db860c36fef568573f4319de2c327e7",
+  "prompts": {},
+  "sessions": {
+    "s_4ccf2f3f54d6f0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9ea705e5-61be-4c12-92b1-031ffbf8a052",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Siqi Chen <blader@gmail.com>"
+    },
+    "s_e95ad036f5af5a": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a16fdf-5d9a-7b70-96e3-f0f059245210",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "Siqi Chen <blader@gmail.com>"
+    }
+  }
+}

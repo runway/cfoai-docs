@@ -13,7 +13,7 @@ An MCP server or an API does not replace an integration. An integration syncs a 
 - You need permission to manage connections. Someone without it sees **A workspace admin must connect this service.**
 - For an MCP server: the service's MCP address, and a sign-in to the service or a token. Many common servers are in the catalog with their address filled in.
 - For an API: an API key, unless the API needs none, and an OpenAPI 3 specification for an API that is not in the catalog.
-- MCP servers and APIs use no plan slot until Ari saves a sync setup for one.
+- MCP servers and APIs use no plan slot, with or without a sync setup.
 
 ## Connect a service
 
@@ -84,9 +84,9 @@ To keep a service's data in your Model, rather than look it up live, ask Ari for
 
 Ari picks one read-only tool or endpoint, saves how to call it, and runs it. Each night the sync copies the results into your data, and a saved query brings them into your Model as Variables and Dimensions, like an integration. The tool or endpoint must be set to **Allow**. You can give it its own daily time, as with any connection; see [Refresh data](/guides/refresh-data#change-when-a-connection-refreshes).
 
-The service's page lists its setups under **Syncs**, each **Enabled** or **Paused**, with when it last synced. When a sync brought data in and no saved query reads it yet, the page reads **No queries yet** and offers **Set up queries with Ari** to people who can edit the connection; others see **Data synced. Someone with access can set up queries with Ari.** To stop one, ask Ari to remove it; the data it already copied stays. Once a service has a sync setup, it uses one standard plan slot. [How imported data loads](/reference/imported-data#sync-setups-for-mcp-servers-and-apis) lists the sync types and limits.
+The service's page lists its setups under **Syncs**, each **Enabled** or **Paused**, with when it last synced. When a sync brought data in and no saved query reads it yet, the page reads **No queries yet** and offers **Set up queries with Ari** to people who can edit the connection; others see **Data synced. Someone with access can set up queries with Ari.** To stop one, ask Ari to remove it; the data it already copied stays. A service with a sync setup still uses no plan slot. [How imported data loads](/reference/imported-data#sync-setups-for-mcp-servers-and-apis) lists the sync types and limits.
 
-When a page of an MCP sync fails, Ari's report in the chat names the connection, the page that stopped, and what stopped it. [Connection statuses and actions](/reference/connection-statuses#messages-about-mcp-servers-and-apis) lists each cause and its next step.
+When a server answers a sync page with HTTP 429, too many requests, the sync waits the time the server states, or one minute, and asks for the same page again, up to five times for one page. When a page of an MCP sync fails for good, Ari's report in the chat names the connection, the page that stopped, and what stopped it. [Connection statuses and actions](/reference/connection-statuses#messages-about-mcp-servers-and-apis) lists each cause and its next step.
 
 ## Change a connection's name, address, or authentication
 

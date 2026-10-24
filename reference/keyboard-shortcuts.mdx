@@ -31,6 +31,7 @@ Undo and redo work anywhere in the app except while you are typing in a text fie
 | --- | --- |
 | **Changes undone** / **Changes redone** | The undo or redo finished. |
 | **Couldn’t undo changes** / **Couldn’t redo changes**, with **Try again.** | The undo or redo failed, and the change stays as it was. |
+| **Couldn’t undo changes** / **Couldn’t redo changes**, with **A later change edited the [field] of [subject], so this change can’t be [undone / redone] on its own.** | A later change edited one of the same fields. Nothing was undone; undo that later change first. |
 
 ## Chat with Ari
 
@@ -38,6 +39,7 @@ Undo and redo work anywhere in the app except while you are typing in a text fie
 | --- | --- |
 | **⌘ /** | Start a new chat. With a cell, block, or Page selected, the new chat starts about it. |
 | **⌘ L** | Mention the selected cell, row, column, or block in the current chat. With text selected in one of Ari's answers, quote that text in your reply. |
+| **⌥**-click a mention button (**Alt**-click) | Mention it in a new chat instead of the current one. Works on the button above a selected cell, the **@** in the formula editor, a Canvas block's **Mention in chat**, a Page's **Mention page in chat** in the sidebar, and **Add selection to chat** on selected text. |
 | **Enter** | Send your message. While Ari is working, the message reaches Ari at its next step. |
 | **⌥ Enter** | While Ari is working, queue your message for after Ari finishes. When Ari is not working, start a new line. |
 | **Shift Enter** | Start a new paragraph in the message box. In a list, start the next item, or leave the list from an empty item. Inside code, insert a line break. |

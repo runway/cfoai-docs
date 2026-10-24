@@ -97,6 +97,10 @@ A connection reads **Paused until next sync** when the source's daily request li
 
 A connection reads **Sync stopped**, with **Contact cfo.ai support if it isn’t fixed soon.**, when cfo.ai's data warehouse refused the data. Only cfo.ai can fix it. If it lasts, email [success@cfo.ai](mailto:success@cfo.ai).
 
+## An MCP server's or API's data sync needs attention
+
+An MCP server or API shows two statuses on its page and its sidebar card: **Connection**, for whether Ari can call it, and **Data sync**, for the sync setups Ari saved. **Connection: Connected** beside **Data sync: Needs attention** means Ari can still use the service and only the import failed. Select **Fix with Ari** in the **Data sync** section. A chat opens that asks Ari to inspect the latest run and the saved sync setup, repair or retry it, and check the result. If you cannot edit the connection, the section reads **Someone with edit access can fix this sync with Ari.** A server whose sync was rate limited, HTTP 429, waits and asks for the same page again on its own, so it usually needs nothing from you.
+
 ## No queries yet
 
 The connection reads **No queries yet** when its data synced but no saved query brings it into your Model. Select **Set up queries with Ari**. A new chat opens with a request for Ari to review what synced, propose the queries worth saving, and set them up; read it, then send it. If you cannot edit the connection, the line reads **Data synced. Someone with access can set up queries with Ari.**

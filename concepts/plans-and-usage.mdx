@@ -40,7 +40,7 @@ During a free trial, the trial includes its own amount of AI usage. When it is u
 
 ## Connection slots limit what you can sync
 
-A plan allows a number of standard connections and a number of premium connections. Plans differ in how many connections you can hold, not in what a connection does. Each source that syncs data into your Model takes a slot, while CSV uploads and the MCP servers and APIs that Ari calls live take none. Once Ari saves a nightly sync for an MCP server or API, that service syncs like any other source and takes a standard slot. Which systems are premium, and exactly how slots count, such as for Google Sheets or a second company, are listed in the [integrations directory](/reference/integrations#standard-and-premium-integrations).
+A plan allows a number of standard connections and a number of premium connections. Plans differ in how many connections you can hold, not in what a connection does. Each integration that syncs data into your Model takes a slot, while CSV uploads, MCP servers, and APIs take none. An MCP server or API keeps taking no slot when Ari saves a nightly sync setup for it, so its data can sync like an integration's without using one of your slots. Which systems are premium, and exactly how slots count, such as for Google Sheets or a second company, are listed in the [integrations directory](/reference/integrations#standard-and-premium-integrations).
 
 When every slot is used, a new connection is refused until you remove one or move to a plan with more. You also cannot move to a plan with fewer slots than you use until you disconnect enough. For the messages you see, see [Connection statuses and actions](/reference/connection-statuses#messages-when-a-new-connection-is-refused).
 

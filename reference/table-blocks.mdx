@@ -76,7 +76,7 @@ Each section lists what is on that axis as a tree. Drag an item to reorder it, t
 | Funnel button, **Filter [name]** | Opens the item list: **All Items**, the items, **Cancel**, and **Save**. For a Dimension other than Date, in rows or columns. |
 | **Segment by** | Adds a breakdown level under that item. |
 | **Date granularity** | For a Date axis: **Inherit**, **Raw**, **Day**, **Week**, **Month**, **Quarter**, **Half**, or **Year**. |
-| **Remove from table** | Removes the item from this table. On a Variable's original table it reads **Delete variable** (or **Delete dimension**) instead; see [Removing and deleting](#removing-and-deleting). For a deleted Variable or Dimension it reads **Remove deleted property from table**. |
+| **Remove from table** | Removes the item from this table. When no other table shows the Variable or Dimension, cfo.ai asks first; see [Removing and deleting](#removing-and-deleting). For a deleted Variable or Dimension it reads **Remove deleted property from table**. |
 
 At rest, each item shows small marks for what is set on it: an eye with a line through it when hidden, the sort, a funnel with the number of items the filter keeps, a branch with the number of breakdown levels, and the date grain. Right-click an item for the same [right-click menus](#right-click-menus) as in the grid; here the remove action reads **Remove item**, or **Remove item and drill-ins** for an item with levels under it.
 
@@ -135,7 +135,7 @@ A row or column for a Variable, such as Revenue, or a column that shows each row
 | **Edit child formula** | The same, when there are several levels below; pick one. |
 | **Segment by** | Breaks the row down by a Dimension. |
 | **Drill in** / **Clear drill-in** | Opens or closes the rows its formula reads. |
-| **Go to original table** | Opens the Page and table where the Variable was created. Shown on other tables only. |
+| **Go to another table** | Opens another table that shows the Variable: one on this Page first, otherwise the first one you can open. Shown only when such a table exists. |
 | **Copy** | Copies the row or column name. |
 | **Mention in chat** | Adds the row or column to the current chat. |
 | **Show formula column** / **Hide formula column** | On a column that heads a group: opens or closes its formula column. |
@@ -146,7 +146,7 @@ A row or column for a Variable, such as Revenue, or a column that shows each row
 | **Insert above** / **Insert below** | Opens the Create or search field for a new row at that place. On a column: **Insert left** / **Insert right**. |
 | **Insert space** | Rows only. Adds a blank spacer row below. |
 | **Expand child rows** / **Collapse child rows** | Opens or closes the rows under it. |
-| **Remove item and drill-ins** | Removes the row, and any rows under it, from this table. On the Variable's original table, removing its last row reads **Delete variable**. |
+| **Remove item and drill-ins** | Removes the row, and any rows under it, from this table. When no other table shows the Variable, cfo.ai asks first; see [Removing and deleting](#removing-and-deleting). |
 
 ### Dimension item menu
 
@@ -162,7 +162,7 @@ A row or column for one item, such as Sales.
 | **Expand child rows** / **Collapse child rows** | Opens or closes the rows under it. |
 | **Format and display** | Opens the [format options](#format-and-display-options). |
 | **Rename** | Renames the item. **All tables.** Unavailable, with **Only items you created can be renamed**, for items from connected data. |
-| **Delete [Dimension] item** | On the Dimension's original table only: deletes the item. **All tables.** Unavailable, with **Only items you created can be deleted**, for items from connected data. |
+| **Delete [Dimension] item** | Only on the table where the Dimension was created: deletes the item. **All tables.** Unavailable, with **Only items you created can be deleted**, for items from connected data. |
 | **[Dimension] dimension settings** | Opens the [Dimension menu](#dimension-menu). |
 
 ### Dimension menu
@@ -171,7 +171,7 @@ Opens from a Dimension's label row, such as **DEPARTMENT**, or from **[Dimension
 
 | Control | What it does |
 | --- | --- |
-| **Go to original table** | Opens the table where the Dimension was created. Shown on other tables only. |
+| **Go to another table** | Opens another table that shows the Dimension, on this Page first. Shown only when such a table exists. |
 | **Default for every [Dimension]** | Opens the formula every item at this level shares. A nested breakdown offers one entry per level. |
 | **Edit dimension formula** | Rows only. Opens the formula that defines the Dimension's items. |
 | **Segment by** | Breaks every item at this level down by another Dimension. |
@@ -187,7 +187,7 @@ Opens from a Dimension's label row, such as **DEPARTMENT**, or from **[Dimension
 | **Insert above** / **Insert below** | Opens the Create or search field at that place. On a column: **Insert left** / **Insert right**. |
 | **Insert space** | Rows only. Adds a blank spacer row. |
 | **Pin column** / **Unpin column** | Columns only, not Date. |
-| **Remove dimension** | Removes the Dimension from this table. On its original table it reads **Delete dimension**, **All tables**. |
+| **Remove dimension** | Removes the Dimension from this table. When no other table shows it, cfo.ai asks first; see [Removing and deleting](#removing-and-deleting). |
 
 For actions that change the layout, such as **Filter items**, **Sort**, and **Insert above**, the Dimension's level must be saved on this table. A level that **Segment by** added under one item only offers none of them. On a read-only table, the menu keeps **Display as**.
 
@@ -217,8 +217,8 @@ Select a range that includes row names, or press **⌘ A**, and right-click a ro
 | **Segment by** | Breaks every selected row down by a Dimension. |
 | **Drill in** / **Clear drill-in** | Opens or closes the inputs of every selected row. |
 | **Expand child rows** / **Collapse child rows** | For every selected row. |
-| **Remove selected items and drill-ins** | Removes the selected Variable rows from this table. On their original table it reads **Delete variables**. |
-| **Remove [Dimension]** | Removes the Dimension of the selected items from this table, or reads **Delete dimension** on its original table. |
+| **Remove selected items and drill-ins** | Removes the selected Variable rows from this table. When no other table shows one of the Variables, cfo.ai asks first. |
+| **Remove [Dimension]** | Removes the Dimension of the selected items from this table. When no other table shows it, cfo.ai asks first. |
 | **Remove [N] rows** | In the table setup panel: removes the selected rows from this table. |
 | **Remove all drill-in rows** | Closes every drill-in row. |
 | **No actions available** | Nothing applies to the whole selection. |
@@ -246,20 +246,22 @@ Right-click a total column's header and choose its summary: **None**, **Sum**, *
 
 ## Removing and deleting
 
-Each Variable and Dimension you create on a table has that table as its original table.
+No table owns a Variable or Dimension. The saved tables that show it, as a row, a column, or a drill-in, decide whether a removal is final.
 
 | You remove | What happens |
 | --- | --- |
-| A row or column from any other table | It leaves that table only. |
-| Its last row or column on its original table | The action reads **Delete variable**, **Delete dimension**, or **Delete variable or dimension**, and deletes it from the Model and every table. |
-| Its original table, with **Delete block**, or that table's Page | Kept when another table still shows it, and one of those tables becomes its original table. Deleted when no other table shows it. |
+| A row or column, while another saved table still shows the Variable or Dimension | It leaves this table only. |
+| Its last row or column on any table | cfo.ai asks **Delete variable or dimension?** before anything changes. Confirming deletes it from the Model. |
+| A table, with **Delete block**, or that table's Page | A Variable or Dimension another table still shows is kept. One no other table shows is deleted with the table, after the same question. |
 
-When a delete would break something, cfo.ai asks first:
+The question is always asked, even when nothing else uses the Variable or Dimension:
 
 | Dialog | Text | Buttons |
 | --- | --- | --- |
-| **Delete variable or dimension?** (**Delete variables or dimensions?** for several) | **Deleting [name] will break [counts].** The counts can include formulas, blocks, Canvas blocks, property settings, and items or pins, and end with **including [N] dependents you can’t see** when you cannot open some of them. | **Cancel**, **Delete anyway** |
-| **Delete item?** | **“[item]” is still used. Deleting it everywhere will break:** and a list. | **Cancel**, **Delete anyway** |
+| **Delete variable or dimension?** (**Delete variables or dimensions?** for several) | **[name] will no longer appear on any table.** when nothing else uses it. Otherwise **Deleting [name] will break [counts].** The counts can include formulas, blocks, Canvas blocks, property settings, and items or pins, and end with **including [N] dependents you can’t see** when you cannot open some of them. | **Cancel** keeps everything as it is. **Keep with Ari** cancels the deletion and opens a chat that names the Variable or Dimension, so Ari can place it on another table; it appears when you can start a chat. **Delete completely** deletes it from the Model and every table. |
+| **Delete item?** | **“[item]” is still used. Deleting it everywhere changes:** and a list of what reads the item. | **Cancel**, **Delete anyway**. Confirming also deletes the formulas whose condition selects only that item, such as the values typed into the item's row. |
+
+To see where a Variable or Dimension is shown, point at its row or column name: the mark beside a name that other tables also show reads **Shown on: [table] on [page]**. **Go to another table** in its right-click menu opens one of those tables.
 
 ## Format and display options
 
@@ -476,7 +478,6 @@ Version history does not list changes to column widths or pinned columns.
 | Hide a row from the grid's menu | Use the eye button in the table setup panel. |
 | Start a breakdown collapsed for everyone | Which rows are expanded or collapsed is saved only in each person's browser, so each reader opens or closes rows for themselves. |
 | Lock cells so teammates cannot edit them | Every member of a workspace can edit every Page. To let someone read without editing, share a link; see [Sharing and access](/concepts/sharing-and-access). |
-| Choose a Variable's original table | A Variable keeps the table it was created on, until that table is deleted while another table shows it. |
 | Be edited on a phone | Ask the phone's browser for its desktop site, or use a computer. See [Phones and tablets](/reference/interface#phones-and-tablets). |
 
 To add a chart, ask Ari; the block menu has no chart block. See [Create and organize Pages and blocks](/guides/create-pages-and-blocks#add-a-block-to-a-page).

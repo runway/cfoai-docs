@@ -1,10 +1,10 @@
 ---
 title: "Connect a Google Sheet or Drive file"
 sidebarTitle: "Connect a Google Sheet"
-description: "Connect a Google Sheet, or an Excel or CSV file in Google Drive, so Ari imports it into your Model and updates the Model when the file changes."
+description: "Connect a Google Sheet, or an Excel or CSV file in Google Drive, so Ari imports it into your Model and updates the Model when the file changes. Google Drive can also hold PDFs, Docs, and other files for Ari to read."
 ---
 
-Connect a Google Sheet when numbers you still keep in a spreadsheet should feed your Model, such as a hiring tracker or a pricing table. Ari imports the whole file, rebuilds it in your Model, and re-reads it every night, so a change you make in the sheet reaches cfo.ai without a new upload. Use Google Drive to connect an Excel workbook or a CSV file the same way.
+Connect a Google Sheet when numbers you still keep in a spreadsheet should feed your Model, such as a hiring tracker or a pricing table. Ari imports the whole file, rebuilds it in your Model, and re-reads it every night, so a change you make in the sheet reaches cfo.ai without a new upload. Use Google Drive to connect an Excel workbook or a CSV file the same way, and to give Ari documents such as contracts, PDFs, and Google Docs to read.
 
 ## Before you start
 
@@ -35,7 +35,7 @@ cfo.ai can open only the files you pick in Google's file picker, nothing else in
         Sign in with Google. Google's file picker opens; choose the file. In Google Drive you can choose several files of any type: Ari imports the first spreadsheet among them and reads the others, such as PDFs and Docs, when you ask about them. The card reads **Opening Google authentication…**, **Choosing in Google…**, **Completing connection…**, and then **Connected**.
       </Step>
       <Step title="Watch the import">
-        Ari imports the file in the background. The connection's row reads **Waiting for the first sync to read this file…**, then **Ari is importing this file…**. When the import is done, it reads **Imported to** and the Page Ari built, with **Ari updates the model when the file changes.**
+        If none of the files you chose is a spreadsheet, nothing is imported: the row reads **Ari reads these files when you ask about them. None is a spreadsheet to import.** Otherwise Ari imports the spreadsheet in the background. The connection's row reads **Waiting for the first sync to read this file…**, then **Ari is importing this file…**. When the import is done, it reads **Imported to** and the Page Ari built, with **Ari updates the model when the file changes.**
       </Step>
     </Steps>
   </Tab>

@@ -1,0 +1,89 @@
+agents/canvas-blocks.mdx
+  s_b7eb0febbb09c2::t_a2d34257e44c4e 139,154-155
+agents/formula-scope.mdx
+  s_b7eb0febbb09c2::t_03a79a91599d53 23
+agents/table-view-grammar.mdx
+  s_b7eb0febbb09c2::t_9a1d1e47f26790 103
+agents/validate-and-verify.mdx
+  s_b7eb0febbb09c2::t_a958053b1b3f08 64
+agents/write-formulas.mdx
+  s_b7eb0febbb09c2::t_0a2a3467690936 150,166-167
+concepts/connected-data.mdx
+  s_b7eb0febbb09c2::t_f0b326c5706375 19,73
+concepts/formulas.mdx
+  s_b7eb0febbb09c2::t_8797f488f62067 95
+concepts/scenarios.mdx
+  s_b7eb0febbb09c2::t_dce46ce4ad14ce 44
+guides/break-down-a-number.mdx
+  s_b7eb0febbb09c2::t_a3be287aa9c8e9 45
+guides/build-a-forecast.mdx
+  s_b7eb0febbb09c2::t_f3842d468d9506 74,78
+guides/build-a-table.mdx
+  s_b7eb0febbb09c2::t_75dc3b5087e6f7 100
+guides/build-financial-statements.mdx
+  s_b7eb0febbb09c2::t_2e6ac9a4ddf6b3 54
+guides/change-formulas-with-ari.mdx
+  s_b7eb0febbb09c2::t_094e2db58e9cac 17
+guides/change-your-model-with-ari.mdx
+  s_b7eb0febbb09c2::t_fede11f8f555c4 53
+guides/choose-a-plan.mdx
+  s_b7eb0febbb09c2::t_9c34ca48a8da22 31,37
+guides/compare-scenarios.mdx
+  s_b7eb0febbb09c2::t_ad88a3cda93bf1 30
+guides/consolidate-entities.mdx
+  s_b7eb0febbb09c2::t_9b9c2dfa1b0603 20
+guides/enter-values.mdx
+  s_b7eb0febbb09c2::t_ad3434e96ca67b 74,78
+guides/fix-a-connection.mdx
+  s_b7eb0febbb09c2::t_7e2e5589e9e8f7 102
+guides/forecast-cash.mdx
+  s_b7eb0febbb09c2::t_6a773626c52e89 17
+guides/get-a-pdf-or-slides.mdx
+  s_b7eb0febbb09c2::t_436744ae723eeb 29
+guides/give-ari-another-service.mdx
+  s_b7eb0febbb09c2::t_7c18fb7a1971b0 89
+guides/map-dimensions.mdx
+  s_b7eb0febbb09c2::t_8f15c92184c802 19
+guides/upload-a-csv.mdx
+  s_b7eb0febbb09c2::t_788e65bee1b57e 13
+guides/use-ari-in-slack.mdx
+  s_b7eb0febbb09c2::t_e897d0a5e0698d 99
+guides/write-a-formula.mdx
+  s_b7eb0febbb09c2::t_3074a6dc41d577 94
+reference/chat.mdx
+  s_b7eb0febbb09c2::t_aa016d1aed7fad 19
+reference/formula-syntax.mdx
+  s_b7eb0febbb09c2::t_4ccfc0d4d45725 31
+reference/functions.mdx
+  s_b7eb0febbb09c2::t_94c36a49e576c3 139,267
+reference/glossary.mdx
+  s_b7eb0febbb09c2::t_635f384d2a1914 42
+reference/imported-data.mdx
+  s_b7eb0febbb09c2::t_d7631e59bf7840 24,72,106
+reference/integrations.mdx
+  s_b7eb0febbb09c2::t_60dbadd23e4f82 33,83,96,207
+reference/keyboard-shortcuts.mdx
+  s_b7eb0febbb09c2::t_348b378bb7acc3 77
+reference/prompt-library.mdx
+  s_b7eb0febbb09c2::t_308f5ce71b546f 13
+reference/scenarios-and-history.mdx
+  s_b7eb0febbb09c2::t_ca1a87cd6605c8 67
+reference/table-blocks.mdx
+  s_b7eb0febbb09c2::t_43972094ef42b6 254,261,328
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "25cd6f7cbac48c1077915b64b8235322cf8dc1c1",
+  "prompts": {},
+  "sessions": {
+    "s_b7eb0febbb09c2": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d7cfe533-a1b5-4cfc-81cc-1d9bb41b0d34",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": "niteshift-dev[bot] <219592090+niteshift-dev[bot]@users.noreply.github.com>"
+    }
+  }
+}

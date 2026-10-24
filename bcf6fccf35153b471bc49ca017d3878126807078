@@ -1,0 +1,25 @@
+guides/break-down-a-number.mdx
+  s_b7eb0febbb09c2::t_63000b120beeb9 45
+guides/build-a-table.mdx
+  s_b7eb0febbb09c2::t_28b35e9f8f26d5 102
+guides/use-ari-in-slack.mdx
+  s_b7eb0febbb09c2::t_dcefd28ebb9ac5 99
+reference/keyboard-shortcuts.mdx
+  s_b7eb0febbb09c2::t_868a8ab3261a64 77
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "bcf6fccf35153b471bc49ca017d3878126807078",
+  "prompts": {},
+  "sessions": {
+    "s_b7eb0febbb09c2": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d7cfe533-a1b5-4cfc-81cc-1d9bb41b0d34",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": "niteshift-dev[bot] <219592090+niteshift-dev[bot]@users.noreply.github.com>"
+    }
+  }
+}

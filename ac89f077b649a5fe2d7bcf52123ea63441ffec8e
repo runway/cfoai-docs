@@ -1,0 +1,89 @@
+agents/canvas-blocks.mdx
+  s_b7eb0febbb09c2::t_a53e1a3da9d06a 139,154
+agents/table-view-grammar.mdx
+  s_b7eb0febbb09c2::t_2b80447b89223b 36,79
+agents/validate-and-verify.mdx
+  s_b7eb0febbb09c2::t_7da2631b353854 64
+agents/write-formulas.mdx
+  s_b7eb0febbb09c2::t_09c8923a46916f 114,138,150,166,178,241
+concepts/connected-data.mdx
+  s_b7eb0febbb09c2::t_1c9587afd313b9 17
+concepts/formulas.mdx
+  s_b7eb0febbb09c2::t_93775c39055347 95
+concepts/scenarios.mdx
+  s_b7eb0febbb09c2::t_b44c4b0a7f7c97 44
+guides/break-down-a-number.mdx
+  s_b7eb0febbb09c2::t_7e787cae3a929a 82
+guides/build-a-table.mdx
+  s_b7eb0febbb09c2::t_aca69687917f99 98,100,102
+guides/fix-a-connection.mdx
+  s_b7eb0febbb09c2::t_6fc1f8c08188b2 100-103
+guides/forecast-cash.mdx
+  s_b7eb0febbb09c2::t_ff4737a69bf157 9,17,22
+guides/give-ari-another-service.mdx
+  s_b7eb0febbb09c2::t_0bb4cf65b3af2a 16,87,89
+guides/upload-a-csv.mdx
+  s_b7eb0febbb09c2::t_de90223711082c 12,14
+reference/chat.mdx
+  s_b7eb0febbb09c2::t_91e842f33b24d6 19,32,59-60,63
+reference/formula-syntax.mdx
+  s_b7eb0febbb09c2::t_000ffd521b4a80 31
+reference/glossary.mdx
+  s_b7eb0febbb09c2::t_3a436c7e2eea15 194
+reference/imported-data.mdx
+  s_b7eb0febbb09c2::t_b472599a4e927a 16-18,24,72
+reference/integrations.mdx
+  s_b7eb0febbb09c2::t_252f7ffb455570 33-34,52,117,202-211,377,381
+reference/keyboard-shortcuts.mdx
+  s_b7eb0febbb09c2::t_11c551f32a02bf 34,42
+reference/scenarios-and-history.mdx
+  s_b7eb0febbb09c2::t_eaefb2c4c83e3e 81,91
+reference/table-blocks.mdx
+  s_b7eb0febbb09c2::t_d64904b2673424 79,138,149,165,174,190,220-221,249,253-255,257,261-264
+agents/mcp-tools.mdx
+  s_b7eb0febbb09c2::t_8f19315ff9a8dd 33,46,57,63-64,79
+concepts/plans-and-usage.mdx
+  s_b7eb0febbb09c2::t_215a9dd0a2e8fc 43
+concepts/sharing-and-access.mdx
+  s_b7eb0febbb09c2::t_5d58bca1bd760f 40
+guides/ask-about-a-number.mdx
+  s_b7eb0febbb09c2::t_f188b520194010 16-18
+guides/create-pages-and-blocks.mdx
+  s_b7eb0febbb09c2::t_4e4145790bdd9e 76,102,104-105
+guides/download-a-spreadsheet.mdx
+  s_b7eb0febbb09c2::t_f509f3bd357fba 55
+guides/find-things.mdx
+  s_b7eb0febbb09c2::t_34b8f13e58670b 38,72
+guides/fix-formula-errors.mdx
+  s_b7eb0febbb09c2::t_485002a29f4f33 25
+guides/refresh-data.mdx
+  s_b7eb0febbb09c2::t_1e480ba936492a 4,11-13
+guides/undo-changes.mdx
+  s_b7eb0febbb09c2::t_895a4b24de0a24 38,54
+reference/connection-statuses.mdx
+  s_b7eb0febbb09c2::t_815f52da372f9f 31,145,182-183,292
+reference/formula-errors.mdx
+  s_b7eb0febbb09c2::t_dd47b195785644 45
+reference/interface.mdx
+  s_b7eb0febbb09c2::t_62630011c4d87a 290,434-435
+reference/limits.mdx
+  s_b7eb0febbb09c2::t_ee01ffe17b60a9 61-62
+reference/plans-and-billing.mdx
+  s_b7eb0febbb09c2::t_d152ce0af5dcc1 197
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "ac89f077b649a5fe2d7bcf52123ea63441ffec8e",
+  "prompts": {},
+  "sessions": {
+    "s_b7eb0febbb09c2": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d7cfe533-a1b5-4cfc-81cc-1d9bb41b0d34",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": "niteshift-dev[bot] <219592090+niteshift-dev[bot]@users.noreply.github.com>"
+    }
+  }
+}

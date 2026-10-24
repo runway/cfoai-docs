@@ -1,0 +1,144 @@
+guides/connect-an-ai-client.mdx
+  s_7bc7ffe9a85257::t_ba38759a31ea58 130
+guides/break-down-a-number.mdx
+  s_7bc7ffe9a85257::t_fee8670ddd24d9 91
+guides/review-ari-formula-changes.mdx
+  s_7bc7ffe9a85257::t_3c1ab6ffc138d7 22
+guides/merge-a-scenario.mdx
+  s_7bc7ffe9a85257::t_f590d4ac802ac8 41
+  s_7bc7ffe9a85257::t_dad4929f9daec2 4,39
+guides/actuals-and-forecast-formulas.mdx
+  s_7bc7ffe9a85257::t_01de16bff886b4 9
+concepts/variables-and-dimensions.mdx
+  s_7bc7ffe9a85257::t_f20ebb5cb70ef4 43
+guides/get-better-answers.mdx
+  s_7bc7ffe9a85257::t_3d4d76ce991ceb 15
+concepts/formulas.mdx
+  s_7bc7ffe9a85257::t_d64645cc1dd920 45-47
+  s_7bc7ffe9a85257::t_81efc3a8d46338 57
+  s_7bc7ffe9a85257::t_b09a2a076f82f1 83
+agents/write-formulas.mdx
+  s_7bc7ffe9a85257::t_85cccb447fb252 176,178-184
+reference/limits.mdx
+  s_7bc7ffe9a85257::t_dcdbb4ae3d8491 43-44
+guides/check-imported-data.mdx
+  s_7bc7ffe9a85257::t_6339861b51cea2 27
+guides/change-your-model-with-ari.mdx
+  s_7bc7ffe9a85257::t_cfa7fab4f70322 11
+  s_7bc7ffe9a85257::t_a5705de6f2b96e 53
+tutorials/first-week.mdx
+  s_7bc7ffe9a85257::t_c2ab3bca396e74 48
+guides/build-a-forecast.mdx
+  s_7bc7ffe9a85257::t_06c4939297ad3f 25
+  s_7bc7ffe9a85257::t_97be14b3cb6f12 74
+guides/create-a-guide.mdx
+  s_7bc7ffe9a85257::t_0672ed35cf6c60 37
+guides/refresh-data.mdx
+  s_7bc7ffe9a85257::t_118ecfedb2b629 7
+guides/attach-files.mdx
+  s_7bc7ffe9a85257::t_41b482a97507c4 29
+  s_7bc7ffe9a85257::t_6cd95206510578 30
+guides/index.mdx
+  s_7bc7ffe9a85257::t_001321972d804e 22
+guides/consolidate-entities.mdx
+  s_7bc7ffe9a85257::t_7dff8b9da2faf4 18
+  s_7bc7ffe9a85257::t_a96b6b9ed97d1f 34
+guides/use-ari-in-slack.mdx
+  s_7bc7ffe9a85257::t_94fe37c06fa061 77-82,85
+  s_7bc7ffe9a85257::t_5dd7eec8b5fe2c 15
+concepts/how-cfoai-works.mdx
+  s_7bc7ffe9a85257::t_3cfbb6a15119a5 10
+  s_7bc7ffe9a85257::t_6a1f649f660814 46
+guides/build-a-table.mdx
+  s_7bc7ffe9a85257::t_e21e079dca254c 19
+scripts/check-docs.mjs
+  s_7bc7ffe9a85257::t_94a3e82a957269 104-106,108-113
+  s_7bc7ffe9a85257::t_550a057ee5be29 90-94,100,102-103,107
+reference/imported-data.mdx
+  s_7bc7ffe9a85257::t_c1321fd958b13b 62
+  s_7bc7ffe9a85257::t_8ccec07e4dec62 73
+concepts/scenarios.mdx
+  s_7bc7ffe9a85257::t_17e1e547aefe76 15
+  s_7bc7ffe9a85257::t_85589b095e8684 59
+  s_7bc7ffe9a85257::t_171834ec08831d 26
+reference/keyboard-shortcuts.mdx
+  s_7bc7ffe9a85257::t_0791f6011734bd 13-16
+agents/validate-and-verify.mdx
+  s_7bc7ffe9a85257::t_5298d3e3b2d7df 40
+  s_7bc7ffe9a85257::t_9d70b513ffcca5 41
+  s_7bc7ffe9a85257::t_97a86c7667f4e9 34
+agents/index.mdx
+  s_7bc7ffe9a85257::t_d2b59e7b2e5a46 12
+  s_7bc7ffe9a85257::t_c14ea5ca3081b5 8
+reference/functions.mdx
+  s_7bc7ffe9a85257::t_81d5a414f538e6 495
+  s_7bc7ffe9a85257::t_2f44c29d9b081f 161
+  s_7bc7ffe9a85257::t_3e5b76ea9b7e3a 148
+guides/switch-to-real-numbers.mdx
+  s_7bc7ffe9a85257::t_6d308d3ee9b294 7
+  s_7bc7ffe9a85257::t_4040bc99abcbc9 4
+guides/ask-about-a-number.mdx
+  s_7bc7ffe9a85257::t_9fe0caba16c2fa 79
+guides/connect-other-sources.mdx
+  s_7bc7ffe9a85257::t_bee6dd45d11a37 95
+  s_7bc7ffe9a85257::t_6c4281f2bb4091 81
+guides/build-financial-statements.mdx
+  s_7bc7ffe9a85257::t_f77cc208477ee1 7
+guides/connect-accounting.mdx
+  s_7bc7ffe9a85257::t_408b4ac4e24a56 75
+  s_7bc7ffe9a85257::t_0bf498f1830cda 105
+guides/close-the-month.mdx
+  s_7bc7ffe9a85257::t_9d364b53d17e98 4
+  s_7bc7ffe9a85257::t_823c5c44367fcb 11,24-27
+  s_7bc7ffe9a85257::t_0276f8143e1372 28
+agents/formula-scope.mdx
+  s_7bc7ffe9a85257::t_d200b12f3df248 64
+  s_7bc7ffe9a85257::t_d6131d898e576a 88
+guides/approve-ari-actions.mdx
+  s_7bc7ffe9a85257::t_3c7b5b7afcb3b5 48
+concepts/connected-data.mdx
+  s_7bc7ffe9a85257::t_8b8740e176d7dc 53
+guides/write-a-formula.mdx
+  s_7bc7ffe9a85257::t_ea51d76938c48d 173-174
+reference/glossary.mdx
+  s_7bc7ffe9a85257::t_491c4f82900541 26
+guides/choose-a-plan.mdx
+  s_7bc7ffe9a85257::t_a53e226b279633 63
+  s_7bc7ffe9a85257::t_1cdc90ffb4f173 7
+  s_7bc7ffe9a85257::t_725e3e2b48c381 9
+guides/fix-formula-errors.mdx
+  s_7bc7ffe9a85257::t_b0b69687436b22 39
+  s_7bc7ffe9a85257::t_a818f93021436c 80
+scripts/check-docs.test.mjs
+  s_7bc7ffe9a85257::t_1324944b677bf8 90
+  s_7bc7ffe9a85257::t_244a1f5da92c13 102-114
+  s_7bc7ffe9a85257::t_c532c253d2ebc6 323-329
+guides/personalize-cfoai.mdx
+  s_7bc7ffe9a85257::t_d5e08403d53378 17
+concepts/working-with-ari.mdx
+  s_7bc7ffe9a85257::t_7e22f14df247dc 90
+guides/change-a-visual.mdx
+  s_7bc7ffe9a85257::t_1dbbed09111254 39
+guides/build-a-dashboard.mdx
+  s_7bc7ffe9a85257::t_d12c705df88669 7
+agents/table-view-grammar.mdx
+  s_7bc7ffe9a85257::t_817753ecf3402e 90
+guides/enter-values.mdx
+  s_7bc7ffe9a85257::t_3aa08cf6bacc10 68
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a2581597b5ec06ab7e06858019ceff9b83a630f6",
+  "prompts": {},
+  "sessions": {
+    "s_7bc7ffe9a85257": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "43b1e043-3d0e-40c3-bacc-de97b588da35",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Siqi Chen <blader@gmail.com>"
+    }
+  }
+}

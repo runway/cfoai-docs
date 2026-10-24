@@ -1,0 +1,75 @@
+STYLE.md
+  s_724f60c9b3c5d7::t_66babb2f57669a 38,54,64-67
+agent-instructions.mdx
+  s_724f60c9b3c5d7::t_d935921c9a46d2 57,63-66,69-96
+ari/meet-ari.mdx
+  s_724f60c9b3c5d7::t_c3342ca6ac545f 44-51,64
+automation/guides.mdx
+  s_724f60c9b3c5d7::t_c78f18017e6f02 11-15,24,27-28,31,35
+automation/skills.mdx
+  s_724f60c9b3c5d7::t_10e51e65057efc 23-24,37,194,267,269
+automation/triggers.mdx
+  s_724f60c9b3c5d7::t_c5a4f10ec463b6 25-28,31
+dashboards/build-and-format-tables.mdx
+  s_724f60c9b3c5d7::t_8fcbab6a75bd72 13,41-44
+dashboards/pages-and-blocks.mdx
+  s_724f60c9b3c5d7::t_667e24c8cbdea4 13
+dashboards/share-pages-and-scenarios.mdx
+  s_724f60c9b3c5d7::t_78b070ead553ab 20-23,25-28,30-31,35-43,50,54,58
+formulas/agent-docs/authoring-overview.mdx
+  s_724f60c9b3c5d7::t_6188b2fc437b4e 10-17,23,25,31,35,39
+formulas/agent-docs/create-and-update.mdx
+  s_724f60c9b3c5d7::t_344d38c4308653 3,6-10,14-20,25-36,40,44,49-62,64-83,89-139,141,143,147,149
+formulas/agent-docs/evaluate-without-saving.mdx
+  s_724f60c9b3c5d7::t_e1e928f9209866 10,15-18,22,26,28,32
+formulas/agent-docs/read-and-explain.mdx
+  s_724f60c9b3c5d7::t_c6789d0a3eaeaf 6,15,19-32,36,41-45,49-55
+formulas/agent-docs/resolve-scope.mdx
+  s_724f60c9b3c5d7::t_2992e78fa21272 56,67
+formulas/agent-docs/validate-and-verify.mdx
+  s_724f60c9b3c5d7::t_03f1e3515a6981 12-13,27,29-32,34
+formulas/agent-docs/work-with-formula-ranges.mdx
+  s_724f60c9b3c5d7::t_11e3de5042d1a2 26,30
+formulas/core-concepts/how-aggregation-works.mdx
+  s_724f60c9b3c5d7::t_6b06b923ac3601 22,25
+formulas/formula-reference/formula-errors-and-troubleshooting.mdx
+  s_724f60c9b3c5d7::t_9685386a7cab02 47-61
+formulas/formula-reference/function-reference/aggregation-functions.mdx
+  s_724f60c9b3c5d7::t_a38acae49388b9 48
+getting-started/build-by-hand.mdx
+  s_724f60c9b3c5d7::t_1a39ca89c6bbe9 13,15,17-18,96,114-115,117,136-139,144-145,177,189-190,241,320,331,400-401,404,407,410,414,418,426,428-430,433-434,450-454,457-459
+getting-started/quickstart.mdx
+  s_724f60c9b3c5d7::t_f56dd1df16d183 11,13
+getting-started/understand-your-workspace.mdx
+  s_724f60c9b3c5d7::t_4eb2953c68bb42 7,22
+integrations/connect-and-sync-data.mdx
+  s_724f60c9b3c5d7::t_7c3b15ec381fa1 37-39,53-62,70-72,80-81,84-89
+integrations/integrations-directory.mdx
+  s_724f60c9b3c5d7::t_f5ea992e3ef74a 22,24-26,34,40,64-65,80-82,84,109-125,127
+integrations/mcp-server.mdx
+  s_724f60c9b3c5d7::t_342f75dd0da5d2 77-82
+workspace-settings/billing.mdx
+  s_724f60c9b3c5d7::t_9c759eea517673 49-54
+workspace-settings/file-attachments-in-chat.mdx
+  s_724f60c9b3c5d7::t_203b5ad556156f 37-40
+workspace-settings/personal-theme.mdx
+  s_724f60c9b3c5d7::t_bd96d9eadcce6c 25-26
+workspace-settings/team-and-workspace.mdx
+  s_724f60c9b3c5d7::t_c5993c11f8964d 29,31,45
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "07f9b03dd201b8cad5f706e6120086f85bac8629",
+  "prompts": {},
+  "sessions": {
+    "s_724f60c9b3c5d7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ec814585-6d61-4acc-8ec7-d4508dedb886",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": "Siqi Chen <blader@gmail.com>"
+    }
+  }
+}

@@ -1,0 +1,45 @@
+ari/meet-ari.mdx
+  s_724f60c9b3c5d7::t_f6559a6c953743 50
+automation/guides.mdx
+  s_724f60c9b3c5d7::t_1a74a232a152c0 27
+automation/triggers.mdx
+  s_724f60c9b3c5d7::t_e7b190a49a760a 31
+dashboards/share-pages-and-scenarios.mdx
+  s_724f60c9b3c5d7::t_be68ea9e441ab3 31,47
+formulas/agent-docs/evaluate-without-saving.mdx
+  s_724f60c9b3c5d7::t_fc2088fbb0f354 26
+formulas/agent-docs/read-and-explain.mdx
+  s_724f60c9b3c5d7::t_0aacc88e354908 19
+formulas/agent-docs/resolve-scope.mdx
+  s_724f60c9b3c5d7::t_1047ac8123ab26 56
+formulas/agent-docs/work-with-formula-ranges.mdx
+  s_724f60c9b3c5d7::t_473a4dd6abbe98 26,30
+formulas/formula-reference/formula-errors-and-troubleshooting.mdx
+  s_724f60c9b3c5d7::t_aaa266297c4c9f 51
+formulas/formula-reference/function-reference/aggregation-functions.mdx
+  s_724f60c9b3c5d7::t_9f1626a4a8e412 48
+getting-started/build-by-hand.mdx
+  s_724f60c9b3c5d7::t_3060324aab4372 418
+getting-started/quickstart.mdx
+  s_724f60c9b3c5d7::t_3f706a298bb98d 13
+getting-started/understand-your-workspace.mdx
+  s_724f60c9b3c5d7::t_7dd2345738e1ff 7
+integrations/connect-and-sync-data.mdx
+  s_724f60c9b3c5d7::t_b9bad1419d6d7c 82
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "0d92f34a06e1eca5afdd976d96859442b12c843e",
+  "prompts": {},
+  "sessions": {
+    "s_724f60c9b3c5d7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ec814585-6d61-4acc-8ec7-d4508dedb886",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": "Siqi Chen <blader@gmail.com>"
+    }
+  }
+}

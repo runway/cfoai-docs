@@ -1,0 +1,33 @@
+STYLE.md
+  s_7bc7ffe9a85257::t_50b7f75051b58f 13,15,23
+agents/index.mdx
+  s_7bc7ffe9a85257::t_44df4d42af4d5d 3
+concepts/index.mdx
+  s_7bc7ffe9a85257::t_6d748a5c899f70 3
+docs.json
+  s_7bc7ffe9a85257::t_5e702f8b4ed2c9 19,21,25,36,40,176,180,222,226,277,281
+guides/index.mdx
+  s_7bc7ffe9a85257::t_d7c41017deb513 3
+reference/index.mdx
+  s_7bc7ffe9a85257::t_13d3aaac478b41 3
+scripts/check-docs.mjs
+  s_7bc7ffe9a85257::t_76bbe1caf102c3 33-34,37,44,52,148-149,152-156,160-161,166
+scripts/check-docs.test.mjs
+  s_7bc7ffe9a85257::t_2b8c84198a3138 127,131,133,137,288,294,298
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "3ca01038a89a90eb3b4af73cef7f037e13c6ea6e",
+  "prompts": {},
+  "sessions": {
+    "s_7bc7ffe9a85257": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "43b1e043-3d0e-40c3-bacc-de97b588da35",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Siqi Chen <blader@gmail.com>"
+    }
+  }
+}

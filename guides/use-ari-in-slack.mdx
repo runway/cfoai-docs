@@ -96,14 +96,7 @@ To stop Ari in a channel, remove the cfo.ai app from the channel. Ari works only
 
 ## If Ari leaves a channel
 
-Ari stays in a channel only while all of these hold. When one stops holding, Ari posts one sentence that says why, and leaves:
-
-| Ari says | Why |
-| --- | --- |
-| **I only work in private channels, so I'm leaving this one. Add me to a private channel, or send me a direct message.** | The channel is public, or was made public after Ari joined. |
-| **Only a cfo.ai admin can add me to a channel, so I'm leaving. Ask a cfo.ai admin to invite me.** | The person who invited Ari is not an administrator of the connected cfo.ai workspace, or their Slack email matches no one in it. |
-| **A cfo.ai admin needs to disconnect Slack and add it again in cfo.ai Settings before I can work in channels, so I'm leaving. Invite me again after that.** | Your Slack workspace was connected before channels were supported, so the app lacks the permission to read channels. In **Settings → Ari → Slack**, select **Disconnect**, then **Add to Slack** again, and invite Ari to the channel once more. |
-| **The admin who added me here no longer has admin access in cfo.ai, so I'm leaving. A cfo.ai admin can invite me again.** | The administrator whose access the channel used was removed from the workspace. Another administrator can add Ari again. |
+Ari stays in a channel only while all of these hold: the channel is private, the person who added Ari is an administrator of the connected cfo.ai workspace whose Slack email matches their cfo.ai email, that administrator still has admin access, and the Slack app has the channel permissions. When one stops holding, Ari posts one sentence that says why, and leaves. [Chat controls and messages](/reference/chat#ari-in-slack) lists each sentence. If the sentence says a cfo.ai admin must disconnect Slack and add it again, your Slack workspace was connected before channels were supported: in **Settings → Ari → Slack**, select **Disconnect**, then **Add to Slack** again, and invite Ari to the channel once more.
 
 Slack cannot invite an app that is already in the channel, which is why Ari leaves instead of staying quiet.
 

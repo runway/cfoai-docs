@@ -251,14 +251,14 @@ No table owns a Variable or Dimension. The saved tables that show it, as a row, 
 | You remove | What happens |
 | --- | --- |
 | A row or column, while another saved table still shows the Variable or Dimension | It leaves this table only. |
-| Its last row or column on any table | cfo.ai asks **Delete variable or dimension?** before anything changes. Confirming deletes it from the Model. |
+| Its last row, column, or drill-in on any table | cfo.ai asks **Delete variable or dimension?** before anything changes. Confirming deletes it from the Model. |
 | A table, with **Delete block**, or that table's Page | A Variable or Dimension another table still shows is kept. One no other table shows is deleted with the table, after the same question. |
 
 The question is always asked, even when nothing else uses the Variable or Dimension:
 
 | Dialog | Text | Buttons |
 | --- | --- | --- |
-| **Delete variable or dimension?** (**Delete variables or dimensions?** for several) | **[name] will no longer appear on any table.** when nothing else uses it. Otherwise **Deleting [name] will break [counts].** The counts can include formulas, blocks, Canvas blocks, property settings, and items or pins, and end with **including [N] dependents you can’t see** when you cannot open some of them. | **Cancel** keeps everything as it is. **Keep with Ari** cancels the deletion and opens a chat that names the Variable or Dimension, so Ari can place it on another table; it appears when you can start a chat. **Delete completely** deletes it from the Model and every table. |
+| **Delete variable or dimension?** (**Delete variables or dimensions?** for several) | **[name] will no longer appear on any table.** when nothing else uses it; otherwise **Deleting [name] will break [counts].** The counts can include formulas, blocks, Canvas blocks, property settings, and items or pins, and end with **including [N] dependents you can’t see** when you cannot open some of them. | **Cancel** keeps everything as it is. **Keep with Ari** cancels the deletion and opens a chat that names the Variable or Dimension, so Ari can place it on another table; it appears when you can start a chat. **Delete completely** deletes it from the Model and every table. |
 | **Delete item?** | **“[item]” is still used. Deleting it everywhere changes:** and a list of what reads the item. | **Cancel**, **Delete anyway**. Confirming also deletes the formulas whose condition selects only that item, such as the values typed into the item's row. |
 
 To see where a Variable or Dimension is shown, point at its row or column name: the mark beside a name that other tables also show reads **Shown on: [table] on [page]**. **Go to another table** in its right-click menu opens one of those tables.
@@ -325,7 +325,7 @@ A table starts with **Sum**, or **Last** when it shows a Dimension's values. Tex
 | Colored pills | Items of a Dimension, in the Dimension's color. |
 | Colored references and outlined cells while you edit a formula | Each reference in the formula gets its own color, in order, and the cells it reads take the same color. The colors only tell references apart. See [Write a formula](/guides/write-a-formula). |
 | A logo beside a row name | The Variable reads a connected system, such as QuickBooks. |
-| A link mark beside a row name, when you point at the row | The Variable appears on other tables too. Point at the mark for **[N] synced instances** and **Original:** with its table and Page, or **No access** when you cannot open it. |
+| A link mark beside a row name, when you point at the row | The Variable appears on other tables you can open too. Point at the mark for **[N] synced instances** and **Shown on: [table] on [page]**. |
 | A hatched background | Drill-in rows: the inputs of a formula, or source records. |
 | **LC** and a vertical line | Last close. Actuals are to the left, Forecast to the right. |
 | A funnel in a column header | The rows are filtered by that column's value, such as **Filtered: Status is Active**. A filter the list cannot show reads **Filtered by a custom condition on Status**. |

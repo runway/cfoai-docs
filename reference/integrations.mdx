@@ -30,7 +30,7 @@ These are the systems customers ask about most. Search the rest of this page, or
 | Square, PayPal, Braintree, Chargebee, Recurly, Zuora | Supported through Fivetran, standard |
 | Toast | Not available |
 | Mercury | Available to Ari as an [MCP connector](#mcp-connectors) and an [API](#apis) for live lookups, not as a synced integration |
-| Other banks | A US bank connects through Plaid: pick it in the directory, where it reads **[Bank] (bank accounts)**. cfo.ai adds **Plaid Accounts**, the account balances observed at each sync, and **Plaid Transactions**, the posted transactions. Plaid gives no past balances, so balances start on the first sync. Bank balances also reach cfo.ai through your accounting system's balance sheet, or upload a CSV of bank transactions. |
+| Other banks | A US bank connects through Plaid, as a standard connection that uses a slot: pick it in the directory, where it reads **[Bank] (bank accounts)**, and sign in to the bank in the window cfo.ai opens. cfo.ai adds **Plaid Accounts**, the account balances observed at each sync, and **Plaid Transactions**, the posted transactions. Plaid gives no past balances, so balances start on the first sync. Bank balances also reach cfo.ai through your accounting system's balance sheet, or upload a CSV of bank transactions. |
 | Brex, Ramp | Supported through Fivetran, standard. Also MCP connectors for Ari. A Brex connection gets five saved queries; see [Brex](#brex). |
 | Snowflake, BigQuery, Databricks | Supported: [Snowflake](#snowflake), [BigQuery](#bigquery), [Databricks](#databricks), premium |
 | PostgreSQL, MySQL, SQL Server | Supported, premium. See [PostgreSQL](#postgresql) and [Other databases and data warehouses](#other-databases-and-data-warehouses). |
@@ -80,7 +80,7 @@ Each integration that syncs data into your Model is standard or premium, and eac
 These connections do not use a slot:
 
 - CSV uploads.
-- MCP servers and APIs that Ari calls live. If Ari saves a sync setup that copies an MCP server's or an API's data into your Model, that server or API then uses one standard slot.
+- MCP servers and APIs, whether Ari calls them live or has saved a sync setup that copies their data into your Model.
 
 Two rules change the count:
 
@@ -93,6 +93,7 @@ Most sources connect through Merge or Fivetran, outside services that copy a sou
 
 | Method | Sources | What you do |
 | --- | --- | --- |
+| Sign in through Plaid | US banks, listed as **[Bank] (bank accounts)** | Choose the bank in the directory and sign in to it in the window cfo.ai opens. |
 | Sign in through Merge | QuickBooks Online, Xero, Gusto, Justworks, and the other HR and payroll systems that connect through Merge | Sign in to the system in a window cfo.ai opens, choose the company, and approve access. |
 | Fivetran setup window | NetSuite SuiteAnalytics, Rippling, HubSpot, Salesforce, databases, and the other sources this page lists as syncing through Fivetran | Enter the credentials or sign-in the source needs in Fivetran's setup window. Some sources then show a table picker. |
 | API key | Rillet | Paste a Rillet API key into the card. |
@@ -203,7 +204,7 @@ If NetSuite hides a table the statements need, the connection reads **Missing ac
 
 | Fact | Detail |
 | --- | --- |
-| How it connects | Through Fivetran: the sign-in Fivetran's window asks for |
+| How it connects | Through Fivetran's setup window; enter the credentials Brex asks for there. |
 | Standard or premium | Standard |
 | Saved queries cfo.ai adds | **Brex Cash Transactions**, **Brex Card Transactions**, **Brex Expenses**, **Brex Cash Statements**, and **Brex Card Statements**, each over one of the tables Fivetran lands. Each installs once a completed sync has landed its table, because you choose which Brex tables Fivetran syncs. |
 | Amounts | In currency units, such as dollars for USD. Brex stores every amount in the currency's smallest unit, such as cents, and the queries divide by that unit, so a ¥1,500 expense loads as 1,500. Merchant category codes load as four-digit text, such as `0742`, not as numbers. |

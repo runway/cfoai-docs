@@ -71,11 +71,11 @@ A cell with nothing of its own has nothing to clear. Its number comes from the r
 
 - **⌘ C** copies the selected cells, **⌘ X** cuts them, and **⌘ V** pastes. On Windows and Linux, use **Ctrl**.
 - **⌘ Shift V** pastes values only, without formulas.
-- Right-click a cell for **Copy**, **Copy value**, and **Paste**. **Copy** appears on a cell that has a formula.
+- Right-click a cell for **Copy**, **Copy value**, and **Paste**. **Copy** appears on a cell that has a formula. [Table block controls and messages](/reference/table-blocks#cell-menu) lists every row of that menu.
 
 A cut works the way it does in Excel: the cut cells stay in place, outlined, until you paste, and the paste clears them. Press **Esc**, or copy something else, to cancel the cut. You can paste into another table.
 
-A copy holds what each cell shows, so a range you copy with **⌘ C** pastes into Excel or Google Sheets as numbers: a cell that calculates `1000 * 1.5` and shows `1,500` arrives as 1,500. Pasting the same copy back into a cfo.ai table writes the formulas, as many times as you paste, as long as you stay in the same browser tab and copy nothing else in between. In another tab, or after a reload, the paste writes the shown values instead. To copy a formula as text, open the cell's formula editor or use the copy button on its formula card.
+A copy holds what each cell shows, so the numeric cells in a range you copy with **⌘ C** paste into Excel or Google Sheets as numbers, and text cells stay text: a cell that calculates `1000 * 1.5` and shows `1,500` arrives as 1,500. Pasting the same copy back into a cfo.ai table writes the formulas, as many times as you paste, as long as you stay in the same browser tab and copy nothing else in between. In another tab, or after a reload, the paste writes the shown values instead. To copy a formula as text, open the cell's formula editor or use the copy button on its formula card.
 
 You can paste a range from Excel or Google Sheets. Each pasted cell is read the way a typed entry is, so `$1,000` becomes 1000 and `(200)` becomes -200. Text is saved exactly as copied, and a spreadsheet cell with line breaks stays one cell.
 

@@ -136,7 +136,7 @@ count(`Deal Amount`[Deal in any])
 
 It takes 1 to 10 arguments. A value of 0 counts.
 
-A bracketed read keeps each Dimension it filters on, so `count` over a Dimension filtered by another Dimension counts each pair, not each item. `count(Deal[Region in {"East", "West"}])` counts a deal once for every one of those Region items its records carry, so a deal with records in both regions counts twice. On a deal's own row, the condition on Region replaces the row's Region, and the read counts that deal's items among them. To count each deal once:
+A bracketed read keeps each Dimension it filters on, so `count` over a Dimension filtered by another Dimension counts each Deal and Region pair, not each Deal. `count(Deal[Region in {"East", "West"}])` counts a deal once for every one of those Region items its records carry, so a deal with records in both regions counts twice. On a deal's own row, the condition on Region replaces the row's Region, so the count covers that deal's records in those regions. To count each deal once:
 
 - For one total, `count(Deal$[Deal where count(Deal[Deal = Deal, Region in {"East", "West"}]) > 0])`: the `where` inside the brackets keeps each deal with a record in either region, and the `$` reads the whole Dimension rather than the cell's own deal (see [where inside the brackets](/reference/formula-syntax#lookups-and-filters)). On a deal table, every deal's row shows that same total, because the condition on Deal replaces the row's own deal.
 - For 1 or 0 on each deal's row, `if(count(Deal[Region in {"East", "West"}]) > 0, 1, 0)`.
@@ -264,7 +264,7 @@ if(condition, value_if_true, value_if_false)
 if(Revenue > 0, `Gross Profit` / Revenue, 0)
 ```
 
-An ordering comparison with an empty value, such as `` `End Date` < date(2030, 1, 1) ``, is not true, so `if` returns the third argument. `=` and `<>` do compare empty values: `` if(`End Date` = null, 1, 0) `` marks a person with no end date, and `` Section <> "G&A" `` is true where Section is empty. You can nest calls: `if(Revenue > 100, "high", if(Revenue > 50, "medium", "low"))`.
+An ordering comparison with an empty value, such as `` `End Date` < date(2030, 1, 1) ``, is not true, so `if` returns the third argument. For how `=` and `<>` treat an empty value, see [Formula syntax](/reference/formula-syntax#numbers-text-and-empty-values). You can nest calls: `if(Revenue > 100, "high", if(Revenue > 50, "medium", "low"))`.
 
 ### iferror
 

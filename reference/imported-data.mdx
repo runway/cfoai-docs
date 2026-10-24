@@ -21,7 +21,7 @@ A CSV you upload as a data source loads as one table.
 | Each file | Becomes its own data source, named after the file until you rename it |
 | Refresh | Never. A new upload of the file replaces its rows. |
 
-A file whose records do not all have the line of column names' number of fields fails with **The file couldn’t load**, followed by what was wrong. To load it, fix those lines or let Ari clean up a copy; see [Upload a CSV as a data source](/guides/upload-a-csv). Ari's note on a load states how many records loaded out of how many the file holds, so a table that stopped early says so.
+A file fails with **The file couldn’t load**, followed by what was wrong, when a record has more or fewer fields than the line of column names. To load it, fix those records or let Ari clean up a copy; see [Upload a CSV as a data source](/guides/upload-a-csv). When the table cfo.ai located ends before the file's records do, the load succeeds with the located records only, and Ari's note on the load says how many records loaded out of how many the file holds.
 
 The **Upload** button does not take Excel workbooks or PDFs. Attach those to a chat and ask Ari to load the table you need.
 
@@ -69,7 +69,7 @@ A starting formula has no [formula range](/reference/glossary#formula-range), so
 
 | Source | Saved queries | Columns |
 | --- | --- | --- |
-| QuickBooks Online | **QuickBooks Profit & Loss**, **QuickBooks Balance Sheet** | Amounts split into **Revenue**, **Cost of Goods Sold**, **Expense**, **Other Income**, **Other Expense**, and **Unclassified P&L Amount**, with the account, **Vendor**, **Entity**, and **Currency**. Both are on the company's accounting basis, cash or accrual, read from the company's **Report Basis** preference in QuickBooks at the connection's first sync, or set by asking Ari; a connection that synced before cfo.ai read the preference holds accrual reports until its next sync, and after a change of basis every sync requests every month until one succeeds on the new basis. Each report is as QuickBooks returned it when a sync last wrote the month; [How much history loads](#how-much-history-loads) says which months a refresh rewrites. The balance sheet dates each month's balances by the month's last day, so the month in progress keeps one **Period** from its first sync until it closes. |
+| QuickBooks Online | **QuickBooks Profit & Loss**, **QuickBooks Balance Sheet** | Amounts split into **Revenue**, **Cost of Goods Sold**, **Expense**, **Other Income**, **Other Expense**, and **Unclassified P&L Amount**, with the account, **Vendor**, **Entity**, and **Currency**. Both are on the company's accounting basis, cash or accrual; see [QuickBooks Online](/reference/integrations#quickbooks-online) for how the basis is read and switched. Each report is as QuickBooks returned it when a sync last wrote the month; [How much history loads](#how-much-history-loads) says which months a refresh rewrites. The balance sheet dates each month's balances by the month's last day, so the month in progress keeps one **Period** from its first sync until it closes. |
 | Xero | **Xero Income Statement** or **Xero Income Statement by Tracking Category**, **Xero Balance Sheet** | Amounts by account, with **Entity** and **Currency**. The tracking-category statement has one row per journal line and up to three tracking categories as numbered column pairs. See [Xero](/reference/integrations#xero). |
 | NetSuite SuiteAnalytics | **NetSuite Income Statement**, **NetSuite Balance Sheet** | Amounts by account. Income Statement rows also carry **Subsidiary** and **Currency Name**. |
 | Rillet | **Rillet Income Statement**, **Rillet Balance Sheet** | One set of rows per subsidiary, with **Entity** and **Currency** |
@@ -103,7 +103,7 @@ A Variable or Dimension shows its integration's logo on table row and column lab
 | Google Sheets and Google Drive | Nightly and when you ask Ari. An unchanged file starts no update. |
 | CSV uploads | Never |
 | MCP servers and APIs | Live when Ari calls them. A saved sync setup refreshes nightly, like an integration. |
-| Any source, on request | When you ask Ari to refresh it. There is no **Sync now** button. |
+| Any source, on request | When you ask Ari to refresh it, or when someone who manages connections selects **Sync now** on a linked integration's page; see [Refresh data](/guides/refresh-data). |
 
 The nightly refresh and refreshes you ask for work the same on every active plan, including a trial. A workspace with no plan, or whose billing is locked, does not refresh until it has an active plan again. A connection's last loaded time counts only syncs that finished; a failed or canceled sync does not move it.
 

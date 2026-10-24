@@ -7,10 +7,10 @@ Use this when you want Ari to read something that is not in your Model yet, such
 
 <Steps>
   <Step title="Add the files">
-    Select **Attach files** in the message box and choose the files, or paste a file such as a screenshot, or drop files on the message box. Each file shows as a tile while it uploads.
+    Select **Attach files** in the message box and choose the files, or paste a file such as a screenshot, or drop files on the message box. Each file shows as a tile while it uploads. A file over 30 MB shows how much of it has uploaded, and if your connection drops, the upload picks up where it stopped.
   </Step>
   <Step title="For a CSV, choose how Ari uses it">
-    A CSV tile shows **Data source** and **Chat only**. **Data source**, the default, also imports the file into cfo.ai when you send, so its rows can feed your Model. **Chat only** shares the file with Ari in this chat and imports nothing.
+    A CSV tile shows **Data source** and **Chat only**. **Data source**, the default, also imports the file into cfo.ai when you send, so its rows can feed your Model. **Chat only** shares the file with Ari in this chat and imports nothing. A CSV larger than a data source accepts, 50 MB, has no choice: it is a chat file only.
   </Step>
   <Step title="Say what the file is for, and send">
     Add a message that says what you want, then send. A file can also go on its own, with no text.
@@ -25,7 +25,7 @@ You can attach files while Ari is working on an earlier message, for example a s
 
 ## How Ari reads each kind of file
 
-- Images and PDFs reach Ari directly, and it reads them like a page.
+- Images and PDFs reach Ari directly, and it reads them like a page. A PDF larger than the [size Ari reads directly](/reference/limits#chat-with-ari) opens in Ari's private workspace instead, where Ari reads its text with code.
 - Text files and CSVs up to the [size limit for text in the chat](/reference/limits#chat-with-ari) are included in the conversation as text.
 - Excel workbooks, larger text files and CSVs, and other files open in Ari's private workspace, where Ari reads sheets, formulas, cached values, and the rest of the contents with code. Nothing Ari runs there can be reached from outside cfo.ai, and what Ari makes there reaches you only as a file it delivers to the chat.
 

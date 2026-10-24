@@ -98,7 +98,7 @@ Most sources connect through Merge or Fivetran, outside services that copy a sou
 | Fivetran setup window | NetSuite SuiteAnalytics, Rippling, HubSpot, Salesforce, databases, and the other sources this page lists as syncing through Fivetran | Enter the credentials or sign-in the source needs in Fivetran's setup window. Some sources then show a table picker. |
 | API key | Rillet | Paste a Rillet API key into the card. |
 | Stripe app | Stripe (Direct) | Sign in to Stripe and install cfo.ai's Stripe app, which asks for read-only access. |
-| Google sign-in and file picker | Google Sheets, Google Drive | Sign in with Google and choose one file. |
+| Google sign-in and file picker | Google Sheets, Google Drive | Sign in with Google and choose files: one spreadsheet for Google Sheets, one or more files of any type for Google Drive. |
 | File upload | CSV / Raw File Upload | Choose CSV files. Nothing to sign in to. |
 
 When a sign-in asks for a permission you do not have, the person who administers that system must connect it, or grant you access first. See each source below for what it needs.
@@ -332,11 +332,11 @@ Amazon Redshift is not in the catalog.
 
 | Fact | Detail |
 | --- | --- |
-| How it connects | Sign in with Google and choose one file: a Google Sheet, an Excel workbook (`.xlsx`), or a CSV file |
-| Standard or premium | Standard. Each Google Drive connection uses its own slot. |
-| What it loads | Ari imports the file the way it imports an upload |
-| Refresh | Nightly and when you ask Ari |
-| Limits | A Google Sheet up to 50 MB as an Excel workbook; an Excel or CSV file up to 10 MB |
+| How it connects | Sign in with Google and choose one or more files of any type in Google's file picker. cfo.ai can open only the files you choose, nothing else in your Drive. |
+| Standard or premium | Standard. Each Google Drive connection uses its own slot, so choosing three spreadsheets uses three. |
+| What it loads | Each Google Sheet, Excel workbook (`.xlsx`), or CSV file you choose becomes its own connection, and Ari imports it the way it imports an upload. A spreadsheet already connected through Google Drive is not connected a second time. Ari can read every file you chose, such as PDFs, Word documents, and Google Docs and Slides, when you ask about them. A Google Doc, presentation, or drawing is read as a PDF. If none of the files is a spreadsheet, nothing is imported, and the connection's row reads **Ari reads these files when you ask about them. None is a spreadsheet to import.** |
+| Refresh | Nightly and when you ask Ari. Ari reads the other files as they are in Drive when it reads them. |
+| Limits | Each imported spreadsheet: a Google Sheet up to 50 MB as an Excel workbook, or an Excel or CSV file up to 10 MB. Ari reads each other file you chose, or a Doc or presentation as its PDF, up to 50 MB, the size of one file attached to a chat (see [Limits](/reference/limits#chat-with-ari)). The files you choose are fixed; to change them, remove the connection and create a new one. |
 
 ### Document stores
 

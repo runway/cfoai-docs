@@ -85,7 +85,7 @@ These connections do not use a slot:
 
 Two rules change the count:
 
-- Every Google Sheets connection in a workspace shares one slot. Each Google Drive connection uses its own.
+- Every Google Sheets connection in a workspace shares one slot, and every Google Drive connection shares another.
 - Each connection to a system uses its own slot, so a second QuickBooks company uses a second slot. A connection keeps its slot while it is broken or unfinished, until you remove it.
 
 ## How each kind of source connects
@@ -333,7 +333,7 @@ Amazon Redshift is not in the catalog.
 | Fact | Detail |
 | --- | --- |
 | How it connects | Sign in with Google and choose one or more files of any type in Google's file picker. cfo.ai can open only the files you choose, nothing else in your Drive. |
-| Standard or premium | Standard. Each Google Drive connection uses its own slot, so choosing three spreadsheets uses three. |
+| Standard or premium | Standard. Every Google Drive connection in a workspace shares one slot, so choosing three spreadsheets uses one. |
 | What it loads | Each Google Sheet, Excel workbook (`.xlsx`), or CSV file you choose becomes its own connection, and Ari imports it the way it imports an upload. A spreadsheet already connected through Google Drive is not connected a second time. Ari can read every file you chose, such as PDFs, Word documents, and Google Docs and Slides, when you ask about them. A Google Doc, presentation, or drawing is read as a PDF. If none of the files is a spreadsheet, nothing is imported, and the connection's row reads **Ari reads these files when you ask about them. None is a spreadsheet to import.** |
 | Refresh | Nightly and when you ask Ari. Ari reads the other files as they are in Drive when it reads them. |
 | Limits | Each imported spreadsheet: a Google Sheet up to 50 MB as an Excel workbook, or an Excel or CSV file up to 10 MB. Ari reads each other file you chose, or a Doc or presentation as its PDF, up to 50 MB, the size of one file attached to a chat (see [Limits](/reference/limits#chat-with-ari)). The files you choose are fixed; to change them, remove the connection and create a new one. |

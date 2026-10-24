@@ -9,7 +9,7 @@ Connect a Google Sheet when numbers you still keep in a spreadsheet should feed 
 ## Before you start
 
 - A Google account that can open the file.
-- A started trial or an active plan with a free connection slot. Every Google Sheets connection in a workspace shares one slot; each Google Drive connection uses its own. See [Standard and premium integrations](/reference/integrations#standard-and-premium-integrations).
+- A started trial or an active plan with a free connection slot. Every Google Sheets connection in a workspace shares one slot, and so does every Google Drive connection. See [Standard and premium integrations](/reference/integrations#standard-and-premium-integrations).
 
 cfo.ai can open only the files you pick in Google's file picker, nothing else in your Drive. You can remove its access from your Google account at any time.
 
@@ -55,7 +55,7 @@ Where the update happens follows where you connected the file. A file connected 
 
 ## Limits
 
-- One spreadsheet imported per connection. Choosing several spreadsheets in Google Drive makes one connection for each, and each Google Drive connection uses its own slot. The same file cannot be connected twice in a workspace: a spreadsheet you choose again is not connected a second time. A Google Drive connection can also hold other files for Ari to read; see [Google Drive](/reference/integrations#google-drive).
+- One spreadsheet imported per connection. Choosing several spreadsheets in Google Drive makes one connection for each, and all of them share Google Drive's one slot. Through a connect link someone sent you, choose one spreadsheet, along with any other files. The same file cannot be connected twice in a workspace: a spreadsheet you choose again is not connected a second time. A Google Drive connection can also hold other files for Ari to read; see [Google Drive](/reference/integrations#google-drive).
 - A Google Sheet can be up to 50 MB when exported as an Excel workbook. An Excel or CSV file in Drive can be up to 10 MB.
 - A larger file shows **This file is too large to import. Make it smaller and the next sync imports it.**
 

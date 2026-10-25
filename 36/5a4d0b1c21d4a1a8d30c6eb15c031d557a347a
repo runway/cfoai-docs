@@ -1,0 +1,19 @@
+concepts/connected-data.mdx
+  s_879646d5343b4b::t_dc092fc9be2570 49
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "365a4d0b1c21d4a1a8d30c6eb15c031d557a347a",
+  "prompts": {},
+  "sessions": {
+    "s_879646d5343b4b": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a171ed-f59b-7fc2-bea6-1bc5a3753ce0",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "Siqi Chen <blader@gmail.com>"
+    }
+  }
+}

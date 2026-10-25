@@ -29,8 +29,8 @@ These are the systems customers ask about most. Search the rest of this page, or
 | Shopify | Supported: [Shopify](#shopify), standard |
 | Square, PayPal, Braintree, Chargebee, Recurly, Zuora | Supported through Fivetran, standard |
 | Toast | Not available |
-| Mercury | Available to Ari as an [MCP connector](#mcp-connectors) and an [API](#apis) for live lookups, not as a synced integration |
-| Other banks | No direct bank feed. Bank balances reach cfo.ai through your accounting system's balance sheet, or upload a CSV of bank transactions. |
+| Mercury | Supported as a bank through Plaid, standard: pick **Mercury (bank accounts)** in the directory and sign in to Mercury in the window cfo.ai opens. It syncs into **Plaid Accounts** and **Plaid Transactions**, like any other US bank. Mercury is also available to Ari as an [MCP connector](#mcp-connectors) and an [API](#apis) for live lookups. |
+| Other banks | A US bank connects through Plaid, as a standard connection that uses a slot: pick it in the directory, where it reads **[Bank] (bank accounts)**, and sign in to the bank in the window cfo.ai opens. cfo.ai adds **Plaid Accounts**, the account balances observed at each sync, and **Plaid Transactions**, the posted transactions. Plaid gives no past balances, so balances start on the first sync. Bank balances also reach cfo.ai through your accounting system's balance sheet, or upload a CSV of bank transactions. |
 | Brex, Ramp | Supported through Fivetran, standard. Also MCP connectors for Ari. |
 | Snowflake, BigQuery, Databricks | Supported: [Snowflake](#snowflake), [BigQuery](#bigquery), [Databricks](#databricks), premium |
 | PostgreSQL, MySQL, SQL Server | Supported, premium. See [PostgreSQL](#postgresql) and [Other databases and data warehouses](#other-databases-and-data-warehouses). |
@@ -362,7 +362,6 @@ ActiveCampaign, Adjust, Adobe Analytics, Adobe Analytics Data Feed (premium), Ad
 ## What cfo.ai does not do with your sources
 
 - cfo.ai does not write back to a synced source. To change a number in QuickBooks, Xero, or any other system, change it there; the next sync brings it in.
-- cfo.ai does not connect bank accounts directly. Use your accounting system's balance sheet, upload bank transactions as a CSV, or connect Mercury's MCP server for live balances.
 - The **Upload** button does not take Excel workbooks or PDFs. Attach them to a chat for Ari instead; see [Upload a CSV as a data source](/guides/upload-a-csv#excel-workbooks-and-pdfs).
 - There is no **Sync now** button. Ask Ari to refresh a connection; see [Refresh data](/guides/refresh-data).
 

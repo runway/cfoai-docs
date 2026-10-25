@@ -199,7 +199,7 @@ For actions that change the layout, such as **Filter items**, **Sort**, and **In
 | **Fix** | On a cell that shows an error: starts a chat that asks Ari to fix it. |
 | **Edit formula** | Opens the formula editor for this cell. |
 | **Format and display** | Format options for this cell only. |
-| **Copy** (**⌘ C**) | Copies the cell. Shown when the cell has a formula. The clipboard holds the value the cell shows, so the copy pastes into a spreadsheet as a number; pasting it into a cfo.ai table in the same browser tab writes the formula. |
+| **Copy** (**⌘ C**) | Copies the cell. Shown when the cell has a formula. The clipboard holds the value the cell shows, so the copy pastes into a spreadsheet as a number, or as text for a text cell; pasting it into a cfo.ai table in the same browser tab, with nothing else copied in between, writes the formula, and a paste in another tab or after a reload writes the shown value. |
 | **Copy value** (**⌃ ⌘ C**) | Copies the value as the cell shows it. A paste of this copy writes the value, not the formula. |
 | **Paste** | Pastes into the cell. |
 | **Mention cell in chat** | Adds the cell to the current chat. |
@@ -366,6 +366,8 @@ Recognized currency signs, before or after the number: `$`, `€`, `£`, `¥`, `
 | Right-click a Dimension's label row → **Edit dimension formula** | The formula that defines the Dimension's items |
 | The formula bar | The selected cell |
 
+In the formula editor, a reference to a Variable shown on another table carries an arrow that opens that table, and a reference to a Dimension a table maps carries **Go to its mapping in this table**, **Go to its mapping on this page**, or **Go to its mapping**, which opens the mapping table in the Dimension's column on the source item's row. A reference to an imported Variable on no table opens **About this variable’s source**, with **Open connection**.
+
 For writing and saving formulas, see [Write a formula](/guides/write-a-formula).
 
 ## When a change is not saved
@@ -458,7 +460,7 @@ When a table cannot load or calculate, its notices, such as **We couldn't load t
 | --- | --- |
 | With the table, for everyone | Rows, columns, and breakdowns; filters and sorts; hidden rows and columns; the date range and grain; comparisons; **Format**, **Precision**, **Scale**, **Date format**, **Background**, **Text color**, **Text style**, and **Indent**; total column summaries; column widths; pinned columns; **Show dimension headers** |
 | On the Variable or Dimension, for every table | Values and formulas; the name; the currency; the **Date** type; **Variance colors**; **Dimension color** |
-| In your browser only | Open formula columns; the formula bar; whether the setup panel is open; the table height; **Display as**; which rows you expanded or collapsed; **Show variable name** |
+| In your browser only | Open formula columns; the formula bar; whether the setup panel is open; the table height; **Display as**; which rows and column groups you expanded or collapsed; **Show variable name** |
 | Not saved | **Show total columns**; **Pin total columns**; drill-in rows |
 
 Version history does not list changes to column widths or pinned columns.
@@ -476,7 +478,7 @@ Version history does not list changes to column widths or pinned columns.
 | Show the same Variable or Dimension twice in the columns | Use a second table. |
 | Transpose itself with one button | Ask Ari to flip it, or drag items between **Rows** and **Columns** in the setup panel. |
 | Create a text Variable by hand | Ask Ari. By hand, a new Variable holds numbers, and **Format** → **Date** makes it a date. |
-| Take new items by hand in a Dimension of numbers, dates, or true-or-false values | Only text Dimensions take new items by hand. For a Dimension of numbers, use **Segment generation** → **Expand to create all segments** with a **Start Value** and **End Value**. |
+| Take new items by hand in a Dimension of numbers, dates, or true-or-false values | Only text Dimensions take new items by hand. Use **Segment generation** → **Expand to create all segments**: for a Dimension of numbers, set **Start Value** and **End Value**; for a Dimension of dates, set **Start / End dates**. |
 | Hide a row from the grid's menu | Use the eye button in the table setup panel. |
 | Start a breakdown collapsed for everyone | Which rows are expanded or collapsed is saved only in each person's browser, so each reader opens or closes rows for themselves. |
 | Lock cells so teammates cannot edit them | Every member of a workspace can edit every Page. To let someone read without editing, share a link; see [Sharing and access](/concepts/sharing-and-access). |

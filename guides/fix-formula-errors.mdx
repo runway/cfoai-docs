@@ -105,7 +105,7 @@ Actuals and Forecast can have different formulas, so the Forecast months may run
 
 ## A date or text cell reads empty
 
-A date or text Variable that nobody filled in reads empty, not 0. A comparison with an empty value is empty too, so `if` takes its third argument: `` `End Date` < date(2030, 1, 1) `` is not true for someone with no end date. Test for the empty value directly:
+A date or text Variable that nobody filled in reads empty, not 0. An ordering comparison with an empty value, such as `<` or `>=`, is empty too, so `if` takes its third argument; only `=` and `<>` treat the empty value as a value of its own: `` `End Date` < date(2030, 1, 1) `` is not true for someone with no end date. Test for the empty value directly:
 
 ```text
 if(`End Date` = null, 1, 0)

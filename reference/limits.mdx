@@ -10,7 +10,7 @@ This page lists every size, count, and time limit in cfo.ai, grouped by part of 
 
 | Limit | Value |
 | --- | --- |
-| Files attached to one message | 50. A larger selection attaches the first 50 in the order you picked them and names the rest. |
+| Files attached to one message | 50. A larger selection attaches the first 50 in the order you picked them, and the notice names up to three of the rest. |
 | Size of one image file | 10 MB |
 | Size of one other file, such as a PDF, Excel workbook, ZIP, CSV, or text file | 500 MB |
 | Quoted excerpts in one message | 5, each up to 2,000 characters |
@@ -60,7 +60,7 @@ See [How imported data loads](/reference/imported-data) and [Integrations direct
 | Spreadsheet exports a workspace prepares at once | 1 |
 | Time one spreadsheet export can run | 45 minutes from when a worker starts it; time waiting in the queue does not count |
 | Time one table calculation can run | 180 seconds; a calculation that reaches it is stopped, and retrying runs into the same limit. A calculation that outlasts one browser request keeps running, and the table, Canvas block, or chart keeps its loading state until the result arrives |
-| Time Ari waits for one calculation of its own | 239 seconds, for a table, Page, Canvas, mapping, or validation read, so a 180-second calculation reaches Ari in the same call; Ari's other tools wait 60 seconds |
+| Time Ari waits for one calculation of its own | 239 seconds, for a table, Page, Canvas, mapping, or validation read, so a 180-second calculation reaches Ari in the same call; Ari's other tools wait 60 seconds. An AI tool connected through cfo.ai's MCP server runs under that server's own deadline, a little under two minutes; see [Validate and verify](/agents/validate-and-verify#deadlines-and-readbacks). |
 | Length of a formula in an exported workbook | 8,192 characters, Excel's limit; a longer formula is exported as its value |
 | Blocks whose view settings one browser remembers, such as a table's height, open panes, and expanded rows | 200 per browser, across workspaces; past that, the block whose settings were saved longest ago forgets them first |
 

@@ -18,7 +18,7 @@ A CSV you upload as a data source loads as one table.
 | Rows | Every record has as many fields as the line of column names. A quoted field may hold line breaks, so one record can span several lines. |
 | Text cells | Keep the line breaks and tabs inside them; a line break or tab at either end is trimmed with the surrounding whitespace. Any other control character loads as `?`. |
 | Empty cells | A cell is empty when, ignoring case and surrounding spaces, it is exactly `NULL` or a spreadsheet error value such as `#N/A`, `#REF!`, `#DIV/0!`, `#VALUE!`, `#SPILL!`, or `#TIMEOUT!`. Text that only begins like one, such as `Nullable` or `#REFUND batch`, stays text. A number column keeps its type when some of its cells hold such a value. |
-| Decimal commas and day-first dates | cfo.ai reads how the file writes numbers and dates. In a file with a decimal comma, `1.234,56` and `1 234,56` load as 1234.56. A date column whose dates all read either way, such as `01/09/2024`, follows the order the rest of the file uses, and the load note records it. |
+| Decimal commas | cfo.ai reads how the file writes numbers. In a file with a decimal comma, `1.234,56` and `1 234,56` load as 1234.56. For dates, see [Dates in CSV files](#dates-in-csv-files). |
 | Repeated column name | Still loads. Names are compared without letter case, and the later column is stored under its name and its own column number, so a second `Amount` in the fourth column becomes `Amount (column 4)`. |
 | Blank column name | Stored as `COLUMN_` and the column's number, such as `COLUMN_4` for the fourth column |
 | Each file | Becomes its own data source, named after the file until you rename it |
@@ -33,7 +33,7 @@ The **Upload** button does not take Excel workbooks or PDFs. Attach those to a c
 cfo.ai decides how to read dates for a whole column at once.
 
 - It reads every value in the column and picks the one day and month order that reads them all. A column that holds `13/04/2026` is read day-first throughout.
-- A column whose values all read either way, such as `03/04/2026`, is read month-first.
+- A column whose values all read either way, such as `03/04/2026`, follows the day and month order the file's other date columns use. When no other column settles it, the column is read month-first and the load note says the order was unsettled.
 - A column that needs both orders is not a date column, and it loads as text.
 - A date with a clock, such as `2026-09-25 00:56`, loads as a timestamp.
 - Plain digit strings, such as `2024` or `20240229`, stay numbers. Only a column whose name is exactly `yyyyMMdd` reads compact dates such as `20260131`.

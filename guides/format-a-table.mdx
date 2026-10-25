@@ -1,7 +1,7 @@
 ---
 title: "Format and arrange a table"
 sidebarTitle: "Format a table"
-description: "Show numbers as currency or percentages, set decimals, color and bold rows, and see why numbers turn green or red. Also color a Dimension's items, change date headers, show or pin total columns, hide or reorder rows and columns, resize or pin (freeze) columns, and show values in thousands with Ari."
+description: "Show numbers as currency or percentages, set decimals, color and bold rows, and see why numbers turn green or red. Also color a Dimension's items, change date headers, show or pin total columns, hide or reorder rows and columns, resize or pin (freeze) columns, and show values in thousands, millions, or billions."
 ---
 
 Use this guide to make a table easy to read: money as currency, margins as percentages, section rows in bold, and the columns your readers need first. Most formatting changes only how the table looks; it never changes a number. To learn which settings belong to a table and which to a Variable, read [Pages, Table blocks, and Canvas blocks](/concepts/pages-and-blocks).
@@ -35,9 +35,25 @@ Two choices reach further. The currency you pick applies to the Variable on ever
 
 A format changes only how numbers look. A row shown as a percentage on one table still adds up in totals; see [Percentages and ratios are not added up](/concepts/totals-and-rollups#percentages-and-ratios-are-not-added-up).
 
-## Show numbers in thousands or millions
+## Show numbers in thousands, millions, or billions
 
-cfo.ai has no format that shows numbers in thousands or millions. Ask Ari for a Variable that divides by 1,000, such as Revenue (thousands).
+<Tabs>
+  <Tab title="Ask Ari">
+    > Show the scorecard in billions.
+  </Tab>
+  <Tab title="By hand">
+    <Steps>
+      <Step title="Open the menu">
+        Right-click the row name, column header, or cell and choose **Format and display**.
+      </Step>
+      <Step title="Choose a scale">
+        Choose **Scale**, then **Thousands**, **Millions**, or **Billions**.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+A scaled number shows a K, M, or B and one decimal, so 27,524,914,239 in billions reads `$27.5B`. Choose **Precision** for more or fewer decimals. The cell keeps its exact value, and a spreadsheet download shows the same scale. Percentages and multiples are never scaled. To show one row in full inside a table shown in millions, choose **Scale**, then **Whole number** on that row.
 
 ## Format several rows at once
 
@@ -45,13 +61,13 @@ Select several row names: drag down the row-name column, or press **⌘ A** to s
 
 ## Color, bold, and indent rows
 
-In **Format and display**, choose **Background** to fill the row, column, or cell with a color, or **No fill** to remove it. Choose **Text style** for **Bold**, **Italic**, **Underline**, or **Strikethrough**. On a row, **Indent** and **Outdent** move the row name in or out, as in an income statement. **Reset formatting** removes everything set at that place on this table.
+In **Format and display**, choose **Background** to fill the row, column, or cell with a color, or **No fill** to remove it. Choose **Text color** to color the text, or **Default** to remove it. Choose **Text style** for **Bold**, **Italic**, **Underline**, or **Strikethrough**. On a row, **Indent** and **Outdent** move the row name in or out, as in an income statement. **Reset formatting** removes everything set at that place on this table.
 
 These settings belong to this table, so the same Variable can look different on another table.
 
 ### Color the cells you type into
 
-cfo.ai does not color typed-in cells automatically. It marks a cell that holds its own value with a dashed underline; see [See whether a number is typed or calculated](/guides/enter-values#see-whether-a-number-is-typed-or-calculated). To color your inputs, select those cells or rows and set a **Background**.
+cfo.ai does not color typed-in cells automatically. It marks a cell that holds its own value with a dashed underline; see [See whether a number is typed or calculated](/guides/enter-values#see-whether-a-number-is-typed-or-calculated). To color your inputs, select those cells or rows and set a **Background** or **Text color**.
 
 ## Why a number is green or red
 

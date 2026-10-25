@@ -1,7 +1,7 @@
 ---
 title: "Table block controls and messages"
 sidebarTitle: "Table block controls"
-description: "Every control in a Table block: the header, the Table block settings menu, the setup panel, the right-click menus for Variables, Dimensions, items, and cells, format options (currency, percentages, decimal places) and date formats, total columns, what colors and marks mean, what you can type into a cell, where to open the formula editor, every notice when a change is not saved, and what a table cannot do, such as cell comments or numbers in thousands."
+description: "Every control in a Table block: the header, the Table block settings menu, the setup panel, the right-click menus for Variables, Dimensions, items, and cells, format options (currency, percentages, decimal places) and date formats, total columns, what colors and marks mean, what you can type into a cell, where to open the formula editor, every notice when a change is not saved, and what a table cannot do, such as cell comments."
 ---
 
 This page lists every control, menu action, option, and message of a Table block, in the order the table shows them. For steps, see the guides linked in each section. Keyboard shortcuts are in [Keyboard shortcuts](/reference/keyboard-shortcuts#table-cells).
@@ -268,12 +268,14 @@ Right-click a row name, a column header, or a cell and choose **Format and displ
 | Option | Choices | Applies to |
 | --- | --- | --- |
 | **Background** | A set of colors, and **No fill** | This table, at the row, column, or cell you clicked |
+| **Text color** | The same colors, and **Default** | This table, at the row, column, or cell you clicked |
 | **Text style** | **Bold**, **Italic**, **Underline**, **Strikethrough** | This table, at the place you clicked |
 | **Indent** / **Outdent** | Moves a row name one step in or out | This table, that row |
 | **Format** | **Auto**, **Number**, **Currency**, **Percentage**, **Integer**, **Multiple**, **Date**, **Reset** | This table, at the place you clicked. **Date** instead makes the Variable a date Variable on every table; it is not offered for cells or the Date axis. |
 | **Currency** | **USD (\$)**, **EUR (€)**, **JPY (¥)**, **GBP (£)**, **CNY (CN¥)**, **AUD (A\$)**, **CAD (CA\$)**, **CHF**, **HKD (HK\$)**, **NZD (NZ\$)** | The Variable, on every table. Appears after you choose **Currency**. |
 | **Date format** | See [Date formats](#date-formats) | This table. Appears for date headers and date Variables. |
 | **Precision** | Decimal places: **Default**, **1**, **1.0**, **1.00**, **1.000**, **1.0000**, **1.00000** | This table, at the place you clicked |
+| **Scale** | **Whole number**, **Thousands**, **Millions**, **Billions** | This table, at the place you clicked. A scaled number shows a K, M, or B and one decimal unless **Precision** gives its own, such as `$27.5B`; the cell keeps its exact value. Not offered for percentages or multiples. |
 | **Variance colors** | **Higher is better**, **Lower is better** | The Variable, on every table. See [What colors and marks mean](#what-colors-and-marks-mean). |
 | **Reset formatting** | Removes everything set at that place | This table |
 
@@ -451,7 +453,7 @@ When a table cannot load or calculate, its notices, such as **We couldn't load t
 
 | Saved | Settings |
 | --- | --- |
-| With the table, for everyone | Rows, columns, and breakdowns; filters and sorts; hidden rows and columns; the date range and grain; comparisons; **Format**, **Precision**, **Date format**, **Background**, **Text style**, and **Indent**; total column summaries; column widths; pinned columns; **Show dimension headers** |
+| With the table, for everyone | Rows, columns, and breakdowns; filters and sorts; hidden rows and columns; the date range and grain; comparisons; **Format**, **Precision**, **Scale**, **Date format**, **Background**, **Text color**, **Text style**, and **Indent**; total column summaries; column widths; pinned columns; **Show dimension headers** |
 | On the Variable or Dimension, for every table | Values and formulas; the name; the currency; the **Date** type; **Variance colors**; **Dimension color** |
 | In your browser only | Open formula columns; the formula bar; whether the setup panel is open; the table height; **Display as**; which rows you expanded or collapsed; **Show variable name** |
 | Not saved | **Show total columns**; **Pin total columns**; drill-in rows |
@@ -463,9 +465,8 @@ Version history does not list changes to column widths or pinned columns.
 | A table cannot | Instead |
 | --- | --- |
 | Hold a comment or note on a cell | Add a Text block beside the table, or ask Ari for a text Variable, such as Notes, on a table that lists records. |
-| Color the cells you type into automatically | They carry a dashed underline. Select them and set a **Background**. |
+| Color the cells you type into automatically | They carry a dashed underline. Select them and set a **Background** or **Text color**. |
 | Sort rows by the numbers in a column | **Sort** orders items by name. Set a **Manual** order, or ask Ari to order the items by value. |
-| Show numbers in thousands or millions | Ask Ari for a Variable that divides by 1,000. |
 | Filter or sort dates | Change the date range. Dates always run in date order. |
 | Show two grains on one Date axis, such as quarters and years | Duplicate the table with **Duplicate block** and give each copy its own grain. |
 | Hold Variables in both the rows and the columns | Keep every Variable on one side. |

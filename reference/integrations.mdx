@@ -115,8 +115,8 @@ The app's **Accounting** filter also holds payment and commerce sources, such as
 | How it connects | Sign in to QuickBooks Online in a window cfo.ai opens (through Merge) and choose the company. |
 | Standard or premium | Standard |
 | What syncs | Monthly profit and loss and balance sheet, the chart of accounts, vendors, invoices, and journal entries |
-| Saved queries cfo.ai adds | **QuickBooks Profit & Loss** and **QuickBooks Balance Sheet**. Each carries **Entity** and **Currency** columns. |
-| Accounting basis | The P&L and balance sheet sync on the company's own basis, cash or accrual. The connection's first sync reads the **Report Basis** preference from QuickBooks and keeps it; ask Ari to switch the connection to cash or accrual, which re-syncs every month on the new basis. A connection that synced before this preference was read holds accrual statements until its next sync. |
+| Saved queries cfo.ai adds | **QuickBooks Profit & Loss** and **QuickBooks Balance Sheet**, each with **Entity** and **Currency** columns, and **QuickBooks Bank Movements**: dated bank-account postings with their counterpart accounts. A posting QuickBooks split across several accounts, a deposit, expense, check, or journal entry, is one row per line of its source transaction, each with that line's account, and the rows add up to the posting; a split whose lines are not stored stays one row with the counterpart **-Split-**. |
+| Accounting basis | The P&L and balance sheet sync on the company's own basis, cash or accrual. The connection's first sync reads the **Report Basis** preference from QuickBooks and keeps it; ask Ari to switch the connection to cash or accrual, which re-syncs every month on the new basis. A connection that synced before this preference was read holds accrual statements until its next sync. Every month of a sync lands on one basis: a retried or backfilled sync never mixes cash and accrual months, and a month QuickBooks reports as empty replaces what an earlier sync stored. |
 | History | From January 1 of last year through today. Ask Ari for a full-history import to reach back to a year you name, 2015 or later. A full-history import also takes the balance sheet of the month before that year. |
 | First sync | Your three most recent complete months load first. The rest of the history loads in the background. |
 | Nightly refresh | Re-reads the last three months, or the whole history when the connection has not synced for more than a month |
@@ -257,7 +257,7 @@ Acumatica (premium), Adyen, Afterpay, Anaplan (premium), Anvyl, Aumni, AWS Cost 
 
 ### Other HR and payroll systems
 
-These systems connect the same way as Gusto, through Merge, and sync the same kinds of records. Sources marked "(premium)" are premium; the rest are standard.
+These systems connect the same way as Gusto, through Merge, and sync the same kinds of records. Sources marked "(premium)" are premium; the rest are standard. When Merge stops syncing the account behind one of these connections and asks for it to be linked again, the connection reads **Reconnect required** and the nightly refresh leaves it alone until you select **Reconnect**; see [Reconnect required](/reference/connection-statuses#cfoai-lost-access).
 
 ADP Workforce Now, Altera Payroll, BambooHR, Breathe, Charlie, ChartHop, ClayHR, Dayforce, Deel, Factorial, Freshteam, Google Workspace, Hibob, HR Cloud, HR Partner, Humaans, Insperity Premier, IntelliHR, JumpCloud, Kallidus, Keka, Lano, Lucca, Microsoft Entra ID, Namely, Nmbrs, Officient, Okta, OneLogin, PayCaptain, Paychex, Paycom, Paycor, Paylocity, PeopleHR, Personio, Proliant, Sage HR (premium), SAP SuccessFactors (premium), Sesame, Simployer, Square Payroll, TriNet, TriNet HR Platform, UKG Pro, UKG Pro Workforce Management, UKG Ready, Workday (premium), Zoho People
 
@@ -399,7 +399,7 @@ ActiveCampaign, Adjust, Adobe Analytics, Adobe Analytics Data Feed (premium), Ad
 
 ## Connections for Ari
 
-MCP servers and APIs are tools Ari calls live when you ask a question, such as a bank balance in Mercury. Nothing from them is copied into your Model unless you ask Ari to save a sync setup, and they use no plan slot either way. The integrations above, by contrast, sync data into your Model once a day. Add an MCP server or API from the **MCP** and **API** tabs of the connection manager, or from **Settings → Connections**. See [Give Ari access to another service](/guides/give-ari-another-service).
+MCP servers and APIs are tools Ari calls live when you ask a question, such as a bank balance in Mercury. Nothing from them is copied into your Model unless you ask Ari to save a sync setup, and they use no plan slot either way. The integrations above, by contrast, sync data into your Model once a day. Add an MCP server or API from the **MCP** and **API** tabs of the connection manager, or from **Settings → Connections**, where **Add connections** has an **MCP** tab and an **APIs** tab. Each card in those tabs names the service and says what it provides, with a **Connect** button; **Add manually** takes a server or API that is not listed, and **Add with Ari** opens a chat. Ari reads the same list, so you can ask it what it can connect and what each service returns. See [Give Ari access to another service](/guides/give-ari-another-service).
 
 ### MCP connectors
 
@@ -408,7 +408,7 @@ Each connector signs in with OAuth, except Brex, which takes a bearer token.
 | Category | Connectors |
 | --- | --- |
 | Payments | Stripe, PayPal, Square, Mercado Pago |
-| Banking & Spend | Mercury, Ramp, Brex, Expensify, Plaid (Plaid dashboard diagnostics, not bank data) |
+| Banking & Spend | Mercury (accounts, balances, transactions, cards, and statements, read-only), Ramp (card transactions, reimbursements, bills, spend limits, and Treasury balances), Brex, Expensify, Plaid (Plaid dashboard diagnostics, not bank data) |
 | Accounting & Tax | Avalara AvaTax, Avalara Returns, Numeric |
 | HR & Payroll | Gusto, Deel |
 | Equity & Compliance | Carta, Vanta |
@@ -427,22 +427,24 @@ Rippling's remote MCP server is not in the catalog; add it with **Add manually**
 
 ### APIs
 
-| API | Sign-in |
-| --- | --- |
-| Stripe | API key (bearer) |
-| Adyen Transfers, Adyen Management, Adyen Balance Platform | API key in the `X-API-Key` header |
-| Increase | API key (bearer) |
-| Synctera | API key (bearer) |
-| Mercury | API key (bearer) |
-| Brex | API key (bearer) |
-| Pleo | API key (bearer) |
-| Pennylane | API key (bearer) |
-| TaxJar | API key (bearer) |
-| Rippling | API key (bearer) |
-| CoinAPI | API key in the `X-CoinAPI-Key` header |
-| Tradier | API key (bearer) |
-| Frankfurter | None (exchange rates) |
-| U.S. Treasury Fiscal Data | None |
+Each card says what Ari reads from the API, in the words below.
+
+| API | Sign-in | What Ari reads |
+| --- | --- | --- |
+| Stripe | API key (bearer) | Charges, invoices, subscriptions, customers, balance, and payouts |
+| Adyen Transfers, Adyen Management, Adyen Balance Platform | API key in the `X-API-Key` header | Transfers between balance accounts and the resulting transactions; company and merchant accounts, stores, and payout settings; embedded-finance account holders, balance accounts, payment instruments, and card issuing |
+| Increase | API key (bearer) | Accounts, ACH and wire transfers, cards, and the ledger of transactions |
+| Synctera | API key (bearer) | Accounts, persons and businesses, cards, posted and pending transactions, ACH and wire transfers, and statements |
+| Mercury | API key (bearer) | Business bank accounts with current and available balances, transactions, monthly statements, treasury and credit accounts, expense categories, and invoices |
+| Brex Transactions, Brex Expenses, Brex Budgets, Brex Payments | API key (bearer) | Card and cash accounts with balances, settled transactions, and statements; card expenses with merchant, category, budget, receipts, and approval status; budgets, budget programs, and spend limits; outgoing and incoming transfers, vendors, and linked bank accounts |
+| Pleo | API key and secret (basic authentication) | The chart of accounts and bookkeeping categories expenses are coded to, with each account's name, code, and tax code |
+| Pennylane | API key (bearer) | Journals and ledger accounts from the general ledger |
+| TaxJar | API key (bearer) | Tax rates, order and refund transactions, nexus regions, and categories |
+| Rippling | API key (bearer) | Employees with title, department, manager, and start and end dates, plus departments, teams, levels, work locations, and leave balances |
+| CoinAPI | API key in the `X-CoinAPI-Key` header | Crypto exchange rates, quotes, trades, order books, and price history |
+| Tradier | API key (bearer) | US equity and options quotes, option chains, price history, and brokerage account balances, positions, orders, and gains and losses |
+| Frankfurter | None | Foreign-exchange rates from the European Central Bank: latest, historical, and time series |
+| U.S. Treasury Fiscal Data | None | Federal debt to the penny, Treasury exchange rates, average interest rates, interest expense, daily Treasury cash balances and flows, monthly receipts and outlays, securities outstanding, and gift contributions |
 
 ### Any other MCP server or API
 

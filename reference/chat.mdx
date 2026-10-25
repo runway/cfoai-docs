@@ -57,8 +57,9 @@ When **Send** cannot be used, its tooltip says why.
 | Message | Meaning |
 | --- | --- |
 | **[file] is too large to attach, so Ari did not receive it. Images must be 10MB or smaller.** | The image is over the size limit and was not attached. |
-| **[file] is too large to attach, so Ari did not receive it. Documents must be 50MB or smaller.** | A file that is not an image is over the size limit and was not attached. |
-| **You can attach up to 5 files per message. Remove a file or select fewer files.** | The files you picked would take the message over five files, so none of them were attached. |
+| **[file] is too large to attach, so Ari did not receive it. Documents must be 500MB or smaller.** | A file that is not an image is over the size limit and was not attached. |
+| **A message holds up to 50 files, so [n] files were not attached: [names]. Attach them to another message.** | You picked more files than one message holds. The first 50, in the order you picked them, were attached; the notice names up to three of the rest and has a dismiss button. |
+| **Uploading files… [n] of [m] done** | Shown under the file tiles while several files upload. A file over 30 MB uploads in pieces and shows how much has uploaded; if your connection drops, the upload picks up where it stopped. |
 | **Attachment upload failed** | A notice with the file's name and the reason. The file's tile turns red. |
 | **cfo.ai did not confirm this upload. Check your connection and attach it again. If only this file keeps failing, a security filter may be blocking its contents. Contact support@cfo.ai.** | The upload never finished, for example after a dropped connection. A request that got no answer is sent once more after one second before this shows. Attaching the same file again replaces the failed tile. |
 | **Wait for attachments to finish uploading before sending.** | You tried to send while a file was uploading. |
@@ -208,7 +209,7 @@ Some MCP servers bring their own form, such as an issue form. It appears under *
 
 ### Email preview card
 
-Ari emails you at your sign-in address as soon as you ask. An email to anyone else waits for you: Ari shows a card headed **Preview** with the recipients (**To**), **Subject**, the message, and a **Replies** row reading **Go to you ([your address])**, because the email goes out from Ari's address and replies come to you. The footer reads **Nothing leaves until you press Send.** and stays in view at the bottom of the chat while the card is on screen, so a long email does not hide **Send**.
+Ari emails you at your sign-in address as soon as you ask. A Page, table, or chart that Ari links in an email, a Slack message, or a text arrives as a cfo.ai link that opens the Page, in its Scenario, for a reader who can already see it in this workspace; the link grants no access. An email to anyone else waits for you: Ari shows a card headed **Preview** with the recipients (**To**), **Subject**, the message, and a **Replies** row reading **Go to you ([your address])**, because the email goes out from Ari's address and replies come to you. The footer reads **Nothing leaves until you press Send.** and stays in view at the bottom of the chat while the card is on screen, so a long email does not hide **Send**.
 
 | Control | What it does |
 | --- | --- |

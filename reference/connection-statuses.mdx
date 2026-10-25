@@ -63,6 +63,8 @@ Setup failed before the source linked. Mark: red triangle. Line: the failure's r
 
 The source revoked cfo.ai's access, for example after a password change or an expired authorization. Mark: red triangle. Line: **Reconnect to start syncing again.** Action: **Reconnect**, then sign in to the same company the connection already holds.
 
+An HR or payroll connection that syncs through Merge, such as Justworks, BambooHR, or Hibob, shows **Reconnect required** when Merge has stopped syncing its account and asks for it to be linked again. The data from the last successful sync stays, and the nightly refresh leaves the connection alone until you select **Reconnect**.
+
 ### Missing access in [source]
 
 The source is not sharing some tables the reports need, such as **Missing access in NetSuite SuiteAnalytics**. Mark: red triangle. Line on the card: **[Source] isn’t sharing some tables the reports need. Open the connection for the steps to fix it.** A connection whose saved query fails because it reads one of those hidden tables also shows this status, not **Sync failed**, because another sync cannot help until the access is fixed. The connection's page shows an **Access missing** badge and the steps. For NetSuite they read: **NetSuite isn't sharing some tables cfo.ai needs for your financial statements. Have your NetSuite admin create an access token for the Data Warehouse Integrator role, then reconnect NetSuite with that token. Changing only the role ID won't work. Missing tables: …** Action: fix the access in the source, then **Reconnect**.
@@ -246,7 +248,7 @@ Signing in to a company the workspace already holds shows **[Company] is already
 | **Browser blocked the [provider] authentication popup** | Allow pop-ups for cfo.ai and try again. |
 | **Before you connect Rippling** | Rippling needs an API key; see [Rippling](/reference/integrations#rippling). |
 
-The Google flow reads **Opening Google authentication…**, **Choosing in Google…**, **Completing connection…**, and **Connected**. Rillet reads **Creating connection…**, **Verifying API key…**, and **Connected**. Fivetran sources read **Creating connection...** and **Opening Fivetran...**, and a failure reads **Connection failed**.
+The Google flow reads **Opening Google authentication…**, **Choosing in Google…**, **Completing connection…**, and **Connected**. When some of the files you picked in Google Drive connected and others did not, or Google refused the request because it was busy, the dialog reads **Connection not finished** with the reason, and offers **Retry** and **Close**. **Retry** finishes the same pick without a new sign-in or picker; **Close** keeps the connections that were made, and the connect link that admitted you stays open until the pick finishes. Any other failure reads **Connection failed** with **Close**. Rillet reads **Creating connection…**, **Verifying API key…**, and **Connected**. Fivetran sources read **Creating connection...** and **Opening Fivetran...**, and a failure reads **Connection failed**.
 
 ## Messages about uploaded files
 

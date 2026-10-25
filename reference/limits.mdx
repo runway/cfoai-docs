@@ -60,7 +60,7 @@ See [How imported data loads](/reference/imported-data) and [Integrations direct
 | Spreadsheet exports a workspace prepares at once | 1 |
 | Time one spreadsheet export can run | 45 minutes from when a worker starts it; time waiting in the queue does not count |
 | Time one table calculation can run | 180 seconds; a calculation that reaches it is stopped, and retrying runs into the same limit. A calculation that outlasts one browser request keeps running, and the table, Canvas block, or chart keeps its loading state until the result arrives |
-| Time Ari waits for one calculation of its own | 239 seconds, for a table, Page, Canvas, mapping, or validation read, so a 180-second calculation reaches Ari in the same call; Ari's other tools wait 60 seconds. An AI tool connected through cfo.ai's MCP server runs under that server's own deadline, a little under two minutes; see [Validate and verify](/agents/validate-and-verify#deadlines-and-readbacks). |
+| Time Ari waits for one calculation of its own | 239 seconds, for a table, Page, Canvas, mapping, or validation read, so a 180-second calculation reaches Ari in the same call; Ari's other tools wait 60 seconds |
 | Length of a formula in an exported workbook | 8,192 characters, Excel's limit; a longer formula is exported as its value |
 | Blocks whose view settings one browser remembers, such as a table's height, open panes, and expanded rows | 200 per browser, across workspaces; past that, the block whose settings were saved longest ago forgets them first |
 
@@ -90,6 +90,7 @@ See [Save a workflow as a Skill](/guides/save-a-skill), [Schedule a recurring re
 | Calls to one cfo.ai tool | 60 a minute for each person in each workspace; past that, the tool answers `rate limit exceeded for` and the tool's name. `list_orgs`, which lists your workspaces, has no limit |
 | Size of one request | 1 MiB; a larger request gets **The MCP request is too large.** |
 | Time the browser page where you approve a connection works | 60 minutes after it opens |
+| Time one call to a cfo.ai tool may run | A little under two minutes, the server's request deadline; a table write keeps about 10 seconds of it for its receipt. See [Deadlines and readbacks](/agents/validate-and-verify#deadlines-and-readbacks). |
 
 See [Connect Claude, ChatGPT, Codex, or another AI tool to cfo.ai](/guides/connect-an-ai-client).
 

@@ -1,0 +1,29 @@
+concepts/connected-data.mdx
+  s_a4bce62481a140::t_72b35621619fa1 49
+reference/integrations.mdx
+  s_4ccf2f3f54d6f0::t_ebb543632b4db9 32-33
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "aaa5e1b0e92de204ed41ac74d170cca8237a9f6c",
+  "prompts": {},
+  "sessions": {
+    "s_4ccf2f3f54d6f0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9ea705e5-61be-4c12-92b1-031ffbf8a052",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Siqi Chen <blader@gmail.com>"
+    },
+    "s_a4bce62481a140": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a171ed-4caa-7043-bbc6-9be648d0bc36",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "Siqi Chen <blader@gmail.com>"
+    }
+  }
+}

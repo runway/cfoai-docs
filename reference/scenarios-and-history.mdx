@@ -1,7 +1,7 @@
 ---
 title: "Scenario and version history controls"
 sidebarTitle: "Scenarios and history"
-description: "Every control, label, and message for Scenarios (versions of your plan), Snapshots, and version history: the Scenario picker and its actions menu, the Take snapshot and merge dialogs, and the version history panel where you undo a change or restore an earlier version."
+description: "Every control, label, and message for Scenarios (versions of your plan), Snapshots, and version history: the Scenario picker with Create scenario and Duplicate scenario, its actions menu, the Take snapshot and merge dialogs, and the version history panel where you undo a change or restore an earlier version."
 ---
 
 Scenarios, Snapshots, and version history each have their own controls: the Scenario picker in the sidebar, the **Take snapshot** and merge dialogs, and the version history panel. This page lists every control and message, in the order the app shows them. For what each one is for, see [Scenarios, Snapshots, and version history](/concepts/scenarios).
@@ -15,10 +15,11 @@ The Scenario picker is the **Main Scenario** control in the sidebar's **Model** 
 | A Scenario's row | Switches to that Scenario. |
 | **Open actions for [Scenario]** (gear icon on a row) | Opens the [Scenario actions menu](#scenario-actions-menu). |
 | **Take snapshot** | Opens the [Take snapshot dialog](#take-snapshot-dialog) for the Scenario you are viewing. Not shown while you view a Snapshot. |
+| **Duplicate scenario** | Creates a new Scenario named **[Scenario] copy** (numbered when that name is taken) that starts with everything the Scenario you are viewing changed, and switches to it. The copy is a regular Scenario on Main, not a child of the original. Shown while you view a Scenario other than Main that is not a Snapshot. If the copy fails, a notice reads **Couldn’t duplicate [Scenario]** with the reason, and the menu item stays so you can try again. |
 | **Create scenario** | Adds a row where you type the new Scenario's name. **Enter** creates it from Main and switches to it. |
 | **Merge** (beside the picker, while you view a Scenario) | Opens the [merge dialog](#merge-dialog). Its tooltip reads **Merge all changes into [target]**, **No changes to merge**, or **Checking for changes…**. Not shown for Main or a Snapshot. |
 
-You must have permission to create Scenarios to see **Take snapshot** and **Create scenario**. Neither is offered on a phone.
+You must have permission to create Scenarios to see **Take snapshot**, **Duplicate scenario**, and **Create scenario**. None is offered on a phone.
 
 ### Scenario actions menu
 

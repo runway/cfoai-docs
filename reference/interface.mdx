@@ -18,6 +18,14 @@ The page is titled **Sign in to cfo.ai**.
 
 A Google or Microsoft sign-in that fails shows **We couldn’t complete sign-in. Please try again.**
 
+When **Send code** cannot send a code, the message shows under the email field:
+
+| Message | Meaning | What to do |
+| --- | --- | --- |
+| **That email address isn't valid.** | The sign-in service refused the address, for example a domain that ends in a one-letter label such as `.c`. | Check the address and send the code again. |
+| **No mail server was found for that address's domain, so it cannot receive a code.** | The domain has no mail server. | Use an address at a domain that receives mail. |
+| **Authentication is temporarily unavailable. Please try again.** | The sign-in service did not answer. | Try again in a moment. |
+
 ### Sign-in code page
 
 The page is titled **Enter your code**, with **We sent a six-digit code to [email].** Its footer reads **Codes expire quickly. You can request a new one if needed.**
@@ -111,7 +119,7 @@ The list under **Workspaces** is the workspace switcher; there is no other switc
 | **Run now** | Starts one run right away, even when the Trigger is paused. The schedule does not change. |
 | **Edit trigger** (pencil) | Opens **Edit trigger**. |
 | **Delete trigger** (trash can) | Opens **Delete [name]?**: **This trigger will stop running on its schedule. Runs already started will continue.** |
-| **Schedule** / **Next scheduled** | The schedule in your time zone, and the next run, or **Nothing upcoming**. **Schedule and history are shown in your timezone.** |
+| **Schedule** / **Time zone** / **Next scheduled** | The schedule, the time zone it runs in, and the next run, or **Nothing upcoming**. A schedule with its own time zone is described on that clock, such as **Daily at 2:15 PM**, with the note **Runs on [time zone] time. Next scheduled and history are shown in your timezone.** A schedule that runs in UTC is described in your time zone, with **Schedule and history are shown in your timezone.** |
 | **Instructions** | The saved instructions, with **Show full instructions** and **Show less**. |
 | **History** | **Open a run to see its conversation.** Every run, newest first, with its start time, its status, and, for a run that did not complete, its reason. **Show earlier** loads older runs. With none: **No history yet. Ari’s scheduled work will appear here.** |
 
@@ -154,9 +162,9 @@ The form has **Name** (placeholder **Weekday cash brief**), **Instructions**, an
 - **Hourly**: every 1, 2, 3, 4, 6, 8, or 12 hours, **At minute**.
 - **Daily**, **Weekdays**, or **Weekly** (**On these days**).
 - **Monthly**: **Day of month**, including **Last day**.
-- **Advanced schedule**: **Edit advanced rule**, **Schedule expression (UTC)**.
+- **Advanced schedule**: **Edit advanced rule**, **Schedule expression ([time zone])**, a five-field cron expression read on that clock.
 
-The note under the schedule reads **Times in [your time zone]. Saved in UTC.**, or **Advanced rules use UTC.** A monthly day after the 28th adds **Months without this day are skipped. Choose Last day to run every month.** **Edit trigger** also has an **Enable trigger** switch (**Enabled** or **Disabled**). The buttons are **Create trigger** or **Save changes**, and **Cancel**.
+The note under the schedule reads **Times in [time zone].**: your browser's time zone for a new Trigger or one that runs in UTC, and the Trigger's own time zone otherwise. Saving the schedule saves it with that time zone. A monthly day after the 28th adds **Months without this day are skipped. Choose Last day to run every month.** **Edit trigger** also has an **Enable trigger** switch (**Enabled** or **Disabled**). The buttons are **Create trigger** or **Save changes**, and **Cancel**.
 
 ### Trigger messages
 

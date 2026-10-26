@@ -14,7 +14,7 @@ This page lists every size, count, and time limit in cfo.ai, grouped by part of 
 | Size of one image file | 10 MB |
 | Size of one other file, such as a PDF, Excel workbook, ZIP, CSV, or text file | 500 MB |
 | Quoted excerpts in one message | 5, each up to 2,000 characters |
-| Images and PDFs Ari looks at directly in one turn | 21 MB in all. Ari opens every attached file in its private workspace; an image or PDF it opens is also shown to it as a picture until the turn's 21 MB is used, and after that it reads the file in the workspace. |
+| Images and PDFs Ari looks at directly in one turn | 21 MB in all. Ari opens every attached file in its private workspace; an image or PDF it opens is also shown to it as a picture until the turn's 21 MB is used, and after that it reads the file in the workspace. When one request would carry more than 20 images and PDFs, an image wider or taller than 2,000 pixels is not shown; Ari reads it in the workspace instead. |
 | Size of a CSV attached in a chat that can become a data source | 50 MB; a larger CSV is a chat file only |
 | Recipients of one email Ari drafts | 10 |
 | Size of a page of conventions you ask Ari to remember | 32 KiB of text, saved as up to 12 separate facts at a time |
@@ -76,7 +76,7 @@ See [Export a Page to Excel](/guides/download-a-spreadsheet), [Share a Page outs
 | Length of a Skill's instructions | 49,152 characters |
 | Length of a Trigger's name | 200 characters |
 | Length of a Trigger's instructions | 10,000 characters |
-| Precision of a Trigger's schedule | 1 minute; the schedule is stored in UTC, so a local time can shift by an hour when daylight saving time changes |
+| Precision of a Trigger's schedule | 1 minute, on the clock of the Trigger's time zone. A local time the spring change skips runs at the first minute after the gap, and a local time the autumn change repeats runs once. A Trigger saved without a time zone runs in UTC. |
 | Time a download link in a scheduled run's message works | 24 hours |
 | Saved Guides in one workspace | 200 |
 | Length of a Guide's name | 64 characters: lowercase letters, digits, and hyphens |

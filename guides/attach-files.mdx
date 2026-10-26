@@ -26,7 +26,7 @@ You can attach files while Ari is working on an earlier message, for example a s
 ## How Ari reads each kind of file
 
 - Every file you attach opens in Ari's private workspace. Ari opens the files it needs, one or several at a time.
-- An image or PDF Ari opens is also shown to it as a picture, so it reads a screenshot or a scanned statement like a page. One turn shows Ari up to 21 MB of images and PDFs this way; past that, Ari reads the file's text in the workspace instead. See [Limits](/reference/limits#chat-with-ari).
+- An image or PDF Ari opens is also shown to it as a picture, so it reads a screenshot or a scanned statement like a page. One turn shows Ari up to 21 MB of images and PDFs this way, and a request that carries more than 20 of them shows no image over 2,000 pixels on a side; past either limit, Ari reads the file in the workspace instead. See [Limits](/reference/limits#chat-with-ari).
 - Excel workbooks, text files, CSVs, and other files are read in the workspace, where Ari reads sheets, formulas, cached values, and the rest of the contents with code. Nothing Ari runs there can be reached from outside cfo.ai, and what Ari makes there reaches you only as a file it delivers to the chat.
 
 For a large workbook, tell Ari which sheet, date range, or question matters most. To rebuild a whole spreadsheet model in cfo.ai, see [Import an existing spreadsheet model](/guides/import-a-spreadsheet-model). To bring in a CSV as a data source that you refresh by uploading again, see [Upload a CSV as a data source](/guides/upload-a-csv).

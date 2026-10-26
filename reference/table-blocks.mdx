@@ -1,7 +1,7 @@
 ---
 title: "Table block controls and messages"
 sidebarTitle: "Table block controls"
-description: "Every control in a Table block: the header, the Table block settings menu, the setup panel, the right-click menus for Variables, Dimensions, items, and cells, format options (currency, percentages, decimal places) and date formats, total columns, what colors and marks mean, what you can type into a cell, where to open the formula editor, every notice when a change is not saved, and what a table cannot do, such as cell comments."
+description: "Every control in a Table block: the header, the Table block settings menu, the setup panel, the right-click menus for Variables, Dimensions, items, and cells, format options (currency, percentages, decimal places, negatives in parentheses) and date formats, total columns, what colors and marks mean, what you can type into a cell, where to open the formula editor, every notice when a change is not saved, and what a table cannot do, such as cell comments."
 ---
 
 This page lists every control, menu action, option, and message of a Table block, in the order the table shows them. For steps, see the guides linked in each section. Keyboard shortcuts are in [Keyboard shortcuts](/reference/keyboard-shortcuts#table-cells).
@@ -279,6 +279,7 @@ Right-click a row name, a column header, or a cell and choose **Format and displ
 | **Date format** | See [Date formats](#date-formats) | This table. Appears for date headers and date Variables. |
 | **Precision** | Decimal places: **Default**, **1**, **1.0**, **1.00**, **1.000**, **1.0000**, **1.00000** | This table, at the place you clicked |
 | **Scale** | **Whole number**, **Thousands**, **Millions**, **Billions** | This table, at the place you clicked. A scaled number shows a K, M, or B and one decimal unless **Precision** gives its own, such as `$27.5B`; the cell keeps its exact value. Not offered for percentages or multiples. |
+| **Negatives** | **Minus sign · -1,250**, **Parentheses · (1,250)** | This table, at the place you clicked. The row shows the current choice, such as **-1,250** or **(1,250)**. Parentheses apply in every number format at the cell's decimals and scale, so -1,250.50 as currency reads `($1,250.50)` and -12.5% reads `(12.5%)`; the saved value does not change, and a negative that rounds to zero shows no sign. Where nothing on the table chooses, the workspace's **Negative numbers** setting applies; see [Settings](/reference/settings#numbers). Not offered on a date row. |
 | **Variance colors** | **Higher is better**, **Lower is better** | The Variable, on every table. See [What colors and marks mean](#what-colors-and-marks-mean). |
 | **Reset formatting** | Removes everything set at that place | This table |
 
@@ -458,7 +459,7 @@ When a table cannot load or calculate, its notices, such as **We couldn't load t
 
 | Saved | Settings |
 | --- | --- |
-| With the table, for everyone | Rows, columns, and breakdowns; filters and sorts; hidden rows and columns; the date range and grain; comparisons; **Format**, **Precision**, **Scale**, **Date format**, **Background**, **Text color**, **Text style**, and **Indent**; total column summaries; column widths; pinned columns; **Show dimension headers** |
+| With the table, for everyone | Rows, columns, and breakdowns; filters and sorts; hidden rows and columns; the date range and grain; comparisons; **Format**, **Precision**, **Scale**, **Negatives**, **Date format**, **Background**, **Text color**, **Text style**, and **Indent**; total column summaries; column widths; pinned columns; **Show dimension headers** |
 | On the Variable or Dimension, for every table | Values and formulas; the name; the currency; the **Date** type; **Variance colors**; **Dimension color** |
 | In your browser only | Open formula columns; the formula bar; whether the setup panel is open; the table height; **Display as**; which rows and column groups you expanded or collapsed; **Show variable name** |
 | Not saved | **Show total columns**; **Pin total columns**; drill-in rows |

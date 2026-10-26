@@ -31,7 +31,7 @@ Then `read` the entries you plan to use. One `read` takes up to 16 targets and r
 { "read": { "target": ["canvas-library:template:hiring-plan-decision", "canvas-library:component:slider", "canvas-library:component:kpi-card"] } }
 ```
 
-A `read` returns each entry's instructions, its props skeleton, and its runtime requirements. A name that matches nothing, or more than one entry, comes back as an unresolved entry. Library entries are building guidance; they are not saved blocks and prove nothing about how a block renders.
+A `read` returns each entry's instructions, its props skeleton, and its runtime requirements. The shared Canvas visual contract follows the last entry of every read, components and templates alike, and overrides any conflicting styling in a template's own instructions; a visual component or template also carries the full `runtime_contract` once. A name that matches nothing, or more than one entry, comes back as an unresolved entry. Library entries are building guidance; they are not saved blocks and prove nothing about how a block renders.
 
 ## Create a Canvas block
 

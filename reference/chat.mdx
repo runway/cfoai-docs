@@ -209,7 +209,7 @@ Some MCP servers bring their own form, such as an issue form. It appears under *
 
 ### Email preview card
 
-Ari emails you at your sign-in address as soon as you ask. A Page, table, or chart that Ari links in an email, a Slack message, or a text arrives as a cfo.ai link that opens the Page, in its Scenario, for a reader who can already see it in this workspace; the link grants no access. An email to anyone else waits for you: Ari shows a card headed **Preview** with the recipients (**To**), **Subject**, the message, and a **Replies** row reading **Go to you ([your address])**, because the email goes out from Ari's address and replies come to you. The footer reads **Nothing leaves until you press Send.** and stays in view at the bottom of the chat while the card is on screen, so a long email does not hide **Send**.
+Ari emails you at your sign-in address as soon as you ask. A Page, table, or chart that Ari links in an email or a Slack message arrives as a cfo.ai link that opens the Page, in its Scenario, for a reader who can already see it in this workspace; the link grants no access. An email to anyone else waits for you: Ari shows a card headed **Preview** with the recipients (**To**), **Subject**, the message, and a **Replies** row reading **Go to you ([your address])**, because the email goes out from Ari's address and replies come to you. The footer reads **Nothing leaves until you press Send.** and stays in view at the bottom of the chat while the card is on screen, so a long email does not hide **Send**.
 
 | Control | What it does |
 | --- | --- |
@@ -221,7 +221,7 @@ Ari emails you at your sign-in address as soon as you ask. A Page, table, or cha
 | --- | --- |
 | **Enter a valid email address.** | An address you typed is not valid. |
 | **Sent email**, with **Sent to [addresses] [when].** | The email was sent; the time reads **today at**, **yesterday at**, or **on** a date. The card keeps this state after a reload and in a teammate's view of the chat, and offers no second **Send** or **Edit**. |
-| **Couldn’t confirm it reached [addresses]. Check with them before sending it again.** | cfo.ai sent the email but did not get the provider's confirmation for those addresses. |
+| **Couldn’t confirm it reached [addresses]. Check with them before sending it again.** | cfo.ai handed the email to its provider but could not confirm that it reached those addresses. |
 | **Not sent to [addresses]. Send tries them again.** | Some addresses failed; **Send** retries only those, so nobody is emailed twice. |
 | **Email wasn’t sent. Try again.** | Sending failed for every address. |
 | **Couldn't check whether this email was already sent. Nothing was sent.** | cfo.ai could not read the card's send record, so it refused rather than risk a duplicate. Try again. |

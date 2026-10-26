@@ -15,7 +15,7 @@ The Scenario picker is the **Main Scenario** control in the sidebar's **Model** 
 | A Scenario's row | Switches to that Scenario. |
 | **Open actions for [Scenario]** (gear icon on a row) | Opens the [Scenario actions menu](#scenario-actions-menu). |
 | **Take snapshot** | Opens the [Take snapshot dialog](#take-snapshot-dialog) for the Scenario you are viewing. Not shown while you view a Snapshot. |
-| **Duplicate scenario** | Creates a new Scenario named **[Scenario] copy** (numbered when that name is taken) that starts with everything the Scenario you are viewing changed, and switches to it. The copy is a regular Scenario on Main, not a child of the original. Shown while you view a Scenario other than Main that is not a Snapshot. If the copy fails, a notice reads **Couldn’t duplicate [Scenario]** with the reason, and the menu item stays so you can try again. |
+| **Duplicate scenario** | Creates a new Scenario named **[Scenario] copy** (numbered when that name is taken) that starts with everything the Scenario you are viewing changed, and switches to it. The copy is a regular Scenario with the same base as the original, which is Main for every Scenario created from Main; it is listed beside the original, not under it. Shown while you view a Scenario other than Main that is not a Snapshot. If the copy fails, a notice reads **Couldn’t duplicate [Scenario]** with the reason, and the menu item stays so you can try again. |
 | **Create scenario** | Adds a row where you type the new Scenario's name. **Enter** creates it from Main and switches to it. |
 | **Merge** (beside the picker, while you view a Scenario) | Opens the [merge dialog](#merge-dialog). Its tooltip reads **Merge all changes into [target]**, **No changes to merge**, or **Checking for changes…**. Not shown for Main or a Snapshot. |
 
@@ -79,13 +79,19 @@ Point at an entry and select its **…** button (**Actions for [entry]**).
 
 | Control | What it does |
 | --- | --- |
-| **Undo this change** | Reverses this change and keeps everything after it. Undo restores only the fields the change wrote, such as a Page's name or one formula's text, so a later edit to another field of the same Page, table, Variable, or formula stays. When a later change edited one of the same fields, nothing is undone, and a notice reads **Couldn’t undo changes** with **A later change edited the [field] of [subject], so this change can’t be undone on its own.**, followed by **Later changes also edited [n] other items.** when there are more. Undo that later change first. Not offered for a change the Scenario inherited from Main. |
+| **Undo this change** | Reverses this change and keeps everything after it. Undo restores only the fields the change wrote, such as a Page's name or one formula's text, so a later edit to another field of the same Page, table, Variable, or formula stays. When a later change edited one of the same fields, nothing is undone and a notice says so; see [Entry action messages](#entry-action-messages). Undo that later change first. Not offered for a change the Scenario inherited from Main. |
 | **Redo this change** | Shown instead of **Undo this change** on an entry that undid a change. |
 | **Restore this version** | Returns the Scenario to this point and rolls back every later change. Needs full access to the Scenario; otherwise its tooltip reads **Only people with full access to this scenario can restore it.** |
 | **Take snapshot here** | Opens the [Take snapshot dialog](#take-snapshot-dialog), pinned at this entry. |
 | **Copy link to version** | Copies a link that opens the Model as it was at this entry. |
 
 **⌘ Z** undoes only your own last change in the current browser tab; see [Keyboard shortcuts](/reference/keyboard-shortcuts#undo-and-redo).
+
+#### Entry action messages
+
+| Message | Meaning |
+| --- | --- |
+| **Couldn’t undo changes**, with **A later change edited the [field] of [subject], so this change can’t be undone on its own.** | A later change edited one of the same fields, so nothing was undone. Undo that later change first. The notice adds **Later changes also edited [n] other items.** when more than one later change did. |
 
 ### Viewing a past version
 

@@ -31,7 +31,7 @@ Undo and redo work anywhere in the app except while you are typing in a text fie
 | --- | --- |
 | **Changes undone** / **Changes redone** | The undo or redo finished. |
 | **Couldn’t undo changes** / **Couldn’t redo changes**, with **Try again.** | The undo or redo failed, and the change stays as it was. |
-| **Couldn’t undo changes** / **Couldn’t redo changes**, with **A later change edited the [field] of [subject], so this change can’t be [undone / redone] on its own.** | A later change edited one of the same fields. Nothing was undone; undo that later change first. |
+| **Couldn’t undo changes** / **Couldn’t redo changes**, with **A later change edited the [field] of [subject], so this change can’t be [undone / redone] on its own.** | A later change edited one of the same fields, so nothing was undone or redone; undo that later change first. The notice adds **Later changes also edited [n] other items.** when more than one later change did. |
 
 ## Chat with Ari
 
@@ -59,6 +59,7 @@ Undo and redo work anywhere in the app except while you are typing in a text fie
 | **⌥ →** | Nest the selected Page under the Page above it |
 | **⌥ ←** | Move the selected Page out one level |
 | **F2** | Rename the selected Page |
+| **Esc** | Cancel a Page rename in the sidebar and keep the old name |
 | **Shift F10** | Open the selected block's menu |
 | **Enter** | Enter the selected block |
 | **Esc** | Return from inside a block to the block |

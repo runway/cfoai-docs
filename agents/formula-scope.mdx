@@ -22,7 +22,7 @@ When you write a condition yourself, use the readable Dimension and item names t
 
 A condition selects cells that exist; it never creates one. An item that only a condition names, such as `[Department = "New"]` when no Department is called New, is not added to the Dimension, and the formula applies to nothing until the item exists.
 
-Items come from imported rows, a Dimension's own formula or item set, saved and manual declarations, mappings, and the configured calendar. So create the item first, with `dimensions[].add_items` on an `update` of `edit_table_blocks`, and save the conditioned formula once the item exists; see [Add items and write their values in one call](/agents/write-formulas#add-items-and-write-their-values-in-one-call).
+Items come from imported rows, a Dimension's own formula or item set, saved and manual declarations, mappings, and the configured calendar. So create the item first, with `dimensions[].add_items` on an `update` of `edit_table_blocks`, and save the conditioned formula in a later call, once the item exists; see [Add items and write their values in one call](/agents/write-formulas#add-items-and-write-their-values-in-one-call).
 
 The same holds for Date: a condition on a month outside the Model's calendar does not add that month.
 

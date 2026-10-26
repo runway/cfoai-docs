@@ -8,13 +8,16 @@ Use this guide when you need new numbers before the nightly sync, when you corre
 
 ## Refresh a connection now
 
-Open the connection's page by selecting its row in the sidebar, and select **Sync now** beside its status. It appears for people who manage connections, on a linked integration that is not already syncing; while a sync runs, the button reads **Syncing…** and is off. A connection that needs attention offers **Retry** or **Reconnect** in its place, an uploaded file offers **Update file**, and an MCP server or API has its own sync controls. If the sync cannot start, a notice reads **Couldn't start sync**.
+<Tabs>
+  <Tab title="Ask Ari">
+    > Refresh QuickBooks and tell me when the import has finished.
 
-Or ask Ari:
-
-> Refresh QuickBooks and tell me when the import has finished.
-
-A line above the message box reads **Syncing** with the connection's name. Select it to see the sync's two steps, **Sync source data** and **Run saved queries**, with **View connection** and **Stop**. You can keep working. When the sync finishes or fails, Ari tells you in the same chat.
+    A line above the message box reads **Syncing** with the connection's name. Select it to see the sync's two steps, **Sync source data** and **Run saved queries**, with **View connection** and **Stop**. You can keep working. When the sync finishes or fails, Ari tells you in the same chat.
+  </Tab>
+  <Tab title="By hand">
+    Open the connection's page by selecting its row in the sidebar, and select **Sync now** beside its status. It is offered to people who manage connections, on a linked integration's page, when neither **Retry** nor **Reconnect** is offered. While the sync runs, the button reads **Syncing…** and is off, and if the sync cannot start, the button reads **Couldn't start sync**. An uploaded file offers **Update file** instead, and an MCP server or API has its own sync controls. [Connection actions](/reference/connection-statuses#connection-actions) lists when each action is offered.
+  </Tab>
+</Tabs>
 
 A refresh reruns the connection's saved queries as they are. If the refresh brings in a table nothing reads yet, ask Ari for a saved query over it.
 

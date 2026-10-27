@@ -175,9 +175,9 @@ For example, a Forecast formula that averages Revenue with the **Last 3 months o
 
 An imported Dimension can hold timestamps, such as one item per sync at `2026-07-01 00:00:00+00`. Where you write a date decides what it matches:
 
-- In a lookup, `date(2026, 7, 1)` or a date Variable selects the item at midnight of that day, as long as every item of the Dimension comes from the source.
+- In a lookup, `date(2026, 7, 1)` or a date Variable selects the item at midnight UTC of that day, `2026-07-01 00:00:00+00`, as long as every item of the Dimension comes from the source.
 - In a formula's condition, a calculated date such as `date(2026, 7, 1)` never equals a timestamp item, so `[synced_month = date(2026, 7, 1)]` reaches no cell.
-- Date text such as `"2026-07-01"` is read as the date value at midnight of that day, so it reaches the item at that moment in both places: in a lookup, and in a condition such as `[synced_month = "2026-07-01"]`.
+- Date text such as `"2026-07-01"` is read as the date value at midnight UTC of that day, so it reaches the item at `2026-07-01 00:00:00+00` in both places: in a lookup, and in a condition such as `[synced_month = "2026-07-01"]`.
 - `` synced_month.Month = startofmonth(`Snapshot Month`$) `` compares two dates, so it matches every item in that month.
 
 ## Conditions: where a saved formula applies

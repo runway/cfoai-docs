@@ -28,7 +28,7 @@ The data reached your Model, and the last sync finished. Mark: none. Action: non
 
 ### Connected
 
-An MCP server or an API is ready for Ari to call. Nothing syncs from it, so it has no **Last synced** time. Mark: none.
+An MCP server or an API is ready for Ari to call. Mark: none. Its page and its sidebar card show two statuses: **Connection**, which reads **Connected** while Ari can call its tools or endpoints, and **Data sync**, which reads the state of the sync setups Ari saved for it, such as **Synced**, **Syncing**, **No queries yet**, **No data found**, or **Needs attention**. A working server can therefore read **Connection: Connected** beside **Data sync: Needs attention** when an import failed. A server with no sync setup has no **Last synced** time. When the data sync is failed or blocked, the **Data sync** section offers **Fix with Ari**, which starts a chat about that sync; someone who cannot edit the connection reads **Someone with edit access can fix this sync with Ari.** instead.
 
 ### Syncing
 
@@ -65,14 +65,14 @@ The source revoked cfo.ai's access, for example after a password change or an ex
 
 ### Missing access in [source]
 
-The source is not sharing some tables the reports need, such as **Missing access in NetSuite SuiteAnalytics**. Mark: red triangle. Line on the card: **[Source] isn’t sharing some tables the reports need. Open the connection for the steps to fix it.** The connection's page shows an **Access missing** badge and the steps. For NetSuite they read: **NetSuite isn't sharing some tables cfo.ai needs for your financial statements. Have your NetSuite admin create an access token for the Data Warehouse Integrator role, then reconnect NetSuite with that token. Changing only the role ID won't work. Missing tables: …** Action: fix the access in the source, then **Reconnect**.
+The source is not sharing some tables the reports need, such as **Missing access in NetSuite SuiteAnalytics**. Mark: red triangle. Line on the card: **[Source] isn’t sharing some tables the reports need. Open the connection for the steps to fix it.** A connection whose saved query fails because it reads one of those hidden tables also shows this status, not **Sync failed**, because another sync cannot help until the access is fixed. The connection's page shows an **Access missing** badge and the steps. For NetSuite they read: **NetSuite isn't sharing some tables cfo.ai needs for your financial statements. Have your NetSuite admin create an access token for the Data Warehouse Integrator role, then reconnect NetSuite with that token. Changing only the role ID won't work. Missing tables: …** Action: fix the access in the source, then **Reconnect**.
 
 ### Sync failed
 
 There are two kinds:
 
 - The provider's own sync failed, often for a moment. Mark: steady orange dot. Line: **[Source]’s sync hit an error. cfo.ai will try again on the next scheduled sync.** When the provider gave a reason, its report sits between the two sentences, for example **BigQuery’s sync hit an error. Fivetran reports: Problem with view (BigQueryConnectorTask_VIEW_ERROR): [the view Fivetran could not read]. cfo.ai will try again on the next scheduled sync.** Fivetran's report gives each failing task as its message, its code in parentheses, and its details, which name what failed, such as the view or table; several tasks are separated by semicolons. Ari reads the same report. Action: none, or **Retry** to run it now. When the report names something to fix at the source, fix that first. When Fivetran reports the connector broken by a generic sync failure and nothing else, and its setup tests pass, the nightly refresh starts one ordinary sync on up to two later nights; a success clears the count, and a connector that needs a new sign-in or is paused is not retried this way.
-- cfo.ai could not tell why the sync failed. Mark: red triangle. Line: the source's own reason, or **The last sync couldn’t finish.** Actions: **Retry** and **Investigate with Ari**.
+- cfo.ai could not tell why the sync failed. Mark: red triangle. Line: the source's own reason, or **The last sync couldn’t finish.** Actions: **Retry** and **Investigate with Ari**. When the reason names a table the source hides, the connection shows [Missing access in [source]](#missing-access-in-source) instead.
 
 ### First sync not ready
 
@@ -142,6 +142,7 @@ An MCP server's row also shows the state of its saved sign-in. The state describ
 | Next step | When |
 | --- | --- |
 | **Reconnect this source to continue.** | The saved sign-in has no usable token. |
+| **Fix with Ari** | In the **Data sync** section when the sync is failed or blocked. Starts a chat that names the connection and asks Ari to inspect the latest run and its saved sync setup, repair or retry it, and check the result. Shown with **Ari is unavailable.** and the reason while the workspace's AI usage is blocked. |
 | **Finish authorization to continue.** | Sign-in was started and not finished. |
 | **Retry authorization to continue.** | Sign-in failed. |
 | **Allow at least one API endpoint to continue.** | No endpoint of the API is allowed yet. |
@@ -161,7 +162,7 @@ An MCP server's row also shows the state of its saved sign-in. The state describ
 | --- | --- | --- |
 | **Finish setup** | Continues the unfinished setup on the same connection. No second connection is created. | Setup was not finished and the source can resume it. |
 | **Cancel setup** | Removes an unfinished connection at once. It frees the plan slot the connection held. | Setup was not finished. |
-| **Reconnect** | Opens the source's sign-in again for the same connection. | The source revoked access, a failed sync needs a new sign-in, or a **Partly synced** connection's source refused access to a missed table or cfo.ai has not read why the table was missed. |
+| **Reconnect** | Opens the source's sign-in again for the same connection. | The source revoked access, a failed sync needs a new sign-in, a connection reads **Missing access in [source]** and the access has been fixed at the source, or a **Partly synced** connection's source refused access to a missed table or cfo.ai has not read why the table was missed. |
 | **Retry** | Runs the import again with the same sign-in, or starts setup again after **Connection failed**. It does not use another plan slot. | A sync failed and only the import needs to run again, a sync was stopped, or setup failed. |
 | **Update file** | Replaces an uploaded CSV with a new file. | On a file upload. It is the only action when the file could not be read. |
 | **Set up queries with Ari** | Opens a new chat with a request for Ari to review what synced, propose saved queries, and set them up. You review the request before you send it. | **No queries yet** |
@@ -178,8 +179,8 @@ Select a connection's row to open its page. Its sections, top to bottom:
 
 | Section | What it shows |
 | --- | --- |
-| **Status** | The status, the line under it, any setup warning, and the actions. **Last synced** reads a time such as **Just now**, or **Not yet**. **Used in** lists the Pages that use the connection's data. **Added** gives the date it was connected, and **File** names an uploaded file. For an MCP server or API, the facts are **Type**, **Address**, **Sign-in**, and **Added**, with **Last synced** and **Used in** once it syncs. |
-| **Source tables** | **When each table from this source last synced.** Each row gives the **Table**, its **Last synced** time, and the date its **Data through** reaches. It appears once two or more tables have synced. |
+| **Status** | The status, the line under it, any setup warning, and the actions. **Last synced** reads the date and time of the last finished sync, to the second, in your browser's time zone, such as **Oct 23, 2026, 6:02:14 PM PDT**, or **Not yet**; the sidebar card still shows how long ago, such as **Just now**. Beside the status, people who manage connections see **Sync now** on a linked integration; see [Connection actions](#connection-actions). **Used in** lists the Pages that use the connection's data. **Added** gives the date it was connected, and **File** names an uploaded file. For an MCP server or API, the facts are **Type**, **Address**, **Sign-in**, and **Added**, with **Last synced** and **Used in** once it syncs. |
+| **Source tables** | **When each table from this source last synced.** Each row gives the **Table**, its **Last synced** date and time to the second in your time zone, and the date its **Data through** reaches. It appears once two or more tables have synced. |
 | **Import** | **What Ari imported from this connection.** It appears for Google Sheets and Google Drive connections. |
 | **Tools** | **Choose which tools Ari may use without asking first.** It appears for an MCP server that finished sign-in, for people who can manage connections. It opens with **Connection health**: **Sign-in saved**, **Sign-in saved · expiry unknown**, **Access expired · renewal on next use**, **Reconnect required**, **Sign-in incomplete**, **Provider access not checked**, or **Provider access could not be verified** when the tool list could not be read. Under it, **Tools verified: [date and time]** or **A saved sign-in does not confirm current provider access.**, and **Reconnect** for a server that signs in with OAuth. Tools are grouped as **Read-only tools** and **Write/delete tools**, and **Auto-classify** sets their permissions. When the list fails, the error shows with **Try again**. |
 | **Endpoints** | **Choose which endpoints Ari may call without asking first.** It appears for an API, grouped as **Read endpoints** and **Write/delete endpoints**, with **Auto-classify**. |
@@ -285,6 +286,15 @@ Google Sheets and Google Drive connections report their import on the row and in
 | **The specification URL answered HTTP 404, not the document.** | The address returned an error status instead of the specification. |
 | **The specification document is larger than the 12 MiB this connection accepts.** | The specification is too large. |
 | **Could not load the OpenAPI specification. Check its URL or paste the document as JSON.** | The address did not answer. |
+| **Raw ingestion failed for [connection]. Sync page [N] failed: [cause].** | A page of an MCP sync failed. Ari's chat report states the cause in the words below, and the data from the last completed sync stays in place. |
+| **the connection is no longer linked, or its access for tool "[tool]" is no longer Allow** | Every page checks both, so no page completes until the connection is linked and the tool's permission is **Allow**. |
+| **the server answered HTTP 401 and rejected this connection's authorization when the page connected** | No page completes until the saved authorization changes. Select **Reconnect** on the server's row. |
+| **HTTP 429 is the server limiting the rate of requests it accepts, and its Retry-After header stated a wait of [N] seconds** / **…and its answer stated no time at which that limit ends** | The server limited how often cfo.ai may call it. The sync does not fail at once: it waits the stated time, at least one second, or one minute when none is stated, then asks for the same page again, keeping the pages it already fetched. One page waits at most five times. The report appears only when the wait would not fit in the sync's 10 minutes, or a page has waited five times; the job then waits for the server, as an API sync does, and the next run meets the limit again where it left off. |
+| **the server answered HTTP 503 when the page connected; the connection allowance is 45 seconds** | A 5xx status reports a fault in the server, not in the page's request. The next sync tries again. |
+| **the server's current definition of tool "[tool]" is absent or differs from the description and schemas this setup saved** | No page completes while the two differ. Ask Ari to save the sync setup again. |
+| **tool "[tool]" answered these arguments with an error result (isError)** | The tool returns the same error to a call with these arguments. Ask Ari to call the tool with the setup's arguments to read the error. |
+| **the call to tool "[tool]" ended without a result; a call's allowance is 45 seconds** | The call did not finish in time. |
+| **the server's answer is larger than the 2 MiB a sync page holds** | The page stops and saves nothing from that answer. Ask Ari to change the setup's arguments so the tool returns less, such as a narrower date range or fewer fields, before the next sync. |
 
 ## Messages in a chat
 

@@ -12,7 +12,9 @@ This page lists every size, count, and time limit in cfo.ai, grouped by part of 
 | --- | --- |
 | Files attached to one message | 5 |
 | Size of one image file | 10 MB |
-| Size of one other file, such as a PDF, Excel workbook, CSV, or text file | 50 MB |
+| Size of one other file, such as a PDF, Excel workbook, ZIP, CSV, or text file | 500 MB |
+| Size of a PDF Ari reads directly | 21 MB; a larger one opens in Ari's private workspace instead |
+| Size of a CSV attached in a chat that can become a data source | 50 MB; a larger one is a chat file only |
 | Quoted excerpts in one message | 5, each up to 2,000 characters |
 | Size of a text file or CSV that Ari reads in the conversation | 64 KiB; a larger one opens in Ari's private workspace instead |
 | Recipients of one email Ari drafts | 10 |
@@ -58,8 +60,8 @@ See [How imported data loads](/reference/imported-data) and [Integrations direct
 | Pages in one workbook Ari exports | 64 |
 | Spreadsheet exports a workspace prepares at once | 1 |
 | Time one spreadsheet export can run | 45 minutes from when a worker starts it; time waiting in the queue does not count |
-| Time one table calculation can run | 180 seconds; a calculation that reaches it is stopped, and retrying runs into the same limit. A calculation that outlasts one browser request keeps running, and the table keeps its loading state until the result arrives |
-| Time Ari waits for one table read of its own | 119 seconds; Ari reports a timeout on a table whose calculation runs longer, while the Page still loads it |
+| Time one table calculation can run | 180 seconds; a calculation that reaches it is stopped, and retrying runs into the same limit. A calculation that outlasts one browser request keeps running, and the table, Canvas block, or chart keeps its loading state until the result arrives |
+| Time Ari waits for one calculation of its own | 239 seconds, for a table, Page, Canvas, mapping, or validation read, so a 180-second calculation reaches Ari in the same call; Ari's other tools wait 60 seconds |
 | Length of a formula in an exported workbook | 8,192 characters, Excel's limit; a longer formula is exported as its value |
 | Blocks whose view settings one browser remembers, such as a table's height, open panes, and expanded rows | 200 per browser, across workspaces; past that, the block whose settings were saved longest ago forgets them first |
 

@@ -95,11 +95,11 @@ Each Date axis shows one grain at a time. To see quarters and years side by side
 
 ## Remove a row or delete a Variable
 
-Right-click the row name and choose **Remove item and drill-ins**. The row, and any breakdown rows under it, leave this table only; the Variable stays in your Model and on every other table. In the table setup panel, point at the row and select **Remove from table**.
+Right-click the row name and choose **Remove item and drill-ins**. When another table still shows the Variable, the row, and any breakdown rows under it, leave this table only; the Variable stays in your Model and on every other table. In the table setup panel, point at the row and select **Remove from table**.
 
-The table where a Variable was created is its original table. There, removing its last row reads **Delete variable** instead. It deletes the Variable from your Model and from every table. If formulas or other blocks still use it, cfo.ai first asks **Delete variable or dimension?** and counts what would break; choose **Cancel** to keep it, or **Delete anyway**. A Dimension works the same way with **Remove dimension** and **Delete dimension**.
+When this is the last table that shows the Variable, cfo.ai asks **Delete variable or dimension?** before anything changes. The dialog says the Variable will no longer appear on any table, or counts the formulas and blocks that would break. Choose **Cancel** to keep everything, **Keep with Ari**, offered when you can start a chat, to open a chat where Ari places the Variable on another table instead, or **Delete completely** to delete it from your Model and every table. A Dimension works the same way with **Remove dimension**.
 
-To find a Variable's original table, right-click its row on another table and choose **Go to original table**. When you point at a row whose Variable also appears on other tables, a link mark appears beside its name. Point at the mark to see how many tables show it and which one is the original. Deleting a whole table or Page keeps every Variable that another table still shows; see [Delete a table that other content uses](/guides/create-pages-and-blocks#delete-a-table-that-other-content-uses).
+When you point at a row whose Variable also appears on other tables you can open, a mark appears beside its name; point at it for **[N] synced instances** and **Shown on: [table] on [page]**. Tables you cannot open are not counted. To open one of those tables, right-click the row and choose **Go to another table**. Deleting a whole table or Page keeps every Variable that another table still shows; see [Delete a table that other content uses](/guides/create-pages-and-blocks#delete-a-table-that-other-content-uses).
 
 ## Keep a large table fast
 

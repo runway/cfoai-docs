@@ -9,9 +9,9 @@ Upload a CSV when the numbers you need are not in a system cfo.ai connects to, s
 ## Prepare the file
 
 - Save it as a `.csv` file of up to 50 MB.
-- Put the column names on the first line, and keep one record per row after it, with the same number of fields on every row.
-- Use commas between fields.
-- Delete report title lines above the table and total lines below it. If you would rather not, attach the file to a chat instead; Ari cleans up a copy and loads that.
+- Give every record the same number of fields as the line of column names. A quoted field may hold line breaks.
+- Separate fields with commas, semicolons, or tabs; cfo.ai reads which separator the file uses.
+- Report title lines above the table and total lines below it are usually skipped, because cfo.ai reads the file to find where its table starts and ends. If a file still does not load, delete those lines, or attach the file to a chat instead; Ari cleans up a copy and loads that.
 
 An upload uses no plan slot. [How imported data loads](/reference/imported-data#csv-files) lists how cfo.ai reads names, numbers, and dates.
 

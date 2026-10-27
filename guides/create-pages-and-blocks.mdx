@@ -73,7 +73,7 @@ Point at the Page in the sidebar and select its trash button, **Delete page**.
 
 - The Page and its blocks are deleted. Its subpages move up one level and stay.
 - When you are viewing a Scenario other than Main, the Page is deleted in that Scenario only. Main keeps it.
-- Most deletes happen without a question. cfo.ai asks first only when the Page holds the table where a Variable or Dimension was created and something else still uses it. See [Delete a table that other content uses](#delete-a-table-that-other-content-uses).
+- Most deletes happen without a question. cfo.ai asks first only when the Page holds the last table that shows a Variable or Dimension. See [Delete a table that other content uses](#delete-a-table-that-other-content-uses).
 
 To bring a Page back, press **⌘ Z** (**Ctrl Z**) in the same browser tab, or undo the change in version history. See [Undo a change or restore an earlier version](/guides/undo-changes).
 
@@ -99,10 +99,10 @@ There is no command to copy a whole Page. Duplicate its blocks and move them to 
 
 ### Delete a table that other content uses
 
-Each Variable and Dimension you create on a table has that table as its original table. When you delete a table or a Page:
+No table owns a Variable or Dimension; the tables that show it decide what a delete does. When you delete a table or a Page:
 
-- A Variable or Dimension that another table still shows is kept. One of those tables becomes its original table.
-- One that no other table shows is deleted with the table. If formulas, other blocks, or Canvas blocks still use it, cfo.ai first asks **Delete variable or dimension?** and counts what would break. Choose **Cancel** to keep everything, or **Delete anyway**. See [Removing and deleting](/reference/table-blocks#removing-and-deleting).
+- A Variable or Dimension that another table still shows is kept.
+- One that no other table shows is deleted with the table. cfo.ai first asks **Delete variable or dimension?**, says it will no longer appear on any table, or counts the formulas, blocks, and Canvas blocks that would break. Choose **Cancel** to keep everything, **Keep with Ari** to have Ari place it on another table instead, or **Delete completely**. See [Removing and deleting](/reference/table-blocks#removing-and-deleting).
 
 To keep a Variable while you remove its table, first add it to another table, or move the table to another Page instead of deleting it.
 

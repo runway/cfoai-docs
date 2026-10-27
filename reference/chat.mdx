@@ -16,6 +16,7 @@ This page lists what you see in a chat with Ari, in the order you meet it: start
 | **Mention table in chat** / **Mention canvas in chat** | In a block's menu, opened from the six-dot handle at its left edge. |
 | **Mention page in chat** | On a Page in the sidebar. |
 | **Mention formula in chat** | The **@** button in the formula editor. Adds the formula you are editing to the message box. |
+| **Mention in new chat** | Right under **Mention in chat**, or **Mention cell in chat** in a cell's menu, in the same right-click menus: a table's row, column, or cell menu, and a table, chart, text, or Canvas block's menu. Starts a new chat with the reference in its message box and leaves the current chat as it is. The compact mention buttons, such as the **@** in the formula editor and the button above a selected cell, do the same when you hold **⌥** (**Alt**) while you click; their tooltips say so. |
 | **Explain with Ari** | In a block's menu. Starts a new chat that asks Ari what the block shows, how it is built, and how to read it. |
 
 A mention appears in the message box as a chip. Ari reads the exact cell, row, block, or Page it points to, so you do not have to describe it. See [Ask Ari about a number](/guides/ask-about-a-number).
@@ -28,6 +29,7 @@ A new chat shows the heading **How can I help you?** and the placeholder **Ask a
 
 | Control | What it does |
 | --- | --- |
+| **@** | Typing **@** in the message box lists the Pages you can open, as **Pages**: up to six before you type a name, and up to twelve that match what you type. **Enter** or **Tab** adds the highlighted Page as a chip, **Esc** closes the list, and **Enter** with no matching Page sends the message as usual. Only Pages are offered this way; mention a cell, row, or block from its own menu. |
 | **Send** | Sends your message. While Ari is working, its tooltip reads **Steer Ari (Enter) · Queue for after this turn (⌥ Enter)** (**Alt+Enter** on Windows and Linux). |
 | **Stop** | Replaces **Send** while Ari is working and the message box is empty. Its tooltip reads **Stop Ari**. **Esc** in the message box does the same. Changes Ari already saved stay in the Model. |
 | **Attach files** | Opens a file picker. You can also paste a file, such as a screenshot, or drop it on the message box. A message can carry files with no text. |
@@ -54,11 +56,11 @@ When **Send** cannot be used, its tooltip says why.
 
 | Message | Meaning |
 | --- | --- |
-| **File is too large. Images must be 10MB or smaller.** | The image is over the size limit and was not attached. |
-| **File is too large. Documents must be 50MB or smaller.** | A file that is not an image is over the size limit and was not attached. |
+| **[file] is too large to attach, so Ari did not receive it. Images must be 10MB or smaller.** | The image is over the size limit and was not attached. |
+| **[file] is too large to attach, so Ari did not receive it. Documents must be 50MB or smaller.** | A file that is not an image is over the size limit and was not attached. |
 | **You can attach up to 5 files per message. Remove a file or select fewer files.** | The files you picked would take the message over five files, so none of them were attached. |
 | **Attachment upload failed** | A notice with the file's name and the reason. The file's tile turns red. |
-| **cfo.ai did not confirm this upload. Check your connection and attach it again. If only this file keeps failing, a security filter may be blocking its contents. Contact support@cfo.ai.** | The upload never finished, for example after a dropped connection. Attaching the same file again replaces the failed tile. |
+| **cfo.ai did not confirm this upload. Check your connection and attach it again. If only this file keeps failing, a security filter may be blocking its contents. Contact support@cfo.ai.** | The upload never finished, for example after a dropped connection. A request that got no answer is sent once more after one second before this shows. Attaching the same file again replaces the failed tile. |
 | **Wait for attachments to finish uploading before sending.** | You tried to send while a file was uploading. |
 
 ## While Ari works
@@ -382,14 +384,17 @@ After a turn that ran longer than 20 seconds ends while you are watching, a line
 
 ## Ari in Slack
 
-Ari chats in Slack direct messages once your workspace is connected in **Settings → Ari → Slack**. See [Talk to Ari from Slack](/guides/use-ari-in-slack).
+Ari chats in Slack direct messages, and in private channels an administrator adds it to, once your workspace is connected in **Settings → Ari → Slack**. See [Talk to Ari from Slack](/guides/use-ari-in-slack).
 
 | Message | Meaning |
 | --- | --- |
 | **is typing…** | Ari is working on your message. Its reply posts in the same thread when the turn ends. |
 | **I couldn't find a CFO.ai account for your Slack email. Ask an admin to invite you to CFO.ai, then message me again.** | No cfo.ai account uses the email address on your Slack profile. |
 | **Your CFO.ai account doesn't have access to this workspace's CFO.ai. Ask an admin for access, then message me again.** | Your cfo.ai account does not belong to the cfo.ai workspace this Slack workspace is connected to. |
-| **I can only chat in DMs right now. Send me a direct message and I'll pick this up there.** | You mentioned Ari in a channel. Ari does not read or answer channel messages. |
+| **I work in direct messages, and in private channels a cfo.ai admin adds me to. Send me a direct message and I'll pick this up there.** | You mentioned Ari in a channel it has not been added to, such as a public channel. Ari reads nothing else there. |
+| **Hi, I'm Ari. [name] added me, so anyone here can ask me about the company's numbers. I answer when you @mention me, and I join in when I can help. My answers use [name]'s cfo.ai access, and everyone in this channel can read them.** | An administrator added Ari to a private channel. Every answer there uses that administrator's access. |
+| 👀 on a channel message | Ari is working on that message. |
+| **I only work in private channels, so I'm leaving this one. …**, **Only a cfo.ai admin can add me to a channel, so I'm leaving. …**, **A cfo.ai admin needs to disconnect Slack and add it again in cfo.ai Settings before I can work in channels, so I'm leaving. …**, **The admin who added me here no longer has admin access in cfo.ai, so I'm leaving. …** | Ari left the channel. [If Ari leaves a channel](/guides/use-ari-in-slack#if-ari-leaves-a-channel) explains each reason and what to do. |
 | **I can't read files or images in Slack yet. Paste the text into a message and I'll take it from there.** | You sent a file or image. Ari reads nothing in that message. |
 | **Something went wrong on my end and I couldn't finish that. Please try again.** | Ari's turn failed. |
 

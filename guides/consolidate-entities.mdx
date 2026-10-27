@@ -17,7 +17,7 @@ Before you start, connect each entity's books. Connect each QuickBooks Online co
   <Step title="Check that the entities share Dimensions">
     Every row of a QuickBooks Online or Xero company's statements carries **Entity**, the company's name, and **Currency**. When another company from the same accounting system loads for the first time, its Entity and Currency columns join the Dimensions the first company created. One Entity Dimension then lists every company. Rillet's statements carry one set of rows for each subsidiary, with Entity naming the subsidiary. NetSuite's statements have no Entity or Currency column: the **NetSuite Income Statement** names each row's subsidiary in **Subsidiary** and its currency in **Currency Name**, and its **Entity ID** is the customer or vendor, not the company. The **NetSuite Balance Sheet** names the subsidiary in **subs_name** and has no currency column.
 
-    Companies in different accounting systems, such as one in QuickBooks Online and one in Xero, get separate Dimensions. Two companies with the same name share one Entity item, so rename one in its accounting system before connecting it. To combine two compatible Dimensions, ask Ari:
+    Companies in different accounting systems, such as one in QuickBooks Online and one in Xero, get separate Dimensions. Two companies with the same name in the same accounting system share one Entity item, so rename one in its accounting system before connecting it. To combine two compatible Dimensions, ask Ari:
 
     > Combine the Entity Dimensions from QuickBooks Online and Xero into one.
 

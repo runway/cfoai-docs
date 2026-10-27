@@ -33,7 +33,7 @@ In a layout, an item filter is always a list of items to keep. Ranges, exclusion
 | `time` | The Date axis at `DAY`, `WEEK`, `MONTH`, `QUARTER`, `HALF`, or `YEAR`. It creates the Date Dimension when the Model has none. |
 | `filter` | `{"include": [...]}`: the items of a Dimension this node declares or places that stay visible, 1 to 10,000 of them. List order does not set display order. A retained node takes `members` instead. |
 | `when` | `{"dimension": ..., "equals": ...}`: a branch condition that restricts this level to one item of an ancestor Dimension on the same path. |
-| `branches` | A fork: 2 to 10 sibling paths, each a list of up to 10 levels. A path from the top to the end may fork once. |
+| `branches` | A fork: two or more sibling paths, each a list of up to 10 levels. One breakdown holds at most 50 Dimensions, counted across every path and the levels around the fork, so six paths of nine levels are refused as 54 and fifty one-level paths are accepted. A path from the top to the end may fork once. |
 | `space` | `true`: a blank separator row on create, or a saved empty slot on reshape. Available only in `rows`. |
 | `summary` | `NONE` keeps the parent's own modeled value. `SUM`, `AVG`, `MIN`, `MAX`, `COUNT`, or `LAST` combine the children instead, independently of the time rollup. |
 | `role` | `DIMENSION` lists a Dimension's items; `VARIABLE` holds one value of the Dimension for each item on the other axis. |
@@ -76,7 +76,7 @@ A Canvas dataset declares the same visible shape in a flatter form, under its `l
 | --- | --- |
 | `variable` | An existing Variable to read. |
 | `breakdown` | The shared levels beneath it, outermost first. A level is a Dimension name, or an object with `dimension` or `time`; `include` and `when` go only on a `dimension` level. `breakdown`, the `branches` fork counted as one, and `after_branches` together hold at most 10 entries. |
-| `branches` | Sibling paths as one list of 2 to 50 levels. Each level names its path with `branch`, a number from 1 to 10; levels with the same number form one path in list order. A fork takes 2 to 10 paths, each of up to 10 levels. One entry's levels, counting every level inside every path, number at most 50; past that it is refused with **accepts at most 50 combined dimension branches**. |
+| `branches` | Sibling paths as one list of 2 to 50 levels. Each level names its path with `branch`, a number from 1 to 50; levels with the same number form one path in list order. A fork takes at least two paths, each of up to 10 levels. One entry's levels, counting every level inside every path, number at most 50; past that it is refused with **accepts at most 50 combined dimension branches**. |
 | `after_branches` | Levels that follow every branch. Each complete path is `breakdown`, then one branch, then `after_branches`. It needs `variable` and `branches` on the same entry; without both it is refused with **after_branches requires a variable and sibling branches**. |
 | `include` | The items to keep on that level, up to 50, written directly on the level. A table's `filter.include` takes up to 10,000. |
 | `dimension`, `time` | A standalone grouping axis entry, such as the shared dates on `columns`. |
@@ -100,7 +100,7 @@ There is no separate transpose action. To flip a table, reshape it by moving the
 
 ## Member tables
 
-A table whose rows are two or more plain Dimension rows and whose `columns` is an explicit empty list is a member table: each row lists one Dimension's items, an empty Dimension included, and no calculated value is on either axis. `create` accepts this shape. A read of such a saved table, the Model page's shared **Dimensions** table included, returns one row per Dimension with `columns: []`, each row named by the qualified reference `create` resolves, such as `Entity#1a2b`, so two Dimensions whose names differ only in case read back as two rows. Two rows that resolve to the same Dimension are refused with `two rows name the same dimension; each row of a member table lists a different dimension's items`. A row narrowed by a formula condition is not a member table row: it reads through the general layout, which keeps its filter. When you cannot read one of the Dimensions, the read says `This saved table includes a dimension you cannot read.` and returns no layout.
+A table whose rows are two or more plain Dimension rows and whose `columns` is an explicit empty list is a member table: each row lists one Dimension's items, an empty Dimension included, and no calculated value is on either axis. `create` accepts this shape. A read of such a saved table, the Model page's shared **Dimensions** table included, returns one row per Dimension with `columns: []`, each row named by the qualified reference `create` resolves, such as `Entity#1a2b`, so two Dimensions whose names differ only in case read back as two rows. Two rows that resolve to the same Dimension are refused with `two rows name the same dimension; each row of a member table lists a different dimension's items`. A row narrowed by a formula condition is not a member table row: it reads through the general layout, which keeps its `members` condition. When you cannot read one of the Dimensions, the read says `This saved table includes a dimension you cannot read.` and returns no layout.
 
 ## When a table comes back empty
 

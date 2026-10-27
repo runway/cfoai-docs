@@ -28,7 +28,7 @@ The data reached your Model, and the last sync finished. Mark: none. Action: non
 
 ### Connected
 
-An MCP server or an API is ready for Ari to call. Nothing syncs from it, so it has no **Last synced** time. Mark: none.
+An MCP server or an API is ready for Ari to call. Mark: none. Its page and its sidebar card show two statuses: **Connection**, which reads **Connected** while Ari can call its tools or endpoints, and **Data sync**, which reads the state of the sync setups Ari saved for it, such as **Synced**, **Syncing**, **No queries yet**, **No data found**, or **Needs attention**. A working server can therefore read **Connection: Connected** beside **Data sync: Needs attention** when an import failed. A server with no sync setup has no **Last synced** time. When the data sync is failed or blocked, the **Data sync** section offers **Fix with Ari**, which starts a chat about that sync; someone who cannot edit the connection reads **Someone with edit access can fix this sync with Ari.** instead.
 
 ### Syncing
 
@@ -142,6 +142,7 @@ An MCP server's row also shows the state of its saved sign-in. The state describ
 | Next step | When |
 | --- | --- |
 | **Reconnect this source to continue.** | The saved sign-in has no usable token. |
+| **Fix with Ari** | In the **Data sync** section when the sync is failed or blocked. Starts a chat that names the connection and asks Ari to inspect the latest run and its saved sync setup, repair or retry it, and check the result. Shown with **Ari is unavailable.** and the reason while the workspace's AI usage is blocked. |
 | **Finish authorization to continue.** | Sign-in was started and not finished. |
 | **Retry authorization to continue.** | Sign-in failed. |
 | **Allow at least one API endpoint to continue.** | No endpoint of the API is allowed yet. |
@@ -178,8 +179,8 @@ Select a connection's row to open its page. Its sections, top to bottom:
 
 | Section | What it shows |
 | --- | --- |
-| **Status** | The status, the line under it, any setup warning, and the actions. **Last synced** reads a time such as **Just now**, or **Not yet**. **Used in** lists the Pages that use the connection's data. **Added** gives the date it was connected, and **File** names an uploaded file. For an MCP server or API, the facts are **Type**, **Address**, **Sign-in**, and **Added**, with **Last synced** and **Used in** once it syncs. |
-| **Source tables** | **When each table from this source last synced.** Each row gives the **Table**, its **Last synced** time, and the date its **Data through** reaches. It appears once two or more tables have synced. |
+| **Status** | The status, the line under it, any setup warning, and the actions. **Last synced** reads the date and time of the last finished sync, to the second, in your browser's time zone, such as **Oct 23, 2026, 6:02:14 PM PDT**, or **Not yet**; the sidebar card still shows how long ago, such as **Just now**. Beside the status, people who manage connections see **Sync now** on a linked integration; see [Connection actions](#connection-actions). **Used in** lists the Pages that use the connection's data. **Added** gives the date it was connected, and **File** names an uploaded file. For an MCP server or API, the facts are **Type**, **Address**, **Sign-in**, and **Added**, with **Last synced** and **Used in** once it syncs. |
+| **Source tables** | **When each table from this source last synced.** Each row gives the **Table**, its **Last synced** date and time to the second in your time zone, and the date its **Data through** reaches. It appears once two or more tables have synced. |
 | **Import** | **What Ari imported from this connection.** It appears for Google Sheets and Google Drive connections. |
 | **Tools** | **Choose which tools Ari may use without asking first.** It appears for an MCP server that finished sign-in, for people who can manage connections. It opens with **Connection health**: **Sign-in saved**, **Sign-in saved · expiry unknown**, **Access expired · renewal on next use**, **Reconnect required**, **Sign-in incomplete**, **Provider access not checked**, or **Provider access could not be verified** when the tool list could not be read. Under it, **Tools verified: [date and time]** or **A saved sign-in does not confirm current provider access.**, and **Reconnect** for a server that signs in with OAuth. Tools are grouped as **Read-only tools** and **Write/delete tools**, and **Auto-classify** sets their permissions. When the list fails, the error shows with **Try again**. |
 | **Endpoints** | **Choose which endpoints Ari may call without asking first.** It appears for an API, grouped as **Read endpoints** and **Write/delete endpoints**, with **Auto-classify**. |
@@ -288,7 +289,7 @@ Google Sheets and Google Drive connections report their import on the row and in
 | **Raw ingestion failed for [connection]. Sync page [N] failed: [cause].** | A page of an MCP sync failed. Ari's chat report states the cause in the words below, and the data from the last completed sync stays in place. |
 | **the connection is no longer linked, or its access for tool "[tool]" is no longer Allow** | Every page checks both, so no page completes until the connection is linked and the tool's permission is **Allow**. |
 | **the server answered HTTP 401 and rejected this connection's authorization when the page connected** | No page completes until the saved authorization changes. Select **Reconnect** on the server's row. |
-| **the server answered HTTP 429 when the page connected; the connection allowance is 45 seconds** | The server limited how often cfo.ai may call it, and the page records no time at which that limit ends; the 45 seconds is how long a page waits to connect. The next sync tries again. |
+| **HTTP 429 is the server limiting the rate of requests it accepts, and its Retry-After header stated a wait of [N] seconds** / **…and its answer stated no time at which that limit ends** | The server limited how often cfo.ai may call it. The sync does not fail at once: it waits the stated time, at least one second, or one minute when none is stated, then asks for the same page again, keeping the pages it already fetched. One page waits at most five times. The report appears only when the wait would not fit in the sync's 10 minutes, or a page has waited five times; the job then waits for the server, as an API sync does, and the next run meets the limit again where it left off. |
 | **the server answered HTTP 503 when the page connected; the connection allowance is 45 seconds** | A 5xx status reports a fault in the server, not in the page's request. The next sync tries again. |
 | **the server's current definition of tool "[tool]" is absent or differs from the description and schemas this setup saved** | No page completes while the two differ. Ask Ari to save the sync setup again. |
 | **tool "[tool]" answered these arguments with an error result (isError)** | The tool returns the same error to a call with these arguments. Ask Ari to call the tool with the setup's arguments to read the error. |

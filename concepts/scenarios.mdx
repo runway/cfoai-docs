@@ -41,7 +41,7 @@ A Snapshot is not read-only. You and Ari can still type values over its numbers,
 
 Every write to a Scenario is recorded, whether you made it or Ari did. Version history gives you two ways to go back:
 
-- **Undo** reverses one change, or one related batch of changes. Later changes stay, except where they touched the same things: cfo.ai then asks **Undo this change?**, lists those later changes, and undoes them for those things too.
+- **Undo** reverses one change, or one related batch of changes, and puts back only the fields that change wrote. Later changes to other fields stay, even on the same Page or Variable. When a later change edited one of those same fields, such as the same Page's name, the undo is refused and names that later change, so nothing is silently replaced.
 - **Restore** returns the whole Scenario to an earlier point and rolls back every change made after it. The restore is itself a recorded change, so you can undo it too. Ari calls this a revert.
 
 A change a Scenario inherited from Main cannot be undone from inside the Scenario. Undo it in Main.

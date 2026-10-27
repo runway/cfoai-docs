@@ -190,6 +190,11 @@ An entry added in the last 30 days shows **New** until you complete it, and a co
 
 Guides your team saved are not listed in the Help center; ask Ari to start one. See [Walk someone through a Page with a Guide](/guides/create-a-guide).
 
+| Guide message | Meaning |
+| --- | --- |
+| **Couldn't open that guide** / **The guide or one of its targets may have been deleted or is no longer accessible.** | The Guide cannot start. Ask Ari to update it. |
+| **Guide step skipped** | A step's target was not on screen, so the Guide moved on. Shown once per run. |
+
 ### Contact support
 
 You can reach a person at cfo.ai three ways.
@@ -314,6 +319,13 @@ While an export runs, the button spins and its tooltip shows the stage:
 | **Spreadsheet queued** | Your export is waiting to start. |
 | **Preparing spreadsheet** | Your export is running. |
 
+The button stays clickable while its export runs. Selecting it again starts no second export; it shows a notice with the same stage and the time you asked, which you can close:
+
+| Notice | Meaning |
+| --- | --- |
+| **Waiting for another spreadsheet…**, with **[Page] waits for [other export]. Waiting since [time]** | Your export is behind another one. |
+| **Spreadsheet queued** or **Preparing spreadsheet…**, with **[Page], requested at [time]** | Your export is waiting or running. The notice stays until the export ends or you close it. |
+
 When it finishes:
 
 | Message | Meaning |
@@ -322,7 +334,7 @@ When it finishes:
 | **Spreadsheet download started**, with **[file]: [n] cells hold values instead of a formula. The Export notes sheet lists them.** and **Ask Ari to fix** | Some formulas could not be written as Excel formulas. **Ask Ari to fix** opens a chat that asks Ari to export the Page again and write a working formula into each of those cells. |
 | **Could not download spreadsheet**, with **[Page]: [reason]** | The export failed. |
 
-When you open a Page, it looks for your own newest export of that Page in that Scenario: one still queued or running, or one that ended within the last hour. It looks even when the Page no longer has a table, though a Page without a table shows no **Download spreadsheet** button, only the notices below. On a Page that still has a table, a running export makes the button busy again, with the tooltips above. When it finishes, the file downloads if this tab asked for it before a reload; an export that a closed tab, another tab, or Ari asked for is offered with **Spreadsheet ready** instead. An export that already ended shows one of these notices. A tab reports an export once, across its reloads, and a new tab reports it again:
+When you open a Page, it looks for your own newest export of that Page in that Scenario: one still queued or running, or one that ended within the last hour. It looks even when the Page no longer has a table, though a Page without a table shows no **Download spreadsheet** button, only the notices below. On a Page that still has a table, a running export makes the button busy again, with the tooltips above. When it finishes, the file downloads if this tab asked for it before a reload, or if you selected **Download spreadsheet** in this tab while it ran; an export that a closed tab, another tab, or Ari asked for is otherwise offered with **Spreadsheet ready** instead. An export that already ended shows one of these notices. A tab reports an export once, across its reloads, and a new tab reports it again:
 
 | Message | Meaning |
 | --- | --- |
@@ -352,7 +364,7 @@ For time and size limits, see [Limits and file types](/reference/limits#tables-p
 | --- | --- |
 | **Pages to share** | Lists the Page you started from, marked **Opens here**, and the other Pages in this Scenario you can share. Select Pages to add them to the link. Below it: **The first page opens when someone follows the link. Up to 50 pages can be shared.** |
 | **External access** | **Create link**, and the links that already exist. With none, it says **No one outside your workspace has link access.** A Page can have up to 100 links. |
-| A link | Its address; **Anyone with this link can view. Updated [time]**; the names of the Pages it opens; **Copy external link**; and **Turn off external link** (the trash icon). |
+| A link | Its address; **Anyone with this link can view. Shared by [name], updated [time]**, or **Anyone with this link can view. Updated [time]** for a link whose creator is not recorded; the names of the Pages it opens; **Copy external link**; and **Turn off external link** (the trash icon). |
 | **Edit share preview** | On a link without a password. Opens the [Share preview](#share-preview) dialog. |
 | **Link settings** | Opens under a new link. **Shared scenario** picks the link's Scenario. **Require password** turns the password on; turning it on fills in a generated password. The password field has **Show password** (**Hide password**) and **Generate password**. **Save changes** appears after a change; saving replaces the link with a new address, and the old address stops working. |
 | Footer | **Model data on this page may also be used on other pages.** |
@@ -424,7 +436,7 @@ A link's preview card in chat and social apps, and the browser title of the link
 | **Add** | At the block's top corner, for people who can edit the Page. Opens the Canvas block library to pick components and templates for Ari to add. |
 | **Select element** | At the block's top corner. Click one part of the block to add it to the chat as a reference. |
 | **Mention in chat** | At the block's top corner. Adds the block to the chat's message box. |
-| **Inspect data** | At the block's top corner, on a block that reads Model data, for workspace admins only; its tooltip reads **Inspect the data behind this Canvas block**. Opens the **Canvas data** dialog, which shows each data view the block reads as its own read-only table. A table's header offers **Add to page**, which puts a copy of that table on the Page just before the Canvas block and then reads **Added to page**. The copy is an ordinary Table block, so you can edit it as you would any table; cells a connected system fills stay read-only there too. **Add to page** needs edit access to the Page and is unavailable in a historical view and for a view that reads another Scenario. |
+| **Inspect data** | At the block's top corner, on a block that reads Model data, for workspace admins only; its tooltip reads **Inspect the data behind this Canvas block**. Opens the **Canvas data** dialog, which shows each data view the block reads as its own read-only table. A table's header offers **Add to page**, which puts a copy of that table on the Page just before the Canvas block and then reads **Added to page**. The copy is an ordinary Table block, so you can edit it as you would any table; cells a connected system fills stay read-only there too. **Add to page** needs edit access to the Page and is unavailable in a historical view, for a view that reads another Scenario, and while the Page is refreshing. The dialog stays open while the Page refreshes, including after **Add to page**. |
 | **Browse library** and **Mention block in chat** | On a blank block, under **Build something custom** and **Chat with Ari to generate custom visuals and interactive tools**. |
 
 A blank block on a deleted Page that you open from version history reads **This Canvas block was empty when the page was deleted.**, and a blank block you cannot edit reads **This Canvas block is empty.**
@@ -437,9 +449,9 @@ A Canvas block can open your browser's own dialogs: a print button prints that b
 
 | Message | Meaning | What to do |
 | --- | --- | --- |
-| **This Canvas block didn't start because its libraries from esm.sh failed to load.** | The block's software did not load. | Select **Retry**. |
+| **This Canvas block didn't start because its libraries failed to load.** | The block's software did not load. | Select **Retry**. |
 | **This Canvas block didn't start because its runtime stopped with an error before it was ready.** | The block's software stopped before the block started. | Select **Retry**. |
-| **This Canvas block was still loading its libraries from esm.sh after 15 seconds.** | The block's software is loading slowly. | Select **Retry**, or wait. |
+| **This Canvas block was still starting after 15 seconds.** | The block's software is loading slowly. | Select **Retry**, or wait. |
 | **This block failed to render.**, with the error | The block stopped with an error while drawing. | Select **Fix** to hand the block to Ari, or **Mention in chat**. |
 | **This block's "[data]" data didn't load because the connection to cfo.ai failed.** | Your connection to cfo.ai failed. | Wait. The block asks again when your connection returns. |
 | **This block's "[data]" data failed to load.** | The data the block reads failed to load. | Select **Mention in chat** and ask Ari to check the data the block reads. |

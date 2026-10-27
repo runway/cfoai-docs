@@ -65,14 +65,14 @@ The source revoked cfo.ai's access, for example after a password change or an ex
 
 ### Missing access in [source]
 
-The source is not sharing some tables the reports need, such as **Missing access in NetSuite SuiteAnalytics**. Mark: red triangle. Line on the card: **[Source] isn’t sharing some tables the reports need. Open the connection for the steps to fix it.** The connection's page shows an **Access missing** badge and the steps. For NetSuite they read: **NetSuite isn't sharing some tables cfo.ai needs for your financial statements. Have your NetSuite admin create an access token for the Data Warehouse Integrator role, then reconnect NetSuite with that token. Changing only the role ID won't work. Missing tables: …** Action: fix the access in the source, then **Reconnect**.
+The source is not sharing some tables the reports need, such as **Missing access in NetSuite SuiteAnalytics**. Mark: red triangle. Line on the card: **[Source] isn’t sharing some tables the reports need. Open the connection for the steps to fix it.** A connection whose saved query fails because it reads one of those hidden tables also shows this status, not **Sync failed**, because another sync cannot help until the access is fixed. The connection's page shows an **Access missing** badge and the steps. For NetSuite they read: **NetSuite isn't sharing some tables cfo.ai needs for your financial statements. Have your NetSuite admin create an access token for the Data Warehouse Integrator role, then reconnect NetSuite with that token. Changing only the role ID won't work. Missing tables: …** Action: fix the access in the source, then **Reconnect**.
 
 ### Sync failed
 
 There are two kinds:
 
 - The provider's own sync failed, often for a moment. Mark: steady orange dot. Line: **[Source]’s sync hit an error. cfo.ai will try again on the next scheduled sync.** When the provider gave a reason, its report sits between the two sentences, for example **BigQuery’s sync hit an error. Fivetran reports: Problem with view (BigQueryConnectorTask_VIEW_ERROR): [the view Fivetran could not read]. cfo.ai will try again on the next scheduled sync.** Fivetran's report gives each failing task as its message, its code in parentheses, and its details, which name what failed, such as the view or table; several tasks are separated by semicolons. Ari reads the same report. Action: none, or **Retry** to run it now. When the report names something to fix at the source, fix that first. When Fivetran reports the connector broken by a generic sync failure and nothing else, and its setup tests pass, the nightly refresh starts one ordinary sync on up to two later nights; a success clears the count, and a connector that needs a new sign-in or is paused is not retried this way.
-- cfo.ai could not tell why the sync failed. Mark: red triangle. Line: the source's own reason, or **The last sync couldn’t finish.** Actions: **Retry** and **Investigate with Ari**.
+- cfo.ai could not tell why the sync failed. Mark: red triangle. Line: the source's own reason, or **The last sync couldn’t finish.** Actions: **Retry** and **Investigate with Ari**. When the reason names a table the source hides, the connection shows [Missing access in [source]](#missing-access-in-source) instead.
 
 ### First sync not ready
 
@@ -161,7 +161,7 @@ An MCP server's row also shows the state of its saved sign-in. The state describ
 | --- | --- | --- |
 | **Finish setup** | Continues the unfinished setup on the same connection. No second connection is created. | Setup was not finished and the source can resume it. |
 | **Cancel setup** | Removes an unfinished connection at once. It frees the plan slot the connection held. | Setup was not finished. |
-| **Reconnect** | Opens the source's sign-in again for the same connection. | The source revoked access, a failed sync needs a new sign-in, or a **Partly synced** connection's source refused access to a missed table or cfo.ai has not read why the table was missed. |
+| **Reconnect** | Opens the source's sign-in again for the same connection. | The source revoked access, a failed sync needs a new sign-in, a connection reads **Missing access in [source]** and the access has been fixed at the source, or a **Partly synced** connection's source refused access to a missed table or cfo.ai has not read why the table was missed. |
 | **Retry** | Runs the import again with the same sign-in, or starts setup again after **Connection failed**. It does not use another plan slot. | A sync failed and only the import needs to run again, a sync was stopped, or setup failed. |
 | **Update file** | Replaces an uploaded CSV with a new file. | On a file upload. It is the only action when the file could not be read. |
 | **Set up queries with Ari** | Opens a new chat with a request for Ari to review what synced, propose saved queries, and set them up. You review the request before you send it. | **No queries yet** |
@@ -285,6 +285,15 @@ Google Sheets and Google Drive connections report their import on the row and in
 | **The specification URL answered HTTP 404, not the document.** | The address returned an error status instead of the specification. |
 | **The specification document is larger than the 12 MiB this connection accepts.** | The specification is too large. |
 | **Could not load the OpenAPI specification. Check its URL or paste the document as JSON.** | The address did not answer. |
+| **Raw ingestion failed for [connection]. Sync page [N] failed: [cause].** | A page of an MCP sync failed. Ari's chat report states the cause in the words below, and the data from the last completed sync stays in place. |
+| **the connection is no longer linked, or its access for tool "[tool]" is no longer Allow** | Every page checks both, so no page completes until the connection is linked and the tool's permission is **Allow**. |
+| **the server answered HTTP 401 and rejected this connection's authorization when the page connected** | No page completes until the saved authorization changes. Select **Reconnect** on the server's row. |
+| **the server answered HTTP 429 when the page connected; the connection allowance is 45 seconds** | The server limited how often cfo.ai may call it, and the page records no time at which that limit ends; the 45 seconds is how long a page waits to connect. The next sync tries again. |
+| **the server answered HTTP 503 when the page connected; the connection allowance is 45 seconds** | A 5xx status reports a fault in the server, not in the page's request. The next sync tries again. |
+| **the server's current definition of tool "[tool]" is absent or differs from the description and schemas this setup saved** | No page completes while the two differ. Ask Ari to save the sync setup again. |
+| **tool "[tool]" answered these arguments with an error result (isError)** | The tool returns the same error to a call with these arguments. Ask Ari to call the tool with the setup's arguments to read the error. |
+| **the call to tool "[tool]" ended without a result; a call's allowance is 45 seconds** | The call did not finish in time. |
+| **the server's answer is larger than the 2 MiB a sync page holds** | The page stops and saves nothing from that answer. Ask Ari to change the setup's arguments so the tool returns less, such as a narrower date range or fewer fields, before the next sync. |
 
 ## Messages in a chat
 

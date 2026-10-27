@@ -54,7 +54,7 @@ When setup itself failed, the connection reads **Connection failed** with **Retr
 
 ## NetSuite is missing access
 
-The connection reads **Missing access in NetSuite SuiteAnalytics** when NetSuite hides tables the financial statements need. The connection's page lists the missing tables.
+The connection reads **Missing access in NetSuite SuiteAnalytics** when NetSuite hides tables the financial statements need, including when a sync failed because a saved query read one of them. The connection's page lists the missing tables. **Retry** does not help until the access is fixed. See [NetSuite SuiteAnalytics](/reference/integrations#netsuite-suiteanalytics) for when cfo.ai adds its statement queries.
 
 <Steps>
   <Step title="Get a token for the right role">

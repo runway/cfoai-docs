@@ -143,7 +143,7 @@ The app's **Accounting** filter also holds payment and commerce sources, such as
 | How it connects | Fivetran setup window, with your NetSuite account and an access token |
 | Standard or premium | Premium |
 | What syncs | The NetSuite tables the financial statements need, such as accounts, accounting periods, transactions and their lines, subsidiaries, customers, and vendors. You can ask Ari to add other tables later. |
-| Saved queries cfo.ai adds | **NetSuite Income Statement** and **NetSuite Balance Sheet** |
+| Saved queries cfo.ai adds | **NetSuite Income Statement** and **NetSuite Balance Sheet**, added once a completed sync has landed the raw `ACCOUNT` table. A NetSuite role that hides that table gets no saved queries; the first sync after the role shares it adds them |
 | History | The full history of each table |
 | First sync | Can take many hours, because Fivetran copies every table's full history first |
 | Table choice | Setup shows a table picker. Required tables are locked. Tables for features your account does not use, **Multiple Currencies**, **Multiple Calendars**, or **Multi-Book Accounting**, start unchecked. Tables that already sync cannot be removed. |

@@ -51,7 +51,7 @@ A few formulas cannot be written as Excel formulas, such as one longer than Exce
 
 - One worksheet for each table on the Page, in the Scenario you exported. A table's Scenario comparison columns come along, and rows and columns hidden on the table are left out.
 - Text blocks, charts, and Canvas blocks are left out, because a workbook holds tables.
-- Each number keeps its format: currency, percentage, or a multiple such as `3.5x`, with up to five decimal places. Negative currency amounts and plain numbers show in parentheses.
+- Each number keeps its format: currency, percentage, or a multiple such as `3.5x`, with up to five decimal places. A table shown in thousands, millions, or billions keeps that **Scale** in the workbook, with the suffix `K`, `M`, or `B`; percentages and multiples are never scaled. Negative currency amounts and plain numbers show in parentheses.
 - A blank input stays blank rather than becoming 0, and an input that holds text, such as a customer name, stays text. A function of a blank, such as `round`, `abs`, or `year` of an empty cell, is written so that Excel also shows blank after it recalculates, instead of 0 or 1900, and an average or median skips those blanks as cfo.ai does.
 - In a workspace with a brand, the filled row at the top of each worksheet that holds the table's title in white takes the brand's text color as its fill, and the first three Dimension colors take the brand's chart colors when it has them. See [Brand your workspace](/guides/brand-your-workspace).
 

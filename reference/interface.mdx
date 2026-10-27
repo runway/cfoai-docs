@@ -296,7 +296,7 @@ The bar above a Page, from left to right:
 | **New chat** | On a full-screen Page with no chat open. Opens a floating chat over the Page. |
 | **Collapse model pane** | When the Page is beside a chat. Folds the Page to a narrow rail; **Expand model pane** opens it again. |
 
-Below the header, the Page's title row holds the **Page title**, which you can click to rename the Page, and, on a Page with a table, a chart, or a Canvas block with data, the **Page date range**. Changing the date range sets it on every table, chart, and Canvas dataset on the Page.
+Below the header, a Page with a table, a chart, or a Canvas block with data has a row with the **Page date range**. Changing the date range sets it on every table, chart, and Canvas dataset on the Page. The Page's name is not shown as a heading above its blocks, and a Page with no dated block has no row there, so its blocks start at the top. To rename a Page, use the Page list in the sidebar; see [Rename a Page](/guides/create-pages-and-blocks#rename-a-page).
 
 ### A chat and a Page together
 
@@ -444,6 +444,8 @@ The controls sit inside the block's upper-right corner, over its content, and st
 A blank block on a deleted Page that you open from version history reads **This Canvas block was empty when the page was deleted.**, and a blank block you cannot edit reads **This Canvas block is empty.**
 
 A button inside a Canvas block can open another Page or block, put a message for Ari in the message box for you to review and send, or start a new chat that sends its message at once, such as a request to start a Guide. A button that hands work to Ari shows a trailing arrow. No button changes the Model.
+
+For a reader who opens the Page through a share link, a control's choice lives in their browser only. It stays through the refreshes a Model change causes and through another person's edits to the Page's text, and ends when the reader reloads, switches Scenario, or opens another block; the block then shows the choice its editor saved. While cfo.ai is still checking who may edit the block, a control change is ignored rather than shown.
 
 A Canvas block can open your browser's own dialogs: a print button prints that block alone, and a block can ask you to confirm a step or type a short answer. These dialogs come from the block, not from cfo.ai. A Canvas block cannot show images from the web or from a file.
 

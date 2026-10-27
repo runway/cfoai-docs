@@ -257,7 +257,7 @@ The page reads **Choose an amount. Credits never expire.**
 
 ## When the workspace locks
 
-A workspace locks when it has no plan, such as after a canceled plan ends, or when a renewal payment still fails after retries. While it is locked, nobody can open its Pages or chat with Ari, and its connected sources stop refreshing.
+A workspace locks when it has no plan, such as after a canceled plan ends, or when a renewal payment still fails after retries. While it is locked, nobody can open its Pages or chat with Ari, and its connected sources stop refreshing. A tab that was already open shows the locked screen as soon as cfo.ai refuses one of its requests for want of a plan; you do not need to reload.
 
 | Screen | Who sees it | What it says |
 | --- | --- | --- |
@@ -301,8 +301,8 @@ Dismissing a notice hides it until the next threshold or the next billing cycle.
 ## Rules and limits
 
 - Every member is an administrator, so every member can change the plan, buy usage, and change the spend limit and auto-reload. Adding people does not change the price.
-- Canceling keeps the plan until the end of the term you paid for, and a trial until its end date. Under the Standard Terms and Conditions, fees already paid are not refunded.
-- You can undo a cancellation any time before it takes effect.
+- Canceling keeps the plan until the end of the term you paid for, and a trial until its end date. Under the Standard Terms and Conditions, fees already paid are not refunded. The one exception is **Cancel subscription** on a locked workspace's **We couldn’t charge your card** page, which ends the subscription at once.
+- You can undo a cancellation any time before it takes effect, except that cancellation from the locked workspace's page.
 - A subscription cannot be paused.
 - A workspace cannot be deleted from Settings. See [Cancel your subscription or delete your data](/guides/cancel-or-delete).
 - Adding an integration needs a started trial or an active plan with a free slot. For the messages, see [Connection statuses and actions](/reference/connection-statuses).

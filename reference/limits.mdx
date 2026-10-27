@@ -10,13 +10,12 @@ This page lists every size, count, and time limit in cfo.ai, grouped by part of 
 
 | Limit | Value |
 | --- | --- |
-| Files attached to one message | 5 |
+| Files attached to one message | 50. A larger selection attaches the first 50 in the order you picked them, and the notice names up to three of the rest. |
 | Size of one image file | 10 MB |
 | Size of one other file, such as a PDF, Excel workbook, ZIP, CSV, or text file | 500 MB |
-| Size of a PDF Ari reads directly | 21 MB; a larger one opens in Ari's private workspace instead |
-| Size of a CSV attached in a chat that can become a data source | 50 MB; a larger one is a chat file only |
 | Quoted excerpts in one message | 5, each up to 2,000 characters |
-| Size of a text file or CSV that Ari reads in the conversation | 64 KiB; a larger one opens in Ari's private workspace instead |
+| Images and PDFs Ari looks at directly in one turn | 21 MB in all. Ari opens every attached file in its private workspace; an image or PDF it opens is also shown to it as a picture until the turn's 21 MB is used, and after that it reads the file in the workspace. |
+| Size of a CSV attached in a chat that can become a data source | 50 MB; a larger CSV is a chat file only |
 | Recipients of one email Ari drafts | 10 |
 | Size of a page of conventions you ask Ari to remember | 32 KiB of text, saved as up to 12 separate facts at a time |
 | Files Ari delivers at once | 10, each up to 50 MB, and 250 MB in all |
@@ -91,6 +90,7 @@ See [Save a workflow as a Skill](/guides/save-a-skill), [Schedule a recurring re
 | Calls to one cfo.ai tool | 60 a minute for each person in each workspace; past that, the tool answers `rate limit exceeded for` and the tool's name. `list_orgs`, which lists your workspaces, has no limit |
 | Size of one request | 1 MiB; a larger request gets **The MCP request is too large.** |
 | Time the browser page where you approve a connection works | 60 minutes after it opens |
+| Time one call to a cfo.ai tool may run | A little under two minutes, the server's request deadline; a table write keeps about 10 seconds of it for its receipt. See [Deadlines and readbacks](/agents/validate-and-verify#deadlines-and-readbacks). |
 
 See [Connect Claude, ChatGPT, Codex, or another AI tool to cfo.ai](/guides/connect-an-ai-client).
 

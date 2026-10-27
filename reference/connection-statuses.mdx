@@ -4,7 +4,7 @@ sidebarTitle: "Connection statuses"
 description: "What each connection status in cfo.ai means, such as Syncing, Sync failed, or Needs attention, what the orange dot or red triangle in the sidebar means, and the action that fixes it, plus the exact messages you can see while connecting, syncing, or uploading."
 ---
 
-A connection's status says whether its data is current and whether you must act. Every connection shows one status. You see it on the connection's row in the sidebar's **Connections** section, on the card that opens when you point at the row, on the connection's page, and on the source's card in the connection manager. Ari reads the same status when you ask about a connection. To fix a problem step by step, see [Fix a connection that needs attention](/guides/fix-a-connection).
+A connection's status says whether its data is current and whether you must act. An integration or an upload shows one status; an MCP server or an API shows two, **Connection** and **Data sync**, as [Connected](#connected) describes. You see it on the connection's row in the sidebar's **Connections** section, on the card that opens when you point at the row, on the connection's page, and on the source's card in the connection manager. Ari reads the same status when you ask about a connection. To fix a problem step by step, see [Fix a connection that needs attention](/guides/fix-a-connection).
 
 ## Sidebar marks
 
@@ -62,6 +62,8 @@ Setup failed before the source linked. Mark: red triangle. Line: the failure's r
 ### cfo.ai lost access
 
 The source revoked cfo.ai's access, for example after a password change or an expired authorization. Mark: red triangle. Line: **Reconnect to start syncing again.** Action: **Reconnect**, then sign in to the same company the connection already holds.
+
+An HR or payroll connection that syncs through Merge, such as Justworks, BambooHR, or Hibob, shows **Reconnect required** when Merge has stopped syncing its account and asks for it to be linked again. The data from the last successful sync stays, and the nightly refresh leaves the connection alone until you select **Reconnect**.
 
 ### Missing access in [source]
 
@@ -164,6 +166,7 @@ An MCP server's row also shows the state of its saved sign-in. The state describ
 | **Cancel setup** | Removes an unfinished connection at once. It frees the plan slot the connection held. | Setup was not finished. |
 | **Reconnect** | Opens the source's sign-in again for the same connection. | The source revoked access, a failed sync needs a new sign-in, a connection reads **Missing access in [source]** and the access has been fixed at the source, or a **Partly synced** connection's source refused access to a missed table or cfo.ai has not read why the table was missed. |
 | **Retry** | Runs the import again with the same sign-in, or starts setup again after **Connection failed**. It does not use another plan slot. | A sync failed and only the import needs to run again, a sync was stopped, or setup failed. |
+| **Sync now** | Starts a sync of the connection at once, with the same sign-in. The button reads **Syncing…** while the sync starts, and **Couldn't start sync** when it could not. | On a linked integration's page, for people who manage connections, when neither **Retry** nor **Reconnect** is offered. Not on an upload, an MCP server, or an API. |
 | **Update file** | Replaces an uploaded CSV with a new file. | On a file upload. It is the only action when the file could not be read. |
 | **Set up queries with Ari** | Opens a new chat with a request for Ari to review what synced, propose saved queries, and set them up. You review the request before you send it. | **No queries yet** |
 | **Investigate with Ari** | Opens a new chat and asks Ari to find out why the sync failed or found nothing, and start it again if that helps. | **No data found**, or a **Sync failed** with no known cause |
@@ -246,7 +249,7 @@ Signing in to a company the workspace already holds shows **[Company] is already
 | **Browser blocked the [provider] authentication popup** | Allow pop-ups for cfo.ai and try again. |
 | **Before you connect Rippling** | Rippling needs an API key; see [Rippling](/reference/integrations#rippling). |
 
-The Google flow reads **Opening Google authentication…**, **Choosing in Google…**, **Completing connection…**, and **Connected**. Rillet reads **Creating connection…**, **Verifying API key…**, and **Connected**. Fivetran sources read **Creating connection...** and **Opening Fivetran...**, and a failure reads **Connection failed**.
+The Google flow reads **Opening Google authentication…**, **Choosing in Google…**, **Completing connection…**, and **Connected**. When some of the files you picked in Google Drive connected and others did not, or Google refused the request because it was busy, the dialog reads **Connection not finished** with the reason, and offers **Retry** and **Close**. **Retry** finishes the same pick without a new sign-in or picker; **Close** keeps the connections that were made, and the connect link that admitted you stays open until the pick finishes. Any other failure reads **Connection failed** with **Close**. Rillet reads **Creating connection…**, **Verifying API key…**, and **Connected**. Fivetran sources read **Creating connection...** and **Opening Fivetran...**, and a failure reads **Connection failed**.
 
 ## Messages about uploaded files
 
@@ -287,14 +290,14 @@ Google Sheets and Google Drive connections report their import on the row and in
 | **The specification document is larger than the 12 MiB this connection accepts.** | The specification is too large. |
 | **Could not load the OpenAPI specification. Check its URL or paste the document as JSON.** | The address did not answer. |
 | **Raw ingestion failed for [connection]. Sync page [N] failed: [cause].** | A page of an MCP sync failed. Ari's chat report states the cause in the words below, and the data from the last completed sync stays in place. |
-| **the connection is no longer linked, or its access for tool "[tool]" is no longer Allow** | Every page checks both, so no page completes until the connection is linked and the tool's permission is **Allow**. |
-| **the server answered HTTP 401 and rejected this connection's authorization when the page connected** | No page completes until the saved authorization changes. Select **Reconnect** on the server's row. |
-| **HTTP 429 is the server limiting the rate of requests it accepts, and its Retry-After header stated a wait of [N] seconds** / **…and its answer stated no time at which that limit ends** | The server limited how often cfo.ai may call it. The sync does not fail at once: it waits the stated time, at least one second, or one minute when none is stated, then asks for the same page again, keeping the pages it already fetched. One page waits at most five times. The report appears only when the wait would not fit in the sync's 10 minutes, or a page has waited five times; the job then waits for the server, as an API sync does, and the next run meets the limit again where it left off. |
-| **the server answered HTTP 503 when the page connected; the connection allowance is 45 seconds** | A 5xx status reports a fault in the server, not in the page's request. The next sync tries again. |
-| **the server's current definition of tool "[tool]" is absent or differs from the description and schemas this setup saved** | No page completes while the two differ. Ask Ari to save the sync setup again. |
-| **tool "[tool]" answered these arguments with an error result (isError)** | The tool returns the same error to a call with these arguments. Ask Ari to call the tool with the setup's arguments to read the error. |
-| **the call to tool "[tool]" ended without a result; a call's allowance is 45 seconds** | The call did not finish in time. |
-| **the server's answer is larger than the 2 MiB a sync page holds** | The page stops and saves nothing from that answer. Ask Ari to change the setup's arguments so the tool returns less, such as a narrower date range or fewer fields, before the next sync. |
+| **Sync page [N] failed: the connection is no longer linked, or its access for tool "[tool]" is no longer Allow** | Every page checks both, so no page completes until the connection is linked and the tool's permission is **Allow**. |
+| **Sync page [N] failed: the server answered HTTP 401 and rejected this connection's authorization when the page connected** | No page completes until the saved authorization changes. Select **Reconnect** on the server's row. |
+| **Sync page [N] failed: HTTP 429 is the server limiting the rate of requests it accepts, and its Retry-After header stated a wait of [N] seconds** / **…and its answer stated no time at which that limit ends** | The server limited how often cfo.ai may call it. The sync does not fail at once: it waits the stated time, at least one second, or one minute when none is stated, then asks for the same page again, keeping the pages it already fetched. One page waits at most five times. The report appears only when the wait would not fit in the sync's 10 minutes, or a page has waited five times; the job then waits for the server, as an API sync does, and the next run meets the limit again where it left off. |
+| **Sync page [N] failed: the server answered HTTP 503 when the page connected; the connection allowance is 45 seconds** | A 5xx status reports a fault in the server, not in the page's request. The next sync tries again. |
+| **Sync page [N] failed: the server's current definition of tool "[tool]" is absent or differs from the description and schemas this setup saved** | No page completes while the two differ. Ask Ari to save the sync setup again. |
+| **Sync page [N] failed: tool "[tool]" answered these arguments with an error result (isError)** | The tool returns the same error to a call with these arguments. Ask Ari to call the tool with the setup's arguments to read the error. |
+| **Sync page [N] failed: the call to tool "[tool]" ended without a result; a call's allowance is 45 seconds** | The call did not finish in time. |
+| **Sync page [N] failed: the server's answer is larger than the 2 MiB a sync page holds** | The page stops and saves nothing from that answer. Ask Ari to change the setup's arguments so the tool returns less, such as a narrower date range or fewer fields, before the next sync. |
 
 ## Messages in a chat
 

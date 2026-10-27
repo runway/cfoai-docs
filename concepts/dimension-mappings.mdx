@@ -47,7 +47,7 @@ A table can show a mapping in two ways:
 - As a mapping column beside each source item, such as accounts on rows and Reporting Line as a column. Each cell shows that row's assignment, and picking another item there changes the mapping for every table.
 - As a breakdown that nests the target over the source, such as Department, then Role. A Role the mapping assigns shows once, under its Department, so subtotals count it once. A Role that comes from a source table and that no assignment matches and no catch-all covers forms no row, and neither does a Department that no Role maps to. A Role someone added by hand that no assignment matches shows under every Department the table has, so totals over this breakdown count its values once per Department.
 
-When Ari creates a Dimension for a mapping, such as a new P&L Line, it lives on its own table on the **Model** Page, named after the Dimension followed by **mapping**, with the source items down the rows and the new Dimension as a column; that table is where its assignments are read and changed. A Dimension created without a mapping sits on the Model Page's shared **Dimensions** table instead.
+When Ari creates a Dimension for a mapping, such as a new P&L Line, it gives the Dimension its own table on the **Model** Page, named after the Dimension followed by **mapping**, with the source items down the rows and the new Dimension as a column. That table is where its assignments are read and changed; like any Dimension, it can be shown on other tables too. A Dimension created without a mapping sits on the Model Page's shared **Dimensions** table instead.
 
 A mapping column belongs beside the Dimension it is mapped from. An assignment applies only on a row that carries every Dimension its lookup keys on: a lookup keyed by Account alone needs the account, and one keyed by Account and Account ID needs both. So a mapping column beside a different Dimension's rows, such as Reporting Line beside departments, reads the catch-all on every row, or stays blank when the mapping has none. Ari warns when it reads or builds a table laid out that way.
 
@@ -61,7 +61,7 @@ A few limits apply:
 
 - Joining happens once, when a statement first loads. Later syncs never regroup, so a Dimension that stayed separate stays separate.
 - Dates and amounts are never combined.
-- Two companies with the same name write the same Entity item, because the Entity column holds the company's name as it was when the connection's queries were installed. To keep them apart, see [Model several entities and consolidate them](/guides/consolidate-entities).
+- Two companies with the same name in the same accounting system write the same Entity item, because the Entity column holds the company's name as it was when the connection's queries were installed. To keep them apart, see [Model several entities and consolidate them](/guides/consolidate-entities).
 - Different accounting systems, such as one QuickBooks Online company and one Xero organisation, get separate Dimensions.
 
 Ari can combine compatible Dimensions into one, or split a combined one apart:

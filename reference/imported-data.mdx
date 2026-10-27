@@ -16,6 +16,9 @@ A CSV you upload as a data source loads as one table.
 | Where the table is | cfo.ai reads the file to find the line of column names, the last line of the table, and the separator, so a report with title lines above the table and totals below it loads its table alone. When it cannot find a table, it reads the whole file as a comma-separated table from its first line. |
 | Separator | Comma, or the separator the file uses, such as a semicolon or a tab |
 | Rows | Every record has as many fields as the line of column names. A quoted field may hold line breaks, so one record can span several lines. |
+| Text cells | Keep the line breaks and tabs inside them; a line break or tab at either end is trimmed with the surrounding whitespace. Any other control character loads as `?`. |
+| Empty cells | A cell is empty when, ignoring case and surrounding spaces, it is exactly `NULL` or a spreadsheet error value such as `#N/A`, `#REF!`, `#DIV/0!`, `#VALUE!`, `#SPILL!`, or `#TIMEOUT!`. Text that only begins like one, such as `Nullable` or `#REFUND batch`, stays text. A number column keeps its type when some of its cells hold such a value. |
+| Decimal commas | cfo.ai reads how the file writes numbers. In a file with a decimal comma, `1.234,56` and `1 234,56` load as 1234.56. For dates, see [Dates in CSV files](#dates-in-csv-files). |
 | Repeated column name | Still loads. Names are compared without letter case, and the later column is stored under its name and its own column number, so a second `Amount` in the fourth column becomes `Amount (column 4)`. |
 | Blank column name | Stored as `COLUMN_` and the column's number, such as `COLUMN_4` for the fourth column |
 | Each file | Becomes its own data source, named after the file until you rename it |
@@ -30,10 +33,12 @@ The **Upload** button does not take Excel workbooks or PDFs. Attach those to a c
 cfo.ai decides how to read dates for a whole column at once.
 
 - It reads every value in the column and picks the one day and month order that reads them all. A column that holds `13/04/2026` is read day-first throughout.
-- A column whose values all read either way, such as `03/04/2026`, is read month-first.
+- A column whose values all read either way, such as `03/04/2026`, follows the day and month order the file's other date columns use. When no other column settles it, the column is read month-first and the load note says the order was unsettled.
 - A column that needs both orders is not a date column, and it loads as text.
 - A date with a clock, such as `2026-09-25 00:56`, loads as a timestamp.
 - Plain digit strings, such as `2024` or `20240229`, stay numbers. Only a column whose name is exactly `yyyyMMdd` reads compact dates such as `20260131`.
+
+A row whose date is empty has no place in a table that shows the source's dates by week, month, quarter, or year, so it is left out of those rows and columns; it still counts in totals that do not break down by date, and it appears under an empty item only when the date Dimension is shown without a grain.
 
 A column named `Date` does not place the rows on the calendar by itself. Tell Ari which column dates the rows, such as an invoice date or a period column, and Ari saves it as the source's date column. A table that shows a source with no date column by month cannot calculate it; see [Table calculation notices](/reference/formula-errors#table-calculation-notices).
 
@@ -63,7 +68,7 @@ When a column first loads, its Variable or Dimension gets a saved starting formu
 | Dimension | `last` over the source column: the value with the latest date when the source has a date column, or the last value in the source's order when it has none |
 | A roster field from an HR source, such as pay rate | Each employee's latest value in each period. A period with no value carries the previous one forward, and an explicit zero replaces it. Department and company totals add each employee's latest value once. |
 
-A starting formula has no [formula range](/reference/glossary#formula-range), so it reads source rows in every period, including months after [Last close](/reference/glossary#last-close). A Variable with no saved formula, because it loaded before starting formulas existed or someone deleted its formula, reads its source only through Last close, and its type's default after that, 0 for a number or an empty value. See [How formulas work](/concepts/formulas).
+A starting formula has no [formula range](/reference/glossary#formula-range), but while it is exactly the `sum` or `last` over the source column it behaves like a Variable with no formula: it reads source rows through [Last close](/reference/glossary#last-close) and shows its type's default after that, 0 for a number or an empty value. A Forecast formula that reads the column, or any other expression, reads the rows dated in each period it applies to. A Variable with no saved formula, because it loaded before starting formulas existed or someone deleted its formula, also reads its source only through Last close. See [How formulas work](/concepts/formulas).
 
 ## Accounting statement columns
 

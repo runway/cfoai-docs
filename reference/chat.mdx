@@ -16,7 +16,7 @@ This page lists what you see in a chat with Ari, in the order you meet it: start
 | **Mention table in chat** / **Mention canvas in chat** | In a block's menu, opened from the six-dot handle at its left edge. |
 | **Mention page in chat** | On a Page in the sidebar. |
 | **Mention formula in chat** | The **@** button in the formula editor. Adds the formula you are editing to the message box. |
-| **Mention in new chat** | Right under **Mention in chat**, or **Mention cell in chat** in a cell's menu, in the same right-click menus: a table's row, column, or cell menu, and a table, chart, text, or Canvas block's menu. Starts a new chat with the reference in its message box and leaves the current chat as it is. The compact mention buttons, such as the **@** in the formula editor and the button above a selected cell, do the same when you hold **⌥** (**Alt**) while you click; their tooltips say so. |
+| **Mention in new chat** | Right under the menu's own mention item in the same right-click menus: **Mention in chat** in a table's row or column menu, **Mention cell in chat** in a cell's menu, and **Mention table in chat**, **Mention chart in chat**, **Mention text in chat**, or **Mention canvas in chat** in a block's menu. Starts a new chat with the reference in its message box and leaves the current chat as it is. The compact mention buttons, such as the **@** in the formula editor and the button above a selected cell, do the same when you hold **⌥** (**Alt**) while you click; their tooltips say so. |
 | **Explain with Ari** | In a block's menu. Starts a new chat that asks Ari what the block shows, how it is built, and how to read it. |
 
 A mention appears in the message box as a chip. Ari reads the exact cell, row, block, or Page it points to, so you do not have to describe it. See [Ask Ari about a number](/guides/ask-about-a-number).
@@ -58,7 +58,8 @@ When **Send** cannot be used, its tooltip says why.
 | --- | --- |
 | **[file] is too large to attach, so Ari did not receive it. Images must be 10MB or smaller.** | The image is over the size limit and was not attached. |
 | **[file] is too large to attach, so Ari did not receive it. Documents must be 500MB or smaller.** | A file that is not an image is over the size limit and was not attached. |
-| **You can attach up to 5 files per message. Remove a file or select fewer files.** | The files you picked would take the message over five files, so none of them were attached. |
+| **A message holds up to 50 files, so [n] files were not attached: [names]. Attach them to another message.** | You picked more files than one message holds. The first 50, in the order you picked them, were attached; the notice names up to three of the rest and has a dismiss button. |
+| **Uploading files… [n] of [m] done** | Shown under the file tiles while several files upload. A file over 30 MB uploads in pieces and shows how much has uploaded; if your connection drops, the upload picks up where it stopped. |
 | **Attachment upload failed** | A notice with the file's name and the reason. The file's tile turns red. |
 | **cfo.ai did not confirm this upload. Check your connection and attach it again. If only this file keeps failing, a security filter may be blocking its contents. Contact support@cfo.ai.** | The upload never finished, for example after a dropped connection. A request that got no answer is sent once more after one second before this shows. Attaching the same file again replaces the failed tile. |
 | **Wait for attachments to finish uploading before sending.** | You tried to send while a file was uploading. |
@@ -208,7 +209,7 @@ Some MCP servers bring their own form, such as an issue form. It appears under *
 
 ### Email preview card
 
-Ari emails you at your sign-in address as soon as you ask. An email to anyone else waits for you: Ari shows a card headed **Preview** with the recipients (**To**), **Subject**, the message, and a **Replies** row reading **Go to you ([your address])**, because the email goes out from Ari's address and replies come to you. The footer reads **Nothing leaves until you press Send.** and stays in view at the bottom of the chat while the card is on screen, so a long email does not hide **Send**.
+Ari emails you at your sign-in address as soon as you ask. A Page, table, or chart that Ari links in an email, a Slack message, or a text arrives as a cfo.ai link that opens the Page, in its Scenario, for a reader who can already see it in this workspace; the link grants no access. An email to anyone else waits for you: Ari shows a card headed **Preview** with the recipients (**To**), **Subject**, the message, and a **Replies** row reading **Go to you ([your address])**, because the email goes out from Ari's address and replies come to you. The footer reads **Nothing leaves until you press Send.** and stays in view at the bottom of the chat while the card is on screen, so a long email does not hide **Send**.
 
 | Control | What it does |
 | --- | --- |
@@ -427,7 +428,7 @@ The card asks one question, and your answer picks one follow-up. Answer and sele
 | **What should I work from?** (after **My business**) | **Connect my data** builds from your own records, such as an accounting system or a file. **Upload an existing model** adds the attach button so you can send your workbook. **I want to type or upload context** takes your own description, with files. The note reads **Dismiss this to start from estimates and what you tell me.** |
 | **Which business should I use?** (after **Something hypothetical**) | **A business like mine** builds a sample that resembles yours, labeled as a sample. **Another business, I'll choose** takes a name. A name everyone ties to one well-known company means that company; for any other name, Ari builds from what you say about it. |
 
-When nothing has established which business you run, for example a personal email address and no company named, Ari asks what the business does before it builds. A number Ari had to estimate is labeled as an assumption. For a guided first run, see [Build your first Model](/tutorials/first-model).
+When nothing has established which business you run, for example a personal email address and no company named, Ari asks what the business does before it builds. Ari saves a number it had to estimate as an input you can change, and names it in its reply. For a guided first run, see [Build your first Model](/tutorials/first-model).
 
 ## Related
 

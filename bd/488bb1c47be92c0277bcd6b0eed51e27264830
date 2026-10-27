@@ -1,0 +1,19 @@
+reference/integrations.mdx
+  s_4ccf2f3f54d6f0::t_7f39a1a9c39168 355,359,364
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "bd488bb1c47be92c0277bcd6b0eed51e27264830",
+  "prompts": {},
+  "sessions": {
+    "s_4ccf2f3f54d6f0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9ea705e5-61be-4c12-92b1-031ffbf8a052",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Siqi Chen <blader@gmail.com>"
+    }
+  }
+}

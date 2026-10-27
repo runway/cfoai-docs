@@ -1,0 +1,21 @@
+guides/connect-a-google-sheet.mdx
+  s_4ccf2f3f54d6f0::t_387a96f8a5a131 32,35,58
+reference/integrations.mdx
+  s_4ccf2f3f54d6f0::t_06b439e5b2bf75 102,347,349-351
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "ad0ee137da1c9a7b5491ad460b8e8e760e2252b3",
+  "prompts": {},
+  "sessions": {
+    "s_4ccf2f3f54d6f0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9ea705e5-61be-4c12-92b1-031ffbf8a052",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Siqi Chen <blader@gmail.com>"
+    }
+  }
+}

@@ -42,7 +42,7 @@ Collapsing changes only your own view, and your browser remembers it for up to 2
 
 ## Remove a breakdown
 
-Right-click the Dimension's label row, such as **REGION**, and choose **Remove dimension**. The rows leave this table; the Variable's values stay in your Model. On the table where the Dimension was created, the action reads **Delete dimension** instead and deletes the Dimension everywhere; see [Build a Table block by hand](/guides/build-a-table#remove-a-row-or-delete-a-variable).
+Right-click the Dimension's label row, such as **REGION**, and choose **Remove dimension**. The rows leave this table; the Variable's values stay in your Model. When no other table shows the Dimension, cfo.ai first asks **Delete variable or dimension?**, and choosing **Delete completely** deletes the Dimension from your Model; see [Build a Table block by hand](/guides/build-a-table#remove-a-row-or-delete-a-variable).
 
 ## See the inputs behind a calculated number (Drill in)
 
@@ -79,7 +79,7 @@ You can rename only items you created; items that come from a connected system k
 To delete an item you created, right-click it on the table where the Dimension was created and choose **Delete Region item**.
 
 - An item nothing uses is deleted at once. The notice that confirms it offers **Undo**.
-- An item that formulas, filters, or other tables still use opens **Delete item?**, which lists what would break. Choose **Cancel**, or **Delete anyway**.
+- An item that formulas, filters, or other tables still use opens **Delete item?**, which lists what the deletion changes. Choose **Cancel**, or **Delete anyway**. Deleting also removes the values typed into the item's row, which cfo.ai stores as formulas for that item alone.
 
 On any other table, hide the item instead: right-click it and choose **Filter out this item**. Items from a connected system cannot be deleted. Every notice is listed in [Table block controls and messages](/reference/table-blocks#other-notices).
 
@@ -88,7 +88,7 @@ On any other table, hide the item instead: right-click it and choose **Filter ou
 A breakdown can show only the items and combinations that have data, such as the products each region sells, or every combination. Right-click the Dimension's label row and choose **Segment generation**:
 
 - **Show only matching segments** shows only the combinations that have data. This is the standard choice.
-- **Expand to create all segments** shows every combination, so you can type values into ones that have none yet, except in cells that come from a connected system. For a Dimension of numbers, also set **Start Value** and **End Value**.
+- **Expand to create all segments** shows every combination, so you can type values into ones that have none yet, except in cells that come from a connected system. For a Dimension of numbers, also set **Start Value** and **End Value**; for a Dimension of dates, set **Start / End dates**. The range takes effect once both ends are set.
 
 ## Use a Dimension as a breakdown or a mapping
 

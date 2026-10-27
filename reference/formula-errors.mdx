@@ -42,7 +42,7 @@ When a cell has no message of its own, it reads **Formula evaluation failed. The
 
 ### #CIRC!
 
-`#CIRC!` means a circular reference: the cell's formula reads the cell itself, directly or through other formulas, in the same period. The message reads **Circular reference**. Common causes are a running balance written without `[-1]`, two Variables that read each other in the same month, and a total formula that also runs on the rows beneath it. See [Fix a circular reference](/guides/fix-formula-errors#the-cell-shows-circ-a-circular-reference).
+`#CIRC!` means a circular reference: the cell's formula reads the cell itself, directly or through other formulas, in the same period. The message reads **Circular reference**. Every cell inside the loop keeps the error; `iferror` in one of those cells cannot replace it with a value. A cell outside the loop that reads one of them can, so `iferror(Cash, 0)` on another row gives 0. Common causes are a running balance written without `[-1]`, two Variables that read each other in the same month, and a total formula that also runs on the rows beneath it. See [Fix a circular reference](/guides/fix-formula-errors#the-cell-shows-circ-a-circular-reference).
 
 ### #ERR!
 

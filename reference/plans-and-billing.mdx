@@ -175,13 +175,14 @@ Shown while you have a plan that is not already ending. It reads **Your plan sta
 | Title | **Cancel subscription** |
 | Paid plan | **Your** [plan] **plan will remain active until** [date]**, the end of your current plan term. You won’t be charged again. You can undo this cancellation any time before** [date]**.** |
 | Trial | **Your** [plan] **trial will remain active until** [date]**. You won’t be charged when it ends. You can undo this cancellation any time before** [date]**.** |
+| Locked workspace, payment failed | **Your** [plan] **subscription ends now, and the unpaid invoice is canceled. You won’t be charged.** There is no undo. |
 | **Why are you cancelling?** | **Select a reason**: **I don’t want to be charged yet** (trials only), **I didn’t see enough value**, **It was too difficult to get started**, **Pricing wasn’t right for me**, or **Other — please tell us why**, which needs a short explanation. |
 | Waiting for a reason | **Cancel subscription is available once a reason is selected.** or **Cancel subscription is available once the explanation is filled in.** |
 | Buttons | **Keep subscription** closes the dialog; **Cancel subscription** confirms. |
 
 | Notice | Meaning |
 | --- | --- |
-| **Your** [plan] **plan was canceled** / **You keep access until** [date]**.** | Canceled. |
+| **Your** [plan] **plan was canceled** / **You keep access until** [date]**.** | Canceled. The date line is absent when the subscription ended now from the locked workspace's page. |
 | **Cancellation reversed** / [plan] **renews as normal.** | **Keep** [plan] undid the cancellation. |
 | **Couldn’t cancel the plan** / **Couldn’t reverse the cancellation** | The change failed; the reason follows. |
 
@@ -193,7 +194,7 @@ Shown while you have a plan that is not already ending. It reads **Your plan sta
 | Trial usage used up | **You’ve used all the AI usage included with your trial. Start your paid plan early to reset your monthly AI usage. Your payment method will be charged now.** with **Start paid plan**. |
 | **Free AI credits** | Only when the workspace still has one-time free credits: [amount] **remaining** and **One-time credits. They do not replenish.** |
 | **Extra usage** | **Credits used after your included usage runs out**: the monthly spend limit, the purchased balance, and auto-reload, below. |
-| **Integrations** | **Standard** [used]/[limit] and **Premium** [used]/[limit], or **Premium not included**, then each counted connection with its class and status. Google Sheets connections show together with their count. **Updated** [time] and a refresh button sit beside the heading. |
+| **Integrations** | **Standard** [used]/[limit] and **Premium** [used]/[limit], or **Premium not included**, then each counted connection with its class and status. Google Sheets connections show together with their count. MCP servers, APIs, and uploaded files take no slot and are not listed, whether or not Ari saved a sync setup for them. **Updated** [time] and a refresh button sit beside the heading. |
 
 ### Extra usage
 
@@ -261,7 +262,7 @@ A workspace locks when it has no plan, such as after a canceled plan ends, or wh
 | Screen | Who sees it | What it says |
 | --- | --- | --- |
 | Plan chooser | Administrators, when there is no plan | The plan cards, with a heading such as **Choose a plan to continue**. Choosing a plan unlocks the workspace. |
-| **We couldn’t charge your card** | Administrators, when payment failed | **Your subscription payment didn’t go through. Update your card and we’ll try again straight away. Access comes back as soon as it succeeds.**, your payment methods, and **Pay now**. |
+| **We couldn’t charge your card** | Administrators, when payment failed | **Your subscription payment didn’t go through. Update your card and we’ll try again straight away. Access comes back as soon as it succeeds.**, your payment methods, **Pay now**, and **Cancel subscription**. Canceling here ends the subscription now and cancels the unpaid invoice, after the [Cancel subscription](#cancel-subscription) dialog; the page then shows the plan chooser. |
 | **This workspace is unavailable** | Members who cannot change billing | **A workspace admin needs to update billing before anyone can get back in.** |
 
 Each screen offers **Log out** and the help@cfo.ai address. When the workspace has connected sources, the screen says when they last refreshed: **Your connected source was last refreshed on** [date]**. Your connected source is not being refreshed while this workspace has no plan.**, or **while this workspace’s billing is locked.** With several sources, it gives the newest refresh of any of them.

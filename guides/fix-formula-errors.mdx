@@ -22,7 +22,7 @@ To keep a calculation going while you fix its input, wrap the risky part in `ife
 - Two Variables read each other in the same month. For example, Interest reads Cash Balance, and Cash Balance includes Interest. Break the loop by reading one of them from the previous month: `` `Cash Balance`[-1] * `Interest Rate` ``.
 - A total formula also runs on the rows beneath it. If you give Revenue's whole row the formula `sum(Revenue[Department in any])`, the formula also runs on each department's row, where it reads that department's own cell. Delete the row's formula: the rows above a breakdown add up the rows beneath them unless they have a formula of their own; see [Totals, aggregation, and time rollups](/concepts/totals-and-rollups). Or give the department rows their own formula: right-click the Revenue row and choose **Edit formula for Department**.
 
-When Ari saves a formula that reads its own Variable, its receipt warns which cells can show `#CIRC!`. To see how cfo.ai decides which formula runs on which row, read [How formulas work](/concepts/formulas).
+Wrapping the formula in `iferror` does not fix a loop: a cell inside the loop keeps `#CIRC!` whatever its own `iferror` says, and only a cell outside the loop can fall back to another value. When Ari saves a formula that reads its own Variable, its receipt warns which cells can show `#CIRC!`. To see how cfo.ai decides which formula runs on which row, read [How formulas work](/concepts/formulas).
 
 ## The cell shows #REF!
 

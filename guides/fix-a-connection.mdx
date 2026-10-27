@@ -54,7 +54,7 @@ When setup itself failed, the connection reads **Connection failed** with **Retr
 
 ## NetSuite is missing access
 
-The connection reads **Missing access in NetSuite SuiteAnalytics** when NetSuite hides tables the financial statements need. The connection's page lists the missing tables.
+The connection reads **Missing access in NetSuite SuiteAnalytics** when NetSuite hides tables the financial statements need, including when a sync failed because a saved query read one of them. The connection's page lists the missing tables. **Retry** does not help until the access is fixed. See [NetSuite SuiteAnalytics](/reference/integrations#netsuite-suiteanalytics) for when cfo.ai adds its statement queries.
 
 <Steps>
   <Step title="Get a token for the right role">
@@ -96,6 +96,10 @@ A connection reads **Paused until next sync** when the source's daily request li
 ## Sync stopped
 
 A connection reads **Sync stopped**, with **Contact cfo.ai support if it isn’t fixed soon.**, when cfo.ai's data warehouse refused the data. Only cfo.ai can fix it. If it lasts, email [success@cfo.ai](mailto:success@cfo.ai).
+
+## An MCP server's or API's data sync needs attention
+
+An MCP server or API shows two statuses on its page and its sidebar card: **Connection**, for whether Ari can call it, and **Data sync**, for the sync setups Ari saved. **Connection: Connected** beside **Data sync: Needs attention** means Ari can still use the service and only the import failed. Select **Fix with Ari** in the **Data sync** section. A chat opens that asks Ari to inspect the latest run and the saved sync setup, repair or retry it, and check the result. If you cannot edit the connection, the section reads **Someone with edit access can fix this sync with Ari.** When a server answers a sync page with HTTP 429, too many requests, the sync waits the time the server states, at least one second, or one minute when none is stated, and asks for the same page again, up to five times for one page, so it usually needs nothing from you.
 
 ## No queries yet
 

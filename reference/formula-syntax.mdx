@@ -24,7 +24,7 @@ Names match exactly, including capital letters: `` `Deferred revenue` `` does no
 | `50%` | 0.5. A `%` right after a number makes it a percentage |
 | `-500` | A negative number |
 | `"West"` or `'West'` | Text. Either quote style works. Inside text, `\"`, `\'`, and `\\` stand for a quote, an apostrophe, and a backslash, and `\n` and `\t` for a new line and a tab |
-| `"2026-07-01"` | A date. Text of exactly ten characters in `YYYY-MM-DD` form that names a real day is a date value, whatever the Variable's type. Any other text stays text |
+| `"2026-07-01"` | A date. Text of exactly ten characters in `YYYY-MM-DD` form that names a real day is the date value at midnight of that day, whatever the Variable's type. Any other text stays text |
 | `null` | The empty value |
 
 A cell that no formula or value covers has a default. A number reads 0, so sums keep working. A date or text Variable reads empty, so `` `End Date` = null `` is true for a person with no end date.
@@ -176,8 +176,8 @@ For example, a Forecast formula that averages Revenue with the **Last 3 months o
 An imported Dimension can hold timestamps, such as one item per sync at `2026-07-01 00:00:00+00`. Where you write a date decides what it matches:
 
 - In a lookup, `date(2026, 7, 1)` or a date Variable selects the item at midnight of that day, as long as every item of the Dimension comes from the source.
-- In a formula's condition, a date never equals a timestamp item, so `[synced_month = date(2026, 7, 1)]` reaches no cell. Date text such as `"2026-07-01"` is a date value too (see [Numbers, text, and empty values](#numbers-text-and-empty-values)), so it reaches no cell there either. To select by a timestamp item in a condition, compare at a grain, as the next example does.
-- In a lookup, `"2026-07-01"` selects the item at midnight of that day, as `date(2026, 7, 1)` does.
+- In a formula's condition, a calculated date such as `date(2026, 7, 1)` never equals a timestamp item, so `[synced_month = date(2026, 7, 1)]` reaches no cell.
+- Date text such as `"2026-07-01"` is read as the date value at midnight of that day, so it reaches the item at that moment in both places: in a lookup, and in a condition such as `[synced_month = "2026-07-01"]`.
 - `` synced_month.Month = startofmonth(`Snapshot Month`$) `` compares two dates, so it matches every item in that month.
 
 ## Conditions: where a saved formula applies

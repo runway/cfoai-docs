@@ -45,7 +45,7 @@ What a Variable shows after Last close depends on whether it has a Forecast form
 - A Variable with a Forecast formula uses it in every month after Last close. The formula decides whether rows from your accounting system dated after Last close, such as this month's postings so far, are read: `` Headcount * `Average Salary` `` ignores them, while a Forecast formula that reads the connected column reads the rows dated in each Forecast month.
 - A Variable whose only formula is the starting `sum` over its connected column reads the source through Last close and shows 0 after it, the same as a Variable with no formula. Rows dated after Last close, such as this month's postings so far, reach a Forecast month only through a Forecast formula that reads the column.
 
-An imported number therefore shows 0 in Forecast months, and an imported date or text Variable shows an empty value, until it gets a Forecast formula. For how each imported column gets its starting formula, see [How imported data loads](/reference/imported-data).
+An imported number whose formula is still the starting `sum` therefore shows 0 in Forecast months, and an imported date or text Variable shows an empty value, until it gets a Forecast formula. A roster field from an HR source, such as pay rate, gets a different starting formula that carries each employee's latest value forward, so it keeps showing values. For how each imported column gets its starting formula, see [How imported data loads](/reference/imported-data).
 
 ## Fiscal years: quarters and years follow the calendar
 

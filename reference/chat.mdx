@@ -171,7 +171,7 @@ While Ari works through an approved plan, a plan card lists its steps with a cou
 | **Answer above to continue** | An assumption Ari marked as required has no answer yet. |
 | **Changes requested** | You selected **Make changes**. |
 | **Approved** | You selected **Build it**. |
-| **Paused** | Ari stopped with steps left, for example to ask you a question. |
+| **Paused** | Work on this plan has stopped with steps left. Either Ari stopped to ask you a question, so no turn is running in the chat and no background work is live, or a newer plan replaced this one and later turns work on that plan instead. The newest plan stays live while Ari works in the chat, including after a message of yours redirected it. |
 | **Blocked** | A step cannot go ahead. |
 
 ### Tool-call approval card
@@ -209,7 +209,7 @@ Some MCP servers bring their own form, such as an issue form. It appears under *
 
 ### Email preview card
 
-Ari emails you at your sign-in address as soon as you ask. A Page, table, or chart that Ari links in an email, a Slack message, or a text arrives as a cfo.ai link that opens the Page, in its Scenario, for a reader who can already see it in this workspace; the link grants no access. An email to anyone else waits for you: Ari shows a card headed **Preview** with the recipients (**To**), **Subject**, the message, and a **Replies** row reading **Go to you ([your address])**, because the email goes out from Ari's address and replies come to you. The footer reads **Nothing leaves until you press Send.** and stays in view at the bottom of the chat while the card is on screen, so a long email does not hide **Send**.
+Ari emails you at your sign-in address as soon as you ask. A Page, table, or chart that Ari links in an email or a Slack message arrives as a cfo.ai link that opens the Page, in its Scenario, for a reader who can already see it in this workspace; the link grants no access. An email to anyone else waits for you: Ari shows a card headed **Preview** with the recipients (**To**), **Subject**, the message, and a **Replies** row reading **Go to you ([your address])**, because the email goes out from Ari's address and replies come to you. The footer reads **Nothing leaves until you press Send.** and stays in view at the bottom of the chat while the card is on screen, so a long email does not hide **Send**.
 
 | Control | What it does |
 | --- | --- |
@@ -221,7 +221,7 @@ Ari emails you at your sign-in address as soon as you ask. A Page, table, or cha
 | --- | --- |
 | **Enter a valid email address.** | An address you typed is not valid. |
 | **Sent email**, with **Sent to [addresses] [when].** | The email was sent; the time reads **today at**, **yesterday at**, or **on** a date. The card keeps this state after a reload and in a teammate's view of the chat, and offers no second **Send** or **Edit**. |
-| **Couldn’t confirm it reached [addresses]. Check with them before sending it again.** | cfo.ai sent the email but did not get the provider's confirmation for those addresses. |
+| **Couldn’t confirm it reached [addresses]. Check with them before sending it again.** | cfo.ai handed the email to its provider but could not confirm that it reached those addresses. |
 | **Not sent to [addresses]. Send tries them again.** | Some addresses failed; **Send** retries only those, so nobody is emailed twice. |
 | **Email wasn’t sent. Try again.** | Sending failed for every address. |
 | **Couldn't check whether this email was already sent. Nothing was sent.** | cfo.ai could not read the card's send record, so it refused rather than risk a duplicate. Try again. |
@@ -295,7 +295,7 @@ A **Reply** button appears above words you select in one of Ari's finished answe
 | **I stopped before finishing this reply. It was interrupted, and repeated attempts to continue it did not finish. Changes I saved before the interruption are kept. Sending the message again starts a new reply.** | cfo.ai tried on its own to continue an interrupted reply, for example after a restart, and could not. | Send the request again. |
 | **No internet connection. Reconnect to continue with Ari.** | Your browser is offline. Ari keeps working on the server. | Reconnect. The chat catches up. |
 | **Connection lost. Reconnect to continue with Ari.** | The chat lost its connection to cfo.ai. | Reconnect, then select **Retry** if it is offered. |
-| **Ari is temporarily unavailable. Please try again in a moment.** | The service that runs Ari failed for a moment or is restarting. | Try again in a moment. |
+| **Ari is temporarily unavailable. Please try again in a moment.** | The service that runs Ari answered with an error. When that service cannot be reached at all for a moment, such as during a restart, the chat shows no message: it keeps following the running turn and shows the reply when the service is back. | Try again in a moment. |
 | **Ari hit an error while reconnecting. Please try again in a moment.** | The chat could not reconnect to a reply in progress. | Try again in a moment. |
 | **Ari is having trouble reaching the model provider. This is usually temporary. Please try again in a moment.** | The AI model kept failing after retries. | Try again in a moment. |
 | **Ari hit a temporary connection problem and could not recover. Please try again in a moment.** | A connection inside cfo.ai kept failing after retries. | Try again in a moment. |

@@ -1,7 +1,7 @@
 ---
 title: "Format and arrange a table"
 sidebarTitle: "Format a table"
-description: "Show numbers as currency or percentages, set decimals, color and bold rows, and see why numbers turn green or red. Also color a Dimension's items, change date headers, show or pin total columns, hide or reorder rows and columns, resize or pin (freeze) columns, and show values in thousands, millions, or billions."
+description: "Show numbers as currency or percentages, set decimals, color and bold rows, and see why numbers turn green or red. Also color a Dimension's items, change date headers, show or pin total columns, hide or reorder rows and columns, resize or pin (freeze) columns, show values in thousands, millions, or billions, and show negative numbers in parentheses."
 ---
 
 Use this guide to make a table easy to read: money as currency, margins as percentages, section rows in bold, and the columns your readers need first. Most formatting changes only how the table looks; it never changes a number. To learn which settings belong to a table and which to a Variable, read [Pages, Table blocks, and Canvas blocks](/concepts/pages-and-blocks).
@@ -54,6 +54,32 @@ A format changes only how numbers look. A row shown as a percentage on one table
 </Tabs>
 
 A scaled number shows a K, M, or B and one decimal, so 27,524,914,239 in billions reads `$27.5B`. Choose **Precision** for more or fewer decimals. The cell keeps its exact value, and a spreadsheet download shows the same scale. Percentages and multiples are never scaled. To show one row in full inside a table shown in millions, choose **Scale**, then **Whole number** on that row.
+
+## Show negative numbers in parentheses
+
+Accounting statements show a loss or a cost as `(1,250)` rather than `-1,250`. You can choose that for one table, one row, column, or cell, or for every table in the workspace at once.
+
+<Tabs>
+  <Tab title="Ask Ari">
+    > Show negative numbers in parentheses on the P&L table.
+
+    > Show every negative number in this workspace in parentheses.
+  </Tab>
+  <Tab title="By hand">
+    <Steps>
+      <Step title="Open the menu">
+        Right-click the row name, column header, or cell and choose **Format and display**.
+      </Step>
+      <Step title="Choose how negatives show">
+        Choose **Negatives**, then **Parentheses · (1,250)**. Choose **Minus sign · -1,250** to go back.
+      </Step>
+    </Steps>
+
+    To set it for every table at once, open **Settings**, and under **General**, in **Numbers**, choose **(1,250)** beside **Negative numbers**. A table, row, column, or cell that chose its own **Negatives** display keeps it.
+  </Tab>
+</Tabs>
+
+Parentheses apply in every number format at the cell's decimals and scale: `($1,250.50)`, `(12.5%)`, `(1.25x)`, or `($3.6B)`. The cell keeps its exact value, and an Excel download shows the same choice, except that a negative that rounds to zero exports as `(0.00)` where the Page shows `0.00`. A **Variance** column reads `($5)` instead of `-$5`; its colors do not change. Canvas charts take their format from the Variable, so they keep the minus sign.
 
 ## Format several rows at once
 

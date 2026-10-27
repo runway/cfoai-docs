@@ -99,7 +99,7 @@ A connection reads **Sync stopped**, with **Contact cfo.ai support if it isn’t
 
 ## An MCP server's or API's data sync needs attention
 
-An MCP server or API shows two statuses on its page and its sidebar card: **Connection**, for whether Ari can call it, and **Data sync**, for the sync setups Ari saved. **Connection: Connected** beside **Data sync: Needs attention** means Ari can still use the service and only the import failed. Select **Fix with Ari** in the **Data sync** section. A chat opens that asks Ari to inspect the latest run and the saved sync setup, repair or retry it, and check the result. If you cannot edit the connection, the section reads **Someone with edit access can fix this sync with Ari.** When a server answers a sync page with HTTP 429, too many requests, the sync waits the time the server states, at least one second, or one minute when none is stated, and asks for the same page again, up to five times for one page, so it usually needs nothing from you.
+An MCP server or API shows two statuses on its page and its sidebar card: **Connection**, for whether Ari can call it, and **Data sync**, for the sync setups Ari saved. **Connection: Connected** beside **Data sync: Needs attention** means Ari can still use the service and only the import failed. Select **Fix with Ari** in the **Data sync** section. A chat opens that asks Ari to inspect the latest run and the saved sync setup, repair or retry it, and check the result. If you cannot edit the connection, the section reads **Someone with edit access can fix this sync with Ari.** When a server limits the rate of requests it accepts (HTTP 429), the sync retries that page on its own, so it usually needs nothing from you; [Messages about MCP servers and APIs](/reference/connection-statuses#messages-about-mcp-servers-and-apis) gives the wait rules.
 
 ## No queries yet
 
@@ -117,7 +117,7 @@ The file's row reads **The file couldn’t load**, followed by what was wrong. F
 
 ## When cfo.ai repairs a source for you
 
-When the nightly sync of a source that was not connected from a chat fails right after a successful one, Ari starts a background repair, acting with your permissions. It checks the connection and fixes what it can, such as a saved query that a change in the source's layout broke. If the repair worked, you hear nothing. If it needs your decision, could not finish, or changed something you should know, a chat titled **[Connection name] stopped updating** appears in your chat list. Answer Ari there.
+When a nightly sync of a source that was not connected from a chat completes without refreshing a table that had been refreshing, Ari starts a background repair for that table, acting with your permissions; see [When a source stops updating](/concepts/connected-data#when-a-source-stops-updating). It checks the connection and fixes what it can, such as a saved query that a change in the source's layout broke. If the repair worked, you hear nothing. If it needs your decision, could not finish, or changed something you should know, a chat titled **[Connection name] stopped updating** appears in your chat list. Answer Ari there.
 
 ## If no action appears
 

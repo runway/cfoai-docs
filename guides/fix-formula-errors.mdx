@@ -101,7 +101,7 @@ Actuals and Forecast can have different formulas, so the Forecast months may run
 ## A date filter matches nothing
 
 - The grain and the date text do not match. A monthly filter needs `Date.Month` and a month, such as `Revenue[Date.Month = "2026-01"]`. See [Dates](/reference/formula-syntax#dates) for the date text cfo.ai reads.
-- The Dimension holds timestamps. An imported Dimension can hold items such as `2026-07-01 00:00:00+00`. In a formula's condition, `date(2026, 7, 1)` never equals such an item. Use date text such as `"2026-07-01"`; see [Dates against imported timestamps](/reference/formula-syntax#dates-against-imported-timestamps).
+- The Dimension holds timestamps. An imported Dimension can hold items such as `2026-07-01 00:00:00+00`. In a formula's condition, `date(2026, 7, 1)` never equals such an item. Use date text such as `"2026-07-01"`, which is read as the date value at that midnight, or compare at a grain, such as `synced_month.Month = date(2026, 7, 1)`; see [Dates against imported timestamps](/reference/formula-syntax#dates-against-imported-timestamps).
 
 ## A date or text cell reads empty
 

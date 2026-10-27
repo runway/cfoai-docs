@@ -1,13 +1,13 @@
 ---
 title: "Settings"
-description: "Every section and field in cfo.ai Settings, in the order the app shows them: General, Workspace, Profile, Ari, Connections, Skills, Billing, and Usage. Covers the workspace name and brand, Last close and date defaults, light or dark mode, inviting teammates, who sees each section, its messages, and what Settings has no setting for, such as a fiscal year or an API key."
+description: "Every section and field in cfo.ai Settings, in the order the app shows them: General, Workspace, Profile, Ari, Connections, Skills, Billing, and Usage. Covers the workspace name and brand, Last close and date defaults, negative numbers in parentheses, light or dark mode, inviting teammates, who sees each section, its messages, and what Settings has no setting for, such as a fiscal year or an API key."
 ---
 
 Settings holds the workspace's options and your own preferences. To open it, select your name or picture at the bottom of the sidebar, then **Settings**. Settings opens on **General**, with the sections listed down the left side in this order.
 
 | Section | Who sees it | What it holds |
 | --- | --- | --- |
-| **General** | Everyone | The workspace name and brand, date defaults and Last close, and your appearance |
+| **General** | Everyone | The workspace name and brand, date defaults and Last close, how every table shows negative numbers, and your appearance |
 | **Workspace** | Administrators | Inviting, removing, and listing administrators |
 | **Profile** | Everyone | Your name and sign-in email |
 | **Ari** | Everyone | Ari's thinking animation, sound, notifications, and Slack |
@@ -84,6 +84,16 @@ There is no fiscal-year setting: quarters, half-years, and years follow the cale
 | **Loading…** / **Couldn’t load** | Shown in **Last close** while it loads, or when it cannot be read. |
 | **Failed to save date settings** | The change was not saved; the settings return to what is saved. |
 | **Failed to load date settings** | The settings could not be read. Reopen Settings. |
+
+### Numbers
+
+The **Numbers** section sets how every table in the workspace shows a number below zero.
+
+| Control | What it does |
+| --- | --- |
+| **Negative numbers** | **-1,250** (a minus sign) or **(1,250)** (parentheses). The note reads **Every table shows negatives this way unless it sets its own.** The choice applies to every table, the formula bar's value preview, copied values, and Excel downloads, wherever the table, row, column, or cell has not chosen its own **Negatives** display; see [Table block controls](/reference/table-blocks#format-and-display-options). It is one choice for the whole workspace, the same in every Scenario, and it never changes a saved value. Ari can set it too. |
+
+Someone without permission to change workspace settings sees the control disabled, and the note adds **Only admins can change it.** A change that cannot be saved shows **Couldn’t save how negative numbers show**.
 
 ### Appearance
 
@@ -171,7 +181,7 @@ When the browser blocks notifications, the switch is unavailable and reads **Not
 | Status | What the section shows |
 | --- | --- |
 | Not connected | **Add Ari to Slack** with **Add to Slack** and **Enable messages to and from Ari in DMs and private channels.** While Slack's sign-in window is open, the button reads **Cancel**. |
-| Connected | **Connected to** [Slack workspace] and **Ari can now DM you in this Slack workspace, and a cfo.ai admin can invite Ari to a private channel.**, with **Disconnect**. |
+| Connected | **Connected to** [Slack workspace] and **Ari can now DM you in this Slack workspace, and a cfo.ai admin can invite Ari to a private channel.**, with **Disconnect**. A notice reads **Slack connected** when the connection finishes. |
 | Disconnecting | **Disconnect "[Slack workspace]"?** with **cfo.ai Agent will no longer be able to post to this workspace until you reconnect.** |
 
 Anyone whose Slack profile email matches a member of the workspace can message Ari in Slack direct messages, and Ari works as that person. An administrator can also add Ari to a private channel, where Ari answers everyone with that administrator's access. See [Talk to Ari from Slack](/guides/use-ari-in-slack).

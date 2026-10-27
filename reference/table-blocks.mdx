@@ -1,7 +1,7 @@
 ---
 title: "Table block controls and messages"
 sidebarTitle: "Table block controls"
-description: "Every control in a Table block: the header, the Table block settings menu, the setup panel, the right-click menus for Variables, Dimensions, items, and cells, format options (currency, percentages, decimal places) and date formats, total columns, what colors and marks mean, what you can type into a cell, where to open the formula editor, every notice when a change is not saved, and what a table cannot do, such as cell comments."
+description: "Every control in a Table block: the header, the Table block settings menu, the setup panel, the right-click menus for Variables, Dimensions, items, and cells, format options (currency, percentages, decimal places, negatives in parentheses) and date formats, total columns, what colors and marks mean, what you can type into a cell, where to open the formula editor, every notice when a change is not saved, and what a table cannot do, such as cell comments."
 ---
 
 This page lists every control, menu action, option, and message of a Table block, in the order the table shows them. For steps, see the guides linked in each section. Keyboard shortcuts are in [Keyboard shortcuts](/reference/keyboard-shortcuts#table-cells).
@@ -20,7 +20,7 @@ The strip above the grid, from left to right.
 | **Deleted property reference** | A warning triangle. The table still lists a Variable or Dimension that was deleted; its tooltip reads **This table references a property that no longer exists.** With several, it reads **[N] deleted property references** and its tooltip counts them. Select it to open the setup panel, where each such row reads **Deleted property**. |
 | **Recomputing** | Shows while the table recalculates after a change. |
 | Date range button | Shows the first and last period. Opens a calendar; a complete range applies at once. **Today** jumps the calendar to the current period. |
-| Grain button | **Raw**, **Daily**, **Weekly**, **Monthly**, **Quarterly**, **Half-yearly**, or **Yearly**. Reads **Mixed** when the table's Date axes use different grains. **Raw** shows each date without grouping it into periods. |
+| Grain button | **Raw**, **Daily**, **Weekly**, **Monthly**, **Quarterly**, **Half-yearly**, or **Yearly**. Reads **Mixed** when the table's Date axes use different grains. **Raw** shows each date without grouping it into periods. On a table whose Date levels nest, such as years over months, the choice sets the finest level and the year level keeps its grain, so **Quarterly** gives years over quarters and **Monthly** leaves the table as it is. A grain that is not finer than the grouping level, such as **Yearly** under years, is dimmed, with the note **The year level groups these dates, so only finer periods are available.** |
 | **Compare** | Shows other Scenarios or an earlier period beside the table's values. See [Compare Scenarios side by side](/guides/compare-scenarios). |
 | **Mention table in chat** | Adds the table to the current chat. See [Chat controls and messages](/reference/chat). |
 | **Table block settings** (**…**) | Opens the [settings menu](#table-block-settings-menu). |
@@ -279,6 +279,7 @@ Right-click a row name, a column header, or a cell and choose **Format and displ
 | **Date format** | See [Date formats](#date-formats) | This table. Appears for date headers and date Variables. |
 | **Precision** | Decimal places: **Default**, **1**, **1.0**, **1.00**, **1.000**, **1.0000**, **1.00000** | This table, at the place you clicked |
 | **Scale** | **Whole number**, **Thousands**, **Millions**, **Billions** | This table, at the place you clicked. A scaled number shows a K, M, or B and one decimal unless **Precision** gives its own, such as `$27.5B`; the cell keeps its exact value. Not offered for percentages or multiples. |
+| **Negatives** | **Minus sign · -1,250**, **Parentheses · (1,250)** | This table, at the place you clicked. The row shows the current choice, such as **-1,250** or **(1,250)**. Parentheses apply in every number format at the cell's decimals and scale, so -1,250.50 as currency reads `($1,250.50)` and -12.5% reads `(12.5%)`; the saved value does not change, and a negative that rounds to zero shows no sign. Where nothing on the table chooses, the workspace's **Negative numbers** setting applies; see [Settings](/reference/settings#numbers). Not offered on a date row. |
 | **Variance colors** | **Higher is better**, **Lower is better** | The Variable, on every table. See [What colors and marks mean](#what-colors-and-marks-mean). |
 | **Reset formatting** | Removes everything set at that place | This table |
 
@@ -350,7 +351,7 @@ A table starts with **Sum**, or **Last** when it shows a Dimension's values. Tex
 | `=Level * 2` in a text cell | The formula `Level * 2` |
 | A function call such as `if(Level = "L5", "Senior", "Junior")` in a text cell | That formula, without an `=` |
 
-Recognized currency signs, before or after the number: `$`, `€`, `£`, `¥`, `₹`, `A$`, `C$`, and `NZ$`. A number cannot carry both a currency sign and `%`. A pasted cell follows the same rules, and a formula copied from a cfo.ai table pastes as that formula. **⌘ Shift V** pastes values only.
+Recognized currency signs, before or after the number: `$`, `€`, `£`, `¥`, `₹`, `A$`, `C$`, and `NZ$`. A number cannot carry both a currency sign and `%`. A pasted cell follows the same rules. A formula copied from a cfo.ai table pastes as that formula while you stay in the same browser tab and copy nothing else in between; in another tab, or after a reload, it pastes as the value the cell showed. **⌘ Shift V** pastes values only.
 
 ## Where to open the formula editor
 
@@ -458,9 +459,9 @@ When a table cannot load or calculate, its notices, such as **We couldn't load t
 
 | Saved | Settings |
 | --- | --- |
-| With the table, for everyone | Rows, columns, and breakdowns; filters and sorts; hidden rows and columns; the date range and grain; comparisons; **Format**, **Precision**, **Scale**, **Date format**, **Background**, **Text color**, **Text style**, and **Indent**; total column summaries; column widths; pinned columns; **Show dimension headers** |
+| With the table, for everyone | Rows, columns, and breakdowns; filters and sorts; hidden rows and columns; the date range and grain; comparisons; **Format**, **Precision**, **Scale**, **Negatives**, **Date format**, **Background**, **Text color**, **Text style**, and **Indent**; total column summaries; column widths; pinned columns; **Show dimension headers** |
 | On the Variable or Dimension, for every table | Values and formulas; the name; the currency; the **Date** type; **Variance colors**; **Dimension color** |
-| In your browser only | Open formula columns; the formula bar; whether the setup panel is open; the table height; **Display as**; which rows and column groups you expanded or collapsed; **Show variable name** |
+| In your browser only | Open formula columns; the formula bar; whether the setup panel is open; the table height; **Display as** (**Pill** or **Plain text**); which rows and column groups you expanded or collapsed; **Show variable name** |
 | Not saved | **Show total columns**; **Pin total columns**; drill-in rows |
 
 Version history does not list changes to column widths or pinned columns.
@@ -473,7 +474,7 @@ Version history does not list changes to column widths or pinned columns.
 | Color the cells you type into automatically | They carry a dashed underline. Select them and set a **Background** or **Text color**. |
 | Sort rows by the numbers in a column | **Sort** orders items by name. Set a **Manual** order, or ask Ari to order the items by value. |
 | Filter or sort dates | Change the date range. Dates always run in date order. |
-| Show two grains on one Date axis, such as quarters and years | Duplicate the table with **Duplicate block** and give each copy its own grain. |
+| Show two grains on one Date axis, such as quarters and years | Ask Ari for annual columns over the months; it nests a year level above the month level, and the grain button then changes only the months. By hand, duplicate the table with **Duplicate block** and give each copy its own grain. |
 | Hold Variables in both the rows and the columns | Keep every Variable on one side. |
 | Show the same Variable or Dimension twice in the columns | Use a second table. |
 | Transpose itself with one button | Ask Ari to flip it, or drag items between **Rows** and **Columns** in the setup panel. |

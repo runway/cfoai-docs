@@ -81,7 +81,7 @@ Right-click a row name and choose **Insert space**. The empty row reads **Space*
 The table header has two date controls:
 
 - Select the date button to set the range: pick the first and last period on the calendar. A complete range applies at once, and **Today** jumps the calendar to the current period.
-- Select the grain button to choose **Raw**, **Daily**, **Weekly**, **Monthly**, **Quarterly**, **Half-yearly**, or **Yearly**. **Raw** shows each date without grouping it into periods. The button reads **Mixed** when the table's Date axes use different grains.
+- Select the grain button to choose **Raw**, **Daily**, **Weekly**, **Monthly**, **Quarterly**, **Half-yearly**, or **Yearly**. **Raw** shows each date without grouping it into periods. The button reads **Mixed** when the table's Date axes use different grains. On a table with a year level over months, the choice changes only the months, and a grain that is not finer than a year is dimmed.
 
 A Page that holds a table also has a date range beside its title. Changing it sets the same range on every table, chart, and Canvas block with data on the Page.
 
@@ -91,15 +91,15 @@ Quarter and year cells read each Variable's time rollup, which adds up or carrie
 
 ### Show quarters and years at the same time
 
-Each Date axis shows one grain at a time. To see quarters and years side by side, copy the table. Open the block menu (the six-dot handle at the table's left edge), choose **Duplicate block**, and set one table to **Quarterly** and the other to **Yearly**. Both tables show the same Variables, so they always agree.
+A Date axis shows one grain at a time, unless it nests a year level over months as the grain button describes above; that nesting shows years and their months in one view, not two grains side by side. To see quarters and years side by side as separate tables, copy the table. Open the block menu (the six-dot handle at the table's left edge), choose **Duplicate block**, and set one table to **Quarterly** and the other to **Yearly**. Both tables show the same Variables, so they always agree.
 
 ## Remove a row or delete a Variable
 
 Right-click the row name and choose **Remove item and drill-ins**. When another table still shows the Variable, the row, and any breakdown rows under it, leave this table only; the Variable stays in your Model and on every other table. In the table setup panel, point at the row and select **Remove from table**.
 
-When this is the last table that shows the Variable, cfo.ai asks **Delete variable or dimension?** before anything changes. The dialog says the Variable will no longer appear on any table, or counts the formulas and blocks that would break. Choose **Cancel** to keep everything, **Keep with Ari**, offered when you can start a chat, to open a chat where Ari places the Variable on another table instead, or **Delete completely** to delete it from your Model and every table. A Dimension works the same way with **Remove dimension**.
+When this row is the Variable's last row, column, or drill-in on any table, cfo.ai asks **Delete variable or dimension?** before anything changes. **Delete completely** deletes the Variable from your Model, and **Keep with Ari** opens a chat where Ari places it on another table instead. The dialog's text and buttons are listed in [Removing and deleting](/reference/table-blocks#removing-and-deleting). A Dimension works the same way with **Remove dimension**.
 
-When you point at a row whose Variable also appears on other tables you can open, a mark appears beside its name; point at it for **[N] synced instances** and **Shown on: [table] on [page]**. Tables you cannot open are not counted. To open one of them, right-click the row and choose **Go to another table**, which opens a table on this Page when one shows the Variable, and otherwise the first table you can open; you do not pick from a list. Deleting a whole table or Page keeps every Variable that another table still shows; see [Delete a table that other content uses](/guides/create-pages-and-blocks#delete-a-table-that-other-content-uses).
+When you point at a row whose Variable also appears on other tables you can open, a mark appears beside its name; point at it for **[N] synced instances** and **Shown on: [table] on [page]**. Tables you cannot open are not counted. To go to a table that shows the Variable, right-click the row and choose **Go to another table**, which opens a table on this Page when one shows the Variable, and otherwise the first table you can open; you do not pick from a list. Deleting a whole table or Page keeps every Variable that another table still shows; see [Delete a table that other content uses](/guides/create-pages-and-blocks#delete-a-table-that-other-content-uses).
 
 ## Keep a large table fast
 

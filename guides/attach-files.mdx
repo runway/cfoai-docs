@@ -26,14 +26,14 @@ You can attach files while Ari is working on an earlier message, for example a s
 ## How Ari reads each kind of file
 
 - Every file you attach opens in Ari's private workspace. Ari opens the files it needs, one or several at a time.
-- An image or PDF Ari opens is also shown to it as a picture, so it reads a screenshot or a scanned statement like a page. One turn shows Ari up to 21 MB of images and PDFs this way; past that, Ari reads the file's text in the workspace instead. See [Limits](/reference/limits#chat-with-ari).
+- An image or PDF Ari opens is also shown to it as a picture, so it reads a screenshot or a scanned statement like a page. A turn shows Ari only so many pictures, and a request with many images and PDFs leaves out a very large image; past those limits, listed in [Limits](/reference/limits#chat-with-ari), Ari reads the file in the workspace instead.
 - Excel workbooks, text files, CSVs, and other files are read in the workspace, where Ari reads sheets, formulas, cached values, and the rest of the contents with code. Nothing Ari runs there can be reached from outside cfo.ai, and what Ari makes there reaches you only as a file it delivers to the chat.
 
 For a large workbook, tell Ari which sheet, date range, or question matters most. To rebuild a whole spreadsheet model in cfo.ai, see [Import an existing spreadsheet model](/guides/import-a-spreadsheet-model). To bring in a CSV as a data source that you refresh by uploading again, see [Upload a CSV as a data source](/guides/upload-a-csv).
 
 ## Use a file from another chat
 
-You do not need to attach a file again in a new chat. Ari can read the files you attached in your other chats in this workspace, the files it made for you there, and the latest copy of each connected Google Sheet or Google Drive file you have access to, whoever connected it. Ask for the file by name:
+You do not need to attach a file again in a new chat. Ari can read the files you attached in your other chats in this workspace, the files it made for you there, and the latest copy of each Google Sheet or Google Drive file connected to this workspace whose connection you can read, whoever connected it. Ask for the file by name:
 
 > Use the March bank statement I sent last week.
 

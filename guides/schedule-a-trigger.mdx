@@ -12,7 +12,7 @@ Use a Trigger when you want Ari to do the same job on a schedule without being a
 
     > Every Monday at 8am Pacific, summarize the prior week's cash activity and flag expenses that differ from our recent pattern. Email me the summary.
 
-    Ari asks about anything it is missing, saves the Trigger, and tells you its name and schedule. A new Trigger is on, and it first runs at the next scheduled time. You can also set one up by messaging Ari in Slack; see [Talk to Ari from Slack](/guides/use-ari-in-slack).
+    Ari asks about anything it is missing, saves the Trigger with the time zone you named (or yours when Ari knows it, and otherwise UTC), and tells you its name and schedule. A new Trigger is on, and it first runs at the next scheduled time. You can also set one up by messaging Ari in Slack; see [Talk to Ari from Slack](/guides/use-ari-in-slack).
   </Tab>
   <Tab title="By hand">
     <Steps>
@@ -26,7 +26,7 @@ Use a Trigger when you want Ari to do the same job on a schedule without being a
         Enter a **Name**, such as Weekday cash brief. In **Instructions**, describe what Ari should check, update, or prepare each time. See [Write instructions that work unattended](#write-instructions-that-work-unattended).
       </Step>
       <Step title="Set the schedule">
-        Under **Schedule**, choose how often it runs in **Repeat**, such as **Weekly**, then the days and the time. You pick times in your own time zone, and cfo.ai saves them in UTC.
+        Under **Schedule**, choose how often it runs in **Repeat**, such as **Weekly**, then the days and the time. The note **Times in [time zone].** names the clock the times are read on: your browser's time zone for a new Trigger. cfo.ai saves the schedule with that time zone, so it keeps the same local time through daylight saving changes.
       </Step>
       <Step title="Save">
         Select **Create trigger**. The Trigger appears in the list, and its details show when it runs next under **Next scheduled**.
@@ -92,7 +92,7 @@ A run never waits for an answer. When it has a question, such as which bank acco
 
 <AccordionGroup>
   <Accordion title="The Trigger runs an hour early or late">
-    Schedules are saved in UTC, so a run set for a local time moves by an hour when daylight saving time starts or ends. Edit the Trigger's time after the change.
+    A Trigger saved before time zones were added runs in UTC, so its local time moves by an hour when daylight saving time starts or ends; its details show **Time zone** as **UTC**. Open **Edit trigger**, set the time again, and select **Save changes**: the schedule is saved with your browser's time zone and keeps its local time from then on. You can also ask Ari to move the Trigger to your time zone.
   </Accordion>
   <Accordion title="No email or Slack message arrived">
     Check that the instructions name the channel. Then open the run from **History**: Ari's activity in the chat shows whether the email service or Slack accepted the message. For Slack, check that Slack is connected and that your Slack email matches your cfo.ai email; see [Talk to Ari from Slack](/guides/use-ari-in-slack).

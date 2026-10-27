@@ -89,7 +89,7 @@ Use the same Scenario for the formula read and the table read. The saved formula
 
 ### Which targets take a write
 
-Each rendered target's formulas say whether `formula` and `clear_formula` can be written there. A target whose cells a direct write would refuse, such as cells read from an integration or cells whose origin the read cannot establish, does not offer those actions. Its formula carries a `readOnlyReason` instead, so a write is not attempted where it would fail.
+Each rendered target's formulas say whether `formula` and `clear_formula` can be written there. A target whose cells a direct write would refuse, such as cells that show a source read the engine generates for a Variable with no saved formula, or cells whose origin the read cannot establish, does not offer those actions; that read-only target's formula carries a `readOnlyReason` instead, so a write is not attempted where it would fail. A Variable whose saved formula reads an imported column, such as `sum(<column>)` at `[]`, is writable: a cell formula saves at that cell's address and a column formula at the column's grain, beside the source read, which keeps supplying every other cell.
 
 The field name differs by level: a rendered target's formula names it `readOnlyReason`, while a row or column that cannot be written names its own reason `read_only_reason` beside `writable: false`. Dated Actuals and Forecast defaults keep their own writability.
 
@@ -109,6 +109,9 @@ Receipts from `edit_table_blocks` carry no `figures`.
 ## Read a table that compares Scenarios or periods
 
 - A read of a table that compares Scenarios returns every compared Scenario's value when `columns` names periods: one column reference per Scenario and period, each labeled with its Scenario.
+- A table that compares Scenarios in rows (`layout: ROWS`) returns each named row once per compared Scenario when `rows` names rows, each labeled with its Scenario.
+- In such a table, a Variable, item, or period selector names the selected Scenario's row. A Dimension-led path such as `Employee ID[RW-1024]` is a selector of this kind. The result returns that row together with its copy for each compared Scenario.
+- A compared row's own ref selects that row alone.
 - When a compared Scenario returns no values, the result carries a `comparison_scenario_missing` issue, and coverage reads `incomplete`.
 - `comparison` defaults to `"saved"`, the table's saved comparison. `"none"` reads the selected Scenario's own values and formulas, and `formula_origins: "all"` annotates such a read with the formula each cell used.
 - A `comparison` object compares the selected Scenario with each Scenario it names in this one read, whatever the table saves, and leaves the saved table unchanged: `{"scenarios": ["Budget"], "measures": ["VALUE", "DELTA"]}`. `measures` takes up to three of `VALUE`, `DELTA` (the compared Scenario minus the selected one), and `PERCENT` (`DELTA` over the selected Scenario's value); it defaults to `VALUE`.

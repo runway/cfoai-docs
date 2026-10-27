@@ -18,7 +18,7 @@ The mark at the right end of a connection's row in the sidebar says whether anyt
 | Red triangle | A problem you must act on. The card names it and offers the fix. |
 | Gray dot | Setup was not finished, someone stopped the latest sync, or the source was added but not connected. |
 
-With no connections, the section reads **No connections yet**. The **Connections** section shows one row per app. An app you connected more than once, such as one QuickBooks company per entity, gets a parent row with its connections nested under it, and the parent shows the mark of its most urgent connection. A connection with no name of its own, such as an unfinished setup, is named for its source, and several such connections of one source are numbered in the order they were created: **Stripe**, **Stripe (2)**. Ari uses the same names in its chat notes. Under a parent row, a nested MCP server or API that has only its app's name reads **MCP server** or **API**, with the same number.
+With no connections, the section reads **No connections yet**. The **Connections** section shows one row per app. An app you connected more than once, such as one QuickBooks company per entity, gets a parent row with its connections nested under it, and the parent shows the mark of its most urgent connection. A connection with no name of its own, such as an unfinished setup, is named for its source, and several such connections of one source are numbered in the order they were created: **Stripe**, **Stripe (2)**. Ari uses the same names in its chat notes. Under a parent row, a nested MCP server or API that has only its app's name reads **MCP server** or **API**, with the same number. A group of APIs is named as the connection's own name spells the app, such as **Alpha Vantage**, or, when the connection is named differently or all in lowercase, by the app's name with a capital first letter.
 
 ## Statuses
 
@@ -40,7 +40,7 @@ A sync is running, or a first sync is queued. Mark: blinking orange dot. The con
 
 ### Partly synced
 
-The last sync finished without some of the source's tables. The data that arrived is usable. Mark: steady orange dot. The line names up to three tables and counts the rest, and it says whose side the cause is on once cfo.ai has read why each table failed:
+The last sync finished without some of the source's tables. The data that arrived is usable, and the missed tables count as stopped until a sync refreshes them; see [When a source stops updating](/concepts/connected-data#when-a-source-stops-updating). Mark: steady orange dot. The line names up to three tables and counts the rest, and it says whose side the cause is on once cfo.ai has read why each table failed:
 
 - Until cfo.ai has read the cause, for a moment after the page opens or for as long as cfo.ai cannot read the connection's sync outcome: **[Source]’s last sync couldn’t refresh [tables]. Everything else is up to date, and cfo.ai will try again on the next sync.** Action: **Reconnect**, as for any connection that needs attention, until the cause replaces this line.
 - The source refused this connection's sign-in or permissions for every missed table, such as a QuickBooks account that cannot read **accounts**: **[Source] refused this connection access to [tables], so the last sync didn’t refresh that data. A reconnect with an account that can read it lets the next sync refresh it. Everything else is up to date.** Action: **Reconnect**.

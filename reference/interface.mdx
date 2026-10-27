@@ -370,7 +370,7 @@ For time and size limits, see [Limits and file types](/reference/limits#tables-p
 
 | Part | What it does |
 | --- | --- |
-| **Pages to share** | Lists the Page you started from, marked **Opens here**, and the other Pages in this Scenario you can share. Select Pages to add them to the link. Below it: **The first page opens when someone follows the link. Up to 50 pages can be shared.** |
+| **Pages to share** | Lists the Page you started from, marked **Opens here**, and the other Pages in this Scenario you can share, each with the icon it has in the sidebar. Select Pages to add them to the link. Below it: **The first page opens when someone follows the link. Up to 50 pages can be shared.** |
 | **External access** | **Create link**, and the links that already exist. With none, it says **No one outside your workspace has link access.** A Page can have up to 100 links. |
 | A link | Its address; **Anyone with this link can view. Shared by [name], updated [time]**, or **Anyone with this link can view. Updated [time]** for a link whose creator is not recorded; the names of the Pages it opens; **Copy external link**; and **Turn off external link** (the trash icon). |
 | **Edit share preview** | On a link without a password. Opens the [Share preview](#share-preview) dialog. |
@@ -463,11 +463,12 @@ A Canvas block can open your browser's own dialogs: a print button prints that b
 | --- | --- | --- |
 | **This Canvas block didn't start because its libraries failed to load.** | The block's software did not load. | Select **Retry**. |
 | **This Canvas block didn't start because its runtime stopped with an error before it was ready.** | The block's software stopped before the block started. | Select **Retry**. |
-| **This Canvas block was still starting after 15 seconds.** | The block's software is loading slowly. | Select **Retry**, or wait. |
+| **This Canvas block was still starting after 15 seconds.** | The block's software was still loading after 15 seconds with the Page in view. Time in a background tab does not count, and the wait starts over each time you return to the tab, so a tab you left for a while does not show this when you come back. | Select **Retry**, or wait. |
 | **This block failed to render.**, with the error | The block stopped with an error while drawing. | Select **Fix** to hand the block to Ari, or **Mention in chat**. |
 | **This block's "[data]" data didn't load because the connection to cfo.ai failed.** | Your connection to cfo.ai failed. | Wait. The block asks again when your connection returns. |
 | **This block's "[data]" data failed to load.** | The data the block reads failed to load. | Select **Mention in chat** and ask Ari to check the data the block reads. |
 | **This Canvas block no longer exists in this scenario.** | A saved change deleted the block after the Page loaded. | Nothing. The block leaves the Page when it next loads. |
+| **Incompatible browser version. Please upgrade your browser.**, printed across a chart or gauge | The chart library did not recognize your browser's version. Firefox on iPhone and iPad and some apps' built-in browsers show it; Chrome on iPhone and iPad does not. The chart under it is drawn and correct. | Open the Page in Safari or Chrome. |
 
 A block that stopped with an error tries again by itself once after 2 seconds, and any block that did not start tries again when your connection to cfo.ai returns.
 

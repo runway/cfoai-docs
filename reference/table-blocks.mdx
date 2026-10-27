@@ -20,7 +20,7 @@ The strip above the grid, from left to right.
 | **Deleted property reference** | A warning triangle. The table still lists a Variable or Dimension that was deleted; its tooltip reads **This table references a property that no longer exists.** With several, it reads **[N] deleted property references** and its tooltip counts them. Select it to open the setup panel, where each such row reads **Deleted property**. |
 | **Recomputing** | Shows while the table recalculates after a change. |
 | Date range button | Shows the first and last period. Opens a calendar; a complete range applies at once. **Today** jumps the calendar to the current period. |
-| Grain button | **Raw**, **Daily**, **Weekly**, **Monthly**, **Quarterly**, **Half-yearly**, or **Yearly**. Reads **Mixed** when the table's Date axes use different grains. **Raw** shows each date without grouping it into periods. |
+| Grain button | **Raw**, **Daily**, **Weekly**, **Monthly**, **Quarterly**, **Half-yearly**, or **Yearly**. Reads **Mixed** when the table's Date axes use different grains. **Raw** shows each date without grouping it into periods. On a table whose Date levels nest, such as years over months, the choice sets the finest level and the year level keeps its grain, so **Quarterly** gives years over quarters and **Monthly** leaves the table as it is. A grain that is not finer than the grouping level, such as **Yearly** under years, is dimmed, with the note **The year level groups these dates, so only finer periods are available.** |
 | **Compare** | Shows other Scenarios or an earlier period beside the table's values. See [Compare Scenarios side by side](/guides/compare-scenarios). |
 | **Mention table in chat** | Adds the table to the current chat. See [Chat controls and messages](/reference/chat). |
 | **Table block settings** (**…**) | Opens the [settings menu](#table-block-settings-menu). |
@@ -474,7 +474,7 @@ Version history does not list changes to column widths or pinned columns.
 | Color the cells you type into automatically | They carry a dashed underline. Select them and set a **Background** or **Text color**. |
 | Sort rows by the numbers in a column | **Sort** orders items by name. Set a **Manual** order, or ask Ari to order the items by value. |
 | Filter or sort dates | Change the date range. Dates always run in date order. |
-| Show two grains on one Date axis, such as quarters and years | Duplicate the table with **Duplicate block** and give each copy its own grain. |
+| Show two grains on one Date axis, such as quarters and years | Ask Ari for annual columns over the months; it nests a year level above the month level, and the grain button then changes only the months. By hand, duplicate the table with **Duplicate block** and give each copy its own grain. |
 | Hold Variables in both the rows and the columns | Keep every Variable on one side. |
 | Show the same Variable or Dimension twice in the columns | Use a second table. |
 | Transpose itself with one button | Ask Ari to flip it, or drag items between **Rows** and **Columns** in the setup panel. |

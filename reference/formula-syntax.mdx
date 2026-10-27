@@ -24,6 +24,7 @@ Names match exactly, including capital letters: `` `Deferred revenue` `` does no
 | `50%` | 0.5. A `%` right after a number makes it a percentage |
 | `-500` | A negative number |
 | `"West"` or `'West'` | Text. Either quote style works. Inside text, `\"`, `\'`, and `\\` stand for a quote, an apostrophe, and a backslash, and `\n` and `\t` for a new line and a tab |
+| `"2026-07-01"` | A date. Text of exactly ten characters in `YYYY-MM-DD` form that names a real day is a date value, whatever the Variable's type. Any other text stays text |
 | `null` | The empty value |
 
 A cell that no formula or value covers has a default. A number reads 0, so sums keep working. A date or text Variable reads empty, so `` `End Date` = null `` is true for a person with no end date.

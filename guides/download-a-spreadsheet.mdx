@@ -45,7 +45,7 @@ The workbook is a copy. Changes you make in Excel do not flow back into cfo.ai.
 
 Formulas and the **Model inputs** sheet need access to every Variable and Dimension in the Scenario. Someone without it, such as a person who opens the Page through a share link, gets the numbers the Page shows as plain values, with no **Model inputs** sheet.
 
-A few formulas cannot be written as Excel formulas, such as one longer than Excel allows. Those cells keep their calculated value instead of a formula, and an **Export notes** sheet lists each one. The download notice counts them and offers **Ask Ari to fix**, which asks Ari to export the Page again and write a working formula into each of those cells.
+A few formulas cannot be written as Excel formulas, such as one longer than Excel allows. Those cells keep their calculated value instead of a formula, and an **Export notes** sheet lists each one. A formula that names items of a numeric Dimension as text, such as deal IDs, finds their cells by number, and a formula that names an item the workbook has no cell for keeps its calculated value and is listed in **Export notes** rather than being written without that item. The download notice counts them and offers **Ask Ari to fix**, which asks Ari to export the Page again and write a working formula into each of those cells.
 
 ## What you get
 

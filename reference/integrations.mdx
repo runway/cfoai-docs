@@ -29,7 +29,7 @@ These are the systems customers ask about most. Search the rest of this page, or
 | Shopify | Supported: [Shopify](#shopify), standard |
 | Square, PayPal, Braintree, Chargebee, Recurly, Zuora | Supported through Fivetran, standard |
 | Toast | Not available |
-| Mercury | Available to Ari as an [MCP connector](#mcp-connectors) and an [API](#apis) for live lookups, not as a synced integration |
+| Mercury | Supported as a bank through Plaid, standard: pick **Mercury (bank accounts)** in the directory and sign in to Mercury in the window cfo.ai opens. It syncs into **Plaid Accounts** and **Plaid Transactions**, like any other US bank. Mercury is also available to Ari as an [MCP connector](#mcp-connectors) and an [API](#apis) for live lookups. |
 | Other banks | A US bank connects through Plaid, as a standard connection that uses a slot: pick it in the directory, where it reads **[Bank] (bank accounts)**, and sign in to the bank in the window cfo.ai opens. cfo.ai adds **Plaid Accounts**, the account balances observed at each sync, and **Plaid Transactions**, the posted transactions. Plaid gives no past balances, so balances start on the first sync. Bank balances also reach cfo.ai through your accounting system's balance sheet, or upload a CSV of bank transactions. |
 | Brex, Ramp | Supported through Fivetran, standard. Also MCP connectors for Ari. A Brex connection gets up to five saved queries, one for each synced table; see [Brex](#brex). |
 | Snowflake, BigQuery, Databricks | Supported: [Snowflake](#snowflake), [BigQuery](#bigquery), [Databricks](#databricks), premium |

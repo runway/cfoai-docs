@@ -88,8 +88,6 @@ The service's page lists its setups under **Syncs**, each **Enabled** or **Pause
 
 When a server limits the rate of requests it accepts (HTTP 429), the sync waits and asks for the same page again on its own. When a page of an MCP sync fails for good, Ari's report in the chat names the connection, the page that stopped, and what stopped it. [Connection statuses and actions](/reference/connection-statuses#messages-about-mcp-servers-and-apis) lists each cause, the wait rules, and its next step.
 
-When a page of an MCP sync fails, Ari's report in the chat names the connection, the page that stopped, and what stopped it. [Connection statuses and actions](/reference/connection-statuses#messages-about-mcp-servers-and-apis) lists each cause and its next step.
-
 ## Change a connection's name, address, or authentication
 
 When a service changes its address, or you set up its authentication the wrong way, change the saved connection instead of disconnecting and adding it again. The connection keeps its ID, its tools, its tool permissions, and its sync setups. This applies to a connection you added with a key or token. A connection that signs in through the provider takes a new name only; when its sign-in breaks, use [Reconnect an MCP server](#reconnect-an-mcp-server) instead.

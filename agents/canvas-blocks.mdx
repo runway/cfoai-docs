@@ -116,10 +116,21 @@ Each row carries each Variable's own value under its series key:
 
 `edit_canvas_blocks` `update` names the block with `target`, by name, ID, or as `inspect_pages` prints it. Fields you leave out keep their saved values, and the block keeps its identity and position.
 
-- `source` replaces the whole component.
-- `source_patches` changes part of it: a list of up to 50 exact `old` to `new` text replacements, applied in order. Each `old` must occur exactly once in the source as the earlier patches left it. The block saves only when every patch applies.
+- `source` replaces the whole component. It requires `based_on`: the `source_hash` of the `inspect_canvas_blocks` read or the `edit_canvas_blocks` write the source was written from, 64 lowercase hex characters. The update saves only while the block's saved source still has that hash. When another writer saved the block in between, the refusal reads **the block's saved source is no longer the source whose source_hash this update names in based_on, so this source was written from an older copy. This update saved nothing, so the block keeps its current source.**; read the block again and redo the edit on the current source. Saves of the title, datasets, or display state do not change the hash. A `source` without `based_on` is refused.
+- `source_patches` changes part of it: a list of up to 50 exact `old` to `new` text replacements, applied in order. Each `old` must occur exactly once in the source as the earlier patches left it. The block saves only when every patch applies. Patches apply to the current source and take no `based_on`.
+- Every create and update returns each block's `source_hash`, so the next whole-source update can name it.
 - `title` renames the block; an empty string clears the title.
 - `page`, when given, confirms the block is still on that Page.
+
+```json
+{
+  "update": {
+    "target": "Pipeline by stage#a74",
+    "based_on": "3f9c…e2a1",
+    "source": "function Block({ data }) { … }"
+  }
+}
+```
 
 ```json
 {
@@ -153,8 +164,9 @@ A saved block compiles, but only a browser shows whether it renders.
 - A warning that begins **Design:** names an element that wears a generated interface's default and what to change, with its source position when it has one: cards nested in cards, a colored side stripe, gradient text, a colored glow shadow, a small uppercase label above a heading, text under 11 px, text under 4.5:1 contrast (3:1 for large text) against its painted fill in an authored color, a font size off the Canvas scale of 12, 13, 14, 18, and 32 px, motion that bounces or never ends, and an emoji used as an icon. A finding that repeats ends **This repeats in N places.**; at most twenty are reported per render, and none blocks the save.
 - Errors are failures the render reported: runtime errors, widget errors, a stalled render, console errors, and failed element loads. Warnings may be intended: console warnings, blank or error-code cells, empty or zero-only data, missing series keys, hidden series, and content past the frame's edge. A warning also names text that overlaps or spills out of its box when the light render is laid out at 360, 600, 760, 900, 1100, and 1400 px wide, with each width, element, and source position, such as **At 360, 600, 760 and 900 px wide, text overlaps: td "Orbitline Dev Pvt Ltd" at source 464:0 and td "OD-317" at source 465:0, in 8 places.**; up to six such warnings are listed with a count of the rest. Fix one before handing the block over: stack columns with `Grid` `minColumnWidth`, let text wrap, or give a wide table a deliberate horizontal scroll.
 - A clean render does not check that the values are financially correct.
+- A control that opens a closed part of the block names the anchors it reveals with `data-guide-reveals="liquidity holdings"` and keeps `aria-expanded` current. A walkthrough step on an anchor the block does not draw clicks that control first, once, and never when it is already expanded; without such a control the step lights the whole block. `validate_code_blocks` warns, in both themes, when a Page block's `data-guide-reveals` names an id that no `data-guide-anchor` in the source declares.
 - `guide_targets` lists the copyable guide anchors visible in at least one theme, and `guideAnchors` keeps each theme's visibility and ambiguity. `guideAnchors` lists at most the first 64 distinct anchor IDs per theme, in document order. When the render had more, `guide_anchors_cut` says how many, and `guide_targets` draws only on the listed ones.
-- `visual_review` returns one block in one theme as an image. Without `view` or `viewport`, it is the full Canvas at 1200 px wide, capped at 2400 px high. `view` is a fixed opening, the area visible before scrolling: `desktop-opening` is 1100 × 700 CSS pixels and `phone-opening` is 320 × 650, after the host page uses part of the screen. Each fixed view also returns an independent design assessment of that image: a reading of its composition, hierarchy, typography, and color, plus the single most useful revision. A structured model call makes it in a fresh context, billed to the workspace like a chat turn, separate from the render facts; use the same view through revisions. The phone opening is 320 px wide, narrower than the 360 px the overlap warnings start at, so review the phone view when a block must fit a phone.
+- `visual_review` returns one block in one theme as an image. Without `view` or `viewport`, it is the full Canvas at 1200 px wide, capped at 2400 px high. `view` is a fixed opening, the area visible before scrolling: `desktop-opening` is 1100 × 700 CSS pixels and `phone-opening` is 320 × 650, after the host page uses part of the screen. Each fixed view also returns an independent design assessment of that image: a reading of its composition, hierarchy, typography, and color, with `revision`, the one material defect that makes a reader misread, miss, or be unable to use the evidence, or `null` when handoff can proceed, and `refinement`, an optional change that leaves the reading intact. A direct label that shows a saved value in the model's own precision is not a defect, and a note about the work, such as what was checked or where a number came from, is one; that text belongs in chat. `brief`, up to 2,000 characters, tells the assessment what the opening is designed to show and the choices already settled for it, such as "EBITDA is the bridge's endpoint, not a headline figure"; it needs a `view` and is refused without one with **visual_review.brief has no view to apply to**. A structured model call makes the assessment in a fresh context, billed to the workspace like a chat turn, separate from the render facts; use the same view and brief through revisions. The phone opening is 320 px wide, narrower than the 360 px the overlap warnings start at, so review the phone view when a block must fit a phone.
 - `viewport` is a measured Canvas area, `width` and `height` from 1 to 1600 CSS pixels: the width lays out every selected block, and the height crops the image without changing the content's height. `framing` reports the dimensions and image scale. A call takes `view` or `viewport`, not both.
 
 ### When a render does not happen
@@ -172,7 +184,7 @@ When a person's browser hits a runtime failure while rendering a saved block, it
 
 ## Read saved Canvas blocks
 
-`inspect_canvas_blocks` takes `target`, a block name, ID, or reference, or a list of related blocks, and optionally `page` to constrain them. It returns each block's exact saved source, dataset layouts and Scenario bindings, display state, position, revision, and references. All blocks are read at one snapshot, the latest unless `as_of_point` names an earlier one. It does not calculate datasets, and saved code is no proof of a successful render.
+`inspect_canvas_blocks` takes `target`, a block name, ID, or reference, or a list of related blocks, and optionally `page` to constrain them. It returns each block's exact saved source, its `source_hash` (the hash of the whole saved source, also when the source comes back in part), dataset layouts and Scenario bindings, display state, position, revision, and references. All blocks are read at one snapshot, the latest unless `as_of_point` names an earlier one. It does not calculate datasets, and saved code is no proof of a successful render.
 
 A selection larger than one result is cut short:
 

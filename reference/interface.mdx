@@ -312,8 +312,38 @@ Below the header, a Page with a table, a chart, or a Canvas block with data has 
 | --- | --- |
 | **Expand model pane** / **Collapse model pane** | In a chat, shows or folds the Page beside the conversation. |
 | **Show page navigation** / **Hide page navigation** | In a chat, shows or hides a list of Pages beside the Page. |
+| **Create page** | In the model pane of a chat when the workspace has no Pages (**No pages yet**) or the chat has opened none (**No pages open in this chat**). Creates a Page with an empty Table block and opens it. |
 | **Expand chat** | On a floating chat, docks it beside the Page. |
 | **Minimize chat** / **Close chat** | On a floating chat. Minimize keeps the conversation; a chat with nothing sent yet offers **Close chat**. |
+
+## Writing on a Page
+
+A Page is a document. Text sits between its blocks, and these controls appear only for people who can edit the Page, in a desktop browser.
+
+| Control | What it does |
+| --- | --- |
+| **Type / for blocks** | The placeholder on an empty line. Typing **/** opens the block list. |
+| Block list | **Table block**, **Canvas block**, **Heading 1**, **Heading 2**, **Heading 3**, **Toggle Heading 1**, **Toggle Heading 2**, **Toggle Heading 3**, **Quote**, **Toggle List**, **Numbered List**, **Bullet List**, **Check List**, **Paragraph**, **Code Block**, **Divider**, and **Simple table**. Typing after the **/** narrows the list; **Enter** adds the highlighted block; **Esc** closes it. |
+| **Add block** (**+**) | At the left edge of the line you point at. Opens the block list on that line, or on a new line below it when the line has text. |
+| **Open block menu** | The six-dot grip beside **Add block**. Drag it to move the block. Click it for the block's menu: **Mention text in chat** (**Mention table in chat** on a simple table), **Mention in new chat**, **Duplicate block**, and **Delete block** for text; the Table block and Canvas block menu for those blocks. |
+| Formatting toolbar | Above selected text: **Text style** (**Heading 1**, **Heading 2**, **Heading 3**, **Normal**), **Bold**, **Italic**, **Underline**, **Strikethrough**, **Code**, **Link**, and **Bullet list**. On a simple table it adds **Merge cells**. |
+| **Link** | Asks for a URL. An address that is not `http` or `https` is refused with **Enter a valid HTTP or HTTPS URL**. On linked text, removes the link. |
+| **@** | Opens **Mentions**: the Pages you can open, **Date** (**Type or choose an exact date**), and **Variable** (**Reference a model value at a specific segment**). |
+| **:** | Opens the emoji list. |
+| Simple table handles | **Add row above**, **Add row below**, **Add column left**, **Add column right**, and the **Add row** and **Add column** buttons at the table's edges. |
+
+Typing `#`, `##`, `###`, `-`, `1.`, `[]`, `>`, or `|` at the start of a line, then a space, makes a heading, bullet, numbered item, check item, toggle, or quote. **Tab** and **Shift Tab** nest and unnest a list item. For the steps, see [Write and format text on a Page](/guides/create-pages-and-blocks#write-and-format-text-on-a-page).
+
+### Page editor messages
+
+Saving is continuous and shows nothing while it works. A line above the document appears only when a save fails.
+
+| Message | Meaning |
+| --- | --- |
+| **Couldn’t save your changes. Keep this tab open and try again.** with **Retry save**, **Download unsaved changes**, and **Reload saved Page** | The save failed. **Retry save** sends it again. |
+| **This Page changed elsewhere. Your unsaved changes are kept in this tab.** with **Download unsaved changes** and **Reload saved Page** | Someone else, Ari included, changed the Page's text or moved or deleted one of its blocks since you opened it. Your text stays in this tab until you reload. |
+| **Reload saved Page?** with **This discards your unsaved changes in this tab. Download them first if you want to keep a copy.** | The confirmation before a reload. **Download unsaved changes** saves your text as a file. |
+| **Couldn’t reload the Page** with **Your unsaved changes are still here.** | The reload failed. Nothing was lost. |
 
 ## Download spreadsheet
 
@@ -474,7 +504,7 @@ A block that stopped with an error tries again by itself once after 2 seconds, a
 
 ## Chart blocks
 
-New charts are Canvas blocks; the **Add block** menu has no chart option. A chart block a Page already has can still be restyled:
+New charts are Canvas blocks; the block list has no chart option. A chart block a Page already has can still be restyled:
 
 | Control | What it does |
 | --- | --- |

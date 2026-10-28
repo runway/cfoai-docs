@@ -1,10 +1,10 @@
 ---
 title: "Create and organize Pages and blocks"
 sidebarTitle: "Create and organize Pages"
-description: "Create, rename, nest, reorder, and delete Pages, use a Page with subpages as a folder, keep the Pages Ari creates in order, and add, move, copy, or delete the Table, Text, and Canvas blocks on a Page."
+description: "Create, rename, nest, reorder, and delete Pages, use a Page with subpages as a folder, keep the Pages Ari creates in order, write headings and notes on a Page, and add, move, copy, or delete the Table blocks and Canvas blocks on it."
 ---
 
-Use this guide to set up the Pages your team reads, such as a Board Page with one subpage per meeting, and to arrange the blocks on each Page. A Page is a report made of blocks. To learn what Pages and blocks are, read [Pages, Table blocks, and Canvas blocks](/concepts/pages-and-blocks).
+Use this guide to set up the Pages your team reads, such as a Board Page with one subpage per meeting, and to arrange the blocks on each Page. A Page is a document: text you type, with Table blocks and Canvas blocks between the paragraphs. To learn what Pages and blocks are, read [Pages, Table blocks, and Canvas blocks](/concepts/pages-and-blocks).
 
 You need a desktop browser. A phone browser shows Pages read-only.
 
@@ -65,7 +65,7 @@ Ari creates Pages as it builds, so tell it where new work goes before it starts:
 
 To make that a standing instruction, see [Teach Ari your company's conventions](/guides/teach-ari). Ari can also move the Pages it already created, or delete the ones you no longer need; name them in your request. Ari usually gives a subpage the same icon color as its parent, and Pages on one subject a shared color, so related Pages stand out together in the sidebar.
 
-While Ari is still writing a Page, its sidebar row shows a mark labeled **Ari is building this page**, and the Page header shows **Building…**. **Add block** stays hidden on that Page until Ari finishes.
+While Ari is still writing a Page, its sidebar row shows a mark labeled **Ari is building this page**, and the Page header shows **Building…**. The Page cannot be edited until Ari finishes.
 
 ## Delete a Page
 
@@ -79,19 +79,24 @@ To bring a Page back, press **⌘ Z** (**Ctrl Z**) in the same browser tab, or u
 
 ## Add a block to a Page
 
-- Select **Add block** at the bottom of the Page and choose **Table block**, **Text block**, or **Canvas block**.
-- To add a block in a particular place, point at the left edge of the block above that place and select the **+** button, **New block below**. Choose **Table**, **Text**, or **Canvas**.
-- On an empty Page, select one of the **Table block**, **Text block**, or **Canvas block** cards.
+A block goes where your cursor is. Click an empty line, or press **Enter** at the end of a paragraph to make one.
 
-The block menu has no chart block. Ask Ari for a chart, and it builds one in a Canvas block; see [Change a chart or Canvas block](/guides/change-a-visual). To build a table, see [Build a Table block by hand](/guides/build-a-table).
+- Type **/** on an empty line, or point at the left edge of a line and select its **+** button, **Add block**. The block list opens with **Table block** and **Canvas block** first, then the text blocks: **Heading 1**, **Heading 2**, **Heading 3**, **Toggle Heading 1** to **3**, **Quote**, **Toggle List**, **Numbered List**, **Bullet List**, **Check List**, **Paragraph**, **Code Block**, **Divider**, and **Simple table**. Keep typing to narrow the list, and press **Enter** to add the highlighted block.
+- A **Simple table** is a small grid of text. It reads no Model values; for numbers, add a **Table block**.
+
+The block list has no chart block. Ask Ari for a chart, and it builds one in a Canvas block; see [Change a chart or Canvas block](/guides/change-a-visual). To build a table, see [Build a Table block by hand](/guides/build-a-table). A workspace with no Pages yet offers **Add block** on its empty screen instead; see [Create a Page](#create-a-page).
 
 ## Move, copy, or delete a block
 
-Point at the left edge of a block to show its handle, a grip of six dots. Drag the handle up or down to reorder the block. Click the handle to open the block menu; with a block selected, **Shift F10** opens it too.
+Point at the left edge of a block or a paragraph to show its handle, a grip of six dots, **Open block menu**. Drag the handle up or down to move the block. Click the handle to open the block menu; with a Table block or Canvas block selected, **Shift F10** opens it too.
+
+For a Table block or Canvas block:
 
 - To move the block to another Page, choose **Move to page**, then a Page, or **New page** to move it to a new one.
 - To copy the block, choose **Duplicate block**. A copy of a table shows the same Variables, not new ones, so a value you type in either table appears in both. To try different numbers without changing the plan, use a Scenario; see [Test a decision in a Scenario](/guides/test-a-decision-in-a-scenario).
 - To delete the block, choose **Delete block**.
+
+For a paragraph, heading, list, or other text block, the menu offers **Mention text in chat** (**Mention table in chat** on a simple table), **Mention in new chat**, **Duplicate block**, and **Delete block**. Text moves only within its Page.
 
 Moving a block, on its Page or to another Page, keeps all its settings. Deleting a block and building it again does not.
 
@@ -106,13 +111,28 @@ No table owns a Variable or Dimension; the tables that show it decide what a del
 
 To keep a Variable while you remove its table, first add it to another table, or move the table to another Page instead of deleting it.
 
-## Write and format text in a Text block
+## Write and format text on a Page
 
-Click into a Text block and type. The text saves as you type.
+Click an empty line and type. An empty line reads **Type / for blocks**. The text saves as you type; nothing shows while a save works, and a line appears above the document only when a save fails. See [Page editor messages](/reference/interface#page-editor-messages).
 
-Select some text to show the formatting toolbar: **Heading** (**Heading 1**, **Heading 2**, **Heading 3**, or **Normal**), **Bold**, **Italic**, **Underline**, **Strikethrough**, **Code**, **Link**, and **Bullet list**. **Link** asks for a web address; select it on linked text to remove the link. **Add selection to chat** hands the selected text to Ari, for example to rewrite it.
+Select some text to show the formatting toolbar: **Text style** (**Heading 1**, **Heading 2**, **Heading 3**, or **Normal**), **Bold**, **Italic**, **Underline**, **Strikethrough**, **Code**, **Link**, and **Bullet list**. **Link** asks for a web address, `http` or `https`; select it on linked text to remove the link.
 
-A link to a Page in this workspace opens that Page in the app. **⌘**-click, **Ctrl**-click, or **Shift**-click opens a link in a new tab.
+You can also type a mark at the start of a line, then a space:
+
+| Type | To get |
+| --- | --- |
+| `#`, `##`, or `###` | **Heading 1**, **Heading 2**, or **Heading 3** |
+| `-` | A bullet list |
+| `1.` | A numbered list |
+| `[]` | A check list |
+| `>` | A toggle, which hides the lines nested under it; on a heading, a toggle heading |
+| `\|` | A quote |
+
+**Tab** nests a list item under the one above it, and **Shift Tab** moves it back out.
+
+Type **@** to insert a reference: a Page in this workspace, which appears as a chip that opens the Page; **Date**, which opens a calendar; or **Variable**, which inserts the Variable's current value and lets you narrow it to one Dimension item, such as Revenue where Region is West. Type **:** to pick an emoji.
+
+Text written in an older Text block opens as ordinary Page text. A link to a Page in this workspace opens that Page in the app. **⌘**-click, **Ctrl**-click, or **Shift**-click opens a link in a new tab.
 
 ## Related
 

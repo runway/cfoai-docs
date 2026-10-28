@@ -21,6 +21,8 @@ This page lists what you see in a chat with Ari, in the order you meet it: start
 
 A mention appears in the message box as a chip. Ari reads the exact cell, row, block, or Page it points to, so you do not have to describe it. See [Ask Ari about a number](/guides/ask-about-a-number).
 
+Someone whose access does not include starting chats, such as a visitor who opened a share link, sees no **New chat** button. In the chat area they see **No chats shared with you** above the reason: **You can’t start chats with Ari in this workspace. Ask a workspace admin for access.**, or, for a signed-in address, **You’re signed in as [address], which can’t start chats with Ari in this workspace. A workspace admin can invite this address.** A chat refused for this reason shows the first sentence and no **Retry**, because sending again cannot succeed. cfo.ai starts no Welcome chat for such a person.
+
 ## The empty chat
 
 A new chat shows the heading **How can I help you?** and the placeholder **Ask anything about your business or data...** in the message box. Four chips below it open suggested prompts for four kinds of question: **Explain** (what something means), **Benchmark** (whether a number is good), **Decide** (what to do), and **Pressure-test** (whether you are wrong). Selecting a suggestion puts it in the message box.
@@ -37,6 +39,7 @@ A new chat shows the heading **How can I help you?** and the placeholder **Ask a
 | **Browse Canvas block library** | The palette icon at the bottom left. Opens templates for Canvas blocks. See [Build a dashboard or board report](/guides/build-a-dashboard). |
 | Suggested reply | After Ari answers, the empty message box can show a suggested next message in faint text, followed by **Tab** or **→**. Press either key to place it in the box; it is never sent until you send it. |
 | Excerpt | A passage you quoted from one of Ari's answers. See [Reply to part of an answer](#reply-to-part-of-an-answer). |
+| A pasted table | A table pasted from a spreadsheet, a web page, or one of Ari's answers keeps its rows and columns as a Markdown table, with the first row as the header. A line break inside a cell becomes a space, and a `\|` inside a cell becomes a full-width bar (｜). Ari reads the table, and the sent message shows it as a table. |
 
 The message box shows Markdown formatting as you type and keeps it when you send. Typing `1. ` or `* ` at the start of a line starts a numbered or bulleted list, `**bold**`, `_italic_`, and `` `code` `` show as formatted text, and headings, quotes, and dividers work the same way. A sent message keeps its formatting when you open it again. **Shift Enter** starts a new paragraph, continues a list, or leaves a list from an empty item; inside code it inserts a line break. **⌘ Enter** inserts a line break. Underlining is not kept, because Markdown has no underline.
 
@@ -209,7 +212,7 @@ Some MCP servers bring their own form, such as an issue form. It appears under *
 
 ### Email preview card
 
-Ari emails you at your sign-in address as soon as you ask. A Page, table, or chart that Ari links in an email or a Slack message arrives as a cfo.ai link that opens the Page, in its Scenario, for a reader who can already see it in this workspace; the link grants no access. An email to anyone else waits for you: Ari shows a card headed **Preview** with the recipients (**To**), **Subject**, the message, and a **Replies** row reading **Go to you ([your address])**, because the email goes out from Ari's address and replies come to you. The footer reads **Nothing leaves until you press Send.** and stays in view at the bottom of the chat while the card is on screen, so a long email does not hide **Send**.
+Ari emails you at your sign-in address as soon as you ask. A Page, table, or chart that Ari links in an email or a Slack message arrives as a cfo.ai link that opens the Page, in its Scenario, for a reader who can already see it in this workspace; the link grants no access. An email to anyone else waits for you: Ari shows a card headed **Preview** with the recipients (**To**), **Subject**, the message, and a **Replies** row reading **Go to you ([your address])**, because the email goes out from Ari's address and replies come to you. With two or more recipients, the **To** row ends **Each person gets their own email.**, because each address gets a separate email with only its own address in To; a form card reads **Each address gets a separate email with the form’s link.** instead. The footer reads **Nothing leaves until you press Send.** and stays in view at the bottom of the chat while the card is on screen, so a long email does not hide **Send**.
 
 | Control | What it does |
 | --- | --- |
@@ -220,6 +223,7 @@ Ari emails you at your sign-in address as soon as you ask. A Page, table, or cha
 | Message | Meaning |
 | --- | --- |
 | **Enter a valid email address.** | An address you typed is not valid. |
+| After **Send**, one line per address in the **To** row, each with a dot and a word: **Sent**, **Sending…**, **Failed**, or **Not confirmed** | The status of that person's own email. A failed or unconfirmed status explains itself when you point at it. The list names everyone, including the people who already got the email. |
 | **Sent email**, with **Sent to [addresses] [when].** | The email was sent; the time reads **today at**, **yesterday at**, or **on** a date. The card keeps this state after a reload and in a teammate's view of the chat, and offers no second **Send** or **Edit**. |
 | **Couldn’t confirm it reached [addresses]. Check with them before sending it again.** | cfo.ai handed the email to its provider but could not confirm that it reached those addresses. |
 | **Not sent to [addresses]. Send tries them again.** | Some addresses failed; **Send** retries only those, so nobody is emailed twice. |
@@ -277,6 +281,10 @@ The button turns off when the action is no longer possible, for example because 
 | **Formulas** | Every formula Ari wrote in the turn, closed by default; open it to read each formula. Shown when the edit animation is off. |
 | Connection card | Opens the sign-in for a system you are connecting. Ari cannot sign in for you. See [Connect QuickBooks, Xero, NetSuite, or Rillet](/guides/connect-accounting). |
 | **Start walkthrough** / **Start tour** | Starts a Guide Ari built or presented. See [Walk someone through a Page with a Guide](/guides/create-a-guide). |
+
+## Copy an answer
+
+Point at one of Ari's finished answers, or move keyboard focus into it, to show its actions under the text; on a touch screen they stay visible. **Copy answer** copies the whole answer two ways at once: as the Markdown Ari wrote, which plain-text editors take and which restores reference chips when pasted back into the message box, and as formatted text, which documents, email, and spreadsheets take with headings, lists, and tables intact. It is not offered while Ari is still writing. A selection you drag across more than one message copies exactly what is highlighted.
 
 ## Reply to part of an answer
 

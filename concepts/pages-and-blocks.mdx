@@ -1,14 +1,14 @@
 ---
 title: "Pages, Table blocks, and Canvas blocks"
 sidebarTitle: "Pages and blocks"
-description: "How Pages present your Model: what Table blocks calculate and what they only present, how Canvas blocks read live data and Scenarios, why controls never change the Model, how Ari checks a visual, and when to use which block."
+description: "How Pages present your Model: a Page is a document with Table blocks and Canvas blocks between its text, what Table blocks calculate and what they only present, how Canvas blocks read live data and Scenarios, why controls never change the Model, how Ari checks a visual, and when to use which block."
 ---
 
 Why does the same Revenue number appear on three Pages, and what happens when you change it on one? Because a Page does not hold numbers. A Page is a report that reads the Model, so every Page that shows Revenue shows the same value, and a change made on any of them reaches all of them.
 
 ## A Page is a view of the Model
 
-A Page, which some people call a sheet or a tab, is a stack of blocks that read from the Model. Your P&L, your hiring plan, and a board report can all show the same Cash Variable. When a new hire moves cash, every Page that shows Cash changes with it, because each one asks the Model for the value.
+A Page, which some people call a sheet or a tab, is a document: headings and notes you type, with blocks between them that read from the Model. Your P&L, your hiring plan, and a board report can all show the same Cash Variable. When a new hire moves cash, every Page that shows Cash changes with it, because each one asks the Model for the value.
 
 Pages nest. A Page can hold subpages, so a Page with subpages works like a folder. For example, a Board Page can hold one subpage per meeting, and a Plans Page can hold the forecast and the headcount plan. cfo.ai has no other kind of folder.
 
@@ -16,15 +16,15 @@ Ari creates Pages as it builds, such as a Page for each statement in a forecast.
 
 Pages follow Scenarios too. The Pages in Main appear in every Scenario that branches from it, but a Page you or Ari add while viewing a Scenario exists only in that Scenario until you merge it into Main. See [Scenarios, Snapshots, and version history](/concepts/scenarios).
 
-## Three kinds of block
+## Two kinds of block, and the text between them
 
 | Block | What it is for |
 | --- | --- |
 | **Table block** | A grid of Variables across time and categories: a P&L, a headcount roster, a variance report. You can type into it. |
 | **Canvas block** | A chart, a scorecard, a what-if control, or another custom visual that Ari builds from live Model data. |
-| **Text block** | Words: a summary, notes, or headings between other blocks. |
+| Text | Words on the Page itself: a summary, notes, headings, lists, quotes, and toggles that hide detail until opened. Text is saved with the Page, not in the Model. |
 
-Some Pages also have chart blocks from earlier versions of cfo.ai, which still show their charts and can still be restyled. New charts are Canvas blocks: the **Add block** menu offers a blank Canvas block, not a chart, and Ari builds the chart in it.
+Some Pages also have chart blocks from earlier versions of cfo.ai, which still show their charts and can still be restyled. New charts are Canvas blocks: the block list offers a blank Canvas block, not a chart, and Ari builds the chart in it. Text written in an older Text block opens as ordinary Page text.
 
 ## What a Table block calculates and what it only presents
 
@@ -73,7 +73,7 @@ A Page that holds a table, a chart, or a Canvas block with data has a date-range
 | See a trend, a mix, or how a total changed | A Canvas block with a chart |
 | Check a few headline numbers at a glance | A Canvas block with a scorecard |
 | Try a what-if without changing the plan | A Canvas block with a control |
-| Read the story behind the numbers | A Text block |
+| Read the story behind the numbers | Text on the Page |
 
 To choose the right chart for a question, see [Prompt library](/reference/prompt-library).
 

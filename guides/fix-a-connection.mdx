@@ -36,7 +36,7 @@ The connection reads **cfo.ai lost access** with **Reconnect to start syncing ag
     If the provider's screen says you are already connected and offers **Finish**, choose **Relink integration** instead. **Finish** keeps the old authorization, and the card then reads **[Source] was not reconnected**. Select **Try again**.
   </Step>
   <Step title="Finish Fivetran's setup, if it asks">
-    For a source that syncs through Fivetran, cfo.ai asks Fivetran to test the new sign-in before it counts the connection as reconnected. If the page that brings you back reads **Finish setting up [source]**, Fivetran still needs something, such as access to the tables it reads. Fix it at the source if you can, then select **Finish setup** to open Fivetran's Connect Card again. The connection reads **cfo.ai lost access** until the tests pass; see [cfo.ai lost access](/reference/connection-statuses#cfoai-lost-access).
+    For a source that syncs through Fivetran, cfo.ai asks Fivetran to test the new sign-in before it counts the connection as reconnected. If the page that brings you back says Fivetran still needs something, such as access to the tables it reads, fix that at the source if you can, then select **Finish setup** to open Fivetran's Connect Card again. The connection keeps its status until the tests pass; [cfo.ai lost access](/reference/connection-statuses#cfoai-lost-access) lists what the page says.
   </Step>
 </Steps>
 

@@ -1,0 +1,19 @@
+reference/integrations.mdx
+  s_bb0e3a1dc827f4::t_82fe87b66b0a46 355,364
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "67c1bded2e802dec9162ba3a5da5b301f3a9648b",
+  "prompts": {},
+  "sessions": {
+    "s_bb0e3a1dc827f4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "2cf15a9a-d9e7-4449-b855-44b7d98c3d38",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Caileigh <caileigh.delea@runway.com>"
+    }
+  }
+}

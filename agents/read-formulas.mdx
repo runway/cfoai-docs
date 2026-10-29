@@ -41,7 +41,7 @@ Each definition states its `time_grain` when it is dated, and its reach in words
 
 ### Imported Variables and Dimensions
 
-For a Variable or Dimension read from an imported source, the entry's `source_default` also states `order`, such as `last by MONTH` or `last by source order`. It says how a column that shows one row per record picks that row when a record has several: the latest row by the source's date column when the source has one, or the last row in source order when it has none. A column that sums its rows has no `order`.
+For a Variable or Dimension read from an imported source, the entry's `source_default` also states `order`, such as `last by MONTH` or `last by source order`. It says how a column that shows one row per record picks that row when a record has several: `by MONTH` orders the record's rows by the source's date column, and `by source order` says the source has no date column to order by. With no date column, the pick is the same in every calculation, but it is not the row's position in the source; [last](/reference/functions#last) states the rule. A column that sums its rows has no `order`.
 
 ### Read several at once
 

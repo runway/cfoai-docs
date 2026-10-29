@@ -38,7 +38,7 @@ In Slack, open a direct message with the cfo.ai app and write to Ari as you woul
 
 While Ari works, Slack shows that it **is typing…**. Its reply posts in the same thread when the turn ends. Reply in that thread to continue the same conversation; a new message outside the thread starts a new conversation.
 
-When Ari has to stop before it can answer, for example because the workspace has no active plan or the conversation has grown too long for it, the message Ari writes about why posts in the thread in place of a reply. The same message is in the conversation in cfo.ai.
+When Ari has to stop before it can answer, for example because the workspace has no active plan or the request has grown too large for it, the message that says why posts in the thread in place of a reply. [Ari in Slack](/reference/chat#ari-in-slack) lists these messages, and the same message is in the conversation in cfo.ai.
 
 ## What you can do in Slack
 
@@ -86,21 +86,25 @@ A workspace administrator can add Ari to a private Slack channel, so a finance t
 
 If Ari leaves right away with a one-sentence reason, see [If Ari leaves a channel](#if-ari-leaves-a-channel).
 
-If Ari is already in the private channel and answers a mention with the reply that it works in direct messages and in private channels a cfo.ai admin adds it to, @mention it yourself as a cfo.ai administrator whose Slack email matches your cfo.ai email. Ari turns itself on in the channel, posts its hello naming you, and answers that mention. From then on every answer in the channel uses your access. A mention from someone who is not a cfo.ai administrator, in a public channel, or in a channel Ari is not a member of gets the same reply as before, and nothing changes. If your Slack workspace was connected before channels were supported, Ari instead posts that a cfo.ai admin must disconnect Slack and add it again, and leaves; see [If Ari leaves a channel](#if-ari-leaves-a-channel).
+If Ari is already in the private channel, and a mention gets the reply that it works in direct messages and in private channels a cfo.ai admin adds it to, @mention it yourself as a cfo.ai administrator whose Slack email matches your cfo.ai email. Ari turns itself on in the channel, posts its hello naming you, and answers that mention. From then on every answer in the channel uses your access.
+
+A mention from someone who is not a cfo.ai administrator, in a public channel, or in a channel Ari is not a member of gets the same reply as before, and nothing changes.
+
+If your Slack workspace was connected before channels were supported, Ari instead posts that a cfo.ai admin must disconnect Slack and add it again, and leaves; see [If Ari leaves a channel](#if-ari-leaves-a-channel).
 
 In a channel, Ari works like this:
 
 - Ari answers every message that @mentions it, with a reply or an emoji reaction. For other messages, Ari reads the conversation and decides whether to reply, to react with an emoji, or to stay quiet. It speaks up only when it can clearly help.
 - Ari adds 👀 to a message while it works on it, because Slack shows **is typing…** only in direct messages.
 - Ari answers where the message was posted: a top-level message gets a top-level reply, and a message in a thread gets a reply in that thread. The channel's top level is one conversation, and each thread is its own.
-- Every answer in the channel uses the access of the administrator who added Ari, whoever asked. Everyone in the channel, including guests from another company in a channel shared through Slack Connect, reads what that administrator could read. Add Ari only to channels where that is what you want.
+- Every answer in the channel uses the access of the administrator who added Ari or turned it on by @mentioning it, whoever asked. Everyone in the channel, including guests from another company in a channel shared through Slack Connect, reads what that administrator could read. Add Ari only to channels where that is what you want.
 - Ari reads the words of channel messages, not their files, as in direct messages.
 
 To stop Ari in a channel, remove the cfo.ai app from the channel. Ari works only in private channels. In a public channel, a mention gets the reply that Ari works in direct messages and in private channels a cfo.ai admin adds it to, and nothing else is read. A Trigger still cannot post to a channel; see [Schedule a recurring report with a Trigger](/guides/schedule-a-trigger).
 
 ## If Ari leaves a channel
 
-Ari stays in a channel only while all of these hold: the channel is private, the person who added Ari is an administrator of the connected cfo.ai workspace whose Slack email matches their cfo.ai email, that administrator still has admin access, and the Slack app has the channel permissions. When one stops holding, Ari posts one sentence that says why, and leaves. [Chat controls and messages](/reference/chat#ari-in-slack) lists each sentence. If the channel is public, add Ari to a private channel or send it a direct message. If the person who added Ari is not a cfo.ai admin, ask a cfo.ai admin to invite it. If that administrator no longer has admin access, ask another cfo.ai admin to invite it. If the sentence says a cfo.ai admin must disconnect Slack and add it again, your Slack workspace was connected before channels were supported: in **Settings → Ari → Slack**, select **Disconnect**, then **Add to Slack** again, and invite Ari to the channel once more.
+Ari stays in a channel only while all of these hold: the channel is private, the administrator who added Ari or turned it on by @mentioning it is an administrator of the connected cfo.ai workspace whose Slack email matches their cfo.ai email, that administrator still has admin access, and the Slack app has the channel permissions. When one stops holding, Ari posts one sentence that says why, and leaves. [Chat controls and messages](/reference/chat#ari-in-slack) lists each sentence. If the channel is public, add Ari to a private channel or send it a direct message. If the person who added Ari is not a cfo.ai admin, ask a cfo.ai admin to invite it. If that administrator no longer has admin access, ask another cfo.ai admin to invite it. If the sentence says a cfo.ai admin must disconnect Slack and add it again, your Slack workspace was connected before channels were supported: in **Settings → Ari → Slack**, select **Disconnect**, then **Add to Slack** again, and invite Ari to the channel once more.
 
 Slack cannot invite an app that is already in the channel, which is why Ari leaves instead of staying quiet.
 

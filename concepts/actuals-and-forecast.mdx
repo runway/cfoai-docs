@@ -20,7 +20,7 @@ So to have the Model pick up last month's actuals, move Last close forward when 
 
 ## A change with no start date begins in the first Forecast period
 
-The Forecast begins in the first period after Last close at the table's time grain: the next month in a monthly table, the next week in a weekly one, the next day in a daily one. When you ask Ari for a forecast change and name no start, such as "raise the growth rate to 4%" or "add a \$12,000 a month marketing program", the change applies from that first Forecast period. In a monthly Model with Last close at September 30, 2026, it starts in October 2026. Name a month when you want the change to start later.
+The Forecast begins in the first period after Last close: the next month at a monthly grain, the next week at a weekly one, the next day at a daily one. The grain is the table's when you ask through a table, and the Scenario's **Default date granularity**, months unless you changed it, when no table is in play, such as a change you describe in words alone; see [Set the default grain and date range](/guides/set-dates-and-last-close#set-the-default-grain-and-date-range-for-new-tables). When you ask Ari for a forecast change and name no start, such as "raise the growth rate to 4%" or "add a \$12,000 a month marketing program", the change applies from that first Forecast period. In a monthly Model with Last close at September 30, 2026, it starts in October 2026. Name the start period at that grain, such as a month, when you want the change to start later.
 
 ## A Variable can use one formula for Actuals and another for Forecast
 

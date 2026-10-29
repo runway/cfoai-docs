@@ -18,6 +18,10 @@ Last close stays where it is until you or Ari move it. Connected systems keep se
 
 So to have the Model pick up last month's actuals, move Last close forward when you finish each month's close. You can change it yourself, ask Ari to change it, or schedule a [Trigger](/guides/schedule-a-trigger) that asks Ari to move it on the same day every month, after your books usually close.
 
+## A change with no start date begins in the first Forecast period
+
+The Forecast begins in the first period after Last close: the next month at a monthly grain, the next week at a weekly one, the next day at a daily one. The grain is the table's when you ask through a table, and the Scenario's **Default date granularity**, months unless you changed it, when no table is in play, such as a change you describe in words alone; see [Set the default grain and date range](/guides/set-dates-and-last-close#set-the-default-grain-and-date-range-for-new-tables). When you ask Ari for a forecast change and name no start, such as "raise the growth rate to 4%" or "add a \$12,000 a month marketing program", the change applies from that first Forecast period. In a monthly Model with Last close at September 30, 2026, it starts in October 2026. Name the start period at that grain, such as a month, when you want the change to start later.
+
 ## A Variable can use one formula for Actuals and another for Forecast
 
 Actuals and Forecast are the two **formula ranges** of the timeline. A Variable can have formulas in each range, and a range can hold several of them: the row's formula, a formula for one item such as Sales, and a value typed into one cell. Payroll, for example, can read your accounting system in Actuals and calculate this formula in Forecast:

@@ -1,14 +1,14 @@
 ---
 title: "Pages, Table blocks, and Canvas blocks"
 sidebarTitle: "Pages and blocks"
-description: "How Pages present your Model: what Table blocks calculate and what they only present, how Canvas blocks read live data and Scenarios, why controls never change the Model, how Ari checks a visual, and when to use which block."
+description: "How Pages present your Model: a Page is a document with Table blocks and Canvas blocks between its text, what Table blocks calculate and what they only present, how Canvas blocks read live data and Scenarios, why controls never change the Model, how Ari checks a visual, and when to use which block."
 ---
 
 Why does the same Revenue number appear on three Pages, and what happens when you change it on one? Because a Page does not hold numbers. A Page is a report that reads the Model, so every Page that shows Revenue shows the same value, and a change made on any of them reaches all of them.
 
 ## A Page is a view of the Model
 
-A Page, which some people call a sheet or a tab, is a stack of blocks that read from the Model. Your P&L, your hiring plan, and a board report can all show the same Cash Variable. When a new hire moves cash, every Page that shows Cash changes with it, because each one asks the Model for the value.
+A Page, which some people call a sheet or a tab, is a document: Text blocks you type, with Table blocks and Canvas blocks between them that read from the Model. Your P&L, your hiring plan, and a board report can all show the same Cash Variable. When a new hire moves cash, every Page that shows Cash changes with it, because each one asks the Model for the value.
 
 Pages nest. A Page can hold subpages, so a Page with subpages works like a folder. For example, a Board Page can hold one subpage per meeting, and a Plans Page can hold the forecast and the headcount plan. cfo.ai has no other kind of folder.
 
@@ -22,9 +22,9 @@ Pages follow Scenarios too. The Pages in Main appear in every Scenario that bran
 | --- | --- |
 | **Table block** | A grid of Variables across time and categories: a P&L, a headcount roster, a variance report. You can type into it. |
 | **Canvas block** | A chart, a scorecard, a what-if control, or another custom visual that Ari builds from live Model data. |
-| **Text block** | Words: a summary, notes, or headings between other blocks. |
+| **Text block** | Words: a paragraph, heading, list, quote, toggle, or simple table of text, typed on the Page itself between the other blocks. Text blocks are saved with the Page, not in the Model. |
 
-Some Pages also have chart blocks from earlier versions of cfo.ai, which still show their charts and can still be restyled. New charts are Canvas blocks: the **Add block** menu offers a blank Canvas block, not a chart, and Ari builds the chart in it.
+Some Pages also have chart blocks from earlier versions of cfo.ai, which still show their charts and can still be restyled. New charts are Canvas blocks: the block list offers a blank Canvas block, not a chart, and Ari builds the chart in it. A Text block written before the Page became a document opens as the same text, now editable in place.
 
 ## What a Table block calculates and what it only presents
 
@@ -62,6 +62,8 @@ The check has limits. It does not click buttons, type into fields, follow links,
 ## The Page's date range
 
 A Page that holds a table, a chart, or a Canvas block with data has a date-range control in its title row. Changing it sets the same range on every table, chart, and Canvas dataset on the Page at once.
+
+One exception keeps a chart honest. A Canvas dataset can be pinned to fixed dates, such as a forecast window of October to December or last year's full year. When the Page's range moves, a pinned dataset keeps its own dates, so a chart that compares this year's actuals with a fixed forecast still reads the forecast months instead of reading zeros. Ari pins a dataset when you ask; the **Canvas data** dialog shows each dataset read-only, and there is no control on the Page to pin one by hand. A Page whose only dated blocks are Canvas blocks with every dataset pinned shows no date-range control, because nothing on it would change.
 
 ## Choosing a block
 

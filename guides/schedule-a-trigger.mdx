@@ -100,6 +100,9 @@ A run never waits for an answer. When it has a question, such as which bank acco
   <Accordion title="Run now says the Trigger already has a run">
     The message reads **This trigger already has a queued or active run. Open its latest conversation.** Open that run from **History**, or wait for it to finish.
   </Accordion>
+  <Accordion title="The Trigger paused itself after a connection was removed">
+    When someone removes a connection, cfo.ai pauses every Trigger in the workspace whose instructions refer to it the way Ari writes a connection: its name, `#`, and the start of its id, such as `Stripe#aa9`. The Trigger shows as paused on the Triggers page, with the reason under its last attempt; [The cfo.ai interface](/reference/interface#triggers-page) lists the status and the sentence. No email or Slack message is sent. Select **Edit trigger**, change the instructions to name a current connection, turn the switch back on, and select **Save changes**. The notice clears, and the next run records a new outcome. A Trigger that names the connection by a plain word, such as "Stripe", is not paused; its runs report that the connection is missing.
+  </Accordion>
 </AccordionGroup>
 
 ## Related

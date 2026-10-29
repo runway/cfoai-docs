@@ -23,7 +23,7 @@ Stripe (Direct) cannot resume a setup. Its card reads **Setup wasn’t finished.
 
 ## cfo.ai lost access: reconnect
 
-The connection reads **cfo.ai lost access** with **Reconnect to start syncing again.** when the source revoked access, for example after a password change or an expired authorization.
+The connection reads **cfo.ai lost access** with **Reconnect to start syncing again.** when the source revoked access, for example after a password change or an expired authorization, or when Fivetran paused a source that syncs through it after it stayed broken for a long time. A paused connector offers no **Retry**, because only a reconnect resumes it.
 
 <Steps>
   <Step title="Reconnect">
@@ -34,6 +34,9 @@ The connection reads **cfo.ai lost access** with **Reconnect to start syncing ag
   </Step>
   <Step title="Choose Relink integration, if the provider asks">
     If the provider's screen says you are already connected and offers **Finish**, choose **Relink integration** instead. **Finish** keeps the old authorization, and the card then reads **[Source] was not reconnected**. Select **Try again**.
+  </Step>
+  <Step title="Finish Fivetran's setup, if it asks">
+    For a source that syncs through Fivetran, cfo.ai asks Fivetran to test the new sign-in before it counts the connection as reconnected. If the page that brings you back says Fivetran still needs something, such as access to the tables it reads, fix that at the source if you can, then select **Finish setup** to open Fivetran's Connect Card again. The connection keeps its status until the tests pass; [cfo.ai lost access](/reference/connection-statuses#cfoai-lost-access) lists what the page says.
   </Step>
 </Steps>
 

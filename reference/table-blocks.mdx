@@ -18,7 +18,7 @@ The strip above the grid, from left to right.
 | Table title | Click to rename the table. An unnamed table reads **New Table Block**. A new table gets a suggested title when you first add rows or columns. |
 | **Regenerate title** | A sparkle button that appears when you point at the title. Asks cfo.ai for a new title from what the table shows. |
 | **Deleted property reference** | A warning triangle. The table still lists a Variable or Dimension that was deleted; its tooltip reads **This table references a property that no longer exists.** With several, it reads **[N] deleted property references** and its tooltip counts them. Select it to open the setup panel, where each such row reads **Deleted property**. |
-| **Recomputing** | Shows while the table recalculates after a change. |
+| **Recomputing** | Shows while the table recalculates after a change. It also shows while a cell you edited waits for an earlier change in the workspace, such as one Ari is saving, to finish: the table keeps its numbers, only the edited cell is dimmed, and it keeps checking for about two to three minutes before it gives up with a notice listed in [Table calculation notices](/reference/formula-errors#table-calculation-notices). |
 | Date range button | Shows the first and last period. Opens a calendar; a complete range applies at once. **Today** jumps the calendar to the current period. |
 | Grain button | **Raw**, **Daily**, **Weekly**, **Monthly**, **Quarterly**, **Half-yearly**, or **Yearly**. Reads **Mixed** when the table's Date axes use different grains. **Raw** shows each date without grouping it into periods. On a table whose Date levels nest, such as years over months, the choice sets the finest level and the year level keeps its grain, so **Quarterly** gives years over quarters and **Monthly** leaves the table as it is. A grain that is not finer than the grouping level, such as **Yearly** under years, is dimmed, with the note **The year level groups these dates, so only finer periods are available.** |
 | **Compare** | Shows other Scenarios or an earlier period beside the table's values. See [Compare Scenarios side by side](/guides/compare-scenarios). |
@@ -73,7 +73,7 @@ Each section lists what is on that axis as a tree. Drag an item to reorder it, t
 | **…** (**Open Column Options**, **Open Row Options**) → **Reset columns** / **Reset rows** | Removes every column, or every row, from the table. |
 | Eye button, **Hide [name]** / **Show [name]** | Hides or shows that item for everyone who opens the table. Hidden items keep their settings. |
 | **Sort** | **None**, **Ascending**, **Descending**, or **Manual**, for a Dimension other than Date. |
-| Funnel button, **Filter [name]** | Opens the item list: **All Items**, the items, **Cancel**, and **Save**. For a Dimension other than Date, in rows or columns. |
+| Funnel button, **Filter [name]** | Opens the item list: **All Items**, the items, **Cancel**, and **Save**. For a Dimension other than Date, in rows or columns. When Ari saved a condition on the axis, a **Filter formula** section above the list shows it read-only, with **Edit with Ari**, which puts a request to change or remove it in the message box and closes the list without saving pending checkbox changes. The list has no field to edit the condition and no button to remove it; see [A filter Ari wrote as a formula](/guides/filter-and-sort-a-table#a-filter-ari-wrote-as-a-formula). |
 | **Segment by** | Adds a breakdown level under that item. |
 | **Date granularity** | For a Date axis: **Inherit**, **Raw**, **Day**, **Week**, **Month**, **Quarter**, **Half**, or **Year**. |
 | **Remove from table** | Removes the item from this table. When no other table shows the Variable or Dimension, cfo.ai asks first; see [Removing and deleting](#removing-and-deleting). For a deleted Variable or Dimension it reads **Remove deleted property from table**. |
@@ -325,6 +325,7 @@ A table starts with **Sum**, or **Last** when it shows a Dimension's values. Tex
 | What you see | Meaning |
 | --- | --- |
 | A dashed underline under a value | The cell holds its own value or formula, saved at that exact cell, in place of its row's formula. A picked item or date shows no underline. Clear it with **Delete**; see [Enter, paste, and clear values](/guides/enter-values). |
+| A dimmed value | A newer value is on the way. Right after you edit a cell, that cell shows dimmed until its new calculation arrives. When a change made elsewhere, such as by Ari or a teammate, is being recalculated, every value dims. |
 | A green or red number with **+** or **-** | A change in a **Variance** or **Variance %** comparison column: green is good and red is bad, by the Variable's **Variance colors**. Plain values are never colored by sign. |
 | Colored pills | Items of a Dimension, in the Dimension's color. |
 | Colored references and outlined cells while you edit a formula | Each reference in the formula gets its own color, in order, and the cells it reads take the same color. The colors only tell references apart. See [Write a formula](/guides/write-a-formula). |
@@ -470,7 +471,7 @@ Version history does not list changes to column widths or pinned columns.
 
 | A table cannot | Instead |
 | --- | --- |
-| Hold a comment or note on a cell | Add a Text block beside the table, or ask Ari for a text Variable, such as Notes, on a table that lists records. |
+| Hold a comment or note on a cell | Write a note on the Page beside the table, or ask Ari for a text Variable, such as Notes, on a table that lists records. |
 | Color the cells you type into automatically | They carry a dashed underline. Select them and set a **Background** or **Text color**. |
 | Sort rows by the numbers in a column | **Sort** orders items by name. Set a **Manual** order, or ask Ari to order the items by value. |
 | Filter or sort dates | Change the date range. Dates always run in date order. |

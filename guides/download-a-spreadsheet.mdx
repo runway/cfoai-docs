@@ -16,7 +16,11 @@ To export a Page to Excel, select **Download spreadsheet** in the Page header, o
 
     Ari exports the Scenario your chat is in unless you name another. The finished workbook appears in the chat as a download card, and Ari can open it again later. One workbook can hold up to 64 Pages; their formulas link across the sheets, and they share one **Model inputs** sheet.
 
-    If the export fails, Ari tells you which step and which table stopped it, and whether trying again can help.
+    If you started an export from the **Download spreadsheet** button, or in another chat, ask Ari in any chat where it is. Ari finds your own newest export of those Pages in that Scenario, while it runs and for an hour after it ends, follows it, and saves the workbook in the chat without starting a second export.
+
+    If the export fails, Ari tells you which step and which table stopped it, and whether trying again can help. If time ran out, the export result tells Ari which Pages the workbook leaves out, so ask if it does not say; see [When an export runs out of time](#when-an-export-runs-out-of-time).
+
+    A Page export is for Pages that already exist, with their formulas. If you want a file of figures that no Page shows, such as headcount by department for next year, ask Ari for that file instead: Ari reads the values and writes a workbook for you, and the Model stays as it is.
   </Tab>
   <Tab title="By hand">
     <Steps>
@@ -24,12 +28,12 @@ To export a Page to Excel, select **Download spreadsheet** in the Page header, o
         Open the Page, and check that the sidebar's Scenario picker shows the Scenario you want in the workbook.
       </Step>
       <Step title="Select Download spreadsheet">
-        Select **Download spreadsheet**, the download icon in the Page header. The button appears only on a Page that has a Table block.
+        Select **Download spreadsheet**, the download icon in the Page header. If you asked for no export of this Page in this Scenario in the last 24 hours, the export starts at once. Otherwise a **Recent exports** menu opens and lists each export you asked for in the last 24 hours, with when you asked, its status, and **Download** when its file is ready; select **Start new export** for a fresh workbook. A Page without a Table block shows the button too, but its menu can only offer past exports.
       </Step>
       <Step title="Wait for the file">
         The export runs in the background, and pointing at the button shows its progress; selecting it again shows a notice with the stage and when you asked, and starts no second export. You can open other Pages while you wait. When the file is ready, it downloads and a **Spreadsheet download started** notice names it.
 
-        If you reload or close the tab while the export runs, the export keeps going. Open the Page again, in the same Scenario, and the button picks it up. After a reload, the file still downloads on its own when it is ready. In a new tab, or after you closed the tab that asked, the file is offered instead, with **Spreadsheet ready** and a **Download** button, and so is an export that finished within the last hour. [The cfo.ai interface](/reference/interface#download-spreadsheet) lists each notice and when a tab shows it.
+        If you reload or close the tab while the export runs, the export keeps going. Open the Page again, in the same Scenario, and the button picks it up. After a reload, the file still downloads on its own when it is ready. In a new tab, or after you closed the tab that asked, the file is offered instead, with **Spreadsheet ready** and a **Download** button, and so is an export that finished within the last hour. For 24 hours after you asked, you can get the file again from the Page: select **Download spreadsheet**, then **Download** beside the export in the **Recent exports** menu. [The cfo.ai interface](/reference/interface#download-spreadsheet) lists each notice, the menu, and when a tab shows them.
       </Step>
     </Steps>
 
@@ -46,6 +50,12 @@ The workbook is a copy. Changes you make in Excel do not flow back into cfo.ai.
 Formulas and the **Model inputs** sheet need access to every Variable and Dimension in the Scenario. Someone without it, such as a person who opens the Page through a share link, gets the numbers the Page shows as plain values, with no **Model inputs** sheet.
 
 A few formulas cannot be written as Excel formulas, such as one longer than Excel allows. Those cells keep their calculated value instead of a formula, and an **Export notes** sheet lists each one. A formula that names items of a numeric Dimension as text, such as deal IDs, finds their cells by number, and a formula that names an item the workbook has no cell for keeps its calculated value and is listed in **Export notes** rather than being written without that item. The download notice counts them and offers **Ask Ari to fix**, which asks Ari to export the Page again and write a working formula into each of those cells.
+
+## When an export runs out of time
+
+An export calculates the selected Pages one at a time, each Page's tables and then the inputs those tables read, and stops calculating 5 minutes before its 45-minute limit. The workbook then holds every Page whose tables finished, and its **Export notes** sheet names the Pages left out and the table that was still calculating. On a Page that is in the workbook, a cell that reads an input the export did not reach keeps its calculated value and is listed in **Export notes**. When the first Page with a table did not finish, there is nothing to write, and the export fails at its time limit; a new export of the same Pages reaches the same limit while the Model is unchanged, so export fewer Pages or narrow the tables. An export of one Page, such as one from the **Download spreadsheet** button, never leaves a Page out: it finishes or fails. Ari's export reports the Pages left out too.
+
+An input too large to read is left out, and the cells that read it keep their calculated values; **Export notes** says the workbook may hold only some cells of that Variable. A total over such an input, such as a sum across every region, also keeps its calculated value, so no formula in the workbook adds up only part of the data. A Page's own table that large fails the export. A workbook that has no room left to name the Pages it leaves out fails instead of looking complete. The sizes are in [Limits and file types](/reference/limits#tables-pages-sharing-and-exports).
 
 ## What you get
 

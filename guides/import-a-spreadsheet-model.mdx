@@ -60,13 +60,14 @@ If your financial model lives in a spreadsheet, Ari can rebuild it as a cfo.ai M
 | Lookup tables | Dimension mappings |
 | Case selectors and copies of tabs per case | Scenarios |
 | Assumptions you tune | Editable inputs |
+| A history sheet, a roster, a transaction list, or another large set of fixed values | A source table that the Model reads as data, the way a connected file is read, instead of values typed into cells |
 | Statement and dashboard tabs | Pages with Table blocks, rebuilt to read from the Model |
 
-Values that came from macros or from links to other workbooks arrive as values; Ari says which ones it could not rebuild as formulas. Ari keeps the source's forecasting method. If it thinks another method fits better, it proposes the change instead of making it silently.
+A large set of fixed values loads as a source table because each value typed into a cell is saved as its own formula, and thousands of them make a Model slow to calculate; a small set of assumptions you tune stays as typed inputs you can edit. Values that came from macros or from links to other workbooks arrive as values; Ari says which ones it could not rebuild as formulas. Ari keeps the source's forecasting method. If it thinks another method fits better, it proposes the change instead of making it silently.
 
 ## Update the Model after the spreadsheet changes
 
-A connected Google Sheet is re-read every night. When a section changed, Ari updates that section's tables, formulas, and inputs, and leaves sections that did not change as they are, including edits you made in cfo.ai. For an Excel file, attach the new version and ask:
+A connected Google Sheet is re-read every night. When a section changed, Ari updates that section's tables, formulas, and inputs, reloads a section that was loaded as a source table, and leaves sections that did not change as they are, including edits you made in cfo.ai. For an Excel file, attach the new version and ask:
 
 > Here is the new version of the workbook. Update the import.
 

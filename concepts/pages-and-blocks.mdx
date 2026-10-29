@@ -63,6 +63,8 @@ The check has limits. It does not click buttons, type into fields, follow links,
 
 A Page that holds a table, a chart, or a Canvas block with data has a date-range control in its title row. Changing it sets the same range on every table, chart, and Canvas dataset on the Page at once.
 
+One exception keeps a chart honest. A Canvas dataset can be pinned to fixed dates, such as a forecast window of October to December or last year's full year. When the Page's range moves, a pinned dataset keeps its own dates, so a chart that compares this year's actuals with a fixed forecast still reads the forecast months instead of reading zeros. Ari pins a dataset when you ask; the **Canvas data** dialog shows each dataset read-only, and there is no control on the Page to pin one by hand. A Page whose only dated blocks are Canvas blocks with every dataset pinned shows no date-range control, because nothing on it would change.
+
 ## Choosing a block
 
 | You want readers to | Use |

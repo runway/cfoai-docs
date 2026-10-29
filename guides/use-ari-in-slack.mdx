@@ -38,6 +38,8 @@ In Slack, open a direct message with the cfo.ai app and write to Ari as you woul
 
 While Ari works, Slack shows that it **is typing…**. Its reply posts in the same thread when the turn ends. Reply in that thread to continue the same conversation; a new message outside the thread starts a new conversation.
 
+When Ari has to stop before it can answer, for example because the workspace has no active plan or the conversation has grown too long for it, the message Ari writes about why posts in the thread in place of a reply. The same message is in the conversation in cfo.ai.
+
 ## What you can do in Slack
 
 You can ask Ari anything you can ask in cfo.ai: explain a number, build or change the Model, or schedule a Trigger. In Slack, Ari works in Main unless you name another Scenario.
@@ -78,11 +80,13 @@ A workspace administrator can add Ari to a private Slack channel, so a finance t
     In Slack, open the private channel and add the cfo.ai app to it, the way you add a person. You must be an administrator of the cfo.ai workspace, and the email on your Slack profile must match your cfo.ai email.
   </Step>
   <Step title="Read Ari's hello">
-    Ari posts a hello that names you as the person who added it and says that anyone in the channel can @mention it; the exact message is in [Ari in Slack](/reference/chat#ari-in-slack). The channel is ready.
+    Ari posts a hello that names you as the person who set it up in the channel and says that anyone in the channel can @mention it; the exact message is in [Ari in Slack](/reference/chat#ari-in-slack). The channel is ready.
   </Step>
 </Steps>
 
 If Ari leaves right away with a one-sentence reason, see [If Ari leaves a channel](#if-ari-leaves-a-channel).
+
+If Ari is already in the private channel and answers a mention with the reply that it works in direct messages and in private channels a cfo.ai admin adds it to, @mention it yourself as a cfo.ai administrator whose Slack email matches your cfo.ai email. Ari turns itself on in the channel, posts its hello naming you, and answers that mention. From then on every answer in the channel uses your access. A mention from someone who is not a cfo.ai administrator, in a public channel, or in a channel Ari is not a member of gets the same reply as before, and nothing changes. If your Slack workspace was connected before channels were supported, Ari instead posts that a cfo.ai admin must disconnect Slack and add it again, and leaves; see [If Ari leaves a channel](#if-ari-leaves-a-channel).
 
 In a channel, Ari works like this:
 

@@ -29,6 +29,10 @@ Ari cannot turn a built-in Skill on or off for you; use the switch in Settings. 
 
 For more on moving from a spreadsheet, see [Import an existing spreadsheet model](/guides/import-a-spreadsheet-model).
 
+## A Trigger that names a built-in Skill
+
+A Trigger of yours does not need the switch. When the instructions of one of your Triggers name an optional built-in Skill as a word of its own, such as `flash-report`, that Skill is available to the Trigger's runs, and to your own chats in that workspace, while the Trigger is on or one of its runs is in progress. Nobody else in the workspace gets it, and the switch in **Settings → Skills** stays off. The names to use are `model-audit` (**Model audit**), `flash-report` (**Flash report**), `reconcile-source-model` (**Model migration tie-out**), and `tie-out-source-totals` (**Source tie-out**). A word that only contains the name, such as `flash-reports`, does not count. If you saved a Skill of your own under that name, Ari follows your Skill instead. See [Schedule a recurring report with a Trigger](/guides/schedule-a-trigger).
+
 ## Turn a built-in Skill off
 
 Turn off its switch in **Settings → Skills**. Ari stops using it for everyone in the workspace.

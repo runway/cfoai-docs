@@ -39,6 +39,8 @@ The page is titled **Enter your code**, with **We sent a six-digit code to [emai
 
 When a Google or Microsoft sign-in matches an account that already exists, a code links the two sign-in methods. The page then says **We sent a six-digit code to [email] to safely link your sign-in methods.** and **This protects your existing cfo.ai account when adding another sign-in method.**, and offers **Start over** instead of **Change email**.
 
+If the browser has lost the email you typed, such as when the link opened in a different browser app, the page is titled **Confirm your email** with **Enter the email address where you received your code.** and a footer **Continue with the code already in your inbox. This won’t send a new code.** Type the address in **Email address** and select **Continue to code** to open the code boxes for the code you already have; no new code is sent unless you select **Resend code**. **Start over** returns to the email step.
+
 ### Sign-in code messages
 
 | Message | Meaning | What to do |
@@ -102,7 +104,7 @@ Select your name and picture at the bottom of the sidebar. From top to bottom:
 | **Manage memories** | Starts a chat in which Ari shows what it remembers about you and the workspace and helps you change it. See [What Ari remembers](/concepts/ari-memory). |
 | **Manage triggers** | Opens the [Triggers page](#triggers-page). |
 | **Workspaces** | Every workspace you belong to, with a check beside the one you are in. Select another to switch to it; **⌘**-click opens it in a new tab. |
-| **Create workspace** | Opens a **Workspace name** field. Press **Enter** to create the workspace and open it. If it fails, the field says **Unable to create workspace right now.** See [Create a second workspace or switch workspaces](/guides/manage-workspaces). |
+| **Create workspace** | Opens a **Workspace name** field. Press **Enter**, or select **Create "[name]"** under the field, to create the workspace and open it. If it fails, the field says **Unable to create workspace right now.** See [Create a second workspace or switch workspaces](/guides/manage-workspaces). |
 | **Log out** | Signs you out. |
 
 The list under **Workspaces** is the workspace switcher; there is no other switcher control. Workspace search also finds your other workspaces by name.
@@ -152,6 +154,7 @@ When the last scheduled attempt did not start a run, the Trigger's details expla
 | Message | Meaning |
 | --- | --- |
 | **The last scheduled attempt could not start**, with the error, or **Open a recent conversation or ask Ari to help check this trigger.** | An error kept the run from starting. |
+| **The last scheduled attempt could not start**, with **The [connection name] connection these instructions name was deleted, so this schedule was paused.** | Someone removed a connection that the Trigger's instructions name, so cfo.ai paused the Trigger. See [Schedule a Trigger](/guides/schedule-a-trigger). |
 | **The last scheduled attempt was skipped**, with **The run that started [time] was still going. No run has started since then.**, **The run queued [time] was still waiting to start. No run has been queued since then.**, or **Ari was still working on the previous task.** | An earlier run of the Trigger was still going or waiting, so no new run started. |
 
 ### New trigger and Edit trigger
@@ -298,13 +301,13 @@ The bar above a Page, from left to right:
 | Page name | Opens **Pages**, the list of Pages in this Scenario, with **New page** and a **Search pages** button that shows a **Find a page…** field. |
 | **Merge** | Shown when a chat is open beside a Page in a Scenario other than Main. See [Merge a Scenario into Main](/guides/merge-a-scenario). |
 | **Building…** | Ari is building this Page. |
-| **Download spreadsheet** | The download icon, on a Page with a Table block. See [Download spreadsheet](#download-spreadsheet). |
+| **Download spreadsheet** | The download icon. Starts an export of the Page's tables, or opens your **Recent exports** of the Page. On a Page with no Table block it only lists past exports. See [Download spreadsheet](#download-spreadsheet). |
 | **Share** | Opens the [Share panel](#share-panel). Shown to people who can share the Page. A link icon on the button means an external link to the Page is on. |
 | **Version history** | The clock icon. Opens the version history panel. See [Scenario and version history controls](/reference/scenarios-and-history). |
 | **New chat** | On a full-screen Page with no chat open. Opens a floating chat over the Page. |
 | **Collapse model pane** | When the Page is beside a chat. Folds the Page to a narrow rail; **Expand model pane** opens it again. |
 
-Below the header, a Page with a table, a chart, or a Canvas block with data has a row with the **Page date range**. Changing the date range sets it on every table, chart, and Canvas dataset on the Page. The Page's name is not shown as a heading above its blocks, and a Page with no dated block has no row there, so its blocks start at the top. To rename a Page, use the Page list in the sidebar; see [Rename a Page](/guides/create-pages-and-blocks#rename-a-page).
+Below the header, a Page with a table, a chart, or a Canvas block with data has a row with the **Page date range**. Changing the date range sets it on every table, chart, and Canvas dataset on the Page, except a Canvas dataset that Ari pinned to fixed dates, which keeps its own; see [The Page's date range](/concepts/pages-and-blocks#the-pages-date-range). The Page's name is not shown as a heading above its blocks, and a Page with no block that follows the range, such as one with no dated block or whose only dated block is a Canvas block with every dataset pinned, has no row there, so its blocks start at the top. To rename a Page, use the Page list in the sidebar; see [Rename a Page](/guides/create-pages-and-blocks#rename-a-page).
 
 ### A chat and a Page together
 
@@ -334,6 +337,19 @@ A Page is a document: Text blocks typed in place, with Table blocks and Canvas b
 
 Typing `#`, `##`, `###`, `-`, `1.`, `[]`, `>`, or `|` at the start of a line, then a space, makes a heading, bullet, numbered item, check item, toggle, or quote. **Tab** and **Shift Tab** nest and unnest a list item. For the steps, see [Write and format text on a Page](/guides/create-pages-and-blocks#write-and-format-text-on-a-page).
 
+### Cut, copy, and paste on a Page
+
+Text cuts, copies, and pastes as in any document. A Table block, Canvas block, or chart block on the Page follows these rules (**⌘** is **Ctrl** on Windows and Linux):
+
+| You do | What happens |
+| --- | --- |
+| Paste, copy, or cut inside a block, such as in a table's cells | The block handles it. A paste into a cell fills the cell and writes nothing into the Page's text. Copying cells copies the cells, even when the block is selected on the Page. |
+| Paste while a block is selected, as after a click on a table or after moving onto it with an arrow key | Nothing is pasted, and the block stays. A paste never replaces a block. |
+| Select a block, press **⌘ X**, click where it should go, and press **⌘ V** | The same block moves there with its settings, the same as dragging its handle, and the Page keeps saving. This works in the same tab and after a save and a reload. |
+| Select a block, press **⌘ C**, and paste it | An empty paragraph appears where the copy would go. Copying a Table block, Canvas block, or chart block is not supported; use **Duplicate block** in the block menu. A block pasted from another Page also arrives as an empty paragraph; use **Move to page** instead. |
+
+A block put on the clipboard with **⌘ C** or **⌘ X** carries no text, so pasting it into another app or into a table cell pastes nothing.
+
 ### Page editor messages
 
 Saving is continuous and shows nothing while it works. A line above the document appears only when a save fails.
@@ -344,10 +360,25 @@ Saving is continuous and shows nothing while it works. A line above the document
 | **This Page changed elsewhere. Your unsaved changes are kept in this tab.** with **Download unsaved changes** and **Reload saved Page** | Someone else, Ari included, changed the Page's text or moved or deleted one of its blocks since you opened it. Your text stays in this tab until you reload. |
 | **Reload saved Page?** with **This discards your unsaved changes in this tab. Download them first if you want to keep a copy.** | The confirmation before a reload. **Download unsaved changes** saves your text as a file. |
 | **Couldn’t reload the Page** with **Your unsaved changes are still here.** | The reload failed. Nothing was lost. |
+| **This live block is unavailable here. Copies of live blocks are not supported yet. Check the original Page if the source is missing or its access has changed.** | Shown in the document in place of a Table block, Canvas block, or chart block that this Page no longer holds or that you cannot read. Reload the Page. |
 
 ## Download spreadsheet
 
 **Download spreadsheet**, the download icon in the Page header, exports the Page's tables as an Excel workbook. Its tooltip reads **Download tables as a spreadsheet**. cfo.ai has no button that downloads a Page as a PDF or a CSV; ask Ari for one. For what the workbook contains, see [Export a Page to Excel](/guides/download-a-spreadsheet); for a PDF, see [Get a PDF report or slide deck](/guides/get-a-pdf-or-slides).
+
+Selecting the button first looks up your own exports of this Page in this Scenario. When none was asked for in the last 24 hours and none is queued or running, the export starts at once. Otherwise the button opens a menu titled **Recent exports**, with **Exports from the last 24 hours for this page and scenario.** It shows on a Page with no Table block too, where it can only list past exports:
+
+| Control or message | Meaning |
+| --- | --- |
+| **Start new export** | Starts a fresh export. Shown only on a Page that has a Table block; unavailable while your export of this Page runs. |
+| An export's row | Its status, **Queued**, **Preparing**, **Ready**, **Failed**, **Cancelled**, or **Unavailable**, and the date and time you asked. A failed export shows its reason. An export whose workbook holds values instead of some formulas adds **[n] cells hold values instead of formulas. See Export notes.** |
+| **Download** | On a **Ready** row. Saves that export's file and shows **Spreadsheet download started**. |
+| **Loading exports…** | The list is being read. |
+| **No exports from the last 24 hours.** | Nothing to list on a Page with a Table block. |
+| **No recent exports. This page has no tables to export.** | Nothing to list, and the Page has no Table block, so no export can start. |
+| **Could not load exports.**, with **Try again** | The list could not be read. Nothing was started. |
+
+The menu lists up to 10 exports: each you asked for in the last 24 hours, and any still queued or running. Exports other people asked for are not listed. While the menu is open, a queued or running export's status refreshes on its own.
 
 While an export runs, the button spins and its tooltip shows the stage:
 
@@ -357,7 +388,7 @@ While an export runs, the button spins and its tooltip shows the stage:
 | **Spreadsheet queued** | Your export is waiting to start. |
 | **Preparing spreadsheet** | Your export is running. |
 
-The button stays clickable while its export runs. Selecting it again starts no second export; it shows a notice with the same stage and the time you asked, which you can close:
+The button stays clickable while its export runs. Selecting it again starts no second export and opens no menu; it shows a notice with the same stage and the time you asked, which you can close:
 
 | Notice | Meaning |
 | --- | --- |
@@ -372,7 +403,7 @@ When it finishes:
 | **Spreadsheet download started**, with **[file]: [n] cells hold values instead of a formula. The Export notes sheet lists them.** and **Ask Ari to fix** | Some formulas could not be written as Excel formulas. **Ask Ari to fix** opens a chat that asks Ari to export the Page again and write a working formula into each of those cells. |
 | **Could not download spreadsheet**, with **[Page]: [reason]** | The export failed. |
 
-When you open a Page, it looks for your own newest export of that Page in that Scenario: one still queued or running, or one that ended within the last hour. It looks even when the Page no longer has a table, though a Page without a table shows no **Download spreadsheet** button, only the notices below. On a Page that still has a table, a running export makes the button busy again, with the tooltips above. When it finishes, the file downloads if this tab asked for it before a reload, or if you selected **Download spreadsheet** in this tab while it ran; an export that a closed tab, another tab, or Ari asked for is otherwise offered with **Spreadsheet ready** instead. An export that already ended shows one of these notices. A tab reports an export once, across its reloads, and a new tab reports it again:
+When you open a Page, it looks for your own newest export of that Page in that Scenario: one still queued or running, or one that ended within the last hour. It looks even when the Page no longer has a table. A running export makes the button busy again, with the tooltips above. When it finishes, the file downloads if this tab asked for it before a reload, or if you selected **Download spreadsheet** in this tab while it ran; an export that a closed tab, another tab, or Ari asked for is otherwise offered with **Spreadsheet ready** instead. An export that already ended shows one of these notices. A tab reports an export once, across its reloads, and a new tab reports it again:
 
 | Message | Meaning |
 | --- | --- |
@@ -391,6 +422,16 @@ Two reasons stand alone:
 | --- | --- |
 | **Add a table to this page before downloading a spreadsheet.** | The Page's last table was removed during the download. |
 | **The export was cancelled before it produced a workbook.** | The export was cancelled. |
+
+An export that ran out of time or met an input too large to read can still succeed with part of the selection; see [When an export runs out of time](/guides/download-a-spreadsheet#when-an-export-runs-out-of-time). The workbook's **Export notes** sheet then says so:
+
+| Message | Meaning |
+| --- | --- |
+| **The export's calculation time ran out before the tables of these selected pages were calculated, so this workbook does not contain them:**, followed by the Page names | Calculation stopped 5 minutes before the 45-minute limit. Each named Page is left out of the workbook. Only an export of several Pages, which Ari makes, can leave a Page out. |
+| **These cells hold the value cfo.ai calculated instead of a formula. They do not recalculate when you edit an input.**, with a row for each cell | The cells kept as values, with the sheet, cell, Variable, period, Scenario, and the reason. |
+| **Its formula has no spreadsheet equivalent yet.** | The reason for a formula that cannot be written for Excel. |
+| **It reads [Variable]**, then **for [items]** or **at [period]** when known, **, which this workbook does not contain.** | The reason for a cell that reads a value the workbook has no cell for, including an input calculation did not reach in time. |
+| **It reads [Variable] across several dimension items or dates, and this workbook may hold only some of those cells.** | The reason for a total or other read across items or dates of a Variable whose input was too large to read, or was cut short when time ran out. The value is kept so the workbook never adds up part of the data. |
 
 For time and size limits, see [Limits and file types](/reference/limits#tables-pages-sharing-and-exports).
 
@@ -514,6 +555,10 @@ New charts are Canvas blocks; the block list has no chart option. A chart block 
 | **Setup** tab | The chart type (**Line**, **Bar**, **Bar Stacked**, **Bar Stacked Normalized**, **Pie**, **Combo**, **Donut**, **Nightingale**, **Area**, **Area Stacked**, **Area Stacked Normalized**, **Waterfall**); **X-Axis** with the date grain; **Y-Axis** (or **Values** on a pie, donut, or Nightingale chart) with each Variable's **Pick color**, **Segment by**, and **Remove**; a combo chart's line or bar choice per series; a waterfall's **Positive**, **Negative**, and **Total** colors. |
 | **Display** tab | **Show chart title** and **Chart title text**; **Show legend** and its **Position**; **Show X axis**, **Show X axis title**, and **X axis title**; **Show Y axis**, **Show horizontal grid lines**, **Show Y axis title**, and **Y axis title** |
 | **Open Chart Options** (**…**) | **Reset chart** |
+
+## When a new version of cfo.ai is available
+
+An open tab picks up a new version of cfo.ai on its own, either when you move to another page or when you return to the tab after it was hidden for at least five minutes. It reloads about half a second later, and only when nothing of yours would be lost: no save is in flight, no download you asked for is pending, the Ari message box is empty, the field you are typing in holds no text, and you have not pressed a key or clicked since you came back. Otherwise it waits for the next move or return. A reload resets scroll position and open panels.
 
 ## Phones and tablets
 

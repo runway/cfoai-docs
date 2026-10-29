@@ -37,7 +37,7 @@ cfo.ai decides how to read dates for a whole column at once.
 - A column whose values all read either way, such as `03/04/2026`, follows the day and month order the file's other date columns use. When no other column settles it, the column is read month-first and the load note says the order was unsettled.
 - A column that needs both orders is not a date column, and it loads as text.
 - A date with a clock, such as `2026-09-25 00:56`, loads as a timestamp.
-- Plain digit strings, such as `2024` or `20240229`, stay numbers. Only a column whose name is exactly `yyyyMMdd` reads compact dates such as `20260131`.
+- Plain digit strings, such as `2024` or `20240229`, stay numbers unless the column's name says it holds dates. A column named exactly `yyyyMMdd`, or whose name has "date" as a word of its own, reads eight-digit values such as `20260105` as dates when every value that is not empty is a real calendar date. Spaces, punctuation, and changes of letter case separate the words, so `EcritureDate`, `Posting Date`, `invoice_date`, and `DATE` match, while `Order ID`, `Update`, `Candidate`, `Mandate`, `Dates`, and an all-capitals name such as `ECRITUREDATE` do not. A column the connection already holds as numbers keeps that type when you replace the file.
 
 A row whose date is empty has no place in a table that shows the source's dates by week, month, quarter, or year, so it is left out of those rows and columns; it still counts in totals that do not break down by date, and it appears under an empty item only when the date Dimension is shown without a grain.
 

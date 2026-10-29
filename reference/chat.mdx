@@ -39,7 +39,7 @@ A new chat shows the heading **How can I help you?** and the placeholder **Ask a
 | **Browse Canvas block library** | The palette icon at the bottom left. Opens templates for Canvas blocks. See [Build a dashboard or board report](/guides/build-a-dashboard). |
 | Suggested reply | After Ari answers, the empty message box can show a suggested next message in faint text, followed by **Tab** or **→**. Press either key to place it in the box; it is never sent until you send it. |
 | Excerpt | A passage you quoted from one of Ari's answers. See [Reply to part of an answer](#reply-to-part-of-an-answer). |
-| A pasted table | A table pasted from a spreadsheet, a web page, or one of Ari's answers keeps its rows and columns as a Markdown table, with the first row as the header. A line break inside a cell becomes a space, and a `\|` inside a cell becomes a full-width bar (｜). Ari reads the table, and the sent message shows it as a table. |
+| A pasted table | A table pasted from a spreadsheet, a web page, or one of Ari's answers keeps its rows and columns as a Markdown table, with the first row as the header, and keeps its caption as a line above the table. A line break inside a cell becomes a space, and a `\|` inside a cell becomes a full-width bar (｜). A reference chip inside a cell stays a chip. The table stays a table wherever you paste it: after words you typed, at the start of a heading, where it goes before the heading, or in a list, where it goes outside the list item. A whole copied answer pastes with its text and its tables each on their own lines. Ari reads the table, and the sent message shows it as a table. |
 
 The message box shows Markdown formatting as you type and keeps it when you send. Typing `1. ` or `* ` at the start of a line starts a numbered or bulleted list, `**bold**`, `_italic_`, and `` `code` `` show as formatted text, and headings, quotes, and dividers work the same way. A sent message keeps its formatting when you open it again. **Shift Enter** starts a new paragraph, continues a list, or leaves a list from an empty item; inside code it inserts a line break. **⌘ Enter** inserts a line break. Underlining is not kept, because Markdown has no underline.
 
@@ -148,14 +148,14 @@ Ari asks for details it needs as a short form in the chat.
 | Control | What it does |
 | --- | --- |
 | An option | Chooses that answer. Each option shows a letter; press the letter to choose it. A question that takes one answer moves on to the next question. |
-| **Other…** | Type your own answer. While the box is empty, the form says **Type your answer to continue.**, or **Type your answer or attach a file to continue.** when the question takes files. |
+| **Other…** | Type your own answer. An **Other…** you choose and leave empty adds nothing: options you checked beside it are still your answer, and with none the question counts as skipped. |
 | **Attach files to your answer** | Appears when a question takes files. Files sent without text read **See attached files**. |
-| **Dismiss** beside a question | Skips that question. The record of your answers marks it **Declined**. **Undo** brings it back before you send. |
+| **Dismiss** beside a question | Declines that question. The record of your answers marks it **[Declined]**. **Undo** brings it back before you send. |
 | **Dismiss** in the footer | Sends the answers you picked and declines the questions still open. |
 | **Next** | Moves to the next question, answered or not. |
-| **Submit answers** (**Submit** on a one-question form) | Sends your answers. It stays off until every question is answered or dismissed. |
+| **Submit answers** (**Submit** on a one-question form) | Sends your answers. A question you left empty does not hold it up: the button counts the empty questions, as in **Submit answers (1 skipped)**, sends them as skipped, and Ari reads each one as unknown. The button is off only while **Send** itself is unavailable, such as offline or while a file uploads, and after the form was sent. |
 
-Your answers appear in the chat as a record of the form, each question above your answer. If you scrolled up when a form arrived, select **Scroll to latest messages** to reach it. When a scheduled Trigger run asked questions at more than one point, they appear together on one form in its chat, and your one reply answers all of them.
+Your answers appear in the chat as a record of the form, each question above your answer; a question you skipped or dismissed shows **[Skipped]** or **[Declined]** in place of an answer. If you scrolled up when a form arrived, select **Scroll to latest messages** to reach it. When a scheduled Trigger run asked questions at more than one point, they appear together on one form in its chat, and your one reply answers all of them.
 
 ### Plan card
 
@@ -230,6 +230,8 @@ Ari emails you at your sign-in address as soon as you ask. A Page, table, or cha
 | **Email wasn’t sent. Try again.** | Sending failed for every address. |
 | **Couldn't check whether this email was already sent. Nothing was sent.** | cfo.ai could not read the card's send record, so it refused rather than risk a duplicate. Try again. |
 
+If you ask Ari to change an email that is waiting on its card, such as to shorten it, Ari prepares a new card that holds the revised draft. The earlier card stays in the chat with its own **Send**, which still sends the earlier draft, so press **Send** on the card that holds the version you want. After you press **Send**, your next message tells Ari what happened to each address: sent, failed with the provider's reason, not confirmed, or still sending. So you can ask Ari where an email went.
+
 cfo.ai records every email it sends, so a card remembers that **Send** was pressed. Scheduled Triggers work the same way, so a run that addresses someone else stops at the preview; replies to an email a scheduled run sent go to the schedule's owner.
 
 ### Email and Slack messages to you
@@ -284,7 +286,7 @@ The button turns off when the action is no longer possible, for example because 
 
 ## Copy an answer
 
-Point at one of Ari's finished answers, or move keyboard focus into it, to show its actions under the text; on a touch screen they stay visible. **Copy answer** copies the whole answer two ways at once: as the Markdown Ari wrote, which plain-text editors take and which restores reference chips when pasted back into the message box, and as formatted text, which documents, email, and spreadsheets take with headings, lists, and tables intact. It is not offered while Ari is still writing. A selection you drag across more than one message copies exactly what is highlighted.
+The most recent finished answer in a chat always shows its actions under the text, and keeps them while Ari writes the next answer. For an earlier answer, point at it or move keyboard focus into it; on a touch screen every answer's actions stay visible. **Copy answer** copies the whole answer two ways at once: as the Markdown Ari wrote, which plain-text editors take and which restores reference chips when pasted back into the message box, and as formatted text, which documents, email, and spreadsheets take with headings, lists, and tables intact. It is not offered while Ari is still writing. A selection you drag across more than one message copies exactly what is highlighted.
 
 ## Reply to part of an answer
 
@@ -400,8 +402,8 @@ Ari chats in Slack direct messages, and in private channels an administrator add
 | **is typing…** | Ari is working on your message. Its reply posts in the same thread when the turn ends. |
 | **I couldn't find a CFO.ai account for your Slack email. Ask an admin to invite you to CFO.ai, then message me again.** | No cfo.ai account uses the email address on your Slack profile. |
 | **Your CFO.ai account doesn't have access to this workspace's CFO.ai. Ask an admin for access, then message me again.** | Your cfo.ai account does not belong to the cfo.ai workspace this Slack workspace is connected to. |
-| **I work in direct messages, and in private channels a cfo.ai admin adds me to. Send me a direct message and I'll pick this up there.** | You mentioned Ari in a channel it has not been added to, such as a public channel. Ari reads nothing else there. |
-| **Hi, I'm Ari. [name] added me, so anyone here can ask me about the company's numbers. I answer when you @mention me, and I join in when I can help. My answers use [name]'s cfo.ai access, and everyone in this channel can read them.** | An administrator added Ari to a private channel. Every answer there uses that administrator's access. |
+| **I work in direct messages, and in private channels a cfo.ai admin adds me to. Send me a direct message and I'll pick this up there.** | You mentioned Ari where it is not turned on: a public channel, a private channel Ari is not a member of, or a private channel where no cfo.ai administrator has added or @mentioned it yet. Ari reads nothing else there. |
+| **Hi, I'm Ari. [name] set me up in this channel, so anyone here can ask me about the company's numbers. I answer when you @mention me, and I join in when I can help. My answers use [name]'s cfo.ai access, and everyone in this channel can read them.** | An administrator added Ari to a private channel, or @mentioned it in a private channel it was already in. Every answer there uses that administrator's access. |
 | 👀 on a channel message | Ari is working on that message. |
 | **I only work in private channels, so I'm leaving this one. …**, **Only a cfo.ai admin can add me to a channel, so I'm leaving. …**, **A cfo.ai admin needs to disconnect Slack and add it again in cfo.ai Settings before I can work in channels, so I'm leaving. …**, **The admin who added me here no longer has admin access in cfo.ai, so I'm leaving. …** | Ari left the channel. [If Ari leaves a channel](/guides/use-ari-in-slack#if-ari-leaves-a-channel) explains each reason and what to do. |
 | **I can't read files or images in Slack yet. Paste the text into a message and I'll take it from there.** | You sent a file or image. Ari reads nothing in that message. |
@@ -428,7 +430,7 @@ When cfo.ai could not research a company for your email, for example a personal 
 
 ### Starting card
 
-The card asks one question, and your answer picks one follow-up. Answer and select **Get started** to send your answers. **Dismiss** sends the answers you already picked and declines only the open questions. When your answer can take files, **Attach files to your answer** appears beside **Dismiss** and **Get started**; files sent without text read **See attached files**.
+The card asks one question, and your answer picks one follow-up. Answer and select **Get started** to send your answers. **Get started** also sends with a question left empty, and then counts it, as in **Get started (1 skipped)**. **Dismiss** sends the answers you already picked and declines only the open questions. If you connect a data source, such as your accounting system, while the card is still open, the chat closes the card: connecting counts as choosing **Connect my data**, and Ari builds your first Model when the import reports your records ready. When your answer can take files, **Attach files to your answer** appears beside **Dismiss** and **Get started**; files sent without text read **See attached files**.
 
 | Question | Options |
 | --- | --- |

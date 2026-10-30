@@ -71,7 +71,7 @@ How the items of two nested levels pair depends on what relates the levels:
 
 ## Canvas dataset layouts
 
-A Canvas dataset declares the same visible shape in a flatter form, under its `layout.rows` and `layout.columns`. `inspect_canvas_blocks` reads each saved dataset back in this same form, as [Read saved Canvas blocks](/agents/canvas-blocks#read-saved-canvas-blocks) describes, so an entry copied from a read writes back unchanged:
+A Canvas dataset declares the same visible shape in a flatter form, under its `layout.rows` and `layout.columns`. `inspect_canvas_blocks` reads each saved dataset back in this same form, as [Read saved Canvas blocks](/agents/canvas-blocks#read-saved-canvas-blocks) describes, so an entry that carries `layout` copied from a read writes back unchanged; an entry that carries `layout_problem` instead has a saved layout this notation cannot express, and it must be rewritten before it is sent:
 
 | Entry field | Meaning |
 | --- | --- |

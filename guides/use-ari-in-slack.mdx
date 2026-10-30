@@ -23,7 +23,7 @@ You need:
   <Step title="Add the app">
     Select **Add to Slack**. A Slack window opens; choose your Slack workspace and approve the app. If nothing opens, allow pop-ups for cfo.ai in your browser and try again.
 
-    Slack's approval screen lists what the app may do. cfo.ai asks to read and send direct messages, read and post in the private channels Ari is added to, see when it is @mentioned, list channels, add emoji reactions, show that it is typing, look up members' names and email addresses so it can match a Slack account to a cfo.ai account, and leave a channel it may not stay in. A Slack workspace connected before a permission was added keeps its earlier grant until an administrator selects **Disconnect** and then **Add to Slack** again.
+    Slack's approval screen lists what the app may do; [Settings](/reference/settings#slack) lists each permission and what it is for.
   </Step>
   <Step title="Check the connection">
     A notice reads **Slack connected**, and the section shows the Slack workspace's name. The exact status messages are in [Settings](/reference/settings#slack).
@@ -102,7 +102,7 @@ In a channel, Ari works like this:
 - Every answer in the channel uses the access of the administrator who added Ari or turned it on by @mentioning it, whoever asked. Everyone in the channel, including guests from another company in a channel shared through Slack Connect, reads what that administrator could read. Add Ari only to channels where that is what you want.
 - Ari reads the words of channel messages, not their files, as in direct messages.
 
-To stop Ari in a channel, remove the cfo.ai app from the channel. The channel's conversations stay in cfo.ai as chats of the administrator who set Ari up there. If an administrator adds Ari to the channel again later, a reply in an earlier thread starts a new conversation rather than continuing the old one. Ari works only in private channels. In a public channel, a mention gets the reply that Ari works in direct messages and in private channels a cfo.ai admin adds it to, and nothing else is read. A workspace administrator's Trigger can post its result in a private channel Ari is in; see [Choose where the result goes](/guides/schedule-a-trigger#choose-where-the-result-goes).
+To stop Ari in a channel, remove the cfo.ai app from the channel. What happens to the channel's earlier threads is in [Ari in Slack](/reference/chat#ari-in-slack). Ari works only in private channels. In a public channel, a mention gets the reply that Ari works in direct messages and in private channels a cfo.ai admin adds it to, and nothing else is read. A workspace administrator's Trigger can post its result in a private channel Ari is in; see [Choose where the result goes](/guides/schedule-a-trigger#choose-where-the-result-goes).
 
 ## If Ari leaves a channel
 

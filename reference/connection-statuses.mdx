@@ -63,7 +63,7 @@ Setup failed before the source linked. Mark: red triangle. Line: the failure's r
 
 The source revoked cfo.ai's access, for example after a password change or an expired authorization. Mark: red triangle. Line: **Reconnect to start syncing again.** Action: **Reconnect**, then sign in to the same company the connection already holds.
 
-The data the connection synced before it lost access stays in cfo.ai. Ari can still read it and answer from it, and it tells you when that data was last synced; new rows arrive only after you select **Reconnect**.
+The data the connection synced before it lost access stays in your Model. Ari can still read it and answer from it, and it tells you when that data was last synced; new rows arrive only after you select **Reconnect**.
 
 A source that syncs through Fivetran, such as BigQuery, Maxio, Ramp, or Gmail, also shows this status when Fivetran has paused its connector, which Fivetran does on its own after the connector stays broken for a long time. A paused connector runs no sync, so **Retry** is not offered. **Reconnect** opens Fivetran's Connect Card for the same connection, and finishing it resumes the connector. The connection's failure line keeps Fivetran's own report of what the owner must fix, such as **The user cannot access BigQuery tables/project (BigQueryConnectorTask_ACCESS_DENIED)**.
 

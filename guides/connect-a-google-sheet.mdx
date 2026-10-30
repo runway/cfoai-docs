@@ -53,6 +53,8 @@ cfo.ai re-reads the file every night, and when you ask Ari to refresh it. When a
 
 Where the update happens follows where you connected the file. A file connected from a chat updates in that chat. A file connected from the connection manager updates in the background, and Ari opens a chat with you only when it needs you.
 
+A tab or section that Ari imported as data, such as a long list of transactions, is reloaded from the new version into the same data source. Connecting the file was your decision that each new version updates your Model, so the update does not stop to ask you before replacing those rows. Elsewhere, replacing a data source's rows still waits for your confirmation.
+
 ## Limits
 
 - One spreadsheet imported per connection. Choosing several spreadsheets in Google Drive makes one connection for each, and all of them share Google Drive's one slot. If some of the files connect and others do not, select **Retry** in the dialog to finish the same pick; see [Messages while connecting](/reference/connection-statuses#messages-while-connecting). The duplicate rule, the connect-link rule, and the other files a Google Drive connection holds are in [Google Drive](/reference/integrations#google-drive).

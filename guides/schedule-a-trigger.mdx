@@ -56,10 +56,11 @@ Every run's result is saved in its own chat, listed in the Trigger's **History**
 | The instructions say | What happens |
 | --- | --- |
 | Email me | Ari emails your sign-in address. Headings, lists, tables, and links in the message show in the email. |
-| Send it to my Slack direct messages | Ari sends you a Slack direct message, once Slack is connected. See [Talk to Ari from Slack](/guides/use-ari-in-slack). |
+| Send it to my Slack direct messages | Ari sends you a Slack direct message, once Slack is connected. See [Talk to Ari from Slack](/guides/use-ari-in-slack). If no Slack workspace is connected when the Trigger is saved, Ari learns that every run's Slack message will be refused until an administrator connects Slack, so it can tell you then. |
+| Post it in this channel, or Post it in #finance | Only for a workspace administrator, and only for a private Slack channel Ari has already been added to. Each run posts its Slack message in that channel instead of your direct messages, and everyone in the channel reads the result, prepared with your access. Ask from inside the channel ("post it in this channel") or name the channel. To go back to direct messages, ask Ari to remove the channel from the Trigger. A run posts nothing, and reports why, when Ari has left the channel, the channel became public, or you are no longer an administrator. |
 | Email someone else | Nothing is sent. The run leaves an email preview in its chat, and the email goes only when you open the chat and select **Send**. See [Email preview card](/reference/chat#email-preview-card). |
 
-A Trigger can message only you, and it cannot post to a Slack channel. To share a result with others, have the Trigger update a Page and [share the Page](/guides/share-a-page). A Trigger can also export a Page as a spreadsheet. The file is saved in the run's chat, and the email or Slack message can carry a download link that works for a limited time. See [Limits](/reference/limits#skills-triggers-and-guides).
+A Trigger cannot email anyone but you, and only an administrator's Trigger can post in a Slack channel. To share a result with others another way, have the Trigger update a Page and [share the Page](/guides/share-a-page). A Trigger can also export a Page as a spreadsheet. The file is saved in the run's chat, and the email or Slack message can carry a download link that works for a limited time. See [Limits](/reference/limits#skills-triggers-and-guides).
 
 ## Change, pause, or delete a Trigger
 
@@ -80,7 +81,7 @@ You can also ask Ari:
 
 > Did my Monday cash Trigger run last week, and did it finish?
 
-Ari tells a run that only started apart from a run that finished its task.
+Ari tells a run that only started apart from a run that finished its task, and it can tell you how many runs in a row have failed since the Trigger last finished its task.
 
 A Trigger does one run at a time. When a run is still going at the next scheduled time, that scheduled run is skipped, and the Trigger's details read **The last scheduled attempt was skipped**.
 
@@ -101,7 +102,7 @@ A run never waits for an answer. When it has a question, such as which bank acco
     The message reads **This trigger already has a queued or active run. Open its latest conversation.** Open that run from **History**, or wait for it to finish.
   </Accordion>
   <Accordion title="The Trigger paused itself after a connection was removed">
-    When someone removes a connection, cfo.ai pauses every Trigger in the workspace whose instructions refer to it the way Ari writes a connection: its name, `#`, and the start of its id, such as `Stripe#aa9`. The Trigger shows as paused on the Triggers page, with the reason under its last attempt; [The cfo.ai interface](/reference/interface#triggers-page) lists the status and the sentence. No email or Slack message is sent. Select **Edit trigger**, change the instructions to name a current connection, turn the switch back on, and select **Save changes**. The notice clears, and the next run records a new outcome. A Trigger that names the connection by a plain word, such as "Stripe", is not paused; its runs report that the connection is missing.
+    When someone removes a connection, cfo.ai pauses every Trigger in the workspace whose instructions refer to it the way Ari writes a connection: its name, `#`, and the start of its id, such as `Stripe#aa9`. A Trigger that escaped that pause, for example one saved against a connection that was already gone, pauses on its first run that is refused at the removed connection; the reason then names the reference as the instructions write it and the date the connection was removed. Either way the Trigger shows as paused on the Triggers page, with the reason under its last attempt; [The cfo.ai interface](/reference/interface#triggers-page) lists the status and the sentences. No email or Slack message is sent. Select **Edit trigger**, change the instructions to name a current connection, turn the switch back on, and select **Save changes**. The notice clears, and the next run records a new outcome. A Trigger that names the connection by a plain word, such as "Stripe", is not paused; its runs report that the connection is missing.
   </Accordion>
 </AccordionGroup>
 

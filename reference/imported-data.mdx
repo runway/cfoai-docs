@@ -93,6 +93,7 @@ A Variable or Dimension shows its integration's logo on table row and column lab
 | Rule | Detail |
 | --- | --- |
 | Who writes them | cfo.ai adds them for supported sources, and Ari writes the rest. You see them read-only on the connection's page under **Queries**. |
+| An uploaded CSV's first query | An upload starts with a query named **Uploaded CSV** that loads every column as it is. When Ari then writes its own query for the file, with business names and types, that query takes the place of **Uploaded CSV**, so the file loads once, under one set of Variables and Dimensions. The starting query stays beside Ari's query only when something already reads it: a formula, a table, or a value you changed in one of its columns. |
 | Scenarios | Saved queries belong to Main. Every ordinary Scenario reads Main's latest query and result. A Snapshot keeps the query and result it was pinned with. You cannot test a query change in one Scenario alone. |
 | Planning time limit | When a query is saved, the warehouse runs it once to count its rows and read its columns, for at most 40 seconds. A query that runs longer is refused and nothing is saved. |
 | Fewer rows than the source | Can be on purpose: a query may filter the source to what you asked for. Ask Ari what the query keeps. |

@@ -257,6 +257,10 @@ Ari's saved memory lives in an outside service. When that service cannot answer,
 | **The memory service answered with a server error.** | A fault in the service. Asking again can succeed. |
 | **The memory service is unavailable because its provider refused the request over a billing limit on cfo.ai's provider account. The cause is on cfo.ai's side, not in this request or this workspace, and when the service returns is not known.** | A billing limit on cfo.ai's side. Waiting does not help until cfo.ai funds the account. |
 
+### Reports of finished background work
+
+Work that Ari runs in the background from a chat, such as an overnight update from a connected Google Sheet or several Pages built at once, reports back to that chat when it finishes, stops, or cannot finish. Ari usually answers in its own words. When Ari has nothing to add, the chat shows the work's own report as Ari's reply instead of staying silent. It starts **Background work** and says whether the work finished, could not finish, or was stopped, and whether its review passed it, then names the work in quotation marks, then gives one line for each step with what it reported and what the work left in your Model. The report can name items by their short references, such as `#7a1`. It sends no email or Slack message.
+
 ### Download a file Ari made
 
 A file Ari makes for you, such as a workbook, an image, or a document, appears as a card with its name and size directly under the answer that ends the turn. PNG, JPEG, GIF, and WebP images show a preview. When the answer names the file by its exact file name, with the same letter case and extension and outside a code block, that name is a link to the same download.

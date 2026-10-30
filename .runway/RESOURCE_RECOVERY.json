@@ -1,0 +1,11 @@
+{
+  "original_HEAD": "d67c6ed38db860c36fef568573f4319de2c327e7",
+  "original_staged_tree": "fd89dad99e19a729ce29ce8fa8be1b4c50468845",
+  "staged_snapshot_commit": "d67c6ed38db860c36fef568573f4319de2c327e7",
+  "original_status": "",
+  "private_originals": [],
+  "individual_original_dispositions": [],
+  "omitted_generated_role_plan": "A-source-terminal23-nonSDK-role-plan.private.json",
+  "SDK_status": "Pending independent SDK stock/original qualification; publication alone does not authorize source deletion",
+  "restore": "Check out this verified origin ref. Staged-state parent commit preserves original index separately from working-tree commit. Restore exact private credential/control originals using listed SHA/modes before future service use. Original branches/sharedstashes preserved."
+}

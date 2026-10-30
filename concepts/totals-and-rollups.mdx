@@ -19,7 +19,7 @@ When a table breaks a number down, such as Revenue by Product and then Customer,
 
 When the bottom rows hold numbers you typed, cfo.ai also saves a formula of 0 on them, which every typed number overrides. A blank bottom row then counts as 0, and every total still adds up. Because each level adds the level beneath it, a change on any row reaches every total above it: set one line to 0, and its customer, its product, and Revenue all go down.
 
-When adding up is the wrong arithmetic, give the parent its own formula. Revenue per customer, for example, is total revenue divided by customer count, not a sum; a formula you write on a parent replaces the sum at its level, and cfo.ai keeps your version. Removing a level from the table removes that level's sum, and the level above then adds up the next level that remains.
+When adding up is the wrong arithmetic, give the parent its own formula. Revenue per customer, for example, is total revenue divided by customer count, not a sum; a formula you write on a parent replaces the sum at its level, and cfo.ai keeps your version. Removing a level from the table removes that level's sum, and the level above then adds up the next level that remains. Inserting a level above the bottom rows, such as Department between Account and Vendor, keeps the bottom rows' own formula and gives every level above them the sum of the level now shown beneath it: Account adds up its departments, and each department adds up its vendors. A formula you wrote for one bottom item, such as a fixed amount for Rent, keeps winning on that item's rows.
 
 Not every Variable gets these formulas:
 

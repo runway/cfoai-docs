@@ -75,6 +75,7 @@ A lookup in brackets after a name changes which items the reference reads. Every
 | `Revenue[Department in any]` | Every department |
 | `Revenue[Date.Month < "2026-07"]` | Months before July 2026. `<>`, `<`, `<=`, `>`, and `>=` also work in a lookup |
 | `Revenue[Department in any] where Revenue > 10000` | Every department whose revenue is over 10,000 |
+| `Amount[Posted.Month = this.Date.Month, Posted < Cutoff]` | A Dimension of dates filtered twice, at its month and at its exact date; both filters apply. `Date` itself cannot be filtered at two grains in one lookup |
 | `` `List Price`$[Plan = this.Plan] `` | The list price for the plan of the cell being calculated |
 
 When a lookup reads several items, wrap it in a function that says how to combine them, such as `sum`, `average`, or `count`: `average(Revenue[Department in any])`. See [Aggregation functions](/reference/functions#aggregation-functions).
@@ -88,6 +89,8 @@ A lookup or offset attaches to a Variable's name, not to a calculation. `(Revenu
 ### Lookups through a Dimension mapping
 
 When a mapping assigns each item of one Dimension to an item of another, such as accounts to reporting lines, a dot follows the mapping: `Account.Bucket` is the line the cell's account belongs to. A lookup on the mapped Dimension gathers every item the mapping puts there: `sum(Amount[Bucket = "COGS"])` adds every account in COGS. See [Dimension mappings and shared Dimensions](/concepts/dimension-mappings).
+
+The name before each dot must be a Dimension, because the dot looks the next name up by that Dimension's item. The last name may be a Variable: `Employee.Salary` is the salary of the cell's employee. A Variable before a dot, as in `Revenue[Date.Month = "2026-01"].Date.Month`, shows `#VALUE!`; see [#VALUE!](/reference/formula-errors#value).
 
 ## Absolute references
 

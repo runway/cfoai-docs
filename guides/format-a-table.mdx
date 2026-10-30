@@ -1,7 +1,7 @@
 ---
 title: "Format and arrange a table"
 sidebarTitle: "Format a table"
-description: "Show numbers as currency or percentages, set decimals, color and bold rows, and see why numbers turn green or red. Also color a Dimension's items, change date headers, show or pin total columns, hide or reorder rows and columns, resize or pin (freeze) columns, show values in thousands, millions, or billions, and show negative numbers in parentheses."
+description: "Show numbers as currency or percentages, set decimals, color and bold rows, and see why numbers turn green or red. Also color a Dimension's items, change date headers, show or pin total columns, hide or reorder rows and columns, show a field such as Name as the row names, resize or pin (freeze) columns, show values in thousands, millions, or billions, and show negative numbers in parentheses."
 ---
 
 Use this guide to make a table easy to read: money as currency, margins as percentages, section rows in bold, and the columns your readers need first. Most formatting changes only how the table looks; it never changes a number. To learn which settings belong to a table and which to a Variable, read [Pages, Table blocks, and Canvas blocks](/concepts/pages-and-blocks).
@@ -89,7 +89,7 @@ Select several row names: drag down the row-name column, or press **⌘ A** to s
 
 In **Format and display**, choose **Background** to fill the row, column, or cell with a color, or **No fill** to remove it. Choose **Text color** to color the text, or **Default** to remove it. Choose **Text style** for **Bold**, **Italic**, **Underline**, or **Strikethrough**. On a row, **Indent** and **Outdent** move the row name in or out, as in an income statement. **Reset formatting** removes everything set at that place on this table.
 
-These settings belong to this table, so the same Variable can look different on another table.
+These settings belong to this table, so the same Variable can look different on another table. A fill or text style stays on the row you set it on: coloring a group's row, such as Payroll, leaves the rows inside the group as they were, so select those rows and style them too if you want the whole group colored. The exact rule is in [Format and display options](/reference/table-blocks#format-and-display-options).
 
 ### Color the cells you type into
 
@@ -111,6 +111,21 @@ New Variables use **Higher is better**. Set **Lower is better** for costs, so sp
 Right-click the Dimension's label row, such as **DEPARTMENT** above its items, or right-click one of its items and choose **[Department] dimension settings**. Then choose **Format and display**.
 
 Choose **Dimension color** to set the color of the Dimension's item pills on every table. Choose **Display as** to show the items as a **Pill** or as **Plain text**; that choice applies to this table, and only in your browser.
+
+## Show a field, such as Name, as the row names
+
+A table that lists records, such as a roster with one row per Employee ID and a Name column, names each row by its key, so the row names can read as IDs. You can show a field's value as each row's name instead.
+
+<Tabs>
+  <Tab title="Ask Ari">
+    > On the Roster table, show each employee's Name as the row name instead of the Employee ID.
+  </Tab>
+  <Tab title="By hand">
+    Right-click the header of the field column, such as **Name**, and choose **Use as row names**. Each row now shows its value in that column as its name. To go back to the keys, right-click the same header and choose **Stop using as row names**.
+  </Tab>
+</Tabs>
+
+The key stays each row's identity: formulas, the formula bar, filters, and row actions still use it, and you cannot rename a row by typing over a name that comes from a field. A row with no value in the field shows its key. The choice is saved with the table for everyone. You can hide the field column afterwards and the names stay; the item that turns them off is on that column's menu, so show the column again to use it.
 
 ## Change how dates read in the headers
 

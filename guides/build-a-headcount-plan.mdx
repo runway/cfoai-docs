@@ -23,7 +23,7 @@ Before you start, connect your HR or payroll system, such as Rippling, or upload
   <Step title="Check the two tables">
     The Page has two tables built from the same records:
 
-    - A roster, with one row per Employee ID and each field in its own column. It shows each person's latest values.
+    - A roster, with one row per employee, keyed by Employee ID, and each field in its own column. It shows each person's latest values. To show each person's name as the row name instead of the ID, see [Show a field, such as Name, as the row names](/guides/format-a-table#show-a-field-such-as-name-as-the-row-names).
     - A monthly table of headcount and payroll cost, grouped by department. Each month reads the records dated in that month.
 
     A connected HR system adds each sync's values as that period's record, so a raise or a transfer shows in the month it happened. A one-time roster upload has no history, so each person's latest pay and department carry into every month they are employed. Their start and termination dates still decide which months count them.
@@ -38,13 +38,13 @@ Before you start, connect your HR or payroll system, such as Rippling, or upload
   <Step title="Add planned hires">
     > Add three sales hires starting in March at \$120,000 a year each.
 
-    Ari adds each planned hire as its own labeled row with a department, start date, and pay you can edit, kept separate from the people in your records. To try a hiring plan without changing your main plan, ask for it in a Scenario:
+    Ari adds each planned hire as its own row, with a department, start date, and pay you can edit. The row stays a planned hire, apart from the people in your records, until your records show the person. To try a hiring plan without changing your main plan, ask for it in a Scenario:
 
     > Create a Scenario with three more sales hires and show how they affect payroll and cash over the next two quarters.
   </Step>
 </Steps>
 
-If you have no roster at all, tell Ari how many people you employ, in which departments, and roughly what they cost. Ari creates placeholder employees named as placeholders, such as Placeholder hire 1, that add up to the numbers you gave.
+If you have no roster at all, tell Ari how many people you employ, in which departments, and roughly what they cost. Ari creates one row per person, named by role, such as Software Engineer 2, with pay as a rate per role that each row reads, and reconciles the rows to the totals you gave.
 
 ## Related
 

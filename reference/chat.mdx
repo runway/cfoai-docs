@@ -43,6 +43,8 @@ A new chat shows the heading **How can I help you?** and the placeholder **Ask a
 
 The message box shows Markdown formatting as you type and keeps it when you send. Typing `1. ` or `* ` at the start of a line starts a numbered or bulleted list, `**bold**`, `_italic_`, and `` `code` `` show as formatted text, and headings, quotes, and dividers work the same way. A sent message keeps its formatting when you open it again. **Shift Enter** starts a new paragraph, continues a list, or leaves a list from an empty item; inside code it inserts a line break. **⌘ Enter** inserts a line break. Underlining is not kept, because Markdown has no underline.
 
+A pasted link to a cfo.ai template, either its share link or its template page, becomes a chip such as **[title] · workspace template**, and Ari reads the template and builds from it when you send. A link that cannot become a chip stays as text, with one line under the message box: **The person who shared this template turned its link off.**, **This template’s link needs a password. Open the link to enter it.**, **This link doesn’t open a template.**, **You can’t open this template. Ask the person who shared it for its link.**, or **Couldn’t open the template link. Try pasting it again.**
+
 ### Why Send is unavailable
 
 When **Send** cannot be used, its tooltip says why.
@@ -64,7 +66,7 @@ When **Send** cannot be used, its tooltip says why.
 | **A message holds up to 50 files, so [n] files were not attached: [names]. Attach them to another message.** | You picked more files than one message holds. The first 50, in the order you picked them, were attached; the notice names up to three of the rest and has a dismiss button. |
 | **Uploading files… [n] of [m] done** | Shown under the file tiles while several files upload. A file over 30 MB uploads in pieces and shows how much has uploaded; if your connection drops, the upload picks up where it stopped. |
 | **Attachment upload failed** | A notice with the file's name and the reason. The file's tile turns red. |
-| **cfo.ai did not confirm this upload. Check your connection and attach it again. If only this file keeps failing, a security filter may be blocking its contents. Contact support@cfo.ai.** | The upload never finished, for example after a dropped connection. A request that got no answer is sent once more after one second before this shows. Attaching the same file again replaces the failed tile. |
+| **cfo.ai could not confirm this upload.** | The upload never finished, for example after a dropped connection. A file over 30 MB uploads in 16 MB pieces straight to storage; after a reply the browser cannot read, cfo.ai asks storage how much arrived and continues from there, and once the whole file has arrived it records the attachment even when that last reply was unreadable. Six requests in a row without confirmed progress end the upload. Attaching the same file again replaces the failed tile. |
 | **Wait for attachments to finish uploading before sending.** | You tried to send while a file was uploading. |
 
 ## While Ari works

@@ -1,10 +1,10 @@
 ---
 title: "Export a Page to Excel"
 sidebarTitle: "Export to Excel"
-description: "Export a Page, or several Pages, to an Excel workbook with live formulas: select Download spreadsheet in the Page header or ask Ari. What the workbook contains, whether formulas stay live, and how to get CSV or Google Sheets."
+description: "Export a Page, or several Pages, to an Excel workbook with live formulas: select Download spreadsheet in the Page header or ask Ari. What the workbook contains, including the data Canvas blocks draw, whether formulas stay live, and how to get CSV or Google Sheets."
 ---
 
-To export a Page to Excel, select **Download spreadsheet** in the Page header, or ask Ari to export it. You get an Excel workbook (`.xlsx`) with one sheet for each table on the Page, and its numbers are live Excel formulas, not pasted values. To put several Pages in one workbook, such as your three financial statements, ask Ari.
+To export a Page to Excel, select **Download spreadsheet** in the Page header, or ask Ari to export it. You get an Excel workbook (`.xlsx`) with one sheet for each table on the Page, and its numbers are live Excel formulas, not pasted values. A Page whose figures are drawn by Canvas blocks exports too: each dataset a Canvas block draws becomes a sheet of values. To put several Pages in one workbook, such as your three financial statements, ask Ari.
 
 <Tabs>
   <Tab title="Ask Ari">
@@ -28,7 +28,7 @@ To export a Page to Excel, select **Download spreadsheet** in the Page header, o
         Open the Page, and check that the sidebar's Scenario picker shows the Scenario you want in the workbook.
       </Step>
       <Step title="Select Download spreadsheet">
-        Select **Download spreadsheet**, the download icon in the Page header. When the Page has a Table block and you have no export of it in this Scenario that is queued, running, or asked for in the last 24 hours, the export starts at once. Otherwise a **Recent exports** menu opens and lists each export you asked for in the last 24 hours, and any still queued or running, with when you asked, its status, and **Download** when its file is ready; select **Start new export** for a fresh workbook. A Page without a Table block shows the button too, but its menu can only offer past exports.
+        Select **Download spreadsheet**, the download icon in the Page header. When the Page has a Table block or a Canvas block with data, and you have no export of it in this Scenario that is queued, running, or asked for in the last 24 hours, the export starts at once. Otherwise a **Recent exports** menu opens and lists each export you asked for in the last 24 hours, and any still queued or running, with when you asked, its status, and **Download** when its file is ready; select **Start new export** for a fresh workbook. A Page with neither shows the button too, but its menu can only offer past exports.
       </Step>
       <Step title="Wait for the file">
         The export runs in the background, and pointing at the button shows its progress; selecting it again shows a notice with the stage and when you asked, and starts no second export. You can open other Pages while you wait. When the file is ready, it downloads and a **Spreadsheet download started** notice names it.
@@ -49,7 +49,7 @@ The workbook is a copy. Changes you make in Excel do not flow back into cfo.ai.
 
 Formulas and the **Model inputs** sheet need access to every Variable and Dimension in the Scenario. Someone without it, such as a person who opens the Page through a share link, gets the numbers the Page shows as plain values, with no **Model inputs** sheet.
 
-A few formulas cannot be written as Excel formulas, such as one longer than Excel allows. Those cells keep their calculated value instead of a formula, and an **Export notes** sheet lists each one. A formula that names items of a numeric Dimension as text, such as deal IDs, finds their cells by number, and a formula that names an item the workbook has no cell for keeps its calculated value and is listed in **Export notes** rather than being written without that item. The download notice counts them and offers **Ask Ari to fix**, which asks Ari to export the Page again and write a working formula into each of those cells.
+A few formulas cannot be written as Excel formulas, such as one longer than Excel allows. Those cells keep their calculated value instead of a formula, and an **Export notes** sheet lists each one. A formula that names items of a numeric Dimension as text, such as deal IDs, finds their cells by number, and a formula that names an item the workbook has no cell for keeps its calculated value and is listed in **Export notes** rather than being written without that item. A cell that reads text or dates, such as a cost center or an end date, from several periods or Dimension items also keeps its calculated value and is listed, because an Excel sum cannot combine text or dates; a text or date read that matches one cell stays a reference to that cell. The download notice counts them and offers **Ask Ari to fix**, which asks Ari to export the Page again and write a working formula into each of those cells.
 
 ## When an export runs out of time
 
@@ -60,7 +60,8 @@ An input too large to read is left out, and the cells that read it keep their ca
 ## What you get
 
 - One worksheet for each table on the Page, in the Scenario you exported. A table's Scenario comparison columns come along, and rows and columns hidden on the table are left out.
-- Text blocks, charts, and Canvas blocks are left out, because a workbook holds tables.
+- One worksheet for each dataset a Canvas block on the Page draws, after the table sheets. It holds the values the block shows, as plain numbers with no formulas; no formula reads these sheets, and they add nothing to the **Model inputs** sheet. The sheet is named for the block's title, with the dataset's name added as **[title] · [dataset]** when the block draws more than one dataset, and a dataset saved for another Scenario names that Scenario under the sheet title. You get the datasets the Page shows you: a dataset in a Scenario you cannot open is left out, and so is one whose saved query the Model refuses to calculate.
+- Text blocks and charts are left out.
 - Each number keeps its format: currency, percentage, or a multiple such as `3.5x`, with up to five decimal places. A table shown in thousands, millions, or billions keeps that **Scale** in the workbook, with the suffix `K`, `M`, or `B`; percentages and multiples are never scaled. A negative number shows as the Page shows it: with a minus sign, or in parentheses where the table or the workspace chose **Negatives** → **Parentheses** (see [Format and arrange a table](/guides/format-a-table#show-negative-numbers-in-parentheses)). Excel picks the parentheses by the exact value, so a negative that rounds to zero exports as `(0.00)` where the Page shows `0.00`.
 - A blank input stays blank rather than becoming 0, and an input that holds text, such as a customer name, stays text. A function of a blank, such as `round`, `abs`, or `year` of an empty cell, is written so that Excel also shows blank after it recalculates, instead of 0 or 1900, and an average or median skips those blanks as cfo.ai does.
 - In a workspace with a brand, the filled row at the top of each worksheet that holds the table's title in white takes the brand's text color as its fill, and the first three Dimension colors take the brand's chart colors when it has them. See [Brand your workspace](/guides/brand-your-workspace).

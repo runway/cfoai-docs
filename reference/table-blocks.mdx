@@ -19,7 +19,7 @@ The strip above the grid, from left to right.
 | **Regenerate title** | A sparkle button that appears when you point at the title. Asks cfo.ai for a new title from what the table shows. |
 | **Deleted property reference** | A warning triangle. The table still lists a Variable or Dimension that was deleted; its tooltip reads **This table references a property that no longer exists.** With several, it reads **[N] deleted property references** and its tooltip counts them. Select it to open the setup panel, where each such row reads **Deleted property**. |
 | **Recomputing** | Shows while the table recalculates after a change. It also shows while a cell you edited waits for an earlier change in the workspace, such as one Ari is saving, to finish: the table keeps its numbers, only the edited cell is dimmed, and it keeps checking for about two to three minutes before it gives up with a notice listed in [Table calculation notices](/reference/formula-errors#table-calculation-notices). |
-| Date range button | Shows the first and last period. Opens a calendar; a complete range applies at once. **Today** jumps the calendar to the current period. |
+| Date range button | Shows the first and last period with an arrow between them, such as **Jan-26 → Dec-26**. Opens a calendar; a complete range applies at once. **Today** jumps the calendar to the current period. |
 | Grain button | **Raw**, **Daily**, **Weekly**, **Monthly**, **Quarterly**, **Half-yearly**, or **Yearly**. Reads **Mixed** when the table's Date axes use different grains. **Raw** shows each date without grouping it into periods. On a table whose Date levels nest, such as years over months, the choice sets the finest level and the year level keeps its grain, so **Quarterly** gives years over quarters and **Monthly** leaves the table as it is. A grain that is not finer than the grouping level, such as **Yearly** under years, is dimmed, with the note **The year level groups these dates, so only finer periods are available.** |
 | **Compare** | Shows other Scenarios or an earlier period beside the table's values. See [Compare Scenarios side by side](/guides/compare-scenarios). |
 | **Mention table in chat** | Adds the table to the current chat. See [Chat controls and messages](/reference/chat). |
@@ -141,6 +141,7 @@ A row or column for a Variable, such as Revenue, or a column that shows each row
 | **Mention in chat** | Adds the row or column to the current chat. |
 | **Show formula column** / **Hide formula column** | On a column that heads a group: opens or closes its formula column. |
 | **Filter** | On a column that shows each record's item, such as Status: filters the rows by its value. |
+| **Use as row names** / **Stop using as row names** | On a column that shows each record's item, such as Name on a table with one row per Employee ID: shows each row's value in that column as the row's name, in place of its key. The key stays the row's identity in formulas, the formula bar, filters, and row actions, and such a name cannot be renamed by typing over it. A row with no value in the column shows its key. Saved with the table, for everyone. See [Show a field, such as Name, as the row names](/guides/format-a-table#show-a-field-such-as-name-as-the-row-names). |
 | **Pin column** / **Unpin column** | Columns only. Keeps the column beside the row names while you scroll, like a frozen column in a spreadsheet, for everyone. |
 | **Format and display** | Opens the [format options](#format-and-display-options). |
 | **Use as** | For a Dimension shown as a mapping column: **Segmentation** or **Mapping**. |
@@ -283,7 +284,7 @@ Right-click a row name, a column header, or a cell and choose **Format and displ
 | **Variance colors** | **Higher is better**, **Lower is better** | The Variable, on every table. See [What colors and marks mean](#what-colors-and-marks-mean). |
 | **Reset formatting** | Removes everything set at that place | This table |
 
-A cell's own format wins over its column's, and a column's over its row's. A Variable can also carry a default format that Ari sets; a table's own format wins over it. A format never changes how a Variable adds up. When several selected rows differ, an option shows **Mixed**.
+A cell's own format wins over its column's, and a column's over its row's. **Background**, **Text color**, and **Text style** stay on the row or column they are set on: a fill on a group's row, such as Payroll above its GL lines, or bold on Revenue above its Region breakdown, styles that row alone and none of the rows nested under it. **Format**, **Precision**, **Scale**, **Negatives**, and **Indent** set on a row also reach the rows nested under it. To style the nested rows, set the style on them. A downloaded spreadsheet follows the same rule. A Variable can also carry a default format that Ari sets; a table's own format wins over it. A format never changes how a Variable adds up. When several selected rows differ, an option shows **Mixed**.
 
 The [Dimension menu](#dimension-menu) has its own **Format and display** with **Dimension color** and **Display as**.
 
@@ -460,7 +461,7 @@ When a table cannot load or calculate, its notices, such as **We couldn't load t
 
 | Saved | Settings |
 | --- | --- |
-| With the table, for everyone | Rows, columns, and breakdowns; filters and sorts; hidden rows and columns; the date range and grain; comparisons; **Format**, **Precision**, **Scale**, **Negatives**, **Date format**, **Background**, **Text color**, **Text style**, and **Indent**; total column summaries; column widths; pinned columns; **Show dimension headers** |
+| With the table, for everyone | Rows, columns, and breakdowns; filters and sorts; hidden rows and columns; the date range and grain; comparisons; **Format**, **Precision**, **Scale**, **Negatives**, **Date format**, **Background**, **Text color**, **Text style**, and **Indent**; total column summaries; column widths; pinned columns; **Use as row names**; **Show dimension headers** |
 | On the Variable or Dimension, for every table | Values and formulas; the name; the currency; the **Date** type; **Variance colors**; **Dimension color** |
 | In your browser only | Open formula columns; the formula bar; whether the setup panel is open; the table height; **Display as** (**Pill** or **Plain text**); which rows and column groups you expanded or collapsed; **Show variable name** |
 | Not saved | **Show total columns**; **Pin total columns**; drill-in rows |

@@ -139,8 +139,8 @@ A sync setup copies the results of one read-only tool or endpoint into your data
 
 | Limit | Value |
 | --- | --- |
-| Replace and snapshot, without a changes-since filter | 10,000 pages, 16 MiB per page |
-| Upsert, append, or any sync with a changes-since filter | 100 pages, 20,000 records, and 16 MiB in all |
+| Replace and snapshot, without a changes-since filter | 10,000 pages, each one source response: up to 1 MiB from an API, 2 MiB from an MCP server |
+| Upsert, append, or any sync with a changes-since filter | 10,000 pages and 16 MiB in all |
 | One page from an MCP server | 2 MiB |
 | One tool call in a sync page from an MCP server | 45 seconds. Connecting to the server, listing its tools, and the call each get 45 seconds. A time limit the tool's own description names is the server's own; cfo.ai's applies either way. |
 | One sync | 10 minutes |

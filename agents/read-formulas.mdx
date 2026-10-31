@@ -54,7 +54,7 @@ For a Variable or Dimension read from an imported source, the entry's `source_de
 }
 ```
 
-The response holds one entry per reference, in the order given, all read at one snapshot. Each imported source's query is stated once under `sources`, and an entry's `source.query_ref` names its key there. A reference that matches nothing is refused in its own entry while the others still answer: **No readable variable or dimension matches this target.**, with up to five `candidates` of the requested kind, each with its readable name, a reference usable as the next `target`, its kind, and a closeness score, so `Total Revenue` suggests the saved `Revenue`. A candidate never selects anything.
+The response holds one entry per reference, in the order given, all read at one snapshot. Each imported source's query is stated once under `sources`, and an entry's `source.query_ref` names its key there. A reference that matches nothing is refused in its own entry while the others still answer: **No readable variable or dimension matches this target.** The refusal lists up to five `candidates` of the requested kind, each with its readable name, a reference usable as the next `target`, its kind, and a closeness score, so `Total Revenue` suggests the saved `Revenue`. A candidate never selects anything.
 
 ## Connect formulas to the values a table shows
 

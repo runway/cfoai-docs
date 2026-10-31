@@ -76,7 +76,7 @@ A starting formula has no [formula range](/reference/glossary#formula-range), bu
 | Source | Saved queries | Columns |
 | --- | --- | --- |
 | QuickBooks Online | **QuickBooks Profit & Loss**, **QuickBooks Balance Sheet** | Amounts split into **Revenue**, **Cost of Goods Sold**, **Expense**, **Other Income**, **Other Expense**, and **Unclassified P&L Amount**, with the account, **Vendor**, **Entity**, and **Currency**. Both are on the company's accounting basis, cash or accrual; see [QuickBooks Online](/reference/integrations#quickbooks-online) for how the basis is read and switched. Each report is as QuickBooks returned it when a sync last wrote the month; [How much history loads](#how-much-history-loads) says which months a refresh rewrites. The balance sheet dates each month's balances by the month's last day, so the month in progress keeps one **Period** from its first sync until it closes. |
-| Xero | **Xero Income Statement** or **Xero Income Statement by Tracking Category**, **Xero Balance Sheet** | Amounts by account, with **Entity** and **Currency**. The tracking-category statement has one row per journal line and up to three tracking categories as numbered column pairs. The balance sheet files each account under **Assets**, **Liabilities**, or **Equity** by the report section Xero shows it in; see [Xero](/reference/integrations#xero). |
+| Xero | **Xero Income Statement** or **Xero Income Statement by Tracking Category**, **Xero Balance Sheet** | Amounts by account, with **Entity** and **Currency**. The tracking-category statement has one row per journal line and up to three tracking categories as numbered column pairs. How the balance sheet files each account is in [Xero](/reference/integrations#xero). |
 | NetSuite SuiteAnalytics | **NetSuite Income Statement**, **NetSuite Balance Sheet** | Amounts by account. Income Statement rows also carry **Subsidiary** and **Currency Name**. |
 | Rillet | **Rillet Income Statement**, **Rillet Balance Sheet** | One set of rows per subsidiary, with **Entity** and **Currency** |
 
@@ -120,7 +120,8 @@ The nightly refresh and refreshes you ask for work the same on every active plan
 | Source | History |
 | --- | --- |
 | QuickBooks Online, Xero | From January 1 of last year through today. The three most recent complete months load first, and the rest follows in the background. |
-| QuickBooks Online, Xero, full-history import | From a year you name, 2015 or later. The months it imports stay through later refreshes. A QuickBooks import also takes the balance sheet of the month before that year. A full-history refresh is also available for Plaid, Stripe (Direct), and Rillet; other sources refuse it. |
+| QuickBooks Online, Xero, full-history import | From a year you name, 2015 or later. The months it imports stay through later refreshes. A QuickBooks import also takes the balance sheet of the month before that year. |
+| Plaid, Stripe (Direct), Rillet, full-history refresh | The connection's whole history, re-read from the source with no year to name, and the connection's saved queries rerun into Main. Other sources refuse a full-history refresh. |
 | QuickBooks Online, nightly refresh | The last three months: the current month and the two before it. The whole range when the connection has not synced for more than a month. |
 | Xero, nightly refresh | The whole range |
 | Sources through Fivetran | The full history of each selected table. A newly added table loads its full history. |

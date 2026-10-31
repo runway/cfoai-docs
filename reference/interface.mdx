@@ -115,13 +115,13 @@ The list under **Workspaces** is the workspace switcher; there is no other switc
 
 ## Triggers page
 
-**Manage triggers** in the account menu opens **Triggers**, marked **Preview**. It lists only your own Triggers. To set one up, see [Schedule a recurring report with a Trigger](/guides/schedule-a-trigger).
+**Manage triggers** in the account menu opens **Triggers**, marked **Preview**. It lists only your own Triggers. To set one up, see [Schedule a report or a reminder with a Trigger](/guides/schedule-a-trigger).
 
 | Control | What it does |
 | --- | --- |
 | **Write manually** | Opens **New trigger**. |
 | **Build with Ari** | Opens a chat that starts with **Help me create a trigger for recurring work. Ask what I want Ari to do and when it should run, then set it up.** |
-| A row in **Your triggers** | The Trigger's name, its schedule, and what happened last. A Trigger that runs once shows **Once on [date and time]**. A paused Trigger reads **Paused**, or **Schedule finished** when it is a one-time Trigger whose run was queued. |
+| A row in **Your triggers** | The Trigger's name, its schedule, and what happened last. A Trigger that runs once shows **Once on [date and time]**. A paused Trigger reads **Paused**, **Paused with an error** when cfo.ai paused it after repeated failed runs, or **Schedule finished** when it is a one-time Trigger whose run was queued. |
 | **Run now** | Starts one run right away, even when the Trigger is paused. The schedule does not change. |
 | **Edit trigger** (pencil) | Opens **Edit trigger**. |
 | **Delete trigger** (trash can) | Opens **Delete [name]?**: **This trigger will stop running on its schedule. Runs already started will continue.** |
@@ -427,7 +427,7 @@ A failed export's reason has up to three parts:
 - The cause, such as a formula whose input has no cell in the workbook, a formula that could not be written for Excel, **The export reached its time limit**, a Dimension whose list of items was larger than the export could read, or a table calculation that reached a limit: **A calculation in table "[table]" in scenario "[Scenario]" reached its 180-second time limit and was stopped before it finished.** or **A calculation in table "[table]" in scenario "[Scenario]" reached the [n] MiB memory limit of one calculation worker and was stopped before it finished.**
 - When it is known, whether to try again: **The failure is temporary: a new export of the same pages can succeed.** or **A new export fails the same way while the saved model is unchanged.** A calculation that reached its time limit is not tried again, because the next export reaches the same limit; narrow the table, or ask Ari why it is large.
 
-Two reasons stand alone:
+These reasons stand alone:
 
 | Message | Meaning |
 | --- | --- |

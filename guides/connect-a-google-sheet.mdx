@@ -45,7 +45,7 @@ If you close Google's picker without choosing a file, the connection stays unfin
 
 ## What Ari builds from the file
 
-Ari reads the spreadsheet's visible tabs with their formulas, values, and number formats, and the hidden cells they read; a hidden tab is otherwise left out unless you name it. It rebuilds the file in your Model the way it [imports a spreadsheet model](/guides/import-a-spreadsheet-model): tabs become Pages, repeated sections become Dimensions, and formulas become cfo.ai formulas. A file of plain data, such as a list of transactions, is imported as data.
+Ari reads the spreadsheet's visible tabs with their formulas, values, and number formats, and the hidden cells they read; a hidden tab is otherwise left out unless you name it. It rebuilds the file in your Model the way it [imports a spreadsheet model](/guides/import-a-spreadsheet-model): tabs that hold assumptions, calculations, or reports become Pages, repeated sections become Dimensions, and formulas become cfo.ai formulas. A tab or file of plain records, such as a list of transactions, becomes no Page; it is imported as data.
 
 ## Keep the file in sync
 
@@ -67,7 +67,7 @@ A tab or section that Ari imported as data, such as a long list of transactions,
 
 - **Ari stopped before finishing this import. The next sync tries again.** The next nightly sync resumes it, or ask Ari to refresh the connection now.
 - **Ari stopped before finishing this import. Continue in the chat that connected it.** Open that chat and ask Ari to continue.
-- If either import stopped to ask you a question, the question waits in a chat, and answering it continues the import. A newer version of the file does not cancel the question; the chat repeats it. [Messages about uploaded files](/reference/connection-statuses#messages-about-uploaded-files) says which chat for each message.
+- If either import stopped to ask you a question, the question waits in a chat, and answering it continues the import. When a newer version of the file arrives while the question waits, the newer version takes over the import that was waiting, and only that import's question stays open; the chat repeats it. Older waiting imports of the same file are withdrawn, and their questions no longer need answers. [Messages about uploaded files](/reference/connection-statuses#messages-about-uploaded-files) says which chat for each message.
 
 For other problems, see [Fix a connection that needs attention](/guides/fix-a-connection).
 

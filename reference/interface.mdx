@@ -13,10 +13,14 @@ The page is titled **Sign in to cfo.ai**.
 | Control | What it does |
 | --- | --- |
 | **Continue with Google** / **Sign in with Microsoft** | Signs you in with that account. When these are offered, the page reads **Choose how you want to continue.** |
-| **Work email** | Your work address, with the note **Use the address where you want to receive cfo.ai workspace updates.** When only email sign-in is offered, the page reads **Enter your work email and we’ll send a six-digit code.** |
+| **Work email** | Your work address, with the note **Use the address where you want to receive cfo.ai workspace updates.** When only email sign-in is offered, the page reads **Enter your work email and we’ll send a six-digit code.** A new account needs an address at your company's own domain; see [Work email required for new accounts](#work-email-required-for-new-accounts). |
 | **Send code** | Emails you a six-digit code and opens the code page. |
 
 A Google or Microsoft sign-in that fails shows **We couldn’t complete sign-in. Please try again.**
+
+### Work email required for new accounts
+
+A new account must use a work email address. An address at a free or disposable email provider, such as Gmail, Outlook, Yahoo, iCloud, or Proton Mail, is refused before a code is sent, and also when a Google or Microsoft sign-in or a pending invitation would create the account. The form is replaced by a page titled **Use your work email**, with **New accounts require a work email address.**, **Personal email providers, such as Gmail, Outlook, and Yahoo, are not supported for new accounts.**, and **Already have an account? You can still sign in with your existing email.** Select **Use a different email** to return to an empty **Work email** field. An account that already exists with a personal address keeps signing in with it. cfo.ai does not check that a custom domain belongs to a company.
 
 When **Send code** cannot send a code, the message shows under the email field:
 
@@ -117,15 +121,15 @@ The list under **Workspaces** is the workspace switcher; there is no other switc
 | --- | --- |
 | **Write manually** | Opens **New trigger**. |
 | **Build with Ari** | Opens a chat that starts with **Help me create a trigger for recurring work. Ask what I want Ari to do and when it should run, then set it up.** |
-| A row in **Your triggers** | The Trigger's name, its schedule or **Paused**, and what happened last. |
+| A row in **Your triggers** | The Trigger's name, its schedule, and what happened last. A Trigger that runs once shows **Once on [date and time]**. A paused Trigger reads **Paused**, or **Schedule finished** when it is a one-time Trigger whose run was queued. |
 | **Run now** | Starts one run right away, even when the Trigger is paused. The schedule does not change. |
 | **Edit trigger** (pencil) | Opens **Edit trigger**. |
 | **Delete trigger** (trash can) | Opens **Delete [name]?**: **This trigger will stop running on its schedule. Runs already started will continue.** |
-| **Schedule** / **Time zone** / **Next scheduled** | The schedule, the time zone it runs in, and the next run, or **Nothing upcoming**. A schedule with its own time zone is described on that clock, such as **Daily at 2:15 PM**, with the note **Runs on [time zone] time. Next scheduled and history are shown in your timezone.** A schedule that runs in UTC is described in your time zone, with **Schedule and history are shown in your timezone.** |
+| **Schedule** / **Time zone** / **Next scheduled** | The schedule, the time zone it runs in, and the next run, or **Nothing upcoming**, which a finished one-time Trigger always shows. A one-time Trigger shows no **Time zone** row; its date and time are written in your time zone. A schedule with its own time zone is described on that clock, such as **Daily at 2:15 PM**, with the note **Runs on [time zone] time. Next scheduled and history are shown in your timezone.** A schedule that runs in UTC is described in your time zone, with **Schedule and history are shown in your timezone.** |
 | **Instructions** | The saved instructions, with **Show full instructions** and **Show less**. |
 | **History** | **Open a run to see its conversation.** Every run, newest first, with its start time, its status, and, for a run that did not complete, its reason. **Show earlier** loads older runs. With none: **No history yet. Ari’s scheduled work will appear here.** |
 
-With no Triggers, the page reads **Put recurring work on a schedule** and **Build a trigger with Ari or write the instructions and schedule manually.**
+With no Triggers, the page reads **Put work on a schedule** and **Build a trigger with Ari or write the instructions and schedule manually.**
 
 ### Run statuses
 
@@ -134,7 +138,7 @@ With no Triggers, the page reads **Put recurring work on a schedule** and **Buil
 | **Pending** | Queued and waiting to start. |
 | **Running** | Ari is working on it. |
 | **Finished** | The run reported the saved task done. |
-| **Did not complete** | The run reported it could not do the task; its reason shows below. |
+| **Did not complete** | The run reported that it could not do the task, or that it delivered a result with a requested part missing, such as a source it could not read; its reason shows below. |
 | **Ended without a report** | The run ended without reporting done or not done. |
 | **Failed** | The run stopped with an error. |
 | **Interrupted** | The run stopped, and nothing is working on it. |
@@ -144,31 +148,35 @@ A row in **Your triggers** shows the latest run's status, or one of these labels
 
 | Status | Meaning |
 | --- | --- |
-| **Failed to start** | The last scheduled attempt could not start a run. |
+| **Failed to start** | The last scheduled attempt could not start a run, and the Trigger is still on. |
+| **Paused with an error** | cfo.ai paused the Trigger, and the reason is in its details. |
 | **Skipped: Ari was still busy** | The last scheduled attempt came while an earlier run of the Trigger was still going or waiting, so no run started. |
 | **Started** | The last scheduled attempt started a run. |
 | **No history yet** | The Trigger has not run. |
 
-When the last scheduled attempt did not start a run, the Trigger's details explain why:
+When the last scheduled attempt did not start a run, or cfo.ai paused the Trigger, the Trigger's details explain why. The heading is **The last scheduled attempt could not start** while the Trigger is on, and **This trigger is paused** once it is off:
 
 | Message | Meaning |
 | --- | --- |
-| **The last scheduled attempt could not start**, with the error, or **Open a recent conversation or ask Ari to help check this trigger.** | An error kept the run from starting. |
-| **The last scheduled attempt could not start**, with **The [connection name] connection these instructions name was deleted, so this schedule was paused.** | Someone removed a connection that the Trigger's instructions name, so cfo.ai paused the Trigger. See [Schedule a Trigger](/guides/schedule-a-trigger). |
-| **The last scheduled attempt could not start**, with **These instructions name the connection "[Name#id]", which was removed from this workspace on [date], so this trigger was paused.** | A run was refused at a connection that had already been removed, so cfo.ai paused the Trigger on that run. The row reads **Paused**. See [Schedule a Trigger](/guides/schedule-a-trigger#if-something-goes-wrong). |
+| The heading, with the error, or **Open a recent conversation or ask Ari to help check this trigger.** | An error kept the run from starting. |
+| **This trigger is paused**, with **The [connection name] connection these instructions name was deleted, so this schedule was paused.** | Someone removed a connection that the Trigger's instructions name, so cfo.ai paused the Trigger. See [Schedule a Trigger](/guides/schedule-a-trigger). |
+| **This trigger is paused**, with **These instructions name the connection "[Name#id]", which was removed from this workspace on [date], so this trigger was paused.** | A run was refused at a connection that had already been removed, so cfo.ai paused the Trigger on that run. See [Schedule a Trigger](/guides/schedule-a-trigger#if-something-goes-wrong). |
+| **This trigger is paused**, with **This trigger was paused after 3 consecutive runs failed or ended without a completion report, with no notice delivered to you.** | Three runs in a row ended without finishing the task and none of them reached you with a message, so cfo.ai paused the Trigger. When billing stopped the newest run, the sentence continues **The most recent run was stopped by billing.** and the cause, such as **The workspace had no AI usage remaining.** or **The workspace had reached its monthly AI spend limit.** The same sentence is posted in your most recent chat as **Trigger "[name]": …**. See [Schedule a Trigger](/guides/schedule-a-trigger#if-something-goes-wrong). |
+| **This trigger is paused**, with **One-time schedule paused after 24 hours without queueing a run. Resume it or set a new future date and enable it.** | A one-time Trigger could not start for 24 hours after its date and time. Set a new date and time in **Edit trigger**. |
 | **The last scheduled attempt was skipped**, with **The run that started [time] was still going. No run has started since then.**, **The run queued [time] was still waiting to start. No run has been queued since then.**, or **Ari was still working on the previous task.** | An earlier run of the Trigger was still going or waiting, so no new run started. |
 
 ### New trigger and Edit trigger
 
 The form has **Name** (placeholder **Weekday cash brief**), **Instructions**, and **Schedule**. **Repeat** offers:
 
+- **Once**: **On date** and **At time**, for a Trigger that runs one time. The line under the schedule reads **Once on [date and time]**.
 - **Every few minutes**: 1, 2, 3, 5, 10, 15, 20, or 30.
 - **Hourly**: every 1, 2, 3, 4, 6, 8, or 12 hours, **At minute**.
 - **Daily**, **Weekdays**, or **Weekly** (**On these days**).
 - **Monthly**: **Day of month**, including **Last day**.
 - **Advanced schedule**: **Edit advanced rule**, **Schedule expression ([time zone])**, a five-field cron expression read on that clock.
 
-The note under the schedule reads **Times in [time zone].**: your browser's time zone for a new Trigger or one that runs in UTC, and the Trigger's own time zone otherwise. Saving the schedule saves it with that time zone. A monthly day after the 28th adds **Months without this day are skipped. Choose Last day to run every month.** **Edit trigger** also has an **Enable trigger** switch (**Enabled** or **Disabled**). The buttons are **Create trigger** or **Save changes**, and **Cancel**.
+The note under the schedule reads **Times in [time zone].**: your browser's time zone for a new Trigger or one that runs in UTC, and the Trigger's own time zone otherwise. Saving the schedule saves it with that time zone. A monthly day after the 28th adds **Months without this day are skipped. Choose Last day to run every month.** **Edit trigger** also has an **Enable trigger** switch (**Enabled** or **Disabled**); changing a finished one-time Trigger's date or time turns it back on. The buttons are **Create trigger** or **Save changes**, and **Cancel**.
 
 ### Trigger messages
 
@@ -176,6 +184,8 @@ The note under the schedule reads **Times in [time zone].**: your browser's time
 | --- | --- |
 | **Add a name, instructions, and schedule.** | A field is empty. |
 | **Use up to 200 characters for the name and 10,000 for instructions.** | A field is too long. |
+| **Choose a date and time in the future.** | A one-time Trigger's date and time have already passed. |
+| **Choose a valid date and time in this time zone.** | A one-time Trigger's time does not exist on that day in its time zone, such as a time the spring daylight saving change skips. |
 | **This trigger already has a queued or active run. Open its latest conversation.** | You selected **Run now** while a run is going. |
 | **This trigger is no longer available.** / **This trigger is no longer available. Close this dialog and refresh the list.** | The Trigger was deleted. |
 | **Could not save the trigger. Please try again.** / **Could not start the trigger. Please try again.** | The change or the run failed. |
@@ -423,6 +433,7 @@ Two reasons stand alone:
 | --- | --- |
 | **Add a table or a Canvas block with data to this page before downloading a spreadsheet.** | The Page's last table or Canvas dataset was removed during the download. |
 | **The export was cancelled before it produced a workbook.** | The export was cancelled. |
+| **Table "[name]" requires at least [n] rows and [m] columns; Excel worksheet limits are 1048576 rows and 16384 columns.** | The table's saved layout does not fit one Excel worksheet. The export is refused at once, before anything is calculated, and a new export fails the same way while the table is unchanged. Ari's export reports the same limit as **The saved layout in table "[name]" requires …**. |
 
 An export that ran out of time or met an input too large to read can still succeed with part of the selection; see [When an export runs out of time](/guides/download-a-spreadsheet#when-an-export-runs-out-of-time). The workbook's **Export notes** sheet then says so:
 

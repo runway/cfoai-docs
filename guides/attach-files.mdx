@@ -10,7 +10,7 @@ Use this when you want Ari to read something that is not in your Model yet, such
     Select **Attach files** in the message box and choose the files, or paste a file such as a screenshot, or drop files on the message box. Each file shows as a tile while it uploads. A file over 30 MB shows how much of it has uploaded, and if your connection drops, the upload picks up where it stopped. A message holds up to 50 files; see [Limits](/reference/limits#chat-with-ari).
   </Step>
   <Step title="For a CSV, choose how Ari uses it">
-    A CSV tile shows **Data source** and **Chat only**. **Data source**, the default, also imports the file into cfo.ai when you send, so its rows can feed your Model. **Chat only** shares the file with Ari in this chat and imports nothing. A CSV larger than 50 MB, the most a data source import takes, shows no choice and is a chat file only.
+    A CSV tile shows **Data source** and **Chat only**. **Data source**, the default, also imports the file into cfo.ai when you send, so its rows can feed your Model. **Chat only** shares the file with Ari in this chat and imports nothing. Every CSV you can attach, up to 500 MB, offers the choice.
   </Step>
   <Step title="Say what the file is for, and send">
     Add a message that says what you want, then send. A file can also go on its own, with no text.
@@ -26,7 +26,7 @@ You can attach files while Ari is working on an earlier message, for example a s
 ## How Ari reads each kind of file
 
 - Every file you attach opens in Ari's private workspace. Ari opens the files it needs, one or several at a time.
-- An image or PDF Ari opens is also shown to it as a picture, so it reads a screenshot or a scanned statement like a page. A turn shows Ari only so many pictures, and a request with many images and PDFs leaves out a very large image; past those limits, listed in [Limits](/reference/limits#chat-with-ari), Ari reads the file in the workspace instead.
+- An image or PDF Ari opens is also shown to it as a picture, so it reads a screenshot or a scanned statement like a page. A very large picture is scaled down before Ari sees it, and when the text is too small to read, Ari can reopen a part of the image enlarged, such as one column of a statement. Your file is not changed. A turn shows Ari only so many pictures, and a request with many images and PDFs leaves out a very large image; past those limits, listed in [Limits](/reference/limits#chat-with-ari), Ari reads the file in the workspace instead.
 - Excel workbooks, text files, CSVs, and other files are read in the workspace, where Ari reads sheets, formulas, cached values, and the rest of the contents with code. Nothing Ari runs there can be reached from outside cfo.ai, and what Ari makes there reaches you only as a file it delivers to the chat.
 
 For a large workbook, tell Ari which sheet, date range, or question matters most. To rebuild a whole spreadsheet model in cfo.ai, see [Import an existing spreadsheet model](/guides/import-a-spreadsheet-model). To bring in a CSV as a data source that you refresh by uploading again, see [Upload a CSV as a data source](/guides/upload-a-csv).
@@ -49,7 +49,7 @@ Archiving a chat keeps its files.
 
 A file that fails to upload shows a red tile, and a notice titled **Attachment upload failed** gives the file's name and the reason. **Send** stays off until you remove the file or attach it again. Attaching a file with the same name replaces the failed tile.
 
-If one file fails every time while others upload normally, a security filter may be blocking its contents; send it to [support@cfo.ai](mailto:support@cfo.ai). If Ari says it cannot open a file, such as a damaged or password-protected workbook, attach an unprotected copy or a different export. For every attachment message, see [Chat controls and messages](/reference/chat#attachment-messages).
+A large file that stops getting answers from storage is tried again about six times over half a minute before it fails; remove it and attach it again to start a fresh upload. If one file fails every time while others upload normally, send it to [support@cfo.ai](mailto:support@cfo.ai). If Ari says it cannot open a file, such as a damaged or password-protected workbook, attach an unprotected copy or a different export. For every attachment message, see [Chat controls and messages](/reference/chat#attachment-messages).
 
 <Note>
   Ari cannot read files sent in Slack. Attach them in a chat in the cfo.ai web app. See [Talk to Ari from Slack](/guides/use-ari-in-slack).

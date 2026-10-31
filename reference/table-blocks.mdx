@@ -184,14 +184,14 @@ Opens from a Dimension's label row, such as **DEPARTMENT**, or from **[Dimension
 | **Use as** | **Segmentation** or **Mapping**. |
 | **Segment generation** | **Show only matching segments** shows the combinations that have data. **Expand to create all segments** shows every combination; for a Dimension of numbers, set **Start Value** and **End Value**, and for a Dimension of dates, set **Start / End dates**. The range is saved only when both ends are set, and clearing both removes it. |
 | **Format and display** → **Dimension color** | The color of the Dimension's item pills. **All tables.** |
-| **Format and display** → **Display as** | **Pill** or **Plain text**, on this table, in your browser. |
+| **Format and display** → **Display as** | **Pill** or **Plain text**, on this table, saved for everyone. Shows the current choice beside it. |
 | **Create [Dimension] item** | Adds an item. **All tables.** Unavailable, with **Clear the filter to create a new item.**, while the Dimension is filtered. |
 | **Insert above** / **Insert below** | Opens the Create or search field at that place. On a column: **Insert left** / **Insert right**. |
 | **Insert space** | Rows only. Adds a blank spacer row. |
 | **Pin column** / **Unpin column** | Columns only, not Date. |
 | **Remove dimension** | Removes the Dimension from this table. When no other table shows it, cfo.ai asks first; see [Removing and deleting](#removing-and-deleting). |
 
-For actions that change the layout, such as **Filter items**, **Sort**, and **Insert above**, the Dimension's level must be saved on this table. A level that **Segment by** added under one item only offers none of them. On a read-only table, the menu keeps **Display as**.
+For actions that change the layout, such as **Filter items**, **Sort**, and **Insert above**, the Dimension's level must be saved on this table. A level that **Segment by** added under one item only offers none of them. On a read-only table, the menu has no **Format and display**; the table shows the saved **Display as** choice, or pills when none is saved.
 
 ### Cell menu
 
@@ -395,7 +395,7 @@ The text under the notice titles names the reason.
 | --- | --- |
 | **These cells come from an integration. Change the value in the source system.** | The cells read data imported from a connection, such as a pay rate from your payroll system. Only the source can change them. |
 | **These cells don't all take the same formula. Edit one cell at a time.** | The selection spans cells with different formulas, such as Actuals read from an integration and Forecast from a formula. |
-| **Each of these cells holds one item. Pick one from the list.** | The column shows a Dimension's items, and the value is not one of them. |
+| **Each of these cells holds one item. Pick one from the list.** | The column shows a Dimension's items, and the value is not one of them. Also shown when the Dimension holds only items someone typed in and has no mapping yet: a new name typed into its mapping column would turn the typed list into a mapped one, so it is refused. Pick an existing item, or ask Ari to clear the list or map into a separate Dimension. |
 | **The table changed while you were editing. Check the cells, then try again.** | A row or column you edited moved or disappeared while you worked. |
 | **You can't edit this table. Ask a page owner for edit access.** | You can read the Page but not edit it. |
 | **These cells can't take this change.** | cfo.ai refused the change for another reason. |
@@ -461,9 +461,9 @@ When a table cannot load or calculate, its notices, such as **We couldn't load t
 
 | Saved | Settings |
 | --- | --- |
-| With the table, for everyone | Rows, columns, and breakdowns; filters and sorts; hidden rows and columns; the date range and grain; comparisons; **Format**, **Precision**, **Scale**, **Negatives**, **Date format**, **Background**, **Text color**, **Text style**, and **Indent**; total column summaries; column widths; pinned columns; **Use as row names**; **Show dimension headers** |
+| With the table, for everyone | Rows, columns, and breakdowns; filters and sorts; hidden rows and columns; the date range and grain; comparisons; **Format**, **Precision**, **Scale**, **Negatives**, **Date format**, **Background**, **Text color**, **Text style**, and **Indent**; **Display as** (**Pill** or **Plain text**); total column summaries; column widths; pinned columns; **Use as row names**; **Show dimension headers** |
 | On the Variable or Dimension, for every table | Values and formulas; the name; the currency; the **Date** type; **Variance colors**; **Dimension color** |
-| In your browser only | Open formula columns; the formula bar; whether the setup panel is open; the table height; **Display as** (**Pill** or **Plain text**); which rows and column groups you expanded or collapsed; **Show variable name** |
+| In your browser only | Open formula columns; the formula bar; whether the setup panel is open; the table height; which rows and column groups you expanded or collapsed; **Show variable name** |
 | Not saved | **Show total columns**; **Pin total columns**; drill-in rows |
 
 Version history does not list changes to column widths or pinned columns.

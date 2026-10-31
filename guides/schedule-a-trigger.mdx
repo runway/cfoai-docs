@@ -1,10 +1,10 @@
 ---
-title: "Schedule a recurring report with a Trigger"
+title: "Schedule a report or a reminder with a Trigger"
 sidebarTitle: "Schedule a Trigger"
-description: "Have Ari do the same job on a schedule, such as a Monday cash summary: create a Trigger, write instructions that work unattended, get the result by email or Slack, change or pause it, and check whether it ran."
+description: "Have Ari do a job on a schedule, such as a Monday cash summary, or once at a set time, such as a reminder tomorrow: create a Trigger, write instructions that work unattended, get the result in your chat, by email, or in Slack, change or pause it, and check whether it ran."
 ---
 
-Use a Trigger when you want Ari to do the same job on a schedule without being asked. For example, Ari can write a cash summary every Monday, or check last month's spending after each close. A Trigger is a saved instruction with a schedule. Each time it runs, Ari works through it in a new chat of its own, and you read the result when it suits you. For how unattended runs work, see [Skills, Triggers, and Guides](/concepts/automation).
+Use a Trigger when you want Ari to do a job without being asked, on a schedule or once at a set time. For example, Ari can write a cash summary every Monday, check last month's spending after each close, or remind you tomorrow morning to revisit a reconciliation. A Trigger is a saved instruction with a schedule, or with one date and time. Each time it runs, Ari works through it in a new chat of its own, and you read the result when it suits you. For how unattended runs work, see [Skills, Triggers, and Guides](/concepts/automation).
 
 <Tabs>
   <Tab title="Ask Ari">
@@ -12,7 +12,11 @@ Use a Trigger when you want Ari to do the same job on a schedule without being a
 
     > Every Monday at 8am Pacific, summarize the prior week's cash activity and flag expenses that differ from our recent pattern. Email me the summary.
 
-    Ari asks about anything it is missing, saves the Trigger with the time zone you named (or yours when Ari knows it, and otherwise UTC), and tells you its name and schedule. A new Trigger is on, and it first runs at the next scheduled time. You can also set one up by messaging Ari in Slack; see [Talk to Ari from Slack](/guides/use-ari-in-slack).
+    For a job that runs once, name the date and time:
+
+    > Remind me tomorrow at 9am to revisit the bank reconciliation.
+
+    Ari asks about anything it is missing, saves the Trigger with the time zone you named (or yours when Ari knows it, and otherwise UTC), and tells you its name and schedule. A new Trigger is on, and it first runs at the next scheduled time. A one-time Trigger turns itself off once its run is queued; see [Change, pause, or delete a Trigger](#change-pause-or-delete-a-trigger). You can also set one up by messaging Ari in Slack; see [Talk to Ari from Slack](/guides/use-ari-in-slack).
   </Tab>
   <Tab title="By hand">
     <Steps>
@@ -26,7 +30,7 @@ Use a Trigger when you want Ari to do the same job on a schedule without being a
         Enter a **Name**, such as Weekday cash brief. In **Instructions**, describe what Ari should check, update, or prepare each time. See [Write instructions that work unattended](#write-instructions-that-work-unattended).
       </Step>
       <Step title="Set the schedule">
-        Under **Schedule**, choose how often it runs in **Repeat**, such as **Weekly**, then the days and the time. The note **Times in [time zone].** names the clock the times are read on: your browser's time zone for a new Trigger. cfo.ai saves the schedule with that time zone, so it keeps the same local time through daylight saving changes.
+        Under **Schedule**, choose how often it runs in **Repeat**, such as **Weekly**, then the days and the time. For a job that runs once, choose **Once**, then set **On date** and **At time**; the line under the schedule reads **Once on [date and time]**, and the date and time must be in the future. The note **Times in [time zone].** names the clock the times are read on: your browser's time zone for a new Trigger. cfo.ai saves the schedule with that time zone, so it keeps the same local time through daylight saving changes.
       </Step>
       <Step title="Save">
         Select **Create trigger**. The Trigger appears in the list, and its details show when it runs next under **Next scheduled**.
@@ -42,7 +46,7 @@ Nobody is in a Trigger's chat while it runs, so Ari cannot ask you anything. Whe
 - Name what to read: the Page, table, or Variable, and the Scenario if it is not Main. A run has no Page open.
 - Name the period, such as "the last closed month" or "the prior week".
 - Say what to return and how to judge it, such as "flag any expense line more than 10% over Forecast".
-- Say where to send it: "email me" or "send it to my Slack direct messages". Without that, the result stays in the run's chat.
+- Say where to send it: "email me" or "send it to my Slack direct messages". Without that, Ari posts the result in the chat you created the Trigger from, and the run's own chat keeps the full record.
 - Set any MCP server tool the job needs to **Allow**. A tool on **Ask first** does not run in a Trigger; see [What a run cannot do on its own](/concepts/automation#what-a-run-cannot-do-on-its-own).
 
 > Compare Actuals with Forecast for Operating Expense in the last closed month on the Monthly P&L Page. Flag any line more than 10% over Forecast, and send the summary to my Slack direct messages.
@@ -51,12 +55,13 @@ If you want a report on every run, say so. A run sends a warning only when somet
 
 ## Choose where the result goes
 
-Every run's result is saved in its own chat, listed in the Trigger's **History**. A copy goes somewhere else only when the instructions name the channel:
+Every run's result is saved in its own chat, listed in the Trigger's **History**. A result the instructions ask for also reaches you in cfo.ai, and a copy goes to email or Slack only when the instructions name that channel:
 
 | The instructions say | What happens |
 | --- | --- |
+| Report to me, notify me, or nothing about where to send it | Ari posts the result as a message in the chat you created the Trigger from, or in your most recent chat in the workspace when that chat is gone. The message starts no reply, and Ari reads it when you next write in that chat. If you have no chat in the workspace, nothing is posted, and the run's record says so. |
 | Email me | Ari emails your sign-in address. Headings, lists, tables, and links in the message show in the email. |
-| Send it to my Slack direct messages | Ari sends you a Slack direct message, once Slack is connected. See [Talk to Ari from Slack](/guides/use-ari-in-slack). If no Slack workspace is connected when the Trigger is saved, Ari learns that every run's Slack message will be refused until an administrator connects Slack, so it can tell you then. |
+| Send it to my Slack direct messages | Ari sends you a Slack direct message, once Slack is connected. See [Talk to Ari from Slack](/guides/use-ari-in-slack). While no Slack workspace is connected, the run posts the same message in your cfo.ai chat instead, as in the first row, and records that Slack refused it. |
 | Post it in this channel, or Post it in #finance | Only for a workspace administrator, and only for a private Slack channel Ari has already been added to. Each run posts its Slack message in that channel instead of your direct messages, and everyone in the channel reads the result, prepared with your access. Ask from inside the channel ("post it in this channel") or name the channel. To go back to direct messages, ask Ari to remove the channel from the Trigger. A run posts nothing, and reports why, when Ari has left the channel, the channel became public, or you are no longer an administrator. |
 | Email someone else | Nothing is sent. The run leaves an email preview in its chat, and the email goes only when you open the chat and select **Send**. See [Email preview card](/reference/chat#email-preview-card). |
 
@@ -68,6 +73,7 @@ Ask Ari, for example "Pause my weekly cash Trigger", "Move it to Tuesdays at 9am
 
 - To change its name, instructions, or schedule, select **Edit trigger** (the pencil), make the change, and select **Save changes**.
 - To pause it, select **Edit trigger**, turn off the switch so it reads **Disabled**, and select **Save changes**. Turn the switch back on to resume. A paused Trigger reads **Paused** in the list.
+- A one-time Trigger turns itself off when its run is queued, and reads **Schedule finished** in the list, with **Nothing upcoming** under **Next scheduled**. Its run still appears in **History**. To run it again, select **Edit trigger**, set a new date and time in the future, and select **Save changes**; changing the date or time turns the switch back on. Turning the switch on without a new date is refused.
 - To run it once right away, select **Run now**. This works on a paused Trigger too and leaves the schedule as it is.
 - To delete it, select **Delete trigger** (the trash can) and confirm. A run that already started still finishes.
 
@@ -75,7 +81,7 @@ You see and manage only your own Triggers. Your teammates' Triggers do not appea
 
 ## Check whether a Trigger ran
 
-Open the account menu and choose **Manage triggers**. Each Trigger in the list shows what happened last, such as **Finished**, **Did not complete**, or **Skipped: Ari was still busy**. Select a Trigger to see **Next scheduled** and its **History**: every run, newest first, with its status. A run that did not complete shows its own one-sentence reason. Select a run to read its chat. For what each status means, see [The cfo.ai interface](/reference/interface#triggers-page).
+Open the account menu and choose **Manage triggers**. Each Trigger in the list shows what happened last, such as **Finished**, **Did not complete**, or **Skipped: Ari was still busy**. Select a Trigger to see **Next scheduled** and its **History**: every run, newest first, with its status. A run that did not complete shows its own one-sentence reason. A run reads **Did not complete** both when it could not do the task and when it delivered a result with a part missing, such as a source it could not read; only a run that did the whole task reads **Finished**. Select a run to read its chat. For what each status means, see [The cfo.ai interface](/reference/interface#triggers-page).
 
 You can also ask Ari:
 
@@ -97,6 +103,12 @@ A run never waits for an answer. When it has a question, such as which bank acco
   </Accordion>
   <Accordion title="No email or Slack message arrived">
     Check that the instructions name the channel. Then open the run from **History**: Ari's activity in the chat shows whether the email service or Slack accepted the message. For Slack, check that Slack is connected and that your Slack email matches your cfo.ai email; see [Talk to Ari from Slack](/guides/use-ari-in-slack).
+  </Accordion>
+  <Accordion title="The Trigger paused itself after three failed runs">
+    When three runs in a row end without finishing the task, and none of them reached you with a message in cfo.ai, by email, or in Slack, cfo.ai pauses the Trigger so it does not fail night after night. The Trigger reads **Paused with an error** in the list, and its details read **This trigger is paused** with **This trigger was paused after 3 consecutive runs failed or ended without a completion report, with no notice delivered to you.** When billing stopped the newest run, the reason adds **The most recent run was stopped by billing.** and why, such as **The workspace had no AI usage remaining.** The same sentence is posted as a message in your most recent chat, starting **Trigger "[name]":**, with no email or Slack message. Open the newest run from **History** to see what went wrong, fix it, then select **Edit trigger**, turn the switch back on, and select **Save changes**; the count starts again from zero. A run that reaches you, even to report a failure, does not count toward the three.
+  </Accordion>
+  <Accordion title="A one-time Trigger paused without running">
+    When a one-time Trigger could not start at its date and time, for example because the workspace had no active plan, cfo.ai keeps trying for 24 hours, then pauses it with the reason **One-time schedule paused after 24 hours without queueing a run. Resume it or set a new future date and enable it.** Select **Edit trigger**, set a new date and time, and select **Save changes**.
   </Accordion>
   <Accordion title="Run now says the Trigger already has a run">
     The message reads **This trigger already has a queued or active run. Open its latest conversation.** Open that run from **History**, or wait for it to finish.

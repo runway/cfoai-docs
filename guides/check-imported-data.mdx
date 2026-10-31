@@ -28,7 +28,7 @@ Your Model's **Last close**, your month-end, decides which months read as Actual
 
 ### A saved query filters rows on purpose
 
-A saved query brings in only the rows your Model needs, so your Model can hold fewer rows than the source. Ask Ari what the query keeps and what it leaves out before you treat a smaller count as missing data.
+A saved query brings in only the rows your Model needs, so your Model can hold fewer rows than the source. Ask Ari what the query keeps and what it leaves out before you treat a smaller count as missing data. Ari can also tell you how many of a loaded column's rows hold a value, so an empty column, such as a pay rate the export never filled in, is reported as empty rather than as zero.
 
 ### The same cost is counted twice
 
@@ -50,7 +50,7 @@ Ask Ari to reconcile it month by month:
 
 > Check that assets equal liabilities plus equity for every month, and name the accounts behind any gap.
 
-An amount the source did not classify loads into the statement's unclassified amount, and it stays part of the total, so Ari can name it.
+An amount the source did not classify loads into the statement's unclassified amount, and it stays part of the total, so Ari can name it. A Xero statement that was out of balance because many credit cards sat under **Current Liabilities** corrects itself at the next sync of an unedited **Xero Balance Sheet** query; see [Xero](/reference/integrations#xero).
 
 ## Trace a number to its source rows
 

@@ -55,7 +55,7 @@ A few formulas cannot be written as Excel formulas, such as one longer than Exce
 
 An export calculates the selected Pages one at a time, each Page's tables and then the inputs those tables read, and stops calculating 5 minutes before its 45-minute limit. The workbook then holds every Page whose tables finished, and its **Export notes** sheet names the Pages left out. On a Page that is in the workbook, a cell that reads an input the export did not reach keeps its calculated value and is listed in **Export notes**. When the first Page with a table did not finish, there is nothing to write, and the export fails at its time limit; a new export of the same Pages reaches the same limit while the Model is unchanged, so export fewer Pages or narrow the tables. An export of one Page, such as one from the **Download spreadsheet** button, never leaves a Page out: it finishes or fails. Ari's export reports the Pages left out too, and the table that was still calculating when time ran out.
 
-An input too large to read is left out, and the cells that read it keep their calculated values; **Export notes** says the workbook may hold only some cells of that Variable. A total over such an input, such as a sum across every region, also keeps its calculated value, so no formula in the workbook adds up only part of the data. A Page's own table that large fails the export. A workbook that has no room left to name the Pages it leaves out fails instead of looking complete. The sizes are in [Limits and file types](/reference/limits#tables-pages-sharing-and-exports).
+An input too large to read is left out, and the cells that read it keep their calculated values; **Export notes** says the workbook may hold only some cells of that Variable. A total over such an input, such as a sum across every region, also keeps its calculated value, so no formula in the workbook adds up only part of the data. A Page's own table that large fails the export. A workbook that has no room left to name the Pages it leaves out fails instead of looking complete. A table whose saved layout needs more rows or columns than an Excel worksheet holds is refused before any calculation starts, with the table's name and Excel's limits, and the same export fails the same way until the table changes. The sizes are in [Limits and file types](/reference/limits#tables-pages-sharing-and-exports).
 
 ## What you get
 
@@ -74,7 +74,7 @@ An input too large to read is left out, and the cells that read it keep their ca
 
 ## If something goes wrong
 
-A failed export shows **Could not download spreadsheet** with the Page's name and the reason. Every progress label and message is listed in [The cfo.ai interface](/reference/interface#download-spreadsheet). For export time and size limits, see [Limits and file types](/reference/limits#tables-pages-sharing-and-exports).
+A failed export shows **Could not download spreadsheet** with the Page's name and the reason. When the reason reads **Table "[name]" requires at least [n] rows and [m] columns; Excel worksheet limits are 1048576 rows and 16384 columns.**, the table's saved layout is too large for one worksheet; narrow the table, or hide rows or columns, before exporting again. Every progress label and message is listed in [The cfo.ai interface](/reference/interface#download-spreadsheet). For export time and size limits, see [Limits and file types](/reference/limits#tables-pages-sharing-and-exports).
 
 ## Related
 

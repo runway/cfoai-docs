@@ -261,7 +261,7 @@ The Google flow reads **Opening Google authentication…**, **Choosing in Google
 
 | Message | Meaning |
 | --- | --- |
-| **Choose non-empty .csv files up to 50 MB each.** | A file was not a CSV, was empty, or was larger than 50 MB. |
+| **Choose non-empty .csv files up to 500 MB each.** | A file was not a CSV, was empty, or was larger than 500 MB. |
 | **[N] of [M] CSV files imported. [K] couldn't be imported. Try [files] again.** | Some files in a batch failed to upload. |
 | **The file couldn’t load: [what was wrong]. Fix the file and upload it again.** | The loader could not read the file as one table. What was wrong reads **the file has no rows**, **the file has no header row**, **the file has a header row and no data rows**, or **the header row has [N] columns and row [M] has [K]**. |
 | **The CSV file could not be processed. Check that it has a valid header row and consistent columns, then retry or upload it again.** | Another problem with the file. |
@@ -276,7 +276,8 @@ Google Sheets and Google Drive connections report their import on the row and in
 | **Attached to the chat that connected it. Ari imports it there.** | Connected from a chat; that chat handles the import. Afterward it reads **The chat that connected it handles later changes.** |
 | **Ari stopped before finishing this import. The next sync tries again.** | A background import stopped; the next sync resumes it. If it stopped to ask you a question, Ari opens the question in a chat of yours; answer there and the import continues. |
 | **Ari stopped before finishing this import. Continue in the chat that connected it.** | An import in a chat stopped; continue it there. If it stopped to ask you a question, the question is waiting in that chat. |
-| **This file is too large to import. Make it smaller and the next sync imports it.** | The file is over the limit: 50 MB for a Google Sheet, 10 MB for an Excel or CSV file in Drive. |
+| **Superseded tasks withdrawn: [tasks]. Their earlier questions no longer need answers. The current task is "[task]".** | A message in the chat. A newer version of the file arrived while an earlier import of it was still running or waiting; the new version went to that import, and older duplicate imports were withdrawn. **Its question remains open: [question]** follows when the import is still waiting for your answer. |
+| **This file is too large to import. Make it smaller and the next sync imports it.** | The file is over the limit: 50 MB for a Google Sheet, 500 MB for an Excel or CSV file in Drive. |
 
 ## Messages about MCP servers and APIs
 

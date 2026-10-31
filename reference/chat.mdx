@@ -66,7 +66,9 @@ When **Send** cannot be used, its tooltip says why.
 | **A message holds up to 50 files, so [n] files were not attached: [names]. Attach them to another message.** | You picked more files than one message holds. The first 50, in the order you picked them, were attached; the notice names up to three of the rest and has a dismiss button. |
 | **Uploading files… [n] of [m] done** | Shown under the file tiles while several files upload. A file over 30 MB uploads in pieces and shows how much has uploaded; if your connection drops, the upload picks up where it stopped. |
 | **Attachment upload failed** | A notice with the file's name and the reason. The file's tile turns red. |
-| **cfo.ai could not confirm this upload.** | The upload never finished, for example after a dropped connection. A file over 30 MB uploads in 16 MB pieces straight to storage; after a reply the browser cannot read, cfo.ai asks storage how much arrived and continues from there, and once the whole file has arrived it records the attachment even when that last reply was unreadable. Six requests in a row without confirmed progress end the upload. Attaching the same file again replaces the failed tile. |
+| **cfo.ai could not confirm this upload. Removing the file and attaching it again starts a new upload.** | The upload never finished, for example after a dropped connection. A file over 30 MB uploads in 16 MB pieces straight to storage; after a reply the browser cannot read, cfo.ai asks storage how much arrived and continues from there, and once the whole file has arrived it records the attachment even when that last reply was unreadable. Six requests in a row without confirmed progress, waited out over 1, 2, 4, 8, and 16 seconds, end the upload. Attaching the same file again replaces the failed tile. |
+| **Failed to upload attachment — please retry** | cfo.ai or storage answered with an error. Attach the file again. |
+| **The file changed on disk and can no longer be read. Remove it and attach the file again.** | The file was changed or moved while it uploaded. |
 | **Wait for attachments to finish uploading before sending.** | You tried to send while a file was uploading. |
 
 ## While Ari works
@@ -435,7 +437,7 @@ When you verify your email, cfo.ai starts a public web search for the email addr
 | **found by searching your email domain** | The page came up in the search for your company. |
 | **matches your name only** | The page shares only your name. |
 
-When cfo.ai could not research a company for your email, for example a personal address such as a Gmail address, a page that matches only your name is left out. The brief is researched for the person who created the workspace; a teammate who joins later gets a greeting and the starting card without a brief. To correct what the research found, see [Teach Ari your company's conventions](/guides/teach-ari#correct-what-ari-found-about-your-company).
+When cfo.ai could not research a company for your email, for example on an account created before new accounts needed a work email, with a personal address such as a Gmail address, a page that matches only your name is left out. The brief is researched for the person who created the workspace; a teammate who joins later gets a greeting and the starting card without a brief. To correct what the research found, see [Teach Ari your company's conventions](/guides/teach-ari#correct-what-ari-found-about-your-company).
 
 ### Starting card
 

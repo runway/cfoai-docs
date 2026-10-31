@@ -18,6 +18,8 @@ Use a mapping when several labels should report as one category, such as groupin
 
     If the target Dimension does not exist yet, Ari creates it with the lines you named as its items; see [Dimension mappings and shared Dimensions](/concepts/dimension-mappings#how-mapped-items-show-in-tables) for the table it gets. Creating it needs edit access to the new mapping table, and edit access to the **Model** Page or, when the Scenario has no Model Page yet, permission to create Pages. Without that access, nothing saves. Mapping an item that is already mapped replaces its assignment. Each change saves every row it names, or none of them.
 
+    A Dimension that already holds items someone typed in by hand, and no mapping, is not mapped into on a first request: once a mapping decides its items, the typed list would no longer stand on its own, so Ari refuses and saves nothing. Ask Ari to clear the leftover items first, or to map into a separate Dimension and keep the typed list.
+
     Ari can also do what the table cannot:
 
     - Map several items with one condition: "Map accounts 8001 and 8002 to Other Income."
@@ -40,7 +42,7 @@ Use a mapping when several labels should report as one category, such as groupin
         Select **Add column** and type the target Dimension's name, such as Reporting Line. Select it, or select **Create dimension:** with the name to create a new one. Choose **Add as mapping**.
       </Step>
       <Step title="Assign each row">
-        Select a cell in the mapping column. In the picker, search the target's items and choose one, or type a new name and select **Add** with that name.
+        Select a cell in the mapping column. In the picker, search the target's items and choose one, or type a new name and select **Add** with that name. When the target holds only items typed in by hand and has no mapping yet, a new name is refused with **Each of these cells holds one item. Pick one from the list.**; pick an existing item, or ask Ari to map into a separate Dimension.
 
         The cell saves that row's assignment in the mapping, and every table that reads the mapping changes with it.
       </Step>

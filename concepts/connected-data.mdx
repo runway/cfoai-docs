@@ -34,6 +34,8 @@ A CSV follows the same path: the upload replaces the warehouse copy, and a saved
 
 A source becomes useful in three stages, and cfo.ai reports each one separately. First it is linked: you signed in and the connection exists, but no data has moved. Then its tables reach the warehouse, which your Model cannot use until a saved query reads them; that is why a connection can read **No queries yet**, which someone who can edit the connection must fix. Finally saved queries put rows into your Model, and only then does the sidebar show the connection as **Synced**.
 
+A source that has reached your Model is evidence Ari reads before it asks you for a file. When Ari does ask for an export, or says that something is missing, it names the connections it read and what they lacked. An export you uploaded from a system that is also connected is a separate source with its own columns; the connection's own coverage stands on its own.
+
 So "I connected QuickBooks" and "my Model has my QuickBooks numbers" can be minutes or hours apart. QuickBooks Online and Xero load your three most recent complete months first, so Ari can start, and fill in the rest of the history in the background; [How much history loads](/reference/imported-data#how-much-history-loads) lists each source. Ari tells you in the chat when the data is in. Until then, ask Ari where the load stands rather than treating a smaller Model as missing data.
 
 Ready also says nothing about whether the numbers match your books. A query can filter rows on purpose, and your Model's **Last close** decides which months read as Actuals. [Check that your numbers match your books](/guides/check-imported-data) covers both.

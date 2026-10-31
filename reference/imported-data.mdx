@@ -11,7 +11,7 @@ A CSV you upload as a data source loads as one table.
 
 | Rule | Detail |
 | --- | --- |
-| File type | `.csv` only, not empty, up to 50 MB per file |
+| File type | `.csv` only, not empty, up to 500 MB per file; one row holds up to 16 MiB |
 | Encoding | UTF-8, or UTF-16 with a byte order mark, which is how spreadsheet tools save "Unicode text". A UTF-16 file without a byte order mark loads with a `?` between its characters. |
 | Where the table is | cfo.ai reads the file to find the line of column names, the last line of the table, and the separator, so a report with title lines above the table loads its table alone. A line that totals rows that are each a person, customer, vendor, invoice, or transaction, such as the **Grand Total** under a payroll report, is left out, whatever its columns or the file's name. A total line of a financial statement or an account schedule, such as **Investment Accounts Total** under a list of accounts, is one of the schedule's rows and loads. When cfo.ai cannot find a table, it reads the whole file as a comma-separated table from its first line. |
 | Separator | Comma, or the separator the file uses, such as a semicolon or a tab |
@@ -76,7 +76,7 @@ A starting formula has no [formula range](/reference/glossary#formula-range), bu
 | Source | Saved queries | Columns |
 | --- | --- | --- |
 | QuickBooks Online | **QuickBooks Profit & Loss**, **QuickBooks Balance Sheet** | Amounts split into **Revenue**, **Cost of Goods Sold**, **Expense**, **Other Income**, **Other Expense**, and **Unclassified P&L Amount**, with the account, **Vendor**, **Entity**, and **Currency**. Both are on the company's accounting basis, cash or accrual; see [QuickBooks Online](/reference/integrations#quickbooks-online) for how the basis is read and switched. Each report is as QuickBooks returned it when a sync last wrote the month; [How much history loads](#how-much-history-loads) says which months a refresh rewrites. The balance sheet dates each month's balances by the month's last day, so the month in progress keeps one **Period** from its first sync until it closes. |
-| Xero | **Xero Income Statement** or **Xero Income Statement by Tracking Category**, **Xero Balance Sheet** | Amounts by account, with **Entity** and **Currency**. The tracking-category statement has one row per journal line and up to three tracking categories as numbered column pairs. See [Xero](/reference/integrations#xero). |
+| Xero | **Xero Income Statement** or **Xero Income Statement by Tracking Category**, **Xero Balance Sheet** | Amounts by account, with **Entity** and **Currency**. The tracking-category statement has one row per journal line and up to three tracking categories as numbered column pairs. How the balance sheet files each account is in [Xero](/reference/integrations#xero). |
 | NetSuite SuiteAnalytics | **NetSuite Income Statement**, **NetSuite Balance Sheet** | Amounts by account. Income Statement rows also carry **Subsidiary** and **Currency Name**. |
 | Rillet | **Rillet Income Statement**, **Rillet Balance Sheet** | One set of rows per subsidiary, with **Entity** and **Currency** |
 
@@ -93,6 +93,7 @@ A Variable or Dimension shows its integration's logo on table row and column lab
 | Rule | Detail |
 | --- | --- |
 | Who writes them | cfo.ai adds them for supported sources, and Ari writes the rest. You see them read-only on the connection's page under **Queries**. |
+| An uploaded CSV's first query | An upload starts with a query named **Uploaded CSV** that loads every column as it is. When Ari then writes its own query for the file, with business names and types, that query takes the place of **Uploaded CSV**, so the file loads once, under one set of Variables and Dimensions. The starting query stays beside Ari's query only when something already reads it: a formula, a table, or a value you changed in one of its columns. |
 | Scenarios | Saved queries belong to Main. Every ordinary Scenario reads Main's latest query and result. A Snapshot keeps the query and result it was pinned with. You cannot test a query change in one Scenario alone. |
 | Planning time limit | When a query is saved, the warehouse runs it once to count its rows and read its columns, for at most 40 seconds. A query that runs longer is refused and nothing is saved. |
 | Fewer rows than the source | Can be on purpose: a query may filter the source to what you asked for. Ask Ari what the query keeps. |
@@ -120,6 +121,7 @@ The nightly refresh and refreshes you ask for work the same on every active plan
 | --- | --- |
 | QuickBooks Online, Xero | From January 1 of last year through today. The three most recent complete months load first, and the rest follows in the background. |
 | QuickBooks Online, Xero, full-history import | From a year you name, 2015 or later. The months it imports stay through later refreshes. A QuickBooks import also takes the balance sheet of the month before that year. |
+| Plaid, Stripe (Direct), Rillet, full-history refresh | The connection's whole history, re-read from the source with no year to name, and the connection's saved queries rerun into Main. Other sources refuse a full-history refresh. |
 | QuickBooks Online, nightly refresh | The last three months: the current month and the two before it. The whole range when the connection has not synced for more than a month. |
 | Xero, nightly refresh | The whole range |
 | Sources through Fivetran | The full history of each selected table. A newly added table loads its full history. |
@@ -138,9 +140,9 @@ A sync setup copies the results of one read-only tool or endpoint into your data
 
 | Limit | Value |
 | --- | --- |
-| Replace and snapshot, without a changes-since filter | 10,000 pages, 16 MiB per page |
-| Upsert, append, or any sync with a changes-since filter | 100 pages, 20,000 records, and 16 MiB in all |
-| One page from an MCP server | 2 MiB |
+| Pages in one sync | 10,000. Each page is one source response: up to 1 MiB from an API, 2 MiB from an MCP server |
+| Replace and snapshot, without a changes-since filter | Written page by page, so only the page limits apply. The pages are published together when the sync finishes, so a sync that stops at a limit publishes none of them |
+| Upsert, append, or any sync with a changes-since filter | 16 MiB in all, because the whole result is held before it is saved |
 | One tool call in a sync page from an MCP server | 45 seconds. Connecting to the server, listing its tools, and the call each get 45 seconds. A time limit the tool's own description names is the server's own; cfo.ai's applies either way. |
 | One sync | 10 minutes |
 

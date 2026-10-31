@@ -54,7 +54,7 @@ For a Variable or Dimension read from an imported source, the entry's `source_de
 }
 ```
 
-The response holds one entry per reference, in the order given, all read at one snapshot. Each imported source's query is stated once under `sources`, and an entry's `source.query_ref` names its key there. A reference that matches nothing is refused in its own entry while the others still answer.
+The response holds one entry per reference, in the order given, all read at one snapshot. Each imported source's query is stated once under `sources`, and an entry's `source.query_ref` names its key there. A reference that matches nothing is refused in its own entry while the others still answer: **No readable variable or dimension matches this target.** The refusal lists up to five `candidates` of the requested kind, each with its readable name, a reference usable as the next `target`, its kind, and a closeness score, so `Total Revenue` suggests the saved `Revenue`. A candidate never selects anything.
 
 ## Connect formulas to the values a table shows
 
@@ -81,8 +81,9 @@ Use the same Scenario for the formula read and the table read. The saved formula
 ### Select rows and columns
 
 - Select rows and columns by the references a read prints, by unambiguous names or full paths, or by coordinate predicates. A name in backticks selects the same row as the bare name.
-- An item row is selected by its path from its Variable or axis Dimension, one bracket per breakdown level, as a readback prints it: `Revenue[West]`, `Revenue[West][Enterprise]`, `Employee ID[E-207]`.
+- An item row is selected by its path from its Variable or axis Dimension, one bracket per breakdown level, as a readback prints it: `Revenue[West]`, `Revenue[West][Enterprise]`, `Employee ID[E-207]`. The leading Variable may carry its reference suffix, `Revenue#a1b[West]`, which picks one of two same-named Variables; for rows made only of items, the first item's Dimension may lead the same way, `Employee ID#c2d[E-207]`. A selector that differs from exactly one saved coordinate only in whitespace or zero-width characters binds to it.
 - A nested item written without the items above it, such as `Revenue[Enterprise]` for `Revenue[West][Enterprise]`, selects the one saved coordinate that ends in it. When several do, the read is refused as ambiguous and names each.
+- A plain name that matches no saved coordinate is refused with **rows selector "[name]" does not match a saved coordinate** and a candidate list. When the name is a Variable shown elsewhere, the refusal adds **[Variable#ref] is shown on table [Table#ref]**, up to three readable tables; when it is the Dimension that groups the axis, it adds **[Dimension] is the dimension these rows break down by** and, where predicates are accepted, the predicate that selects its items. Case and punctuation do not matter for that match; a `Name#hex` reference or an ambiguous name keeps the plain refusal.
 - The item that holds rows with no value displays as **None** and is written `empty:None` in a selector, such as `Region[empty:None]`.
 - A text item is printed as written, even when it contains a colon. The read's `member` field, a receipt's `members` list, and a row reference such as `Cash Step[Expected in: open invoice #483]#c00` all write it `Expected in: open invoice #483`, and a formula matches that exact text.
 - A read that names rows or columns holds every item of the layout, zero and empty items included, whatever the saved display hides. A read that names none shows what the app displays.

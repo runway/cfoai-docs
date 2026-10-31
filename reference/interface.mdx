@@ -13,10 +13,14 @@ The page is titled **Sign in to cfo.ai**.
 | Control | What it does |
 | --- | --- |
 | **Continue with Google** / **Sign in with Microsoft** | Signs you in with that account. When these are offered, the page reads **Choose how you want to continue.** |
-| **Work email** | Your work address, with the note **Use the address where you want to receive cfo.ai workspace updates.** When only email sign-in is offered, the page reads **Enter your work email and we’ll send a six-digit code.** |
+| **Work email** | Your work address, with the note **Use the address where you want to receive cfo.ai workspace updates.** When only email sign-in is offered, the page reads **Enter your work email and we’ll send a six-digit code.** A new account needs an address at your company's own domain; see [Work email required for new accounts](#work-email-required-for-new-accounts). |
 | **Send code** | Emails you a six-digit code and opens the code page. |
 
 A Google or Microsoft sign-in that fails shows **We couldn’t complete sign-in. Please try again.**
+
+### Work email required for new accounts
+
+A new account must use a work email address. An address at a free or disposable email provider, such as Gmail, Outlook, Yahoo, iCloud, or Proton Mail, is refused before a code is sent, and also when a Google or Microsoft sign-in or a pending invitation would create the account. The form is replaced by a page titled **Use your work email**, with **New accounts require a work email address.**, **Personal email providers, such as Gmail, Outlook, and Yahoo, are not supported for new accounts.**, and **Already have an account? You can still sign in with your existing email.** Select **Use a different email** to return to an empty **Work email** field. An account that already exists with a personal address keeps signing in with it. cfo.ai does not check that a custom domain belongs to a company.
 
 When **Send code** cannot send a code, the message shows under the email field:
 
@@ -111,21 +115,21 @@ The list under **Workspaces** is the workspace switcher; there is no other switc
 
 ## Triggers page
 
-**Manage triggers** in the account menu opens **Triggers**, marked **Preview**. It lists only your own Triggers. To set one up, see [Schedule a recurring report with a Trigger](/guides/schedule-a-trigger).
+**Manage triggers** in the account menu opens **Triggers**, marked **Preview**. It lists only your own Triggers. To set one up, see [Schedule a report or a reminder with a Trigger](/guides/schedule-a-trigger).
 
 | Control | What it does |
 | --- | --- |
 | **Write manually** | Opens **New trigger**. |
 | **Build with Ari** | Opens a chat that starts with **Help me create a trigger for recurring work. Ask what I want Ari to do and when it should run, then set it up.** |
-| A row in **Your triggers** | The Trigger's name, its schedule or **Paused**, and what happened last. |
+| A row in **Your triggers** | The Trigger's name, its schedule, and what happened last. A Trigger that runs once shows **Once on [date and time]**. A paused Trigger reads **Paused**, **Paused with an error** when cfo.ai paused it after repeated failed runs, or **Schedule finished** when it is a one-time Trigger whose run was queued. |
 | **Run now** | Starts one run right away, even when the Trigger is paused. The schedule does not change. |
 | **Edit trigger** (pencil) | Opens **Edit trigger**. |
 | **Delete trigger** (trash can) | Opens **Delete [name]?**: **This trigger will stop running on its schedule. Runs already started will continue.** |
-| **Schedule** / **Time zone** / **Next scheduled** | The schedule, the time zone it runs in, and the next run, or **Nothing upcoming**. A schedule with its own time zone is described on that clock, such as **Daily at 2:15 PM**, with the note **Runs on [time zone] time. Next scheduled and history are shown in your timezone.** A schedule that runs in UTC is described in your time zone, with **Schedule and history are shown in your timezone.** |
+| **Schedule** / **Time zone** / **Next scheduled** | The schedule, the time zone it runs in, and the next run, or **Nothing upcoming**, which a finished one-time Trigger always shows. A one-time Trigger shows no **Time zone** row; its date and time are written in your time zone. A schedule with its own time zone is described on that clock, such as **Daily at 2:15 PM**, with the note **Runs on [time zone] time. Next scheduled and history are shown in your timezone.** A schedule that runs in UTC is described in your time zone, with **Schedule and history are shown in your timezone.** |
 | **Instructions** | The saved instructions, with **Show full instructions** and **Show less**. |
 | **History** | **Open a run to see its conversation.** Every run, newest first, with its start time, its status, and, for a run that did not complete, its reason. **Show earlier** loads older runs. With none: **No history yet. Ari’s scheduled work will appear here.** |
 
-With no Triggers, the page reads **Put recurring work on a schedule** and **Build a trigger with Ari or write the instructions and schedule manually.**
+With no Triggers, the page reads **Put work on a schedule** and **Build a trigger with Ari or write the instructions and schedule manually.**
 
 ### Run statuses
 
@@ -134,7 +138,7 @@ With no Triggers, the page reads **Put recurring work on a schedule** and **Buil
 | **Pending** | Queued and waiting to start. |
 | **Running** | Ari is working on it. |
 | **Finished** | The run reported the saved task done. |
-| **Did not complete** | The run reported it could not do the task; its reason shows below. |
+| **Did not complete** | The run reported that it could not do the task, or that it delivered a result with a requested part missing, such as a source it could not read; its reason shows below. |
 | **Ended without a report** | The run ended without reporting done or not done. |
 | **Failed** | The run stopped with an error. |
 | **Interrupted** | The run stopped, and nothing is working on it. |
@@ -144,30 +148,35 @@ A row in **Your triggers** shows the latest run's status, or one of these labels
 
 | Status | Meaning |
 | --- | --- |
-| **Failed to start** | The last scheduled attempt could not start a run. |
+| **Failed to start** | The last scheduled attempt could not start a run, and the Trigger is still on. |
+| **Paused with an error** | cfo.ai paused the Trigger, and the reason is in its details. |
 | **Skipped: Ari was still busy** | The last scheduled attempt came while an earlier run of the Trigger was still going or waiting, so no run started. |
 | **Started** | The last scheduled attempt started a run. |
 | **No history yet** | The Trigger has not run. |
 
-When the last scheduled attempt did not start a run, the Trigger's details explain why:
+When the last scheduled attempt did not start a run, or cfo.ai paused the Trigger, the Trigger's details explain why. The heading is **The last scheduled attempt could not start** while the Trigger is on, and **This trigger is paused** once it is off:
 
 | Message | Meaning |
 | --- | --- |
-| **The last scheduled attempt could not start**, with the error, or **Open a recent conversation or ask Ari to help check this trigger.** | An error kept the run from starting. |
-| **The last scheduled attempt could not start**, with **The [connection name] connection these instructions name was deleted, so this schedule was paused.** | Someone removed a connection that the Trigger's instructions name, so cfo.ai paused the Trigger. See [Schedule a Trigger](/guides/schedule-a-trigger). |
+| The heading, with the error, or **Open a recent conversation or ask Ari to help check this trigger.** | An error kept the run from starting. |
+| **This trigger is paused**, with **The [connection name] connection these instructions name was deleted, so this schedule was paused.** | Someone removed a connection that the Trigger's instructions name, so cfo.ai paused the Trigger. See [Schedule a Trigger](/guides/schedule-a-trigger). |
+| **This trigger is paused**, with **These instructions name the connection "[Name#id]", which was removed from this workspace on [date], so this trigger was paused.** | A run was refused at a connection that had already been removed, so cfo.ai paused the Trigger on that run. See [Schedule a Trigger](/guides/schedule-a-trigger#if-something-goes-wrong). |
+| **This trigger is paused**, with **This trigger was paused after 3 consecutive runs failed or ended without a completion report, with no notice delivered to you.** | Three runs in a row ended without finishing the task and none of them reached you with a message, so cfo.ai paused the Trigger. When billing stopped the newest run, the sentence continues **The most recent run was stopped by billing.** and the cause, such as **The workspace had no AI usage remaining.** or **The workspace had reached its monthly AI spend limit.** The same sentence is posted in your most recent chat as **Trigger "[name]": …**. See [Schedule a Trigger](/guides/schedule-a-trigger#if-something-goes-wrong). |
+| **This trigger is paused**, with **One-time schedule paused after 24 hours without queueing a run. Resume it or set a new future date and enable it.** | A one-time Trigger could not start for 24 hours after its date and time. Set a new date and time in **Edit trigger**. |
 | **The last scheduled attempt was skipped**, with **The run that started [time] was still going. No run has started since then.**, **The run queued [time] was still waiting to start. No run has been queued since then.**, or **Ari was still working on the previous task.** | An earlier run of the Trigger was still going or waiting, so no new run started. |
 
 ### New trigger and Edit trigger
 
 The form has **Name** (placeholder **Weekday cash brief**), **Instructions**, and **Schedule**. **Repeat** offers:
 
+- **Once**: **On date** and **At time**, for a Trigger that runs one time. The line under the schedule reads **Once on [date and time]**.
 - **Every few minutes**: 1, 2, 3, 5, 10, 15, 20, or 30.
 - **Hourly**: every 1, 2, 3, 4, 6, 8, or 12 hours, **At minute**.
 - **Daily**, **Weekdays**, or **Weekly** (**On these days**).
 - **Monthly**: **Day of month**, including **Last day**.
 - **Advanced schedule**: **Edit advanced rule**, **Schedule expression ([time zone])**, a five-field cron expression read on that clock.
 
-The note under the schedule reads **Times in [time zone].**: your browser's time zone for a new Trigger or one that runs in UTC, and the Trigger's own time zone otherwise. Saving the schedule saves it with that time zone. A monthly day after the 28th adds **Months without this day are skipped. Choose Last day to run every month.** **Edit trigger** also has an **Enable trigger** switch (**Enabled** or **Disabled**). The buttons are **Create trigger** or **Save changes**, and **Cancel**.
+The note under the schedule reads **Times in [time zone].**: your browser's time zone for a new Trigger or one that runs in UTC, and the Trigger's own time zone otherwise. Saving the schedule saves it with that time zone. A monthly day after the 28th adds **Months without this day are skipped. Choose Last day to run every month.** **Edit trigger** also has an **Enable trigger** switch (**Enabled** or **Disabled**); changing a finished one-time Trigger's date or time turns it back on. The buttons are **Create trigger** or **Save changes**, and **Cancel**.
 
 ### Trigger messages
 
@@ -175,6 +184,8 @@ The note under the schedule reads **Times in [time zone].**: your browser's time
 | --- | --- |
 | **Add a name, instructions, and schedule.** | A field is empty. |
 | **Use up to 200 characters for the name and 10,000 for instructions.** | A field is too long. |
+| **Choose a date and time in the future.** | A one-time Trigger's date and time have already passed. |
+| **Choose a valid date and time in this time zone.** | A one-time Trigger's time does not exist on that day in its time zone, such as a time the spring daylight saving change skips. |
 | **This trigger already has a queued or active run. Open its latest conversation.** | You selected **Run now** while a run is going. |
 | **This trigger is no longer available.** / **This trigger is no longer available. Close this dialog and refresh the list.** | The Trigger was deleted. |
 | **Could not save the trigger. Please try again.** / **Could not start the trigger. Please try again.** | The change or the run failed. |
@@ -301,7 +312,7 @@ The bar above a Page, from left to right:
 | Page name | Opens **Pages**, the list of Pages in this Scenario, with **New page** and a **Search pages** button that shows a **Find a page…** field. |
 | **Merge** | Shown when a chat is open beside a Page in a Scenario other than Main. See [Merge a Scenario into Main](/guides/merge-a-scenario). |
 | **Building…** | Ari is building this Page. |
-| **Download spreadsheet** | The download icon. Starts an export of the Page's tables, or opens your **Recent exports** of the Page. On a Page with no Table block it only lists past exports. See [Download spreadsheet](#download-spreadsheet). |
+| **Download spreadsheet** | The download icon. Starts an export of the Page's tables and Canvas data, or opens your **Recent exports** of the Page. On a Page with no Table block and no Canvas block with data it only lists past exports. See [Download spreadsheet](#download-spreadsheet). |
 | **Share** | Opens the [Share panel](#share-panel). Shown to people who can share the Page. A link icon on the button means an external link to the Page is on. |
 | **Version history** | The clock icon. Opens the version history panel. See [Scenario and version history controls](/reference/scenarios-and-history). |
 | **New chat** | On a full-screen Page with no chat open. Opens a floating chat over the Page. |
@@ -364,18 +375,18 @@ Saving is continuous and shows nothing while it works. A line above the document
 
 ## Download spreadsheet
 
-**Download spreadsheet**, the download icon in the Page header, exports the Page's tables as an Excel workbook. Its tooltip reads **Download tables as a spreadsheet**. cfo.ai has no button that downloads a Page as a PDF or a CSV; ask Ari for one. For what the workbook contains, see [Export a Page to Excel](/guides/download-a-spreadsheet); for a PDF, see [Get a PDF report or slide deck](/guides/get-a-pdf-or-slides).
+**Download spreadsheet**, the download icon in the Page header, exports the Page's tables, and the data its Canvas blocks draw, as an Excel workbook. Its tooltip reads **Download tables and Canvas data as a spreadsheet**. cfo.ai has no button that downloads a Page as a PDF or a CSV; ask Ari for one. For what the workbook contains, see [Export a Page to Excel](/guides/download-a-spreadsheet); for a PDF, see [Get a PDF report or slide deck](/guides/get-a-pdf-or-slides).
 
-When the button is busy with an export, one this tab asked for or one it picked up when the Page opened, selecting it shows the notice below and opens no menu. When it is not busy, selecting it looks up your own exports of this Page in this Scenario. If the Page has a Table block and no export of it was asked for in the last 24 hours or is queued or running, the export starts at once. In every other case the button opens a menu titled **Recent exports**, with **Exports from the last 24 hours for this page and scenario.** It shows on a Page with no Table block too, where it can only list past exports:
+When the button is busy with an export, one this tab asked for or one it picked up when the Page opened, selecting it shows the notice below and opens no menu. When it is not busy, selecting it looks up your own exports of this Page in this Scenario. If the Page has a Table block or a Canvas block with data, and no export of it was asked for in the last 24 hours or is queued or running, the export starts at once. In every other case the button opens a menu titled **Recent exports**, with **Exports from the last 24 hours for this page and scenario.** It shows on a Page with neither too, where it can only list past exports:
 
 | Control or message | Meaning |
 | --- | --- |
-| **Start new export** | Starts a fresh export. Shown only on a Page that has a Table block; unavailable while your export of this Page runs. |
+| **Start new export** | Starts a fresh export. Shown only on a Page that has a Table block or a Canvas block with data; unavailable while your export of this Page runs. |
 | An export's row | Its status, **Queued**, **Preparing**, **Ready**, **Failed**, **Cancelled**, or **Unavailable**, and the date and time you asked. A failed export shows its reason. An export whose workbook holds values instead of some formulas adds **[n] cells hold values instead of formulas. See Export notes.** |
 | **Download** | On a **Ready** row. Saves that export's file and shows **Spreadsheet download started**. |
 | **Loading exports…** | The list is being read. |
-| **No exports from the last 24 hours.** | Nothing to list on a Page with a Table block. |
-| **No recent exports. This page has no tables to export.** | Nothing to list, and the Page has no Table block, so no export can start. |
+| **No exports from the last 24 hours.** | Nothing to list on a Page with a Table block or a Canvas block with data. |
+| **No recent exports. This page has no tables or Canvas data to export.** | Nothing to list, and the Page has no Table block and no Canvas block with data, so no export can start. |
 | **Could not load exports.**, with **Try again** | The list could not be read. Nothing was started. |
 
 The menu lists up to 10 exports: each you asked for in the last 24 hours, and any still queued or running. Exports other people asked for are not listed. While the menu is open, a queued or running export's status refreshes on its own.
@@ -416,12 +427,13 @@ A failed export's reason has up to three parts:
 - The cause, such as a formula whose input has no cell in the workbook, a formula that could not be written for Excel, **The export reached its time limit**, a Dimension whose list of items was larger than the export could read, or a table calculation that reached a limit: **A calculation in table "[table]" in scenario "[Scenario]" reached its 180-second time limit and was stopped before it finished.** or **A calculation in table "[table]" in scenario "[Scenario]" reached the [n] MiB memory limit of one calculation worker and was stopped before it finished.**
 - When it is known, whether to try again: **The failure is temporary: a new export of the same pages can succeed.** or **A new export fails the same way while the saved model is unchanged.** A calculation that reached its time limit is not tried again, because the next export reaches the same limit; narrow the table, or ask Ari why it is large.
 
-Two reasons stand alone:
+These reasons stand alone:
 
 | Message | Meaning |
 | --- | --- |
-| **Add a table to this page before downloading a spreadsheet.** | The Page's last table was removed during the download. |
+| **Add a table or a Canvas block with data to this page before downloading a spreadsheet.** | The Page's last table or Canvas dataset was removed during the download. |
 | **The export was cancelled before it produced a workbook.** | The export was cancelled. |
+| **Table "[name]" requires at least [n] rows and [m] columns; Excel worksheet limits are 1048576 rows and 16384 columns.** | The table's saved layout does not fit one Excel worksheet. The export is refused at once, before anything is calculated, and a new export fails the same way while the table is unchanged. Ari's export reports the same limit as **The saved layout in table "[name]" requires …**. |
 
 An export that ran out of time or met an input too large to read can still succeed with part of the selection; see [When an export runs out of time](/guides/download-a-spreadsheet#when-an-export-runs-out-of-time). The workbook's **Export notes** sheet then says so:
 
@@ -432,6 +444,7 @@ An export that ran out of time or met an input too large to read can still succe
 | **Its formula has no spreadsheet equivalent yet.** | The reason for a formula that cannot be written for Excel. |
 | **It reads [Variable]**, then **for [items]** or **at [period]** when known, **, which this workbook does not contain.** | The reason for a cell that reads a value the workbook has no cell for, including an input calculation did not reach in time. |
 | **It reads [Variable] across several dimension items or dates, and this workbook may hold only some of those cells.** | The reason for a total or other read across items or dates of a Variable whose input was too large to read, or was cut short when time ran out. The value is kept so the workbook never adds up part of the data. |
+| **It reads [Variable] as text or dates across several periods or dimension items; an implicit sum cannot preserve those values.** | The reason for a cell that reads text or dates, such as a cost center or an end date, from several cells. An Excel sum cannot combine text or dates, so the value is kept. A text or date read that matches one cell stays a reference. |
 
 For time and size limits, see [Limits and file types](/reference/limits#tables-pages-sharing-and-exports).
 
@@ -558,7 +571,7 @@ New charts are Canvas blocks; the block list has no chart option. A chart block 
 
 ## When a new version of cfo.ai is available
 
-An open tab picks up a new version of cfo.ai on its own, either when you move to another page or when you return to the tab after it was hidden for at least five minutes. It reloads about half a second later, and only when nothing of yours would be lost: no save is in flight, no download you asked for is pending, the Ari message box is empty, the field you are typing in holds no text, and you have not pressed a key or clicked since you came back. Otherwise it waits for the next move or return. A reload resets scroll position and open panels.
+An open tab picks up a new version of cfo.ai on its own, either when you move to another page or when you return to the tab after it was hidden for at least five minutes; time the computer spends asleep counts. It reloads about half a second later, and only when nothing of yours would be lost: no save is in flight, no download you asked for is pending, the Ari message box holds no text and no file, the field you are typing in holds no text, no dialog such as Settings is open, and you have not pressed a key or clicked since you came back. Otherwise it waits for the next move or return. A reload resets scroll position and open panels.
 
 ## Phones and tablets
 

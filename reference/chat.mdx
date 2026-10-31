@@ -43,6 +43,8 @@ A new chat shows the heading **How can I help you?** and the placeholder **Ask a
 
 The message box shows Markdown formatting as you type and keeps it when you send. Typing `1. ` or `* ` at the start of a line starts a numbered or bulleted list, `**bold**`, `_italic_`, and `` `code` `` show as formatted text, and headings, quotes, and dividers work the same way. A sent message keeps its formatting when you open it again. **Shift Enter** starts a new paragraph, continues a list, or leaves a list from an empty item; inside code it inserts a line break. **⌘ Enter** inserts a line break. Underlining is not kept, because Markdown has no underline.
 
+A pasted link to a cfo.ai template, either its share link or its template page, becomes a chip such as **[title] · workspace template**, and Ari reads the template and builds from it when you send. A link that cannot become a chip stays as text, with one line under the message box: **The person who shared this template turned its link off.**, **This template’s link needs a password. Open the link to enter it.**, **This link doesn’t open a template.**, **You can’t open this template. Ask the person who shared it for its link.**, or **Couldn’t open the template link. Try pasting it again.**
+
 ### Why Send is unavailable
 
 When **Send** cannot be used, its tooltip says why.
@@ -63,8 +65,10 @@ When **Send** cannot be used, its tooltip says why.
 | **[file] is too large to attach, so Ari did not receive it. Documents must be 500MB or smaller.** | A file that is not an image is over the size limit and was not attached. |
 | **A message holds up to 50 files, so [n] files were not attached: [names]. Attach them to another message.** | You picked more files than one message holds. The first 50, in the order you picked them, were attached; the notice names up to three of the rest and has a dismiss button. |
 | **Uploading files… [n] of [m] done** | Shown under the file tiles while several files upload. A file over 30 MB uploads in pieces and shows how much has uploaded; if your connection drops, the upload picks up where it stopped. |
-| **Attachment upload failed** | A notice with the file's name and the reason. The file's tile turns red. |
-| **cfo.ai did not confirm this upload. Check your connection and attach it again. If only this file keeps failing, a security filter may be blocking its contents. Contact support@cfo.ai.** | The upload never finished, for example after a dropped connection. A request that got no answer is sent once more after one second before this shows. Attaching the same file again replaces the failed tile. |
+| **Attachment upload failed** | The title of the notice shown for every failed upload, with the file's name and one of the reasons below. The file's tile turns red. |
+| **cfo.ai could not confirm this upload. Removing the file and attaching it again starts a new upload.** | The upload never finished, for example after a dropped connection. A file over 30 MB uploads in 16 MB pieces straight to storage; after a reply the browser cannot read, cfo.ai asks storage how much arrived and continues from there, and once the whole file has arrived it records the attachment even when that last reply was unreadable. Six requests in a row without confirmed progress, waited out over 1, 2, 4, 8, and 16 seconds, end the upload. Attaching the same file again replaces the failed tile. |
+| **Failed to upload attachment — please retry** | The reason when cfo.ai or storage answered with an error, as opposed to no readable answer. Attach the file again. |
+| **The file changed on disk and can no longer be read. Remove it and attach the file again.** | The file was changed or moved while it uploaded. |
 | **Wait for attachments to finish uploading before sending.** | You tried to send while a file was uploading. |
 
 ## While Ari works
@@ -257,6 +261,10 @@ Ari's saved memory lives in an outside service. When that service cannot answer,
 | **The memory service answered with a server error.** | A fault in the service. Asking again can succeed. |
 | **The memory service is unavailable because its provider refused the request over a billing limit on cfo.ai's provider account. The cause is on cfo.ai's side, not in this request or this workspace, and when the service returns is not known.** | A billing limit on cfo.ai's side. Waiting does not help until cfo.ai funds the account. |
 
+### Reports of finished background work
+
+Work that Ari runs in the background from a chat, such as an overnight update from a connected Google Sheet or several Pages built at once, reports back to that chat when it finishes, stops, or cannot finish. Ari usually answers in its own words. When Ari has nothing to add, the chat shows the work's own report as Ari's reply instead of staying silent. It starts **Background work** and says whether the work finished, could not finish, or was stopped, and whether its review passed it, then names the work in quotation marks, then gives one line for each step with what it reported and what the work left in your Model. The report can name items by their short references, such as `#7a1`. It sends no email or Slack message.
+
 ### Download a file Ari made
 
 A file Ari makes for you, such as a workbook, an image, or a document, appears as a card with its name and size directly under the answer that ends the turn. PNG, JPEG, GIF, and WebP images show a preview. When the answer names the file by its exact file name, with the same letter case and extension and outside a code block, that name is a link to the same download.
@@ -302,7 +310,7 @@ A **Reply** button appears above words you select in one of Ari's finished answe
 | **Conversation interrupted - tell Ari what to do differently.** | You stopped Ari, or the reply was interrupted. | Say what you want next. Changes saved before the interruption stay. |
 | **Couldn't stop Ari. Please try again.** | The stop did not reach Ari, so it is still working. | Select **Stop** again. |
 | **Ari stopped before finishing.** with **Retry** | The reply was cut off. | Select **Retry** to have Ari pick the work back up. |
-| **I stopped before finishing this reply. It was interrupted, and repeated attempts to continue it did not finish. Changes I saved before the interruption are kept. Sending the message again starts a new reply.** | cfo.ai tried on its own to continue an interrupted reply, for example after a restart, and could not. | Send the request again. |
+| **I stopped before finishing this reply. It was interrupted, and repeated attempts to continue it did not finish. Changes I saved before the interruption are kept. Sending the message again starts a new reply.** | cfo.ai tried on its own to continue a reply that a fault inside cfo.ai cut off, for example a restart, and could not. A reply you ended with **Stop** is not continued on its own. | Send the request again. |
 | **No internet connection. Reconnect to continue with Ari.** | Your browser is offline. Ari keeps working on the server. | Reconnect. The chat catches up. |
 | **Connection lost. Reconnect to continue with Ari.** | The chat lost its connection to cfo.ai. | Reconnect, then select **Retry** if it is offered. |
 | **Ari is temporarily unavailable. Please try again in a moment.** | The service that runs Ari answered with an error. When that service cannot be reached at all for a moment, such as during a restart, the chat shows no message: it keeps following the running turn and shows the reply when the service is back. | Try again in a moment. |
@@ -410,6 +418,8 @@ Ari chats in Slack direct messages, and in private channels an administrator add
 | A stop message, such as one that starts **I had to stop here** | Ari ended the turn with its own words about why, and they post in the thread in place of a reply. They are the messages in [Billing stops](#billing-stops-out-of-ai-usage-or-over-a-limit) and, from [When a reply stops early or shows an error](#when-a-reply-stops-early-or-shows-an-error), **This request is too large for Ari to continue. …**, **Ari is having trouble reaching the model provider. …**, **Ari hit a temporary connection problem and could not recover. …**, **Ari's turn ended: it waited [time] for [n] actions to finish …**, and **Ari hit an unexpected error. Please try again.** The same message is in the conversation in cfo.ai. |
 | **Something went wrong on my end and I couldn't finish that. Please try again.** | Ari's turn failed for another reason. |
 
+When an administrator removes Ari from a channel, the channel's conversations stay in cfo.ai as chats of the administrator who set Ari up there, and Ari forgets which chat each thread belonged to. If an administrator adds Ari to the channel again, a reply in an earlier thread starts a new conversation rather than continuing the old one.
+
 Slack shows the text, bold, and links of Ari's replies, and prints tables and headings as the characters typed. Question forms, approval cards, plan cards, download cards, and Guides do not appear in Slack; open the chat in cfo.ai to see them. A link to a Page or block opens it in your browser, under your own access.
 
 ## The Welcome chat and the starting card
@@ -427,7 +437,7 @@ When you verify your email, cfo.ai starts a public web search for the email addr
 | **found by searching your email domain** | The page came up in the search for your company. |
 | **matches your name only** | The page shares only your name. |
 
-When cfo.ai could not research a company for your email, for example a personal address such as a Gmail address, a page that matches only your name is left out. The brief is researched for the person who created the workspace; a teammate who joins later gets a greeting and the starting card without a brief. To correct what the research found, see [Teach Ari your company's conventions](/guides/teach-ari#correct-what-ari-found-about-your-company).
+When your account's email address is personal, such as a Gmail address on an account created before new accounts needed a work email, cfo.ai cannot research a company from it, and a page that matches only your name is left out. The brief is researched for the person who created the workspace; a teammate who joins later gets a greeting and the starting card without a brief. To correct what the research found, see [Teach Ari your company's conventions](/guides/teach-ari#correct-what-ari-found-about-your-company).
 
 ### Starting card
 

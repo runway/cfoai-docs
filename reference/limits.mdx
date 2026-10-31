@@ -14,8 +14,9 @@ This page lists every size, count, and time limit in cfo.ai, grouped by part of 
 | Size of one image file | 10 MB |
 | Size of one other file, such as a PDF, Excel workbook, ZIP, CSV, or text file | 500 MB |
 | Quoted excerpts in one message | 5, each up to 2,000 characters |
+| Size of a picture shown to Ari | 3.75 million pixels. A larger image is scaled down before Ari sees it, and Ari can reopen a part of an image enlarged up to 4 times, within the same ceiling, to read small text. An image of more than 25 million pixels cannot be opened as a picture at all, whole or in part. |
 | Images and PDFs Ari looks at directly in one turn | 21 MB in all. Ari opens every attached file in its private workspace; an image or PDF it opens is also shown to it as a picture until the turn's 21 MB is used, and after that it reads the file in the workspace. When one request would carry more than 20 images and PDFs, an image wider or taller than 2,000 pixels is not shown; Ari reads it in the workspace instead. |
-| Size of a CSV attached in a chat that can become a data source | 50 MB; a larger CSV is a chat file only |
+| Size of a CSV attached in a chat that can become a data source | 500 MB, the same as any other file; every CSV you can attach can become a data source |
 | Recipients of one email Ari drafts | 10 |
 | Size of a page of conventions you ask Ari to remember | 32 KiB of text, saved as up to 12 separate facts at a time |
 | Files Ari delivers at once | 10, each up to 50 MB, and 250 MB in all |
@@ -28,9 +29,9 @@ See [Attach files to a chat](/guides/attach-files) and [Chat controls and messag
 
 | Limit | Value |
 | --- | --- |
-| Size of a CSV uploaded as a data source | 50 MB, in a `.csv` file |
+| Size of a CSV uploaded as a data source | 500 MB, in a `.csv` file, with up to 16 MiB in one row |
 | Size of a connected Google Sheet | 50 MB, read as an Excel workbook |
-| Size of an Excel or CSV file read from Google Drive | 10 MB |
+| Size of an Excel or CSV file read from Google Drive | 500 MB |
 | Tables one connection syncs | 100, for sources with a table picker |
 | Time cfo.ai waits for a provider's own first sync, or for a later sync the provider is still running after 45 minutes | 20 hours, checking every 10 minutes; the data from the last sync cfo.ai loaded stays as it is meanwhile |
 | Time to plan a saved query | 40 seconds |
@@ -41,7 +42,7 @@ See [Attach files to a chat](/guides/attach-files) and [Chat controls and messag
 | Start of the nightly refresh of connected sources | 02:00 UTC |
 | OpenAPI specification for an API connection | An `https` address that answers within 20 seconds, with a document of 12 MiB or less |
 | Time one run of a sync setup for an MCP server or API can take | 10 minutes |
-| Results one run of a sync setup can save | 10,000 pages of up to 16 MiB each for a replace or snapshot sync without a changes-since filter; 100 pages, 20,000 records, and 16 MiB in all for any other sync |
+| Results one run of a sync setup can save | 10,000 pages for every sync, each page one source response of up to 1 MiB from an API or 2 MiB from an MCP server. A replace or snapshot sync without a changes-since filter saves page by page; an upsert, append, or changes-since sync holds its whole result, up to 16 MiB in all. A run stops after 10 minutes |
 | Size of one page an MCP server returns to a sync setup | 2 MiB |
 | One tool call in a sync page from an MCP server | 45 seconds; connecting, listing the server's tools, and the call each get 45 seconds. A time limit named in the tool's own description is the server's own; cfo.ai's limit applies either way |
 
@@ -65,6 +66,9 @@ See [How imported data loads](/reference/imported-data) and [Integrations direct
 | Time one table calculation can run | 180 seconds; a calculation that reaches it is stopped, and retrying runs into the same limit. A calculation that outlasts one browser request keeps running, and the table, Canvas block, or chart keeps its loading state until the result arrives |
 | Time Ari waits for one calculation of its own | 239 seconds, for a table, Page, Canvas, mapping, or validation read, so a 180-second calculation reaches Ari in the same call; Ari's other tools wait 60 seconds |
 | Length of a formula in an exported workbook | 8,192 characters, Excel's limit; a longer formula is exported as its value |
+| Size of one exported worksheet | Excel's 1,048,576 rows and 16,384 columns. A saved table that needs more is refused before anything is calculated, and a sheet may hold more than a million data cells when it fits |
+| Size of an exported workbook | 256 MiB of sheet content before compression, and 128 MiB as the `.xlsx` file; the supporting formula rows and the **Export notes** sheet each have their own allowance of 1,000,000 cells |
+| Cells one export calculates | 3,000,000 across the workbook, in up to 512 calculation requests. An optional input past the budget is left out, and the cells that read it keep their calculated values; a Page's own table past it fails the export |
 | Blocks whose view settings one browser remembers, such as a table's height, open panes, and expanded rows | 200 per browser, across workspaces; past that, the block whose settings were saved longest ago forgets them first |
 
 See [Export a Page to Excel](/guides/download-a-spreadsheet), [Share a Page outside your workspace](/guides/share-a-page), and [Table block controls and messages](/reference/table-blocks).
@@ -80,11 +84,13 @@ See [Export a Page to Excel](/guides/download-a-spreadsheet), [Share a Page outs
 | Length of a Trigger's name | 200 characters |
 | Length of a Trigger's instructions | 10,000 characters |
 | Precision of a Trigger's schedule | 1 minute, on the clock of the Trigger's time zone. A local time the spring change skips runs at the first minute after the gap, and a local time the autumn change repeats runs once. A Trigger saved without a time zone runs in UTC. |
+| Time a one-time Trigger keeps trying to start after its date and time | 24 hours, with attempts from once a minute to once an hour; then it pauses |
+| Runs in a row that end without finishing the task and without a message to you before a Trigger pauses itself | 3 |
 | Time a download link in a scheduled run's message works | 24 hours |
 | Saved Guides in one workspace | 200 |
 | Length of a Guide's name | 64 characters: lowercase letters, digits, and hyphens |
 
-See [Save a workflow as a Skill](/guides/save-a-skill), [Schedule a recurring report with a Trigger](/guides/schedule-a-trigger), and [Walk someone through a Page with a Guide](/guides/create-a-guide).
+See [Save a workflow as a Skill](/guides/save-a-skill), [Schedule a report or a reminder with a Trigger](/guides/schedule-a-trigger), and [Walk someone through a Page with a Guide](/guides/create-a-guide).
 
 ## AI tools connected to cfo.ai
 
@@ -101,6 +107,7 @@ See [Connect Claude, ChatGPT, Codex, or another AI tool to cfo.ai](/guides/conne
 
 | Limit | Value |
 | --- | --- |
+| Email address for a new account | Not at a free or disposable email provider. An address at a provider such as Gmail, Outlook, or Yahoo is refused for a new account and keeps working for an account that already has it; any other domain is accepted, and cfo.ai does not check that the domain belongs to your company; see [Work email required for new accounts](/reference/interface#work-email-required-for-new-accounts) |
 | Length of the free trial | 14 days, once per workspace |
 | Amount of one extra AI usage purchase or one auto-reload | \$5 to \$10,000 |
 | Length of a welcome note in an invitation | 600 characters, with up to 3 questions of 200 characters each |

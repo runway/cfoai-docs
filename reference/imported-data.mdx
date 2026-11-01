@@ -55,7 +55,7 @@ Each column a saved query returns becomes a Variable or a Dimension when it firs
 | Text with more than 10,000 different values, such as record IDs or sync timestamps | A Variable that keeps the latest value. The values stay readable, but a table cannot break down by the column. To group by it anyway, ask Ari to load it as a Dimension. |
 | Fivetran's sync bookkeeping columns, such as `_fivetran_synced` or **Source Synced At** | A Variable, even when the column holds dates |
 | Dates | Dates, however many different values, so the time axis stays available |
-| Text from a database query (`TEXT`, `VARCHAR`, `STRING`, or `CHAR`) | A text Dimension, whatever its name and even when every value looks like a number. A cast in the saved query, such as `to_varchar(stage_order)`, decides the role before the first load. Text whose values are all dates still loads as dates. |
+| Text from a database query (`TEXT`, `VARCHAR`, `STRING`, or `CHAR`) | A text Dimension, whatever its name and even when every value looks like a number, unless the column has more than 10,000 different values. A cast in the saved query, such as `to_varchar(stage_order)`, decides the role before the first load. Text whose values are all dates still loads as dates. |
 
 A name marks an identifier when its last word is "id", including a camel-case ending such as `dealId`, or when it ends in "account number" or "account code". `Customer ID`, `deal_id`, `P&L Account Number`, and `SalesDefaultAccountCode` load as Dimensions. `Amount Paid`, `Account Balance`, and `Number of Accounts` still add up.
 
@@ -68,6 +68,7 @@ When a column first loads, its Variable or Dimension gets a saved starting formu
 | Loads as | Starting formula |
 | --- | --- |
 | Variable | `sum` over the source column |
+| A Variable made from a text column with more than 10,000 different values, or from a Fivetran sync column | `last` over the source column, because text cannot be summed |
 | Dimension | `last` over the source column: the value with the latest date when the source has a date column. Without one, rows are ranked the same way in every calculation, but not by the source's row order; see [last](/reference/functions#last) |
 | A roster field from an HR source, such as pay rate | Each employee's latest value in each period. A period with no value carries the previous one forward, and an explicit zero replaces it. Department and company totals add each employee's latest value once. |
 
@@ -108,7 +109,7 @@ A Variable or Dimension shows its integration's logo on table row and column lab
 
 | Source | When it refreshes |
 | --- | --- |
-| Integrations | Once a day, in a shared nightly run that starts at 02:00 UTC (7 PM Pacific the evening before during daylight saving time, 6 PM in winter). The run reruns each connection's saved queries after its data arrives. |
+| Integrations | Once a day, in a shared nightly run that starts at 02:00 UTC (7 PM Pacific the evening before during daylight saving time, 6 PM in winter); each workspace's connections start at the workspace's own fixed point within the following hour. The run reruns each connection's saved queries after its data arrives. |
 | A connection with its own refresh time | Once a day at that time of day, in its time zone, keeping that clock time across daylight saving changes. A new time applies from the next nightly run. |
 | Google Sheets and Google Drive | Nightly and when you ask Ari. An unchanged file starts no update. |
 | CSV uploads | Never |

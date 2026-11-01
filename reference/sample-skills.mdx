@@ -217,8 +217,9 @@ Build an interactive forecast tool whose scenario ties exactly to the model base
   - `layout.rows` become series; `layout.columns` (Date) become plotted points.
 
   ## Component contract
-  - `Block({ data, state, emit })`. React and its hooks are lexical bindings — no imports,
-    no `window.React`.
+  - `Block({ data, state, emit })`; the full signature also passes `timeSettings`, `theme`,
+    and `action`. `React` is a lexical binding: call hooks through it, as `React.useState(...)`.
+    Bare `useState(...)`, imports, and `window.React` are rejected.
   - `Slider` fires `onChange(v)` for a local draft and `onCommit(v)` for an accepted change.
     **Persist only on commit** via `emit({ type: "setState", patch: { key: v } })`.
   - Sliders must never write to the model. The scenario is a local preview.

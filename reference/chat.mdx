@@ -77,7 +77,7 @@ Ari keeps working on cfo.ai's servers until it finishes, even if you close the t
 
 | What you see | Where | Meaning |
 | --- | --- | --- |
-| **Thinking…** | Status line above the message box | Ari has your message and has not taken its first step yet. |
+| **Thinking…** | Status line above the message box | Ari has your message and has not taken its first step yet. The line and its clock appear the moment you send, before the server confirms it has the message. |
 | A short phrase and a meter | Status line | Ari is working. The phrase changes with what Ari is doing, such as reading results or writing its answer, and the meter counts the time and tokens used so far. |
 | **Ari hit a temporary connection issue. Retrying now.** | Status line | A connection inside cfo.ai failed for a moment. Ari retries on its own. |
 | **Ari hit a temporary model-provider issue. Retrying now.** | Status line | The AI model did not answer for a moment. Ari retries on its own. |
@@ -178,8 +178,12 @@ While Ari works through an approved plan, a plan card lists its steps with a cou
 | **Answer above to continue** | An assumption Ari marked as required has no answer yet. |
 | **Changes requested** | You selected **Make changes**. |
 | **Approved** | You selected **Build it**. |
-| **Paused** | Work on this plan has stopped with steps left. Either Ari stopped to ask you a question, so no turn is running in the chat and no background work is live, or a newer plan replaced this one and later turns work on that plan instead. The newest plan stays live while Ari works in the chat, including after a message of yours redirected it. |
+| **Next** | No turn is running in the chat and no background work is live, some steps are done or skipped, and the rest have not started. Ari continues them when you next write. |
+| **Not started** | No turn or background work is live, and no step has started. |
+| **Paused** | Work stopped in the middle of a step, for example because Ari stopped to ask you a question or was interrupted. |
 | **Blocked** | A step cannot go ahead. |
+
+A plan that a newer plan replaced keeps its count and shows no status; later turns work on the newest plan, which stays live while Ari works in the chat, including after a message of yours redirected it.
 
 ### Tool-call approval card
 
@@ -424,7 +428,7 @@ Slack shows the text, bold, and links of Ari's replies, and prints tables and he
 
 ## The Welcome chat and the starting card
 
-A new workspace opens on a chat named **Welcome**, with Ari's greeting and a starting card docked above the message box.
+A new workspace opens on a chat named **Welcome**, with Ari's greeting and a starting card docked above the message box. If you sign in again before you have opened that chat or written in it, and the link you used names no page or chat, cfo.ai opens the Welcome chat instead of an empty one.
 
 ### Company research and brief
 
@@ -445,7 +449,7 @@ The card asks one question, and your answer picks one follow-up. Answer and sele
 
 | Question | Options |
 | --- | --- |
-| **Where would you like to start?** | **My business** plans the company the research found or that you describe. **Something hypothetical** builds a small sample model to show what Ari can do. **Other…** takes a longer answer in your own words, with files. |
+| **Where would you like to start?** | **My business** plans the company the research found or that you describe. **Something hypothetical** builds a complete model of a sample business, with the same Pages, records, controls, Scenarios, and walkthrough as a model of your own business, and ends with two or three things to try next. **Other…** takes a longer answer in your own words, with files. |
 | **What should I work from?** (after **My business**) | **Connect my data** builds from your own records, such as an accounting system or a file. **Upload an existing model** adds the attach button so you can send your workbook. **I want to type or upload context** takes your own description, with files. The note reads **Dismiss this to start from estimates and what you tell me.** |
 | **Which business should I use?** (after **Something hypothetical**) | **A business like mine** builds a sample that resembles yours, labeled as a sample. **Another business, I'll choose** takes a name. A name everyone ties to one well-known company means that company; for any other name, Ari builds from what you say about it. |
 

@@ -51,13 +51,15 @@ Each column a saved query returns becomes a Variable or a Dimension when it firs
 | --- | --- |
 | Numbers | A Variable that adds up, unless its name marks it as an identifier |
 | Numbers with an identifier name | A text Dimension, so a leading zero in `00400` and every digit of a long ID stay as written |
-| Text | A Dimension |
-| Dates | Dates |
+| Text | A Dimension, unless the column has more than 10,000 different values |
+| Text with more than 10,000 different values, such as record IDs or sync timestamps | A Variable that keeps the latest value. The values stay readable, but a table cannot break down by the column. To group by it anyway, ask Ari to load it as a Dimension. |
+| Fivetran's sync bookkeeping columns, such as `_fivetran_synced` or **Source Synced At** | A Variable, even when the column holds dates |
+| Dates | Dates, however many different values, so the time axis stays available |
 | Text from a database query (`TEXT`, `VARCHAR`, `STRING`, or `CHAR`) | A text Dimension, whatever its name and even when every value looks like a number. A cast in the saved query, such as `to_varchar(stage_order)`, decides the role before the first load. Text whose values are all dates still loads as dates. |
 
 A name marks an identifier when its last word is "id", including a camel-case ending such as `dealId`, or when it ends in "account number" or "account code". `Customer ID`, `deal_id`, `P&L Account Number`, and `SalesDefaultAccountCode` load as Dimensions. `Amount Paid`, `Account Balance`, and `Number of Accounts` still add up.
 
-The first load fixes each column's role and stored type, and later loads keep them. To change a column's role, ask Ari, for example "Load Store Code as a Dimension instead." Ari switches it in place, so formulas, tables, and filters that use the column keep working. The stored type does not change, so a number column that becomes a Dimension has number items; to keep leading zeros, the query must return the column as text under a new name. A column that feeds a Dimension other queries also feed cannot switch roles for one query.
+The first load fixes each column's role and stored type, and later loads keep them, including a column that has since grown past 10,000 values. To change a column's role, ask Ari, for example "Load Store Code as a Dimension instead." Ari switches it in place, so formulas, tables, and filters that use the column keep working. The stored type does not change, so a number column that becomes a Dimension has number items; to keep leading zeros, the query must return the column as text under a new name. A column that feeds a Dimension other queries also feed cannot switch roles for one query.
 
 ## Starting formulas
 

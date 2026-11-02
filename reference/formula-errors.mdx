@@ -21,6 +21,8 @@ When a cell has no message of its own, it reads **Formula evaluation failed. The
 
 `#VALUE!` means a value has the wrong type, a function has the wrong number of arguments, or the formula text cannot be read. The message names the problem, for example **IF requires exactly 3 arguments**, **SUM requires between 1 and 10 arguments**, **DATE expects numeric values**, **DATEDIF expects date values**, **DAYSIN expects a date value**, or **Invalid string escape**. A formula with a syntax mistake shows the editor's message for it.
 
+**Dot lookup requires a dimension before the dot** means a Variable's name stands before a dot, as in `Revenue[Date.Month = "2026-01"].Date.Month`. The name before each dot must be a Dimension, such as `Account` in `Account.Bucket`; the last name may be a Variable. Read the Variable directly, or start the path from the Dimension. See [Lookups through a Dimension mapping](/reference/formula-syntax#lookups-through-a-dimension-mapping).
+
 ### #REF!
 
 `#REF!` means the formula names a Variable or Dimension that does not exist, for example one that was deleted or a name with a typo. The message begins with **Variable or dimension not found**, or reads **Unsupported reference** or **Expected a property reference**. Point the reference at a Variable that exists.

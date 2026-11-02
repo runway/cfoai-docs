@@ -38,7 +38,7 @@ To narrow a follow-up to a visible row, cell, or subtree, copy row and column re
 
 Only a new table can be checked without saving. `edit_table_blocks` `create` with `dry_run: true` validates the proposed table's structure, references, and formula syntax, runs the write in a transaction it rolls back, and returns `valid`, `warnings`, and `model_effects`. `update`, `reshape`, `copy`, `delete`, `set_time_rollup`, and `update_calendar` take no `dry_run`.
 
-- A dry run checks the write. It returns no values, because calculation does not run, so it does not create a calculated series to inspect.
+- A dry run checks the write. It returns no values, because calculation does not run, so it does not create a calculated series to inspect and does not detect circular references.
 - `update`, `reshape`, and `delete` take no dry run. Checking a change to an existing table means making the change, which needs the user's authorization. When the user wants to see a change before adopting it, make it in a Scenario other than Main.
 
 [Validate and verify formula writes](/agents/validate-and-verify#validate-before-you-save) has the details.

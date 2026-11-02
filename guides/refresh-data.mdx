@@ -29,7 +29,7 @@ Select the **Syncing** line above the message box, then **Stop**. The connection
 
 The nightly refresh does not always re-read your whole history. QuickBooks Online re-reads the last three months, so a correction to an older month reaches cfo.ai only when you re-import the full history. Xero re-reads its whole range every night. Sources that sync through Fivetran keep each table's full history.
 
-To re-import QuickBooks Online or Xero, ask Ari:
+A full-history refresh is available for QuickBooks Online, Xero, Plaid, Stripe (Direct), and Rillet. It re-reads the history, reruns the connection's saved queries into Main, and Ari tells you in the same chat when it has finished. Only QuickBooks Online and Xero take a starting year; Plaid, Stripe (Direct), and Rillet re-read their whole history. To re-import QuickBooks Online or Xero, ask Ari:
 
 > I corrected last year's books in QuickBooks. Re-import the full history.
 
@@ -41,11 +41,11 @@ The months a full-history import brings in stay through later refreshes. A full-
 
 ## Change when a connection refreshes
 
-All connections refresh in a shared nightly run that starts at 02:00 UTC, which is 7 PM Pacific the evening before during daylight saving time. If a source publishes the day's data after that, give the connection its own time:
+All connections refresh in a shared nightly run that starts at 02:00 UTC, which is 7 PM Pacific the evening before during daylight saving time. Each workspace's connections start at the workspace's own fixed point within the hour after that, so they may begin up to an hour later, at the same time every night; the saved queries run after the workspace's imports as before. If a source publishes the day's data after that, give the connection its own time:
 
 > Refresh QuickBooks at 6:30 AM Pacific every day.
 
-Ari saves the time and time zone on the connection. From the next nightly run, the connection refreshes once a day at that time and reruns its saved queries when the refresh finishes. A time you set this morning takes effect tomorrow. To return the connection to the shared run, ask Ari to clear its refresh time. Ari tells you each connection's refresh time when you ask about your connections.
+Ari saves the time and time zone on the connection. From the next nightly run, the connection refreshes once a day at that time, without the workspace's delay, and reruns its saved queries when the refresh finishes. A time you set this morning takes effect tomorrow. To return the connection to the shared run, ask Ari to clear its refresh time. Ari tells you each connection's refresh time when you ask about your connections.
 
 ## Sources that refresh differently
 

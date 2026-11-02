@@ -23,7 +23,7 @@ An MCP server or an API does not replace an integration. An integration syncs a 
 
     > Connect Mercury's MCP server so you can read our bank balances.
 
-    Ari reads the provider's official documentation and posts a card titled **Connect [service]**. The card shows the service's logo, its address, how it signs in, such as **Bearer token** or **API key as Basic username**, and a **Provider documentation** link. Select **Connect**. A service that uses OAuth opens its sign-in window; one that takes a token or key shows a secure field on the card. What you type there goes to cfo.ai's connection service, not to Ari or the chat. Never paste a key into a chat message.
+    Ari reads the provider's official documentation and posts a card titled **Connect [service]**. The card shows the service's logo, its address, how it signs in, such as **Bearer token** or **API key as Basic username**, and a **Provider documentation** link. Select **Connect**. A service that uses OAuth opens its sign-in window; one that takes a token or key shows a secure field on the card. A service that needs more than one secret, such as a bearer token and an `AccessKey` header, shows one more secure field for each, labeled with the header's name, and a field left blank is refused with **The [name] field is required.** What you type there goes to cfo.ai's connection service, not to Ari or the chat. Never paste a key into a chat message.
 
     The card reads **Connecting…**, then **Checking connection…**, then **Connected** for an MCP server or **API saved** for an API. Ari then checks that the tools or endpoints answer before it relies on them. **API saved** means the specification loaded, not that the key works, so Ari tests the key with a read.
   </Tab>
@@ -101,7 +101,7 @@ When a service changes its address, or you set up its authentication the wrong w
     Ari changes the name, provider name, address, and authentication type of a connection you added with a key or token, and only the name of one that signs in through the provider. A new key or token goes through the secure form Ari hands you, never through the chat: a card headed **Edit** followed by the connection's name, whose **Review changes** button opens the form, and nothing is saved until you submit it.
   </Tab>
   <Tab title="By hand">
-    In **Settings → Connections**, open the service's **…** menu and select **Edit configuration**. Change the fields you need and save. To replace a key, type it in **Replacement API key**; leave that field blank to keep the saved one. A connection that signs in through the provider takes a new name only. Every field is listed in [Settings](/reference/settings#connections).
+    In **Settings → Connections**, open the service's **…** menu and select **Edit configuration**. Change the fields you need and save. To replace a key, type it in **Replacement API key**; leave that field blank to keep the saved one. An API connection with more secrets than its key asks for each of them again when you change the **Base URL** or the **Authentication**; renaming the connection, or replacing only its key, keeps them as they are. A connection that signs in through the provider takes a new name only. Every field and its messages are listed in [Settings](/reference/settings#connections).
   </Tab>
 </Tabs>
 

@@ -32,7 +32,7 @@ An MCP server or an API is ready for Ari to call. Mark: none. Its page and its s
 
 ### Syncing
 
-A sync is running, or a first sync is queued. Mark: blinking orange dot. The connection's page reads **A sync is running now.** No **Reconnect** or **Retry** is offered while it runs. While cfo.ai waits on the provider, the line says how long it has waited:
+A sync is running, or a first sync is queued. Mark: blinking orange dot. The connection's page reads **A sync is running now.** No **Reconnect** or **Retry** is offered while it runs. A connection also reads **Syncing** while one of its saved queries is being saved, whether Ari is saving it or someone is editing its SQL or moving it in the app. Ari waits for that save before it reads the query's columns. A save that ran too long saves nothing, and Ari is told so. While cfo.ai waits on the provider, the line says how long it has waited:
 
 - **Waiting [time] so far for [source]’s first sync to finish.** It may add what the provider last reported, then **If it hasn’t finished by [date and time], this sync stops at its next check after that.** cfo.ai checks every 10 minutes and waits up to 20 hours. For a source that syncs through Fivetran, the provider's report reads **Fivetran reports its first historical sync of the account still running**, or, when the source's API has stopped answering Fivetran for now, **Fivetran rescheduled its first historical sync of the account because the source's API allows no more calls for now; its next attempt is due at [time]**. cfo.ai keeps waiting through a rescheduled first sync and asks Fivetran to run it again once that time has passed.
 - **Waiting [time] so far for cfo.ai’s request allowance at [source] to reset. The allowance for this organization is used up or nearly used up, and the sync resumes on its own when it resets.** It ends the same way. Xero, for example, limits how many requests an app can make each day.
@@ -62,6 +62,8 @@ Setup failed before the source linked. Mark: red triangle. Line: the failure's r
 ### cfo.ai lost access
 
 The source revoked cfo.ai's access, for example after a password change or an expired authorization. Mark: red triangle. Line: **Reconnect to start syncing again.** Action: **Reconnect**, then sign in to the same company the connection already holds.
+
+The data the connection synced before it lost access stays in your Model. Ari can still read it and answer from it, and it tells you when that data was last synced; new rows arrive only after you select **Reconnect**.
 
 A source that syncs through Fivetran, such as BigQuery, Maxio, Ramp, or Gmail, also shows this status when Fivetran has paused its connector, which Fivetran does on its own after the connector stays broken for a long time. A paused connector runs no sync, so **Retry** is not offered. **Reconnect** opens Fivetran's Connect Card for the same connection, and finishing it resumes the connector. The connection's failure line keeps Fivetran's own report of what the owner must fix, such as **The user cannot access BigQuery tables/project (BigQueryConnectorTask_ACCESS_DENIED)**.
 
@@ -170,11 +172,11 @@ An MCP server's row also shows the state of its saved sign-in. The state describ
 | **Cancel setup** | Removes an unfinished connection at once. It frees the plan slot the connection held. | Setup was not finished. |
 | **Reconnect** | Opens the source's sign-in again for the same connection. | The source revoked access, Fivetran paused the source's connector, a failed sync needs a new sign-in, a connection reads **Missing access in [source]** and the access has been fixed at the source, or a **Partly synced** connection's source refused access to a missed table or cfo.ai has not read why the table was missed. |
 | **Retry** | Runs the import again with the same sign-in, or starts setup again after **Connection failed**. It does not use another plan slot. | A sync failed and only the import needs to run again, a sync was stopped, or setup failed. |
-| **Sync now** | Starts a sync of the connection at once, with the same sign-in. The button reads **Syncing…** and is off while the sync runs, and **Couldn't start sync** when the sync could not start. | On a linked integration's page, for people who manage connections, when neither **Retry** nor **Reconnect** is offered. Not on an upload, an MCP server, or an API. |
+| **Sync now** | Starts a sync of the connection at once, with the same sign-in. The button reads **Syncing…** and is off while the sync runs, and **Couldn't start sync** when the sync could not start. The notice under that title gives the reason; **This sync can’t start because cfo.ai’s background sync processing isn’t running.** means no worker was available to run it, which cfo.ai must fix, so refreshing the page does not help. Try again later or contact support. | On a linked integration's page, for people who manage connections, when neither **Retry** nor **Reconnect** is offered. Not on an upload, an MCP server, or an API. |
 | **Update file** | Replaces an uploaded CSV with a new file. | On a file upload. It is the only action when the file could not be read. |
 | **Set up queries with Ari** | Opens a new chat with a request for Ari to review what synced, propose saved queries, and set them up. You review the request before you send it. | **No queries yet** |
 | **Investigate with Ari** | Opens a new chat and asks Ari to find out why the sync failed or found nothing, and start it again if that helps. | **No data found**, or a **Sync failed** with no known cause |
-| **Remove connection** | Asks **Do you want to remove this connection? This stops future imports and cannot be undone.** Data already in your Model stays, and stops updating. A Trigger whose instructions refer to the connection the way Ari writes it, such as `Stripe#aa9`, is paused with the reason on the Triggers page; see [Schedule a recurring report with a Trigger](/guides/schedule-a-trigger#if-something-goes-wrong). | On the connection's page, for people who can manage connections |
+| **Remove connection** | Asks **Do you want to remove this connection? This stops future imports and cannot be undone.** Data already in your Model stays, and stops updating. A Trigger whose instructions refer to the connection the way Ari writes it, such as `Stripe#aa9`, is paused with the reason on the Triggers page; see [Schedule a report or a reminder with a Trigger](/guides/schedule-a-trigger#if-something-goes-wrong). | On the connection's page, for people who can manage connections |
 | **Remove file** | Asks **Do you want to remove this file? This cannot be undone.** A Trigger whose instructions refer to the file's connection the way Ari writes it is paused the same way as for **Remove connection**. | On a file upload's row and page |
 | **Manage**, **Disconnect** | **Manage** opens the server's or API's connection page, the same page its sidebar row opens, where its tools or endpoints and their permissions live. **Disconnect**, in the row's **…** menu, does the same as **Remove connection** on that page. Disconnecting a server warns **Ari will no longer be able to use this server's tools until you reconnect.** | MCP servers and APIs, in **Settings → Connections** and on the **MCP** and **API** tabs. **Manage** appears on every row, including a server whose setup is not finished. |
 
@@ -259,7 +261,7 @@ The Google flow reads **Opening Google authentication…**, **Choosing in Google
 
 | Message | Meaning |
 | --- | --- |
-| **Choose non-empty .csv files up to 50 MB each.** | A file was not a CSV, was empty, or was larger than 50 MB. |
+| **Choose non-empty .csv files up to 500 MB each.** | A file was not a CSV, was empty, or was larger than 500 MB. |
 | **[N] of [M] CSV files imported. [K] couldn't be imported. Try [files] again.** | Some files in a batch failed to upload. |
 | **The file couldn’t load: [what was wrong]. Fix the file and upload it again.** | The loader could not read the file as one table. What was wrong reads **the file has no rows**, **the file has no header row**, **the file has a header row and no data rows**, or **the header row has [N] columns and row [M] has [K]**. |
 | **The CSV file could not be processed. Check that it has a valid header row and consistent columns, then retry or upload it again.** | Another problem with the file. |
@@ -308,6 +310,8 @@ Google Sheets and Google Drive connections report their import on the row and in
 When Ari syncs a connection, a line above the message box reads **Syncing** with the connection's name. Selecting it opens a card with the run's two steps, **Sync source data** and **Run saved queries**, its progress, such as **Step 1 of 2**, and **View connection** and **Stop**. A failed run reads **Couldn't finish** and keeps the connection's own status and action. A run you stopped reads **Stopped**.
 
 When a scheduled sync finds that a source you connected stopped updating and a repair needs you, cfo.ai opens a chat titled **[Connection name] stopped updating** in your chat list.
+
+When a newer version of a connected file arrives while an earlier import of it is still running or waiting, the chat that handles the import reads **Superseded tasks withdrawn: [tasks]. Their earlier questions no longer need answers. The current task is "[task]".** The new version went to that import, and older duplicate imports were withdrawn. **Its question remains open: [question]** follows when the import is still waiting for your answer.
 
 When a workspace has no active plan, a refresh you ask for answers **data syncing is paused for this workspace — choose a plan, or settle the outstanding payment, to resume syncing**, and the nightly refresh skips the workspace until it has a plan again.
 

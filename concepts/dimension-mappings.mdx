@@ -34,7 +34,7 @@ A mapping always runs from source to target. Pick the shared reporting Dimension
 - A condition tests the source items only. It cannot test a Variable's value, so a list of exceptions that depends on an amount stays a list of items.
 - One target can be fed by a one-key lookup and a two-key lookup, such as Account alone and Account with Account ID. A row that the two-key lookup has no assignment for falls back to the one-key assignment.
 
-A Dimension whose items come from a formula cannot also be a mapping target.
+A Dimension whose items come from a formula cannot also be a mapping target. A Dimension whose items were typed in by hand, with no mapping yet, does not take its first mapping either: mapped membership follows the input records, so the typed list would stop standing on its own. Clear the typed items first, or map into a separate Dimension. A Dimension that already has a mapping, an empty one, or one fed by a connected source takes a mapping as before.
 
 ## The catch-all covers everything else
 

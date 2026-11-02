@@ -30,14 +30,14 @@ If your financial model lives in a spreadsheet, Ari can rebuild it as a cfo.ai M
     Ari reads the workbook first and tells you what it found. It rebuilds the sheets that are visible in the workbook, and the hidden cells those sheets read. Any other hidden sheet is left out, and Ari's plan marks it as hidden. To bring a hidden sheet in, name it in your request. It names the tabs that hold inputs, data, calculations, and reports, the repeated sections that are really one list, the cases that become Scenarios, and anything it cannot carry over. For a larger build it shows a plan card. Correct anything that is wrong, then select **Build it**.
   </Step>
   <Step title="Let Ari build">
-    Each tab you are importing becomes a Page with the same name. Each labeled section on it becomes a table named after that section, so you can compare them side by side. Pages appear in the sidebar as Ari finishes them.
+    Each tab you are importing that holds assumptions, calculations, or a report becomes a Page with the same name. Each labeled section on it becomes a table named after that section, so you can compare them side by side. A tab that holds only records, such as an export from your accounting system, becomes no Page: Ari loads it as a source table, or, when a connection in cfo.ai already supplies those records, reads them from that connection and rebuilds the tabs that use them over it. Pages appear in the sidebar as Ari finishes them.
   </Step>
   <Step title="Check that it ties">
     Turn on the optional **Model migration tie-out** Skill; see [Turn on a built-in Skill](/guides/turn-on-built-in-skills). Then ask, with the workbook attached:
 
     > Does this tie to my workbook? Build the tie-out page.
 
-    Ari builds a Page with a bridge from your workbook's numbers to cfo.ai's. The differences are grouped so you can drill into each one, and buttons hand each decision to Ari. Building the page changes nothing in your Model. Without the Skill, ask:
+    Ari builds a Page with a bridge from your workbook's numbers to cfo.ai's. The differences are grouped so you can drill into each one, and buttons hand each decision to Ari. Building the page changes nothing in your Model. Unless you ask for a Page like this, Ari keeps its comparisons against the workbook in its own checks and reports the remaining differences in the chat. Without the Skill, ask:
 
     > Reconcile revenue, payroll, and cash to the attached workbook for every quarter, and explain each difference.
   </Step>
@@ -53,14 +53,14 @@ If your financial model lives in a spreadsheet, Ari can rebuild it as a cfo.ai M
 
 | In your spreadsheet | In cfo.ai |
 | --- | --- |
-| A tab of inputs, data, or calculations | A Page with the same name, with a table for each labeled section |
+| A tab of inputs or calculations | A Page with the same name, with a table for each labeled section |
 | Copies of one layout, such as one tab per product or department | One Page and one Variable segmented by a Dimension, such as Product |
 | Revenue, payroll, balances, and other line items | Variables |
 | Spreadsheet formulas | cfo.ai formulas that keep the same method and inputs, written with names instead of cell addresses |
 | Lookup tables | Dimension mappings |
 | Case selectors and copies of tabs per case | Scenarios |
 | Assumptions you tune | Editable inputs |
-| A history sheet, a roster, a transaction list, or another large set of fixed values | A source table that the Model reads as data, the way a connected file is read, instead of values typed into cells |
+| A history sheet, a roster, a transaction list, or another large set of fixed values | A source table that the Model reads as data, the way a connected file is read, instead of values typed into cells. When the sheet is an export of a system already connected in cfo.ai, that connection supplies the rows and no second copy is loaded. |
 | Statement and dashboard tabs | Pages with Table blocks, rebuilt to read from the Model |
 
 A large set of fixed values loads as a source table because each value typed into a cell is saved as its own formula, and thousands of them make a Model slow to calculate; a small set of assumptions you tune stays as typed inputs you can edit. Values that came from macros or from links to other workbooks arrive as values; Ari says which ones it could not rebuild as formulas. Ari keeps the source's forecasting method. If it thinks another method fits better, it proposes the change instead of making it silently.

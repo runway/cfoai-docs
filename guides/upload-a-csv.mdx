@@ -8,7 +8,7 @@ Upload a CSV when the numbers you need are not in a system cfo.ai connects to, s
 
 ## Prepare the file
 
-- Save it as a `.csv` file of up to 50 MB.
+- Save it as a `.csv` file of up to 500 MB. One row can hold up to 16 MiB; a quote that opens a field and never closes makes its row run to the end of the file, and the load fails.
 - Give every record the same number of fields as the line of column names. A quoted field may hold line breaks.
 - Separate fields with commas, semicolons, or tabs; cfo.ai reads which separator the file uses.
 - Report title lines above the table are skipped, because cfo.ai reads the file to find where its table starts and ends. A line that totals a list of records, such as the **Grand Total** under a payroll or invoice report, is skipped too, while the total row of an account schedule or a financial statement loads as one of its rows. If a file still does not load, delete those lines, or attach the file to a chat instead; Ari cleans up a copy and loads that. A file can also load with fewer rows than it holds when the table cfo.ai located ends early; Ari's load note counts the records loaded against the records in the file.
@@ -33,13 +33,13 @@ An upload uses no plan slot. [How imported data loads](/reference/imported-data#
         In the sidebar, point at **Connections** and select **+** (**Add integration**). On the **Integrations** tab, select **Upload**.
       </Step>
       <Step title="Choose the files">
-        **Import CSV files** opens: **Each file creates a separate data source in cfo.ai.** Drop one or more files, or select **Click to upload CSVs or drag and drop**.
+        **Import CSV files** opens: **Each file creates a separate data source in cfo.ai.** Drop one or more files, or select **Click to upload or drag and drop**; the hint reads **CSV up to 500 MB each**.
       </Step>
       <Step title="Import">
         Select **Import** and the number of files. Each file appears under **Connections**, named after the file.
       </Step>
       <Step title="Tell Ari what the file holds">
-        Ask Ari to use the data, and name the column that dates the rows, such as an invoice date. Ari writes the saved query that brings the rows into your Model.
+        Ask Ari to use the data, and name the column that dates the rows, such as an invoice date. Ari writes the saved query that brings the rows into your Model. An upload keeps one saved query: Ari's query takes the place of the **Uploaded CSV** query cfo.ai adds first, unless a formula, a table, or a value you changed already reads that first query, in which case both stay. See [Saved queries](/reference/imported-data#saved-queries).
       </Step>
     </Steps>
   </Tab>

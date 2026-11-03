@@ -1,7 +1,7 @@
 ---
 title: "Filter and sort a table"
 sidebarTitle: "Filter and sort"
-description: "Show only some of a Dimension's items on a Table block, hide one item, find and clear a filter (unfilter a row or column), filter a list by a column's value, change a filter Ari wrote as a formula, and sort items A to Z, Z to A, or in your own order."
+description: "Show only some of a Dimension's items on a Table block, hide one item, find and clear a filter (unfilter a row or column), filter a list by a column's value, change a filter Ari wrote as a formula, and sort rows by a value or field column or items by name or a manual order."
 ---
 
 Use a filter to show only some of a Dimension's items on a table, such as two departments out of ten, and a sort to put the items in order. Filters and sorts change only this table, and everyone who opens it sees the same view. They never change a number in your Model.
@@ -100,9 +100,30 @@ You can also drag item rows up or down by the grip at their left edge. The Dimen
 
 A sort applies to the whole level, so every group on the table that shows that Dimension lists its items in the same order.
 
-## Sort rows by their numbers
+## Sort rows by a value or field column
 
-A table cannot sort by the values in a column, such as the largest Revenue first. **Sort** orders a Dimension's items by their names. To show the largest first, set a **Manual** order, or ask Ari to put the items in order of their values.
+Sort a list of customers by Revenue, First ARR Month, or a field such as Status. The saved sort updates the order whenever values refresh, including for new customers.
+
+<Tabs>
+  <Tab title="Ask Ari">
+    > Keep the Customers table sorted oldest to newest by First ARR Month, including customers added later.
+  </Tab>
+  <Tab title="By hand">
+    <Steps>
+      <Step title="Open the column's menu">
+        Right-click the value or field column's header, such as **First ARR Month**.
+      </Step>
+      <Step title="Choose the direction">
+        Choose **Sort ascending** for smallest to largest, A to Z, or oldest to newest. Choose **Sort descending** to reverse the order.
+      </Step>
+      <Step title="Check the saved sort">
+        The rows reorder, and the Dimension's sort control shows **By column**. To return to item order, open the same column's menu and choose **Clear column sort**.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+If these actions are missing, check the [supported table layout](/reference/table-blocks#value-and-field-column-sorting).
 
 Variable rows have no sort; drag them into the order you want. Date columns always run in date order; to show fewer periods, change the table's date range.
 

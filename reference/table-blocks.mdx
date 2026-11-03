@@ -72,7 +72,7 @@ Each section lists what is on that axis as a tree. Drag an item to reorder it, t
 | **+** (**Add Column**, **Add Row**) and **Add** | Opens the [Create or search field](#add-rows-and-columns-the-create-or-search-field) for that axis. |
 | **…** (**Open Column Options**, **Open Row Options**) → **Reset columns** / **Reset rows** | Removes every column, or every row, from the table. |
 | Eye button, **Hide [name]** / **Show [name]** | Hides or shows that item for everyone who opens the table. Hidden items keep their settings. |
-| **Sort** | **None**, **Ascending**, **Descending**, or **Manual**, for a Dimension other than Date. |
+| **Sort** | **None**, **Ascending**, **Descending**, or **Manual**, for a Dimension other than Date. Shows **By column** while a saved [column sort](#value-and-field-column-sorting) is active. Choosing an item sort replaces the column sort. |
 | Funnel button, **Filter [name]** | Opens the item list: **All Items**, the items, **Cancel**, and **Save**. For a Dimension other than Date, in rows or columns. When Ari saved a condition on the axis, a **Filter formula** section above the list shows it read-only, with **Edit with Ari**, which puts a request to change or remove it in the message box and closes the list without saving pending checkbox changes. The list has no field to edit the condition and no button to remove it; see [A filter Ari wrote as a formula](/guides/filter-and-sort-a-table#a-filter-ari-wrote-as-a-formula). |
 | **Segment by** | Adds a breakdown level under that item. |
 | **Date granularity** | For a Date axis: **Inherit**, **Raw**, **Day**, **Week**, **Month**, **Quarter**, **Half**, or **Year**. |
@@ -179,7 +179,7 @@ Opens from a Dimension's label row, such as **DEPARTMENT**, or from **[Dimension
 | **Segment by** | Breaks every item at this level down by another Dimension. |
 | **Filter items** | Rows only. Chooses which items show. Shows the number of items kept when filtered. |
 | **Filter** | On a list of records: filters the rows by this column's value. |
-| **Sort** | **None**, **Ascending**, **Descending**, or **Manual**. Not offered for Date. |
+| **Sort** | **None**, **Ascending**, **Descending**, or **Manual**. Shows **By column** while a saved [column sort](#value-and-field-column-sorting) is active. Choosing an item sort replaces the column sort. Not offered for Date. |
 | **Date granularity** | For Date: **Inherit**, **Raw**, **Day**, **Week**, **Month**, **Quarter**, **Half**, or **Year**. |
 | **Use as** | **Segmentation** or **Mapping**. |
 | **Segment generation** | **Show only matching segments** shows the combinations that have data. **Expand to create all segments** shows every combination; for a Dimension of numbers, set **Start Value** and **End Value**, and for a Dimension of dates, set **Start / End dates**. The range is saved only when both ends are set, and clearing both removes it. |
@@ -224,6 +224,29 @@ Select a range that includes row names, or press **⌘ A**, and right-click a ro
 | **Remove [N] rows** | In the table setup panel: removes the selected rows from this table. |
 | **Remove all drill-in rows** | Closes every drill-in row. |
 | **No actions available** | Nothing applies to the whole selection. |
+
+### Value and field column sorting
+
+A value or field column can keep Dimension rows sorted by their numbers, dates, text, or true-or-false values. A field column shows each row's item of another Dimension, such as Department or Status.
+
+| Control | What it does |
+| --- | --- |
+| **Sort ascending** | Sorts rows smallest to largest, oldest to newest, A to Z, or false before true. Replaces the previous sort. |
+| **Sort descending** | Reverses the value order. Replaces the previous sort. |
+| **Clear column sort** | Removes the active column sort and returns to item order. Offered on the column currently used to sort. |
+
+| Behavior or limit | What to expect |
+| --- | --- |
+| Supported layout | One Dimension on rows, with no extra spacer or formula rows, nested row levels, item breakdowns, or Scenario or time comparisons. The sort key must be one top-level value or field column without a breakdown or summary. |
+| One sort key | Sorting by a second column replaces the first column sort. |
+| Empty or invalid values | Blanks, empty text, and formula errors stay last in both directions. |
+| Text and ties | Text sorts without regard to capitalization. Exact text breaks capitalization ties; identical values keep a stable item order. |
+| New items or changed values | Each calculation reapplies the saved sort. A newly created item waits at the end until its values refresh. |
+| Copying a table | The copy keeps the sort on its own matching column. |
+| Removing the sort column or changing the layout | The edit saves. If the column is missing or the layout no longer supports the sort, it becomes inactive and the table uses item order. The Dimension's sort controls show the active item order. |
+| Editing access | Desktop presentation offers these controls with Page edit access. Mobile presentation shows the saved order with read-only table controls. |
+
+See [Sort rows by a value or field column](/guides/filter-and-sort-a-table#sort-rows-by-a-value-or-field-column) for the steps and an Ari example.
 
 ### Total column header menu
 
@@ -474,7 +497,7 @@ Version history does not list changes to column widths or pinned columns.
 | --- | --- |
 | Hold a comment or note on a cell | Write a note on the Page beside the table, or ask Ari for a text Variable, such as Notes, on a table that lists records. |
 | Color the cells you type into automatically | They carry a dashed underline. Select them and set a **Background** or **Text color**. |
-| Sort rows by the numbers in a column | **Sort** orders items by name. Set a **Manual** order, or ask Ari to order the items by value. |
+| Sort by several value columns at once, or sort a grouped or comparison table by a value column | Use one column sort on a supported list layout; see [Value and field column sorting](#value-and-field-column-sorting). Item and manual sorts remain available for grouping levels. |
 | Filter or sort dates | Change the date range. Dates always run in date order. |
 | Show two grains on one Date axis, such as quarters and years | Ask Ari for annual columns over the months; it nests a year level above the month level, and the grain button then changes only the months. By hand, duplicate the table with **Duplicate block** and give each copy its own grain. |
 | Hold Variables in both the rows and the columns | Keep every Variable on one side. |

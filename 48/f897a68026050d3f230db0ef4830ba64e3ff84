@@ -1,0 +1,19 @@
+reference/table-blocks.mdx
+  s_8a64a6213828da::t_cc5531dd013e51 246
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "48f897a68026050d3f230db0ef4830ba64e3ff84",
+  "prompts": {},
+  "sessions": {
+    "s_8a64a6213828da": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1a2a3-e006-7762-a18f-edfa2622948c",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "Siqi Chen <blader@gmail.com>"
+    }
+  }
+}

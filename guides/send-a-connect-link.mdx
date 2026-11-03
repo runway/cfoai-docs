@@ -1,0 +1,70 @@
+---
+title: "Send a link so someone else can connect a source"
+sidebarTitle: "Send a connect link"
+description: "Ask the person who holds a system's login, such as a founder or a controller, to connect QuickBooks, Ramp, or another source to your workspace through a link that needs no cfo.ai account. Make the link in cfo.ai or ask Ari, see the links you sent, and turn one off."
+---
+
+Send a connect link when the login a source needs belongs to someone outside your workspace, such as a founder whose QuickBooks you are setting up as their fractional CFO, or a controller who holds the Ramp sign-in. Whoever opens the link signs in to that source on a page that shows only that connection, and the connection lands in your workspace. A link you make in cfo.ai, or ask Ari for, is one anyone can open: no cfo.ai account is needed, and the opener sees none of your Pages, Model, or other connections. Ari can instead make a link that only a signed-in member of your workspace can open, when you ask for one.
+
+A link works for 7 days, until someone finishes it, or until you turn it off. It can carry up to 10 sources, one card each, and the person can connect them in any order. Each source starts importing as soon as it is connected, and the source's row in your sidebar updates when they finish.
+
+<Tabs>
+  <Tab title="Ask Ari">
+    Name the sources and, if you like, who holds the logins:
+
+    > Make a link our founder can use to connect QuickBooks and Ramp.
+
+    Ari posts a card with the link, **Copy link**, and **Anyone with the link can connect [sources] for [workspace]**. Copy it and send it however you like; cfo.ai sends nothing itself. For a link that only members of your workspace can open, say so, and the card reads **Workspace members only**.
+  </Tab>
+  <Tab title="By hand">
+    <Steps>
+      <Step title="Open the directory">
+        In the sidebar, select **Add integration** (**+**) beside **Connections**.
+      </Step>
+      <Step title="Start a link">
+        Under **Someone else has the sign-ins?**, select **Send them a link**. The directory switches to picking, headed **Sending a link for someone else to authorize.** and **Select the sources they’ll connect.**
+      </Step>
+      <Step title="Pick the sources">
+        Select each source, such as **QuickBooks Online**. The bar at the bottom counts them, **1 selected**, and offers **Cancel** and **Send link**. Select **Send link**.
+      </Step>
+      <Step title="Make the link">
+        The dialog is headed **Send a link to connect [source]**, or **Send a link to connect N sources**, with the field **The link is made when you copy it** and the note **Anyone with the link can open it, no cfo.ai account needed. They can’t see your pages, models, or other connections. Works for 7 days. Each source starts importing as soon as it’s connected.** Select **Copy link**.
+      </Step>
+      <Step title="Send it">
+        The field shows the link, the button reads **Copy**, and the note reads **Anyone with the link, no sign-in needed · Expires [date].** Paste the link into an email or a message to the person who holds the logins, then select **Done**.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## Send a link for a connection that needs someone else
+
+When a connection shows **Finish setup** or **Reconnect** and the sign-in it needs is not yours, select **Send link** beside that button on the connection's page; its tooltip reads **For someone else with the [source] sign-in**. The connection's hover card in the sidebar offers the same as **Send them a link**. The link continues that same connection, so nothing is duplicated, and the connection's row in your sidebar updates when they finish.
+
+To put several such connections in one link, point at **Connections** in the sidebar, open its **…** menu, and choose **Select connections to send a link**; the item appears once a connection can take a link. Holding **⌥** (**Alt**) while you click such a connection starts the same picking. Tick the connections and select **Send link**; the dialog is headed **Send a link for N connections**.
+
+## What the person sees
+
+The page is headed **Connect data to [workspace]**, or **Connect data to cfo.ai** in a workspace without a brand, and reads **Anyone with this link can connect [source] for [workspace]**. A link for one new source opens that source's sign-in at once; a link for several shows one card per source. When they are done, the page reads **All connected. You can close this page.** A link for a lost connection is headed **Reconnect [source]** with **This connection stopped syncing. Sign in again to restore access.**
+
+## See the links you sent, and turn one off
+
+Point at **Connections** in the sidebar, open its **…** menu, and choose **Links sent**. The dialog lists every link anyone in the workspace made, newest first under **Today**, **Yesterday**, or **Earlier this week**. Each row names the link's sources and says who made it (**You**, a teammate's name, **Ari**, or **[name] via Ari**), when it was sent, **Opened** once someone has opened it, and when it expires, such as **You · Sent Nov 3 · Expires Nov 10**. Its state reads **Waiting**, **1 of 3 connected**, **Connected** or **All connected**, **Expired [date]**, or **Turned off [date]**. **Sent by** and **Show** filter the list, and **Done** closes it. With nothing waiting, the dialog reads **No links are waiting. A link you or Ari send shows here until it’s finished, expires, or is turned off.**
+
+A connection's own page also lists the links that name it under **Links sent**, with **A link works until it expires, someone finishes it, or you turn it off.**
+
+To stop a link, select **Turn off** on its row and confirm **Turn off this link? Whoever has it can’t use it anymore.** with **Turn off link**. When part of the link was already used, the question adds which sources stay connected. The row then reads **Turned off just now**, and a sign-in under way on that link stops too. Only someone who may change the workspace's connections can make or turn off a link; others read **You can’t add sources to this workspace. Ask an admin for access.**
+
+## If something goes wrong
+
+- **[Source] can’t be set up from a link.** That source's setup needs you in the workspace. Connect it yourself; see [Connect QuickBooks, Xero, NetSuite, or Rillet](/guides/connect-accounting) and [Connect other sources](/guides/connect-other-sources).
+- **[Sources] would go over your plan’s connection limit.** Leave a source out of the link, or move to a plan with more slots; see [Plans, AI usage, and connection slots](/concepts/plans-and-usage#connection-slots-limit-what-you-can-sync).
+- **[Source] finished setting up, so it’s left out of the link.** or **[Source] was removed, so there’s nothing to send.** Someone connected or removed the source while the dialog was open, so the link covers only what is left.
+- **Couldn’t turn off the link. Try again.** The request did not reach cfo.ai. **This link no longer exists.** means it was already removed.
+
+## Related
+
+- [Connect QuickBooks, Xero, NetSuite, or Rillet](/guides/connect-accounting)
+- [Fix a connection that stopped syncing](/guides/fix-a-connection)
+- [Connection statuses and actions](/reference/connection-statuses)
+- [Limits](/reference/limits#connections-syncs-and-uploads)

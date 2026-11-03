@@ -51,7 +51,7 @@ A refusal is the source answering a sync request with a sign-in or permission er
 
 ### Setup not finished
 
-Someone started connecting the source and did not finish. The setup may have failed, been abandoned, or still be open in someone's tab. Mark: gray dot. Line: **Syncing won’t begin until setup is finished.** Actions: **Finish setup** continues the same connection, and **Cancel setup** removes it without asking, because it holds no data yet.
+Someone started connecting the source and did not finish. The setup may have failed, been abandoned, or still be open in someone's tab. Mark: gray dot. Line: **Syncing won’t begin until setup is finished.** Actions: **Finish setup** continues the same connection, and **Cancel setup** removes it without asking, because it holds no data yet. **Send link**, beside **Finish setup** on the connection's page and its hover card, makes a link that continues the same setup for someone else who holds the source's sign-in; its tooltip reads **For someone else with the [source] sign-in**. See [Send a link so someone else can connect a source](/guides/send-a-connect-link).
 
 A source whose setup cannot be resumed, such as Stripe (Direct), offers only **Cancel setup** on the card, with **Setup wasn’t finished. Cancel it and connect [source] again.** On the connection's page, the line says **Remove it** and the button is **Remove connection**. People who cannot manage connections see the line and no button.
 
@@ -61,7 +61,7 @@ Setup failed before the source linked. Mark: red triangle. Line: the failure's r
 
 ### cfo.ai lost access
 
-The source revoked cfo.ai's access, for example after a password change or an expired authorization. Mark: red triangle. Line: **Reconnect to start syncing again.** Action: **Reconnect**, then sign in to the same company the connection already holds.
+The source revoked cfo.ai's access, for example after a password change or an expired authorization. Mark: red triangle. Line: **Reconnect to start syncing again.** Action: **Reconnect**, then sign in to the same company the connection already holds. **Send link** beside it makes a link for someone else to do that sign-in; see [Send a link so someone else can connect a source](/guides/send-a-connect-link).
 
 The data the connection synced before it lost access stays in your Model. Ari can still read it and answer from it, and it tells you when that data was last synced; new rows arrive only after you select **Reconnect**.
 
@@ -170,6 +170,7 @@ An MCP server's row also shows the state of its saved sign-in. The state describ
 | --- | --- | --- |
 | **Finish setup** | Continues the unfinished setup on the same connection. No second connection is created. | Setup was not finished and the source can resume it. |
 | **Cancel setup** | Removes an unfinished connection at once. It frees the plan slot the connection held. | Setup was not finished. |
+| **Send link** | Makes a connect link that continues this connection's setup or sign-in for someone else who holds the source's login; its tooltip reads **For someone else with the [source] sign-in**. The hover card calls it **Send them a link**. See [Send a link so someone else can connect a source](/guides/send-a-connect-link). | Beside **Finish setup** or **Reconnect**, for people who manage connections. |
 | **Reconnect** | Opens the source's sign-in again for the same connection. | The source revoked access, Fivetran paused the source's connector, a failed sync needs a new sign-in, a connection reads **Missing access in [source]** and the access has been fixed at the source, or a **Partly synced** connection's source refused access to a missed table or cfo.ai has not read why the table was missed. |
 | **Retry** | Runs the import again with the same sign-in, or starts setup again after **Connection failed**. It does not use another plan slot. | A sync failed and only the import needs to run again, a sync was stopped, or setup failed. |
 | **Sync now** | Starts a sync of the connection at once, with the same sign-in. The button reads **Syncing…** and is off while the sync runs, and **Couldn't start sync** when the sync could not start. The notice under that title gives the reason; **This sync can’t start because cfo.ai’s background sync processing isn’t running.** means no worker was available to run it, which cfo.ai must fix, so refreshing the page does not help. Try again later or contact support. | On a linked integration's page, for people who manage connections, when neither **Retry** nor **Reconnect** is offered. Not on an upload, an MCP server, or an API. |

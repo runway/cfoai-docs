@@ -208,7 +208,7 @@ While Ari cannot be used, for example when the workspace is out of AI usage, **A
 
 ## Skills
 
-The section reads **Teach Ari workflows you repeat. Your skills go with you to every workspace you work in.** Your Skills belong to you: every workspace where you are a member shows the same list, and nobody else sees it. See [Save a workflow as a Skill](/guides/save-a-skill).
+The section reads **Teach Ari workflows you repeat. Your skills go with you to every workspace you work in.** Your Skills belong to you: every workspace where you are a member shows the same list, and nobody else sees it until you give a teammate a copy through Ari or make a Skill available to everyone in a workspace. See [Save a workflow as a Skill](/guides/save-a-skill).
 
 | Control | What it does |
 | --- | --- |
@@ -218,13 +218,21 @@ The section reads **Teach Ari workflows you repeat. Your skills go with you to e
 
 ### Your skills
 
-Each of your Skills shows its name, its description, where it applies, **Edit**, and **Delete**. The list includes Skills limited to your other workspaces. With none saved, the list reads **No skills yet. Build one with Ari by describing a workflow, pasting instructions, or attaching a Markdown file.** The heading **Your skills** shows when the workspace offers built-in Skills below it.
+Each of your Skills shows its name, its description, where it applies, **Edit**, **Delete**, and, on a Skill that applies in this workspace, **Make available to everyone**. The list includes Skills limited to your other workspaces. With none saved, the list reads **No skills yet. Build one with Ari by describing a workflow, pasting instructions, or attaching a Markdown file.**
+
+A row can carry one more line: **Shared by [name]** on a copy a teammate gave you through Ari, and **A workspace skill has this name. Ari uses your personal version.** when the workspace has a Skill with the same name.
 
 | Where it applies | Meaning |
 | --- | --- |
 | **All your workspaces** | Ari follows the Skill in every workspace where you are a member. |
 | **Only in** [workspace] | Ari follows the Skill only in that workspace. |
 | **Not in use: you're no longer a member** | The Skill is limited to a workspace you left. Ari follows it there again if you rejoin. You can still edit it, change **Use in**, or delete it. |
+
+**Make available to everyone** opens **Make [name] available to everyone?** with **Ari will use this skill for everyone in [workspace]. Workspace admins can edit or delete it.** A Skill limited to this workspace adds **Your personal skill will move into Workspace skills.**; a Skill for all your workspaces adds **Your personal copy stays in all your workspaces. Here, Ari keeps using your personal version while both have the same name.** Confirm with **Make available to everyone**.
+
+### Workspace skills
+
+The heading shows once the workspace has a Skill that everyone in it shares. Each row shows the Skill's name, its description, **Everyone in this workspace**, **Promoted by [name]**, and, for a member of the workspace, **Edit** and **Delete**. Its **Delete** dialog reads **Ari will stop using this workspace skill for everyone here. Personal copies stay unchanged.** A workspace Skill always applies to its workspace only, so its editor has no **Use in**.
 
 | Editor field | Note in the editor |
 | --- | --- |
@@ -241,7 +249,9 @@ Each of your Skills shows its name, its description, where it applies, **Edit**,
 | **Description must be at most 1024 characters.** / **Instructions must be at most 49,152 characters.** | A field is too long. |
 | **A skill with this name already exists** | One of your Skills that applies here uses the name, or it is a built-in Skill's name. |
 | **You have another skill with this name in another workspace. Choose another name, or keep this one in one workspace.** | A Skill for all your workspaces cannot share a name with one of your Skills limited to a workspace. |
-| **You can have at most 100 skills. Delete one first.** | You have 100 Skills across all your workspaces. |
+| **You can have at most 100 personal skills. Deleting a personal skill frees a slot.** | You have 100 Skills of your own across all your workspaces. |
+| **This workspace already has 100 workspace skills. Deleting a workspace skill frees a slot.** | The workspace has 100 shared Skills, so none can be made available until one is deleted. |
+| **only workspace admins can promote, edit, or delete workspace skills** | You are not a member of this workspace, so you cannot change its shared Skills. |
 | **Only members of a workspace can save skills there** | The Skill is limited to a workspace you are not a member of. |
 | **Failed to load skills** / **Failed to delete skill** | The list or a deletion failed. Try again. |
 

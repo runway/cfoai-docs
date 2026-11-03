@@ -47,6 +47,7 @@
             "pages": [
               "guides/connect-accounting",
               "guides/connect-other-sources",
+              "guides/send-a-connect-link",
               "guides/connect-a-google-sheet",
               "guides/upload-a-csv",
               "guides/import-a-spreadsheet-model",

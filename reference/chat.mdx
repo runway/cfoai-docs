@@ -81,6 +81,7 @@ Ari keeps working on cfo.ai's servers until it finishes, even if you close the t
 | A short phrase and a meter | Status line | Ari is working. The phrase changes with what Ari is doing, such as reading results or writing its answer, and the meter counts the time and tokens used so far. |
 | **Ari hit a temporary connection issue. Retrying now.** | Status line | A connection inside cfo.ai failed for a moment. Ari retries on its own. |
 | **Ari hit a temporary model-provider issue. Retrying now.** | Status line | The AI model did not answer for a moment. Ari retries on its own. |
+| **I'm still working on your request.** | Status line | Ari has spent more than about a minute getting ready to ask the AI model, for example condensing a long chat's history, and is still at it. The line appears once. Getting ready can take up to ten minutes; after that the turn ends with **Ari hit an unexpected error. Please try again.** |
 | **Activity** | Under your message | Ari's steps, each with a check mark when done. See [Activity group](#activity-group). |
 | A line of text, such as a sync in progress | Above the message box, under the status line | Work running beside the conversation. Select it to open its card. |
 | **Ari is working…** | Chat list, and a pill near the bottom of the Page | Ari is still working in that chat. |
@@ -322,7 +323,7 @@ A **Reply** button appears above words you select in one of Ari's finished answe
 | **Ari is having trouble reaching the model provider. This is usually temporary. Please try again in a moment.** | The AI model kept failing after retries. | Try again in a moment. |
 | **Ari hit a temporary connection problem and could not recover. Please try again in a moment.** | A connection inside cfo.ai kept failing after retries. | Try again in a moment. |
 | **Ari's turn ended: it waited [time] for [n] actions to finish, and the wait ran out before they did. Your conversation is saved.** | The actions Ari started in one step, such as reading two attached workbooks, did not finish in the time the turn allowed for them. | Select **Retry**, or ask for a smaller piece of the work first. |
-| **Ari hit an unexpected error. Please try again.** | Another failure. | Send the request again. |
+| **Ari hit an unexpected error. Please try again.** | Another failure, including a turn that spent ten minutes getting ready to ask the AI model without sending it a request. | Send the request again. |
 | **Ari could not finish its latest reply. Please try again.** | The reply ended without a visible answer. | Send the request again, or ask for a smaller piece first. |
 | **Ari's reply stopped: the model reached its output limit of [N] tokens after [M] minutes of reasoning, before it wrote a reply. Your conversation is saved.** | The model spent its whole output on reasoning twice. | Ask for a smaller piece of the work. |
 | **This request is too large for Ari to continue. Start a new chat with a shorter request or fewer attachments.** | The chat outgrew what Ari can read in one request. No **Retry** is offered. | Start a new chat with **⌘ /** and restate what you need. Attach a file again only if the new request needs it. |
@@ -370,13 +371,13 @@ A chat opens on its newest messages, and scrolling up loads older ones.
 
 ## The chat list: find, rename, and archive chats
 
-The **Chats** section of the sidebar lists your chats, newest activity first. A chat moves up only when something happens in it, not when you open it. You cannot pin a chat to the top of the list, and you cannot delete a chat you sent a message in: **Archive chat** hides it and keeps its messages and files. To have data deleted, see [Cancel your subscription or delete your data](/guides/cancel-or-delete).
+The **Chats** section of the sidebar lists the chats you started in cfo.ai, newest activity first. A chat moves up only when something happens in it, not when you open it. You cannot pin a chat to the top of the list, and you cannot delete a chat you sent a message in: **Archive chat** hides it and keeps its messages and files. To have data deleted, see [Cancel your subscription or delete your data](/guides/cancel-or-delete). Chats you had with Ari in Slack, and chats an AI assistant started over MCP, are left out until you include them with the filter; see [Chats that live somewhere else](#chats-that-live-somewhere-else).
 
 | Control | What it does |
 | --- | --- |
-| Filter | Shows **Active** chats (the default), **Archived** chats, or **All**. |
+| Filter | Under **Status**, shows **Active** chats (the default), **Archived** chats, or **All**. Under **Include**, the checkbox **Slack, iMessage and MCP chats** adds the chats that live somewhere else. It is off by default and off again after a reload. |
 | **Show more** | The list starts with your newest chats. After you expand it, scrolling to the bottom loads older chats, showing **Loading older chats…**, or **Retry loading chats** if a page fails. |
-| **Archive chat** | Hides the chat from the active list. Its messages and files stay stored. |
+| **Archive chat** | Hides the chat from the active list. Its messages and files stay stored. Not offered on a chat that lives in Slack, because Ari would still answer the next message there. |
 | **Unarchive chat** | Returns an archived chat to the active list. |
 | **Discard chat** | Offered instead of **Archive chat** on a chat you have not sent anything in. |
 | Chat name | Double-click it to rename the chat. **Enter** saves the name and **Esc** cancels. Ari sees the new name when it looks back at past chats. |
@@ -392,9 +393,22 @@ A mark beside a chat shows its status. Point at it to read the status.
 | **Unread response** | Ari answered since you last looked. |
 | **Something went wrong** | The last turn ended with an error. |
 
+An empty list says **No chats yet.**, **No active chats.**, or **No archived chats.**, with a **Show Slack, iMessage and MCP chats** button under it while that option is off.
+
+### Chats that live somewhere else
+
 A chat that an AI assistant started through the cfo.ai MCP server carries an **MCP chat** mark; point at it to read **Started from an AI assistant over MCP**. See [Connect an AI tool](/guides/connect-an-ai-client#what-a-connected-ai-tool-can-do). A chat that lives in Slack carries a **Slack chat** mark; point at it to read **Continues in Slack**. See [Talk to Ari from Slack](/guides/use-ari-in-slack).
 
-An empty list says **No chats yet.**, **No active chats.**, or **No archived chats.**
+The list leaves both kinds out until you turn on **Slack, iMessage and MCP chats** in its filter. The chat you have open is the exception: it keeps its row, highlighted, whatever its kind, until you open another chat. Workspace search (**⌘ K**) finds these chats whether or not they are listed.
+
+When you open one of your own chats of this kind, a one-line note stands where the message box would be, and the chat's history and cards still show:
+
+| Where the chat lives | The note |
+| --- | --- |
+| Slack | **This chat continues in Slack. Ask Ari there, or start a new chat here.** |
+| An AI assistant over MCP | **This chat continues in your AI assistant. Ask Ari there, or start a new chat here.** |
+
+Someone else who opens the chat sees the usual notice for another person's chat instead.
 
 ## Notifications when Ari finishes
 
@@ -432,7 +446,7 @@ A new workspace opens on a chat named **Welcome**, with Ari's greeting and a sta
 
 ### Company research and brief
 
-When you verify your email, cfo.ai starts a public web search for the email address and, for a work address, for the company behind its domain. While the search runs, the Welcome chat shows a **Searching the web** step. When it finishes, Ari posts a short brief about you and your company. The brief ends with a **Sources** list: your signup's email domain first, then each public page the research used, linked by its site and labeled with what ties it to you.
+When you verify your email, cfo.ai starts a public web search for the email address and, for a work address, for the company behind its domain. Ari's greeting says what it can help with and makes no promise about the research; the status line reads **Getting started** while the first reply is prepared. While the search runs, the Welcome chat shows a **Searching the web** step. When it finishes, Ari posts a short brief about you and your company. When the search finds nothing it can use, Ari says so instead: **I couldn’t prepare a brief from the available public information.** The brief ends with a **Sources** list: your signup's email domain first, then each public page the research used, linked by its site and labeled with what ties it to you.
 
 | Label | Meaning |
 | --- | --- |

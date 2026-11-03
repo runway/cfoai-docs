@@ -51,7 +51,7 @@ A refusal is the source answering a sync request with a sign-in or permission er
 
 ### Setup not finished
 
-Someone started connecting the source and did not finish. The setup may have failed, been abandoned, or still be open in someone's tab. Mark: gray dot. Line: **Syncing won’t begin until setup is finished.** Actions: **Finish setup** continues the same connection, and **Cancel setup** removes it without asking, because it holds no data yet.
+Someone started connecting the source and did not finish. The setup may have failed, been abandoned, or still be open in someone's tab. Mark: gray dot. Line: **Syncing won’t begin until setup is finished.** Actions: **Finish setup** continues the same connection, and **Cancel setup** removes it without asking, because it holds no data yet. **Send link**, beside **Finish setup** on the connection's page and its hover card, makes a link that continues the same setup for someone else who holds the source's sign-in; its tooltip reads **For someone else with the [source] sign-in**. See [Send a link so someone else can connect a source](/guides/send-a-connect-link).
 
 A source whose setup cannot be resumed, such as Stripe (Direct), offers only **Cancel setup** on the card, with **Setup wasn’t finished. Cancel it and connect [source] again.** On the connection's page, the line says **Remove it** and the button is **Remove connection**. People who cannot manage connections see the line and no button.
 
@@ -61,7 +61,7 @@ Setup failed before the source linked. Mark: red triangle. Line: the failure's r
 
 ### cfo.ai lost access
 
-The source revoked cfo.ai's access, for example after a password change or an expired authorization. Mark: red triangle. Line: **Reconnect to start syncing again.** Action: **Reconnect**, then sign in to the same company the connection already holds.
+The source revoked cfo.ai's access, for example after a password change or an expired authorization. Mark: red triangle. Line: **Reconnect to start syncing again.** Action: **Reconnect**, then sign in to the same company the connection already holds. **Send link** beside it makes a link for someone else to do that sign-in; see [Send a link so someone else can connect a source](/guides/send-a-connect-link).
 
 The data the connection synced before it lost access stays in your Model. Ari can still read it and answer from it, and it tells you when that data was last synced; new rows arrive only after you select **Reconnect**.
 

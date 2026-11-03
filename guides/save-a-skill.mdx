@@ -1,10 +1,10 @@
 ---
 title: "Save a workflow as a Skill"
 sidebarTitle: "Save a Skill"
-description: "Teach Ari a process you repeat, such as a monthly board update, so it follows the same steps every time, in every workspace you work in. Save it as a Skill in chat, with Build with Ari, or by writing it yourself, limit it to one workspace when it fits only one company, then change or remove it later."
+description: "Teach Ari a process you repeat, such as a monthly board update, so it follows the same steps every time, in every workspace you work in. Save it as a Skill in chat, with Build with Ari, or by writing it yourself, limit it to one workspace when it fits only one company, give a teammate a copy or make it available to everyone in a workspace, then change or remove it later."
 ---
 
-Save a Skill when you repeat the same process and want Ari to follow it the same way every time, such as your monthly board update or your month-end review. A Skill is a named set of instructions that belongs to you. Ari uses it on its own whenever a request of yours matches the Skill's description, in every workspace where you are a member unless you limit it to one, so you save it once. Other people in your workspaces have their own Skills. For how Ari picks a Skill, see [Skills, Triggers, and Guides](/concepts/automation).
+Save a Skill when you repeat the same process and want Ari to follow it the same way every time, such as your monthly board update or your month-end review. A Skill is a named set of instructions that belongs to you. Ari uses it on its own whenever a request of yours matches the Skill's description, in every workspace where you are a member unless you limit it to one, so you save it once. Other people in your workspaces have their own Skills, until you give one of them a copy or make a Skill available to everyone in a workspace; see [Give a teammate a copy of a Skill](#give-a-teammate-a-copy-of-a-skill) and [Make a Skill available to everyone in a workspace](#make-a-skill-available-to-everyone-in-a-workspace). For how Ari picks a Skill, see [Skills, Triggers, and Guides](/concepts/automation).
 
 <Tabs>
   <Tab title="Ask Ari">
@@ -60,7 +60,40 @@ Ask Ari, for example "Update the board-report Skill to include a hiring section"
 - Select **Edit**, change the **Description**, the **Instructions**, or **Use in**, and select **Save**.
 - Select **Delete** and confirm. Ari stops using the Skill wherever it applied.
 
-A Skill is yours, so a change or a deletion applies to your chats with Ari and nobody else's. **Settings → Skills** lists all your Skills, including ones limited to other workspaces. A Skill limited to a workspace you have left is not in use; you can still edit it, change **Use in**, or delete it. Built-in Skills cannot be edited or deleted; to change how one works for you, save your own Skill under a different name. A Skill of yours keeps its name when cfo.ai later ships an optional built-in Skill with the same name, for as long as the workspace leaves that built-in off. Once someone turns the built-in on, Ari follows the built-in in that workspace and sets your Skill aside there. Ari cannot change or delete a Skill under a built-in's name, so to keep your own version, save it again under a new name. See [Turn on a built-in Skill](/guides/turn-on-built-in-skills).
+A Skill of yours is yours, so a change or a deletion applies to your chats with Ari and nobody else's; a change to a workspace Skill reaches everyone in that workspace. **Settings → Skills** lists all your Skills, including ones limited to other workspaces. A Skill limited to a workspace you have left is not in use; you can still edit it, change **Use in**, or delete it. Built-in Skills cannot be edited or deleted; to change how one works for you, save your own Skill under a different name. A Skill of yours keeps its name when cfo.ai later ships an optional built-in Skill with the same name, for as long as the workspace leaves that built-in off. Once someone turns the built-in on, Ari follows the built-in in that workspace and sets your Skill aside there. Ari cannot change or delete a Skill under a built-in's name, so to keep your own version, save it again under a new name. See [Turn on a built-in Skill](/guides/turn-on-built-in-skills).
+
+## Give a teammate a copy of a Skill
+
+When a teammate needs to run the same procedure, ask Ari to share your Skill with them by name:
+
+> Share my board-report Skill with Dana Lee.
+
+Each person you name gets their own copy, limited to this workspace, and their Settings row reads **Shared by [your name]**. The copy is theirs from then on: they can edit or delete it, and changes to yours do not reach it. When they already have a Skill with that name, the copy takes the first free numbered name, and it counts toward their 100 Skills. Ari shares only with current members of this workspace, by their exact name or, when you can see member emails, by email; it refuses an ambiguous name, a pending invitation, or a guest, and then shares with nobody. There is no sharing control in Settings; ask Ari. A new chat of theirs has the copy at once, and a chat already open within a message or two.
+
+## Make a Skill available to everyone in a workspace
+
+For one procedure the whole team should follow, such as a close review every member runs the same way, make your Skill a workspace Skill. Everyone in the workspace then has it, and any member can edit or delete it.
+
+<Tabs>
+  <Tab title="Ask Ari">
+    > Make my close-review Skill available to everyone in this workspace.
+  </Tab>
+  <Tab title="By hand">
+    <Steps>
+      <Step title="Open Skills">
+        Open the account menu, your name or picture at the bottom of the sidebar, choose **Settings**, and select **Skills**.
+      </Step>
+      <Step title="Choose the Skill">
+        Under **Your skills**, find the Skill and select **Make available to everyone**. The button shows only on a Skill that applies in this workspace and whose name no workspace Skill uses yet.
+      </Step>
+      <Step title="Confirm">
+        Read **Make [name] available to everyone?** and select **Make available to everyone**. The Skill is listed under **Workspace skills** with **Promoted by [your name]**.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+What happens to your own copy depends on where it applied. A Skill limited to this workspace moves into **Workspace skills**. A Skill for all your workspaces stays yours everywhere, and in this workspace Ari keeps following your personal version while both have the same name; your row says so, and other members follow the workspace version. A workspace can hold 100 shared Skills, and a workspace Skill cannot take a built-in Skill's name. Every member's new chat has the Skill at once, and a chat already open within a message or two. See [Settings](/reference/settings#workspace-skills) for every label and message.
 
 ## Share a fact with your team
 

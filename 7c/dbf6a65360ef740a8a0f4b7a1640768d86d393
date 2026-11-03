@@ -1,0 +1,22 @@
+reference/table-blocks.mdx
+  s_8a64a6213828da::t_8097864db57d97 75,182,228-250,500
+guides/filter-and-sort-a-table.mdx
+  s_8a64a6213828da::t_8097864db57d97 4,103,106-126
+  s_8a64a6213828da::t_2be7a35f018a85 105
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "7cdbf6a65360ef740a8a0f4b7a1640768d86d393",
+  "prompts": {},
+  "sessions": {
+    "s_8a64a6213828da": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1a2a3-e006-7762-a18f-edfa2622948c",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "Siqi Chen <blader@gmail.com>"
+    }
+  }
+}

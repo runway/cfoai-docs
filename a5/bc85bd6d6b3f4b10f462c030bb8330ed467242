@@ -1,0 +1,21 @@
+guides/filter-and-sort-a-table.mdx
+  s_4843210e87cc7d::t_f7a721de5e71d9 103,105-109
+reference/table-blocks.mdx
+  s_4843210e87cc7d::t_04439892659af1 145,183
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a5bc85bd6d6b3f4b10f462c030bb8330ed467242",
+  "prompts": {},
+  "sessions": {
+    "s_4843210e87cc7d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "cf395b55-475c-457f-a081-3aa08645256b",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": "Siqi Chen <blader@gmail.com>"
+    }
+  }
+}

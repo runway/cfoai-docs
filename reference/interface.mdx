@@ -138,7 +138,7 @@ With no Triggers, the page reads **Put work on a schedule** and **Build a trigge
 | **Pending** | Queued and waiting to start. |
 | **Running** | Ari is working on it. |
 | **Finished** | The run reported the saved task done. |
-| **Delivered with gaps** | The run delivered its result with a requested part missing, such as a source it could not read; its reason shows below. It counts as a delivery, so it does not count toward the automatic pause, but the next run still catches up from the last run that delivered everything. |
+| **Delivered with gaps** | The run delivered its result with a requested part missing, such as a source it could not read; its reason shows below. It counts as a delivery, so it does not count toward the automatic pause, but the next run still catches up from the last run that delivered everything. Three such runs in a row that sent you no message post one notice in your most recent chat, **Trigger "[name]": 3 consecutive runs delivered incomplete results without sending you a notice. The latest run reported:** followed by the newest run's reason, then **The schedule is still enabled. Review its saved instructions with Ari if they need to change.** The Trigger stays on; see [Schedule a Trigger](/guides/schedule-a-trigger#if-something-goes-wrong). |
 | **Did not complete** | The run reported that it could not do the task; its reason shows below. |
 | **Ended without a report** | The run ended without reporting done or not done. |
 | **Failed** | The run stopped with an error. |
@@ -441,7 +441,7 @@ An export that ran out of time or met an input too large to read can still succe
 
 | Message | Meaning |
 | --- | --- |
-| **The export's calculation time ran out before the tables of these selected pages were calculated, so this workbook does not contain them:**, followed by the Page names | Calculation stopped 5 minutes before the 45-minute limit. Each named Page is left out of the workbook. Only an export of several Pages, which Ari makes, can leave a Page out. |
+| **The export's calculation time ran out before the tables of these selected pages were calculated, so this workbook does not contain them:**, followed by the Page names | Calculation stopped at the export's time limit, or the export reached its allowance of calculated cells or calculation requests; the sheet uses the same sentence for both. Each named Page is left out of the workbook. Only an export of several Pages, which Ari makes, can leave a Page out. The limits are in [Limits and file types](/reference/limits#tables-pages-sharing-and-exports). |
 | **These cells hold the value cfo.ai calculated instead of a formula. They do not recalculate when you edit an input.**, with a row for each cell | The cells kept as values, with the sheet, cell, Variable, period, Scenario, and the reason. |
 | **Its formula has no spreadsheet equivalent yet.** | The reason for a formula that cannot be written for Excel. |
 | **It reads [Variable]**, then **for [items]** or **at [period]** when known, **, which this workbook does not contain.** | The reason for a cell that reads a value the workbook has no cell for, including an input calculation did not reach in time. |
@@ -538,6 +538,10 @@ The controls sit inside the block's upper-right corner, over its content, and st
 A blank block on a deleted Page that you open from version history reads **This Canvas block was empty when the page was deleted.**, and a blank block you cannot edit reads **This Canvas block is empty.**
 
 A button inside a Canvas block can open another Page or block, put a message for Ari in the message box for you to review and send, or start a new chat that sends its message at once, such as a request to start a Guide. A button that hands work to Ari shows a trailing arrow. No button changes the Model.
+
+When you select a button that hands work to Ari, a notice reads **Ari is starting** with the button's label, and an **Activity** panel opens under the block with one row for the request: the label, then **Starting action…** and Ari's latest step while it works. The block's corner reads **Working** meanwhile, and **Task needs review**, **Task failed**, **Task stopped**, or, until you open the panel, **Done** when the work ends; selecting the corner label opens or closes the panel, and the panel's **Close activity** button hides it. A row ends **Finished** when Ari changed something, **Needs review** when it changed nothing, **Failed**, or **Stopped**. Point at a running row for **Stop**; a finished row offers **Dismiss**, and a stopped one **Resume** as well. Selecting a row that has a chat opens it (**Open in chat**). A panel with nothing to show reads **No activity yet.**
+
+Selecting the same button with the same request while Ari is still working on it starts no second run, whoever selects it and in whatever tab: the notice reads **Already in progress**, and the one row stays. A different request starts its own run. Reloading the Page in the same browser keeps the panel and its progress.
 
 For a reader who opens the Page through a share link, a control's choice lives in their browser only. It stays through the refreshes a Model change causes and through another person's edits to the Page's text, and ends when the reader reloads, switches Scenario, or opens another block; the block then shows the choice its editor saved. While cfo.ai is still checking who may edit the block, a control change is ignored rather than shown.
 

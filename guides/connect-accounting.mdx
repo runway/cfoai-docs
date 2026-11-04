@@ -39,12 +39,12 @@ If someone else holds admin access to your books, [invite them to your workspace
         In the sidebar, point at **Connections** and select **+** (**Add integration**).
       </Step>
       <Step title="Find your accounting system">
-        On the **Integrations** tab, QuickBooks Online, Xero, and Rillet are under **Featured**. Search for NetSuite. Select **Connect** on the card.
+        On the **Integrations** tab, QuickBooks Online, Xero, and Rillet are under **Featured**. Search for NetSuite; its card reads **NetSuite SuiteAnalytics**. Select **Connect** on the card.
       </Step>
       <Step title="Sign in and approve">
         For QuickBooks Online or Xero, a window opens. Sign in, choose the company or organisation, and approve access.
 
-        For NetSuite, Fivetran's setup window opens. Enter your NetSuite account and the access token. A table picker follows. The tables the statements need are locked. Tables for NetSuite features you do not use, **Multiple Currencies**, **Multiple Calendars**, or **Multi-Book Accounting**, start unchecked. Select **Finish setup & sync [N] tables**.
+        For NetSuite, Fivetran's setup page opens in the same tab. Enter your NetSuite account and the access token. A table picker follows. The tables the statements need are locked. The tables for **Multiple Currencies**, **Multiple Calendars**, and **Multi-Book Accounting** start unchecked when your NetSuite account does not share them, such as when the feature is turned off. Select **Finish setup & sync [N] tables**.
 
         For Rillet, paste the API key into the card and select **Connect**. The card reads **Verifying API key…**, then **Connected**.
       </Step>
@@ -73,7 +73,7 @@ During the load, cfo.ai copies your books into its data warehouse. Then it adds 
 You can keep working, and you do not need to stay on the page.
 
 - Start planning now. Ari can start a forecast from what you tell it and from estimates it names in its reply. When your records land, have Ari rebuild the forecast on them so they take the place of those estimates; see [Replace estimates with your real numbers](/guides/switch-to-real-numbers).
-- Do not reconnect or connect the source again to speed things up. Signing in again does not change how fast the data loads, and cfo.ai does not offer **Reconnect** while a sync is running.
+- Do not reconnect or connect the source again to speed things up. Signing in again does not change how fast the data loads, and a connected source does not offer **Reconnect** while a sync is running.
 
 ## Check that the data is ready
 
@@ -102,7 +102,7 @@ You cannot connect the same QuickBooks company or Xero organisation twice. If yo
 - If your system is not in the directory, such as QuickBooks Desktop or QuickBooks Enterprise, export a general ledger, or a monthly profit and loss and balance sheet, and [upload it as a CSV](/guides/upload-a-csv). A general ledger with a date, an account, and an amount on each row gives Ari the most to work with. Check the [integrations directory](/reference/integrations#check-whether-your-system-is-supported) first, because Sage Intacct, Acumatica, Zoho Books, and many other systems are there.
 - If you are not an admin in the accounting system, invite the person who is, or export the reports yourself and upload them.
 - If your numbers live in a spreadsheet model, attach it to a chat and [import it](/guides/import-a-spreadsheet-model).
-- If the card shows **Upgrade plan** or **Choose plan** instead of **Connect**, your plan has no room, or the workspace has no trial or plan yet. A **Premium** badge means the source needs the Enterprise plan; a trial does not unlock it. The tooltip says what is missing, and [Connection statuses and actions](/reference/connection-statuses#messages-when-a-new-connection-is-refused) lists each message.
+- If the card shows **Upgrade plan**, **Choose plan**, or **Manage plan** instead of **Connect**, your plan has no room, the workspace has no trial or plan yet, or a plan change is already scheduled. A **Premium** badge means the source needs the Enterprise plan; a trial does not unlock it. The tooltip says what is missing, and [Connection statuses and actions](/reference/connection-statuses#messages-when-a-new-connection-is-refused) lists each message.
 
 An upload does not refresh, so upload a new export each month until you can connect directly.
 

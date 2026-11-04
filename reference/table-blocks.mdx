@@ -142,6 +142,7 @@ A row or column for a Variable, such as Revenue, or a column that shows each row
 | **Show formula column** / **Hide formula column** | On a column that heads a group: opens or closes its formula column. |
 | **Filter** | On a column that shows each record's item, such as Status: filters the rows by its value. |
 | **Use as row names** / **Stop using as row names** | On a column that shows each record's item, such as Name on a table with one row per Employee ID: shows each row's value in that column as the row's name, in place of its key. The key stays the row's identity in formulas, the formula bar, filters, and row actions, and such a name cannot be renamed by typing over it. A row with no value in the column shows its key. Saved with the table, for everyone. See [Show a field, such as Name, as the row names](/guides/format-a-table#show-a-field-such-as-name-as-the-row-names). |
+| **Sort ascending** / **Sort descending** / **Clear column sort** | Columns only. Orders the Dimension rows by their values in this column, each level inside its parent, and keeps that order as values change. Offered on a Variable or field column, one item of a column Dimension such as a month, and a comparison column. See [Sort rows by the numbers in a column](/guides/filter-and-sort-a-table#sort-rows-by-the-numbers-in-a-column). |
 | **Pin column** / **Unpin column** | Columns only. Keeps the column beside the row names while you scroll, like a frozen column in a spreadsheet, for everyone. |
 | **Format and display** | Opens the [format options](#format-and-display-options). |
 | **Use as** | For a Dimension shown as a mapping column: **Segmentation** or **Mapping**. |
@@ -179,7 +180,7 @@ Opens from a Dimension's label row, such as **DEPARTMENT**, or from **[Dimension
 | **Segment by** | Breaks every item at this level down by another Dimension. |
 | **Filter items** | Rows only. Chooses which items show. Shows the number of items kept when filtered. |
 | **Filter** | On a list of records: filters the rows by this column's value. |
-| **Sort** | **None**, **Ascending**, **Descending**, or **Manual**. Not offered for Date. |
+| **Sort** | **None**, **Ascending**, **Descending**, or **Manual**, by item name. Reads **By column** while a column sort orders the items, or **Column sort inactive** when the saved sort column has left the table. Not offered for Date. |
 | **Date granularity** | For Date: **Inherit**, **Raw**, **Day**, **Week**, **Month**, **Quarter**, **Half**, or **Year**. |
 | **Use as** | **Segmentation** or **Mapping**. |
 | **Segment generation** | **Show only matching segments** shows the combinations that have data. **Expand to create all segments** shows every combination; for a Dimension of numbers, set **Start Value** and **End Value**, and for a Dimension of dates, set **Start / End dates**. The range is saved only when both ends are set, and clearing both removes it. |
@@ -475,7 +476,6 @@ Version history does not list changes to column widths or pinned columns.
 | --- | --- |
 | Hold a comment or note on a cell | Write a note on the Page beside the table, or ask Ari for a text Variable, such as Notes, on a table that lists records. |
 | Color the cells you type into automatically | They carry a dashed underline. Select them and set a **Background** or **Text color**. |
-| Sort rows by the numbers in a column | **Sort** orders items by name. Set a **Manual** order, or ask Ari to order the items by value. |
 | Filter or sort dates | Change the date range. Dates always run in date order. |
 | Show two grains on one Date axis, such as quarters and years | Ask Ari for annual columns over the months; it nests a year level above the month level, and the grain button then changes only the months. By hand, duplicate the table with **Duplicate block** and give each copy its own grain. |
 | Hold Variables in both the rows and the columns | Keep every Variable on one side. |

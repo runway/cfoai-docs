@@ -100,9 +100,13 @@ You can also drag item rows up or down by the grip at their left edge. The Dimen
 
 A sort applies to the whole level, so every group on the table that shows that Dimension lists its items in the same order.
 
-## Sort rows by their numbers
+## Sort rows by the numbers in a column
 
-A table cannot sort by the values in a column, such as the largest Revenue first. **Sort** orders a Dimension's items by their names. To show the largest first, set a **Manual** order, or ask Ari to put the items in order of their values.
+Right-click any column header and choose **Sort ascending** or **Sort descending**. The Dimension's items reorder by their values in that column, and they keep that order as values change and new items arrive. Any column works: a Variable such as Revenue, a field such as Start date, one month of a table segmented by Date, or a comparison column such as a scenario's delta.
+
+Each level sorts inside its parent. On a table that lists Regions with Customers under each, sorting by Revenue orders the Regions by their totals and the Customers within each Region by their own values. A row that has no value or shows an error goes last either way. Choose **Clear column sort** on the same header to return to the item order, or pick **Ascending**, **Descending**, or **Manual** under **Sort** to order the items by name again.
+
+The sort stays saved with the table when you add a comparison, a spacer, or another level. If the sort column leaves the table, the rows show their item order and the Dimension's **Sort** reads **Column sort inactive** until the column comes back.
 
 Variable rows have no sort; drag them into the order you want. Date columns always run in date order; to show fewer periods, change the table's date range.
 

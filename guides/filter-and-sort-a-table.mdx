@@ -122,9 +122,9 @@ You can order the rows of a table that lists one Dimension's items, such as one 
   </Tab>
 </Tabs>
 
-The menu offers the sort only on a table whose rows are one Dimension's items with no breakdown under them, no drill-in, and no comparison, and only on a column that is not inside a group and is not a total column. One column orders the table; sorting by another column replaces the first. While the sort is on, **Sort** in the Dimension's menu reads **By column**, and choosing **Ascending**, **Descending**, **Manual**, or **None** there replaces the column sort with an order by name.
+The menu offers the sort only on a table whose rows are one Dimension's items with no breakdown under them, no drill-in, and no comparison, and only on a column that shows a Variable's values or a field of each row, such as First ARR Month, that is not inside a group and is not a total column. One column orders the table; sorting by another column replaces the first. While the sort is on, **Sort** in the Dimension's menu reads **By column**, and choosing **Ascending**, **Descending**, **Manual**, or **None** there replaces the column sort with the Dimension's own item order: by name, your dragged order, or none.
 
-If you add a breakdown, or remove the sort column, the table keeps the sort but cannot apply it: **Sort** reads **Column sort inactive**, and the rows return to the Dimension's own order. Remove the breakdown to apply it again. Blanks and errors stay at the bottom in both directions, and a new item waits at the end until the table's values refresh. The full rules are in [Column sort](/reference/table-blocks#column-sort).
+If you add a breakdown, or remove the sort column, the table keeps the sort but cannot apply it: **Sort** reads **Column sort inactive**, and the rows return to the Dimension's own order. Remove the breakdown to apply it again; when the sort column itself is gone, choose **Sort ascending** or **Sort descending** on another column. Blanks and errors stay at the bottom in both directions, and a new item waits at the end until the table's values refresh. The full rules are in [Column sort](/reference/table-blocks#column-sort).
 
 Variable rows have no sort; drag them into the order you want. Date columns always run in date order; to show fewer periods, change the table's date range.
 

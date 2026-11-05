@@ -89,7 +89,7 @@ The range is chosen by where the formula sits: `default_formulas.actuals` or `de
 
 ### Read Last close when it matters
 
-A `dimension` read of Date, and each Scenario in `inspect_scenarios`, returns the Scenario's `calendar`: `last_close`, its default `granularity`, and its default range. A table grid `read` does not carry it. Read the calendar when you need to confirm Last close, because the boundary decides which dates count as Actuals and which belong to Forecast. `edit_table_blocks` `update_calendar` changes these settings for the Scenario; every table in the Scenario shares them.
+A `dimension` read of Date, and each Scenario on an `inspect_scenarios` page of 25 Scenarios or fewer, returns the Scenario's `calendar`: `last_close`, its default `granularity`, and its default range as `range_start` and `range_end`. A longer `inspect_scenarios` page carries no calendars and says so in `calendar_omitted`. The Date read's `calendar` also lists the formula ranges with their bounds under `ranges`. A table grid `read` does not carry it. Read the calendar when you need to confirm Last close, because the boundary decides which dates count as Actuals and which belong to Forecast. `edit_table_blocks` `update_calendar` changes these settings for the Scenario; every table in the Scenario shares them.
 
 If the Scenario has no Last close, explain the missing setting before you build a result that depends on the range.
 

@@ -272,6 +272,8 @@ Ari's saved memory lives in an outside service. When that service cannot answer,
 
 Work that Ari runs in the background from a chat, such as an overnight update from a connected Google Sheet or several Pages built at once, reports back to that chat when it finishes, stops, or cannot finish. Ari usually answers in its own words. When Ari has nothing to add, the chat shows the work's own report as Ari's reply instead of staying silent. It starts **Background work** and says whether the work finished, could not finish, or was stopped, and whether its review passed it, then names the work in quotation marks, then gives one line for each step with what it reported and what the work left in your Model. The report can name items by their short references, such as `#7a1`. It sends no email or Slack message.
 
+Work that no chat started, such as an import from a connection you made in the connection manager or through an AI client, reports to your most recent chat in the workspace when it has something for you: records ready to model, a question, or a failure it could not repair. An update that finishes with nothing to ask posts nothing, which is why a file connected from the connection manager opens a chat only when Ari needs you. When you have no chat yet, such a report waits for your first message and arrives with Ari's reply to it, as long as it is less than seven days old; older ones are no longer delivered. A report that belongs to another chat stays with that chat and never arrives in yours, even after that chat is deleted.
+
 ### Download a file Ari made
 
 A file Ari makes for you, such as a workbook, an image, or a document, appears as a card with its name and size directly under the answer that ends the turn. PNG, JPEG, GIF, and WebP images show a preview. When the answer names the file by its exact file name, with the same letter case and extension and outside a code block, that name is a link to the same download.
@@ -464,14 +466,9 @@ A new workspace opens on a chat named **Welcome**, with Ari's greeting and a sta
 
 ### Company research and brief
 
-When you verify your email, cfo.ai starts a public web search for the email address and, for a work address, for the company behind its domain. Ari's greeting says what it can help with and makes no promise about the research; the status line reads **Getting started** while the first reply is prepared. While the search runs, the Welcome chat shows a **Searching the web** step. When it finishes, Ari posts a short brief about you and your company. When the search finds nothing it can use, Ari says so instead: **I couldn’t prepare a brief from the available public information.** The brief ends with a **Sources** list: your signup's email domain first, then each public page the research used, linked by its site and labeled with what ties it to you.
+When you verify your email, cfo.ai starts a public web search for the email address and, for a work address, a second search for the company behind its domain, and it also reads the homepage of that domain's website, so a small company that search has not indexed is still identified from its own site. Ari's greeting says what it can help with and makes no promise about the research; the status line reads **Getting started** while the first reply is prepared. While the search runs, the Welcome chat shows a **Searching the web** step. When it finishes, Ari posts a short brief about you and your company, written in plain words, that links each public page it drew on where it uses it, and the step lists the pages the research used. When the search finds nothing it can use, Ari says so instead: **I couldn’t prepare a brief from the available public information.**
 
-| Label | Meaning |
-| --- | --- |
-| **shows your full email address** | The page shows your exact email address. |
-| **on your email domain** | The page is on your company's own website. |
-| **found by searching your email domain** | The page came up in the search for your company. |
-| **matches your name only** | The page shares only your name. |
+The research keeps a page when something ties it to you: it shows your full email address, it is on your company's own website, or it came up in the search for your company. A page that only shares your name is kept when your address has a work domain and the search for that company returned results, since the brief writer can then check it against the company; with a personal address, or when the company search found nothing, such a page is left out, because it is someone else as often as not.
 
 When your account's email address is personal, such as a Gmail address on an account created before new accounts needed a work email, cfo.ai cannot research a company from it, and a page that matches only your name is left out. The brief is researched for the person who created the workspace; a teammate who joins later gets a greeting and the starting card without a brief. To correct what the research found, see [Teach Ari your company's conventions](/guides/teach-ari#correct-what-ari-found-about-your-company).
 

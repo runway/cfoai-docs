@@ -414,7 +414,7 @@ When it finishes:
 | **Spreadsheet download started**, with the file name | The workbook downloaded. |
 | **Spreadsheet download started**, with **[file]: [n] cells hold values instead of a formula. The Export notes sheet lists them.** and **Ask Ari to fix** | Some formulas could not be written as Excel formulas. **Ask Ari to fix** opens a chat that asks Ari to export the Page again and write a working formula into each of those cells. |
 | **Could not download spreadsheet**, with **[Page]: [reason]** | The export failed. |
-| **The Excel export of "[Page]" finished with [n] of [m] selected pages written.**, then **Pages left out ([k]): [names].** when some were | Posted in the chat that asked Ari for the export, when the export finished after Ari's reply had ended. A failed export posts **The Excel export of "[Page]"** followed by its reason instead. See [Export a Page to Excel](/guides/download-a-spreadsheet). |
+| **The Excel export of "[Page]" finished with [n] of [m] selected pages written.**, then **Pages left out ([k]): [names].** when some were | Posted in the chat that asked Ari for the export, when the export finished after Ari's reply had ended and Ari had not yet read the result. When Ari already checked the export in that chat and saw it finish or fail, the notice is dropped, so a workbook Ari already handed you is not announced a second time. A failed export posts **The Excel export of "[Page]"** followed by its reason instead. See [Export a Page to Excel](/guides/download-a-spreadsheet). |
 
 When you open a Page, it looks for your own newest export of that Page in that Scenario: one still queued or running, or one that ended within the last hour. It looks even when the Page no longer has a table. A running export makes the button busy again, with the tooltips above. When it finishes, the file downloads if this tab asked for it before a reload, or if you selected **Download spreadsheet** in this tab while it ran; an export that a closed tab, another tab, or Ari asked for is otherwise offered with **Spreadsheet ready** instead. An export that already ended shows one of these notices. A tab reports an export once, across its reloads, and a new tab reports it again:
 
@@ -525,14 +525,14 @@ A link's preview card in chat and social apps, and the browser title of the link
 
 ### Canvas block controls
 
-The controls sit inside the block's upper-right corner, over its content, and stay hidden until you point at the block or move keyboard focus into it; on a touch screen, a tap on the block shows them and a tap outside hides them. While hidden, they let clicks through to the block.
+The controls sit in a strip above the block's frame, at its right, so they never cover what the block draws, such as a slide deck's own **Next** button in its corner. They stay hidden until you point at the block or move keyboard focus into it; on a touch screen, a tap on the block shows them and a tap outside hides them. While hidden, they let clicks through to the block. The strip is the same height at every width; on a block wider than 720 px the controls show their labels, and on a narrower one only their icons.
 
 | Control | What it does |
 | --- | --- |
-| **Add** | At the block's top corner, for people who can edit the Page. Opens the Canvas block library to pick components and templates for Ari to add. |
-| **Select element** | At the block's top corner. Click one part of the block to add it to the chat as a reference. |
-| **Mention in chat** | At the block's top corner. Adds the block to the chat's message box. |
-| **Inspect data** | At the block's top corner, on a block that reads Model data, for workspace admins only; its tooltip reads **Inspect the data behind this Canvas block**. Opens the **Canvas data** dialog, which shows each data view the block reads as its own read-only table. A table's header offers **Add to page**, which puts a copy of that table on the Page just before the Canvas block and then reads **Added to page**. The copy is an ordinary Table block, so you can edit it as you would any table; cells a connected system fills stay read-only there too. **Add to page** needs edit access to the Page and is unavailable in a historical view, for a view that reads another Scenario, and while the Page is refreshing. The dialog stays open while the Page refreshes, including after **Add to page**. |
+| **Add** | In the strip above the block, for people who can edit the Page. Opens the Canvas block library to pick components and templates for Ari to add. |
+| **Select element** | In the strip above the block, for people who can edit the Page. Click one part of the block to add it to the chat as a reference. |
+| **Mention in chat** | In the strip above the block. Adds the block to the chat's message box. |
+| **Inspect data** | In the strip above the block, on a block that reads Model data, for workspace admins only; its tooltip reads **Inspect the data behind this Canvas block**. Opens the **Canvas data** dialog, which shows each data view the block reads as its own read-only table. A table's header offers **Add to page**, which puts a copy of that table on the Page just before the Canvas block and then reads **Added to page**. The copy is an ordinary Table block, so you can edit it as you would any table; cells a connected system fills stay read-only there too. **Add to page** needs edit access to the Page and is unavailable in a historical view, for a view that reads another Scenario, and while the Page is refreshing. The dialog stays open while the Page refreshes, including after **Add to page**. |
 | **Browse library** and **Mention block in chat** | On a blank block, under **Build something custom** and **Chat with Ari to generate custom visuals and interactive tools**. |
 
 A blank block on a deleted Page that you open from version history reads **This Canvas block was empty when the page was deleted.**, and a blank block you cannot edit reads **This Canvas block is empty.**
@@ -552,7 +552,7 @@ A Canvas block can open your browser's own dialogs: a print button prints that b
 | Message | Meaning | What to do |
 | --- | --- | --- |
 | **This Canvas block didn't start because its libraries failed to load.** | The block's software did not load. | Select **Retry**. |
-| **This Canvas block didn't start because its runtime stopped with an error before it was ready.** | The block's software stopped before the block started. | Select **Retry**. |
+| **This Canvas block is unavailable because its runtime hit an error.** | The block's software stopped before the block started. | Select **Retry**. |
 | **This Canvas block was still starting after 15 seconds.** | The block's software was still loading after 15 seconds with the Page in view. Time in a background tab does not count, and the wait starts over each time you return to the tab, so a tab you left for a while does not show this when you come back. | Select **Retry**, or wait. |
 | **This block failed to render.**, with the error | The block stopped with an error while drawing. | Select **Fix** to hand the block to Ari, or **Mention in chat**. |
 | **This block's "[data]" data didn't load because the connection to cfo.ai failed.** | Your connection to cfo.ai failed. | Wait. The block asks again when your connection returns. |
@@ -571,7 +571,7 @@ New charts are Canvas blocks; the block list has no chart option. A chart block 
 | **Show chart setup** / **Hide chart setup** | At the left of the chart's header. Opens the chart's sidebar. |
 | Chart title | Type to rename the chart. |
 | **Compare** | In the chart's header. **None** or **Scenarios**, and whether colors follow the **Dimension item** or the **Scenario**. |
-| **Setup** tab | The chart type (**Line**, **Bar**, **Bar Stacked**, **Bar Stacked Normalized**, **Pie**, **Combo**, **Donut**, **Nightingale**, **Area**, **Area Stacked**, **Area Stacked Normalized**, **Waterfall**); **X-Axis** with the date grain; **Y-Axis** (or **Values** on a pie, donut, or Nightingale chart) with each Variable's **Pick color**, **Segment by**, and **Remove**; a combo chart's line or bar choice per series; a waterfall's **Positive**, **Negative**, and **Total** colors. |
+| **Setup** tab | The chart type (**Line**, **Bar**, **Bar Stacked**, **Bar Stacked Normalized**, **Pie**, **Combo**, **Donut**, **Nightingale**, **Area**, **Area Stacked**, **Area Stacked Normalized**, **Waterfall**); **X-Axis** with the date grain; **Y-Axis** (or **Values** on a pie or donut chart) with each Variable's **Pick color**, **Segment by**, and **Remove**; a combo chart's line or bar choice per series; a waterfall's **Positive**, **Negative**, and **Total** colors. |
 | **Display** tab | **Show chart title** and **Chart title text**; **Show legend** and its **Position**; **Show X axis**, **Show X axis title**, and **X axis title**; **Show Y axis**, **Show horizontal grid lines**, **Show Y axis title**, and **Y axis title** |
 | **Open Chart Options** (**…**) | **Reset chart** |
 

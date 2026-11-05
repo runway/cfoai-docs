@@ -41,6 +41,8 @@ cfo.ai decides how to read dates for a whole column at once.
 
 A row whose date is empty has no place in a table that shows the source's dates by week, month, quarter, or year, so it is left out of those rows and columns; it still counts in totals that do not break down by date, and it appears under an empty item only when the date Dimension is shown without a grain.
 
+A date before January 1, 1900 or after December 31, 2299, such as a typo like `10/30/3036`, loads as written from any source, but a formula or table that reads the column by month, quarter, or another period leaves that row out. A filter on the exact date still matches it. After an import, Ari is told how many dates in each column fall outside that range, with one example and its row in the query result, so it can explain missing rows without changing the values. Fix the date in the source and refresh.
+
 A column named `Date` does not place the rows on the calendar by itself. Tell Ari which column dates the rows, such as an invoice date or a period column, and Ari saves it as the source's date column. A table that shows a source with no date column by month cannot calculate it; see [Table calculation notices](/reference/formula-errors#table-calculation-notices).
 
 ## How columns become Variables and Dimensions
@@ -144,12 +146,12 @@ A sync setup copies the results of one read-only tool or endpoint into your data
 | Limit | Value |
 | --- | --- |
 | Pages in one sync | 10,000. Each page is one source response: up to 1 MiB from an API, 2 MiB from an MCP server |
-| Replace and snapshot, without a changes-since filter | Written page by page, so only the page limits apply. The pages are published together when the sync finishes, so a sync that stops at a limit publishes none of them |
+| Replace and snapshot, without a changes-since filter | Written page by page, so only the page limits apply. The pages are published together when the sync finishes, so a sync that stops at a limit publishes none of them. The pages it saved are kept: the next attempt, including the nightly refresh, continues from the last saved page as long as the first page is less than 48 hours old. Older pages are discarded and the sync starts over, as it does after Ari edits the setup |
 | Upsert, append, or any sync with a changes-since filter | 16 MiB in all, because the whole result is held before it is saved |
 | One tool call in a sync page from an MCP server | 45 seconds. Connecting to the server, listing its tools, and the call each get 45 seconds. A time limit the tool's own description names is the server's own; cfo.ai's applies either way. |
 | One sync | 10 minutes |
 
-A sync that reaches a limit stops without saving a partial result, and the data from the last complete sync stays. The tool or endpoint must be set to **Allow**.
+A sync that reaches a limit stops without publishing a partial result, and the data from the last complete sync stays. The tool or endpoint must be set to **Allow**.
 
 ## Related
 

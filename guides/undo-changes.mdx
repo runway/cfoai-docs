@@ -15,9 +15,9 @@ Every change to the Model is recorded in version history, whether you made it or
 
 ## Undo your own last edit
 
-Press **⌘ Z** (**Ctrl Z** on Windows and Linux) to take back the last change you made to the Model, and **⌘ Shift Z** to redo it.
+Press **⌘ Z** (**Ctrl Z** on Windows and Linux) to take back the last change you made to the Model, and **⌘ Shift Z** (**Ctrl Shift Z** or **Ctrl Y** on Windows and Linux) to redo it.
 
-**⌘ Z** undoes only the edits you made in this browser tab since it opened. It does not undo Ari's changes or changes from an earlier visit; use version history for those. It does not undo Model changes while you are typing in a text field or the formula editor. The notices undo and redo show are listed in [Keyboard shortcuts](/reference/keyboard-shortcuts#undo-and-redo).
+**⌘ Z** undoes only the edits you made in this browser tab since it opened. It does not undo Ari's changes or changes from an earlier visit; use version history for those. It does not undo Model changes while you are typing in a text field or the formula editor, or while you are viewing a past version; inside a Page's text, it undoes your typing instead. The notices undo and redo show are listed in [Keyboard shortcuts](/reference/keyboard-shortcuts#undo-and-redo).
 
 ## Ask Ari to undo
 
@@ -35,21 +35,21 @@ Ari undoes the most recent change as a whole. You can also describe an older cha
     Use **Filter version history** to show only some people or kinds of change, or **Jump to date** to move to a day.
   </Step>
   <Step title="Undo it">
-    Point at the entry, select its **…** actions button, and choose **Undo this change**. Undo puts back only what that change wrote, such as a Page's name or one formula, and keeps every later change. If a later change edited the same thing, nothing is undone, and a notice names that later change: **A later change edited the [field] of [subject], so this change can’t be undone on its own.** Undo the later change first, then this one. A change a Scenario inherited from Main cannot be undone from inside the Scenario; undo it in Main.
+    Point at the entry, select its **…** actions button, and choose **Undo this change**. Undo puts back only what that change wrote, such as a Page's name or one formula, and keeps every later change. If a later change edited the same thing, nothing is undone, and a notice names that later change: **A later change edited the [field] of [subject], so this change can’t be undone on its own.** Undo the later change first, then this one. A change a Scenario inherited from Main, whose summary reads **in Main Scenario**, has no **Undo this change** inside the Scenario; undo it in Main.
   </Step>
 </Steps>
 
-An undone entry offers **Redo this change**.
+The undone entry is struck through and marked **Undone**, and the new entry that records the undo offers **Redo this change**.
 
 ## Restore an earlier version
 
 Restoring returns the whole Scenario to an earlier point and rolls back every change made after it.
 
-1. In version history, select the entry for the point you want. The Model shows how it looked then, with a banner that says you are viewing a version.
-2. Select **Restore this version**, or open the entry's **…** actions button and choose **Restore this version**.
-3. Review the preview and confirm.
+1. In version history, select the entry for the point you want. The Model shows how it looked then, with a banner that reads **Viewing [time] · Read only**.
+2. Select **Restore** in the banner, or open the entry's **…** actions button and choose **Restore this version**.
+3. Review the dialog, which names the changes it will undo and who made them, and select **Restore version**.
 
-The restore is itself a recorded change, so you can undo it. Restoring needs full access to the Scenario. In a Scenario other than Main, changes made in Main stay as they are.
+The restore is itself a recorded change, so you can undo it. Restoring needs full access to the Scenario, and neither undo nor restore is offered on a Snapshot, which is pinned to one moment. In a Scenario other than Main, changes made in Main stay as they are. When Scenarios were branched from this one, the dialog offers to restore them to the same time as well.
 
 To leave the past version without restoring it, select **Back to latest**.
 

@@ -1,7 +1,7 @@
 ---
 title: "Filter and sort a table"
 sidebarTitle: "Filter and sort"
-description: "Show only some of a Dimension's items on a Table block, hide one item, find and clear a filter (unfilter a row or column), filter a list by a column's value, change a filter Ari wrote as a formula, and sort items A to Z, Z to A, or in your own order."
+description: "Show only some of a Dimension's items on a Table block, hide one item, find and clear a filter (unfilter a row or column), filter a list by a column's value, change a filter Ari wrote as a formula, sort items A to Z, Z to A, or in your own order, and sort rows by a column's values, such as largest Revenue first."
 ---
 
 Use a filter to show only some of a Dimension's items on a table, such as two departments out of ten, and a sort to put the items in order. Filters and sorts change only this table, and everyone who opens it sees the same view. They never change a number in your Model.
@@ -100,13 +100,22 @@ You can also drag item rows up or down by the grip at their left edge. The Dimen
 
 A sort applies to the whole level, so every group on the table that shows that Dimension lists its items in the same order.
 
-## Sort rows by the numbers in a column
+## Sort rows by a column's values
 
-Right-click any column header and choose **Sort ascending** or **Sort descending**. The Dimension's items reorder by their values in that column, and they keep that order as values change and new items arrive. Any column works: a Variable such as Revenue, a field such as Start date, one month of a table segmented by Date, or a comparison column such as a scenario's delta.
+<Tabs>
+  <Tab title="Ask Ari">
+    > On the Customers table, sort the rows by Customer First ARR Month, oldest first.
+  </Tab>
+  <Tab title="By hand">
+    Right-click any column header and choose **Sort ascending** or **Sort descending**. A check marks the current choice.
+  </Tab>
+</Tabs>
+
+The Dimension's items reorder by their values in that column, and they keep that order as values change and new items arrive. Any column works: a Variable such as Revenue, a field such as Start date, one month of a table segmented by Date, or a comparison column such as a scenario's delta.
 
 Each level sorts inside its parent. On a table that lists Regions with Customers under each, sorting by Revenue orders the Regions by their totals and the Customers within each Region by their own values. A row that has no value or shows an error goes last either way. Choose **Clear column sort** on the same header to return to the item order, or pick **Ascending**, **Descending**, or **Manual** under **Sort** to order the items by name again.
 
-The sort stays saved with the table when you add a comparison, a spacer, or another level. If the sort column leaves the table, the rows show their item order and the Dimension's **Sort** reads **Column sort inactive** until the column comes back.
+The sort stays saved with the table when you add a comparison, a spacer, or another level. If the sort column leaves the table, the rows show their item order and the Dimension's **Sort** reads **Column sort inactive** until the column comes back. The full rules are in [Column sort](/reference/table-blocks#column-sort).
 
 Variable rows have no sort; drag them into the order you want. Date columns always run in date order; to show fewer periods, change the table's date range.
 
@@ -119,7 +128,7 @@ The menu leaves out actions that cannot apply. Check which case you are in:
 </Accordion>
 
 <Accordion title="The Dimension is Date">
-  Dates cannot be filtered or sorted. Change the date range instead; see [Build a Table block by hand](/guides/build-a-table#set-the-dates-and-the-time-grain).
+  The Date axis cannot be filtered or sorted. Change the date range instead; see [Build a Table block by hand](/guides/build-a-table#set-the-dates-and-the-time-grain). A column that holds dates, such as First ARR Month, can still order the rows; see [Sort rows by a column's values](#sort-rows-by-a-columns-values).
 </Accordion>
 
 <Accordion title="The row is a Variable">

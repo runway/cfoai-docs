@@ -90,6 +90,8 @@ Ari keeps working on cfo.ai's servers until it finishes, even if you close the t
 
 Ari's reasoning and actions collect in an **Activity** group under your message. The group is open while Ari works and while it is on your screen. Once you scroll past it, it closes and stays closed. Your own click to open or close it always wins, and groups in an earlier conversation start closed.
 
+While Ari thinks, its reasoning is a row in the group labeled **Thinking**, or the reasoning's own heading once it has one, and the row opens on its own as the text arrives. Close it and it stays closed. When the thinking is done, the row reads **Thoughts** or its heading, and in an earlier conversation it starts closed.
+
 A closed group reads as one sentence naming up to three things Ari did, such as "Searched the web, checked memory and integrations", followed by **and N more** for the rest, then the time and tokens the turn used. A group with only reasoning reads **Thought it through**. A step that was stopped reads **Cancelled**.
 
 The group does not report failed steps. A failed step shows the normal check mark and folds into **and N more**, because Ari often recovers by retrying or reading the data another way. Anything you need to know about a failure is in Ari's answer.
@@ -292,7 +294,7 @@ The button turns off when the action is no longer possible, for example because 
 
 | Card | What it shows |
 | --- | --- |
-| Page card | A Page Ari created or changed, with a button to open it. Shown when the edit animation is off. |
+| Page card | A Page Ari created or changed, with a button to open it. The button opens the Page in the Scenario Ari edited, even when you have since moved to another Scenario; when Ari's step recorded no Scenario, the Page opens in the Scenario you are viewing. Shown when the edit animation is off. |
 | **Formulas** | Every formula Ari wrote in the turn, closed by default; open it to read each formula. Shown when the edit animation is off. |
 | Connection card | Opens the sign-in for a system you are connecting. Ari cannot sign in for you. See [Connect QuickBooks, Xero, NetSuite, or Rillet](/guides/connect-accounting). |
 | **Start walkthrough** / **Start tour** | Starts a Guide Ari built or presented. See [Walk someone through a Page with a Guide](/guides/create-a-guide). |
@@ -423,6 +425,8 @@ After a turn that ran longer than 20 seconds ends while you are watching, a line
 
 Ari chats in Slack direct messages, and in private channels an administrator adds it to, once your workspace is connected in **Settings → Ari → Slack**. See [Talk to Ari from Slack](/guides/use-ari-in-slack).
 
+Ari's reply posts to the Slack thread once, whether the turn ran in your browser, because you had the same chat open in cfo.ai, or on cfo.ai's servers. When Slack is slow to answer or cannot be reached, cfo.ai tries again, starting 30 seconds later and up to five times. A reply that Slack still does not take stays in the chat in cfo.ai; see [When a reply does not reach Slack](#when-a-reply-does-not-reach-slack).
+
 | Message | Meaning |
 | --- | --- |
 | **is typing…** | Ari is working on your message. Its reply posts in the same thread when the turn ends. |
@@ -439,6 +443,20 @@ Ari chats in Slack direct messages, and in private channels an administrator add
 When an administrator removes Ari from a channel, the channel's conversations stay in cfo.ai as chats of the administrator who set Ari up there, and Ari forgets which chat each thread belonged to. If an administrator adds Ari to the channel again, a reply in an earlier thread starts a new conversation rather than continuing the old one.
 
 Slack shows the text, bold, and links of Ari's replies, and prints tables and headings as the characters typed. Question forms, approval cards, plan cards, download cards, and Guides do not appear in Slack; open the chat in cfo.ai to see them. A link to a Page or block opens it in your browser, under your own access. Open the same chat in cfo.ai and the link appears as a chip, as it does in a web chat.
+
+### When a reply does not reach Slack
+
+When Ari finishes a reply but Slack does not take it, the reply stays in the same chat in cfo.ai, and a message posted after it says why. Each message ends **The full reply is here.** Open the chat from the chat list, with **Slack, iMessage and MCP chats** turned on in its filter, or from workspace search. For every message but the last in the table, nothing reached Slack; after **Ari couldn't confirm that this reply reached Slack.**, the reply may already be in the Slack thread. A stop message, such as a billing stop, follows the same rule.
+
+| Message | Meaning |
+| --- | --- |
+| **Ari couldn't send this reply because Slack is disconnected. The full reply is here.** | The workspace's Slack connection was removed. Connect Slack again in **Settings → Ari → Slack**. |
+| **Ari couldn't send this reply because the Slack connection needs to be reconnected in Settings. The full reply is here.** | Slack no longer accepts the connection's sign-in. An administrator selects **Disconnect**, then **Add to Slack** again. |
+| **Your Slack workspace's settings blocked Ari from posting this reply in the channel. The full reply is here.** | A setting of your Slack workspace stops the cfo.ai app from posting there. |
+| **Ari no longer has access to this Slack channel, so it couldn't post the reply there. The full reply is here.** | The cfo.ai app was removed from the channel, or the channel no longer exists. |
+| **This Slack channel is archived, so Ari couldn't post the reply there. The full reply is here.** | The channel was archived. |
+| **Slack didn't accept Ari's reply. The full reply is here.** | Slack refused the message for another reason. |
+| **Ari couldn't confirm that this reply reached Slack. The full reply is here.** | Slack did not answer in time, or reported an error after it may have accepted the reply. The reply may be in Slack; cfo.ai does not post it a second time. |
 
 ## The Welcome chat and the starting card
 

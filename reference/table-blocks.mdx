@@ -143,7 +143,7 @@ A row or column for a Variable, such as Revenue, or a column that shows each row
 | **Show formula column** / **Hide formula column** | On a column that heads a group: opens or closes its formula column. |
 | **Filter** | On a column that shows each record's item, such as Status: filters the rows by its value. |
 | **Use as row names** / **Stop using as row names** | On a column that shows each record's item, such as Name on a table with one row per Employee ID: shows each row's value in that column as the row's name, in place of its key. The key stays the row's identity in formulas, the formula bar, filters, and row actions, and such a name cannot be renamed by typing over it. A row with no value in the column shows its key. Saved with the table, for everyone. See [Show a field, such as Name, as the row names](/guides/format-a-table#show-a-field-such-as-name-as-the-row-names). |
-| **Sort ascending** / **Sort descending** / **Clear column sort** | Columns only, on a table whose rows are one Dimension's items, such as one row per customer: orders those rows by this column's values and keeps the order as values change. Offered on a top-level column that shows a Variable's values or a field of each row, such as First ARR Month; not inside a column group, not a total column, and not when the table has a breakdown, a drill-in, or a comparison. **Clear column sort** appears while this column orders the rows. Saved with the table, for everyone. See [Column sort](#column-sort). |
+| **Sort ascending** / **Sort descending** / **Clear column sort** | Columns only. Orders the Dimension rows by their values in this column, each level inside its parent, and keeps that order as values change. Offered on a Variable or field column, one item of a column Dimension such as a month, and a comparison column. **Clear column sort** appears while this column orders the rows. Saved with the table, for everyone. See [Column sort](#column-sort). |
 | **Pin column** / **Unpin column** | Columns only. Keeps the column beside the row names while you scroll, like a frozen column in a spreadsheet, for everyone. |
 | **Format and display** | Opens the [format options](#format-and-display-options). |
 | **Use as** | For a Dimension shown as a mapping column: **Segmentation** or **Mapping**. |
@@ -181,7 +181,7 @@ Opens from a Dimension's label row, such as **DEPARTMENT**, or from **[Dimension
 | **Segment by** | Breaks every item at this level down by another Dimension. |
 | **Filter items** | Rows only. Chooses which items show. Shows the number of items kept when filtered. |
 | **Filter** | On a list of records: filters the rows by this column's value. |
-| **Sort** | **None**, **Ascending**, **Descending**, or **Manual**. Not offered for Date. Reads **By column** while a [column sort](#column-sort) orders the rows, or **Column sort inactive** when the saved column sort cannot apply; choosing any of the four replaces the column sort. |
+| **Sort** | **None**, **Ascending**, **Descending**, or **Manual**, by item name. Not offered for Date. Reads **By column** while a [column sort](#column-sort) orders the items, or **Column sort inactive** when the saved sort column has left the table; choosing any of the four replaces the column sort. |
 | **Date granularity** | For Date: **Inherit**, **Raw**, **Day**, **Week**, **Month**, **Quarter**, **Half**, or **Year**. |
 | **Use as** | **Segmentation** or **Mapping**. |
 | **Segment generation** | **Show only matching segments** shows the combinations that have data. **Expand to create all segments** shows every combination; for a Dimension of numbers, set **Start Value** and **End Value**, and for a Dimension of dates, set **Start / End dates**. The range is saved only when both ends are set, and clearing both removes it. |
@@ -330,11 +330,11 @@ A column sort orders a Dimension's rows by the values in one column, such as cus
 
 | Rule | What happens |
 | --- | --- |
-| Where it applies | The rows are one Dimension's items, with no breakdown under them, no drill-in, and no Scenario or period comparison. The sort column is a top-level column, not inside a group, that shows a Variable's values or a field of each row, and is not a total column. One column orders the table; sorting by another column replaces it. |
-| Order | Blanks and errors come last in both directions. Text sorts without regard to case, and exact text breaks a tie between two spellings. Rows with equal values keep the same order every time. |
+| Where it applies | Any column: a Variable such as Revenue, a field such as Start date, one item of a column Dimension such as a month, or a comparison column such as a Scenario's delta. The table can have breakdowns, drill-ins, and comparisons. One column orders the table; sorting by another column replaces it. |
+| Order | Each level sorts inside its parent: on a table that lists Regions with Customers under each, the Regions sort by their totals and the Customers within each Region by their own values. Blanks and errors come last in both directions. Text sorts without regard to case, and exact text breaks a tie between two spellings. Rows with equal values keep the same order every time. |
 | A new item | Waits at the end of the rows until the table's values refresh, then takes its place in the order. |
 | **By column** | **Sort** in the Dimension's menu and in the setup panel reads this while the column sort orders the rows. |
-| **Column sort inactive** | The sort is saved but cannot apply, because the layout no longer fits, such as after a breakdown was added, or because the sort column was removed. The rows show the Dimension's normal item order; the saved direction never sorts the names. Removing the breakdown applies the sort again. After the sort column was removed, choose **Sort ascending** or **Sort descending** on a column to sort again. Choosing **None**, **Ascending**, **Descending**, or **Manual** under **Sort** replaces it. |
+| **Column sort inactive** | The sort is saved but cannot apply, because the sort column was removed from the table. The rows show the Dimension's normal item order; the saved direction never sorts the names. Choose **Sort ascending** or **Sort descending** on another column to sort again, or choose **None**, **Ascending**, **Descending**, or **Manual** under **Sort** to replace it. Adding a comparison, a spacer, or another level does not stop the sort. |
 | Copies | **Duplicate block** keeps the sort on the copy's matching column. |
 | Everyone sees the same order | The rows are ordered when the table's values are calculated, so every reader, Ari, and a spreadsheet download get the same order. |
 | Saved | With the table, for everyone. When the save cannot be confirmed, the table shows **Couldn't confirm the table changes were saved** with **Retry**; see [When a change is not saved](#when-a-change-is-not-saved). |
@@ -493,7 +493,6 @@ Version history does not list changes to column widths or pinned columns.
 | --- | --- |
 | Hold a comment or note on a cell | Write a note on the Page beside the table, or ask Ari for a text Variable, such as Notes, on a table that lists records. |
 | Color the cells you type into automatically | They carry a dashed underline. Select them and set a **Background** or **Text color**. |
-| Sort rows by a column's values on a table with a breakdown, a drill-in, or a comparison | A [column sort](#column-sort) works on a table whose rows are one Dimension's items. Elsewhere, set a **Manual** order, or ask Ari to order the items by value. |
 | Filter or sort dates | Change the date range. Dates always run in date order. |
 | Show two grains on one Date axis, such as quarters and years | Ask Ari for annual columns over the months; it nests a year level above the month level, and the grain button then changes only the months. By hand, duplicate the table with **Duplicate block** and give each copy its own grain. |
 | Hold Variables in both the rows and the columns | Keep every Variable on one side. |

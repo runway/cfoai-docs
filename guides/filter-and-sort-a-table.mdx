@@ -102,29 +102,20 @@ A sort applies to the whole level, so every group on the table that shows that D
 
 ## Sort rows by a column's values
 
-You can order the rows of a table that lists one Dimension's items, such as one row per customer, by the values in one column: largest Revenue first, or oldest First ARR Month first. The order is saved with the table and stays current, so a customer that arrives in a later sync takes its place once its values are calculated.
-
 <Tabs>
   <Tab title="Ask Ari">
     > On the Customers table, sort the rows by Customer First ARR Month, oldest first.
   </Tab>
   <Tab title="By hand">
-    <Steps>
-      <Step title="Open the column's menu">
-        Right-click the header of the column to sort by, such as **Revenue**.
-      </Step>
-      <Step title="Choose a direction">
-        Choose **Sort ascending** for smallest or oldest first, or **Sort descending** for largest or newest first. A check marks the current choice.
-      </Step>
-    </Steps>
-
-    To go back to the Dimension's own order, right-click the same header and choose **Clear column sort**.
+    Right-click any column header and choose **Sort ascending** or **Sort descending**. A check marks the current choice.
   </Tab>
 </Tabs>
 
-The menu offers the sort only on a table whose rows are one Dimension's items with no breakdown under them, no drill-in, and no comparison, and only on a column that shows a Variable's values or a field of each row, such as First ARR Month, that is not inside a group and is not a total column. One column orders the table; sorting by another column replaces the first. While the sort is on, **Sort** in the Dimension's menu reads **By column**, and choosing **Ascending**, **Descending**, **Manual**, or **None** there replaces the column sort with the Dimension's own item order: by name, your dragged order, or none.
+The Dimension's items reorder by their values in that column, and they keep that order as values change and new items arrive. Any column works: a Variable such as Revenue, a field such as Start date, one month of a table segmented by Date, or a comparison column such as a scenario's delta.
 
-If you add a breakdown, or remove the sort column, the table keeps the sort but cannot apply it: **Sort** reads **Column sort inactive**, and the rows return to the Dimension's own order. Remove the breakdown to apply it again; when the sort column itself is gone, choose **Sort ascending** or **Sort descending** on another column. Blanks and errors stay at the bottom in both directions, and a new item waits at the end until the table's values refresh. The full rules are in [Column sort](/reference/table-blocks#column-sort).
+Each level sorts inside its parent. On a table that lists Regions with Customers under each, sorting by Revenue orders the Regions by their totals and the Customers within each Region by their own values. A row that has no value or shows an error goes last either way. Choose **Clear column sort** on the same header to return to the item order, or pick **Ascending**, **Descending**, or **Manual** under **Sort** to order the items by name again.
+
+The sort stays saved with the table when you add a comparison, a spacer, or another level. If the sort column leaves the table, the rows show their item order and the Dimension's **Sort** reads **Column sort inactive** until the column comes back. The full rules are in [Column sort](/reference/table-blocks#column-sort).
 
 Variable rows have no sort; drag them into the order you want. Date columns always run in date order; to show fewer periods, change the table's date range.
 

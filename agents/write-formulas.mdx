@@ -86,7 +86,7 @@ A new Variable can be defined and placed on an existing saved table in the same 
 }
 ```
 
-`structure` inserts, then moves, then removes rows and columns. A removal drops a row or column and its subtree from this table, never the objects themselves, and every Variable and Dimension must keep a row or column on at least one table. The same update can write the cells of inserted rows with `cell_updates` or `values`.
+`structure` inserts, then moves, then removes rows and columns. A removal drops a row or column and its subtree from this table, never the objects themselves, and every Variable and Dimension must keep a row or column on at least one table. The same update can write the cells of inserted rows with `cell_updates` or `values`. In an update that inserts rows or columns, creates a table, or adds Dimension items, every cell edit is resolved from the saved layout after the new structure is written, not from the calculated table, so a cell edit on a row that already existed targets the formula saved at that exact cell in whatever formula range holds it: a clear removes a Forecast-bound literal, and a formula or value replaces it in place. A cell that holds saved formulas in more than one range is refused, with **cell "[label]" holds saved rules in [n] formula ranges; edit it in a call that adds no rows, columns, or members, so the edit reads the rule the cell shows**.
 
 To start a new table instead, use `create` with its complete `rows` and `columns`:
 

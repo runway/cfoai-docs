@@ -6,7 +6,7 @@ description: "Have Ari build an income statement (P&L), balance sheet, and cash 
 
 Ask Ari for your three financial statements when you want a P&L, a balance sheet, and a cash flow statement that update each time your books close. Ari builds them as Table blocks on a Page, reading your accounting data, so each Actuals month traces to the accounts behind it and each Forecast month to its formulas and assumptions.
 
-You need a connected accounting system, such as QuickBooks Online, Xero, NetSuite, or Rillet; see [Connect QuickBooks, Xero, NetSuite, or Rillet](/guides/connect-accounting). Without one, Ari can build a draft from numbers you give it, and its reply names every figure it had to assume.
+You need a connected accounting system, such as QuickBooks Online, Xero, NetSuite, or Rillet; see [Connect QuickBooks, Xero, NetSuite, or Rillet](/guides/connect-accounting). Without one, Ari can build a draft from numbers you give it, and its reply names the figures it assumed.
 
 <Steps>
   <Step title="Ask for the statements">
@@ -19,16 +19,16 @@ You need a connected accounting system, such as QuickBooks Online, Xero, NetSuit
     To review the plan first, add: "Show me the reporting lines and which accounts go in each before you build."
   </Step>
   <Step title="Check the reporting lines">
-    Ari puts each account from your ledger into a reporting line, such as Revenue, Cost of Revenue, or an operating expense group. Ari keeps this account mapping in its own table, with accounts on rows, so you can change where an account belongs in one place; see [Map one Dimension's items to another](/guides/map-dimensions).
+    Ari puts each account from your ledger into a reporting line, such as Revenue, Cost of Revenue, or an operating expense group. When Ari creates the reporting lines, it keeps this account mapping in its own table, with accounts on rows, so you can change where an account belongs in one place; see [Map one Dimension's items to another](/guides/map-dimensions).
 
-    Open a line on the P&L to see the accounts beneath it. Accounts Ari could not place stay visible as their own group, so the statement still adds up to your ledger.
+    Each line on the P&L lists its accounts beneath it. Accounts Ari could not place stay visible in a group of their own, such as Unclassified, so the statement still adds up to your ledger.
   </Step>
   <Step title="Check that the balance sheet balances">
     Ask:
 
     > Check that assets equal liabilities plus equity in every month, and name any difference.
 
-    Ari adds a balance check to the balance sheet. When the check is not zero, Ari names the amount, the month, and the accounts behind the difference.
+    Ari checks every month and, when assets do not equal liabilities plus equity, names the amount, the month, and the accounts behind the difference. To keep the check on the Page as a row that recalculates, ask Ari to add one.
   </Step>
   <Step title="Check that cash ties out">
     The cash flow statement shows operating, investing, and financing cash flow and the net change in cash. That change must match the change in cash on the balance sheet. Ask:
@@ -57,7 +57,7 @@ Before your board or investors see the statements, run the built-in **Model audi
 
 - If an account is in the wrong line, change its reporting line in the mapping table, or tell Ari: "Move account 6540 Software to Research and Development."
 - If the balance check is not zero, ask Ari to explain the difference. Ari names the amount, the month, and the accounts behind it.
-- If a number does not match your accounting system, ask Ari to trace it: "Show me the accounts and transactions behind October revenue." See [Ask Ari about a number](/guides/ask-about-a-number).
+- If a number does not match your accounting system, ask Ari to trace it: "Show me the accounts and source rows behind October revenue." See [Ask Ari about a number](/guides/ask-about-a-number).
 
 To share the statements, see [Share a Page outside your workspace](/guides/share-a-page) or [Export a Page to Excel](/guides/download-a-spreadsheet).
 

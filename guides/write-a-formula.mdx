@@ -63,7 +63,7 @@ A filter limits a reference to some items or dates, such as Revenue for the West
 
 1. Select the reference in the editor. Its panel opens.
 2. Select **Add filter**, choose a Dimension, and choose the items. The filter reads like a sentence: **Where** Region **is** West.
-3. For a date, choose a preset: **Last 3 months of actuals**, **Last 6 months of actuals**, **Last 12 months of actuals**, **Year to date**, **Quarter to date**, or **Custom range**. In a Forecast formula, the "last months of actuals" presets read the months up to **Last close**, which gives you a run rate. See [Date filter presets](/reference/formula-syntax#date-filter-presets).
+3. For a date on a table with months, choose a preset: **Last 3 months of actuals**, **Last 6 months of actuals**, **Last 12 months of actuals**, **Year to date**, **Quarter to date**, or **Custom range**. In a Forecast formula, the "last months of actuals" presets read the months up to **Last close**, which gives you a run rate. See [Date filter presets](/reference/formula-syntax#date-filter-presets).
 
 Press **⌥ ↓** (**Alt ↓**) to open the filters of the reference at the cursor. **Reset** removes the filters, so the reference follows the cell again. The typed form of a filter is `Revenue[Region = "West"]`.
 
@@ -99,7 +99,7 @@ A Dimension's reference gets the same arrow when a table shows the Dimension as 
 - **Esc** closes the editor without saving. In the larger editor, the close button also discards your changes.
 - To get more room, select the expand button (**Open full editor**) in the editor that opens on a cell.
 
-The formula saves in the Scenario shown in the sidebar's Scenario picker. A formula with a mistake still saves. A red line under the editor describes the problem as you type, and the cells show an error code such as `#NAME?` until you fix it. See [Fix a formula that shows an error or a wrong number](/guides/fix-formula-errors). When the server refuses a save, the editor reopens with your draft and a notice says why; see [When a change is not saved](/reference/table-blocks#when-a-change-is-not-saved).
+The formula saves in the Scenario shown in the sidebar's Scenario picker. A formula with a mistake still saves. A message in red under the editor describes the problem as you type, and the cells show an error code such as `#NAME?` until you fix it. See [Fix a formula that shows an error or a wrong number](/guides/fix-formula-errors). When the server refuses a save, the editor reopens with your draft and a notice says why; see [When a change is not saved](/reference/table-blocks#when-a-change-is-not-saved).
 
 ## Override one cell
 

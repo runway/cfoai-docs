@@ -11,7 +11,7 @@ Connect a Google Sheet when numbers you still keep in a spreadsheet should feed 
 - A Google account that can open the file.
 - A started trial or an active plan with a free connection slot. Every Google Sheets connection in a workspace shares one slot, and so does every Google Drive connection. See [Standard and premium integrations](/reference/integrations#standard-and-premium-integrations).
 
-cfo.ai can open only the files you pick in Google's file picker, nothing else in your Drive. You can remove its access from your Google account at any time.
+cfo.ai can open only the files you pick in Google's sign-in window, nothing else in your Drive. You can remove its access from your Google account at any time.
 
 ## Connect the file
 
@@ -21,7 +21,7 @@ cfo.ai can open only the files you pick in Google's file picker, nothing else in
 
     > Connect our hiring tracker from Google Sheets and use it for the headcount plan.
 
-    Ari opens the connection manager with Google Sheets. Select **Connect**, sign in with Google, and pick the file. Ari imports it in this chat, so it can ask you about the sheet while it works.
+    Ari opens the connection manager with Google Sheets. Select **Connect**, sign in with Google, and pick the file in the same window. Ari imports it in this chat, so it can ask you about the sheet while it works.
   </Tab>
   <Tab title="By hand">
     <Steps>
@@ -32,7 +32,7 @@ cfo.ai can open only the files you pick in Google's file picker, nothing else in
         On the **Integrations** tab, select **Connect** on **Google Sheets** for a spreadsheet, or on **Google Drive** for an Excel workbook (`.xlsx`), a CSV file, or several files at once. Both are listed under **Data upload** when you filter the directory by type.
       </Step>
       <Step title="Sign in and pick the file">
-        Sign in with Google. Google's file picker opens; choose the file. In Google Drive you can choose several files of any type. Each Google Sheet, Excel workbook, or CSV file you choose becomes its own connection, and Ari imports each one. Ari reads the other files, such as PDFs and Docs, when you ask about them. The card reads **Opening Google authentication…**, **Choosing in Google…**, **Completing connection…**, and then **Connected**.
+        Sign in with Google in the window that opens, and choose the file there: Google asks you to pick the file as part of the sign-in, so there is no separate file picker. In Google Drive you can choose several files of any type. Each Google Sheet, Excel workbook, or CSV file you choose becomes its own connection, and Ari imports each one. Ari reads the other files, such as PDFs and Docs, when you ask about them. The card reads **Opening Google authentication…** while the window is open, then **Completing connection…**, and then **Connected**.
       </Step>
       <Step title="Watch the import">
         If none of the files you chose is a spreadsheet, nothing is imported, and the row says so; see [Google Drive](/reference/integrations#google-drive). Otherwise each spreadsheet has its own row, and Ari imports it in the background. Each row reads **Waiting for the first sync to read this file…**, then **Ari is importing this file…**. When the import is done, it reads **Imported to** and the Page Ari built, with **Ari updates the model when the file changes.**
@@ -41,7 +41,7 @@ cfo.ai can open only the files you pick in Google's file picker, nothing else in
   </Tab>
 </Tabs>
 
-If you close Google's picker without choosing a file, the connection stays unfinished and reads **Setup not finished**. Select **Finish setup** on it to pick the file.
+If you close Google's window without choosing a file, the connection stays unfinished and reads **Setup not finished**. Select **Finish setup** on it to sign in and pick the file.
 
 ## What Ari builds from the file
 

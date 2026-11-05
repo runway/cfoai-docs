@@ -23,9 +23,9 @@ An MCP server or an API does not replace an integration. An integration syncs a 
 
     > Connect Mercury's MCP server so you can read our bank balances.
 
-    Ari reads the provider's official documentation and posts a card titled **Connect [service]**. The card shows the service's logo, its address, how it signs in, such as **Bearer token** or **API key as Basic username**, and a **Provider documentation** link. Select **Connect**. A service that uses OAuth opens its sign-in window; one that takes a token or key shows a secure field on the card. A service that needs more than one secret, such as a bearer token and an `AccessKey` header, shows one more secure field for each, labeled with the header's name, and a field left blank is refused with **The [name] field is required.** What you type there goes to cfo.ai's connection service, not to Ari or the chat. Never paste a key into a chat message.
+    Ari reads the provider's official documentation and posts a card titled **Connect [service]**. The card shows the service's logo, its address, how it signs in, such as **MCP token** for a server that takes a token, or **API key** or **No sign-in required** for an API, and a **Provider documentation** link. Select **Connect**. A service that uses OAuth opens its sign-in window; one that takes a token or key shows a secure field on the card. A service that needs more than one secret, such as a bearer token and an `AccessKey` header, shows one more secure field for each, labeled with the header's name, and a field left blank is refused with **The [name] field is required.** What you type there goes to cfo.ai's connection service, not to Ari or the chat. Never paste a key into a chat message.
 
-    The card reads **Connecting…**, then **Checking connection…**, then **Connected** for an MCP server or **API saved** for an API. Ari then checks that the tools or endpoints answer before it relies on them. **API saved** means the specification loaded, not that the key works, so Ari tests the key with a read.
+    The card reads **Connecting…**, then **Checking connection…**, then **Connected** for an MCP server or **Connection added** for an API. Ari then checks that the tools or endpoints answer before it relies on them. **Connection added** means the specification loaded, not that the API answers, so Ari checks access with a read before relying on it, and for an API that takes a key that read also shows whether the key works; the card says **Ari will check access before using this connection.** If an MCP server's sign-in fails or you cancel it, Ari learns what went wrong in the same chat and can suggest what to try next.
   </Tab>
   <Tab title="By hand">
     <Steps>
@@ -69,10 +69,10 @@ Each tool of an MCP server, and each endpoint of an API, has a permission:
 
 A new MCP server starts with every tool on **Ask first**. A new API starts by method: reads (`GET` and `HEAD`) on **Allow**, deletes on **Block**, and every other call on **Ask first**. When Ari asks and you choose **Always allow**, that tool stays on **Allow** for the whole workspace.
 
-To change them, open the service's connection page: select its row in the sidebar, or select **Manage** on the service in **Settings → Connections** or on the **MCP** or **API** tab. The page's **Tools** section groups tools as **Read-only tools** and **Write/delete tools**, and its **Endpoints** section groups endpoints as **Read endpoints** and **Write/delete endpoints**. **Auto-classify** sets them for you:
+To change them, open the service's connection page: select its row in the sidebar, or select **Manage** on the service in **Settings → Connections** or on the **MCP** or **API** tab. The page's **Available actions** section groups an MCP server's tools as **View information** and **Change or delete**, and its **Endpoints** section groups an API's endpoints as **Read endpoints** and **Write/delete endpoints**. One button sets them for you:
 
-- For an MCP server: read-only tools to **Allow**, and write or delete tools to **Ask first**.
-- For an API: reads to **Allow**, writes to **Ask first**, and deletes to **Block**.
+- For an MCP server, **Reset permissions**: **View information** tools to **Allow**, and **Change or delete** tools to **Ask first**.
+- For an API, **Auto-classify**: reads to **Allow**, writes to **Ask first**, and deletes to **Block**.
 
 When Ari calls a write tool and the answer is lost on the way back, it does not repeat the call on its own. Check the other service before you ask Ari to try again.
 

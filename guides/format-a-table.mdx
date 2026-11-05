@@ -1,7 +1,7 @@
 ---
 title: "Format and arrange a table"
 sidebarTitle: "Format a table"
-description: "Show numbers as currency or percentages, set decimals, color and bold rows, and see why numbers turn green or red. Also color a Dimension's items, change date headers, show or pin total columns, hide or reorder rows and columns, show a field such as Name as the row names, resize or pin (freeze) columns, show values in thousands, millions, or billions, and show negative numbers in parentheses."
+description: "Show numbers as currency or percentages, set decimals, color and bold rows, and see why numbers turn green or red. Also color a Dimension's items, change date headers, show or pin total columns, put subtotals below their details, hide or reorder rows and columns, show a field such as Name as the row names, resize or pin (freeze) columns, show values in thousands, millions, or billions, and show negative numbers in parentheses."
 ---
 
 Use this guide to make a table easy to read: money as currency, margins as percentages, section rows in bold, and the columns your readers need first. Most formatting changes only how the table looks; it never changes a number. To learn which settings belong to a table and which to a Variable, read [Pages, Table blocks, and Canvas blocks](/concepts/pages-and-blocks).
@@ -151,6 +151,21 @@ A total column, also called a summary column, sits at the end of each group of c
 
 The summary choice is saved with the table. **Show total columns** and **Pin total columns** are not saved: a table always opens with total columns shown and unpinned.
 
+## Put subtotals below their details
+
+A group's row, such as Revenue above its accounts, shows the group's total above its detail rows. For a statement that reads top to bottom, such as a P&L with each subtotal under its accounts, put the totals below.
+
+<Tabs>
+  <Tab title="Ask Ari">
+    > On the P&L table, show each subtotal below its accounts.
+  </Tab>
+  <Tab title="By hand">
+    Open the table's **…** menu, **Table block settings**, and choose **Subtotals below details**. Choose it again to put the totals back above the details.
+  </Tab>
+</Tabs>
+
+Each expanded group then shows a heading with its name, its detail rows, and a total row labeled **Total [name]**, such as **Total Revenue**; a name that already starts with "Total" keeps its name. A collapsed group shows one row with its values. You can edit the total row's cells as you did the group row's. The choice is saved with the table for everyone, and an Excel download follows it. The exact rows are in [Table block settings menu](/reference/table-blocks#table-block-settings-menu).
+
 ## Hide rows and columns
 
 Select **Show table setup** at the left of the table header. In the panel, point at the row or column and select its eye button (**Hide [name]**). Select it again (**Show [name]**) to bring it back. Hidden rows and columns keep their settings, and the table hides them for everyone.
@@ -180,6 +195,10 @@ Ari moves the Variables and the dates between the rows and the columns. Moving t
 ## Change the table's height
 
 Drag the table's bottom edge. Double-click the edge, or select it and press **Enter**, to fit the table to its content again. The height is saved in your browser only.
+
+## If a format does not save
+
+When a change cannot be confirmed saved, such as after a lost connection, the table keeps showing it and offers **Retry**. Select **Retry** to send it again. The notice's wording, and every other table notice, is in [When a change is not saved](/reference/table-blocks#when-a-change-is-not-saved).
 
 ## Related
 

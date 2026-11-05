@@ -80,8 +80,8 @@ Point at an entry and select its **…** button (**Actions for [entry]**).
 | Control | What it does |
 | --- | --- |
 | **Undo this change** | Reverses this change and keeps everything after it. Undo restores only the fields the change wrote, such as a Page's name or one formula's text, so a later edit to another field of the same Page, table, Variable, or formula stays. When a later change edited one of the same fields, nothing is undone and a notice says so; see [Entry action messages](#entry-action-messages). Undo that later change first. Not offered for a change the Scenario inherited from Main. |
-| **Redo this change** | Shown instead of **Undo this change** on an entry that undid a change. |
-| **Restore this version** | Returns the Scenario to this point and rolls back every later change. Needs full access to the Scenario; otherwise its tooltip reads **Only people with full access to this scenario can restore it.** |
+| **Redo this change** | Shown instead of **Undo this change** on the entry that recorded an undo. The entry it undid is struck through and carries the badge **Undone**; its own menu still reads **Undo this change**. |
+| **Restore this version** | Opens the [restore dialog](#viewing-a-past-version) for this point. Needs full access to the Scenario; otherwise its tooltip reads **Only people with full access to this scenario can restore it.** Not offered on a Snapshot, and neither is **Undo this change**. |
 | **Take snapshot here** | Opens the [Take snapshot dialog](#take-snapshot-dialog), pinned at this entry. |
 | **Copy link to version** | Copies a link that opens the Model as it was at this entry. |
 
@@ -95,12 +95,13 @@ Point at an entry and select its **…** button (**Actions for [entry]**).
 
 ### Viewing a past version
 
-Selecting an entry shows the Model as it was at that moment, read-only, with a banner that offers **Restore this version** and **Back to latest**. The restore dialog previews the result.
+Selecting an entry shows the Model as it was at that moment, read-only, with a banner that reads **Viewing [time] · Read only** and offers **Restore** and **Back to latest**. **Restore**, or **Restore this version** in an entry's menu, opens a dialog titled **Restore [Scenario] to [time]?** that reads **Everything in [Scenario] goes back to how it was then — formulas, values, variables, pages, and blocks. The [n] changes made since then by [people] will be undone. Restoring adds a new entry to version history, so you can undo it.** When Scenarios were branched from this one, a checkbox offers **Also restore the [n] scenarios branched from [Scenario] ([names]) to their state at that time.** **Restore version** confirms; **Cancel** closes the dialog.
 
 | Message | Meaning |
 | --- | --- |
 | **Loading restore preview…** | The preview is loading. |
 | **This is already the current version.** | Restoring would change nothing. |
+| **Someone changed this scenario while you were looking. Review the newest changes, then restore again.** | The Scenario changed while the dialog was open. Close it, look at the newest entries, and restore again. |
 | **Changes made in Main Scenario stay as they are.** | Shown in a Scenario other than Main. Restoring leaves the changes made in Main as they are. |
 | **Restored to [time]** | The restore finished. |
 | **Couldn’t restore this version** | The restore failed. |

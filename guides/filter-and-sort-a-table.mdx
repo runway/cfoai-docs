@@ -1,7 +1,7 @@
 ---
 title: "Filter and sort a table"
 sidebarTitle: "Filter and sort"
-description: "Show only some of a Dimension's items on a Table block, hide one item, find and clear a filter (unfilter a row or column), filter a list by a column's value, change a filter Ari wrote as a formula, and sort items A to Z, Z to A, or in your own order."
+description: "Show only some of a Dimension's items on a Table block, hide one item, find and clear a filter (unfilter a row or column), filter a list by a column's value, change a filter Ari wrote as a formula, sort items A to Z, Z to A, or in your own order, and sort rows by a column's values, such as largest Revenue first."
 ---
 
 Use a filter to show only some of a Dimension's items on a table, such as two departments out of ten, and a sort to put the items in order. Filters and sorts change only this table, and everyone who opens it sees the same view. They never change a number in your Model.
@@ -100,9 +100,31 @@ You can also drag item rows up or down by the grip at their left edge. The Dimen
 
 A sort applies to the whole level, so every group on the table that shows that Dimension lists its items in the same order.
 
-## Sort rows by their numbers
+## Sort rows by a column's values
 
-A table cannot sort by the values in a column, such as the largest Revenue first. **Sort** orders a Dimension's items by their names. To show the largest first, set a **Manual** order, or ask Ari to put the items in order of their values.
+You can order the rows of a table that lists one Dimension's items, such as one row per customer, by the values in one column: largest Revenue first, or oldest First ARR Month first. The order is saved with the table and stays current, so a customer that arrives in a later sync takes its place once its values are calculated.
+
+<Tabs>
+  <Tab title="Ask Ari">
+    > On the Customers table, sort the rows by Customer First ARR Month, oldest first.
+  </Tab>
+  <Tab title="By hand">
+    <Steps>
+      <Step title="Open the column's menu">
+        Right-click the header of the column to sort by, such as **Revenue**.
+      </Step>
+      <Step title="Choose a direction">
+        Choose **Sort ascending** for smallest or oldest first, or **Sort descending** for largest or newest first. A check marks the current choice.
+      </Step>
+    </Steps>
+
+    To go back to the Dimension's own order, right-click the same header and choose **Clear column sort**.
+  </Tab>
+</Tabs>
+
+The menu offers the sort only on a table whose rows are one Dimension's items with no breakdown under them, no drill-in, and no comparison, and only on a column that shows a Variable's values or a field of each row, such as First ARR Month, that is not inside a group and is not a total column. One column orders the table; sorting by another column replaces the first. While the sort is on, **Sort** in the Dimension's menu reads **By column**, and choosing **Ascending**, **Descending**, **Manual**, or **None** there replaces the column sort with the Dimension's own item order: by name, your dragged order, or none.
+
+If you add a breakdown, or remove the sort column, the table keeps the sort but cannot apply it: **Sort** reads **Column sort inactive**, and the rows return to the Dimension's own order. Remove the breakdown to apply it again; when the sort column itself is gone, choose **Sort ascending** or **Sort descending** on another column. Blanks and errors stay at the bottom in both directions, and a new item waits at the end until the table's values refresh. The full rules are in [Column sort](/reference/table-blocks#column-sort).
 
 Variable rows have no sort; drag them into the order you want. Date columns always run in date order; to show fewer periods, change the table's date range.
 
@@ -115,7 +137,7 @@ The menu leaves out actions that cannot apply. Check which case you are in:
 </Accordion>
 
 <Accordion title="The Dimension is Date">
-  Dates cannot be filtered or sorted. Change the date range instead; see [Build a Table block by hand](/guides/build-a-table#set-the-dates-and-the-time-grain).
+  The Date axis cannot be filtered or sorted. Change the date range instead; see [Build a Table block by hand](/guides/build-a-table#set-the-dates-and-the-time-grain). A column that holds dates, such as First ARR Month, can still order the rows; see [Sort rows by a column's values](#sort-rows-by-a-columns-values).
 </Accordion>
 
 <Accordion title="The row is a Variable">

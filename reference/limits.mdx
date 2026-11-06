@@ -42,6 +42,7 @@ See [Attach files to a chat](/guides/attach-files) and [Chat controls and messag
 | History in a full-history import of QuickBooks Online or Xero | Back to 2015 at the earliest |
 | Rillet connections in one workspace | 1 |
 | Start of the nightly refresh of connected sources | 02:00 UTC; each workspace's connections start at the workspace's own fixed point within the following hour |
+| File Ari downloads from a connected API | 50 MiB, saved to the chat as an attachment; a JSON or text answer is read up to 1 MiB, and a response over its limit saves no partial file |
 | OpenAPI specification for an API connection | An `https` address that answers within 20 seconds, with a document of 12 MiB or less |
 | Time one run of a sync setup for an MCP server or API can take | 10 minutes |
 | Results one run of a sync setup can save | 10,000 pages for every sync, each page one source response of up to 1 MiB from an API or 2 MiB from an MCP server. A replace or snapshot sync without a changes-since filter saves page by page; an upsert, append, or changes-since sync holds its whole result, up to 16 MiB in all. A run stops after 10 minutes |

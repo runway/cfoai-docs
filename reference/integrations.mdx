@@ -287,7 +287,7 @@ These HR, scheduling, and learning tools sync through Fivetran, with a table pic
 | How it connects | Fivetran setup window, where you sign in to HubSpot |
 | Standard or premium | Standard |
 | What syncs | A fixed set of 20 tables: deals, deal pipelines and their stages, owners, contacts, companies, line items, products, and invoices; the links between deals, contacts, companies, line items, and invoices; and the property histories of line items, products, and invoices. A table HubSpot does not expose is skipped. There is no table picker. Ari can add other HubSpot tables later; these 20 stay locked. |
-| Saved query cfo.ai adds | **HubSpot Deals** |
+| Saved query cfo.ai adds | **HubSpot Deals**, which keeps every deal that is not deleted; a deal whose owner, stage, or pipeline HubSpot has no record for keeps its other details, and that one is left empty |
 | Writes back | No |
 
 ### Salesforce
@@ -461,7 +461,7 @@ Each card says what Ari reads from the API, in the words below.
 
 ### Any other MCP server or API
 
-Use **Add with Ari** to have Ari research the provider and set it up in a chat, or **Add manually**. An MCP server can sign in with OAuth, a bearer token, or an API key header. An API needs an OpenAPI 3.0 or 3.1 specification and signs in with a bearer token, an API key header, a key as the Basic authentication username, or no authentication. A provider that requires an app registered with it in advance, and an API that signs in with a username and password or with a key in the address, cannot be connected this way.
+Use **Add with Ari** to have Ari research the provider and set it up in a chat, or **Add manually**. An MCP server can sign in with OAuth, a bearer token, or an API key header. An API needs an OpenAPI 3.0 or 3.1 specification and signs in with a bearer token, an API key header, a key as the Basic authentication username, or no authentication. A 3.0 specification that also lists webhooks is accepted, and the webhooks are left out, because the connection calls the API's endpoints and receives nothing from it. A specification that uses a field cfo.ai does not support is refused, and the refusal names the field, as in **unsupported_version_field: const**. Ari can also call a path the specification leaves out; see [Choose what Ari may do](/guides/give-ari-another-service#choose-what-ari-may-do). A provider that requires an app registered with it in advance, and an API that signs in with a username and password or with a key in the address, cannot be connected this way.
 
 cfo.ai's own MCP server, which lets an outside AI client use cfo.ai, is a different thing; see [Use cfo.ai from Claude Code, Codex, or another AI client](/guides/connect-an-ai-client).
 

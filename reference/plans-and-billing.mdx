@@ -162,6 +162,23 @@ Buttons: **Change** or **Choose a plan**; **Keep** [plan] while a change or canc
 
 The card dialogs do not close when you click outside them, so a card you typed is not lost. Close them with **Cancel** or **Esc**.
 
+### Billing recipient
+
+The email address that receives the workspace's invoices, receipts, and payment notices. It starts as the address of the person who created the workspace. The section shows the address, or **No billing recipient set**, and under it **Receives billing emails**, **Add an email address to receive billing information** when none is set, or **Outside this workspace · Receives billing information** when the address belongs to nobody in the workspace. Being the billing recipient gives no access to the workspace.
+
+| Control | What it does |
+| --- | --- |
+| **Change** | Opens **Change billing recipient**. **Email address** offers **Search by name or enter an email**: pick a member by name or email, or type any address, then select **Save recipient**. The dialog explains that the address receives billing emails, such as invoices, receipts, and payment notices, which may include links to pay invoices, update payment methods, or manage the subscription. |
+
+| Message | Meaning |
+| --- | --- |
+| **Billing recipient updated.** | Saved. |
+| **Enter one valid billing email address.** | The box is empty, holds more than one address, or holds something that is not an email address. |
+| **Couldn’t load your billing recipient. Please try again.**, with **Try again** | The address could not be read. |
+| **Could not save your billing recipient. Please try again.** | The change failed; what you typed stays in the dialog. |
+
+When the billing recipient is removed from the workspace, billing emails move to a remaining administrator: the one who removed them, else the person who created the workspace while they are still an administrator, else the longest-standing administrator. The removal dialog says so: **If they’re the billing recipient, billing emails will transfer to a remaining workspace admin.** When no administrator would be left to receive them, the removal is refused with **Change the billing recipient in Settings > Billing before removing this member.**
+
 ### Billing history
 
 Each row shows the date, **Credit top-up** for a usage purchase, the amount, and a status: **Paid**, **Failed**, **Processing**, **Due**, **Pending**, **Refunded**, or **Void**. **View** opens the invoice or receipt in a new tab. **View all** opens the full list when there are more rows. With no rows, it reads **Nothing here yet. Invoices and credit purchases will appear here.**

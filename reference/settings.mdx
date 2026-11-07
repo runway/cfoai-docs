@@ -13,7 +13,7 @@ Settings holds the workspace's options and your own preferences. To open it, sel
 | **Ari** | Everyone | Ari's thinking animation, sound, notifications, and Slack |
 | **Connections** | Everyone, once the workspace has started its trial or a plan | The cfo.ai MCP server address, and the MCP servers and APIs Ari can call |
 | **Skills** | Everyone | Your own Skills, wherever they apply, and the workspace's optional built-in Skills |
-| **Billing** | Workspaces billed in the app | Plan, payment methods, billing history, and cancellation |
+| **Billing** | Workspaces billed in the app | Plan, payment methods, billing recipient, billing history, and cancellation |
 | **Usage** | Workspaces billed in the app | AI usage, extra usage, spend limit, auto-reload, and integration slots |
 
 Every member of a workspace is an administrator, so everyone sees **Workspace**. A workspace billed outside the app has no **Billing** or **Usage** section.
@@ -184,7 +184,7 @@ When the browser blocks notifications, the switch is unavailable and reads **Not
 | Connected | **Connected to** [Slack workspace] and **Ari can now DM you in this Slack workspace, and a cfo.ai admin can invite Ari to a private channel.**, with **Disconnect**. A notice reads **Slack connected** when the connection finishes. |
 | Disconnecting | **Disconnect "[Slack workspace]"?** with **cfo.ai Agent will no longer be able to post to this workspace until you reconnect.** |
 
-Slack's approval screen lists what the cfo.ai app may do. cfo.ai asks to read and send direct messages, read and post in the private channels Ari is added to, see when it is @mentioned, list channels, add emoji reactions, show that it is typing, look up members' names and email addresses so it can match a Slack account to a cfo.ai account, and leave a channel it may not stay in. A Slack workspace connected before a permission was added keeps its earlier grant until an administrator selects **Disconnect** and then **Add to Slack** again.
+Slack's approval screen lists what the cfo.ai app may do. cfo.ai asks to read and send direct messages, read and post in the private channels Ari is added to, upload images for its Slack messages to show, see when it is @mentioned, list channels, add emoji reactions, show that it is typing, look up members' names and email addresses so it can match a Slack account to a cfo.ai account, and leave a channel it may not stay in. A Slack workspace connected before a permission was added keeps its earlier grant until an administrator selects **Disconnect** and then **Add to Slack** again.
 
 Anyone whose Slack profile email matches a member of the workspace can message Ari in Slack direct messages, and Ari works as that person. An administrator can also add Ari to a private channel, where Ari answers everyone with that administrator's access. See [Talk to Ari from Slack](/guides/use-ari-in-slack).
 
@@ -202,6 +202,7 @@ Each connected service has a row with **Manage**, which opens its connection pag
 | **Edit configuration** | Opens **Edit [name]**. You can change the **Display name**, an API's **Provider name**, the **Base URL** of an API or the **MCP URL** of a server, and the **Authentication**: **Bearer token**, **API key header** with its **Header name**, **Basic: key as username**, or **No authentication**. A **Replacement API key** field reads **Leave blank to keep the saved credential.** An API connection saved with more secrets than its key also lists a **Replacement [header name]** field for each, under **Re-enter each additional credential for the new server or authentication. These values are never sent to Ari.** They must be filled in when the **Base URL** or **Authentication** changes, and a blank one is refused with **Enter a replacement value for [name].** A connection that signs in through the provider shows **Provider sign-in** and takes a new name only. A name longer than 160 characters is refused with **Use a name of at most 160 characters.** The connection keeps its ID, its saved API specification, its discovered tools, and its tool permissions. |
 | Sign-in state, on an MCP server's row | **Sign-in saved**, **Sign-in saved · expiry unknown**, **Access expired · renewal on next use**, **Reconnect required**, **Sign-in incomplete**, or **Provider access not checked**. Each is defined in [Connection statuses](/reference/connection-statuses#statuses-for-mcp-servers-and-apis). |
 | **Reconnect** | On a server that reads **Reconnect required**. Opens the provider's sign-in again. The connection and its sync setups are kept; the new sign-in replaces the saved one only when it completes. Reconnecting runs no data sync. |
+| **Finish setup** | On a server whose sign-in never finished, for people who can add connections. Opens the server's details, where **Finish setup** starts a new sign-in and replaces the unfinished attempt; the details read **Starts a new sign-in, replacing any unfinished attempt for this server.** The button reads **Finishing setup…** while the sign-in runs. See [Connection statuses](/reference/connection-statuses#statuses-for-mcp-servers-and-apis). |
 | **Data freshness**, in a connection's details | The last successful sync of each of its sync setups, or **Sync history is unavailable for this workspace.** |
 
 While Ari cannot be used, for example when the workspace is out of AI usage, **Add with Ari** is unavailable, and a line reads **Add with Ari is unavailable.** followed by the reason. Data sources such as QuickBooks are connected from **Connections** in the sidebar; see [Connect QuickBooks, Xero, NetSuite, or Rillet](/guides/connect-accounting).
@@ -261,7 +262,7 @@ The section reads **Enable ready-made workflows for everyone in this workspace. 
 
 ## Billing and Usage
 
-**Billing** shows **Current plan**, **Payment methods**, **Billing history**, and **Cancel subscription**. **Usage** shows **Included plan usage**, **Extra usage**, and **Integrations**. Every field and message is on [Plans and billing](/reference/plans-and-billing).
+**Billing** shows **Current plan**, **Payment methods**, **Billing recipient**, **Billing history**, and **Cancel subscription**. **Usage** shows **Included plan usage**, **Extra usage**, and **Integrations**. Every field and message is on [Plans and billing](/reference/plans-and-billing).
 
 ## What Settings has no setting for
 

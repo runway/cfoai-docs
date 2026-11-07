@@ -426,7 +426,7 @@ When you open a Page, it looks for your own newest export of that Page in that S
 A failed export's reason has up to three parts:
 
 - **The export failed while [stage] and produced no workbook.** The stage is **starting**, **loading the saved model**, **reading the model calendar**, **calculating the page tables**, **calculating the inputs the page tables read**, **writing the workbook**, or **storing the workbook**.
-- The cause, such as a formula whose input has no cell in the workbook, a formula that could not be written for Excel, **The export reached its time limit**, a Dimension whose list of items was larger than the export could read, or a table calculation that reached a limit: **A calculation in table "[table]" in scenario "[Scenario]" reached its 180-second time limit and was stopped before it finished.** or **A calculation in table "[table]" in scenario "[Scenario]" reached the [n] MiB memory limit of one calculation worker and was stopped before it finished.**
+- The cause, such as a formula whose input has no cell in the workbook, a formula that could not be written for Excel, **The export reached its time limit**, **The export was stopped before it finished.** for an export Ari cancelled, **The export worker stopped checking in before its final attempt finished. Memory exhaustion, a stopped worker, and a lost database connection can interrupt these checks; the job records only the missing check-ins.** for an export whose worker was lost, a Dimension whose list of items was larger than the export could read, or a table calculation that reached a limit: **A calculation in table "[table]" in scenario "[Scenario]" reached its 180-second time limit and was stopped before it finished.** or **A calculation in table "[table]" in scenario "[Scenario]" reached the [n] MiB memory limit of one calculation worker and was stopped before it finished.**
 - When it is known, whether to try again: **The failure is temporary: a new export of the same pages can succeed.** or **A new export fails the same way while the saved model is unchanged.** A calculation that reached its time limit is not tried again, because the next export reaches the same limit; narrow the table, or ask Ari why it is large.
 
 These reasons stand alone:
@@ -563,6 +563,105 @@ A Canvas block can open your browser's own dialogs: a print button prints that b
 | **Incompatible browser version. Please upgrade your browser.**, printed across a chart or gauge | The chart library did not recognize your browser's version. Firefox on iPhone and iPad and some apps' built-in browsers show it; Chrome on iPhone and iPad does not. The chart under it is drawn and correct. | Open the Page in Safari or Chrome. |
 
 A block that stopped with an error tries again by itself once after 2 seconds, and any block that did not start tries again when your connection to cfo.ai returns.
+
+## Input forms
+
+A form is a Canvas block that Ari builds to collect answers from people into a Table block on the same Page. For the task, see [Collect numbers and answers from people with a form](/guides/collect-answers-with-a-form). What follows is every control and message, for the people who edit the Page (the form's frame), for the people who answer, and in the emails cfo.ai sends.
+
+### The form frame
+
+People who can edit the Page see the frame in place of the form. People who can only view the Page see the form itself, headed **You can answer this form here.**, or, when they cannot answer, **A form [sender] sends. You can look through the questions here.**
+
+| Control | What it does |
+| --- | --- |
+| **Form**, **Responses**, **Links** tabs | **Form** shows the form at a **Desktop** or **Phone** width, under the switch **Preview width**. **Responses** lists the answers, with their count in its label and a dot when some are held. **Links** holds the form link and the people it was sent to. A form Ari has not written yet shows only the **Form** tab, which reads **Collect input from anyone, no cfo.ai account needed, to use in your model.** with **Build with Ari**; readers see **Nothing in this form yet** and **Someone who can edit this page can ask Ari to write it.** |
+| **Ask Ari to change it** (**Ask Ari** when narrow) | Opens the chat with the form's chip, for a change to its questions. |
+| **Preview** | Opens the form full size, headed **Preview · nothing is sent**, or **Preview of [Scenario]’s draft · nothing is sent** for a draft in another Scenario. **Close preview** returns to the Page. Answers in a preview are not saved. |
+| **Send** | Opens the chat with **Send [form] to**, for Ari to post the sending card described under [Emails and the sending card](#emails-and-the-sending-card). Outside the form's home Scenario, its tooltip reads **This form lives in [Scenario]. Switch to [Scenario] to change it.** |
+| Status line | **Open** or **Closed**; **Due [date]** or **Closed [date]**; **Adds to [table] in [Scenario]**, with the table's chip. |
+| **This form adds to [Scenario]. Switch to [Scenario] to add answers.**, with **Switch to [Scenario]** | Shown when the Page is open in another Scenario than the form's. Sending, closing, reopening, replacing the link, and adding or discarding answers work only in the form's own Scenario. |
+| **More actions** (**…**) | **Allow more than one response per person**, with **Each response adds its own rows.**; **Close form** or **Reopen form**; **Replace link**, with **This address stops working. A new link replaces it.**; and **Delete form**, for people who may delete the block. These appear only in the form's own Scenario and in a desktop browser. |
+
+Turning **Allow more than one response per person** on takes effect at once. Every other item confirms first:
+
+| Dialog | What it says | Buttons |
+| --- | --- | --- |
+| **Close [form]?** | **People can’t send or change answers after this.** and **Closing changes nothing in [table].** | **Close form**, shown as **Closing…** while it runs; **Cancel** |
+| **Reopen [form]?** | **People can send and change answers again until you close it.**, or **People can send and change answers again until [date].**, or **Its due date, [date], has passed, so it stays open until you close it. Ask Ari to set a new due date.**, then **Reopening changes nothing in [table].** | **Reopen form** / **Reopening…**; **Cancel** |
+| **Allow only one response per person?** | **Each person’s latest answer counts. If it’s held for review, the one before it counts until someone adds it. Their earlier answers stay on the Responses tab as replaced.** and **The next add takes the rows of those earlier answers off [table].** | **Allow only one** / **Saving…**; **Cancel** |
+| **Delete [form]?** | **The form goes from its page, and its form link stops taking answers.** and **[Table] keeps every row, and the answers people sent are kept.** | **Delete form** / **Deleting…**; **Cancel** |
+| **Replace this link?** | **This address stops working. A new link replaces it.** | **Replace link** / **Replacing…**; **Cancel** |
+| **Discard [name]’s response?** | **It won’t be added to the table again.**, with **Its rows stay in the table.** when its rows cannot be removed here. When they can, the checkbox **Also remove its [N] rows from [table]** is ticked, and a note says how many rows someone changed stay: **Remove it in the table if you want it gone.** | **Discard response** / **Discarding…**; **Cancel** |
+| **Discard [N] responses?** | **They aren’t in the table, so nothing there changes. They won’t be added later.**, or **They won’t be added to the table again.**, with **Their rows stay in the table.** or the ticked checkbox **Also remove their rows from [table]** and **Rows someone changed stay.** | **Discard [N] responses** / **Discarding…**; **Cancel** |
+| **Add [name]’s answer to [table]?** or **Add [N] answers to [table]?** | One or more of: **[name] already answered. Make sure this newer answer is really from them: the earlier one counts until you add this one.**; **[name]’s answer was flagged: [checks].** with the flagged text; **This replaces [N] values someone typed in the table.** Shown only when one of these applies; otherwise the add runs at once. | **Add to table** or **Add [N] answers** / **Adding…**; **Cancel** |
+
+Notices after these actions: **Closed [form]** or **[form] was already closed**; **Reopened [form]** or **[form] was already open**; **Deleted [form]** with **[table] keeps its rows.**; **Link replaced**; **Discarded [N] responses** or **Discarded [name]’s response**; **Removed [N] rows from [table]. [N] rows someone changed stay.**; **Added [N] answers · [N] rows** (or **· [N] values**); **Nothing changed in the table**; **The new answer goes in once its checks pass**. A notice for an add or a removal offers **Undo**; **That wasn’t undone. Try again in a moment.** means the undo failed. A failed action reads **That didn’t work** with **Try again in a moment.**, and **The form link wasn’t copied. Try again.** means the copy failed.
+
+### Responses tab
+
+| Control or message | Meaning |
+| --- | --- |
+| **Held for review ([N])** and **Completed ([N])** | The two groups. A held answer is not in the table. |
+| **No answers yet**, with **Send it, or copy the link to share it.** (or only one of the two) and **Responses show here once people send them.**, with **Send** and **Copy link** | Nothing has been sent in. |
+| **Closed with no answers**, with **No one sent an answer before the form closed.** and, when you may reopen it, **Reopen it to take answers again.** with **Reopen form** | The form closed before anyone answered. |
+| **Filter by name** | Appears once the form has 30 or more answers; **No answers match “[text]”.** when none match. |
+| **Select** / **Done** | On a narrow block, shows and hides the checkboxes. The checkboxes are labeled **Select [name]** and **Select all in [group]**. |
+| **[N] selected**, with **Add to table**, **Discard**, and **Clear** | The bar for picked answers. Up to 200 answers can be picked. **Add to table** is unavailable with **None of these are waiting to go in.**, **[reason]. Discard it, or ask them to answer again.**, or **None of these can go in yet. Discard them, or ask them to answer again.** |
+| **In the table**, **Replaced by a later answer**, **Discarded** | An answer's state. |
+| **Not checked against the table** | The answer could not be compared with the table, for example because it is not ready. |
+| **Doesn’t fit the form’s rules**, **Still being checked**, **Needs an amount for each month** | Why an answer cannot go in yet. |
+| **Held for your review** / **Not in table yet**, with **Why it was held** and **What changes** (or **What changes from [date]**) | The notice on a held answer, with **Add to table** and **Discard response**. **Held. [N] rows from an earlier add are in the table.** names rows an earlier answer of the same person already wrote. |
+| Reasons under **Why it was held** | **It doesn’t fit the form’s rules: […].**; **[name] answered again.** or **[name] answered again, replacing their answer from [date].**; **A check flagged it: [check].**; **Its checks are still running. It goes into the table once they pass.**; **A question that asks one amount per month got one amount. It goes in once [name] gives an amount for each month.** The checks are **Possible instructions**, **Possibly abusive**, **Possible personal data**, **Unusual amount**, **Over the amount set for review**, **Couldn't be checked**, **Doesn't pass the form's rules**, **Needs months**, **Waiting for credits**, and **Held for review**. |
+| Notes under **What changes** | **Their earlier answer counts until you add this one.** and **Adding it replaces [N] values someone typed in the table.** |
+| **Changed from the answer of [date]**, with **Added** and **Removed** | How a later answer differs from the person's earlier one. |
+| **Open table**, **All responses**, **Previous response**, **Next response** | Move between the table, the list, and the answers. A **More response actions** menu on each answer holds **Discard response**. |
+| **—**, **[check] · added**, **Needs [month]s**, **[N] months** / **Hide months**, **None**, **Totals on Review**, **Yes** / **No**, **[n] of 5** | How answers show in the list: no answer, a flagged answer that was added, missing months, a month-by-month answer folded or unfolded, an empty choice, a repeated question's totals, a yes-or-no answer, and a scale. |
+| **The answers can’t be shown right now.**, with **Try again** | The list could not be read. |
+| **Discard responses from a computer.** | Discarding needs a desktop browser. |
+
+### Links tab
+
+| Control or message | Meaning |
+| --- | --- |
+| **Form link**, with **Anyone with this link can answer.** or **This link shows that the form is closed.**, and **Copy link** / **Copied** | The form's one address. **Replace link** in the **More actions** menu changes it. |
+| **Sent to**, with **All**, **Answered**, and **Not yet**, each with a count, and **Find a person** | The people the form was emailed to, with **Name**, **Email**, **Sent**, and **Status** (**Answered** or **Not yet**). A narrow block drops **Email**. |
+| **Remind [N]** | Opens the chat with a reminder for the people who have not answered; Ari posts a card for you to send. |
+| **No one yet. People you send the form to show here, with whether they’ve answered.** | No one has been emailed. |
+| **No one matches “[text]”.**, **No one has answered yet.**, **Everyone has answered.** | Nothing to list under the filter. |
+| **The links can’t be shown right now.**, with **Try again** | The list could not be read. |
+
+### What the person answering sees
+
+The form link opens a page of its own, outside the app, titled **[form] · cfo.ai**, with **Powered by cfo.ai** at the foot. On the Page, members and guests who can view it answer in the block itself.
+
+| Screen or message | Meaning |
+| --- | --- |
+| **Opening the form…** | Loading. |
+| **[N] questions · about [N] minutes · due [date]**, **You'll get an email with a link to change your answers until [date].**, **You'll be asked about**, and **Start** | The first screen. Someone who left the form unfinished in this browser reads **You started this form here before. Your answers are kept until you send them.** with **Pick up where you left off** and **Start over**; a draft through the link is kept for 14 days, and a draft on the Page for the browser tab's session. |
+| **About you**, with **Your answers go in under your name and email.**, **Your name**, **Your email**, and **We send your receipt here.** | The first step. On the Page both fields are filled from the account and read **You're answering as your account.**; a person changing earlier answers reads **You're changing the answers sent from this email.** |
+| **Question [n] of [N]**, with **Next**, **Back**, **Review**, and **Press Enter ↵** | One question at a time. A choice reads **Choose**, **Choose up to [n]**, or **Choose any**; a list of items offers **Add a [item]** and **Removed [item].** with **Undo**; an amount for each month offers **Total, spread evenly**, **Same each month**, and **Month by month**. |
+| **Check your answers**, with **Edit** beside each answer, **You can change your answers until [date].**, and **Submit** (**Sending…**) | The review step. **Submitting replaces your answers from [date].** appears for a person who answered before, and **This email already sent answers to this form. Submitting again replaces them.** when that earlier answer came from another browser; submitting then holds the new answer for review. |
+| **Thanks, [first name]. Your answers are in.**, with **Sent to [owner] on [date].**, **What you sent**, **Change my answers**, **Open until [date]**, and, when the form takes more than one answer per person, **Submit another response** | The final screen. |
+| **Your answers weren't sent. Try again.**, **Your answers weren’t sent. Check your connection and try again.**, **Too many tries. Wait a minute, then send your answers again.** | The send failed, or the link has been used too often in one minute. |
+| **You've changed your answers as many times as this form allows. Ask the person who shared this form if you need to change them again.** | The person has stored 50 answers to this form, replaced ones included. |
+| **This form has taken as many answers through this link as it can. Ask the person who shared it for another way to answer.** | The link has stored 2,000 answers. |
+| **Your answers are too long to send. Keep them under [N] KB in all.** | One answer is over 4 MB in all. |
+| **This form closed on [date].**, with **Your answers from [date] were received.** when they answered, and **Need to change something? Reply to [asker]’s email.** or **Need to change something? Reply to the email that brought you here.** | The form is closed. |
+| **This link no longer works.**, with **Ask the person who sent it for a new one.** | The link was replaced, or never existed. |
+| **This form is not taking answers.** | The form was deleted, or the workspace is not active. |
+| **This form can’t be reached right now.** or **This form didn’t load.**, with **Check your connection and try again.** and **Try again** | The form could not be loaded. |
+| **Sign in to answer this form on its page.** | A visitor opened the Page through a share link without signing in. |
+| **Read-only. You can look through this form but not answer it here.** and **Answers can't be sent from here.** | A preview, or a form shown to someone who cannot answer. |
+
+### Emails and the sending card
+
+| Email or card | What it says |
+| --- | --- |
+| The sending card in the chat | Titled **Send [form]**, then **Sent [form]**; a reminder is **Remind about [form]**, then **Reminded about [form]**. It reads **Form: [name] · [N] questions** and **Link: Everyone gets the form’s link. They give their name and email first. No account needed.**, with **Nothing leaves until you press Send.** A card for more than 20 people reads **Sending… [n] of [total]** while it sends, and **Sending stopped at [n] of [total]. Send sends to the rest.** when it stopped. Each card holds up to 200 people. |
+| The invitation | From **[your name] via cfo.ai**, replies to you. **Hi [first name],** or **Hello,**, then **[You] asked for your answers to [form].**, **You'll get an email with a link to change your answers until [date].**, the button **Open the form**, and **The form asks for your name and email first.** |
+| The receipt | Subject **We got your answers to [form]**. It reads **You can change them until [date].** or **You can change them while the form is open.**, with the button **Change your answers** and a warning that anyone with that link can change the answers, so it should not be forwarded. A person gets at most one receipt every 10 minutes. An answer on the Page gets no receipt. |
+| The flagged-answer email | To the person who made the form. Subject **An answer to [form] was kept out of the table**; the body names the checks and says to look at the answer on the **Responses** tab and press **Add to table** if the check got it wrong. |
+| A saved email that links forms | Lists them under **Linked form** or **Linked forms**; one email can carry up to 10 forms. |
 
 ## Chart blocks
 

@@ -51,7 +51,8 @@
               "guides/connect-a-google-sheet",
               "guides/upload-a-csv",
               "guides/import-a-spreadsheet-model",
-              "guides/switch-to-real-numbers"
+              "guides/switch-to-real-numbers",
+              "guides/collect-answers-with-a-form"
             ]
           },
           {

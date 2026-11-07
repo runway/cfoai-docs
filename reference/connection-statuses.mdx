@@ -132,7 +132,7 @@ In **Settings → Connections** and on the **MCP** and **API** tabs, a server or
 | **Synced** | A sync setup Ari saved has brought its data in. |
 | **No queries yet** | A sync setup brought its data in, and no saved query reads it yet. On the connection's page, the line reads **Data synced. No queries saved yet.** with **Set up queries with Ari** for people who can edit the connection, or **Data synced. Someone with access can set up queries with Ari.** The page reads the status again each time it opens and when Ari saves a query. |
 | **Connecting** | Setup is still in progress. |
-| **Waiting for you** | Someone must finish setup, such as signing in. |
+| **Waiting for you** | Someone must finish setup, such as signing in. An MCP server in this state offers **Finish setup**; see [Sign-in incomplete](#statuses-for-mcp-servers-and-apis). |
 | **Needs attention** | Something broke; the next step says what to do. |
 | **Unavailable** | The status could not be read. |
 
@@ -144,15 +144,15 @@ An MCP server's row also shows the state of its saved sign-in. The state describ
 | **Sign-in saved · expiry unknown** | The saved sign-in works, and the provider did not say when it expires. |
 | **Access expired · renewal on next use** | The access token has expired, and cfo.ai renews it the next time it uses the server. Nothing to do. |
 | **Reconnect required** | The provider refused to renew the sign-in. Select **Reconnect**, which opens the provider's sign-in again and keeps the connection and its sync setups. |
-| **Sign-in incomplete** | The server was added but its sign-in never finished. |
+| **Sign-in incomplete** | The server was added but its sign-in never finished. Its row in **Settings → Connections**, its details, and its sidebar card offer **Finish setup** to people who can add connections. It starts a new sign-in and replaces the unfinished attempt; the connection keeps its name and address for another try when the sign-in fails. The sign-in finishes even when the cfo.ai tab that started it reloads before the provider sends you back: cfo.ai keeps the attempt for ten minutes, and the page the provider returns you to completes it. Switching workspaces cancels an unfinished attempt. |
 | **Provider access not checked** | The server does not sign in with OAuth, so there is no credential state to show. |
 
 | Next step | When |
 | --- | --- |
 | **Reconnect this source to continue.** | The saved sign-in has no usable token. |
 | **Fix with Ari** | In the **Data sync** section when the sync is failed or blocked. Starts a chat that names the connection and asks Ari to inspect the latest run and its saved sync setup, repair or retry it, and check the result. Shown with **Ari is unavailable.** and the reason while the workspace's AI usage is blocked. |
-| **Finish authorization to continue.** | Sign-in was started and not finished. |
-| **Retry authorization to continue.** | Sign-in failed. |
+| **Finish authorization to continue.** | Sign-in was started and not finished. Select **Finish setup**. |
+| **Retry authorization to continue.** | Sign-in failed. Select **Finish setup**. |
 | **Allow at least one API endpoint to continue.** | No endpoint of the API is allowed yet. |
 | **Grant access to the missing source tables to continue.** | A synced source, such as NetSuite, hides tables the reports need. See [Missing access in [source]](#missing-access-in-source). |
 | **Refresh the API definition to continue.** | The API's specification needs to be loaded again. |
@@ -284,6 +284,12 @@ Google Sheets and Google Drive connections report their import on the row and in
 | Message | Meaning |
 | --- | --- |
 | **A workspace admin must connect this service.** | You cannot manage connections. |
+| **MCP server connected. You can close this window.** | On the page the provider returns you to, once cfo.ai has finished the sign-in. The window closes on its own where the browser allows it. |
+| **Sign-in could not be confirmed. Return to cfo.ai and check the connection before trying again.** | On the return page, when cfo.ai could not confirm that the sign-in finished. Open the server in **Settings → Connections** and read its sign-in state before signing in again. |
+| **This sign-in attempt is no longer available. Return to cfo.ai and choose Finish setup or Reconnect.** | On the return page, when the attempt expired after ten minutes, was cancelled, or was already used. |
+| **Sign-in was not completed. Return to cfo.ai and try again, approving access in the sign-in window.** | On the return page, when the provider refused the sign-in or you declined it. |
+| **This browser cannot save sign-in safely. Open cfo.ai in an updated browser and try again.** | The browser cannot keep the sign-in attempt, so cfo.ai does not open the provider. |
+| **Allow popups to finish setup** | The browser blocked the provider's window when you selected **Finish setup**. Allow pop-ups for cfo.ai and try again; the setup form stays available. |
 | **The provider must approve cfo.ai's sign-in URL to connect.** | The provider has to allow cfo.ai's sign-in address first. Trying again does not help until it does. |
 | **This provider signs in only apps registered with it in advance. It offers neither automatic registration nor client metadata documents, the two ways cfo.ai identifies itself, so sign-in cannot start.** | The server cannot be connected with OAuth. cfo.ai asks the provider to register it automatically first; when the provider refuses that request and says it accepts client metadata documents, cfo.ai retries with those on its own before the sign-in window opens. This message appears only when the provider offers neither. |
 | **This server's address, or an address it gave for sign-in, is a non-public address. cfo.ai did not contact it.** | cfo.ai connects only to public addresses. |
@@ -301,7 +307,7 @@ Google Sheets and Google Drive connections report their import on the row and in
 | **Sync page [N] failed: the server answered HTTP 401 and rejected this connection's authorization when the page connected** | No page completes until the saved authorization changes. Select **Reconnect** on the server's row. |
 | **Sync page [N] failed: HTTP 429 is the server limiting the rate of requests it accepts, and its Retry-After header stated a wait of [N] seconds** / **…and its answer stated no time at which that limit ends** | The server limited how often cfo.ai may call it. The sync does not fail at once: it waits the stated time, at least one second, or one minute when none is stated, then asks for the same page again, keeping the pages it already fetched. One page waits at most five times. The report appears only when the wait would not fit in the sync's 10 minutes, or a page has waited five times; the job then waits for the server, as an API sync does, and the next run meets the limit again where it left off. |
 | **Sync page [N] failed: the server answered HTTP 503 when the page connected; the connection allowance is 45 seconds** | A 5xx status reports a fault in the server, not in the page's request. The next sync tries again. |
-| **Sync page [N] failed: the server's current definition of tool "[tool]" is absent or differs from the description and schemas this setup saved** | The page stops. cfo.ai then checks the saved setup against the new definition: when the saved request still fits, the setup stays **Enabled** and the next run uses the new definition; when it does not, the setup reads **Paused**, and Ari's background worker for the connection repairs it, asking you only when it needs a decision. A tool whose permission came from cfo.ai's own read-or-write classification waits for the changed tool to be classified first. |
+| **Sync page [N] failed: the server's current definition of tool "[tool]" is absent or differs from the description and schemas this setup saved** | The page stops. cfo.ai then checks the saved setup against the new definition: when the saved request still fits, the setup stays **Enabled** and the next run uses the new definition; when it does not, the setup reads **Paused**, and Ari's background worker for the connection repairs it, asking you only when it needs a decision. A tool whose permission came from cfo.ai's own read-or-write classification waits until cfo.ai next reads the server's tool list, which classifies the changed tool; the nightly sync's worker cannot classify it on its own. |
 | **Sync page [N] failed: tool "[tool]" answered these arguments with an error result (isError)** | The tool returns the same error to a call with these arguments. Ask Ari to call the tool with the setup's arguments to read the error. |
 | **Sync page [N] failed: the call to tool "[tool]" ended without a result; a call's allowance is 45 seconds** | The call did not finish in time. |
 | **Sync page [N] failed: the server's answer is larger than the 2 MiB a sync page holds** | The page stops and saves nothing from that answer. Ask Ari to change the setup's arguments so the tool returns less, such as a narrower date range or fewer fields, before the next sync. |

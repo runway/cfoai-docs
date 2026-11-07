@@ -111,6 +111,10 @@ When a service changes its address, or you set up its authentication the wrong w
 
 When a server's row in **Settings → Connections** reads **Reconnect required**, select **Reconnect** and sign in to the provider again. The connection and its sync setups stay as they are, and the new sign-in replaces the saved one when it completes. A row that reads **Access expired · renewal on next use** needs nothing from you; cfo.ai renews the sign-in the next time it uses the server.
 
+## Finish a sign-in that did not complete
+
+When a server reads **Waiting for you**, or its sign-in state reads **Sign-in incomplete**, select **Finish setup** on its row in **Settings → Connections**, in its details, or on its card in the sidebar. It starts a new sign-in and replaces the unfinished attempt. A sign-in finishes even if the cfo.ai tab that started it reloads before the provider sends you back: cfo.ai keeps the attempt for ten minutes, and the page the provider returns you to reads **MCP server connected. You can close this window.** when it is done. If the browser blocks the provider's window, a notice reads **Allow popups to finish setup**; allow pop-ups for cfo.ai and select **Finish setup** again. [Connection statuses and actions](/reference/connection-statuses#messages-about-mcp-servers-and-apis) lists what the return page says when a sign-in cannot finish.
+
 ## Disconnect a service
 
 In **Settings → Connections**, open the service's **…** menu and select **Disconnect**, or open the service's connection page and select **Remove connection**; both do the same. cfo.ai warns **Ari will no longer be able to use this server's tools until you reconnect.**, or for an API, **Ari will no longer be able to use this API until you reconnect it.**

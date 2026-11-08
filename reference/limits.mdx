@@ -21,6 +21,7 @@ This page lists every size, count, and time limit in cfo.ai, grouped by part of 
 | Size of a page of conventions you ask Ari to remember | 32 KiB of text, saved as up to 12 separate facts at a time |
 | Files Ari delivers at once | 10, each up to 50 MB, and 250 MB in all |
 | Time a download link for a file in a chat works | 5 minutes after you select the file; select it again for a new link |
+| Table Ari posts in Slack as a Slack table | The first table in a message, up to 100 rows, 20 columns, and 10,000 characters of cell text; a larger or later table, and a table inside a code block, posts as text, and a message whose text around the table is too long for Slack posts whole as text |
 | Length of one chat | No fixed limit; when a chat grows too large for Ari to read in one request, the chat says so, and you start a new chat |
 
 See [Attach files to a chat](/guides/attach-files) and [Chat controls and messages](/reference/chat).
@@ -43,7 +44,9 @@ See [Attach files to a chat](/guides/attach-files) and [Chat controls and messag
 | Rillet connections in one workspace | 1 |
 | Start of the nightly refresh of connected sources | 02:00 UTC; each workspace's connections start at the workspace's own fixed point within the following hour |
 | File Ari downloads from a connected API | 50 MiB, saved to the chat as an attachment; a JSON or text answer is read up to 1 MiB, and a response over its limit saves no partial file |
-| OpenAPI specification for an API connection | An `https` address that answers within 20 seconds, with a document of 12 MiB or less |
+| OpenAPI 3 or Swagger 2.0 definition for an API connection | An address that answers within 20 seconds, fetched over `https` (an `http` address is tried at its `https` address), with a document of 12 MiB or less; a definition Ari pastes inline while setting up a connection in a chat is limited to 64 KiB |
+| Time one load of a saved query's result can run | 15 minutes on its first attempt, 30 on its second, and 60 on its third and last; a load that reaches its limit is tried again, and its failure names the limit and the attempt |
+| When the nightly refresh runs a connection's saved queries | When every one of the workspace's sources has finished syncing, or at the four-hour cutoff for the sources that have; a source still syncing at the cutoff gets its queries within about two minutes after its sync ends, checked for up to 20 hours |
 | Time one run of a sync setup for an MCP server or API can take | 10 minutes |
 | Results one run of a sync setup can save | 10,000 pages for every sync, each page one source response of up to 1 MiB from an API or 2 MiB from an MCP server. A replace or snapshot sync without a changes-since filter saves page by page; an upsert, append, or changes-since sync holds its whole result, up to 16 MiB in all. A run stops after 10 minutes |
 | Size of one page an MCP server returns to a sync setup | 2 MiB |
@@ -56,7 +59,8 @@ See [How imported data loads](/reference/imported-data) and [Integrations direct
 | Limit | Value |
 | --- | --- |
 | Items on one table axis before Ari notes that the table may be slow | About 1,000 |
-| Scenarios one Canvas block can read | 3 |
+| Scenarios one Canvas block can read | 3, counting the Scenarios its datasets read; several datasets on one Scenario count once |
+| Size of a Canvas block's source | 256 KB (262,144 bytes), pictures embedded in the block included |
 | External links on one Page | 100 |
 | Pages one share link opens | 50 |
 | Length of a share link's memorable address | 3 to 64 characters: lowercase letters, digits, and single hyphens |

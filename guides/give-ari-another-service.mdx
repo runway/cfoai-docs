@@ -12,7 +12,7 @@ An MCP server or an API does not replace an integration. An integration syncs a 
 
 - You need permission to manage connections. Someone without it sees **A workspace admin must connect this service.**
 - For an MCP server: the service's MCP address, and a sign-in to the service or a token. Many common servers are in the catalog with their address filled in.
-- For an API: an API key, unless the API needs none, and an OpenAPI 3 specification for an API that is not in the catalog.
+- For an API: an API key, unless the API needs none, and an OpenAPI 3 or Swagger 2.0 definition, as JSON or YAML, for an API that is not in the catalog.
 - MCP servers and APIs use no plan slot, with or without a sync setup.
 
 ## Connect a service
@@ -25,7 +25,9 @@ An MCP server or an API does not replace an integration. An integration syncs a 
 
     Ari reads the provider's official documentation and posts a card titled **Connect [service]**. The card shows the service's logo, its address, how it signs in, such as **MCP token** for a server that takes a token, or **API key** or **No sign-in required** for an API, and a **Provider documentation** link. Select **Connect**. A service that uses OAuth opens its sign-in window; one that takes a token or key shows a secure field on the card. A service that needs more than one secret, such as a bearer token and an `AccessKey` header, shows one more secure field for each, labeled with the header's name, and a field left blank is refused with **The [name] field is required.** What you type there goes to cfo.ai's connection service, not to Ari or the chat. Never paste a key into a chat message.
 
-    The card reads **Connecting…**, then **Checking connection…**, then **Connected** for an MCP server or **Connection added** for an API. Ari then checks that the tools or endpoints answer before it relies on them. **Connection added** means the specification loaded, not that the API answers, so Ari checks access with a read before relying on it, and for an API that takes a key that read also shows whether the key works; the card says **Ari will check access before using this connection.** If an MCP server's sign-in fails or you cancel it, Ari learns what went wrong in the same chat and can suggest what to try next.
+    Before Ari offers a Connect card for a server that signs in with OAuth, it checks whether the provider accepts cfo.ai as an app. When the provider signs in only apps registered with it in advance, Ari says so in the chat instead of posting a card that would fail; a check that cannot finish within ten seconds still offers the card.
+
+    The card reads **Connecting…**, then **Checking connection…**, then **Connected** for an MCP server or **Connection added** for an API. Ari then checks that the tools or endpoints answer before it relies on them. **Connection added** means the specification loaded, not that the API answers, so Ari checks access with a read before relying on it, and for an API that takes a key that read also shows whether the key works; the card says **Ari will check access before using this connection.** If an MCP server's sign-in fails or you cancel it, Ari learns what went wrong in the same chat and can suggest what to try next. When an API's definition has parts cfo.ai cannot use, the connection still imports the usable operations, and Ari's result lists the skipped operations with their reasons.
   </Tab>
   <Tab title="By hand">
     <Steps>
@@ -38,7 +40,9 @@ An MCP server or an API does not replace an integration. An integration syncs a 
       <Step title="Or add one manually">
         Select **Add manually**. For an MCP server, **Add MCP server** asks for a **Name** and the **MCP URL**. Under **Advanced**, choose the **Authentication**: **OAuth**, **Bearer token**, or **API key header**, which also takes a **Header name**, such as `X-API-Key`, and the **API key**.
 
-        For an API, **Add API** asks for a **Display name**, the **Authentication** (**Bearer token**, **API key header**, **Basic authentication**, or **No authentication**), the **API key**, and the **OpenAPI specification**, as a **Specification URL** or with **Paste JSON**. A specification that declares several servers also needs the **Base URL** under **Advanced**.
+        For an API, **Add API** asks for a **Display name**, the **Authentication** (**Bearer token**, **API key header**, **Basic authentication**, or **No authentication**), the **API key**, and the **OpenAPI specification**, as a **Specification URL** or with **Paste JSON**. The address may start with `http://`: cfo.ai fetches the definition at its `https://` address and never over plain HTTP. A specification that declares several servers also needs the **Base URL** under **Advanced**.
+
+        When the definition loads, the dialog's title changes to **API connected** and it reads **[N] operations available.** Operations cfo.ai could not import are listed under **Not imported**, and operations kept without their response schema under **Imported without a response schema**, each with its reason; a list shows up to 20 and offers **Copy full report** for all of them. **Done** or **Esc** closes the dialog.
       </Step>
       <Step title="Check that it connected">
         The service appears in the list with its status, such as **Ready for Ari**. Ask Ari a question that needs it.
@@ -56,6 +60,10 @@ Add Rippling's server with **Add manually**. The dialog shows a **Rippling setup
 - Copy your Remote MCP server URL from **IT → My IT → MCP connectors → Rippling MCP**.
 - Ask a Rippling admin to assign you access in **IT → MCP Gateway → Rippling MCP → Access assignments**.
 - Make sure your company has an active Rippling AI trial or subscription, or its tools return no data.
+
+### NetSuite's MCP server
+
+NetSuite accepts cfo.ai's sign-in only after a NetSuite administrator has allowed cfo.ai's redirect URI, the address NetSuite sends you back to. When the address is not yet allowed, the connection form reads **The provider must allow cfo.ai's redirect URI https://app.cfo.ai/integrations/mcp/callback before you can connect.**, and Ari receives the same address. Give it to your NetSuite administrator, who creates an integration record under **Setup → Integration → Manage Integrations → New** with **Authorization Code Grant**, **Public Client**, and **Dynamic Client Registration** checked, **NetSuite AI Connector Service** as the only OAuth 2.0 scope, that exact address as the **Redirect URI**, and every token-based authentication and client credentials box cleared. Once the record is saved, select **Retry** or **Connect** in cfo.ai and sign in with a role that is not Administrator and has the **MCP Server Connection** and **OAuth 2.0 Access Tokens** permissions. Ari can walk you and your administrator through these steps in the chat.
 
 ## Choose what Ari may do
 
@@ -121,8 +129,8 @@ In **Settings → Connections**, open the service's **…** menu and select **Di
 
 ## If something goes wrong
 
-- **The provider must approve cfo.ai's sign-in URL to connect.** The provider has to allow cfo.ai's sign-in address first; trying again does not help until it does.
-- **This provider signs in only apps registered with it in advance.** The server cannot be connected with OAuth. Use a token if the provider offers one.
+- **The provider must allow cfo.ai's redirect URI https://app.cfo.ai/integrations/mcp/callback before you can connect.** The provider has to allow that exact address first; trying again does not help until its administrator does. For NetSuite, see [NetSuite's MCP server](#netsuites-mcp-server).
+- **This provider signs in only apps registered with it in advance.** The server cannot be connected with OAuth. When Ari can check the provider first, it tells you this before offering a Connect card. Use a token if the provider offers one.
 - **Reconnect this source to continue.** The saved sign-in no longer works. Sign in to the server again.
 
 [Connection statuses and actions](/reference/connection-statuses#messages-about-mcp-servers-and-apis) lists every message.

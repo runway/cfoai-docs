@@ -41,7 +41,7 @@ The months a full-history import brings in stay through later refreshes. A full-
 
 ## Change when a connection refreshes
 
-All connections refresh in a shared nightly run that starts at 02:00 UTC, which is 7 PM Pacific the evening before during daylight saving time. Each workspace's connections start at the workspace's own fixed point within the hour after that, so they may begin up to an hour later, at the same time every night; the saved queries run after the workspace's imports as before. If a source publishes the day's data after that, give the connection its own time:
+All connections refresh in a shared nightly run that starts at 02:00 UTC, which is 7 PM Pacific the evening before during daylight saving time. Each workspace's connections start at the workspace's own fixed point within the hour after that, so they may begin up to an hour later, at the same time every night. The saved queries run once every source has finished syncing, or at the four-hour cutoff for the sources that have finished by then; a source still syncing at the cutoff gets its queries within about two minutes after its sync ends, for up to 20 hours, so a slow sync no longer costs the night's refresh. If a source publishes the day's data after that, give the connection its own time:
 
 > Refresh QuickBooks at 6:30 AM Pacific every day.
 

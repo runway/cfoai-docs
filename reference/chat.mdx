@@ -80,7 +80,7 @@ Ari keeps working on cfo.ai's servers until it finishes, even if you close the t
 | **Thinking…** | Status line above the message box | Your message is on its way or has arrived, and Ari has not taken its first step yet. The line and its clock appear the moment you send, before the server confirms it has the message. |
 | A short phrase and a meter | Status line | Ari is working. The phrase changes with what Ari is doing, such as reading results or writing its answer, and the meter counts the time and tokens used so far. |
 | **Ari hit a temporary connection issue. Retrying now.** | Status line | A connection inside cfo.ai failed for a moment. Ari retries on its own. |
-| **Ari hit a temporary model-provider issue. Retrying now.** | Status line | The AI model did not answer for a moment. Ari retries on its own. |
+| **Ari hit a temporary model-provider issue. Retrying now.** | Status line | The AI model did not answer for a moment, or rejected a saved summary of the chat's earlier messages. Ari retries on its own; a rejected summary is left out from then on, and Ari condenses the earlier messages again when it must. |
 | **I'm still working on your request.** | Status line | Ari has spent more than about a minute getting ready to ask the AI model, for example condensing a long chat's history, and is still at it. The line appears once. Getting ready can take up to ten minutes; after that the turn ends with **Ari hit an unexpected error. Please try again.** |
 | **Activity** | Under your message | Ari's steps, each with a check mark when done. See [Activity group](#activity-group). |
 | A line of text, such as a sync in progress | Above the message box, under the status line | Work running beside the conversation. Select it to open its card. |
@@ -363,7 +363,7 @@ A message that could not be delivered shows **Not sent.** under it, with the rea
 
 ### Earlier messages
 
-A chat opens on its newest messages, and scrolling up loads older ones.
+A chat opens on its newest messages, and scrolling up loads older ones. While Ari is still working on a long task, the chat opens on your request and the most recent activity under it, and the earlier steps of that work load as you scroll up.
 
 | Message | Meaning |
 | --- | --- |

@@ -44,7 +44,7 @@ See [Attach files to a chat](/guides/attach-files) and [Chat controls and messag
 | Rillet connections in one workspace | 1 |
 | Start of the nightly refresh of connected sources | 02:00 UTC; each workspace's connections start at the workspace's own fixed point within the following hour |
 | File Ari downloads from a connected API | 50 MiB, saved to the chat as an attachment; a JSON or text answer is read up to 1 MiB, and a response over its limit saves no partial file |
-| OpenAPI 3 or Swagger 2.0 definition for an API connection | An address that answers within 20 seconds, fetched over `https` (an `http` address is tried at its `https` address), with a document of 12 MiB or less; a definition Ari pastes inline while setting up a connection in a chat is limited to 64 KiB |
+| OpenAPI 3 or Swagger 2.0 definition for an API connection | An address that answers within 20 seconds, fetched over `https` (an `http` address is tried at its `https` address), with a document of 12 MiB or less; a definition supplied inline instead of by address, through **Paste JSON**, by Ari in a chat, or as `spec_json` over MCP, is limited to 64 KiB |
 | Time one load of a saved query's result can run | 15 minutes on its first attempt, 30 on its second, and 60 on its third and last; a load that reaches its limit is tried again, and its failure names the limit and the attempt |
 | When the nightly refresh runs a connection's saved queries | When every one of the workspace's sources has finished syncing, or at the four-hour cutoff for the sources that have; a source still syncing at the cutoff gets its queries within about two minutes after its sync ends, checked for up to 20 hours |
 | Time one run of a sync setup for an MCP server or API can take | 10 minutes |
@@ -59,7 +59,7 @@ See [How imported data loads](/reference/imported-data) and [Integrations direct
 | Limit | Value |
 | --- | --- |
 | Items on one table axis before Ari notes that the table may be slow | About 1,000 |
-| Scenarios one Canvas block can read | 3, counting the Scenarios its datasets read; several datasets on one Scenario count once |
+| Scenarios one Canvas block can read | 3, counting only the Scenarios its datasets read; several datasets on one Scenario count once, and the Scenario you are viewing is not counted unless a dataset reads it, so a block that compares three named Scenarios opens from a fourth |
 | Size of a Canvas block's source | 256 KB (262,144 bytes), pictures embedded in the block included |
 | External links on one Page | 100 |
 | Pages one share link opens | 50 |

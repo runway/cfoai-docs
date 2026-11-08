@@ -298,6 +298,9 @@ Google Sheets and Google Drive connections report their import on the row and in
 | **Could not load tools from the MCP server (it answered HTTP 404). Try again shortly.** | The server did not return its tools. |
 | **Connection added** | On Ari's connect card for an API, the API's specification loaded; for a source Ari fetches, the source was saved. It does not prove the key works: the card adds **Ari will check access before using this connection.** |
 | **Try again to finish connecting.**, **Enter the same API key and try again to finish connecting.** | An API setup failed partway. The second appears for an API that signs in with a key. |
+| **API connected**, with **[N] operations available.** | The title and first line of the **Add API** dialog once the definition loaded. **Done** or **Esc** closes it. |
+| **Not imported** | In the same dialog, the operations cfo.ai could not import, each with its reason. The list shows up to 20; **Copy full report** copies all of them. |
+| **Imported without a response schema** | In the same dialog, the operations kept without their response schema, each with its reason, under the same 20-item list and **Copy full report**. |
 | **The specification URL is not an https address.** | The address is neither `https://` nor `http://`. An `http://` address is accepted and fetched at its `https://` address; cfo.ai never fetches a definition over plain HTTP. |
 | **The specification URL answered HTTP [status].** | The address returned an error status instead of the document. |
 | **The specification URL did not return a document.** | The address did not answer. |
@@ -305,8 +308,6 @@ Google Sheets and Google Drive connections report their import on the row and in
 | **Document $ref: external references are unavailable.** | The definition refers to another document, which cfo.ai does not fetch. |
 | **Document paths: no usable operations were found.**, followed by the number of skipped operations and the first reasons | No operation could be imported. A definition whose other operations are usable imports them and lists the skipped ones instead; this message appears only when none is usable. |
 | **The API definition exceeds the 12 MiB input limit or the schema nesting limit.** | The definition is too large, or nests its schemas too deeply. |
-
-A definition message can add **Location: line [N], column [N].**, and each ends **Reference:** followed by an ID that support can look up.
 | **Raw ingestion failed for [connection]. Sync page [N] failed: [cause].** | A page of an MCP sync failed. Ari's chat report states the cause in the words below, and the data from the last completed sync stays in place. |
 | **Sync page [N] failed: the connection is no longer linked, or its access for tool "[tool]" is no longer Allow** | Every page checks both, so no page completes until the connection is linked and the tool's permission is **Allow**. |
 | **Sync page [N] failed: the server answered HTTP 401 and rejected this connection's authorization when the page connected** | No page completes until the saved authorization changes. Select **Reconnect** on the server's row. |
@@ -316,6 +317,8 @@ A definition message can add **Location: line [N], column [N].**, and each ends 
 | **Sync page [N] failed: tool "[tool]" answered these arguments with an error result (isError)** | The tool returns the same error to a call with these arguments. Ask Ari to call the tool with the setup's arguments to read the error. |
 | **Sync page [N] failed: the call to tool "[tool]" ended without a result; a call's allowance is 45 seconds** | The call did not finish in time. |
 | **Sync page [N] failed: the server's answer is larger than the 2 MiB a sync page holds** | The page stops and saves nothing from that answer. Ask Ari to change the setup's arguments so the tool returns less, such as a narrower date range or fewer fields, before the next sync. |
+
+A definition message can add **Location: line [N], column [N].**, and each ends **Reference:** followed by an ID that support can look up.
 
 ## Messages in a chat
 

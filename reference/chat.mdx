@@ -336,7 +336,7 @@ For what to try when Ari is slow or stuck, see [When Ari is slow, stuck, or wron
 
 ### Billing stops: out of AI usage or over a limit
 
-When billing stops a turn, the reply ends with Ari's own explanation, which starts **I had to stop here**. No **Retry** is offered, because the same request would stop again. Fix the cause, then send a new message. The **AI usage recovery** panel and the low-usage notices that appear above the message box are listed in [Plans and billing](/reference/plans-and-billing#notices-in-the-chat); to add usage, see [Buy AI usage, set a spend limit, or turn on auto-reload](/guides/manage-ai-usage).
+When billing stops a turn, the reply ends with Ari's own explanation, which starts **I had to stop here**. No **Retry** is offered, because the same request would stop again. Fix the cause, then send a new message. Background work, such as a build in several steps or a connected Google Sheet's update, waits instead and resumes on its own once usage is available; see [When usage runs out](/guides/manage-ai-usage#when-usage-runs-out). The **AI usage recovery** panel and the low-usage notices that appear above the message box are listed in [Plans and billing](/reference/plans-and-billing#notices-in-the-chat); to add usage, see [Buy AI usage, set a spend limit, or turn on auto-reload](/guides/manage-ai-usage).
 
 | Message | Meaning |
 | --- | --- |
@@ -444,7 +444,7 @@ Ari's reply posts to the Slack thread once, whether the turn ran in your browser
 
 When an administrator removes Ari from a channel, the channel's conversations stay in cfo.ai as chats of the administrator who set Ari up there, and Ari forgets which chat each thread belonged to. If an administrator adds Ari to the channel again, a reply in an earlier thread starts a new conversation rather than continuing the old one.
 
-Slack shows the text, bold, and links of Ari's replies, and prints tables and headings as the characters typed. Question forms, approval cards, plan cards, download cards, and Guides do not appear in Slack; open the chat in cfo.ai to see them. A link to a Page or block opens it in your browser, under your own access. Open the same chat in cfo.ai and the link appears as a chip, as it does in a web chat.
+Slack shows the text, bold, and links of Ari's replies, and prints headings as the characters typed. The first table in a message posts as a Slack table when it fits the limits in [Limits](/reference/limits#chat-with-ari); other tables post as typed. Question forms, approval cards, plan cards, download cards, and Guides do not appear in Slack; open the chat in cfo.ai to see them. A link to a Page or block opens it in your browser, under your own access. Open the same chat in cfo.ai and the link appears as a chip, as it does in a web chat.
 
 ### When a reply does not reach Slack
 

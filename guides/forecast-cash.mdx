@@ -41,6 +41,14 @@ Before you start, connect your accounting system so the forecast starts from the
 
 Your cash actuals move forward when Last close moves past a month; see [Actuals, Forecast, and Last close](/concepts/actuals-and-forecast). To get a cash summary on a schedule, see [Schedule a report or a reminder with a Trigger](/guides/schedule-a-trigger).
 
+## If your cash forecast starts at 0 after you close a month
+
+Give cash a formula that covers the month that moved into Actuals. A Variable with a Forecast formula and no Actuals formula has nothing covering that month, and a balance that reads its previous month runs forward from the 0 it finds there; see [What moving Last close changes](/concepts/actuals-and-forecast#what-moving-last-close-changes). Ask Ari for the Actuals side:
+
+> Cash reads 0 in the month we just closed. Give cash an Actuals formula that reads the cash accounts on our balance sheet, so the forecast carries forward from the closed balance.
+
+When Ari moves Last close, it names the Variables the move leaves without a formula in the months that changed side; a move you make by hand does not. See [Ari's save warnings](/reference/formula-errors#aris-save-warnings).
+
 ## Related
 
 - [Build a revenue and expense forecast](/guides/build-a-forecast)

@@ -338,7 +338,7 @@ A table formula or mapping write that would give a Dimension a second lookup is 
 
 ## Write in a Scenario
 
-`scenario` defaults to the Scenario in view, which can change between turns. Through MCP, that is the Scenario `_context.layerId` names, or Main. When a call that saved something omits `scenario`, each table receipt carries a `scenario_warning` issue that says which Scenario the write used:
+`scenario` defaults to the Scenario in view, which can change between turns. Through MCP, that is the Scenario `_context.scenario` names, or Main. When a call that saved something omits `scenario`, each table receipt carries a `scenario_warning` issue that says which Scenario the write used:
 
 - With a Scenario in view: "No scenario was named, so this call used `Breakeven Plan#4c1`, the scenario the person is viewing. The scenario in view can change between turns."
 - With none in view: "No scenario was named and none is in view, so this call used `Main`."

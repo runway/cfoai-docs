@@ -1,0 +1,83 @@
+---
+title: "Collect numbers and answers from people with a form"
+sidebarTitle: "Collect answers with a form"
+description: "Ask department heads, managers, or people outside cfo.ai for budget figures, hiring plans, or other inputs through a form Ari builds on a Page. The answers land as rows in a Table block. Send the form, read the Responses tab, add or discard held answers, remind people, and close the form."
+---
+
+Use a form when the numbers you need live with other people: next year's budget from each department head, a hiring plan from each manager, or event costs from a vendor who has no cfo.ai account. Ari builds the form as a Canvas block on a Page, above the Table block its answers fill, and each person's answers become rows under their name. The form asks one question at a time, works on a phone, and needs no account to answer. To type numbers into a table yourself, see [Enter, paste, and clear values](/guides/enter-values).
+
+You need edit access to the Page the form sits on. A form lives in the Scenario it was made in, and only there can it be sent, closed, or have answers added; see [Forms live in one Scenario](#forms-live-in-one-scenario).
+
+<Steps>
+  <Step title="Ask Ari for the form">
+    Name the Page, the questions, and the due date:
+
+    > Make a form on the Budget requests Page that asks each department head for their department, a short description of each planned purchase, its amount, and the month it lands. Due November 20.
+
+    Ari makes an empty table for the answers and writes the form. The block shows three tabs, **Form**, **Responses**, and **Links**, a status pill that reads **Open**, the due date as **Due [date]**, and **Adds to [table] in [Scenario]**. The **Form** tab shows the form as people see it, with a **Desktop** and **Phone** switch for its width. To change a question, select **Ask Ari to change it** (**Ask Ari** when the block is narrow).
+
+    To start by hand, add a Canvas block to the Page and select **Browse library**. The library's **Send and collect** section has **Form**, with **Collect answers from people into a table on this page.** The block becomes **Untitled form**, and the chat opens with the block and **Write this form:** for you to finish. The chat's **Browse Canvas block library** button has the same card, which starts a message with **Make a form on [Page] that asks**. Until Ari writes it, the block reads **Collect input from anyone, no cfo.ai account needed, to use in your model.** with **Build with Ari**.
+  </Step>
+  <Step title="Try it">
+    Select **Preview**. The form opens full size, headed **Preview · nothing is sent**, and nothing you answer there is saved. **Close preview** returns to the Page.
+  </Step>
+  <Step title="Send it">
+    Select **Send**. The chat opens with **Send [form] to**; add the people, by email address or by a name Ari knows. Ari posts a card titled **Send [form]** that reads **Form: [name] · [N] questions** and **Link: Everyone gets the form’s link. They give their name and email first. No account needed.** Nothing leaves until you press **Send** on the card. Each person gets their own email, from **[your name] via cfo.ai**, with an **Open the form** button; replies come to you. A card for more than 20 people sends in the background and reads **Sending… [n] of [total]**.
+
+    To share the form yourself instead, open the **Links** tab, where the form's address reads **Anyone with this link can answer.**, and select **Copy link**. Everyone who can view the Page can also answer on the Page itself; see [Who can answer, and what they see](#who-can-answer-and-what-they-see).
+  </Step>
+  <Step title="Read the answers">
+    The **Responses** tab counts the answers and lists them under **Completed** and **Held for review**. Each answer shows **In the table**, **Replaced by a later answer**, or **Discarded**. An answer that passes cfo.ai's checks goes into the table on its own, as one entry in version history that reads **Added [N] answers from [form] automatically: [names]**, so you can undo it there.
+
+    A held answer explains itself under **Why it was held**, and **What changes** shows the rows and values it would write. Select **Add to table** to let it in, or **Discard response** to leave it out; the discard dialog offers **Also remove its [N] rows from [table]** when the answer already has rows, and reads **Its rows stay in the table.** when they cannot be removed from here. Tick several answers to use **Add to table** or **Discard** on all of them, up to 200 at once. The notice after an add or a removal has **Undo**. [How answers reach your table](#how-answers-reach-your-table) explains why an answer is held.
+  </Step>
+  <Step title="Remind the people who have not answered">
+    On the **Links** tab, **Sent to** lists each person the form was emailed to, with **Answered** or **Not yet**, and the filters **All**, **Answered**, and **Not yet**. Select **Remind [N]**. The chat opens with a reminder request, Ari posts a card titled **Remind about [form]**, and you press **Send**. cfo.ai sends no reminder on its own.
+  </Step>
+  <Step title="Close the form">
+    Open the block's **More actions** (**…**) menu and select **Close form**. People can no longer send or change answers, and nothing changes in the table. Answers stored before the close still go in once their checks pass, and **Add to table** still works. A form with a due date also closes on its own at noon UTC the day after that date, so the due day is whole everywhere on Earth. **Reopen form** opens it again; a due date that has passed is dropped, so the form stays open until you close it, unless you ask Ari for a new due date.
+  </Step>
+</Steps>
+
+The same menu has **Replace link**, which gives the form a new address; the old one then reads **This link no longer works.** It also has **Delete form**, which removes the block from the Page. The table keeps every row, the answers people sent are kept, and the form's link then reads **This form is not taking answers.** Every label, dialog, and message is listed in [Input forms](/reference/interface#input-forms).
+
+## Who can answer, and what they see
+
+Every form takes answers two ways, and no setting turns either off:
+
+- Anyone who has the form link, on a page of its own, with no account.
+- Everyone who can view the Page, signed in, on the Page itself. Someone who can edit the Page sees the form's editor instead and can use **Preview**. A visitor who opened the Page through a share link without signing in reads **Sign in to answer this form on its page.**
+
+Each person first gives their name and email on **About you**; on the Page, both come from their account. The form then asks one question at a time, shows **Check your answers**, and ends with **Submit**. Through the link, the person then reads **Thanks, [first name]. Your answers are in.** and gets a receipt email, **We got your answers to [form]**, with a **Change your answers** button that reopens their answers until the form closes. Anyone who holds that button's link can change those answers, so it should not be forwarded. Once the form closes, its link opens a page that reads **This form closed on [date].** and takes no answers.
+
+## How answers reach your table
+
+- **A person is their email.** Their latest answer counts and replaces their earlier one, and their rows sit under their name, such as **Marco Ruiz › Spring sale**. Two people with the same name are told apart by their emails.
+- **More than one answer per person.** When each answer should stand on its own, such as one purchase request at a time, turn on **Allow more than one response per person** in the **More actions** menu; its note reads **Each response adds its own rows.** A person's later answers take numbered rows, such as **Laptop (2)** and **Laptop (3)**, and discarding an earlier answer leaves the later numbers as they are. Turning the setting off asks **Allow only one response per person?**; each person's latest answer counts again, and the next add removes the rows of their earlier answers.
+- **A second answer from another browser is held.** When someone answers through the link for an email that already answered, from a browser that never answered for it, the review step warns **This email already sent answers to this form. Submitting again replaces them.** If they submit, the answer is held, and the earlier answer counts until you add it.
+- **Checks.** Each answer is checked before it goes in. Fixed rules refuse hidden characters, text that starts like a formula, and overlong row names; background checks flag text that looks like instructions to an AI, abuse, or personal data, and an unusual amount or one over the limit Ari set for review. A flagged answer is held, and the person who made the form gets an email about it. The checks use the workspace's AI usage; while none is left, answers wait. Press **Add to table** when a check got it wrong. [Input forms](/reference/interface#input-forms) lists each check and message.
+- **Typed values are never replaced silently.** A value or row someone typed into the table by hand is kept by every automatic add. **Add to table** does replace typed values in the picked answers' rows, and the dialog says so first: **This replaces [N] values someone typed in the table.**
+- **Discarding keeps rows unless you say otherwise.** A discarded answer is left out of every later add, and its rows stay in the table unless you tick the removal. A removed person's name leaves the table with their last row.
+- **An amount for each month.** A question that asks one amount per month, such as spend from January to June, offers **Total, spread evenly**, **Same each month**, and **Month by month**, and writes to a second table beside the first. An answer missing a month is held as **Needs an amount for each month** until the person gives one.
+
+## Forms live in one Scenario
+
+A form is made in a Scenario and stays there: sending it, its due date, closing and reopening, replacing its link, and adding or discarding answers all work in that Scenario only. From another Scenario the block reads **This form adds to [Scenario]. Switch to [Scenario] to add answers.** with a **Switch to [Scenario]** button. You can still ask Ari to change the questions in another Scenario as a draft; people answering see the home Scenario's questions until that Scenario is merged. See [Scenarios and Snapshots](/concepts/scenarios).
+
+## If something goes wrong
+
+- **This link no longer works.**, with **Ask the person who sent it for a new one.** The link was replaced. Send the new one from the **Links** tab.
+- **This form is not taking answers.** The form was deleted, or the workspace is not active.
+- **You've changed your answers as many times as this form allows.** The person reached the limit on stored answers for one form, replaced ones included; see [Limits and file types](/reference/limits#input-forms).
+- **This form has taken as many answers through this link as it can.** The link reached its limit on stored answers. Ask Ari for a new form.
+- **Discard responses from a computer.** Discarding, closing, reopening, replacing the link, and deleting need a desktop browser.
+
+[Input forms](/reference/interface#input-forms) lists every message, and [Limits and file types](/reference/limits#input-forms) every limit.
+
+## Related
+
+- [Input forms](/reference/interface#input-forms)
+- [Limits and file types](/reference/limits#input-forms)
+- [Build a Table block by hand](/guides/build-a-table)
+- [Share a Page outside your workspace](/guides/share-a-page)
+- [Undo a change or restore an earlier version](/guides/undo-changes)

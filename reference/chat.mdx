@@ -80,7 +80,7 @@ Ari keeps working on cfo.ai's servers until it finishes, even if you close the t
 | **Thinking…** | Status line above the message box | Your message is on its way or has arrived, and Ari has not taken its first step yet. The line and its clock appear the moment you send, before the server confirms it has the message. |
 | A short phrase and a meter | Status line | Ari is working. The phrase changes with what Ari is doing, such as reading results or writing its answer, and the meter counts the time and tokens used so far. |
 | **Ari hit a temporary connection issue. Retrying now.** | Status line | A connection inside cfo.ai failed for a moment. Ari retries on its own. |
-| **Ari hit a temporary model-provider issue. Retrying now.** | Status line | The AI model did not answer for a moment. Ari retries on its own. |
+| **Ari hit a temporary model-provider issue. Retrying now.** | Status line | The AI model did not answer for a moment, or rejected a saved summary of the chat's earlier messages. Ari retries on its own; a rejected summary is left out from then on, and Ari condenses the earlier messages again when it must. |
 | **I'm still working on your request.** | Status line | Ari has spent more than about a minute getting ready to ask the AI model, for example condensing a long chat's history, and is still at it. The line appears once. Getting ready can take up to ten minutes; after that the turn ends with **Ari hit an unexpected error. Please try again.** |
 | **Activity** | Under your message | Ari's steps, each with a check mark when done. See [Activity group](#activity-group). |
 | A line of text, such as a sync in progress | Above the message box, under the status line | Work running beside the conversation. Select it to open its card. |
@@ -144,7 +144,7 @@ The first edit of each kind in a turn plays at full speed with a short explanati
 
 The caption's **…** button (**Thinking animation options**) offers **Hide for this turn** and **Turn off animation for all turns**. Turning the animation off applies to this browser and is the same switch as **Show Ari's edits as they happen** in [Settings](/reference/settings). With the animation off, edited cells are still highlighted, and the chat shows Page and **Formulas** cards for Ari's changes.
 
-While Ari works, the Page follows it to each table it edits. Scrolling by about a third of the screen stops following; a smaller scroll, a click, or typing only pauses it. A pill near the bottom of the Page then reads **Stopped following · Click to follow Ari** (**Tap** on a touch screen) and then **Ari is working…**. Select the pill to jump to Ari's newest edit and follow again. You can drag the pill to another spot, and the spot is remembered. A text block Ari rewrites while you have its Page open updates in place; if you are typing in that block, your save replaces Ari's version.
+While Ari works and a chat is on screen, the Page follows it to each table it edits. Scrolling by about a third of the screen stops following, and so does moving the view yourself: opening another Page or Scenario from the sidebar or a link, or pressing Back or Forward. A smaller scroll, a click on a cell, or typing only pauses it. A pill near the bottom of the Page then reads **Stopped following · Click to follow Ari** (**Tap** on a touch screen) and then **Ari is working…**. Select the pill to jump to Ari's newest edit and follow again. You can drag the pill to another spot, and the spot is remembered. Ari moves your view only while a chat is on screen, on the chat screen or in a chat opened over a Page and not minimized; with the chat closed or minimized, Ari opens no Page for you, and the pill is hidden. A text block Ari rewrites while you have its Page open updates in place; if you are typing in that block, your save replaces Ari's version.
 
 ## Cards in the chat
 
@@ -336,7 +336,7 @@ For what to try when Ari is slow or stuck, see [When Ari is slow, stuck, or wron
 
 ### Billing stops: out of AI usage or over a limit
 
-When billing stops a turn, the reply ends with Ari's own explanation, which starts **I had to stop here**. No **Retry** is offered, because the same request would stop again. Fix the cause, then send a new message. The **AI usage recovery** panel and the low-usage notices that appear above the message box are listed in [Plans and billing](/reference/plans-and-billing#notices-in-the-chat); to add usage, see [Buy AI usage, set a spend limit, or turn on auto-reload](/guides/manage-ai-usage).
+When billing stops a turn, the reply ends with Ari's own explanation, which starts **I had to stop here**. No **Retry** is offered, because the same request would stop again. Fix the cause, then send a new message. Background work, such as a build in several steps or a connected Google Sheet's update, waits instead and resumes on its own once usage is available; see [When usage runs out](/guides/manage-ai-usage#when-usage-runs-out). The **AI usage recovery** panel and the low-usage notices that appear above the message box are listed in [Plans and billing](/reference/plans-and-billing#notices-in-the-chat); to add usage, see [Buy AI usage, set a spend limit, or turn on auto-reload](/guides/manage-ai-usage).
 
 | Message | Meaning |
 | --- | --- |
@@ -363,7 +363,7 @@ A message that could not be delivered shows **Not sent.** under it, with the rea
 
 ### Earlier messages
 
-A chat opens on its newest messages, and scrolling up loads older ones.
+A chat opens on its newest messages, and scrolling up loads older ones. While Ari is still working on a long task, the chat opens on your request and the most recent activity under it, and the earlier steps of that work load as you scroll up.
 
 | Message | Meaning |
 | --- | --- |
@@ -377,7 +377,7 @@ The **Chats** section of the sidebar lists the chats you started in cfo.ai, newe
 
 | Control | What it does |
 | --- | --- |
-| Filter | Under **Status**, shows **Active** chats (the default), **Archived** chats, or **All**. Under **Include**, the checkbox **Slack, iMessage and MCP chats** adds the chats that live somewhere else. It is off by default and off again after a reload. |
+| Filter | Under **Status**, shows **Active** chats (the default), **Archived** chats, or **All**. Under **Include**, the checkbox **Slack, iMessage and MCP chats** adds the chats that live somewhere else; it starts off. Both choices are saved in this browser for you in this workspace, so they survive a reload and a return to the workspace. Another workspace, or another person signed in on this browser, starts with **Active** and the checkbox off. |
 | **Show more** | The list starts with your newest chats. After you expand it, scrolling to the bottom loads older chats, showing **Loading older chats…**, or **Retry loading chats** if a page fails. |
 | **Archive chat** | Hides the chat from the active list. Its messages and files stay stored. Not offered on a chat that lives in Slack, because Ari would still answer the next message there. |
 | **Unarchive chat** | Returns an archived chat to the active list. |
@@ -425,6 +425,8 @@ After a turn that ran longer than 20 seconds ends while you are watching, a line
 
 Ari chats in Slack direct messages, and in private channels an administrator adds it to, once your workspace is connected in **Settings → Ari → Slack**. See [Talk to Ari from Slack](/guides/use-ari-in-slack).
 
+A message Ari sends you in Slack, as a direct message or a Trigger's channel post, can carry its detail as up to five replies in a thread under it, so the message itself stays a short headline; Ari chooses that shape for a report with tables, long lists, or detail per item, or when you ask for it. A reply that does not go through, because Slack refuses it or gives no clear answer, ends the thread, and the message stands with the replies that posted; a reply Slack gave no clear answer about is not sent again, so it may still be in the thread, and a reply Slack did not take but may take shortly, such as under a rate limit, is tried up to two more times. The five retries in the next paragraph apply to Ari's reply to your message, not to these thread replies.
+
 Ari's reply posts to the Slack thread once, whether the turn ran in your browser, because you had the same chat open in cfo.ai, or on cfo.ai's servers. When Slack is slow to answer or cannot be reached, cfo.ai tries again, starting 30 seconds later and up to five times. A reply that Slack still does not take stays in the chat in cfo.ai; see [When a reply does not reach Slack](#when-a-reply-does-not-reach-slack).
 
 | Message | Meaning |
@@ -442,7 +444,7 @@ Ari's reply posts to the Slack thread once, whether the turn ran in your browser
 
 When an administrator removes Ari from a channel, the channel's conversations stay in cfo.ai as chats of the administrator who set Ari up there, and Ari forgets which chat each thread belonged to. If an administrator adds Ari to the channel again, a reply in an earlier thread starts a new conversation rather than continuing the old one.
 
-Slack shows the text, bold, and links of Ari's replies, and prints tables and headings as the characters typed. Question forms, approval cards, plan cards, download cards, and Guides do not appear in Slack; open the chat in cfo.ai to see them. A link to a Page or block opens it in your browser, under your own access. Open the same chat in cfo.ai and the link appears as a chip, as it does in a web chat.
+Slack shows the text, bold, and links of Ari's replies, and prints headings as the characters typed. The first table in a message posts as a Slack table when it fits the limits in [Limits](/reference/limits#chat-with-ari); other tables post as typed. Question forms, approval cards, plan cards, download cards, and Guides do not appear in Slack; open the chat in cfo.ai to see them. A link to a Page or block opens it in your browser, under your own access. Open the same chat in cfo.ai and the link appears as a chip, as it does in a web chat.
 
 ### When a reply does not reach Slack
 

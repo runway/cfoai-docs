@@ -21,6 +21,7 @@ This page lists every size, count, and time limit in cfo.ai, grouped by part of 
 | Size of a page of conventions you ask Ari to remember | 32 KiB of text, saved as up to 12 separate facts at a time |
 | Files Ari delivers at once | 10, each up to 50 MB, and 250 MB in all |
 | Time a download link for a file in a chat works | 5 minutes after you select the file; select it again for a new link |
+| Table Ari posts in Slack as a Slack table | The first table in a message, up to 100 rows, 20 columns, and 10,000 characters of cell text; a larger or later table, and a table inside a code block, posts as text, and a message whose text around the table is too long for Slack posts whole as text |
 | Length of one chat | No fixed limit; when a chat grows too large for Ari to read in one request, the chat says so, and you start a new chat |
 
 See [Attach files to a chat](/guides/attach-files) and [Chat controls and messages](/reference/chat).
@@ -42,7 +43,10 @@ See [Attach files to a chat](/guides/attach-files) and [Chat controls and messag
 | History in a full-history import of QuickBooks Online or Xero | Back to 2015 at the earliest |
 | Rillet connections in one workspace | 1 |
 | Start of the nightly refresh of connected sources | 02:00 UTC; each workspace's connections start at the workspace's own fixed point within the following hour |
-| OpenAPI specification for an API connection | An `https` address that answers within 20 seconds, with a document of 12 MiB or less |
+| File Ari downloads from a connected API | 50 MiB, saved to the chat as an attachment; a JSON or text answer is read up to 1 MiB, and a response over its limit saves no partial file |
+| OpenAPI 3 or Swagger 2.0 definition for an API connection | An address that answers within 20 seconds, fetched over `https` (an `http` address is tried at its `https` address), with a document of 12 MiB or less; a definition pasted with **Paste JSON** in Settings takes the same 12 MiB, and one Ari supplies inline, in a chat or as `spec_json` over MCP, is limited to 64 KiB |
+| Time one load of a saved query's result can run | 15 minutes on its first attempt, 30 on its second, and 60 on its third and last; a load that reaches its limit is tried again, and its failure names the limit and the attempt |
+| When the nightly refresh runs a connection's saved queries | When every one of the workspace's sources has finished syncing, or at the four-hour cutoff for the sources that have; a source still syncing at the cutoff gets its queries within about two minutes after its sync ends, checked for up to 20 hours |
 | Time one run of a sync setup for an MCP server or API can take | 10 minutes |
 | Results one run of a sync setup can save | 10,000 pages for every sync, each page one source response of up to 1 MiB from an API or 2 MiB from an MCP server. A replace or snapshot sync without a changes-since filter saves page by page; an upsert, append, or changes-since sync holds its whole result, up to 16 MiB in all. A run stops after 10 minutes |
 | Size of one page an MCP server returns to a sync setup | 2 MiB |
@@ -55,17 +59,18 @@ See [How imported data loads](/reference/imported-data) and [Integrations direct
 | Limit | Value |
 | --- | --- |
 | Items on one table axis before Ari notes that the table may be slow | About 1,000 |
-| Scenarios one Canvas block can read | 3 |
+| Scenarios one Canvas block can read | 3, counting only the Scenarios its datasets read; several datasets on one Scenario count once, and the Scenario you are viewing is not counted unless a dataset reads it, so a block that compares three named Scenarios opens from a fourth |
+| Size of a Canvas block's source | 256 KB (262,144 bytes), pictures embedded in the block included |
 | External links on one Page | 100 |
 | Pages one share link opens | 50 |
 | Length of a share link's memorable address | 3 to 64 characters: lowercase letters, digits, and single hyphens |
 | Pages in one workbook Ari exports | 64 |
-| Spreadsheet exports a workspace prepares at once | 1 |
+| Spreadsheet exports a workspace prepares at once | 1; [Export a Page to Excel](/guides/download-a-spreadsheet) says how Ari frees the slot |
 | Time one spreadsheet export can run | 45 minutes from when a worker starts it, or 90 minutes in a workspace cfo.ai has moved to its faster calculation engine; time waiting in the queue does not count. Calculation stops before the limit to leave time for writing the workbook: 5 minutes in a 45-minute export, and in a 90-minute export 10 minutes or 2 minutes for each Page plus 1 minute, whichever is more, up to half the time left when calculation begins. The workbook holds every selected Page whose tables finished by then; see [Export a Page to Excel](/guides/download-a-spreadsheet#when-an-export-runs-out-of-time) |
 | Time the **Download spreadsheet** button lists your past exports of a Page | 24 hours after you asked for each one, up to 10 of them, for this Page and Scenario; an export still queued or running is always listed |
 | Time Ari can find your own newest export of a Page selection in a Scenario without starting one | While it is queued or running, and for 1 hour after it ends; an export of the same Pages in another Scenario is not found |
-| Size of one calculated table an export reads | 64 MiB for one read, and 256 MiB for all of an export's reads together. An input, which is a table the export calculates only so that formulas can refer to it, is left out when it exceeds either limit, and the cells that read it keep their calculated values; a Page's own table that exceeds either limit fails the export |
-| Time one table calculation can run | 180 seconds; a calculation that reaches it is stopped, and retrying runs into the same limit. A calculation that outlasts one browser request keeps running, and the table, Canvas block, or chart keeps its loading state until the result arrives |
+| Size of one calculated table an export reads | 64 MiB for one read, and 256 MiB for all of an export's reads together. An input, which is a table the export calculates only so that formulas can refer to it, is left out when it exceeds either limit or when the calculation engine stops it at its own time or memory limit, and the cells that read it keep their calculated values; a Page's own table that exceeds either limit fails the export. When the tables and their inputs together pass the workbook size limit, the workbook is written once more without the **Model inputs** sheet |
+| Time one table calculation can run | 180 seconds; a calculation that reaches it is stopped, and retrying runs into the same limit. In a workspace on the faster calculation engine, an export whose table reaches it while its formulas are worked out writes that table as values instead of failing; see [Export a Page to Excel](/guides/download-a-spreadsheet#when-an-export-runs-out-of-time). A calculation that outlasts one browser request keeps running, and the table, Canvas block, or chart keeps its loading state until the result arrives |
 | Time Ari waits for one calculation of its own | 239 seconds, for a table, Page, Canvas, mapping, or validation read, so a 180-second calculation reaches Ari in the same call; Ari's other tools wait 60 seconds |
 | Length of a formula in an exported workbook | 8,192 characters, Excel's limit; a longer formula is exported as its value |
 | Size of one exported worksheet | Excel's 1,048,576 rows and 16,384 columns. A saved table that needs more is refused before anything is calculated, and a sheet may hold more than a million data cells when it fits |
@@ -95,6 +100,25 @@ See [Export a Page to Excel](/guides/download-a-spreadsheet), [Share a Page outs
 | Length of a Guide's name | 64 characters: lowercase letters, digits, and hyphens |
 
 See [Save a workflow as a Skill](/guides/save-a-skill), [Schedule a report or a reminder with a Trigger](/guides/schedule-a-trigger), and [Walk someone through a Page with a Guide](/guides/create-a-guide).
+
+## Input forms
+
+| Limit | Value |
+| --- | --- |
+| Recipients of one sending card | 200; a card for more than 20 people sends in the background |
+| Forms one saved email can link | 10 |
+| Questions on one form | 50 at the top level, 200 in all with the questions inside a repeated group; 100 options on a choice; 100 items in a repeated group |
+| Length of an answer | 1,000 characters of text, 10,000 for a long text, 254 for an email address; a row name 80 characters; one answer 4 MB in all |
+| Months a month-by-month question can ask for | 36 |
+| Answers one person can store on one form, replaced ones included | 50 |
+| Answers one form link can store | 2,000 |
+| Answers you can add or discard at once | 200 |
+| When a form with a due date closes | Noon UTC the day after the due date |
+| Receipts one person gets | 1 every 10 minutes at most |
+| Time a draft through the form link is kept in the browser | 14 days; a draft on the Page lasts for the browser tab |
+| Opening and answering through one link | 60 opens and 20 answers a minute from one browser; past that, **Too many tries. Wait a minute and try again.** |
+
+See [Collect numbers and answers from people with a form](/guides/collect-answers-with-a-form) and [Input forms](/reference/interface#input-forms).
 
 ## AI tools connected to cfo.ai
 

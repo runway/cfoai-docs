@@ -8,13 +8,15 @@ The cfo.ai app has a navigation sidebar on the left and the chat or Page you are
 
 ## Sign-in page
 
-The page is titled **Sign in to cfo.ai**.
+The sign-in page has the cfo.ai wordmark as its heading, which a screen reader reads as **Sign in to cfo.ai**. The page where you create an account has the same controls under the title **Get started with cfo.ai**.
 
 | Control | What it does |
 | --- | --- |
-| **Continue with Google** / **Sign in with Microsoft** | Signs you in with that account. When these are offered, the page reads **Choose how you want to continue.** |
-| **Work email** | Your work address, with the note **Use the address where you want to receive cfo.ai workspace updates.** When only email sign-in is offered, the page reads **Enter your work email and we’ll send a six-digit code.** A new account needs an address at your company's own domain; see [Work email required for new accounts](#work-email-required-for-new-accounts). |
-| **Send code** | Emails you a six-digit code and opens the code page. |
+| **Continue with Google** / **Sign in with Microsoft** | Signs you in with that account. When these are offered, the sign-in page reads **Choose how you want to continue.**, and a line above the email field reads **or continue with email**. |
+| **Work email** | Your work address. The empty field shows **you@company.com**, and on the sign-in page the note under it reads **Enter your work email to sign in.** A new account needs an address at your company's own domain; see [Work email required for new accounts](#work-email-required-for-new-accounts). |
+| **Continue** | Emails you a six-digit code and opens the code page. |
+
+Under the buttons, both pages read **By continuing, you agree to the Standard Terms and Conditions and acknowledge the Privacy Policy.**, with a link to each document. See [Privacy and legal](/reference/privacy-and-legal).
 
 A Google or Microsoft sign-in that fails shows **We couldn’t complete sign-in. Please try again.**
 
@@ -22,7 +24,7 @@ A Google or Microsoft sign-in that fails shows **We couldn’t complete sign-in.
 
 A new account must use a work email address. An address at a free or disposable email provider, such as Gmail, Outlook, Yahoo, iCloud, or Proton Mail, is refused before a code is sent, and also when a Google or Microsoft sign-in or a pending invitation would create the account. The form is replaced by a page titled **Use your work email**, with **New accounts require a work email address.**, **Personal email providers, such as Gmail, Outlook, and Yahoo, are not supported for new accounts.**, and **Already have an account? You can still sign in with your existing email.** Select **Use a different email** to return to an empty **Work email** field. An account that already exists with a personal address keeps signing in with it. cfo.ai does not check that a custom domain belongs to a company.
 
-When **Send code** cannot send a code, the message shows under the email field:
+When **Continue** cannot send a code, the message shows under the email field:
 
 | Message | Meaning | What to do |
 | --- | --- | --- |
@@ -54,7 +56,6 @@ If the browser has lost the email you typed, such as when the link opened in a d
 | **That code was not accepted. [n] codes were sent to this address in the last 10 minutes, and only the newest one works.** | You typed an older code. | Use the code in the newest email. |
 | **That code was already used. A code works once.** | The code was used before. | Select **Resend code**. |
 | **Too many wrong codes were entered, so that code no longer works.** | Too many wrong codes were tried. | Select **Resend code**. |
-| **We couldn’t find the email for this verification step. Head back and start from the email step again.** | The sign-in lost track of your email. | Select **Start over**. |
 
 For how many codes you can request and check, see [Limits and file types](/reference/limits#workspace-account-and-sign-in).
 
@@ -125,9 +126,10 @@ The list under **Workspaces** is the workspace switcher; there is no other switc
 | **Run now** | Starts one run right away, even when the Trigger is paused. The schedule does not change. |
 | **Edit trigger** (pencil) | Opens **Edit trigger**. |
 | **Delete trigger** (trash can) | Opens **Delete [name]?**: **This trigger will stop running on its schedule. Runs already started will continue.** |
+| **Agent** | Who runs the Trigger: **Ari**, or the agent chosen for it. See [Agents](/reference/chat#agents). |
 | **Schedule** / **Time zone** / **Next scheduled** | The schedule, the time zone it runs in, and the next run, or **Nothing upcoming**, which a finished one-time Trigger always shows. A one-time Trigger shows no **Time zone** row; its date and time are written in your time zone. A schedule with its own time zone is described on that clock, such as **Daily at 2:15 PM**, with the note **Runs on [time zone] time. Next scheduled and history are shown in your timezone.** A schedule that runs in UTC is described in your time zone, with **Schedule and history are shown in your timezone.** |
 | **Instructions** | The saved instructions, with **Show full instructions** and **Show less**. |
-| **History** | **Open a run to see its conversation.** Every run, newest first, with its start time, its status, and, for a run that did not complete, its reason. **Show earlier** loads older runs. With none: **No history yet. Ari’s scheduled work will appear here.** |
+| **History** | **Open a run to see its conversation.** Every run, newest first, with its start time, its status, and, for a run that did not complete, its reason. **Show earlier** loads older runs. With none: **No history yet. Trigger runs will appear here.** |
 
 With no Triggers, the page reads **Put work on a schedule** and **Build a trigger with Ari or write the instructions and schedule manually.**
 
@@ -168,13 +170,13 @@ When the last scheduled attempt did not start a run, or cfo.ai paused the Trigge
 
 ### New trigger and Edit trigger
 
-The form has **Name** (placeholder **Weekday cash brief**), **Instructions**, and **Schedule**. **Repeat** offers:
+The form has **Name** (placeholder **Weekday cash brief**), **Agent**, **Instructions**, and **Schedule**. **Agent** chooses who runs the Trigger: **Ari**, which a new Trigger starts with, or one of the workspace's agents that is not archived. **Repeat** offers:
 
 - **Once**: **On date** and **At time**, for a Trigger that runs one time. The line under the schedule reads **Once on [date and time]**.
 - **Every few minutes**: 1, 2, 3, 5, 10, 15, 20, or 30.
 - **Hourly**: every 1, 2, 3, 4, 6, 8, or 12 hours, **At minute**.
 - **Daily**, **Weekdays**, or **Weekly** (**On these days**).
-- **Monthly**: **Day of month**, including **Last day**.
+- **Monthly**: **Day of month**, including **Last day**, which runs once a month on the month's last day, whatever its length. The line under the schedule, and the Trigger's row and details, then read **Last day of each month at [time]**.
 - **Advanced schedule**: **Edit advanced rule**, **Schedule expression ([time zone])**, a five-field cron expression read on that clock.
 
 The note under the schedule reads **Times in [time zone].**: your browser's time zone for a new Trigger or one that runs in UTC, and the Trigger's own time zone otherwise. Saving the schedule saves it with that time zone. A monthly day after the 28th adds **Months without this day are skipped. Choose Last day to run every month.** **Edit trigger** also has an **Enable trigger** switch (**Enabled** or **Disabled**); changing a finished one-time Trigger's date or time turns it back on. The buttons are **Create trigger** or **Save changes**, and **Cancel**.
@@ -191,6 +193,7 @@ The note under the schedule reads **Times in [time zone].**: your browser's time
 | **This trigger is no longer available.** / **This trigger is no longer available. Close this dialog and refresh the list.** | The Trigger was deleted. |
 | **Could not save the trigger. Please try again.** / **Could not start the trigger. Please try again.** | The change or the run failed. |
 | **Could not load triggers.** with **Retry triggers**; **Could not load history.** with **Retry history** | The page could not load. |
+| **This agent is archived. Restore it before starting a new chat or trigger** | You turned on, or saved, a Trigger whose agent is archived. Restore the agent, or choose another under **Agent**; see [Archive and restore an agent](/reference/chat#archive-and-restore-an-agent). |
 | **Creating a trigger requires permission to create chats in this workspace.** | You cannot create Triggers in this workspace. |
 
 ## Help center
@@ -425,9 +428,9 @@ When you open a Page, it looks for your own newest export of that Page in that S
 
 A failed export's reason has up to three parts:
 
-- **The export failed while [stage] and produced no workbook.** The stage is **starting**, **loading the saved model**, **reading the model calendar**, **calculating the page tables**, **calculating the inputs the page tables read**, **writing the workbook**, or **storing the workbook**.
-- The cause, such as a formula whose input has no cell in the workbook, a formula that could not be written for Excel, **The export reached its time limit**, **The export was stopped before it finished.** for an export Ari cancelled, **The export worker stopped checking in before its final attempt finished. Memory exhaustion, a stopped worker, and a lost database connection can interrupt these checks; the job records only the missing check-ins.** for an export whose worker was lost, a Dimension whose list of items was larger than the export could read, or a table calculation that reached a limit: **A calculation in table "[table]" in scenario "[Scenario]" reached its 180-second time limit and was stopped before it finished.** or **A calculation in table "[table]" in scenario "[Scenario]" reached the [n] MiB memory limit of one calculation worker and was stopped before it finished.**
-- When it is known, whether to try again: **The failure is temporary: a new export of the same pages can succeed.** or **A new export fails the same way while the saved model is unchanged.** A calculation that reached its time limit is not tried again, because the next export reaches the same limit; narrow the table, or ask Ari why it is large.
+- **The export failed while [stage] and produced no workbook.** The stage is **starting**, **running on the export worker**, **loading the saved model**, **reading the model calendar**, **calculating the page tables**, **calculating the inputs the page tables read**, **writing the workbook**, or **storing the workbook**.
+- The cause, such as a formula whose input has no cell in the workbook, a formula that could not be written for Excel, **The export reached its time limit**, **The export was stopped before it finished.** for an export Ari cancelled, **The export worker stopped checking in before its final attempt finished. Memory exhaustion, a stopped worker, and a lost database connection can interrupt these checks; the job records only the missing check-ins.** for an export whose worker was lost, **The export stopped because the worker it shares with imports had less than 10% of its memory free for about 60 seconds of consecutive checks.** for an export stopped while its worker was low on memory, followed by **The export was working in table "[table]" in scenario "[Scenario]" when it stopped.** when that is known, a Dimension whose list of items was larger than the export could read, or a table calculation that reached a limit: **A calculation in table "[table]" in scenario "[Scenario]" reached its 180-second time limit and was stopped before it finished.** or **A calculation in table "[table]" in scenario "[Scenario]" reached the [n] MiB memory limit of one calculation worker and was stopped before it finished.**
+- When it is known, whether to try again: **The failure is temporary: a new export of the same pages can succeed.** or **A new export fails the same way while the saved model is unchanged.** A calculation that reached its time limit is not tried again, because the next export reaches the same limit; narrow the table, or ask Ari why it is large. An export stopped for low worker memory has no such sentence and is not run again by itself. The table it names is where the export was working, which may not be what used the memory; the worker also runs imports. Start a new export when you want to try again; the rule is in [Limits and file types](/reference/limits#tables-pages-sharing-and-exports).
 
 These reasons stand alone:
 
@@ -554,7 +557,7 @@ A Canvas block can open your browser's own dialogs: a print button prints that b
 | Message | Meaning | What to do |
 | --- | --- | --- |
 | **This Canvas block didn't start because its libraries failed to load.** | The block's software did not load. | Select **Retry**. |
-| **This Canvas block didn't start because its runtime stopped with an error before it was ready.** | The block's software stopped before the block started. | Select **Retry**. |
+| **This Canvas block is unavailable because its runtime hit an error.** | The block's software stopped with an error before the block started. | Select **Retry**. |
 | **This Canvas block was still starting after 15 seconds.** | The block's software was still loading after 15 seconds with the Page in view. Time in a background tab does not count, and the wait starts over each time you return to the tab, so a tab you left for a while does not show this when you come back. | Select **Retry**, or wait. |
 | **This block failed to render.**, with the error | The block stopped with an error while drawing. | Select **Fix** to hand the block to Ari, or **Mention in chat**. |
 | **This block's "[data]" data didn't load because the connection to cfo.ai failed.** | Your connection to cfo.ai failed. | Wait. The block asks again when your connection returns. |
@@ -563,6 +566,8 @@ A Canvas block can open your browser's own dialogs: a print button prints that b
 | **Incompatible browser version. Please upgrade your browser.**, printed across a chart or gauge | The chart library did not recognize your browser's version. Firefox on iPhone and iPad and some apps' built-in browsers show it; Chrome on iPhone and iPad does not. The chart under it is drawn and correct. | Open the Page in Safari or Chrome. |
 
 A block that stopped with an error tries again by itself once after 2 seconds, and any block that did not start tries again when your connection to cfo.ai returns.
+
+Some browsers report an error inside a block with no file, line, or other detail; Safari and the other browsers built on its engine do this for an error in a block's own button or timer. cfo.ai cannot tell such a report from an error outside the block, so the block stays on the Page as it was and shows no message. A block that has reported one and still has not started after 15 seconds shows **This Canvas block is unavailable because its runtime hit an error.** in place of the 15-second message, and tries again once. An error while the block draws still shows **This block failed to render.**
 
 ## Input forms
 

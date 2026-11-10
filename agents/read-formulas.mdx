@@ -32,8 +32,20 @@ Each `variable` or `dimension` entry carries `dependents`, what reads the object
 | `formulas`, `blocks`, `settings`, `manual_items` | Counts by kind |
 | `inaccessible` | Dependents this user cannot read |
 | `items` | Descriptions of up to 20 dependents |
+| `formula_rules` | Up to 20 of the formulas that read the object, each with whether it can run and what a forced delete does to it |
 
 A `delete` without `force` is refused exactly when `total` is above 0, and deletes at once when it is 0.
+
+Each `formula_rules` entry describes one formula that reads the object. `formulas` still counts every reading formula, including ones the list leaves out.
+
+| Field | Values |
+| --- | --- |
+| `dependent` | The reading formula, described as `items` describes it |
+| `activity` | `dormant`: the saved formula cannot run in any affected Scenario at this snapshot. `potentially_active`: that is not proven. |
+| `reason` | For a dormant formula: `outside_range` (the date it is pinned to is outside its range), `outranked` (a newer formula at the same scope wins), or `mixed_dormancy` (the reason differs across the affected Scenarios) |
+| `force_effect` | What a delete with `force` does to the formula. `removes_rule` deletes the unused formula. `clears_expression` keeps its range and empties its expression, so the cell reads blank if its month enters the range later. `keeps_reference` leaves the saved reference, which then breaks, including when the user cannot edit the Variable that holds the formula. |
+
+A refused `edit_table_blocks` `delete` and a refused `edit_pages` `delete_block` carry the same entries under `formula_rules`, and a table delete adds `formula_rules_omitted` when some did not fit the result.
 
 ### How each definition's scope is described
 

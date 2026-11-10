@@ -23,6 +23,51 @@ A mention appears in the message box as a chip. Ari reads the exact cell, row, b
 
 Someone whose access does not include starting chats, such as a visitor who opened a share link, sees no **New chat** button. In the chat area they see **No chats shared with you** above the reason: **You can’t start chats with Ari in this workspace. Ask a workspace admin for access.**, or, for a signed-in address, **You’re signed in as [address], which can’t start chats with Ari in this workspace. A workspace admin can invite this address.** A chat refused for this reason shows the first sentence and no **Retry**, because sending again cannot succeed. cfo.ai starts no Welcome chat for such a person.
 
+## Agents
+
+An agent is Ari with a name, an icon, and instructions that an administrator saves. You choose who a chat is with in the agent menu at the top of a new chat; it reads **Ari** until you choose another agent. After the first message the chat keeps its agent: the top of the chat shows the agent's name with no menu, and you cannot switch the chat to another agent. In the chat list, a chat with an agent shows the agent's name under the chat's title. To set one up, see [Create an agent with its own name and instructions](/guides/create-an-agent).
+
+| Part of the agent menu | What it does |
+| --- | --- |
+| **Chat with** | The menu's heading. Under it are **Ari**, then the workspace's agents. Selecting one sets who the new chat is with. |
+| Filter | Shows **Active** agents (the default), **Archived** agents, or **All**. **Archived** leaves Ari out, and an archived agent cannot be selected. With none archived, the list reads **No archived agents**. |
+| **New agent** (plus) | Opens **New agent**. Administrators only; other people see no plus. |
+| **Edit** (pencil) | On an agent's row when you point at it, move to it with the keyboard, or use a touch screen. Opens **Edit [name]**. Administrators only. |
+| **Archive** / **Restore** (box) | Beside **Edit**. Opens **Archive [name]?** or **Restore [name]?**. Administrators only. |
+
+While the list loads it reads **Loading agents…**, and when it cannot load, **Could not load agents. Retry**.
+
+### New agent and Edit agent
+
+Both dialogs open with **Give an agent a responsibility. Chat with it directly or choose it for a trigger.**
+
+| Field | What it holds |
+| --- | --- |
+| Icon | The button before the name. Opens the same icon picker as a Page's icon: search, a color, shuffle, and a category. You cannot upload an image. A new agent starts with an icon and color cfo.ai picks. |
+| **Name** | Placeholder **Cash watch**. Up to 80 characters. Each name must be different from every other agent's in the workspace, archived agents included and whatever its capitalization, and cannot be Ari. |
+| **Instructions** | Placeholder **What should this agent focus on? Describe its responsibility, approach, and what a useful answer looks like.** Up to 10,000 characters. |
+
+Under the fields: **Available to your workspace. Uses the same model and your existing access as Ari.** **Edit [name]** adds **Instruction changes apply to the next message or trigger run.** **Create agent** saves a new agent and switches the new chat to it; **Save changes** saves an edit. An agent's instructions do not give it access to anything Ari does not have for you.
+
+| Message | Meaning |
+| --- | --- |
+| **Add a name and instructions.** | The name or the instructions are empty. |
+| **Ari is the default agent. Choose a different name.** | The name is Ari. Ari cannot be renamed, changed, or archived. |
+| **An agent with this name already exists** | Another agent in the workspace has the name. |
+| **Could not save or load the agent. Please try again.** | The save failed. |
+| **Loading agent…**, then **Could not load this agent. Please try again.** with **Retry** | **Edit [name]** is reading the saved instructions, or could not. |
+
+### Archive and restore an agent
+
+| Dialog | What it says and does |
+| --- | --- |
+| **Archive [name]?** | **This archives the agent and its chats, and pauses its triggers. Chat history is preserved.** **Archive agent** confirms. If the new chat you have open was set to that agent, it goes back to Ari. |
+| **Restore [name]?** | **The agent will be available for new chats and triggers again. Existing chats stay archived and triggers stay paused.** **Restore agent** confirms. |
+
+cfo.ai has no way to delete an agent. A Trigger whose agent is archived cannot be turned back on: saving reads **This agent is archived. Restore it before starting a new chat or trigger**. Restore the agent or choose another agent for the Trigger first.
+
+Ari can list the workspace's agents, and for an administrator it can create, change, archive, and restore them when asked.
+
 ## The empty chat
 
 A new chat shows the heading **How can I help you?** and the placeholder **Ask anything about your business or data...** in the message box. Four chips below it open suggested prompts for four kinds of question: **Explain** (what something means), **Benchmark** (whether a number is good), **Decide** (what to do), and **Pressure-test** (whether you are wrong). Selecting a suggestion puts it in the message box.
@@ -325,7 +370,7 @@ A **Reply** button appears above words you select in one of Ari's finished answe
 | **Ari is having trouble reaching the model provider. This is usually temporary. Please try again in a moment.** | The AI model kept failing after retries. | Try again in a moment. |
 | **Ari hit a temporary connection problem and could not recover. Please try again in a moment.** | A connection inside cfo.ai kept failing after retries. | Try again in a moment. |
 | **Ari's turn ended: it waited [time] for [n] actions to finish, and the wait ran out before they did. Your conversation is saved.** | The actions Ari started in one step, such as reading two attached workbooks, did not finish in the time the turn allowed for them. | Select **Retry**, or ask for a smaller piece of the work first. |
-| **Ari hit an unexpected error. Please try again.** | Another failure, including a turn that spent ten minutes getting ready to ask the AI model without sending it a request. | Send the request again. |
+| **Ari hit an unexpected error. Please try again.** | Another failure, including a turn that spent ten minutes getting ready to ask the AI model without sending it a request, and a reply in which Ari twice spent more than three minutes writing one action; see [When Ari takes too long to write one action](#when-ari-takes-too-long-to-write-one-action). | Send the request again, or ask for a smaller change. |
 | **Ari could not finish its latest reply. Please try again.** | The reply ended without a visible answer. | Send the request again, or ask for a smaller piece first. |
 | **Ari's reply stopped: the model reached its output limit of [N] tokens after [M] minutes of reasoning, before it wrote a reply. Your conversation is saved.** | The model spent its whole output on reasoning twice. | Ask for a smaller piece of the work. |
 | **This request is too large for Ari to continue. Start a new chat with a shorter request or fewer attachments.** | The chat outgrew what Ari can read in one request. No **Retry** is offered. | Start a new chat with **⌘ /** and restate what you need. Attach a file again only if the new request needs it. |
@@ -333,6 +378,12 @@ A **Reply** button appears above words you select in one of Ari's finished answe
 | **Start your free trial to continue.** / **Verify your work email to continue.** | A new workspace has a step left before Ari can continue. | Finish that step. |
 
 For what to try when Ari is slow or stuck, see [When Ari is slow, stuck, or wrong](/guides/ari-is-slow-stuck-or-wrong).
+
+### When Ari takes too long to write one action
+
+Ari has three minutes to write what one action needs, such as the new contents of a large Canvas block. The three minutes run from when Ari starts writing, and more text does not extend them. At three minutes the action is cancelled before it runs, so it changes nothing, and Ari continues the same reply, where it can try a smaller change.
+
+A second action cancelled this way in the same reply ends the reply. The chat in cfo.ai then shows **Ari hit an unexpected error. Please try again.** A conversation in Slack gets the reason in full: **Ari could not finish this reply: twice, it spent more than 3 minutes writing one action without completing it. Your conversation is saved. Try again, or ask for a smaller change.** Send the request again, or ask for a smaller change, such as one block or one table at a time.
 
 ### Billing stops: out of AI usage or over a limit
 
@@ -427,6 +478,8 @@ Ari chats in Slack direct messages, and in private channels an administrator add
 
 A message Ari sends you in Slack, as a direct message or a Trigger's channel post, can carry its detail as up to five replies in a thread under it, so the message itself stays a short headline; Ari chooses that shape for a report with tables, long lists, or detail per item, or when you ask for it. A reply that does not go through, because Slack refuses it or gives no clear answer, ends the thread, and the message stands with the replies that posted; a reply Slack gave no clear answer about is not sent again, so it may still be in the thread, and a reply Slack did not take but may take shortly, such as under a rate limit, is tried up to two more times. The five retries in the next paragraph apply to Ari's reply to your message, not to these thread replies.
 
+A message Ari sends you in Slack, as a direct message or a Trigger's channel post, can also carry one image saved in a chat: a PNG or JPEG of up to 10 MB, such as a picture Ari generated, a picture Ari took of a Canvas block, or an image you attached. The image posts first, as a message of its own under the file name the chat shows, then the text, then any thread replies. When the image does not go through, the text is not sent, so no message arrives that describes a missing picture; ask Ari to send the text without the image. A Slack workspace connected before cfo.ai asked for permission to upload images cannot take one until an administrator selects **Disconnect**, then **Add to Slack** again, in **Settings → Ari → Slack**. When a Trigger's run finds no Slack workspace connected, the copy it posts in your cfo.ai chat holds the text without the image.
+
 Ari's reply posts to the Slack thread once, whether the turn ran in your browser, because you had the same chat open in cfo.ai, or on cfo.ai's servers. When Slack is slow to answer or cannot be reached, cfo.ai tries again, starting 30 seconds later and up to five times. A reply that Slack still does not take stays in the chat in cfo.ai; see [When a reply does not reach Slack](#when-a-reply-does-not-reach-slack).
 
 | Message | Meaning |
@@ -439,7 +492,7 @@ Ari's reply posts to the Slack thread once, whether the turn ran in your browser
 | 👀 on a channel message | Ari is working on that message. |
 | **I only work in private channels, so I'm leaving this one. …**, **Only a cfo.ai admin can add me to a channel, so I'm leaving. …**, **A cfo.ai admin needs to disconnect Slack and add it again in cfo.ai Settings before I can work in channels, so I'm leaving. …**, **The admin who added me here no longer has admin access in cfo.ai, so I'm leaving. …** | Ari left the channel. [If Ari leaves a channel](/guides/use-ari-in-slack#if-ari-leaves-a-channel) explains each reason and what to do. |
 | **I can't read files or images in Slack yet. Paste the text into a message and I'll take it from there.** | You sent a file or image. Ari reads nothing in that message. |
-| A stop message, such as one that starts **I had to stop here** | Ari ended the turn with its own words about why, and they post in the thread in place of a reply. They are the messages in [Billing stops](#billing-stops-out-of-ai-usage-or-over-a-limit) and, from [When a reply stops early or shows an error](#when-a-reply-stops-early-or-shows-an-error), **This request is too large for Ari to continue. …**, **Ari is having trouble reaching the model provider. …**, **Ari hit a temporary connection problem and could not recover. …**, **Ari's turn ended: it waited [time] for [n] actions to finish …**, and **Ari hit an unexpected error. Please try again.** The same message is in the conversation in cfo.ai. |
+| A stop message, such as one that starts **I had to stop here** | Ari ended the turn with its own words about why, and they post in the thread in place of a reply. They are the messages in [Billing stops](#billing-stops-out-of-ai-usage-or-over-a-limit) and, from [When a reply stops early or shows an error](#when-a-reply-stops-early-or-shows-an-error), **This request is too large for Ari to continue. …**, **Ari is having trouble reaching the model provider. …**, **Ari hit a temporary connection problem and could not recover. …**, **Ari's turn ended: it waited [time] for [n] actions to finish …**, **Ari hit an unexpected error. Please try again.**, and **Ari could not finish this reply: twice, it spent more than 3 minutes writing one action without completing it. …** The same message is in the conversation in cfo.ai, except the last, which reads **Ari hit an unexpected error. Please try again.** there; see [When Ari takes too long to write one action](#when-ari-takes-too-long-to-write-one-action). |
 | **Something went wrong on my end and I couldn't finish that. Please try again.** | Ari's turn failed for another reason. |
 
 When an administrator removes Ari from a channel, the channel's conversations stay in cfo.ai as chats of the administrator who set Ari up there, and Ari forgets which chat each thread belonged to. If an administrator adds Ari to the channel again, a reply in an earlier thread starts a new conversation rather than continuing the old one.

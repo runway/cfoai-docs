@@ -153,7 +153,7 @@ Buttons: **Change** or **Choose a plan**; **Keep** [plan] while a change or canc
 | Message | Meaning |
 | --- | --- |
 | **No payment methods saved yet. Add one to enable automatic top-ups and plan charges.** | No card is saved. |
-| **A workspace on a plan needs a payment method on file — it is what your renewal charges. Add another payment method to replace this one.** | You cannot remove the last card while you have a plan. With auto-reload on, the message reads **…it is what your renewal and your automatic top-ups charge…** |
+| **A workspace on a plan needs a payment method on file — it is what your renewal charges. Add another payment method to replace this one.** | You cannot remove the last card while you have a plan, including a canceled plan or trial that has not ended yet. With auto-reload on, the message reads **…it is what your renewal and your automatic top-ups charge…** |
 | **You need a payment method on file while automatic top-ups are on. Turn off auto-reload first, or add another payment method.** | You cannot remove the last card while auto-reload is on. |
 | **Payment method added** / **Payment method replaced** | Saved. |
 | **Couldn’t save the payment method** / **Couldn’t replace the payment method** / **Couldn’t remove the payment method** / **Couldn’t set the default payment method** | The change failed; the reason follows. |
@@ -190,7 +190,7 @@ Shown while you have a plan that is not already ending. It reads **Your plan sta
 | Title | **Cancel subscription** |
 | Paid plan | **Your** [plan] **plan will remain active until** [date]**, the end of your current plan term. You won’t be charged again. You can undo this cancellation any time before** [date]**.** |
 | Trial | **Your** [plan] **trial will remain active until** [date]**. You won’t be charged when it ends. You can undo this cancellation any time before** [date]**.** |
-| Locked workspace, payment failed | **Your** [plan] **subscription ends now, and the unpaid invoice is canceled. You won’t be charged.** There is no undo. |
+| Locked workspace, on the **We couldn’t charge your card** page | **Your** [plan] **subscription ends now, and the unpaid invoice is canceled. You won’t be charged.** There is no undo. |
 | **Why are you cancelling?** | **Select a reason**: **I don’t want to be charged yet** (trials only), **I didn’t see enough value**, **It was too difficult to get started**, **Pricing wasn’t right for me**, or **Other — please tell us why**, which needs a short explanation. |
 | Waiting for a reason | **Cancel subscription is available once a reason is selected.** or **Cancel subscription is available once the explanation is filled in.** |
 | Buttons | **Keep subscription** closes the dialog; **Cancel subscription** confirms. |
@@ -272,12 +272,12 @@ The page reads **Choose an amount. Credits never expire.**
 
 ## When the workspace locks
 
-A workspace locks when it has no plan, such as after a canceled plan ends, or when a renewal payment still fails after retries. While it is locked, nobody can open its Pages or chat with Ari, and its connected sources stop refreshing. A tab that was already open shows the locked screen as soon as cfo.ai refuses one of its requests because the workspace has no plan; you do not need to reload.
+A workspace locks when it has no plan, such as after a canceled plan ends, or when the first payment at the end of a trial fails. A workspace that has paid before stays open while a failed renewal payment is retried, under the banner in [Banners above the workspace](#banners-above-the-workspace); if the payment still fails and the subscription ends, the workspace has no plan and locks. While it is locked, nobody can open its Pages or chat with Ari, and its connected sources stop refreshing. A tab that was already open shows the locked screen as soon as cfo.ai refuses one of its requests because the workspace has no plan; you do not need to reload.
 
 | Screen | Who sees it | What it says |
 | --- | --- | --- |
 | Plan chooser | Administrators, when there is no plan | The plan cards, with a heading such as **Choose a plan to continue**. Choosing a plan unlocks the workspace. |
-| **We couldn’t charge your card** | Administrators, when payment failed | **Your subscription payment didn’t go through. Update your card and we’ll try again straight away. Access comes back as soon as it succeeds.**, your payment methods, **Pay now**, and **Cancel subscription**. Canceling here ends the subscription now and cancels the unpaid invoice, after the [Cancel subscription](#cancel-subscription) dialog; the page then shows the plan chooser. |
+| **We couldn’t charge your card** | Administrators, when the first payment at the end of a trial failed | **Your subscription payment didn’t go through. Update your card and we’ll try again straight away. Access comes back as soon as it succeeds.**, your payment methods, **Pay now**, and **Cancel subscription**. Canceling here ends the subscription now and cancels the unpaid invoice, after the [Cancel subscription](#cancel-subscription) dialog; the page then shows the plan chooser. |
 | **This workspace is unavailable** | Members who cannot change billing | **A workspace admin needs to update billing before anyone can get back in.** |
 
 Each screen offers **Log out** and the help@cfo.ai address. When the workspace has connected sources, the screen says when they last refreshed: **Your connected source was last refreshed on** [date]**. Your connected source is not being refreshed while this workspace has no plan.**, or **while this workspace’s billing is locked.** With several sources, it gives the newest refresh of any of them.
@@ -319,6 +319,7 @@ Dismissing a notice hides it until the next threshold or the next billing cycle.
 - Canceling keeps the plan until the end of the term you paid for, and a trial until its end date. Under the Standard Terms and Conditions, fees already paid are not refunded. The one exception is **Cancel subscription** on a locked workspace's **We couldn’t charge your card** page, which ends the subscription at once.
 - You can undo a cancellation any time before it takes effect, except that cancellation from the locked workspace's page.
 - A subscription cannot be paused.
+- While a renewal payment is failing, the workspace gets no new included usage, and auto-reload buys none. Ari stops when the usage left runs out, with **The workspace's subscription payment is failing.** in [Notices in the chat](#notices-in-the-chat).
 - A workspace cannot be deleted from Settings. See [Cancel your subscription or delete your data](/guides/cancel-or-delete).
 - Adding an integration needs a started trial or an active plan with a free slot. For the messages, see [Connection statuses and actions](/reference/connection-statuses).
 - For the trial length and purchase limits with every other limit, see [Limits and file types](/reference/limits).

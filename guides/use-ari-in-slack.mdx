@@ -49,7 +49,7 @@ You can ask Ari anything you can ask in cfo.ai: explain a number, build or chang
 Some things show only in cfo.ai, not in Slack:
 
 - Question forms, plan cards, approval cards, and download cards. When Ari needs an answer or an approval, open the conversation in cfo.ai.
-- Files. Ari cannot read a file or image sent in Slack. Paste the text into your message, or attach the file in a chat in cfo.ai.
+- Files. Ari cannot read a file or image sent in Slack. Paste the text into your message, or attach the file in a chat in cfo.ai. Ari can send an image to Slack; see [Have Ari message you in Slack](#have-ari-message-you-in-slack).
 - Formatting. Slack shows the text, bold, and links of Ari's replies, and prints headings as plain characters. The first table in a reply or a Trigger's message posts as a Slack table with wrapped cells when it fits the size in [Limits](/reference/limits#chat-with-ari); a later table in the same message, a larger one, and a table inside a code block post as text. If Slack refuses the table, the whole message posts as text, so nothing is lost.
 - Moving your view. From Slack, you cannot switch the Scenario you are viewing or mention a cell or table in chat. Ari describes the result or sends a link instead.
 
@@ -68,6 +68,8 @@ Ari can send you a direct message in Slack, for example the result of a schedule
 > Every Monday at 8am, summarize last week's cash in and out and send it to my Slack direct messages.
 
 Ari finds you in Slack by your cfo.ai email address. A Trigger messages you, its owner. If you are a workspace administrator, your Trigger can instead post its result in a private channel Ari is in, where everyone in the channel reads it. See [Choose where the result goes](/guides/schedule-a-trigger#choose-where-the-result-goes).
+
+To get a picture with the message, ask for it. Ari can post one image saved in a chat, such as a picture it made or one you attached, before the text, in a direct message or in a Trigger's channel post. If the image cannot be sent, the text is not sent either, so ask Ari to send the text alone. [Ari in Slack](/reference/chat#ari-in-slack) has the image types, the size limit, and the rule.
 
 ## Who can message Ari
 
@@ -133,6 +135,8 @@ In **Settings → Ari → Slack**, select **Disconnect**, then confirm. Ari can 
 For every message Ari can send you in Slack, and what each one means, see [Chat controls and messages](/reference/chat#ari-in-slack).
 
 If Ari's reply did not appear in Slack, open the chat in cfo.ai: the full reply is there, with a message under it that says why it did not reach Slack, such as a disconnected Slack connection or a channel Ari was removed from. [When a reply does not reach Slack](/reference/chat#when-a-reply-does-not-reach-slack) lists each message.
+
+If Ari says the Slack connection does not allow it to send images, your Slack workspace was connected before cfo.ai asked for that permission. An administrator selects **Disconnect**, then **Add to Slack** again, in **Settings → Ari → Slack**. Until then, Ari can still send the text without the image.
 
 ## Related
 

@@ -137,7 +137,7 @@ When a build needs more than one table, and the tables' formulas name Variables 
 
 - `tables` holds up to 20 tables. They save in one change, and a formula in any table names the Variables and Dimensions any table of the list declares, whatever the order, so the first table can read the second and two tables can read each other. A name no table declares and the Model lacks is still refused, and the refusal says that formulas here name what the Model has and what any table in the list declares; when a table declares the name in another letter case, the refusal says so, because formula names match case exactly.
 - Two entries that name the same new `page` share it.
-- Each entry carries its own `name`, `page`, `rows`, `columns`, and settings. `scenario` and `dry_run` sit on the request and apply to every entry.
+- Each entry carries its own `name`, `page`, `rows`, `columns`, and settings. `scenario` sits on the request and applies to every entry.
 - The response holds one receipt per table, in list order, and every table shares one `change_log_id`. A refusal of any table refuses them all and names the table.
 
 ### A new dated row gets a time rollup
@@ -166,7 +166,6 @@ When a table breaks a Variable down, `child_defaults` on the deepest axis row is
 - When a table stops showing a Variable's own row, such as after a reshape that moves the Variables to the columns or nests the rows under a new Dimension, the Variable's total stays, with every level that total reads, so formulas that read the total keep their value. A total a person or Ari saves on that hidden row stays too. The receipt states that one exception as "the default on the [Variable] row replaced its sum of the lines alone".
 - A sum a person or Ari saved at a level is left alone, even when it is spelled exactly as the sync spells its own sums, with one exception: on a shown Variable row where the sync saves a total of its own, the row's default replaces an author's sum of the lines alone. Where the sync saves no total in that range and a line rule or a line `0` computes the lines, the author's sum stays, and the receipt no longer lists it as removed. The sync replaces or removes only the formulas it wrote itself, which a `variable` read marks `writer: "level_default_sync"`.
 - When one call creates several tables, each table's receipt lists the level defaults for every Variable that table shows, including a Variable a row names only by reference.
-- A `create` dry run runs the same totals step and rolls it back, so its `model_effects` carry the statements the committed receipt puts under `level_defaults`, for each table in the call.
 
 [Totals, aggregation, and time rollups](/concepts/totals-and-rollups) explains why totals work this way.
 
@@ -343,7 +342,7 @@ A table formula or mapping write that would give a Dimension a second lookup is 
 - With a Scenario in view: "No scenario was named, so this call used `Breakeven Plan#4c1`, the scenario the person is viewing. The scenario in view can change between turns."
 - With none in view: "No scenario was named and none is in view, so this call used `Main`."
 
-A refusal, a dry run, or a call that saved nothing carries no such sentence.
+A refusal or a call that saved nothing carries no such sentence.
 
 A Scenario stores only what differs from the Scenario it branched from. A cell write in a child Scenario that repeats the value the cell already reads from its parent stores nothing: the edit's outcome is `unchanged`, and a `formula_warning` says the Scenario already reads this value from its parent, so the cell keeps following the parent and changes when the parent changes. A different value is saved as the Scenario's own and holds through the parent's later edits. [Scenarios, Snapshots, and version history](/concepts/scenarios) explains why.
 
@@ -352,7 +351,7 @@ A Scenario stores only what differs from the Scenario it branched from. A cell w
 - `delete` with a `target` alone removes the whole table, and deletes only the Variables and Dimensions that no other saved table still shows. An object another table shows stays there, with its formulas, values, and items.
 - No table owns an object. A `row_updates` or `reshape` write may take an object off the table it was created on while another table shows it; only removing its last occurrence needs it placed elsewhere first, or deleted outright.
 - `delete` with a `variables` or `dimensions` list removes only the listed objects, wherever they are placed. An object on another table, or on no table, is reached by name; the named table only scopes the call. A name that matches no readable object is refused with "delete target … matches no readable variable or dimension".
-- When other formulas, blocks, or settings still read one of the objects, the delete is refused and lists what reads it under where each object sits, such as "is shown on table Revenue" or "has no readable table location", ending "With force, the object is deleted and these references break." `force: true` accepts that those references break.
+- When other formulas, blocks, or settings still read one of the objects, the delete is refused. Its `delete_dependencies` issue states where each object sits, such as "is shown on table Revenue" or "has no readable table location", with its counts of dependents, and says "With force, the object is deleted and its recorded table appearance is removed; other table references may remain and dependent references may break." The refusal also carries `formula_rules`: one entry for each formula that reads the objects, with what `force: true` does to it. Force removes or empties formulas that cannot run where that is safe, and the other references break. [What reads each object](/agents/read-formulas#what-reads-each-object) explains the entries.
 - `force` on the delete covers every listed entry; `force` on one entry covers that entry alone, so a call can force some entries and not others. `update` entries do not take `force`.
 - A delete receipt reports `coverage.values: "not_evaluated"`: no value was checked. When the delete removed saved cells, values or formulas saved at one coordinate such as one item in one month, the receipt adds a `saved_cells_deleted` issue with their `count`, because another Variable broken down by the same Dimensions can calculate no value at a coordinate only those cells named. The delete still succeeds.
 - A refused table delete opens with "Nothing was deleted" and the count of dependents. A completed one carries a `links_end` issue, because links to the table in earlier chat messages no longer open it, and a table rebuilt in its place has a different identity.
@@ -401,7 +400,7 @@ Giving an existing Variable new `default_formulas` by its reference, such as `Re
 
 ## Check before you save
 
-A table write is atomic: the whole change saves, or none of it does. Only `create` takes `dry_run: true`, which validates a new table without writing; edits to saved tables and deletions take no dry run. Before a formula saves, the calculation service checks its expression. When the service cannot run that check in time, the formula still saves and the receipt warns **The calculation service did not check this formula.** followed by the service's own sentence; the table then shows any calculation error the way it does for a formula typed in the app. A check on a rule's own condition still has to answer, and a write past its answer deadline still saves nothing. [Validate and verify formula writes](/agents/validate-and-verify#validate-before-you-save) has the details.
+A table write is atomic: the whole change saves, or none of it does. No action takes `dry_run`: a `create` either saves and returns a receipt, or is refused and saves nothing. Before a formula saves, the calculation service checks its expression. When the service cannot run that check in time, the formula still saves and the receipt warns **The calculation service did not check this formula.** followed by the service's own sentence; the table then shows any calculation error the way it does for a formula typed in the app. A check on a rule's own condition still has to answer, and a write past its answer deadline still saves nothing. [Validate and verify formula writes](/agents/validate-and-verify#validate-before-you-save) has the details.
 
 ## Read back what you saved
 

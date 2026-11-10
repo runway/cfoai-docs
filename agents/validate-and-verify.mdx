@@ -1,7 +1,7 @@
 ---
 title: "Validate and verify formula writes"
 sidebarTitle: "Validate and verify"
-description: "For agents: how cfo.ai validates a formula write before it saves, dry-run a new table, read everything a write receipt reports, handle deadlines and readbacks, and verify that the calculated values match the business rule."
+description: "For agents: how cfo.ai validates a formula write before it saves, read everything a write receipt reports, handle deadlines and readbacks, and verify that the calculated values match the business rule."
 searchable: false
 ---
 
@@ -19,12 +19,7 @@ Validation checks:
 - function names and arguments, and
 - semantic compatibility.
 
-To validate without saving, send a `create` with `dry_run: true`. It checks the new table's structure, references, and formula syntax, and returns `valid`, `warnings`, and `model_effects`.
-
-- A dry run returns no values, because calculation does not run, and it does not detect circular references.
-- Its `model_effects` carry the totals statements the committed receipt would put under `level_defaults`.
-- With a `tables` list, `dry_run` applies to every table in the request.
-- `update`, `reshape`, and `delete` take no `dry_run`. A call that sends one is refused, because edits to saved tables and deletions have no preview. Correct any reported error, then send the intended change.
+No `edit_table_blocks` action takes `dry_run`, so validation happens in the write itself. A `create` either saves and returns a receipt, one per table for a `tables` list, or is refused and saves nothing. A call that sends `dry_run`, with any value, is refused. Correct any reported error, then send the intended change.
 
 ## Read the receipt
 
@@ -56,7 +51,7 @@ Inspect the write's result before you move on. A table write's receipt reports:
 - **`variable_rules`**, beside it: for each written Variable, by reference, `{"before": n, "after": m}`, the saved rules it holds in the write's Scenario at the change before the write and at the write's `change_log_id`. A typed value is one rule at its cell's coordinates and a formula is one rule over the cells its condition reaches, and the calculation evaluates every rule a Variable holds, so `{"Revenue#3fa": {"before": 21000, "after": 27024}}` says the write added 6,024 rules, and a write that clears values shows `after` below `before`. A grid of typed values is as many rules as it has cells; a large set of fixed values belongs in a source table loaded with `edit_integrations` `ingest_csv`, whose rows add no rules. The level defaults a breakdown's save writes on the Variable it breaks down count as written, so a create that breaks Revenue down by Product, Customer, and Line reports `{"before": 0, "after": 8}` for Revenue. A written Dimension gets a `formula_readers` count and no rule counts. When the counts could not be read, both fields are left out and two issues take their place: `formula_readers_unavailable` and `variable_rules_unavailable`.
 - **`default_rollup`**, naming the time rollup each new dated row received, and the statement of the level defaults a breakdown's save wrote or removed.
 - **Each default formula's scope**: its condition, its range, its Date grain when it is dated, and its reach. [How results describe a formula's reach](/agents/formula-scope#how-results-describe-a-formulas-reach) explains the wording.
-- **A refusal**, when nothing saved. A receipt whose `status` is `rejected` or `blocked` saved nothing, and carries the same `error` object a refusal carries, beside `items[].reason`. A write that fails on the calculation service says whether it saved anything: `state_changed: "no"` when the failure stopped the write before anything saved, for example in a formula or mapping-condition check, and `"yes"` when the call had already saved a change. A refusal that fits no branch of a union names the one field or shape that was wrong, and a refusal from the calculation service names the formula it was checking. [Refusals for a wrong shape](/agents/mcp-tools#refusals-for-a-wrong-shape) gives the wording of shape refusals.
+- **A refusal**, when nothing saved. A receipt whose `status` is `rejected` or `blocked` saved nothing, and carries the same `error` object a refusal carries, beside `items[].reason`. A write that fails on the calculation service says whether it saved anything: `state_changed: "no"` when the failure stopped the write before anything saved, for example in a formula or mapping-condition check, and `"yes"` when the call had already saved a change. A refusal that fits no branch of a union names the one field or shape that was wrong, and a refusal from the calculation service names the formula it was checking, and writes the Variables and Dimensions it cites by name when you may read them. A formula with a very long chain of `+`, `-`, `*`, or `/` terms, or very deep parentheses, is refused with **The formula is nested too deeply to check. Each term joined by +, -, \*, or / adds one level, and so does each pair of parentheses. One SUM over the items and dates adds one level.** [Refusals for a wrong shape](/agents/mcp-tools#refusals-for-a-wrong-shape) gives the wording of shape refusals.
 
 To see the calculated values without a second read, ask for a readback in the same call with `readback.rows` and `readback.columns`. A selector the readback cannot resolve appears in the issues as `readback_selector_unresolved`, with the nearest coordinates, and the other selections still read.
 

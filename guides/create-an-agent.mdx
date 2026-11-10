@@ -1,0 +1,93 @@
+---
+title: "Create an agent with its own name and instructions"
+sidebarTitle: "Create an agent"
+description: "Give a recurring responsibility, such as watching cash or reviewing spend, to a named agent in your cfo.ai workspace. Create a custom agent, chat with it instead of Ari, choose it for a Trigger, change its instructions, and archive or restore it."
+---
+
+Create an agent when one responsibility keeps coming back, such as a weekly cash check, and you want every chat and Trigger about it to start from the same brief. An agent is Ari with a name, an icon, and instructions that you save once. It uses the same model as Ari and has the same access to your workspace that Ari has when it works for you. Its instructions do not give it access to anything more.
+
+Everyone in the workspace can chat with an agent and choose one for a Trigger. Only administrators can create, change, archive, or restore an agent. Ari stays the default agent: you cannot rename, change, or archive it.
+
+## Create an agent
+
+<Tabs>
+  <Tab title="Ask Ari">
+    Describe the responsibility and ask Ari to save it as an agent:
+
+    > Create an agent named Cash watch. Each week it compares our bank balance with the forecast and says what changed and why.
+
+    Ari saves the agent with the name and instructions you gave, and the agent appears in the agent menu of a new chat. Ari can also set the agent's icon and color when you ask.
+  </Tab>
+  <Tab title="By hand">
+    <Steps>
+      <Step title="Start a new chat">
+        Select **New chat**. The agent menu is at the top of the chat and reads **Ari**.
+      </Step>
+      <Step title="Start an agent">
+        Open the agent menu and select **New agent**, the plus beside **Chat with**.
+      </Step>
+      <Step title="Name the agent">
+        Enter a **Name**, such as "Cash watch". To change the icon or its color, select the icon beside the name.
+      </Step>
+      <Step title="Write the instructions">
+        In **Instructions**, describe the agent's responsibility, its approach, and what a useful answer looks like.
+      </Step>
+      <Step title="Save">
+        Select **Create agent**. The new chat switches to the agent, so your first message goes to it.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+For the length limits, see [Limits](/reference/limits#agents).
+
+## Chat with an agent
+
+1. Select **New chat**.
+2. Open the agent menu at the top of the chat and select the agent under **Chat with**.
+3. Send your message.
+
+You choose the agent before the first message. After that the chat keeps its agent: its name shows at the top of the chat and under the chat's title in the chat list, and you cannot switch the chat to another agent. To ask Ari instead, start a new chat; a new chat starts with Ari.
+
+## Give a Trigger to an agent
+
+1. Open the account menu, your name or picture at the bottom of the sidebar, and choose **Manage triggers**.
+2. Select **Write manually** for a new Trigger, or select a Trigger and then **Edit trigger**.
+3. Under **Agent**, choose the agent, then select **Create trigger** or **Save changes**.
+
+Each run then follows the agent's instructions together with the Trigger's own, and the Trigger's details name the agent under **Agent**. A Trigger that Ari creates for you in a chat runs as Ari; to hand it to an agent, choose the agent in **Edit trigger**. For the rest of the Trigger form, see [Schedule a report or a reminder with a Trigger](/guides/schedule-a-trigger).
+
+## Change an agent's instructions, name, or icon
+
+Ask Ari, for example "Add to Cash watch's instructions: always show the 13-week view." Or open the agent menu in a new chat, point at the agent, select **Edit** (the pencil), make the change, and select **Save changes**.
+
+New instructions apply from the agent's next message or Trigger run. Chats you already had keep their history and stay with the agent.
+
+## Archive or restore an agent
+
+Archive an agent you no longer use. Open the agent menu in a new chat, point at the agent, select **Archive** (the box), and confirm with **Archive agent**. Archiving also archives the agent's chats and pauses its Triggers. The chat history is kept. cfo.ai has no way to delete an agent.
+
+To bring an agent back, open the agent menu, open the filter beside **Chat with**, and choose **Archived**. Point at the agent, select **Restore**, and confirm with **Restore agent**. The agent is available for new chats and Triggers again. Its earlier chats stay archived and its Triggers stay paused, so turn each Trigger back on in **Edit trigger**.
+
+You can also ask Ari to archive or restore an agent by name.
+
+## If something goes wrong
+
+<AccordionGroup>
+  <Accordion title="The agent menu has no New agent button">
+    Only administrators can create or change agents. Ask an administrator of the workspace, or ask them to make you one; see [Invite or remove teammates](/guides/invite-teammates).
+  </Accordion>
+  <Accordion title="A Trigger will not turn back on">
+    When the Trigger's agent is archived, saving reads **This agent is archived. Restore it before starting a new chat or trigger**. Restore the agent, or choose another agent under **Agent**, then turn the Trigger on again.
+  </Accordion>
+  <Accordion title="The name is refused">
+    Each agent's name must be different from every other agent's in the workspace, and no agent can be named Ari. For the exact messages, see [Agents](/reference/chat#agents).
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+- [Agents](/reference/chat#agents)
+- [Schedule a report or a reminder with a Trigger](/guides/schedule-a-trigger)
+- [Save a workflow as a Skill](/guides/save-a-skill)
+- [Teach Ari your company's conventions](/guides/teach-ari)

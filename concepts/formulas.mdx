@@ -70,19 +70,19 @@ An override appears when someone types or pastes into a cell, or when Ari sets a
 
 ## Breakdown totals and summary columns calculate differently
 
-A breakdown total, the parent row above a breakdown such as Revenue above its products, is a formula that cfo.ai saves with the table. You can replace it with your own, such as a ratio. A summary column at the end of a group of columns, headed **SUM** or **LAST**, for example, saves no formula and summarizes only the cells shown on that table. For how each kind of total calculates, and why a percentage is never added up, see [Totals, aggregation, and time rollups](/concepts/totals-and-rollups).
+A breakdown total, the parent row above a breakdown such as Revenue above its products, is a formula that cfo.ai saves with the table. You can replace it with your own, such as a ratio. A summary column, the first column in a group of columns, headed **SUM** or **LAST**, for example, saves no formula and summarizes only the cells shown on that table. For how each kind of total calculates, and why a percentage is never added up, see [Totals, aggregation, and time rollups](/concepts/totals-and-rollups).
 
 ## A cell that no formula covers
 
 A cell that no formula covers and that holds no value reads a default that depends on the Variable's type: 0 for a number, and an empty value for text or a date. So a Salary nobody entered adds 0 to a total, and an End Date entered only for people who left is empty for everyone still employed.
 
-An imported Variable reads its connected column instead; see [How imported data loads](/reference/imported-data). A quarter or year cell of a monthly Variable that has no time rollup also reads 0; see [Why a quarterly view shows zeros](/concepts/totals-and-rollups#why-a-quarterly-view-shows-zeros).
+An imported Variable reads its connected column instead, but only through Last close; in later months it reads the same default. See [How imported data loads](/reference/imported-data). A quarter or year cell of a monthly Variable that has no time rollup also reads 0; see [Why a quarterly view shows zeros](/concepts/totals-and-rollups#why-a-quarterly-view-shows-zeros).
 
 ## A formula belongs to its Variable, so changing it changes every table
 
 A formula is saved on the Variable, not on the table where you wrote it. Every table, chart, and Page that shows the Variable reads the same formulas, so changing a formula from one table changes the number everywhere in the same Scenario. That is how one fix reaches every report. A change in Main also reaches the Scenarios that read that formula from Main; see [Scenarios, Snapshots, and version history](/concepts/scenarios#a-scenario-holds-only-what-is-different).
 
-When one report needs a different calculation, use a different Variable, or a formula for a narrower part of the Model. Placing an existing Variable on another table leaves its formulas alone. Ari tells you when a change it makes replaces a formula that other tables read.
+When one report needs a different calculation, use a different Variable, or a formula for a narrower part of the Model. Placing an existing Variable on another table leaves its formulas alone. After Ari changes a Variable that other tables show, ask Ari what its change replaced.
 
 ## Why a formula shows a circular reference
 

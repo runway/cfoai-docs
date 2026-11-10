@@ -50,6 +50,8 @@ Every write to a Scenario is recorded, whether you made it or Ari did. Version h
 - **Undo** reverses one change, or one related batch of changes, and puts back only the fields that change wrote. Later changes to other fields stay, even on the same Page or Variable. When a later change edited one of those same fields, such as the same Page's name, the undo is refused and names that later change, so nothing is silently replaced.
 - **Restore** returns the whole Scenario to an earlier point and rolls back every change made after it. The restore is itself a recorded change, so you can undo it too. Ari calls this a revert.
 
+Undo can also return a Scenario to Main. When you undo the only edit a Scenario made to something it read from Main, such as a formula, a Canvas block, or a table's settings, the Scenario reads that item from Main again. It shows Main's current version, including edits made in Main since the Scenario's edit, and it follows later Main edits. Say a hiring Scenario changes a formula it read from Main, and someone then edits that formula in Main. Undoing the Scenario's change shows Main's edited formula.
+
 A change a Scenario inherited from Main cannot be undone from inside the Scenario. Undo it in Main.
 
 ## Scenario, Snapshot, or version history: which one to use

@@ -108,6 +108,7 @@ A formula you type in a table always saves, even with a mistake. A formula Ari o
 | A name that matches nothing | No Variable or Dimension has the name in that Scenario. A name that differs only in capital letters is refused too, and the refusal names the Variable it matches. |
 | A name several Variables share | The write must name the one it means, with its `#` code |
 | The wrong number of arguments | A function was called with more or fewer arguments than it takes |
+| A formula nested too deeply to check | A very long chain of terms joined by `+`, `-`, `*`, or `/`, or very deep parentheses, has more levels than the check can read. The reason reads **The formula is nested too deeply to check. Each term joined by +, -, \*, or / adds one level, and so does each pair of parentheses. One SUM over the items and dates adds one level.** A formula that adds many items one by one fits when it uses one `sum` instead. |
 | An Actuals or Forecast formula with no months | A formula for one range must cover periods. A Variable on a table without months has one formula for every period. |
 | A number function over text or dates | `sum`, `product`, `average`, `stdev`, `var`, and `median` add up numbers, so they refuse a text or date value. `first`, `last`, and `count` work on any value, and `min` and `max` also take dates. |
 | A formula aimed at the rows with no item | The rows a table shows as **None** have no value for a Dimension. They cannot have a formula of their own; the formula on the row above them reaches them. |

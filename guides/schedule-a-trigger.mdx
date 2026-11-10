@@ -16,6 +16,12 @@ Use a Trigger when you want Ari to do a job without being asked, on a schedule o
 
     > Remind me tomorrow at 9am to revisit the bank reconciliation.
 
+    For month-end work, ask for the last day of the month:
+
+    > On the last day of every month at 9am UK time, send me a cash summary.
+
+    A Trigger whose schedule is the last day of the month runs once a month, on that day, whatever the month's length. On the Triggers page its schedule reads **Last day of each month at [time]**; see [The cfo.ai interface](/reference/interface#new-trigger-and-edit-trigger). If the schedule names several days instead, ask Ari to change it to the last day only.
+
     Ari asks about anything it is missing, saves the Trigger with the time zone you named (or yours when Ari knows it, and otherwise UTC), and tells you its name and schedule. A new Trigger is on, and it first runs at the next scheduled time. A one-time Trigger turns itself off once its run is queued; see [Change, pause, or delete a Trigger](#change-pause-or-delete-a-trigger). You can also set one up by messaging Ari in Slack; see [Talk to Ari from Slack](/guides/use-ari-in-slack).
   </Tab>
   <Tab title="By hand">
@@ -27,7 +33,7 @@ Use a Trigger when you want Ari to do a job without being asked, on a schedule o
         Select **Write manually**. To work it out with Ari in a chat instead, select **Build with Ari**.
       </Step>
       <Step title="Name it and write the instructions">
-        Enter a **Name**, such as Weekday cash brief. In **Instructions**, describe what Ari should check, update, or prepare each time. See [Write instructions that work unattended](#write-instructions-that-work-unattended).
+        Enter a **Name**, such as Weekday cash brief. Leave **Agent** on **Ari**, or choose one of your workspace's agents to run the Trigger with its saved instructions; see [Create an agent with its own name and instructions](/guides/create-an-agent). In **Instructions**, describe what Ari should check, update, or prepare each time. See [Write instructions that work unattended](#write-instructions-that-work-unattended).
       </Step>
       <Step title="Set the schedule">
         Under **Schedule**, choose how often it runs in **Repeat**, such as **Weekly**, then the days and the time. For a job that runs once, choose **Once**, then set **On date** and **At time**; the line under the schedule reads **Once on [date and time]**, and the date and time must be in the future. The note **Times in [time zone].** names the clock the times are read on: your browser's time zone for a new Trigger. cfo.ai saves the schedule with that time zone, so it keeps the same local time through daylight saving changes.
@@ -61,7 +67,7 @@ Every run's result is saved in its own chat, listed in the Trigger's **History**
 | --- | --- |
 | Report to me, notify me, or nothing about where to send it | Ari posts the result as a message in the chat you created the Trigger from, or in your most recent chat in the workspace when that chat is gone. The message starts no reply, and Ari reads it when you next write in that chat. If you have no chat in the workspace, nothing is posted, and the run's record says so. |
 | Email me | Ari emails your sign-in address. Headings, lists, tables, and links in the message show in the email. |
-| Send it to my Slack direct messages | Ari sends you a Slack direct message, once Slack is connected. A long result can arrive as a short message with its detail in replies in a thread under it; [Ari in Slack](/reference/chat#ari-in-slack) has the rule. See [Talk to Ari from Slack](/guides/use-ari-in-slack). While no Slack workspace is connected, the run posts the same message, replies included, as one text in your cfo.ai chat instead, as in the first row, and records that Slack refused it. |
+| Send it to my Slack direct messages | Ari sends you a Slack direct message, once Slack is connected. A long result can arrive as a short message with its detail in replies in a thread under it, and the message can carry one image above it; [Ari in Slack](/reference/chat#ari-in-slack) has the rules. See [Talk to Ari from Slack](/guides/use-ari-in-slack). While no Slack workspace is connected, the run posts the same message, replies included and without any image, as one text in your cfo.ai chat instead, as in the first row, and records that Slack refused it. |
 | Post it in this channel, or Post it in #finance | Only for a workspace administrator, and only for a private Slack channel Ari has already been added to. Each run posts its Slack message in that channel instead of your direct messages, and everyone in the channel reads the result, prepared with your access. Ask from inside the channel ("post it in this channel") or name the channel. To go back to direct messages, ask Ari to remove the channel from the Trigger. A run posts nothing, and reports why, when Ari has left the channel, the channel became public, or you are no longer an administrator. |
 | Email someone else | Nothing is sent. The run leaves an email preview in its chat, and the email goes only when you open the chat and select **Send**. See [Email preview card](/reference/chat#email-preview-card). |
 

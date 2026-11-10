@@ -20,7 +20,7 @@ To export a Page to Excel, select **Download spreadsheet** in the Page header, o
 
     To stop an export, ask Ari to cancel it. A cancelled export frees the workspace's one export slot at once, so a new export can start without waiting for the old one to end. An export you started from a chat is cancelled from that chat; one you started with the **Download spreadsheet** button is cancelled from whichever chat you ask in. If the export finished before Ari could cancel it, Ari gives you the workbook, or the failure, instead.
 
-    If the export fails, Ari tells you which step and which table stopped it, and whether trying again can help. If time ran out, the export result tells Ari which Pages the workbook leaves out, so ask if it does not say; see [When an export runs out of time](#when-an-export-runs-out-of-time).
+    If the export fails, Ari tells you which step and which table stopped it, and whether trying again can help. An export stopped because its worker ran low on memory is different: the table it names is where the export was working, the failure does not say whether trying again can help, and cfo.ai does not run the export again by itself, so ask Ari for a new export. [The cfo.ai interface](/reference/interface#download-spreadsheet) has the message. If time ran out, the export result tells Ari which Pages the workbook leaves out, so ask if it does not say; see [When an export runs out of time](#when-an-export-runs-out-of-time).
 
     A Page export is for Pages that already exist, with their formulas. If you want a file of figures that no Page shows, such as headcount by department for next year, ask Ari for that file instead: Ari reads the values and writes a workbook for you, and the Model stays as it is.
   </Tab>

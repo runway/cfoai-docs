@@ -35,7 +35,7 @@ The **…** button at the right of the table header.
 | --- | --- | --- |
 | **Show formula bar** | Shows a strip above the grid with the selected cell's formula and where it applies. Select it to edit that formula. | In your browser |
 | **Subtotals below details** | Puts each group's total below its detail rows, as on a P&L that lists the accounts above their subtotal. An expanded group, such as Revenue above its accounts, shows a heading row with its name and no values, then its detail rows, then a total row labeled **Total [name]**; a name that already starts with "Total", such as Total revenue, keeps its name. A collapsed group shows one row with its name and values. Off by default. You can edit, select, copy, and fill the total row's cells as you could the group row's; the heading's value cells copy as blanks and cannot be edited. Not offered on a phone, which shows the saved choice. A spreadsheet download follows it. | With the table, for everyone |
-| **Show total columns** | Shows the [total column](#total-columns) at the end of each column group. On when a table opens. | Not saved |
+| **Show total columns** | Shows the [total column](#total-columns) as the first column of each column group. On when a table opens. When it is off, a group shows its total column only while the group is collapsed. | Not saved |
 | **Pin total columns** | Keeps total columns beside the row names while you scroll. Available while total columns show. | Not saved |
 | **Show dimension headers** | Shows a label row, such as **DEPARTMENT**, above each Dimension's items. On by default. | With the table, for everyone |
 | **Auto-fit all columns** | Sizes every column to its widest content. | With the table, for everyone |
@@ -262,7 +262,7 @@ The question is always asked, even when nothing else uses the Variable or Dimens
 
 | Dialog | Text | Buttons |
 | --- | --- | --- |
-| **Delete variable or dimension?** (**Delete variables or dimensions?** for several) | **[name] will no longer appear on any table.** when nothing else uses it; otherwise **Deleting [name] will break [counts].** The counts can include formulas, blocks, Canvas blocks, property settings, and items or pins, and end with **including [N] dependents you can’t see** when you cannot open some of them. | **Cancel** keeps everything as it is. **Keep with Ari** cancels the deletion and opens a chat that names the Variable or Dimension, so Ari can place it on another table; it appears when you can start a chat. **Delete completely** deletes it from the Model and every table. |
+| **Delete variable or dimension?** (**Delete variables or dimensions?** for several) | **[name] will no longer appear on any table.** when nothing else uses it; otherwise **Deleting [name] will break [counts].** The counts can include formulas, blocks, Canvas blocks, property settings, and items or pins, and end with **including [N] dependents you can’t see** when you cannot open some of them. | **Cancel** keeps everything as it is. **Keep with Ari** cancels the deletion and opens a chat that names the Variable or Dimension, so Ari can place it on another table; it appears when you can start a chat. **Delete completely** deletes it from the Model and every table, and the formulas that read it break. The exception is a formula that no longer calculates any cell, because a newer formula covers the same cells or because its one period is outside its Actuals or Forecast range. Where removing it changes no value and you can edit its Variable, the delete removes that formula or empties it, so it does not break; an emptied formula shows a blank if its period later comes into its range. The count in the dialog still includes these formulas. |
 | **Delete item?** | **“[item]” is still used. Deleting it everywhere changes:** and a list of what reads the item. | **Cancel**, **Delete anyway**. Confirming also deletes the formulas whose condition selects only that item, such as the values typed into the item's row. |
 
 To see where a Variable or Dimension is shown, point at its row or column name: the mark beside a name that other tables also show reads **Shown on: [table] on [page]**. **Go to another table** in its right-click menu opens one of those tables.
@@ -310,7 +310,7 @@ Weeks are numbered Monday to Sunday, and **WE** shows the Sunday that ends the w
 
 ## Total columns
 
-A total column, also called a summary column, sits at the end of each column group and summarizes the cells shown in the group. It saves no formula. It is not the same as a parent row that adds up the rows beneath it; see [Totals, aggregation, and time rollups](/concepts/totals-and-rollups#summary-columns-total-columns-at-the-end-of-a-group).
+A total column, also called a summary column, is the first column in each column group and summarizes the cells shown in the group. While [**Show total columns**](#table-block-settings-menu) is on, it stays in view when the group is expanded and when it is collapsed. It saves no formula. It is not the same as a parent row that adds up the rows beneath it; see [Totals, aggregation, and time rollups](/concepts/totals-and-rollups#summary-columns-total-columns-at-the-start-of-a-group).
 
 | Summary | Header | Shows |
 | --- | --- | --- |

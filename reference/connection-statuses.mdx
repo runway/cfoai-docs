@@ -159,7 +159,7 @@ An MCP server's row also shows the state of its saved sign-in. The state describ
 | **Refresh the API definition to continue.** | The API's specification needs to be loaded again. |
 | **Verify the available tools to continue.** | The server's tool list needs checking. |
 | **Retry the import to continue.** | A data import failed. |
-| **Import data to continue.** | Nothing has been imported yet. A server or API whose data synced without a saved query reads **No queries yet** instead. |
+| **Import data to continue.** | Nothing has been imported yet. A server or API whose data synced without a saved query reads **No queries yet** instead. A source Ari fetches is the exception: it keeps this line after its data loads; see [Statuses of a source Ari fetches](#statuses-of-a-source-ari-fetches). |
 | **Review the imported data to continue.** | The import finished, and what it produced needs a look. |
 | **Review the source data to continue.** | The source's data needs a look before it can be imported. |
 | **Attach a file to continue.** | A file upload has no file. |
@@ -171,7 +171,7 @@ A source connection is for a system that has no integration: Ari fetches its dat
 
 | In **Settings → Connections** | On the connection's page | Meaning |
 | --- | --- | --- |
-| **Ready for Ari. Import data to continue.** | **Connected**, with **Ari can call this API directly.** | The connection is saved, and no fetch is running or has failed. The line is the one every API's page shows; Ari does not call a source connection live, and only fetches from it on its schedule or when you ask. It reads this before the first fetch and after a fetch that loaded its data, so it asks nothing of you once your data is in. |
+| **Ready for Ari. Import data to continue.** | **Connected**, with **Ari can call this API directly.** | The connection is saved, and no fetch is running or has failed. The line is the one every API's page shows; Ari does not call a source connection live, and only fetches from it on its schedule or when you ask. It reads this before the first fetch and keeps reading it after a fetch that loaded its data. Once your data is in, **Import data to continue.** is only the line's wording: no import is pending, and it asks nothing of you. |
 | **Connecting. No action is needed while setup finishes.** | **Setup not finished**, with **No action is needed while setup finishes.** | A fetch is running, or a table it delivered is still loading. |
 | **Finish setup to continue** | **Setup not finished**, with **Finish setup to continue** | The fetch stopped for something only a person can give. When the source sent you a sign-in code, a field labeled **Code [source] sent you** appears under the line; see below. With no field, the fetch stopped with a question, such as a login the source rejected. A fetch you asked for puts that question in the chat that asked; for a scheduled fetch, ask Ari to fetch from the source again. |
 | **Needs attention. Import data to continue.** | **Needs attention**, with **Import data to continue.** | The latest fetch ended without data: it failed, it finished without loading a table, or nobody entered the code in time. Ask Ari to fetch from the source again. A source with a saved script is also fetched again on its next scheduled day. |

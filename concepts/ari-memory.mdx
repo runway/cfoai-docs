@@ -33,7 +33,17 @@ Your private memories belong to you in one workspace. Another workspace where yo
 
 A fact never moves between the two lists on its own. When a newer fact replaces an older one, it stays where the older one was. Any member can correct or forget a workspace fact, and forgetting one removes it for everyone.
 
+In a Slack channel, Ari reads only workspace memories when it decides whether to reply to a message. A request such as "reply in #finance-leads only when someone mentions you" therefore has to be saved for the whole workspace. See [Tell Ari when to reply in a channel](/guides/use-ari-in-slack#tell-ari-when-to-reply-in-a-channel).
+
 To save, list, or remove facts, see [Teach Ari your company's conventions](/guides/teach-ari).
+
+## What forgetting a memory removes
+
+Forgetting one memory can remove others that were saved with it. When one saved fact states several things, a memory search can list it as several memories. For example, "we report headcount by cost center, treat contractors as non-headcount spend, and close the books on the fifth business day" is one saved fact that can be listed as three memories. Memory can retire only the whole saved fact. So when you ask Ari to forget the memory about closing the books, the headcount and contractor memories leave with it.
+
+Just before it forgets, Ari reads which other memories were built from the same saved fact, and it gets each one's full text back with the result. Ask Ari which memories went with the one you forgot, and ask it to save again any you want to keep. A memory that was also built from other saved facts stays: it is rebuilt from those facts, and its wording can change.
+
+After a forget, Ari searches memory for the forgotten text. When the text still comes back, alone or inside a longer memory, Ari is told so: another saved fact may state the same thing, or memory may still be processing the change. Ask Ari what it still remembers about the subject to see what is left.
 
 ## Memory is separate from chat history
 

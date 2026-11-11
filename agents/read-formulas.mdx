@@ -55,6 +55,8 @@ Each definition states its `time_grain` when it is dated, and its reach in words
 
 For a Variable or Dimension read from an imported source, the entry's `source_default` also states `order`, such as `last by MONTH` or `last by source order`. It says how a column that shows one row per record picks that row when a record has several: `by MONTH` orders the record's rows by the source's date column, and `by source order` says the source has no date column to order by. With no date column, the pick is the same in every calculation, but it is not the row's position in the source; [last](/reference/functions#last) states the rule. A column that sums its rows has no `order`.
 
+A `variable` read marks a Variable's saved source read with `after_last_close`. The field sits on the Variable's only `[]` formula when that formula has no range and is exactly one aggregate over one source column, such as the `sum(<source column>)` an import saves. That formula reads source rows only through Last close, and the value is what the Variable reads in later periods where no other formula computes the cell: `"0"`, or `"null"` for a date or text Variable. Every other formula has no such field, including a `[]` formula of any other expression and both `[]` formulas of a Variable that has two; those compute every period. To read source rows dated after Last close, give the Variable a Forecast formula with the same read, such as `default_formulas.forecast: "sum(<source column>)"`.
+
 ### Read several at once
 
 `target` on the `variable` and `dimension` blocks also takes a list of references:

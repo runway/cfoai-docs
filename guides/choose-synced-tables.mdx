@@ -52,7 +52,7 @@ If you ask Ari about data the connection does not sync, such as usage records in
 
 ## What Ari refuses, and why
 
-- Removing a table a saved query reads. The query would keep showing the rows that last landed while the source moves on. Ask Ari to delete the query first.
+- Removing a table a saved query reads. The query would keep showing the rows that last landed while the source moves on. Ask Ari to delete the query first. The check covers every saved query in the workspace, because a query saved on another connection can read this connection's tables. It uses the tables Snowflake's plan names for each query. When the plan for a query names no table, Ari cannot tell what that query reads: the table stops syncing, and Ari is told which queries were not checked, so you can ask it what each one reads.
 - Removing the last selected table. To stop syncing a source, remove the connection instead.
 - Changing a connection whose setup is not finished. Finish setup in the picker first.
 - Adding a table past the 100-table limit.

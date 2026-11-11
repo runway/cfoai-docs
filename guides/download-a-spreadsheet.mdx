@@ -1,10 +1,10 @@
 ---
 title: "Export a Page to Excel"
 sidebarTitle: "Export to Excel"
-description: "Export a Page, or several Pages, to an Excel workbook with live formulas: select Download spreadsheet in the Page header or ask Ari. What the workbook contains, including the data Canvas blocks draw, whether formulas stay live, and how to get CSV or Google Sheets."
+description: "Export a Page, or several Pages, to an Excel workbook with live formulas, or as values only: select Download spreadsheet in the Page header or ask Ari. What the workbook contains, including the data Canvas blocks draw, whether formulas stay live, and how to get CSV or Google Sheets."
 ---
 
-To export a Page to Excel, select **Download spreadsheet** in the Page header, or ask Ari to export it. You get an Excel workbook (`.xlsx`) with one sheet for each table on the Page, and its numbers are live Excel formulas, not pasted values. A Page whose figures are drawn by Canvas blocks exports too: each dataset a Canvas block draws becomes a sheet of values. To put several Pages in one workbook, such as your three financial statements, ask Ari.
+To export a Page to Excel, select **Download spreadsheet** in the Page header and choose **With formulas**, or ask Ari to export it. You get an Excel workbook (`.xlsx`) with one sheet for each table on the Page, and its numbers are live Excel formulas, not pasted values. When you want the numbers without the formulas, or a large Model takes too long to export, [export values only](#export-values-only). A Page whose figures are drawn by Canvas blocks exports too: each dataset a Canvas block draws becomes a sheet of values. To put several Pages in one workbook, such as your three financial statements, ask Ari.
 
 <Tabs>
   <Tab title="Ask Ari">
@@ -14,13 +14,19 @@ To export a Page to Excel, select **Download spreadsheet** in the Page header, o
 
     > Export the P&L, Balance sheet, and Cash flow Pages to one Excel workbook, in the Downside Scenario.
 
-    Ari exports the Scenario your chat is in unless you name another. The finished workbook appears in the chat as a download card, and Ari can open it again later. When the export finishes after Ari's reply has ended, the chat gets a notice that it finished, with how many of the selected Pages were written and the names of any left out, or the reason it failed; ask Ari in that chat to save the workbook. The notice's wording is in [The app and its parts](/reference/interface#download-spreadsheet-and-recent-exports). One workbook can hold up to 64 Pages; their formulas link across the sheets, and they share one **Model inputs** sheet.
+    Ari exports the Scenario your chat is in unless you name another. The finished workbook appears in the chat as a download card, and Ari can open it again later. When the export finishes after Ari's reply has ended, the chat gets a notice that it finished, with how many of the selected Pages were written and the names of any left out, or the reason it failed; ask Ari in that chat to save the workbook. The notice's wording is in [The cfo.ai interface](/reference/interface#download-spreadsheet). One workbook can hold up to 64 Pages; their formulas link across the sheets, and they share one **Model inputs** sheet.
+
+    Ari's export writes formulas unless you ask for values only:
+
+    > Export the Board summary Page to Excel as values only.
+
+    See [Export values only](#export-values-only) for what that workbook holds.
 
     If you started an export from the **Download spreadsheet** button, or in another chat, ask Ari in any chat where it is. Ari finds your own newest export of those Pages, named in any order, in that Scenario, while it runs and for an hour after it ends, follows it, and saves the workbook in the chat without starting a second export.
 
     To stop an export, ask Ari to cancel it. A cancelled export frees the workspace's one export slot at once, so a new export can start without waiting for the old one to end. An export you started from a chat is cancelled from that chat; one you started with the **Download spreadsheet** button is cancelled from whichever chat you ask in. If the export finished before Ari could cancel it, Ari gives you the workbook, or the failure, instead.
 
-    If the export fails, Ari tells you which step and which table stopped it, and whether trying again can help. An export stopped because its worker ran low on memory is different: the table it names is where the export was working, the failure does not say whether trying again can help, and cfo.ai does not run the export again by itself, so ask Ari for a new export. [The cfo.ai interface](/reference/interface#download-spreadsheet) has the message. If time ran out, the export result tells Ari which Pages the workbook leaves out, so ask if it does not say; see [When an export runs out of time](#when-an-export-runs-out-of-time).
+    If the export fails, Ari tells you which step and which table stopped it, and whether trying again can help. An export stopped because its worker ran low on memory is different: the table it names is where the export was working, and the failure does not say whether trying again can help. When the same memory check stops several exports, cfo.ai runs each of them once more by itself; an export stopped alone, or stopped a second time, fails, so ask Ari for a new export or for a values-only export, which skips the step that calculates the inputs formulas read. [The cfo.ai interface](/reference/interface#download-spreadsheet) has the message. If time ran out, the export result tells Ari which Pages the workbook leaves out, so ask if it does not say; see [When an export runs out of time](#when-an-export-runs-out-of-time).
 
     A Page export is for Pages that already exist, with their formulas. If you want a file of figures that no Page shows, such as headcount by department for next year, ask Ari for that file instead: Ari reads the values and writes a workbook for you, and the Model stays as it is.
   </Tab>
@@ -29,13 +35,13 @@ To export a Page to Excel, select **Download spreadsheet** in the Page header, o
       <Step title="Open the Page in the right Scenario">
         Open the Page, and check that the sidebar's Scenario picker shows the Scenario you want in the workbook.
       </Step>
-      <Step title="Select Download spreadsheet">
-        Select **Download spreadsheet**, the download icon in the Page header. When the Page has a Table block or a Canvas block with data, and you have no export of it in this Scenario that is queued, running, or asked for in the last 24 hours, the export starts at once. Otherwise a **Recent exports** menu opens and lists each export you asked for in the last 24 hours, and any still queued or running, with when you asked, its status, and **Download** when its file is ready; select **Start new export** for a fresh workbook. A Page with neither shows the button too, but its menu can only offer past exports.
+      <Step title="Select Download spreadsheet and choose a format">
+        Select **Download spreadsheet**, the download icon in the Page header. A **Download as Excel** menu opens. Choose **With formulas** for a workbook whose numbers recalculate in Excel, or **Values only** for the numbers alone; the export starts when you choose. Under **Recent exports**, the menu lists each export you asked for in the last 24 hours, and any still queued or running, with its format, its status, when you asked, and **Download** when its file is ready. A Page with no Table block and no Canvas block with data shows the button too, but its menu can only offer past exports.
       </Step>
       <Step title="Wait for the file">
         The export runs in the background, and pointing at the button shows its progress; selecting it again shows a notice with the stage and when you asked, and starts no second export. You can open other Pages while you wait. When the file is ready, it downloads and a **Spreadsheet download started** notice names it.
 
-        If you reload or close the tab while the export runs, the export keeps going. Open the Page again, in the same Scenario, and the button picks it up. After a reload, the file still downloads on its own when it is ready. In a new tab, or after you closed the tab that asked, the file is offered instead, with **Spreadsheet ready** and a **Download** button, and so is an export that finished within the last hour. For 24 hours after you asked, you can get the file again from the Page: select **Download spreadsheet**, then **Download** beside the export in the **Recent exports** menu. [The cfo.ai interface](/reference/interface#download-spreadsheet) lists each notice, the menu, and when a tab shows them.
+        If you reload or close the tab while the export runs, the export keeps going. Open the Page again, in the same Scenario, and the button picks it up. After a reload, the file still downloads on its own when it is ready. In a new tab, or after you closed the tab that asked, the file is offered instead, with **Spreadsheet ready** and a **Download** button, and so is an export that finished within the last hour. For 24 hours after you asked, you can get the file again from the Page: select **Download spreadsheet**, then **Download** beside the export under **Recent exports**. [The cfo.ai interface](/reference/interface#download-spreadsheet) lists each notice, the menu, and when a tab shows them.
       </Step>
     </Steps>
 
@@ -45,13 +51,28 @@ To export a Page to Excel, select **Download spreadsheet** in the Page header, o
 
 ## Are the formulas live?
 
-Yes. Each number a formula calculates in cfo.ai is an Excel formula in the workbook. The numbers those formulas read from outside the Page, such as typed assumptions and imported Actuals on other tables, sit on a **Model inputs** sheet. Change an input in Excel and every cell that depends on it recalculates. A formula that chooses among several inputs with `first` or `last`, such as `` first(`Preferred start`, `Fallback start`) ``, stays live too: Excel chooses again when you change an input.
+Yes, in a **With formulas** export, which is also what Ari exports unless you ask for values only. Each number a formula calculates in cfo.ai is an Excel formula in the workbook. The numbers those formulas read from outside the Page, such as typed assumptions and imported Actuals on other tables, sit on a **Model inputs** sheet. Change an input in Excel and every cell that depends on it recalculates. A formula that chooses among several inputs with `first` or `last`, such as `` first(`Preferred start`, `Fallback start`) ``, stays live too: Excel chooses again when you change an input.
 
 The workbook is a copy. Changes you make in Excel do not flow back into cfo.ai.
 
-Formulas and the **Model inputs** sheet need access to every Variable and Dimension in the Scenario. Someone without it, such as a person who opens the Page through a share link, gets the numbers the Page shows as plain values, with no **Model inputs** sheet.
+Formulas and the **Model inputs** sheet need access to every Variable and Dimension in the Scenario. Someone without it, such as a person who opens the Page through a share link, gets the numbers the Page shows as plain values, with no **Model inputs** sheet, whichever format they choose. That workbook is the same as a [values-only export](#export-values-only), and its **Export notes** sheet says that it holds values.
 
 A few formulas cannot be written as Excel formulas, such as one longer than Excel allows. Those cells keep their calculated value instead of a formula, and an **Export notes** sheet lists each one. A formula that names items of a numeric Dimension as text, such as deal IDs, finds their cells by number, and a formula that names an item the workbook has no cell for keeps its calculated value and is listed in **Export notes** rather than being written without that item. A cell that reads text or dates, such as a cost center or an end date, from several periods or Dimension items also keeps its calculated value and is listed, because an Excel formula cannot preserve text or dates read from several cells; a text or date read that matches one cell stays a reference to that cell. The download notice counts them and offers **Ask Ari to fix**, which asks Ari to export the Page again and write a working formula into each of those cells.
+
+## Export values only
+
+To export a Page's numbers without its formulas, select **Download spreadsheet** and choose **Values only**, or ask Ari to export the Page as values only. Use it when you want fixed numbers to send, or when a **With formulas** export of a large Model fails or takes too long.
+
+A values-only workbook has the same sheets for the Page's tables and Canvas data, with these differences:
+
+- Each cell a Model formula calculates holds the calculated value, not an Excel formula, so the numbers do not update when you change an input in Excel.
+- Subtotal and comparison columns stay Excel formulas, because they read only cells the sheet shows, and recalculate from those values.
+- There is no **Model inputs** sheet.
+- An **Export notes** sheet says that the workbook holds values; [The cfo.ai interface](/reference/interface#download-spreadsheet) has its wording.
+
+A values-only export does not calculate the inputs that formulas read from outside the Page, which a **With formulas** export needs for the **Model inputs** sheet, so it does less work on a large Model. It still calculates the Page's own tables.
+
+When a **With formulas** export fails, its **Could not download spreadsheet** notice offers **Download values only**, which starts a values-only export of the same Page. cfo.ai does not make that switch for you.
 
 ## When an export runs out of time
 
@@ -82,7 +103,7 @@ An input too large to read is left out, and the cells that read it keep their ca
 
 ## If something goes wrong
 
-A failed export shows **Could not download spreadsheet** with the Page's name and the reason. When the reason names a table and Excel's worksheet limits, the table's saved layout is too large for one worksheet; narrow the table, or hide rows or columns, before exporting again. Every progress label and message is listed in [The cfo.ai interface](/reference/interface#download-spreadsheet). For export time and size limits, see [Limits and file types](/reference/limits#tables-pages-sharing-and-exports).
+A failed export shows **Could not download spreadsheet** with the Page's name and the reason. A failed **With formulas** export also offers **Download values only**; see [Export values only](#export-values-only). When the reason names a table and Excel's worksheet limits, the table's saved layout is too large for one worksheet; narrow the table, or hide rows or columns, before exporting again. Every progress label and message is listed in [The cfo.ai interface](/reference/interface#download-spreadsheet). For export time and size limits, see [Limits and file types](/reference/limits#tables-pages-sharing-and-exports).
 
 ## Related
 

@@ -175,7 +175,7 @@ Opens from a Dimension's label row, such as **DEPARTMENT**, or from **[Dimension
 
 | Control | What it does |
 | --- | --- |
-| **Go to another table** | Opens another table that shows the Dimension, on this Page first. Shown only when such a table exists. |
+| **Go to another table** | Opens another table that shows the Dimension: the first one you can open, taking Pages in sidebar order. Shown only when such a table exists. |
 | **Default for every [Dimension]** | Opens the formula every item at this level shares. A nested breakdown offers one entry per level. |
 | **Edit dimension formula** | Rows only. Opens the formula that defines the Dimension's items. |
 | **Segment by** | Breaks every item at this level down by another Dimension. |
@@ -335,7 +335,7 @@ A column sort orders a Dimension's rows by the values in one column, such as cus
 | A new item | Waits at the end of the rows until the table's values refresh, then takes its place in the order. |
 | **By column** | **Sort** in the Dimension's menu and in the setup panel reads this while the column sort orders the rows. |
 | **Column sort inactive** | The sort is saved but cannot apply, because the sort column was removed from the table. The rows show the Dimension's normal item order; the saved direction never sorts the names. Choose **Sort ascending** or **Sort descending** on another column to sort again, or choose **None**, **Ascending**, **Descending**, or **Manual** under **Sort** to replace it. Adding a comparison, a spacer, or another level does not stop the sort. |
-| Copies | **Duplicate block** keeps the sort on the copy's matching column. |
+| Copies | A copy of the table that Ari makes keeps the sort on the copy's matching column. |
 | Everyone sees the same order | The rows are ordered when the table's values are calculated, so every reader, Ari, and a spreadsheet download get the same order. |
 | Saved | With the table, for everyone. When the save cannot be confirmed, the table shows **Couldn't confirm the table changes were saved** with **Retry**; see [When a change is not saved](#when-a-change-is-not-saved). |
 
@@ -494,7 +494,7 @@ Version history does not list changes to column widths or pinned columns.
 | Hold a comment or note on a cell | Write a note on the Page beside the table, or ask Ari for a text Variable, such as Notes, on a table that lists records. |
 | Color the cells you type into automatically | They carry a dashed underline. Select them and set a **Background** or **Text color**. |
 | Filter or sort dates | Change the date range. Dates always run in date order. |
-| Show two grains on one Date axis, such as quarters and years | Ask Ari for annual columns over the months; it nests a year level above the month level, and the grain button then changes only the months. By hand, duplicate the table with **Duplicate block** and give each copy its own grain. |
+| Show two grains on one Date axis, such as quarters and years | Ask Ari for annual columns over the months; it nests a year level above the month level, and the grain button then changes only the months. For two separate tables, ask Ari to copy the table, and give each copy its own grain; a Table block's menu has no **Duplicate block**. |
 | Hold Variables in both the rows and the columns | Keep every Variable on one side. |
 | Show the same Variable or Dimension twice in the columns | Use a second table. |
 | Transpose itself with one button | Ask Ari to flip it, or drag items between **Rows** and **Columns** in the setup panel. |

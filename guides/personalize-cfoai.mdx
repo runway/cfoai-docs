@@ -36,18 +36,18 @@ A theme cannot set a brand font; fonts beyond the five typefaces belong to a wor
 
     > Give me a deep teal accent with a near-black dark mode. Call it Teal dark.
 
-    Ari saves the whole theme at once. To change one part, such as the accent, say so; Ari keeps the rest of your current theme. To see what you have, ask "What is my theme set to?"
+    Ari saves the whole theme at once, and the app switches to it as soon as it is saved. A theme is always saved whole, so to change one part, ask Ari to change that part and keep the rest, such as "Make the accent darker and keep the rest of my theme." To see what you have, ask "What is my theme set to?"
   </Tab>
   <Tab title="By hand">
     <Steps>
       <Step title="Choose Custom">
-        In **Settings → General → Appearance**, open **Theme** and choose **Custom**.
+        In **Settings → General → Appearance**, open **Theme** and choose **Custom**. If you already have a theme of your own, the list shows it under its own name, such as **Teal dark**, in place of **Custom**; choose that.
       </Step>
       <Step title="Describe it">
         Type the look you want in the box that reads **Create a custom theme**, such as "warm gray with a green accent".
       </Step>
       <Step title="Hand it to Ari">
-        Select **Personalize**. A chat opens where Ari builds the theme from your description.
+        Select **Personalize**. A chat opens where Ari builds the theme from your description. If you already have a theme of your own, the chat asks Ari to change that theme as you described and keep the rest. If you left the box empty, it asks Ari to ask you one question about the look first.
       </Step>
     </Steps>
   </Tab>
@@ -55,7 +55,7 @@ A theme cannot set a brand font; fonts beyond the five typefaces belong to a wor
 
 ## Hear a sound when Ari finishes
 
-Ari can play a short sound when it finishes a reply, which helps when you work in another tab. Open **Settings → Ari**, and under **Sound** check **Play sound when Ari is done**. Then choose a volume, **Quiet**, **Normal**, or **Louder**, and an **Alert sound**, **Default** or **Beep Me**; both choices are unavailable until the box is checked. Each change plays the sound so you can hear it.
+Ari can play a short sound when it finishes a reply, which helps when you work in another tab. Open **Settings → Ari**, and under **Sound** check **Play sound when Ari is done**. Then choose a volume, **Quiet**, **Normal**, or **Louder**, and an **Alert sound**, **Default** or **Beep Me**; both choices are unavailable until the box is checked. Changing the volume or the alert sound plays it so you can hear it.
 
 ## Get a notification when Ari finishes
 
@@ -70,12 +70,15 @@ Your browser can notify you when Ari replies, or needs your answer, in a chat yo
   </Step>
 </Steps>
 
-The setting applies to this browser only, so turn it on in each browser where you want it. Ari stays quiet while you are looking at the chat. Notifications cover chats you have with Ari in cfo.ai, not Slack conversations or scheduled Trigger runs. After a long reply, the chat may offer the same switch above the message box. For what that offer and the notifications say, see [Chat controls and messages](/reference/chat#notifications-when-ari-finishes).
+The setting applies to this browser only, so turn it on in each browser where you want it. Ari stays quiet while you are looking at the chat. Notifications cover chats you have with Ari in cfo.ai, not Slack conversations or scheduled Trigger runs. After a long reply, a line above the message box may offer to turn the same setting on. For what that offer and the notifications say, see [Chat controls and messages](/reference/chat#notifications-when-ari-finishes).
 
 If the switch is grayed out with **Notifications are blocked for cfo.ai. Allow them in your browser’s site settings to turn this on.**, allow notifications for cfo.ai in your browser's site settings, then come back to the tab.
+
+If **Settings → Ari** shows no **Notifications** section, this browser does not support these notifications.
 
 ## Related
 
 - [Settings](/reference/settings#ari)
 - [Brand your workspace](/guides/brand-your-workspace)
 - [Review Ari's formula changes](/guides/review-ari-formula-changes), which covers turning off **Show Ari's edits as they happen**
+- [Create an agent with its own name and instructions](/guides/create-an-agent), which sets up a named agent with its own icon and saved instructions for everyone in the workspace

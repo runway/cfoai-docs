@@ -104,6 +104,17 @@ A connection reads **Sync stopped**, with **Contact cfo.ai support if it isn’t
 
 An MCP server or API shows two statuses on its page and its sidebar card: **Connection**, for whether Ari can call it, and **Data sync**, for the sync setups Ari saved. **Connection: Connected** beside **Data sync: Needs attention** means Ari can still use the service and only the import failed. Select **Fix with Ari** in the **Data sync** section. A chat opens that asks Ari to inspect the latest run and the saved sync setup, repair or retry it, and check the result. If you cannot edit the connection, the section reads **Someone with edit access can fix this sync with Ari.** When a server limits the rate of requests it accepts (HTTP 429), the sync retries that page on its own, so it usually needs nothing from you; [Messages about MCP servers and APIs](/reference/connection-statuses#messages-about-mcp-servers-and-apis) gives the wait rules.
 
+## A source Ari fetches waits for a code or needs attention
+
+A source with no integration, which Ari fetches with a saved script, is listed with your APIs in **Settings → Connections**.
+
+- If its row shows a field labeled **Code [source] sent you**, the source texted or emailed you a sign-in code. Type it and select **Continue fetch** within 15 minutes of the email cfo.ai sent you. If the time ran out, ask Ari to fetch from the source again.
+- If it reads **Needs attention**, the latest fetch ended without data. Ask Ari to fetch from the source again; Ari reports what the source answered.
+- If the source's password or key changed, ask Ari to connect the source again, then remove the old connection. A source connection's saved login cannot be edited.
+- To go back to an earlier version of the script, open the connection's page and select **Restore** beside a revision under **Fetch script**.
+
+[Statuses of a source Ari fetches](/reference/connection-statuses#statuses-of-a-source-ari-fetches) lists each status and message.
+
 ## No queries yet
 
 The connection reads **No queries yet** when its data synced but no saved query brings it into your Model. Select **Set up queries with Ari**. A new chat opens with a request for Ari to review what synced, propose the queries worth saving, and set them up; read it, then send it. If you cannot edit the connection, the line reads **Data synced. Someone with access can set up queries with Ari.**

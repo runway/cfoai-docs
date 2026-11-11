@@ -36,7 +36,7 @@ To export a Page to Excel, select **Download spreadsheet** in the Page header an
         Open the Page, and check that the sidebar's Scenario picker shows the Scenario you want in the workbook.
       </Step>
       <Step title="Select Download spreadsheet and choose a format">
-        Select **Download spreadsheet**, the download icon in the Page header. A **Download as Excel** menu opens. Choose **With formulas** for a workbook whose numbers recalculate in Excel, or **Values only** for the numbers alone; the export starts when you choose. Under **Recent exports**, the menu lists each export you asked for in the last 24 hours, and any still queued or running, with its format, its status, when you asked, and **Download** when its file is ready. A Page with no Table block and no Canvas block with data shows the button too, but its menu can only offer past exports.
+        Select **Download spreadsheet**, the download icon in the Page header. A **Download as Excel** menu opens. Choose **With formulas** for a workbook whose numbers recalculate in Excel, or **Values only** for the numbers alone; the export starts when you choose. Under **Recent exports**, the menu lists up to 10 of your exports from the last 24 hours, and any still queued or running, with its format, its status, when you asked, and **Download** when its file is ready. A Page with no Table block and no Canvas block with data shows the button too, but its menu can only offer past exports.
       </Step>
       <Step title="Wait for the file">
         The export runs in the background, and pointing at the button shows its progress; selecting it again shows a notice with the stage and when you asked, and starts no second export. You can open other Pages while you wait. When the file is ready, it downloads and a **Spreadsheet download started** notice names it.
@@ -103,7 +103,7 @@ An input too large to read is left out, and the cells that read it keep their ca
 
 ## If something goes wrong
 
-A failed export shows **Could not download spreadsheet** with the Page's name and the reason. A failed **With formulas** export also offers **Download values only**; see [Export values only](#export-values-only). When the reason names a table and Excel's worksheet limits, the table's saved layout is too large for one worksheet; narrow the table, or hide rows or columns, before exporting again. Every progress label and message is listed in [The cfo.ai interface](/reference/interface#download-spreadsheet). For export time and size limits, see [Limits and file types](/reference/limits#tables-pages-sharing-and-exports).
+A failed export shows **Could not download spreadsheet** with the Page's name and the reason. When a **With formulas** export ran and then failed, the message also offers **Download values only**; see [Export values only](#export-values-only). An export that was cancelled, or refused before it started, does not offer it. When the reason names a table and Excel's worksheet limits, the table's saved layout is too large for one worksheet; narrow the table, or hide rows or columns, before exporting again. Every progress label and message is listed in [The cfo.ai interface](/reference/interface#download-spreadsheet). For export time and size limits, see [Limits and file types](/reference/limits#tables-pages-sharing-and-exports).
 
 ## Related
 

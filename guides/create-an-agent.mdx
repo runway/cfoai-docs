@@ -43,17 +43,33 @@ For the length limits, see [Limits](/reference/limits#agents).
 
 ## Chat with an agent
 
-1. Select **New chat**.
-2. Open the agent menu at the top of the chat and select the agent under **Chat with**.
-3. Send your message.
+<Steps>
+  <Step title="Start a new chat">
+    Select **New chat**.
+  </Step>
+  <Step title="Choose the agent">
+    Open the agent menu at the top of the chat and select the agent under **Chat with**.
+  </Step>
+  <Step title="Send your message">
+    Type your question or request and send it.
+  </Step>
+</Steps>
 
 You choose the agent before the first message. After that the chat keeps its agent: its name shows at the top of the chat and under the chat's title in the chat list, and you cannot switch the chat to another agent. To ask Ari instead, start a new chat; a new chat starts with Ari.
 
 ## Give a Trigger to an agent
 
-1. Open the account menu, your name or picture at the bottom of the sidebar, and choose **Manage triggers**.
-2. Select **Write manually** for a new Trigger, or select a Trigger and then **Edit trigger**.
-3. Under **Agent**, choose the agent, then select **Create trigger** or **Save changes**.
+<Steps>
+  <Step title="Open the Triggers page">
+    Open the account menu, your name or picture at the bottom of the sidebar, and choose **Manage triggers**.
+  </Step>
+  <Step title="Open the Trigger form">
+    Select **Write manually** for a new Trigger, or select a Trigger and then **Edit trigger**.
+  </Step>
+  <Step title="Choose the agent">
+    Under **Agent**, choose the agent, then select **Create trigger** or **Save changes**.
+  </Step>
+</Steps>
 
 Each run then follows the agent's instructions together with the Trigger's own, and the Trigger's details name the agent under **Agent**. A Trigger that Ari creates for you in a chat runs as Ari; to hand it to an agent, choose the agent in **Edit trigger**. For the rest of the Trigger form, see [Schedule a report or a reminder with a Trigger](/guides/schedule-a-trigger).
 
@@ -78,7 +94,7 @@ You can also ask Ari to archive or restore an agent by name.
     Only administrators can create or change agents. Ask an administrator of the workspace, or ask them to make you one; see [Invite or remove teammates](/guides/invite-teammates).
   </Accordion>
   <Accordion title="A Trigger will not turn back on">
-    When the Trigger's agent is archived, saving reads **This agent is archived. Restore it before starting a new chat or trigger**. Restore the agent, or choose another agent under **Agent**, then turn the Trigger on again.
+    A Trigger whose agent is archived cannot be turned on; saving is refused with a message that says so. Restore the agent, or choose another agent under **Agent**, then turn the Trigger on again. For the message, see [Trigger messages](/reference/interface#trigger-messages).
   </Accordion>
   <Accordion title="The name is refused">
     Each agent's name must be different from every other agent's in the workspace, and no agent can be named Ari. For the exact messages, see [Agents](/reference/chat#agents).

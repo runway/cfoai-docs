@@ -4,7 +4,7 @@ description: "For agents: read a Variable's or Dimension's saved formulas with i
 searchable: false
 ---
 
-Use `inspect_table_blocks` with its `variable` block when a user asks how a Variable is calculated, or why it behaves differently by segment or period. Use its `read` block to see which formula actually produced the numbers in a table.
+Use `inspect_table_blocks` with its `variable` block when a user asks how a Variable is calculated, or why it behaves differently by segment or period. Use its `read` block to see the numbers a table shows and, only where the table's saved formulas prove it, the formula a row or column uses.
 
 ## Read a Variable's saved formulas
 
@@ -91,7 +91,7 @@ Use the `read` block on the table that actually shows the result:
 - `formula_origins` returns no ranked formulas. A read that sends `"all"` or `"zeros"` returns the same rows and values, and adds two `read_note` issues: **Formula attribution is disabled for this workspace; missing formula-origin and input explanations do not mean that a cell has no formula or inputs.** and **formula origins are unavailable from the calculation service for this read**.
 - `include_edit_rules: true` adds each returned row's and column's editing rules: the actions a write accepts there, its own Actuals and Forecast defaults with ownership and writability, and its formula roles.
 
-Use the same Scenario for the formula read and the table read. The saved formula explains the intended calculation; the table confirms which formula applies to the selected period, segment, and Scenario.
+Use the same Scenario for the formula read and the table read. The saved formula explains the intended calculation; the table read gives the values for the selected period, segment, and Scenario, and names a formula only where the saved formulas prove it.
 
 ### Select rows and columns
 

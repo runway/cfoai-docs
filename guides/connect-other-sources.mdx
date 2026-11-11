@@ -138,7 +138,7 @@ If a fetch stops:
 
 - When a fetch you asked for stops with a question, such as a login the source rejected, Ari tells you in the chat that asked for it.
 - The connection reads **Needs attention** when the latest fetch ended without data: it failed, it loaded no table, or nobody entered the code in time. Ask Ari to fetch from the source again.
-- When a scheduled fetch gets the data but cannot load all of it, a chat appears in your chat list in which Ari says which file did not load and what it needs from you.
+- When a scheduled fetch gets the data but cannot load all of it, Ari tells the person who made the connection in a chat, the first night it happens: which file did not load and what it needs from you. Ari writes there once more on the night the files load again, and not on the nights in between.
 - cfo.ai has no form for changing a source connection's saved login or key. When the password or key changes, ask Ari to connect the source again, then remove the old connection in **Settings → Connections**.
 - cfo.ai does not open a browser to sign in for you. Ari's script signs in with web requests to the source's own domain, so a source that signs in only through a separate single sign-on provider or a browser check cannot be fetched this way. Use an API key if the source offers one, or export the data and [upload it as a CSV](/guides/upload-a-csv).
 

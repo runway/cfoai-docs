@@ -79,15 +79,16 @@ Use the `read` block on the table that actually shows the result:
   "scenario": "Main",
   "read": {
     "target": "Operating Plan",
-    "rows": ["Gross Margin"],
-    "formula_origins": "all"
+    "rows": ["Gross Margin"]
   }
 }
 ```
 
-- Each row and column already carries its formula per range under `formulas`, and a cell that breaks its row's formula says so in the cell.
-- `formula_origins: "all"` adds, for every row, each formula the engine ranked for it, best first, with the ones that computed a cell marked selected. `"zeros"` adds them only to rows that show a zero, blank, or error. The default is `"off"`, except that a selection of exactly one cell defaults to `"all"`.
-- A row computed by a formula saved outside this table's rows and columns names that formula's owner and condition in `inherited_from`.
+- A row or column carries its formula per range under `formulas` only where the table's saved formulas prove which formula its cells use, such as a row's own saved default. A cell that breaks its row's formula says so in the cell.
+- When the saved formulas prove no formula for any cell of a row, the row carries the reason in place of a formula, as `formulas: {"unavailable": "Stored rules do not prove the selected expression"}`. A single such cell carries the reason as `formula_unavailable`. The cells are still calculated; read the Variable's saved formulas with the `variable` block.
+- A read does not name the owner of a formula saved outside this table's rows and columns. `inherited_from` needs the engine's record of which formula each cell used, and the read does not ask for it.
+- A `read` adds one `read_note` issue: **Cell formulas are not included in table reads for this workspace; a cell shown without a formula can still be calculated by a saved rule.**
+- `formula_origins` returns no ranked formulas. A read that sends `"all"` or `"zeros"` returns the same rows and values, and adds two `read_note` issues: **Formula attribution is disabled for this workspace; missing formula-origin and input explanations do not mean that a cell has no formula or inputs.** and **formula origins are unavailable from the calculation service for this read**.
 - `include_edit_rules: true` adds each returned row's and column's editing rules: the actions a write accepts there, its own Actuals and Forecast defaults with ownership and writability, and its formula roles.
 
 Use the same Scenario for the formula read and the table read. The saved formula explains the intended calculation; the table confirms which formula applies to the selected period, segment, and Scenario.
@@ -129,7 +130,7 @@ Receipts from `edit_table_blocks` carry no `figures`.
 - In such a table, a Variable, item, or period selector names the selected Scenario's row. A Dimension-led path such as `Employee ID[RW-1024]` is a selector of this kind. The result returns that row together with its copy for each compared Scenario.
 - A compared row's own ref selects that row alone.
 - When a compared Scenario returns no values, the result carries a `comparison_scenario_missing` issue, and coverage reads `incomplete`.
-- `comparison` defaults to `"saved"`, the table's saved comparison. `"none"` reads the selected Scenario's own values and formulas, and `formula_origins: "all"` annotates such a read with the formula each cell used.
+- `comparison` defaults to `"saved"`, the table's saved comparison. `"none"` reads the selected Scenario's own values and formulas.
 - A `comparison` object compares the selected Scenario with each Scenario it names in this one read, whatever the table saves, and leaves the saved table unchanged: `{"scenarios": ["Budget"], "measures": ["VALUE", "DELTA"]}`. `measures` takes up to three of `VALUE`, `DELTA` (the compared Scenario minus the selected one), and `PERCENT` (`DELTA` over the selected Scenario's value); it defaults to `VALUE`.
 - A column or row that is not the selected Scenario's own reads `writable: false`, with a `read_only_reason` that says what it shows: another Scenario's values, saved in that Scenario; another period's values, saved in that period; or the difference between two Scenarios or two periods, which is calculated and has no saved value.
 - The comparison qualifier alone makes nothing read-only. The selected Scenario's own column or row is as writable under either reference the read prints, with or without the qualifier, as the same cells are in a read with no comparison.
@@ -158,7 +159,7 @@ Receipts from `edit_table_blocks` carry no `figures`.
 
 A period selector can be written the way people write it, and it is read under each column's own grain: `2027` or `FY2027` selects a year column, `Q3 2026` or `2026 Q3` a quarter column, and `Mar 2026` a month column. `2027` never selects January of a monthly axis. The stored form, such as `2027-01`, still works everywhere. On a table that shows a year, half, or quarter column beside monthly columns, a month selector such as `2027-01` or `Jan 2027` names the month column rather than the coarser column that starts in that month, and `2027` names the year column. The month wins only over coarser columns of its own period: a coarser column from another period that carries the same label, such as a cohort member labeled `2027-01` under the 2026 year row, is still ambiguous with it, and that refusal's candidates carry their grain, as `2027-01, YEAR grain` and `2027-01, MONTH grain`.
 
-A plain read of a table whose only column axis is Date, with no comparison and no saved query, calculates each run of consecutive requested periods on its own and merges the runs, so `2027-01`, `2027-12`, and `2028-08` calculate three months, not twenty. Consecutive periods still make one calculation. A comparison read, a table with dates on rows or nested with another column axis, and a read with `include_inputs`, an input explanation, or a `where` predicate calculate the whole span as before.
+A plain read of a table whose only column axis is Date, with no comparison and no saved query, calculates each run of consecutive requested periods on its own and merges the runs, so `2027-01`, `2027-12`, and `2028-08` calculate three months, not twenty. Consecutive periods still make one calculation. A comparison read, a table with dates on rows or nested with another column axis, and a read with a `where` predicate calculate the whole span as before.
 
 ## When the table cannot calculate
 
@@ -176,13 +177,12 @@ A `read` can also carry a `mapping_warning` issue, the same one a table write's 
 
 ## Explain one cell's inputs
 
-For a single cell, select one row and one column and add `include_inputs: true`:
+To trace a cell, read its Variable's saved formulas with the `variable` block, then `read` each Variable a formula names by its own reference.
 
-- The result shows one level of the formula's inputs and where each value came from: lookup coordinates, aggregate units, the selected formula, and source dates. Read an input by its own reference to go deeper.
-- `sources` lists the imported tables whose fetched values fed the cell, or fed the cells that the cell's formula directly reads, one whole table per entry and never a record.
-- `sources_status` says how complete that list is: `available`, `truncated` when one of the engine's bounds cut the search, or `not_retained` when the calculation recorded no such table within that reach, which says nothing about whether imported data feeds the cell.
+`include_inputs: true` returns no input rows and no account of what each read returned:
+
+- The read returns the selected rows' calculated values and adds one `read_note` issue: **Input drill-ins are disabled for this workspace; contributing-input rows are unavailable, not absent.**
 - `include_inputs` needs `comparison: "none"`. On a time or Scenario comparison, the read answers with an invalid-input refusal that names the option, not a tool error.
-- The inputs come from a second calculation after the table's own. When that calculation does not finish, the read keeps the calculated values and adds one note that opens "include_inputs: the calculated values on this page are complete. Its input rows are unavailable." and ends with the cause. It is "The input calculation was still running at the read's answer deadline; the read answers within 239 seconds." when the calculation was still running at that deadline; the 239 seconds is the server's own deadline for the read, while an MCP request ends after about 120 seconds, so an MCP caller sees its request time out before that note can arrive and should read without `include_inputs` or with a smaller `window`. The note is "The input calculation stopped: " followed by the calculation service's reason when the service refused or stopped the calculation for capacity, such as a time or memory limit, with "The service marked this refusal as temporary." added when the service said so. The read retries nothing. A cancellation, or a failure of any other category, stays an error.
 
 Every `read` also reports `calculation.source`. When a value is in doubt, [Verify the calculated values](/agents/validate-and-verify#verify-the-calculated-values) says when to read again with `recalculate: true`.
 

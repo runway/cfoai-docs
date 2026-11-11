@@ -92,7 +92,7 @@ At rest, each item shows small marks for what is set on it: an eye with a line t
 | **Reorder row or open row menu** | Grip at a row's left edge | Drag to reorder; click for the row's menu. Dragging a Dimension's items sets its sort to **Manual**. The **+** and the grip appear when you point at a row and hide when a mouse-wheel scroll moves that row away from the pointer; they come back on the row under the pointer once you move it. |
 | **Edit variable formula** | **fx** button when you point at a row name or column header | Opens the formula for the whole row or column. |
 | **Segment by** | Branch button when you point at a row name or column header | Breaks the row or column down by a Dimension, or by a Variable. When the row or column already holds a Variable, the search hides Variables until you turn on its **Variables** filter, because a table can hold Variables on one axis only. On a row that already has a breakdown, opens **Segment [name] by** with **Add**, **Remove level**, and drag to reorder levels. |
-| **Drill in** / **Clear drill-in** | Magnifier button when you point at a calculated row's name | Opens or closes the rows its formula reads, within the table's filters and date range; an input with activity only outside the visible cells gets no row. |
+| **Drill in** / **Clear drill-in** | Magnifier button when you point at a calculated row's name, and an item of the same name in the row's right-click menu | Does not open the row's inputs. It adds one hatched row under the row that reads **No input found**, whatever the row's formula reads, and **Clear drill-in** removes it. To see which inputs a number reads, open its formula with **Edit variable formula**, or ask Ari; see [See the inputs behind a calculated number](/guides/break-down-a-number#see-the-inputs-behind-a-calculated-number). |
 | **More header actions** | Button when you point at a column header | Opens the column's right-click menu. |
 | **Edit formula for [Dimension]** | Button when you point at a Dimension's label row | Opens the formula every item at that level shares. |
 | **Create [Dimension] item** | **+** at the end of a Dimension's items | Adds an item. Reads **Create [Dimension] item under [parent]** inside a nested breakdown. |
@@ -136,8 +136,7 @@ A row or column for a Variable, such as Revenue, or a column that shows each row
 | **Edit formula for [Dimension]** | On a row with a breakdown: the formula for the items one level down. |
 | **Edit child formula** | The same, when there are several levels below; pick one. |
 | **Segment by** | Breaks the row down by a Dimension. |
-| **Drill in** / **Clear drill-in** | Opens or closes the rows its formula reads. |
-| **Go to another table** | Opens another table that shows the Variable: one on this Page first, otherwise the first one you can open. Shown only when such a table exists. |
+| **Go to another table** | Opens another table that shows the Variable: the first one you can open, taking Pages in sidebar order. Shown only when such a table exists. |
 | **Copy** | Copies the row or column name. |
 | **Mention in chat** | Adds the row or column to the current chat. |
 | **Show formula column** / **Hide formula column** | On a column that heads a group: opens or closes its formula column. |
@@ -161,7 +160,6 @@ A row or column for one item, such as Sales.
 | **Copy** | Copies the item's name. |
 | **Mention in chat** | Adds the item to the current chat. |
 | **Segment by** | Breaks this item down by another Dimension. |
-| **Drill in** / **Clear drill-in** | Opens or closes the rows the item's formula reads. |
 | **Filter out this item** | Hides the item on this table. Not offered on a read-only table. |
 | **Expand child rows** / **Collapse child rows** | Opens or closes the rows under it. |
 | **Format and display** | Opens the [format options](#format-and-display-options). |
@@ -219,12 +217,11 @@ Select a range that includes row names, or press **⌘ A**, and right-click a ro
 | **Filter selected items** | Hides the selected items on this table. |
 | **Format [N] variables** | Format options for every selected row. Reads **Format and display** when the selection mixes Variables and items. |
 | **Segment by** | Breaks every selected row down by a Dimension. |
-| **Drill in** / **Clear drill-in** | Opens or closes the inputs of every selected row. |
 | **Expand child rows** / **Collapse child rows** | For every selected row. |
 | **Remove selected items and drill-ins** | Removes the selected Variable rows from this table. When no other table shows one of the Variables, cfo.ai asks first. |
 | **Remove [Dimension]** | Removes the Dimension of the selected items from this table. When no other table shows it, cfo.ai asks first. |
 | **Remove [N] rows** | In the table setup panel: removes the selected rows from this table. |
-| **Remove all drill-in rows** | Closes every drill-in row. |
+| **Remove all drill-in rows** | In the table setup panel: removes the rows under the selected rows from this table. |
 | **No actions available** | Nothing applies to the whole selection. |
 
 ### Total column header menu
@@ -240,12 +237,10 @@ Right-click a total column's header and choose its summary: **None**, **Sum**, *
 | **Show [range] column** | Brings back a hidden range, such as **Show Forecast column**. |
 | **Hide all formula columns** / **Show all formula columns** | For a split formula column. |
 
-### Drill-in row and spacer row menus
+### Spacer row menu
 
 | Control | What it does |
 | --- | --- |
-| **Show variable name** / **Hide variable name** | Labels each drill-in row with its Variable. Remembered in your browser. |
-| **Remove all drill-in rows** | Closes every drill-in row on the table. |
 | **Remove space** | Removes a spacer row. |
 
 ## Removing and deleting
@@ -350,7 +345,6 @@ A column sort orders a Dimension's rows by the values in one column, such as cus
 | Colored references and outlined cells while you edit a formula | Each reference in the formula gets its own color, in order, and the cells it reads take the same color. The colors only tell references apart. See [Write a formula](/guides/write-a-formula). |
 | A logo beside a row name | The Variable reads a connected system, such as QuickBooks. |
 | A link mark beside a row name, when you point at the row | The Variable appears on other tables you can open too. Point at the mark for **[N] synced instances** and **Shown on: [table] on [page]**. |
-| A hatched background | Drill-in rows: the inputs of a formula, or source records. |
 | **LC** and a vertical line | Last close. Actuals are to the left, Forecast to the right. |
 | A funnel in a column header | The rows are filtered by that column's value, such as **Filtered: Status is Active**. A filter the list cannot show reads **Filtered by a custom condition on Status**. |
 | **No items** | The Dimension has no items yet. |
@@ -482,8 +476,8 @@ When a table cannot load or calculate, its notices, such as **We couldn't load t
 | --- | --- |
 | With the table, for everyone | Rows, columns, and breakdowns; filters, sorts, and column sorts; hidden rows and columns; the date range and grain; comparisons; **Format**, **Precision**, **Scale**, **Negatives**, **Date format**, **Background**, **Text color**, **Text style**, and **Indent**; **Display as** (**Pill** or **Plain text**); total column summaries; column widths; pinned columns; **Use as row names**; **Show dimension headers**; **Subtotals below details** |
 | On the Variable or Dimension, for every table | Values and formulas; the name; the currency; the **Date** type; **Variance colors**; **Dimension color** |
-| In your browser only | Open formula columns; the formula bar; whether the setup panel is open; the table height; which rows and column groups you expanded or collapsed; **Show variable name** |
-| Not saved | **Show total columns**; **Pin total columns**; drill-in rows |
+| In your browser only | Open formula columns; the formula bar; whether the setup panel is open; the table height; which rows and column groups you expanded or collapsed |
+| Not saved | **Show total columns**; **Pin total columns** |
 
 Version history does not list changes to column widths or pinned columns.
 

@@ -44,7 +44,8 @@ Inspect the write's result before you move on. A table write's receipt reports:
   - A Variable that fills a styled blank space takes the space's look.
   - A removed Dimension group passes nothing to a group of another Dimension.
   - Kept rows keep their own styles, and formatting the request sets wins over a transfer.
-- **`read_note` entries.** One per imported source that the written formulas read, stating where that source's rows sit on the calendar and which formulas read it. And one for the first Forecast month when the formula reads a prior period, a source, or a Variable with no value there, stating what the formula computed and what each read returned. A note describes the read the formulas asked for; it is not a problem to fix.
+- **`read_note` entries.** One per imported source that the written formulas read, stating where that source's rows sit on the calendar and which formulas read it. A note describes the read the formulas asked for; it is not a problem to fix. A receipt whose readback calculated the table can also carry the notes a `read` carries: **Cell formulas are not included in table reads for this workspace; a cell shown without a formula can still be calculated by a saved rule.** and, on a formula write, **Formula attribution is disabled for this workspace; missing formula-origin and input explanations do not mean that a cell has no formula or inputs.**
+- **`references_evaluated_at`**, which a receipt can carry when the write saved or cleared a formula. Its `status` is `unavailable`, and its `reason` reads **Reference and landing evidence are not calculated for this workspace because formula attribution is disabled.** The receipt therefore carries no warning for a read that found no input at its coordinates, and no note for the first Forecast month. The write still saved; read the cells to check them.
 - **`scenario_warning`**, naming the Scenario the write used when the call left out `scenario`. [Write in a Scenario](/agents/write-formulas#write-in-a-scenario) quotes it.
 - **`formula_readers`**, on a write that saved or cleared cells or formulas: for each written Variable, by reference, how many formulas in the write's Scenario name it in their expression or condition, read at the receipt's `change_log_id`. The Variable's own formulas are not counted, and 0 means no formula calculates from the written values.
 - **`variable_rules`**, beside it: for each written Variable, by reference, `{"before": n, "after": m}`, the saved rules it holds in the write's Scenario at the change before the write and at the write's `change_log_id`. A typed value is one rule at its cell's coordinates and a formula is one rule over the cells its condition reaches, and the calculation evaluates every rule a Variable holds, so `{"Revenue#3fa": {"before": 21000, "after": 27024}}` says the write added 6,024 rules, and a write that clears values shows `after` below `before`. A grid of typed values is as many rules as it has cells; a large set of fixed values belongs in a source table loaded with `edit_integrations` `ingest_csv`, whose rows add no rules. The level defaults a breakdown's save writes on the Variable it breaks down count as written, so a create that breaks Revenue down by Product, Customer, and Line reports `{"before": 0, "after": 8}` for Revenue. A written Dimension gets a `formula_readers` count and no rule counts. When the counts could not be read, both fields are left out and two issues take their place: `formula_readers_unavailable` and `variable_rules_unavailable`.
@@ -71,7 +72,7 @@ If your client stops waiting before the answer arrives, wait until two minutes h
 
 ## Verify the calculated values
 
-After a material change, use `inspect_table_blocks` on the saved table. Check representative dates, segments, formula origins, and source information.
+After a material change, use `inspect_table_blocks` on the saved table. Check representative dates, segments, saved formulas, and source information.
 
 Every `read` result carries `calculation.source`, which says how its values were obtained: `cached`, `promoted`, `derived`, `seeded`, `full`, or `recalculated`.
 
@@ -81,7 +82,7 @@ When a value disagrees with what the user sees, with another read, or with arith
 - makes the fresh result the cached one, so the page shows it too;
 - reports in `recalculated` whether the cached result differed, and in how many cells.
 
-`recalculated` compares the fresh values with the one result the cache held for this read's own calculation request. A read of the same table with other options, such as `include_inputs`, other columns, or `formula_origins`, sends a different request, and the cache holds its result separately, so `cached: "same"` on one read says nothing about what another read showed. To check a value that a read with `include_inputs` showed, recalculate with the same options.
+`recalculated` compares the fresh values with the one result the cache held for this read's own calculation request. A read of the same table with other options, such as other columns, sends a different request, and the cache holds its result separately, so `cached: "same"` on one read says nothing about what another read showed. To check a value that another read showed, recalculate with the same options.
 
 It needs `comparison: "none"` and costs a full calculation, so it is not for routine reads.
 

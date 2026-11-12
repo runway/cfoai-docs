@@ -18,11 +18,13 @@ Ari saves the Guide under a name and tells you what it saved. To try it, ask Ari
 
 | Kind | Card buttons | Use it for |
 | --- | --- | --- |
-| Tour (the default) | **Back**, **Next**, **Skip tour**, and **Done** on the last step, with progress | Onboarding and feature tours |
-| Walkthrough | **Back**, **Continue**, **Exit walkthrough**, and **Done**, with progress | Narrating an analysis, such as board prep |
-| Explanation | **Got it** on its last step, and **Next** before it; no Back button and no progress | One quick spotlight, opened on request |
+| Tour (the default) | **Back**, **Next**, and **Done** on the last step, with progress. The **X** in the card's corner skips the rest of the tour. | Onboarding and feature tours |
+| Walkthrough | **Back**, **Continue**, and **Done** on the last step, with progress. The **X** in the card's corner exits. | Narrating an analysis, such as board prep |
+| Explanation | **Got it** on its last step, and **Next** before it. No **Back**, no progress, and no **X**. | One quick spotlight, opened on request |
 
-A Guide can switch to a set Scenario when it starts, so its numbers match what the cards say. Name the Scenario when you ask; a Guide saved without one runs in whatever Scenario the reader has open. What happens to a Guide when its Scenario is merged, or the merge is undone, is in [Merge a Scenario](/guides/merge-a-scenario#undo-a-merge). A Guide whose Scenario was deleted without a merge cannot open until Ari updates it.
+Press **Esc** to close any Guide.
+
+A Guide that points at a block, a table row, column, or cell, or a Canvas element is saved against one Scenario and switches to it when it starts, so its numbers match what the cards say. Name the Scenario when you ask; otherwise Ari uses the Scenario your chat is in. A Guide whose steps point only at parts of the app, or at nothing, has no Scenario and runs in whatever Scenario the reader has open. What happens to a Guide when its Scenario is merged, or the merge is undone, is in [Merge a Scenario](/guides/merge-a-scenario#undo-a-merge). A Guide whose Scenario was deleted without a merge cannot open until Ari updates it.
 
 ### What a step can point at
 
@@ -42,19 +44,20 @@ A step whose target is on another Page opens that Page first. A step whose targe
 | --- | --- |
 | Title | The card's heading |
 | Text | The card's body. Line breaks you include show in the card. |
-| Richer content | Instead of a title and text, a sequence of headings, small labels, and paragraphs |
+| Richer content | Instead of the text, a sequence of headings, small labels, and paragraphs. When the sequence starts with a heading, that heading takes the title's place. |
 | Card position | Above, below, left, or right of the target, or chosen automatically. The card moves if it would not fit. |
 | Card width | Standard, narrow, or narrowest |
 | Step key | A short readable name, such as `roster`, so you can start the Guide at that step later |
 | Action | Optional. The step does something in the app, described below. |
-| Advance | Optional. Instead of waiting for the reader to select **Next** (**Continue** on a walkthrough card), the step moves on when the reader clicks the lit target, selects any table cell, or mentions a cell in the chat with **Mention cell in chat**, or a selected cell or block with **⌘ L**. |
+
+Every step waits for the reader to select **Next** (**Continue** on a walkthrough card). An action step can also move on by itself, such as when a Canvas control reaches the value you name.
 
 A step can carry one of these actions instead of only pointing:
 
 - Open the chat with suggested prompts to try.
 - Open the Canvas block library with templates already picked.
 - Show the formula behind one table cell.
-- Open a table's **Compare** settings to show where Scenarios are compared. This step is skipped on a phone and for anyone who cannot change the table.
+- Open a table's **Compare** settings to show where Scenarios are compared. This step is skipped in the phone and tablet reading layout and for anyone who cannot change the table.
 - Light up a Canvas control, such as a slider, for the reader to try, and move on when it reaches a value you name.
 - Open version history on a recorded change.
 - Walk through the Model: its Scenarios, then its Pages.
@@ -69,7 +72,7 @@ Ask Ari to start it by name, or at a step:
 
 A tour or walkthrough waits for you: select **Start tour** or **Start walkthrough** under Ari's answer. An explanation opens at once. While it runs, use the card's buttons, or ask Ari to go to the next step, go back, or stop. A floating chat moves out of the way of each step and returns when the Guide ends.
 
-If a Guide cannot open, a notice says so, because the Guide or one of its targets was deleted or is no longer accessible; see [Guide messages](/reference/interface#help-center). Ask Ari to update the Guide: Ari can still read every step's text, sees which steps point at something that is gone, and can point them at the same block in Main when it still exists there, or turn them into notes without a target.
+If a Guide cannot open, a notice says so, because the Guide or one of its targets was deleted or is no longer accessible; see [Guide messages](/reference/interface#help-center). Ask Ari to update the Guide: Ari can still read every step's text and sees which steps point at something that is gone. It can point those steps at something else or turn them into notes without a target. When the Guide's Scenario itself is gone, Ari also sees whether the same block still exists in Main and can point the step there.
 
 A Guide never starts by itself when someone opens a Page. To offer one:
 
@@ -80,10 +83,11 @@ Saved Guides are not listed in the Help center. A walkthrough or explanation you
 
 ## Update or remove a Guide
 
-Ask Ari for the change, such as "Add a step about gross margin after the Revenue step" or "Update the board walkthrough with this month's numbers." Ari saves the Guide again with your changes. A Guide updated after its Scenario was merged is saved against the Scenario it now opens in, so it stays there even if the merge is later undone. To remove one, ask Ari to delete it. To see what you have, ask "Which Guides do we have?"
+Ask Ari for the change, such as "Add a step about gross margin after the Revenue step" or "Update the board walkthrough with this month's numbers." Ari saves the Guide again with your changes. When Ari rewrites a Guide, its action steps stay unless you ask Ari to remove them. A Guide belongs to the workspace, so any member can ask Ari to start, change, or delete it. A Guide updated after its Scenario was merged is saved against the Scenario it now opens in, so it stays there even if the merge is later undone. To remove one, ask Ari to delete it. To see what you have, ask "Which Guides do we have?"
 
 ## Related
 
 - [Skills, Triggers, and Guides](/concepts/automation)
 - [Build a dashboard or board report](/guides/build-a-dashboard)
 - [The cfo.ai interface](/reference/interface#help-center)
+- [Limits](/reference/limits#skills-triggers-and-guides)

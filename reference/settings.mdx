@@ -66,6 +66,26 @@ Someone who cannot change the brand sees **This workspace uses the** [name] **br
 | **That family has no Latin letters, so it can't set headings here.** | The family exists but has no Latin file to import. |
 | **Couldn't reach Google Fonts. Try again.** | The import failed to reach Google Fonts. |
 | **Couldn’t change link previews** | The switch did not save; the reason follows. |
+| **The logo must be a PNG, JPEG, or WebP image.** / **The logo file is larger than 1 MB.** / **The logo is wider or taller than 2,000 pixels.** | Under a logo field. The logo was refused. |
+| **The brand saved, but this logo did not.** | Under a logo field after **Save**, followed by the reason. The rest of the brand is saved. |
+| **Brand saved** / **Brand removed** | The save or the removal went through. |
+| **Couldn’t remove brand** / **Couldn’t upload logo** / **Couldn’t remove logo** | The change did not save; the reason follows, or a line such as **Couldn’t save the brand. Try again.** |
+| **This workspace has no brand. Save a brand first.** | A logo or font was sent before the brand was saved. |
+
+A logo field shows **Remove** once a logo is set. After the brand is saved, **Upload**, **Replace**, and **Remove** on a logo apply at once, without **Save**.
+
+**Remove brand** opens **Remove brand?**, which reads **Everyone in this workspace sees their own theme again. Shared pages lose the** [name] **name and logo. Other workspaces keep their copies.**, with **Cancel** and **Remove brand**. Removing a brand also deletes its logos and brand font and turns **Show the brand on link previews** off.
+
+**Copy to other workspaces** opens a dialog that reads **Each workspace you select gets the** [name] **brand. A later change here does not change the copies.** It lists your other workspaces where you are an administrator and brands are available, each marked **No brand** or **Has the** [name] **brand**. When a selected workspace has a brand, the dialog warns **Copying replaces this brand:** [brand] **in** [workspace]**.** The button reads **Copy to 1 workspace** or **Copy to** [N] **workspaces**. With no workspace to copy to, the dialog reads **You are not an admin of another workspace where brands are available.**
+
+| Copy result | Meaning |
+| --- | --- |
+| **Copied** | The workspace now has the brand, with its logos, brand font, and link-preview choice. |
+| **Not copied. You are not an admin of this workspace.** | Your role there changed. |
+| **Not copied. Brands are not available in this workspace.** | The workspace cannot hold a brand. |
+| **Not copied. This workspace was not found.** | The workspace no longer exists. |
+| **Not copied. The brand could not be saved here. Try again.** | The save failed in that workspace. |
+| **Some workspaces may have changed. Reload the page to see the brand each one has.** | The request failed part way; the reason comes first. |
 
 ### Date and time
 

@@ -3,7 +3,7 @@ title: "Skills, Triggers, and Guides"
 description: "How Skills, Triggers, and Guides let Ari repeat work: what each one is for, how Ari picks a Skill, how a Trigger runs with nobody watching, what a run cannot do on its own, and the record each run keeps."
 ---
 
-Skills, Triggers, and Guides let Ari repeat work, so you explain a job once instead of every month, and the work happens on time even when you are not there. A **Skill** tells Ari how to do a job. A **Trigger** tells Ari when to do it. A **Guide** shows a person around the work, one step at a time.
+Skills and Triggers let Ari repeat work, so you explain a job once instead of every month, and the work happens on time even when you are not there. Guides walk a person through it. A **Skill** tells Ari how to do a job. A **Trigger** tells Ari when to do it. A **Guide** shows a person around the work, one step at a time.
 
 Take a month-end review. A Skill holds your steps: compare Actuals with Forecast for the closed month, flag any line more than 10% off, and write the summary in your usual format. A Trigger runs the review on the fifth of each month and emails you the summary. A Guide walks your board through the variance Page before the meeting.
 
@@ -35,11 +35,12 @@ Nobody reads the chat while a run works, so nobody can answer it. When Ari would
 A run never waits for a person, so anything that needs a person's approval stops short:
 
 - A Scenario merge or deletion that the run prepares waits in its chat until someone presses the confirmation button.
+- A run does not delete imported data your Model still uses. A Variable or Dimension that a saved query loads stays while a formula, table, chart, or Canvas block reads it, or while it holds a formula of yours, even when the instructions say to delete it, its table, or its Page. The run reports what it kept. To remove it, ask Ari in a chat and confirm the list it shows; see [Saved queries](/reference/imported-data#saved-queries).
 - An email to anyone but you waits as a preview in the chat until someone presses **Send**.
 - A run reports to you in cfo.ai, as a message in the chat you created the Trigger from, or in your most recent chat in the workspace when that chat is gone; with no chat of yours in the workspace, nothing is posted and the run's record says so. It can email you or message you in Slack only when its instructions name that channel. It can message nobody else. The one exception is a Trigger a workspace administrator points at a private Slack channel Ari is in: its runs post the result there, and everyone in the channel reads what the administrator could read. The run sends nothing on its own; the message is part of the saved task, so the instructions must still say what to send.
 - A tool of an MCP server, or an endpoint of a connected API, set to **Ask first** does not run. No approval card appears in the run's chat, and Ari is told that the call did not run and that no approval request was created. Set the tool or endpoint to **Allow** before a Trigger needs it; see [Choose what Ari may do](/guides/give-ari-another-service#choose-what-ari-may-do).
 
-A Trigger does one run at a time. When a run is still going at the next scheduled time, that time is skipped. Runs use AI usage like any chat with Ari; see [Plans, AI usage, and connection slots](/concepts/plans-and-usage).
+A Trigger does one run at a time. When a run is still going at the next scheduled time, that time is skipped. A paused Trigger does not catch up: when you turn a recurring Trigger back on, it waits for its next scheduled time. Runs use AI usage like any chat with Ari; see [Plans, AI usage, and connection slots](/concepts/plans-and-usage).
 
 ## The record each run keeps
 

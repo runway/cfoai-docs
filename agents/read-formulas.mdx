@@ -18,13 +18,27 @@ Use `inspect_table_blocks` with its `variable` block when a user asks how a Vari
 - The result lists every formula definition saved on the Variable, each with its condition and its Actuals or Forecast range. A formula the product's own level-default sync saved, such as a generated sum or `0` on a number or the line formula above a percentage's lines, carries `writer: "level_default_sync"`; a formula a person or Ari wrote has no `writer`. Treat a formula with that writer as the product's: the sync replaces or removes it when the tables or the line formula change.
 - Add `conditions` only when the question needs one exact saved scope, such as `["[Department = \"Sales\"]"]`. Leave it out when the user wants every formula.
 - A Variable with many formulas returns them in pages. To read the next page, copy the response's `next.after` into `after` in the same `variable` block, with the same `target`.
-- Leave out `target` to list every readable Variable in the Scenario, as the same entries, in saved order. `next` continues the listing.
+- Leave out `target` to list every readable Variable in the Scenario. The listing is described under [Find a Variable or Dimension by name](#find-a-variable-or-dimension-by-name).
 
 Use the `dimension` block the same way to read a Dimension's saved definitions, and the `items` block to list its items.
 
+### Find a Variable or Dimension by name
+
+A `variable` or `dimension` block without `target` lists every Variable or Dimension you can read, one short entry each. Add `contains` to keep only the names that hold a piece of text, in any letter case:
+
+```json
+{ "scenario": "Main", "variable": { "contains": "fee" } }
+```
+
+- Each entry holds `variable` or `dimension` with `display_name`, `ref`, and `location`: one table that shows the object, with its Page, or `Model` or `Source` when no table you can read shows it. An entry carries no formulas, dependents, or source. Pass its `ref` as `target` to read the object in full.
+- A page holds up to 500 entries, or as many as `limit` asks for, from 1 to 500. A page that stops early carries `truncation`, with `by` reading `count_limit` or `response_budget`, `shown`, and `total`, the count of every match, and `next`. Pass `next` back unchanged as the next call's input.
+- Text that no name holds returns an empty `entries` list.
+- `contains` belongs to a listing and `conditions` to a read with `target`. `contains` beside `target` is refused with **contains narrows the listing that a read without target returns; this read names target**, and `conditions` without `target` with **conditions selects the saved formula definitions that a read with target returns; a listing returns no definitions**.
+- A cursor belongs to its listing. Sent back with a different `contains` or snapshot, it is refused with **after names no variable of this listing at the selected snapshot and contains; a listing's after is its next.after**.
+
 ### What reads each object
 
-Each `variable` or `dimension` entry carries `dependents`, what reads the object at that snapshot:
+Each entry of a `variable` or `dimension` read that names `target` carries `dependents`, what reads the object at that snapshot. A listing entry carries none. `dependents` holds:
 
 | Field | Meaning |
 | --- | --- |

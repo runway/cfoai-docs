@@ -129,7 +129,9 @@ Ari keeps working on cfo.ai's servers until it finishes, even if you close the t
 | **I'm still working on your request.** | Status line | Ari has spent more than about a minute getting ready to ask the AI model, for example condensing a long chat's history, and is still at it. The line appears once. Getting ready can take up to ten minutes; after that the turn ends with **Ari hit an unexpected error. Please try again.** |
 | **Activity** | Under your message | Ari's steps, each with a check mark when done. See [Activity group](#activity-group). |
 | A line of text, such as a sync in progress | Above the message box, under the status line | Work running beside the conversation. Select it to open its card. |
-| **Ari is working…** | Chat list, and a pill near the bottom of the Page | Ari is still working in that chat. |
+| **Ari is working…** | Chat list, and a pill near the bottom of the Page while you follow Ari | Ari is still working in that chat. |
+| **Follow Ari’s work** / **Stop following** | End of the status line above the message box | Starts or stops following Ari. See [Follow Ari's work](#follow-aris-work-have-the-page-move-with-aris-edits). |
+| **Ari last edited [Page] · [Scenario]**, with **Show it** | Above the message box, after Ari finishes | Where Ari's last edit is, when it is not on your screen. |
 
 ### Activity group
 
@@ -189,7 +191,30 @@ The first edit of each kind in a turn plays at full speed with a short explanati
 
 The caption's **…** button (**Thinking animation options**) offers **Hide for this turn** and **Turn off animation for all turns**. Turning the animation off applies to this browser and is the same switch as **Show Ari's edits as they happen** in [Settings](/reference/settings). With the animation off, edited cells are still highlighted, and the chat shows Page and **Formulas** cards for Ari's changes.
 
-While Ari works and a chat is on screen, the Page follows it to each table it edits. Scrolling by about a third of the screen stops following, and so does moving the view yourself: opening another Page or Scenario from the sidebar or a link, or pressing Back or Forward. A smaller scroll, a click on a cell, or typing only pauses it. A pill near the bottom of the Page then reads **Stopped following · Click to follow Ari** (**Tap** on a touch screen) and then **Ari is working…**. Select the pill to jump to Ari's newest edit and follow again. You can drag the pill to another spot, and the spot is remembered. Ari moves your view only while a chat is on screen, on the chat screen or in a chat opened over a Page and not minimized; with the chat closed or minimized, Ari opens no Page for you, and the pill is hidden. A text block Ari rewrites while you have its Page open updates in place; if you are typing in that block, your save replaces Ari's version.
+A text block Ari rewrites while you have its Page open updates in place; if you are typing in that block, your save replaces Ari's version.
+
+### Follow Ari's work: have the Page move with Ari's edits
+
+Ari does not move your view on its own. While Ari works, the Page and Scenario on your screen stay where you put them. To watch the rest of the work, select **Follow Ari’s work** at the end of the status line above the message box. The button shows while Ari is working and is not offered on a phone.
+
+While you follow:
+
+- The view goes to Ari's newest edit and then to each table Ari edits. It opens the Page, and switches to the Scenario Ari is editing, when they differ from yours.
+- A purple frame surrounds the app, and a tag at the top of the Page reads **Following Ari**, with **Stop**.
+- A pill near the bottom of the Page reads **Ari is working…**. Select it to jump to Ari's newest edit. You can drag the pill, and its spot is remembered in this browser.
+- The button in the chat reads **Stop following**.
+
+| Following stops when | Notes |
+| --- | --- |
+| Ari's turn ends | Following is off at the start of every turn. |
+| You select **Stop following** or **Stop**, or press **Esc** | **Esc** stops following when the cursor is not in the message box, a field, a table, a menu, or a dialog. In the message box, **Esc** stops Ari. |
+| You scroll the Page by about a third of the screen | A smaller scroll, a click on a cell, or typing only pauses it. |
+| You move the view yourself | Selecting a Page or a chat in the sidebar, picking a Scenario, opening a search result or a link or card in Ari's reply, creating a Page, or pressing Back or Forward. |
+| You close the chat or open another chat | Minimizing, showing, expanding, or floating the chat does not stop it. |
+
+While the chat is closed or minimized, Ari opens no Page for you, and the frame, tag, and pill are hidden.
+
+When Ari finishes and its last edit is not on your screen, a line above the message box reads **Ari last edited [Page] · [Scenario]**. Select **Show it** to open that Page in that Scenario; the chat stays open. The line goes away once you have had that Page on screen, when Ari's next turn starts, or when you open another chat.
 
 ## Cards in the chat
 
@@ -425,7 +450,7 @@ A chat opens on its newest messages, and scrolling up loads older ones. While Ar
 
 ## The chat list: find, rename, and archive chats
 
-The **Chats** section of the sidebar lists the chats you started in cfo.ai, newest activity first. A chat moves up only when something happens in it, not when you open it. You cannot pin a chat to the top of the list, and you cannot delete a chat you sent a message in: **Archive chat** hides it and keeps its messages and files. To have data deleted, see [Cancel your subscription or delete your data](/guides/cancel-or-delete). Chats you had with Ari in Slack, and chats an AI assistant started over MCP, are left out until you include them with the filter; see [Chats that live somewhere else](#chats-that-live-somewhere-else).
+The **Chats** section of the sidebar lists the chats you started in cfo.ai, newest activity first. Selecting a chat keeps the Page on screen; see [Open Pages and chats from the sidebar](/reference/interface#open-pages-and-chats-from-the-sidebar). A chat moves up only when something happens in it, not when you open it. You cannot pin a chat to the top of the list, and you cannot delete a chat you sent a message in: **Archive chat** hides it and keeps its messages and files. To have data deleted, see [Cancel your subscription or delete your data](/guides/cancel-or-delete). Chats you had with Ari in Slack, and chats an AI assistant started over MCP, are left out until you include them with the filter; see [Chats that live somewhere else](#chats-that-live-somewhere-else).
 
 | Control | What it does |
 | --- | --- |

@@ -68,14 +68,14 @@ From top to bottom:
 | Logo | The cfo.ai logo, or your workspace brand's logo, is a link. Pointing at it shows where it goes: **New chat** when you can start a chat, or **Open** followed by the first Page's name when you cannot. **⌘**-click opens it in a new tab. |
 | **Collapse navigation** | Folds the sidebar to a narrow strip (**⌘ \\**, or **Ctrl \\** on Windows and Linux). On the strip, **Expand navigation** brings it back; pointing at the strip shows the sidebar over the page, and **Keep navigation open** pins it. Dragging the sidebar's edge resizes it, and dragging it narrow enough folds it. In a chat on a narrow window, the sidebar stays folded and the strip offers **Open navigation**. |
 | **Search** | Opens [workspace search](#workspace-search). |
-| **Chats** | Your chats, newest activity first, with **New chat** and a filter. Chats from Slack and from AI assistants are left out until the filter includes them. See [The chat list](/reference/chat#the-chat-list-find-rename-and-archive-chats). |
-| **Model** | Select **Model** to open or close the section. It holds the Scenario picker (**Main Scenario** until you pick another) and the Pages of that Scenario, and **New page** (**+**) creates a Page. The section appears once the workspace has its first Page. See [Scenario and version history controls](/reference/scenarios-and-history) and [Create and organize Pages and blocks](/guides/create-pages-and-blocks). |
+| **Chats** | Your chats, newest activity first, with **New chat** and a filter. Selecting a chat keeps the Page on screen. Chats from Slack and from AI assistants are left out until the filter includes them. See [The chat list](/reference/chat#the-chat-list-find-rename-and-archive-chats). |
+| **Model** | Select **Model** to open or close the section. It holds the Scenario picker (**Main Scenario** until you pick another) and the Pages of the Scenario the picker shows. **New page** (**+**) creates a Page in that Scenario and opens it, and a chat you have open stays open. The section appears once the workspace has its first Page. See [Scenario and version history controls](/reference/scenarios-and-history) and [Create and organize Pages and blocks](/guides/create-pages-and-blocks). |
 | **Connections** | Your connected systems, each with its status, and **Add integration** (**+**). Pointing at the heading shows a **…** menu with **Links sent** and, once a connection can take a link, **Select connections to send a link** (**⌥ click** on such a connection's row does the same). See [Connection statuses and actions](/reference/connection-statuses) and [Send a link so someone else can connect a source](/guides/send-a-connect-link). |
 | **Feedback** | Opens [Share feedback](#share-feedback). |
 | **Powered by cfo.ai** | Shown in a workspace with a brand. |
 | Your name and picture | Opens the [account menu](#account-menu). |
 
-The sidebar remembers its Scenario for each workspace, so opening a chat does not change which Pages it lists. A Page you pick in the sidebar opens full-screen in the sidebar's Scenario and closes the chat you had open.
+The sidebar lists the Pages of the Scenario of the Page on screen. When that Page or its Scenario changes, for example when you open a link, press Back, or follow Ari, the Scenario picker and the Page list change with it. Picking a Scenario in the sidebar's picker only changes the list: the Page on screen stays in its own Scenario until you select a Page from the list, and no Page is highlighted while the list shows a different Scenario. With no Page on screen, the sidebar keeps the Scenario it last showed in this browser.
 
 In a desktop browser, **Chats** and **Model** each grow with their rows up to a height limit, and a longer list scrolls inside its section. **Chats** starts tall enough for 8 chats, and **Model** for the Scenario picker and about 12 Pages. Drag a section's bottom edge to change its height; pointing at the edge shows **Drag to resize. Double-click to restore the default height.** With the edge selected, **↑** and **↓** resize it by about one row, and **Enter** restores the default. A section cannot be shorter than about two rows. The edge appears only when the section fills its limit or is at least one row taller than the smallest size; a closed section has none. The heights are saved in your browser and apply to every workspace you open in it. The drawer on a phone or tablet scrolls as one list and has no edges to drag.
 
@@ -83,16 +83,33 @@ In a desktop browser, **Chats** and **Model** each grow with their rows up to a 
 
 | Control | What it does |
 | --- | --- |
-| A Page row | Opens the Page. Pointing at it shows **New subpage**, **Mention page in chat**, and **Delete page**, and, on a Page with subpages, **Expand subpages** or **Collapse subpages**. |
+| A Page row | Opens the Page and keeps the chat you have open; see [Open Pages and chats from the sidebar](#open-pages-and-chats-from-the-sidebar). Pointing at it shows **New subpage**, **Mention page in chat**, and **Delete page**, and, on a Page with subpages, **Expand subpages** or **Collapse subpages**. |
 
 | Message | Meaning |
 | --- | --- |
 | **Ari is building this page** | A mark on a Page that Ari is still building. |
-| **No pages in this scenario.** | The Scenario you are viewing has no Pages. |
+| **No pages in this scenario.** | The Scenario the sidebar's picker shows has no Pages. |
 | **Loading pages…** / **Couldn’t load pages.** with **Retry** | The list is loading, or it could not load. |
 | **Creating page…** / **Could not create the page.** | A new Page is being created, or it could not be created. |
 
 To move, nest, or rename Pages with the keyboard, see [Keyboard shortcuts](/reference/keyboard-shortcuts#pages-and-blocks). To organize Pages, see [Create and organize Pages and blocks](/guides/create-pages-and-blocks).
+
+### Open Pages and chats from the sidebar
+
+A click in the **Model** list changes the Page you see, and a click in the **Chats** list changes the chat you work with. Each keeps the other. The sidebar highlights both the Page on screen and the open chat.
+
+| You do | What happens |
+| --- | --- |
+| Select a Page while a chat is docked beside a Page | The Page replaces the one beside the chat. A folded model pane opens. |
+| Select a Page while a chat floats over a Page | The Page opens full-screen and the chat stays over it. A minimized chat stays minimized. |
+| **⌥**-click a Page (**Alt**-click on Windows and Linux) | The Page opens full-screen with no chat. Ari keeps working in the chat, and the chat stays in the **Chats** list. |
+| Select a chat while a Page is full-screen | The chat opens floating over the Page. Selecting the chat that already floats there docks it beside the Page. |
+| Select a chat while another chat is docked beside a Page | The chats swap. The Page, its Scenario, and a folded model pane stay as they are. |
+| Select a chat from another screen, such as the connection manager | The chat opens with the Page it last showed. |
+| **⌥**-click a chat (**Alt**-click) | The chat opens alone at full width. **Expand model pane** brings back the Page it last showed. |
+| **⌘**-click a Page or a chat | Opens it in a new browser tab. |
+
+To leave a chat without picking another Page, select **Close chat**; see [A chat and a Page together](#a-chat-and-a-page-together).
 
 ### A workspace with no Pages
 
@@ -292,9 +309,10 @@ Results are grouped, up to eight in each group. The group with the best match co
 | **↑** / **↓** | Move through results |
 | **Enter** | Open the result |
 | **⌘ Enter**, or **⌘**-click | Open the result in a new browser tab |
+| **⌥ Enter**, or **⌥**-click (**Alt** on Windows and Linux) | Open the result alone: a Page with no chat, or a chat with its Page folded away. The bar at the bottom of the window lists it as **Open alone**. |
 | **Esc** | Close search |
 
-A Page opens full-screen in the sidebar's Scenario. A block opens its Page, scrolls to the block, and flashes it. A Variable or a Dimension item opens the table that shows it and marks its row. A Page found by its text scrolls to the passage. A workspace switches to that workspace. A chat opens.
+A result opens the way the same row in the sidebar does. A Page opens in the sidebar's Scenario and keeps the chat you have open: beside a docked chat, or full-screen under a floating one. A block opens its Page, scrolls to the block, and flashes it. A Variable or a Dimension item opens the table that shows it and marks its row. A Page found by its text scrolls to the passage. A workspace switches to that workspace. A chat opens over or beside the Page on screen; picking the chat that already floats over the Page docks it.
 
 ### Search messages
 
@@ -313,7 +331,7 @@ The bar above a Page, from left to right:
 
 | Control | What it does |
 | --- | --- |
-| Scenario picker and **/** | Shown only when a chat is open beside the Page. Switches the Page's Scenario. |
+| Scenario picker and **/** | Shown when a chat is open, docked beside the Page or floating over it. Switches the Scenario of the Page on screen, and the sidebar's Scenario picker and Page list follow. With no chat open, the header shows no Scenario: pick the Scenario in the sidebar and then select the Page from its list. |
 | Page icon | Pick or change the Page's icon. |
 | Page name | Opens **Pages**, the list of Pages in this Scenario, with **New page** and a **Search pages** button that shows a **Find a page…** field. |
 | **Merge** | Shown when a chat is open beside a Page in a Scenario other than Main. See [Merge a Scenario into Main](/guides/merge-a-scenario). |
@@ -333,8 +351,10 @@ Below the header, a Page with a table, a chart, or a Canvas block with data has 
 | **Expand model pane** / **Collapse model pane** | In a chat, shows or folds the Page beside the conversation. |
 | **Show page navigation** / **Hide page navigation** | In a chat, shows or hides a list of Pages beside the Page. |
 | **Create page** | In the model pane of a chat when the workspace has no Pages (**No pages yet**) or the chat has opened none (**No pages open in this chat**). Creates a Page with an empty Table block and opens it. |
-| **Expand chat** | On a floating chat, docks it beside the Page. |
-| **Minimize chat** / **Close chat** | On a floating chat. Minimize keeps the conversation; a chat with nothing sent yet offers **Close chat**. |
+| **Collapse chat pane** | On a chat docked beside a Page. Floats the chat over the full-screen Page. |
+| **Expand chat** | On a floating chat. Docks it beside the Page. |
+| **Minimize chat** | On a floating chat you have sent a message in. Shrinks the chat to a button at the bottom right that shows the chat's name (**Show chat**). Select the button to bring the chat back. The chat stays minimized while you open other Pages. |
+| **Close chat** | On a floating chat and on a docked chat, once you have sent a message. Takes the chat off the screen and leaves the Page. Ari keeps working, and the chat stays in the **Chats** list; select it there to open it again. On a floating chat with nothing sent yet, **Close chat** discards the chat. |
 
 ## Writing on a Page
 
@@ -704,6 +724,8 @@ A phone or tablet browser opens the same workspace in a reading layout, one scre
 | **New chat** | On a Page. Starts a chat. |
 
 Pages are read-only in this layout, whatever your access. You can read tables and Canvas blocks, and a table's **Table block settings** menu offers **Show formula bar** and **Show formula columns**, but you cannot edit cells, add rows or blocks, or create Pages or Scenarios. The Page header shows only the Page's name: **Share**, **Download spreadsheet**, and **Version history** are not offered. Empty states say **Pages are read-only in this browser. Use Desktop Site to create a page.** and **Scenarios are read-only in this browser. Use Desktop Site to create one.**
+
+**Follow Ari’s work** is not offered in this layout, so Ari does not move your view there. When Ari finishes, **Show it** above the message box opens the Page it edited last.
 
 To edit on a phone or tablet, ask your browser for its desktop site. You get the full desktop app, editing included.
 

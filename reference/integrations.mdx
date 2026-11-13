@@ -324,12 +324,14 @@ Premium, through Fivetran, with a table picker.
 
 ### BigQuery
 
-Premium, through Fivetran, with a table picker. If the sync fails with Fivetran's report that the user cannot access BigQuery tables or the project, **The user cannot access BigQuery tables/project (BigQueryConnectorTask_ACCESS_DENIED)**, the report does not say which permission is missing. The connection's line and Ari's answer follow it with the access that Fivetran's BigQuery setup guide lists for the connection's service account, in two options:
+Premium, through Fivetran, with a table picker. If the sync fails with Fivetran's report **The user cannot access BigQuery tables/project (BigQueryConnectorTask_ACCESS_DENIED)**, the report does not say which permission is missing. cfo.ai follows the report with the access that Fivetran's BigQuery setup guide lists for the connection's service account, in two options:
 
 - BigQuery Admin on the project.
 - BigQuery Job User and BigQuery Read Session User on the project, plus a custom role on the dataset with `bigquery.datasets.get`, `bigquery.tables.get`, `bigquery.tables.getData`, `bigquery.tables.list`, `bigquery.tables.create`, `bigquery.tables.update`, and `bigquery.tables.updateData`. With a separate working dataset, only that dataset needs the last three.
 
-Have your Google Cloud admin grant one of the two, then select **Retry**. A connection that reads **cfo.ai lost access** shows **Reconnect to start syncing again.** in place of the list; ask Ari why the sync failed to read it.
+A connection that reads **Sync failed** shows Fivetran's report and then the two options on the line under its name, and Ari gives the same when you ask why the sync failed. Have your Google Cloud admin grant one of the two, then select **Retry**.
+
+A connection that reads **cfo.ai lost access** shows only **Reconnect to start syncing again.** on that line, so the two options are in Ari's answer alone: ask Ari why the sync failed, have your Google Cloud admin grant one of the two, then select **Reconnect**.
 
 ### Databricks
 

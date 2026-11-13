@@ -52,7 +52,7 @@ When a cell has no message of its own, it reads **Formula evaluation failed. The
 
 ### #NO_ROLLUP
 
-`#NO_ROLLUP` appears only in Ari's reads of a table by quarter, half-year, or year. It means no formula calculates the Variable at that grain, so its months are not added into the longer period. The app shows 0 in those cells. Ask Ari to give the Variable a time rollup, such as a sum of its months; see [Why a quarterly view shows zeros](/concepts/totals-and-rollups#why-a-quarterly-view-shows-zeros).
+`#NO_ROLLUP` appears only in Ari's reads of a table by quarter, half-year, or year. It means no formula or source read calculates the cell at that grain, so its months are not added into the longer period. An imported Variable with no time rollup that reads its source only through **Last close** shows it in a quarter or year that is not complete by Last close. The app shows 0 in those cells. Ask Ari to give the Variable a time rollup, such as a sum of its months; see [Why a quarterly view shows zeros](/concepts/totals-and-rollups#why-a-quarterly-view-shows-zeros).
 
 ## Formula editor messages
 

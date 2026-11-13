@@ -48,7 +48,9 @@ Each entry of a `variable` or `dimension` read that names `target` carries `depe
 | `items` | Descriptions of up to 20 dependents |
 | `formula_rules` | Up to 20 of the formulas that read the object, each with whether it can run and what a forced delete does to it |
 
-A `delete` without `force` is refused exactly when `total` is above 0, and deletes at once when it is 0.
+An `items` line for a formula states the Variable or Dimension that holds the formula by reference, with one table that shows it and that table's Page: `formula on variable Revenue#a3f, which is shown on table Plan inputs#7fd on page Forecast#69c (in expression)`. A holder that no table you can read shows reads `which has no readable table location`, and a location in another Scenario ends with that Scenario's reference, as `in scenario Plan B#85c`. A formula's condition is quoted in the line, and it names only the Variables and Dimensions you can read; one you cannot read appears as the reference the formula stores, an internal ID in angle brackets, in place of its name.
+
+A `delete` without `force` is refused whatever `total` is, 0 included; `force` confirms the deletion.
 
 Each `formula_rules` entry describes one formula that reads the object. `formulas` still counts every reading formula, including ones the list leaves out.
 
@@ -104,6 +106,8 @@ Use the `read` block on the table that actually shows the result:
 - A `read` adds one `read_note` issue: **Cell formulas are not included in table reads for this workspace; a cell shown without a formula can still be calculated by a saved rule.**
 - `formula_origins` returns no ranked formulas. A read that sends `"all"` or `"zeros"` returns the same rows and values, and adds two `read_note` issues: **Formula attribution is disabled for this workspace; missing formula-origin and input explanations do not mean that a cell has no formula or inputs.** and **formula origins are unavailable from the calculation service for this read**.
 - `include_edit_rules: true` adds each returned row's and column's editing rules: the actions a write accepts there, its own Actuals and Forecast defaults with ownership and writability, and its formula roles.
+- A number cell that no saved formula and no source read computes reads 0, and a `read` marks it in two cases that the Variable's saved formulas settle. In the first, the Variable is not imported and has no saved formula, or only formulas written for a Date grain other than the cell's. In the second, only the Variable's source read reaches the cell, and the cell's period starts after Actuals ends at the cell's grain. A read at the table's own grain lists the marked cells in one `uncovered_cells_zero_filled` issue, with their `count`, up to five of them under `sample` as `row` and `column`, and the message **No formula, value, or source covers these cells, so they read 0.** A read at a coarser `grain` shows `#NO_ROLLUP` in the cell instead; see [Read a monthly table by quarter or year](#read-a-monthly-table-by-quarter-or-year).
+- An unmarked 0 does not prove that a formula computed it. The read leaves a cell unmarked when the Variable has a formula with no Date grain in its condition, or a formula or typed value at the cell's own grain, and when the cell's row or column has rows or columns nested under it. A read that compares Scenarios or periods marks no cell.
 
 Use the same Scenario for the formula read and the table read. The saved formula explains the intended calculation; the table read gives the values for the selected period, segment, and Scenario, and names a formula only where the saved formulas prove it.
 
@@ -166,7 +170,9 @@ Receipts from `edit_table_blocks` carry no `figures`.
 ```
 
 - Each period holds what the Model calculates at that grain: the Variable's time rollup (its base periods summed, closed, or averaged), or a timeless formula recomputed there.
-- A Variable with neither reads `#NO_ROLLUP` in those cells, explained as no formula computing it at that grain, with its values in the table's own periods. The app shows such a cell as 0, and a Scenario or time comparison read at a coarser grain also shows 0 there.
+- A Variable with neither reads `#NO_ROLLUP` in those cells, and one `#NO_ROLLUP` issue counts them and explains: **No saved rule or source read computes these YEAR cells, so the calculation returned default zeros, not computed YEAR totals.** The app shows such a cell as 0, and a Scenario or time comparison read at a coarser grain also shows 0 there.
+- A Variable that only its source read computes at that grain also reads `#NO_ROLLUP` in each period that starts after Actuals ends. At quarter and year grain, Actuals ends at the last period completed on or before Last close: with Last close on March 31, 2026, the 2026 cell reads `#NO_ROLLUP` and the 2025 cell holds the source total.
+- The marker follows the rules for a cell that nothing computes under [Connect formulas to the values a table shows](#connect-formulas-to-the-values-a-table-shows), so a cell whose row or column has rows or columns nested under it shows its 0.
 - The period columns come back `writable: false`, because their references name the date each period starts and would name the saved month column in a write. A read at the grain the table already shows is the table's plain read, with writable period columns.
 - A finer grain, or a table with no Date axis, comes back as an `invalid` result rather than a tool error, with its reason: `grain QUARTER is finer than this table's YEAR periods; a read's grain shows the periods at their own grain or rolled up to a coarser one`, or `grain QUARTER sets the grain of a table's Date periods, and this table has no Date axis`.
 - Continuation cursors carry the grain.

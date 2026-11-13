@@ -42,6 +42,8 @@ Say Last close moves from January 31 to February 28. February now reads your boo
 
 A month that changes side can lose its formula. A Variable with a Forecast formula and no Actuals formula has nothing that covers February once February is in Actuals, so a number there reads 0 and a date or text value reads empty. A balance that reads its previous month, such as cash, then runs forward from that 0. When Ari moves Last close, it counts the Variables the move leaves without a formula in the months that changed side and names up to 10 of them; a move made by hand does not. See [Ari's save warnings](/reference/formula-errors#aris-save-warnings).
 
+When Ari builds a Variable that carries forward from a starting value typed into one month, such as an interest rate that repeats the month before it or a cash balance that adds each month's net cash flow, it saves the formula for both Actuals and Forecast. A month you close then calculates from the month before it instead of reading 0. The month that holds the typed value keeps that value, and the Actuals formula leaves the months before it empty. A Variable that an import fills is the exception: Ari keeps its carry-forward formula in Forecast only, because an Actuals formula would replace the imported numbers. A Variable that already has only a Forecast formula stays that way until you or Ari give it an Actuals formula; see [If your cash forecast starts at 0 after you close a month](/guides/forecast-cash#if-your-cash-forecast-starts-at-0-after-you-close-a-month).
+
 ## Connected data before and after Last close
 
 What a Variable shows after Last close depends on whether it has a Forecast formula:

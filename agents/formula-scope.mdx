@@ -22,7 +22,7 @@ When you write a condition yourself, use the readable Dimension and item names t
 
 A condition selects cells that exist; it never creates one. An item that only a condition names, such as `[Department = "New"]` when no Department is called New, is not added to the Dimension, and the formula applies to nothing until the item exists.
 
-Items come from imported rows, a Dimension's own formula or item set, saved and manual declarations, mappings, and the configured calendar. So create the item first, with `dimensions[].add_items` on an `update` of `edit_table_blocks`, and save the conditioned formula in a later call, once the item exists; see [Add items and write their values in one call](/agents/write-formulas#add-items-and-write-their-values-in-one-call).
+Items come from imported rows, a Dimension's own formula or item set, saved and manual declarations, mappings, and the configured calendar. So create the item first, with `dimensions[].add_items` on an `update` of `edit_table_blocks`. The same call can write values and cell formulas on the added item; see [Add items and write their values in one call](/agents/write-formulas#add-items-and-write-their-values-in-one-call). Save a row or column formula for the item in a later call, once the item exists.
 
 The same holds for Date: a condition on a month outside the Model's calendar does not add that month.
 
@@ -85,11 +85,11 @@ A formula for Actuals or Forecast needs Date in its condition, at the Model's ba
 [Department = "Sales", Date.Month in any]
 ```
 
-The range is chosen by where the formula sits: `default_formulas.actuals` or `default_formulas.forecast` on a row or a column, or in a `variables` entry of `edit_table_blocks`. A formula saved through a `variables` entry gets one Date term at the Model's base grain automatically, whether or not the call also names a table, because the formula belongs to the Variable and not to a table. Only a formula written on a row or column of a table whose periods are coarser than the base grain is saved at that table's grain; [Create and update formulas](/agents/write-formulas) describes that warning.
+The range is chosen by where the formula sits: `default_formulas.actuals` or `default_formulas.forecast` on a row or a column, or in a `variables` entry of `edit_table_blocks`. A formula saved through a `variables` entry gets one Date term at the Model's base grain automatically, whether or not the call also names a table, because the formula belongs to the Variable and not to a table. A formula written on a row or column of a table is saved at that table's Date grain instead. When the table's periods are coarser than the base grain, the receipt warns; [Create and update formulas](/agents/write-formulas) describes that warning.
 
 ### Read Last close when it matters
 
-A `dimension` read of Date, and each Scenario in `inspect_scenarios`, returns the Scenario's `calendar`: `last_close`, its default `granularity`, and its default range. A table grid `read` does not carry it. Read the calendar when you need to confirm Last close, because the boundary decides which dates count as Actuals and which belong to Forecast. `edit_table_blocks` `update_calendar` changes these settings for the Scenario; every table in the Scenario shares them.
+A `dimension` read of Date, and each Scenario in `inspect_scenarios`, returns the Scenario's `calendar`: `last_close`, its default `granularity`, and its default range. An `inspect_scenarios` page of more than 25 Scenarios leaves the calendars out and says so in `calendar_omitted`. A table grid `read` does not carry it. Read the calendar when you need to confirm Last close, because the boundary decides which dates count as Actuals and which belong to Forecast. `edit_table_blocks` `update_calendar` changes these settings for the Scenario; every table in the Scenario shares them.
 
 If the Scenario has no Last close, explain the missing setting before you build a result that depends on the range.
 

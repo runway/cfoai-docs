@@ -5,7 +5,7 @@ description: "Every function you can use in a cfo.ai formula, such as sum, avera
 
 cfo.ai formulas have 38 functions, listed here by category. Function names are not case-sensitive, so `SUM` and `sum` are the same function; write them in lowercase in new formulas. Each argument can be any expression, including a lookup, another function, or a condition. For operators, lookups, and filters, see [Formula syntax](/reference/formula-syntax).
 
-In the formula editor, press **⌥ F12** (**Alt F12**) to see the syntax and an example of the function under the cursor.
+In the formula editor, press **⌥ F12** (**Alt F12**) to see the syntax and a description of the function under the cursor.
 
 ## All functions at a glance
 
@@ -150,9 +150,9 @@ first(value, source2, ...)
 first(Revenue[Date.Month in any])
 ```
 
-Over an imported table's rows, `first` returns the row with the earliest date in the source's date column. Rows on the same date, or rows in a source with no date column, are ranked the same way every time, in every calculation, but not by their position in the source; when the order inside one day matters, give the rows a time or sequence column.
+Over an imported table's rows, `first` returns the row with the earliest date in the source's date column. Rows on the same date, or rows in a source with no date column, are ranked the same way every time, in every calculation, but not by their position in the source; when the order inside one day matters, date the rows by a column that includes the time of day.
 
-`first` takes several arguments only when each one is an imported column or a plain reference to a Variable or Dimension, with no arithmetic around it. It reads each argument with `first` on its own, then returns the first argument's result that is not empty, left to right: `first(A, B)` returns A's first value, and B's only when A has none. Dates order the rows inside one argument; they do not rank one argument against another. An error in the chosen argument is returned as an error, and an error in an argument that was not chosen does not change the result.
+`first` takes one or more arguments, and each one can be any expression, such as an imported column, a Variable, or a calculation. It reads each argument with `first` on its own, then returns the first argument's result that is not empty, left to right: `first(A, B)` returns A's first value, and B's only when A has none. Dates order the rows inside one argument; they do not rank one argument against another. An error in the chosen argument is returned as an error, and an error in an argument that was not chosen does not change the result.
 
 ### last
 
@@ -163,9 +163,9 @@ last(value, source2, ...)
 last(`Cash Balance`[Date.Month in any])
 ```
 
-Over an imported table's rows, `last` returns the row with the latest date in the source's date column. Rows on the same date, or rows in a source with no date column, are ranked the same way every time, in every calculation, but not by their position in the source; when the order inside one day matters, give the rows a time or sequence column. A reference to an imported column with no function around it reads the same way as `last`.
+Over an imported table's rows, `last` returns the row with the latest date in the source's date column. Rows on the same date, or rows in a source with no date column, are ranked the same way every time, in every calculation, but not by their position in the source; when the order inside one day matters, date the rows by a column that includes the time of day. A reference to an imported column with no function around it reads the same way as `last`.
 
-`last` takes several arguments only when each one is an imported column or a plain reference to a Variable or Dimension, with no arithmetic around it. It reads each argument with `last` on its own, then returns the last argument's result that is not empty, right to left: `last(A, B)` returns B's last value, and A's only when B has none. Dates order the rows inside one argument; they do not rank one argument against another, so `` last(`Vendor A`, `Vendor B`) `` returns Vendor B's latest entry whenever Vendor B has one, even when Vendor A's is more recent. Each input keeps its own filters. An error in the chosen argument is returned as an error, and an error in an argument that was not chosen does not change the result. This is how a Dimension combined from two accounting sources reads; see [Dimension mappings and shared Dimensions](/concepts/dimension-mappings).
+`last` takes one or more arguments, and each one can be any expression, such as an imported column, a Variable, or a calculation. It reads each argument with `last` on its own, then returns the last argument's result that is not empty, right to left: `last(A, B)` returns B's last value, and A's only when B has none. Dates order the rows inside one argument; they do not rank one argument against another, so `` last(`Vendor A`, `Vendor B`) `` returns Vendor B's latest entry whenever Vendor B has one, even when Vendor A's is more recent. Each input keeps its own filters. An error in the chosen argument is returned as an error, and an error in an argument that was not chosen does not change the result. This is how a Dimension combined from two accounting sources reads; see [Dimension mappings and shared Dimensions](/concepts/dimension-mappings).
 
 ### median
 
@@ -260,7 +260,7 @@ The example rounds to the nearest thousand.
 `if` returns one value when a condition is true and another when it is false. It needs all three arguments; unlike Excel, the third one is not optional.
 
 ```text
-if(condition, value_if_true, value_if_false)
+if(condition, whenTrue, whenFalse)
 if(Revenue > 0, `Gross Profit` / Revenue, 0)
 ```
 
@@ -315,7 +315,7 @@ quarter(Date.Month)
 
 ### half
 
-`half` returns 1 for a date from January to June and 2 for a date from July to December. It returns 2 when the date is empty.
+`half` returns 1 for a date from January to June and 2 for a date from July to December. It returns an empty value when the date is empty.
 
 ```text
 half(Date.Month)
@@ -414,7 +414,7 @@ dateadd(date, amount, "unit")
 dateadd(Date.Month, -1, "month")
 ```
 
-The unit must be in quotes: `"day"`, `"week"`, `"month"`, `"quarter"`, `"half"`, or `"year"`. The amount is a whole number; a negative amount moves back.
+The unit must be in quotes and in lowercase: `"day"`, `"week"`, `"month"`, `"quarter"`, `"half"`, or `"year"`. The amount is a whole number; a negative amount moves back.
 
 ### datedif
 
@@ -483,7 +483,7 @@ These names still work in existing formulas. Write the preferred name in new one
 
 ## Excel functions that are not available
 
-cfo.ai has no function by these names. A formula that uses one shows `#NAME?`. Write the cfo.ai form instead.
+cfo.ai has no function by these names. A formula that calls one shows `#NAME?`, except `AND`, `OR`, and `NOT`, which are operators in cfo.ai. Write the cfo.ai form instead.
 
 | Excel function | What to write in cfo.ai |
 | --- | --- |
@@ -491,7 +491,7 @@ cfo.ai has no function by these names. A formula that uses one shows `#NAME?`. W
 | `COUNTIF`, `COUNTIFS` | A filtered `count`: `` count(`Deal Amount`[Deal in any] where `Deal Amount` > 0) `` |
 | `AVERAGEIF`, `AVERAGEIFS` | A filtered `average`: `average(Revenue[Region in {"East", "West"}])` |
 | `VLOOKUP`, `XLOOKUP`, `INDEX` and `MATCH` | A lookup in brackets, such as `` `List Price`$[Plan = this.Plan] ``, or a Dimension mapping; see [Map one Dimension's items to another](/guides/map-dimensions) |
-| `AND()`, `OR()`, `NOT()` | The operators `and`, `or`, and `not`: `Revenue > 0 and Margin > 0.2` |
+| `AND()`, `OR()`, `NOT()` | The operators `and`, `or`, and `not`: `Revenue > 0 and Margin > 0.2`. Written as a call, `AND(...)` or `OR(...)` cannot be read and shows `#VALUE!`. `not(Revenue > 0)` works, because the parentheses group the value that `not` applies to. |
 | `IFS`, `SWITCH`, `CHOOSE` | Nested `if` calls, or a separate formula for each item of a Dimension; see [Write a formula](/guides/write-a-formula#open-the-editor-in-the-right-place) |
 | `TODAY()`, `NOW()` | No current-date function. A formula calculates for every period, and `Date.Month` is the period being calculated. |
 | `OFFSET`, or a reference to the cell above | A period offset: `Revenue[-1]` |

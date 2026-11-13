@@ -35,7 +35,7 @@ The **…** button at the right of the table header.
 | --- | --- | --- |
 | **Show formula bar** | Shows a strip above the grid with the selected cell's formula and where it applies. Select it to edit that formula. | In your browser |
 | **Subtotals below details** | Puts each group's total below its detail rows, as on a P&L that lists the accounts above their subtotal. An expanded group, such as Revenue above its accounts, shows a heading row with its name and no values, then its detail rows, then a total row labeled **Total [name]**; a name that already starts with "Total", such as Total revenue, keeps its name. A collapsed group shows one row with its name and values. Off by default. You can edit, select, copy, and fill the total row's cells as you could the group row's; the heading's value cells copy as blanks and cannot be edited. Not offered on a phone, which shows the saved choice. A spreadsheet download follows it. | With the table, for everyone |
-| **Show total columns** | Shows the [total column](#total-columns) at the end of each column group. On when a table opens. | Not saved |
+| **Show total columns** | Shows the [total column](#total-columns) as the first column of each column group. On when a table opens. When it is off, a group shows its total column only while the group is collapsed. | Not saved |
 | **Pin total columns** | Keeps total columns beside the row names while you scroll. Available while total columns show. | Not saved |
 | **Show dimension headers** | Shows a label row, such as **DEPARTMENT**, above each Dimension's items. On by default. | With the table, for everyone |
 | **Auto-fit all columns** | Sizes every column to its widest content. | With the table, for everyone |
@@ -92,7 +92,7 @@ At rest, each item shows small marks for what is set on it: an eye with a line t
 | **Reorder row or open row menu** | Grip at a row's left edge | Drag to reorder; click for the row's menu. Dragging a Dimension's items sets its sort to **Manual**. The **+** and the grip appear when you point at a row and hide when a mouse-wheel scroll moves that row away from the pointer; they come back on the row under the pointer once you move it. |
 | **Edit variable formula** | **fx** button when you point at a row name or column header | Opens the formula for the whole row or column. |
 | **Segment by** | Branch button when you point at a row name or column header | Breaks the row or column down by a Dimension, or by a Variable. When the row or column already holds a Variable, the search hides Variables until you turn on its **Variables** filter, because a table can hold Variables on one axis only. On a row that already has a breakdown, opens **Segment [name] by** with **Add**, **Remove level**, and drag to reorder levels. |
-| **Drill in** / **Clear drill-in** | Magnifier button when you point at a calculated row's name | Opens or closes the rows its formula reads, within the table's filters and date range; an input with activity only outside the visible cells gets no row. |
+| **Drill in** / **Clear drill-in** | Magnifier button when you point at a calculated row's name, and an item of the same name in the row's right-click menu | Does not open the row's inputs. It adds one hatched row under the row that reads **No input found**, whatever the row's formula reads, and **Clear drill-in** removes it. To see which inputs a number reads, open its formula with **Edit variable formula**, or ask Ari; see [See the inputs behind a calculated number](/guides/break-down-a-number#see-the-inputs-behind-a-calculated-number). |
 | **More header actions** | Button when you point at a column header | Opens the column's right-click menu. |
 | **Edit formula for [Dimension]** | Button when you point at a Dimension's label row | Opens the formula every item at that level shares. |
 | **Create [Dimension] item** | **+** at the end of a Dimension's items | Adds an item. Reads **Create [Dimension] item under [parent]** inside a nested breakdown. |
@@ -136,8 +136,8 @@ A row or column for a Variable, such as Revenue, or a column that shows each row
 | **Edit formula for [Dimension]** | On a row with a breakdown: the formula for the items one level down. |
 | **Edit child formula** | The same, when there are several levels below; pick one. |
 | **Segment by** | Breaks the row down by a Dimension. |
-| **Drill in** / **Clear drill-in** | Opens or closes the rows its formula reads. |
-| **Go to another table** | Opens another table that shows the Variable: one on this Page first, otherwise the first one you can open. Shown only when such a table exists. |
+| **Drill in** / **Clear drill-in** | On a calculated row. Adds or removes the **No input found** row; it does not open the row's inputs. See [Controls in the grid](#controls-in-the-grid). |
+| **Go to another table** | Opens another table that shows the Variable: the first one you can open, taking Pages in sidebar order. Shown only when such a table exists. |
 | **Copy** | Copies the row or column name. |
 | **Mention in chat** | Adds the row or column to the current chat. |
 | **Show formula column** / **Hide formula column** | On a column that heads a group: opens or closes its formula column. |
@@ -161,7 +161,7 @@ A row or column for one item, such as Sales.
 | **Copy** | Copies the item's name. |
 | **Mention in chat** | Adds the item to the current chat. |
 | **Segment by** | Breaks this item down by another Dimension. |
-| **Drill in** / **Clear drill-in** | Opens or closes the rows the item's formula reads. |
+| **Drill in** / **Clear drill-in** | On a calculated row. Adds or removes the **No input found** row; it does not open the row's inputs. See [Controls in the grid](#controls-in-the-grid). |
 | **Filter out this item** | Hides the item on this table. Not offered on a read-only table. |
 | **Expand child rows** / **Collapse child rows** | Opens or closes the rows under it. |
 | **Format and display** | Opens the [format options](#format-and-display-options). |
@@ -175,7 +175,7 @@ Opens from a Dimension's label row, such as **DEPARTMENT**, or from **[Dimension
 
 | Control | What it does |
 | --- | --- |
-| **Go to another table** | Opens another table that shows the Dimension, on this Page first. Shown only when such a table exists. |
+| **Go to another table** | Opens another table that shows the Dimension: the first one you can open, taking Pages in sidebar order. Shown only when such a table exists. |
 | **Default for every [Dimension]** | Opens the formula every item at this level shares. A nested breakdown offers one entry per level. |
 | **Edit dimension formula** | Rows only. Opens the formula that defines the Dimension's items. |
 | **Segment by** | Breaks every item at this level down by another Dimension. |
@@ -219,12 +219,12 @@ Select a range that includes row names, or press **⌘ A**, and right-click a ro
 | **Filter selected items** | Hides the selected items on this table. |
 | **Format [N] variables** | Format options for every selected row. Reads **Format and display** when the selection mixes Variables and items. |
 | **Segment by** | Breaks every selected row down by a Dimension. |
-| **Drill in** / **Clear drill-in** | Opens or closes the inputs of every selected row. |
+| **Drill in** / **Clear drill-in** | On calculated rows. Adds or removes the **No input found** row under each; it does not open their inputs. See [Controls in the grid](#controls-in-the-grid). |
 | **Expand child rows** / **Collapse child rows** | For every selected row. |
 | **Remove selected items and drill-ins** | Removes the selected Variable rows from this table. When no other table shows one of the Variables, cfo.ai asks first. |
 | **Remove [Dimension]** | Removes the Dimension of the selected items from this table. When no other table shows it, cfo.ai asks first. |
 | **Remove [N] rows** | In the table setup panel: removes the selected rows from this table. |
-| **Remove all drill-in rows** | Closes every drill-in row. |
+| **Remove all drill-in rows** | In the table setup panel: removes the rows under the selected rows from this table. |
 | **No actions available** | Nothing applies to the whole selection. |
 
 ### Total column header menu
@@ -240,12 +240,10 @@ Right-click a total column's header and choose its summary: **None**, **Sum**, *
 | **Show [range] column** | Brings back a hidden range, such as **Show Forecast column**. |
 | **Hide all formula columns** / **Show all formula columns** | For a split formula column. |
 
-### Drill-in row and spacer row menus
+### Spacer row menu
 
 | Control | What it does |
 | --- | --- |
-| **Show variable name** / **Hide variable name** | Labels each drill-in row with its Variable. Remembered in your browser. |
-| **Remove all drill-in rows** | Closes every drill-in row on the table. |
 | **Remove space** | Removes a spacer row. |
 
 ## Removing and deleting
@@ -262,7 +260,7 @@ The question is always asked, even when nothing else uses the Variable or Dimens
 
 | Dialog | Text | Buttons |
 | --- | --- | --- |
-| **Delete variable or dimension?** (**Delete variables or dimensions?** for several) | **[name] will no longer appear on any table.** when nothing else uses it; otherwise **Deleting [name] will break [counts].** The counts can include formulas, blocks, Canvas blocks, property settings, and items or pins, and end with **including [N] dependents you can’t see** when you cannot open some of them. | **Cancel** keeps everything as it is. **Keep with Ari** cancels the deletion and opens a chat that names the Variable or Dimension, so Ari can place it on another table; it appears when you can start a chat. **Delete completely** deletes it from the Model and every table. |
+| **Delete variable or dimension?** (**Delete variables or dimensions?** for several) | **[name] will no longer appear on any table.** when nothing else uses it; otherwise **Deleting [name] will break [counts].** The counts can include formulas, blocks, Canvas blocks, property settings, and items or pins, and end with **including [N] dependents you can’t see** when you cannot open some of them. | **Cancel** keeps everything as it is. **Keep with Ari** cancels the deletion and opens a chat that names the Variable or Dimension, so Ari can place it on another table; it appears when you can start a chat. **Delete completely** deletes it from the Model and every table, and the formulas that read it break. The exception is a formula that no longer calculates any cell, because a newer formula covers the same cells or because its one period is outside its Actuals or Forecast range. Where removing it changes no value and you can edit its Variable, the delete removes that formula or empties it, so it does not break; an emptied formula shows a blank if its period later comes into its range. The count in the dialog still includes these formulas. |
 | **Delete item?** | **“[item]” is still used. Deleting it everywhere changes:** and a list of what reads the item. | **Cancel**, **Delete anyway**. Confirming also deletes the formulas whose condition selects only that item, such as the values typed into the item's row. |
 
 To see where a Variable or Dimension is shown, point at its row or column name: the mark beside a name that other tables also show reads **Shown on: [table] on [page]**. **Go to another table** in its right-click menu opens one of those tables.
@@ -310,7 +308,7 @@ Weeks are numbered Monday to Sunday, and **WE** shows the Sunday that ends the w
 
 ## Total columns
 
-A total column, also called a summary column, sits at the end of each column group and summarizes the cells shown in the group. It saves no formula. It is not the same as a parent row that adds up the rows beneath it; see [Totals, aggregation, and time rollups](/concepts/totals-and-rollups#summary-columns-total-columns-at-the-end-of-a-group).
+A total column, also called a summary column, is the first column in each column group and summarizes the cells shown in the group. While [**Show total columns**](#table-block-settings-menu) is on, it stays in view when the group is expanded and when it is collapsed. It saves no formula. It is not the same as a parent row that adds up the rows beneath it; see [Totals, aggregation, and time rollups](/concepts/totals-and-rollups#summary-columns-total-columns-at-the-start-of-a-group).
 
 | Summary | Header | Shows |
 | --- | --- | --- |
@@ -335,7 +333,7 @@ A column sort orders a Dimension's rows by the values in one column, such as cus
 | A new item | Waits at the end of the rows until the table's values refresh, then takes its place in the order. |
 | **By column** | **Sort** in the Dimension's menu and in the setup panel reads this while the column sort orders the rows. |
 | **Column sort inactive** | The sort is saved but cannot apply, because the sort column was removed from the table. The rows show the Dimension's normal item order; the saved direction never sorts the names. Choose **Sort ascending** or **Sort descending** on another column to sort again, or choose **None**, **Ascending**, **Descending**, or **Manual** under **Sort** to replace it. Adding a comparison, a spacer, or another level does not stop the sort. |
-| Copies | **Duplicate block** keeps the sort on the copy's matching column. |
+| Copies | A copy of the table that Ari makes keeps the sort on the copy's matching column. |
 | Everyone sees the same order | The rows are ordered when the table's values are calculated, so every reader, Ari, and a spreadsheet download get the same order. |
 | Saved | With the table, for everyone. When the save cannot be confirmed, the table shows **Couldn't confirm the table changes were saved** with **Retry**; see [When a change is not saved](#when-a-change-is-not-saved). |
 
@@ -350,7 +348,6 @@ A column sort orders a Dimension's rows by the values in one column, such as cus
 | Colored references and outlined cells while you edit a formula | Each reference in the formula gets its own color, in order, and the cells it reads take the same color. The colors only tell references apart. See [Write a formula](/guides/write-a-formula). |
 | A logo beside a row name | The Variable reads a connected system, such as QuickBooks. |
 | A link mark beside a row name, when you point at the row | The Variable appears on other tables you can open too. Point at the mark for **[N] synced instances** and **Shown on: [table] on [page]**. |
-| A hatched background | Drill-in rows: the inputs of a formula, or source records. |
 | **LC** and a vertical line | Last close. Actuals are to the left, Forecast to the right. |
 | A funnel in a column header | The rows are filtered by that column's value, such as **Filtered: Status is Active**. A filter the list cannot show reads **Filtered by a custom condition on Status**. |
 | **No items** | The Dimension has no items yet. |
@@ -482,8 +479,8 @@ When a table cannot load or calculate, its notices, such as **We couldn't load t
 | --- | --- |
 | With the table, for everyone | Rows, columns, and breakdowns; filters, sorts, and column sorts; hidden rows and columns; the date range and grain; comparisons; **Format**, **Precision**, **Scale**, **Negatives**, **Date format**, **Background**, **Text color**, **Text style**, and **Indent**; **Display as** (**Pill** or **Plain text**); total column summaries; column widths; pinned columns; **Use as row names**; **Show dimension headers**; **Subtotals below details** |
 | On the Variable or Dimension, for every table | Values and formulas; the name; the currency; the **Date** type; **Variance colors**; **Dimension color** |
-| In your browser only | Open formula columns; the formula bar; whether the setup panel is open; the table height; which rows and column groups you expanded or collapsed; **Show variable name** |
-| Not saved | **Show total columns**; **Pin total columns**; drill-in rows |
+| In your browser only | Open formula columns; the formula bar; whether the setup panel is open; the table height; which rows and column groups you expanded or collapsed |
+| Not saved | **Show total columns**; **Pin total columns** |
 
 Version history does not list changes to column widths or pinned columns.
 
@@ -494,7 +491,7 @@ Version history does not list changes to column widths or pinned columns.
 | Hold a comment or note on a cell | Write a note on the Page beside the table, or ask Ari for a text Variable, such as Notes, on a table that lists records. |
 | Color the cells you type into automatically | They carry a dashed underline. Select them and set a **Background** or **Text color**. |
 | Filter or sort dates | Change the date range. Dates always run in date order. |
-| Show two grains on one Date axis, such as quarters and years | Ask Ari for annual columns over the months; it nests a year level above the month level, and the grain button then changes only the months. By hand, duplicate the table with **Duplicate block** and give each copy its own grain. |
+| Show two grains on one Date axis, such as quarters and years | Ask Ari for annual columns over the months; it nests a year level above the month level, and the grain button then changes only the months. For two separate tables, ask Ari to copy the table, and give each copy its own grain; a Table block's menu has no **Duplicate block**. |
 | Hold Variables in both the rows and the columns | Keep every Variable on one side. |
 | Show the same Variable or Dimension twice in the columns | Use a second table. |
 | Transpose itself with one button | Ask Ari to flip it, or drag items between **Rows** and **Columns** in the setup panel. |
@@ -504,6 +501,7 @@ Version history does not list changes to column widths or pinned columns.
 | Start a breakdown collapsed for everyone | Which rows are expanded or collapsed is saved only in each person's browser, so each reader opens or closes rows for themselves. |
 | Lock cells so teammates cannot edit them | Every member of a workspace can edit every Page. To let someone read without editing, share a link; see [Sharing and access](/concepts/sharing-and-access). |
 | Be edited on a phone | Ask the phone's browser for its desktop site, or use a computer. See [Phones and tablets](/reference/interface#phones-and-tablets). |
+| Show a Variable under a different name on one table | A row shows its Variable's name, and that name is the same on every table. Rename the Variable to change it everywhere. For a table that lists records, such as employees, you can show a field as each row's name; see [Show a field, such as Name, as the row names](/guides/format-a-table#show-a-field-such-as-name-as-the-row-names). |
 
 To add a chart, ask Ari; the block menu has no chart block. See [Create and organize Pages and blocks](/guides/create-pages-and-blocks#add-a-block-to-a-page).
 

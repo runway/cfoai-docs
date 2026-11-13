@@ -26,7 +26,7 @@ Every time Ari reads, thinks, and writes, it uses AI usage. That includes:
 - Every run of a scheduled Trigger.
 - Images Ari creates when you ask for one. A higher-quality image costs more.
 
-Some AI work is not charged to you. That includes work cfo.ai starts on its own, such as Ari's first look at a newly connected source and the saved queries cfo.ai writes after a sync. It also includes work cfo.ai repeats after a failure on its side. A sync itself uses no AI usage. Work you ask Ari to do with the synced data, such as building Pages from it, uses AI usage like any other request.
+Some AI work is not charged to you. That includes work cfo.ai starts on its own, such as Ari's first look at a newly connected source and the saved queries cfo.ai writes after a sync. It also includes work cfo.ai repeats after a failure on its side. A sync itself uses no AI usage. For a [source with no integration](/concepts/connected-data#a-source-with-no-integration), the fetch that Ari runs when you set the source up or ask for a fetch is not charged to you either, though the chat in which you ask is. Its scheduled daily fetch uses AI usage only when Ari has to run it: a source with one table reruns its saved script with no AI, and Ari steps in to repair a script that failed or to fetch a source with several tables. Work you ask Ari to do with the synced data, such as building Pages from it, uses AI usage like any other request.
 
 Your plan includes an amount of AI usage each billing cycle, and the **Usage** section of Settings shows the share used so far. It resets when the cycle renews. Unused included usage does not carry over.
 
@@ -46,7 +46,7 @@ When every slot is used, a new connection is refused until you remove one or mov
 
 ## What stops when a workspace has no plan
 
-A workspace with no plan, such as after a canceled plan ends, locks: its administrators see the plan chooser, and nobody can work in it until someone chooses a plan. Its connected sources stop refreshing. The data already in the workspace stays. A payment that fails when the trial ends locks the workspace the same way until the card is fixed. In a workspace that has paid before, a payment that fails at renewal does not stop syncing; the charge is retried, and access stops only if the payment still fails. An administrator can then pay again or end the subscription at once, which cannot be undone; see [When the workspace locks](/reference/plans-and-billing#when-the-workspace-locks). See [Plans and billing](/reference/plans-and-billing).
+A workspace with no plan, such as after a canceled plan ends, locks: its administrators see the plan chooser, and nobody can work in it until someone chooses a plan. Its connected sources stop refreshing. The data already in the workspace stays. A payment that fails when the trial ends locks the workspace the same way until the card is fixed; an administrator can pay again or end the subscription at once, which cannot be undone. In a workspace that has paid before, a payment that fails at renewal does not stop syncing, and the charge is retried. Until the payment goes through, the workspace gets no new included usage and auto-reload buys none, so Ari can stop when the usage you have left runs out. If the payment still fails and the subscription ends, the workspace has no plan and locks. See [When the workspace locks](/reference/plans-and-billing#when-the-workspace-locks). See [Plans and billing](/reference/plans-and-billing).
 
 ## Related
 

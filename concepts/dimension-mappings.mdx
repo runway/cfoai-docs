@@ -66,7 +66,7 @@ A few limits apply:
 
 Ari can combine compatible Dimensions into one, or split a combined one apart:
 
-- Combining joins Dimensions with matching types and aggregation, keeps each item's exact label, and rewrites the formulas and tables that read the others. Amounts are never combined, and nothing is saved if the combine is refused. Canvas blocks are not rewritten; Ari lists the ones that may read a retired Dimension so it can check them.
+- Combining joins Dimensions with matching types and aggregation, keeps each item's exact label, and rewrites the formulas and tables that read the others. Amounts are never combined, and nothing is saved if the combine is refused. Canvas blocks are not rewritten. Ari gets a list of the Canvas blocks that mention a removed Dimension, so it can repair them. It also gets a list of the blocks with a button that sends Ari a request. The combine could not check what such a request names, so Ari inspects those blocks itself. A chart that quotes a name also present in the kept Dimension continues to work and is not listed.
 - Splitting turns a combined Dimension back into one Dimension per source column. Formulas that read amounts stay as they are, so a breakdown may no longer add up to its total, and Ari says so.
 
 ## Related

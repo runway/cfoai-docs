@@ -25,6 +25,10 @@ In a layout, `filter` is always a list of items to keep. Ranges, exclusions, and
 
 `edit_table_blocks` `create` and `reshape` take `rows` and `columns` as lists of nodes. `structure.insert` on `update` takes one node per entry, with the `side` it joins, `rows` or `columns`, and an optional `parent`, `before`, or `after`. `inspect_table_blocks` returns the same saved shape under `layout.rows` and `layout.columns`, and `inspect_pages` `read` returns it for each Table block on a Page. A `create` accepts rows and columns copied from either read: `target`, `ref`, `display_name`, `presentation`, `details`, and `hidden_by` are ignored; a copied `formulas` group becomes the new table's default formula column; and explicit `children` on every breakdown root, `[]` included, keep the roots separate, while declarations without `children` nest consecutive levels. `property`, `preserve`, `protected`, and `clear_formula` still need an existing table.
 
+`display_name` is the name a read prints for a row or column. Every write accepts it, so a copied read can be sent back, and saves nothing from it: a table saves no label of its own, and a Variable or Dimension shows under its own name on every table. A `display_name` that is other text does not refuse the write. The rest of the request saves, and the receipt lists each such node in one issue, as [Read the receipt](/agents/validate-and-verify#read-the-receipt) describes. A `display_name` that is empty, or that matches the name of the reference the node sends, adds no issue.
+
+A `reshape` whose layout places no `formulas` group keeps the formula column the table already saves. The Page draws nothing for that column, so a `reshape` that repeats a table's saved rows with `"columns": []` saves nothing and answers `unchanged`. To remove the column, name its reference in `structure.remove` on an `update`.
+
 | Node field | Meaning |
 | --- | --- |
 | `variable` | A Variable row or column, by name or reference. |

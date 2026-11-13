@@ -23,6 +23,51 @@ A mention appears in the message box as a chip. Ari reads the exact cell, row, b
 
 Someone whose access does not include starting chats, such as a visitor who opened a share link, sees no **New chat** button. In the chat area they see **No chats shared with you** above the reason: **You can’t start chats with Ari in this workspace. Ask a workspace admin for access.**, or, for a signed-in address, **You’re signed in as [address], which can’t start chats with Ari in this workspace. A workspace admin can invite this address.** A chat refused for this reason shows the first sentence and no **Retry**, because sending again cannot succeed. cfo.ai starts no Welcome chat for such a person.
 
+## Agents
+
+An agent is Ari with a name, an icon, and instructions that an administrator saves. You choose who a chat is with in the agent menu at the top of a new chat; it reads **Ari** until you choose another agent. After the first message the chat keeps its agent: the top of the chat shows the agent's name with no menu, and you cannot switch the chat to another agent. In the chat list, a chat with an agent shows the agent's name under the chat's title. To set one up, see [Create an agent with its own name and instructions](/guides/create-an-agent).
+
+| Part of the agent menu | What it does |
+| --- | --- |
+| **Chat with** | The menu's heading. Under it are **Ari**, then the workspace's agents. Selecting one sets who the new chat is with. |
+| Filter | Shows **Active** agents (the default), **Archived** agents, or **All**. **Archived** leaves Ari out, and an archived agent cannot be selected. With none archived, the list reads **No archived agents**. |
+| **New agent** (plus) | Opens **New agent**. Administrators only; other people see no plus. |
+| **Edit** (pencil) | On an agent's row when you point at it, move to it with the keyboard, or use a touch screen. Opens **Edit [name]**. Administrators only. |
+| **Archive** / **Restore** (box) | Beside **Edit**. Opens **Archive [name]?** or **Restore [name]?**. Administrators only. |
+
+While the list loads it reads **Loading agents…**, and when it cannot load, **Could not load agents. Retry**.
+
+### New agent and Edit agent
+
+Both dialogs open with **Give an agent a responsibility. Chat with it directly or choose it for a trigger.**
+
+| Field | What it holds |
+| --- | --- |
+| Icon | The button before the name. Opens the same icon picker as a Page's icon: search, a color, shuffle, and a category. You cannot upload an image. A new agent starts with an icon and color cfo.ai picks. |
+| **Name** | Placeholder **Cash watch**. Up to 80 characters. Each name must be different from every other agent's in the workspace, archived agents included and whatever its capitalization, and cannot be Ari. |
+| **Instructions** | Placeholder **What should this agent focus on? Describe its responsibility, approach, and what a useful answer looks like.** Up to 10,000 characters. |
+
+Under the fields: **Available to your workspace. Uses the same model and your existing access as Ari.** **Edit [name]** adds **Instruction changes apply to the next message or trigger run.** **Create agent** saves a new agent and switches the new chat to it; **Save changes** saves an edit. An agent's instructions do not give it access to anything Ari does not have for you.
+
+| Message | Meaning |
+| --- | --- |
+| **Add a name and instructions.** | The name or the instructions are empty. |
+| **Ari is the default agent. Choose a different name.** | The name is Ari. Ari cannot be renamed, changed, or archived. |
+| **An agent with this name already exists** | Another agent in the workspace has the name. |
+| **Could not save or load the agent. Please try again.** | The save failed. |
+| **Loading agent…**, then **Could not load this agent. Please try again.** with **Retry** | **Edit [name]** is reading the saved instructions, or could not. |
+
+### Archive and restore an agent
+
+| Dialog | What it says and does |
+| --- | --- |
+| **Archive [name]?** | **This archives the agent and its chats, and pauses its triggers. Chat history is preserved.** **Archive agent** confirms. If the new chat you have open was set to that agent, it goes back to Ari. |
+| **Restore [name]?** | **The agent will be available for new chats and triggers again. Existing chats stay archived and triggers stay paused.** **Restore agent** confirms. |
+
+cfo.ai has no way to delete an agent. A Trigger whose agent is archived cannot be turned back on: saving reads **This agent is archived. Restore it before starting a new chat or trigger**. Restore the agent or choose another agent for the Trigger first.
+
+Ari can list the workspace's agents, and for an administrator it can create, change, archive, and restore them when asked.
+
 ## The empty chat
 
 A new chat shows the heading **How can I help you?** and the placeholder **Ask anything about your business or data...** in the message box. Four chips below it open suggested prompts for four kinds of question: **Explain** (what something means), **Benchmark** (whether a number is good), **Decide** (what to do), and **Pressure-test** (whether you are wrong). Selecting a suggestion puts it in the message box.
@@ -41,7 +86,7 @@ A new chat shows the heading **How can I help you?** and the placeholder **Ask a
 | Excerpt | A passage you quoted from one of Ari's answers. See [Reply to part of an answer](#reply-to-part-of-an-answer). |
 | A pasted table | A table pasted from a spreadsheet, a web page, or one of Ari's answers keeps its rows and columns as a Markdown table, with the first row as the header, and keeps its caption as a line above the table. A line break inside a cell becomes a space, and a `\|` inside a cell becomes a full-width bar (｜). A reference chip inside a cell stays a chip. The table stays a table wherever you paste it: after words you typed, at the start of a heading, where it goes before the heading, or in a list, where it goes outside the list item. A whole copied answer pastes with its text and its tables each on their own lines. Ari reads the table, and the sent message shows it as a table. |
 
-The message box shows Markdown formatting as you type and keeps it when you send. Typing `1. ` or `* ` at the start of a line starts a numbered or bulleted list, `**bold**`, `_italic_`, and `` `code` `` show as formatted text, and headings, quotes, and dividers work the same way. A sent message keeps its formatting when you open it again. **Shift Enter** starts a new paragraph, continues a list, or leaves a list from an empty item; inside code it inserts a line break. **⌘ Enter** inserts a line break. Underlining is not kept, because Markdown has no underline.
+The message box shows Markdown formatting as you type and keeps it when you send. Typing `1. ` or `* ` at the start of a line starts a numbered or bulleted list, `**bold**`, `_italic_`, and `` `code` `` show as formatted text, and headings, quotes, and dividers work the same way. A sent message keeps its formatting when you open it again. **Shift Enter** starts a new paragraph, continues a list, or leaves a list from an empty item; inside code it inserts a line break. **⌘ Enter** inserts a line break. Underlining is not kept, because Markdown has no underline. Ari reads `&`, `<`, and `>` as you typed them, so a name such as `P&L` or a comparison such as `>30` arrives unchanged, and text typed like a web-page tag, such as `<b>`, shows as those characters. A web or email address you type shows as a link in the sent message; the message box keeps it as plain text.
 
 A pasted link to a cfo.ai template, either its share link or its template page, becomes a chip such as **[title] · workspace template**, and Ari reads the template and builds from it when you send. A link that cannot become a chip stays as text, with one line under the message box: **The person who shared this template turned its link off.**, **This template’s link needs a password. Open the link to enter it.**, **This link doesn’t open a template.**, **You can’t open this template. Ask the person who shared it for its link.**, or **Couldn’t open the template link. Try pasting it again.**
 
@@ -84,7 +129,9 @@ Ari keeps working on cfo.ai's servers until it finishes, even if you close the t
 | **I'm still working on your request.** | Status line | Ari has spent more than about a minute getting ready to ask the AI model, for example condensing a long chat's history, and is still at it. The line appears once. Getting ready can take up to ten minutes; after that the turn ends with **Ari hit an unexpected error. Please try again.** |
 | **Activity** | Under your message | Ari's steps, each with a check mark when done. See [Activity group](#activity-group). |
 | A line of text, such as a sync in progress | Above the message box, under the status line | Work running beside the conversation. Select it to open its card. |
-| **Ari is working…** | Chat list, and a pill near the bottom of the Page | Ari is still working in that chat. |
+| **Ari is working…** | Chat list, and a pill near the bottom of the Page while you follow Ari | Ari is still working in that chat. |
+| **Follow Ari’s work** / **Stop following** | End of the status line above the message box | Starts or stops following Ari. See [Follow Ari's work](#follow-aris-work-have-the-page-move-with-aris-edits). |
+| **Ari last edited [Page] · [Scenario]**, with **Show it** | Above the message box, after Ari finishes | Where Ari's last edit is, when it is not on your screen. |
 
 ### Activity group
 
@@ -144,7 +191,30 @@ The first edit of each kind in a turn plays at full speed with a short explanati
 
 The caption's **…** button (**Thinking animation options**) offers **Hide for this turn** and **Turn off animation for all turns**. Turning the animation off applies to this browser and is the same switch as **Show Ari's edits as they happen** in [Settings](/reference/settings). With the animation off, edited cells are still highlighted, and the chat shows Page and **Formulas** cards for Ari's changes.
 
-While Ari works and a chat is on screen, the Page follows it to each table it edits. Scrolling by about a third of the screen stops following, and so does moving the view yourself: opening another Page or Scenario from the sidebar or a link, or pressing Back or Forward. A smaller scroll, a click on a cell, or typing only pauses it. A pill near the bottom of the Page then reads **Stopped following · Click to follow Ari** (**Tap** on a touch screen) and then **Ari is working…**. Select the pill to jump to Ari's newest edit and follow again. You can drag the pill to another spot, and the spot is remembered. Ari moves your view only while a chat is on screen, on the chat screen or in a chat opened over a Page and not minimized; with the chat closed or minimized, Ari opens no Page for you, and the pill is hidden. A text block Ari rewrites while you have its Page open updates in place; if you are typing in that block, your save replaces Ari's version.
+A text block Ari rewrites while you have its Page open updates in place; if you are typing in that block, your save replaces Ari's version.
+
+### Follow Ari's work: have the Page move with Ari's edits
+
+Ari does not move your view on its own. While Ari works, the Page and Scenario on your screen stay where you put them. To watch the rest of the work, select **Follow Ari’s work** at the end of the status line above the message box. The button shows while Ari is working and is not offered on a phone.
+
+While you follow:
+
+- The view goes to Ari's newest edit and then to each table Ari edits. It opens the Page, and switches to the Scenario Ari is editing, when they differ from yours.
+- A purple frame surrounds the app, and a tag at the top of the Page reads **Following Ari**, with **Stop**.
+- A pill near the bottom of the Page reads **Ari is working…**. Select it to jump to Ari's newest edit. You can drag the pill, and its spot is remembered in this browser.
+- The button in the chat reads **Stop following**.
+
+| Following stops when | Notes |
+| --- | --- |
+| Ari's turn ends | Following is off at the start of every turn. |
+| You select **Stop following** or **Stop**, or press **Esc** | **Esc** stops following when the cursor is not in the message box, a field, a table, a menu, or a dialog. In the message box, **Esc** stops Ari. |
+| You scroll the Page by about a third of the screen | A smaller scroll, a click on a cell, or typing only pauses it. |
+| You move the view yourself | Selecting a Page or a chat in the sidebar, picking a Scenario, opening a search result or a link or card in Ari's reply, creating a Page, or pressing Back or Forward. |
+| You close the chat or open another chat | Minimizing, showing, expanding, or floating the chat does not stop it. |
+
+While the chat is closed or minimized, Ari opens no Page for you, and the frame, tag, and pill are hidden.
+
+When Ari finishes and its last edit is not on your screen, a line above the message box reads **Ari last edited [Page] · [Scenario]**. Select **Show it** to open that Page in that Scenario; the chat stays open. The line goes away once you have had that Page on screen, when Ari's next turn starts, or when you open another chat.
 
 ## Cards in the chat
 
@@ -156,7 +226,7 @@ Ari asks for details it needs as a short form in the chat.
 | --- | --- |
 | An option | Chooses that answer. Each option shows a letter; press the letter to choose it. A question that takes one answer moves on to the next question. |
 | **Other…** | Type your own answer. An **Other…** you choose and leave empty adds nothing: options you checked beside it are still your answer, and with none the question counts as skipped. |
-| **Attach files to your answer** | Appears when a question takes files. Files sent without text read **See attached files**. |
+| **Attach files to your answer** | Appears beside **Dismiss** when the answer you chose takes files. Ari can ask for files on any question, such as a screenshot or a workbook, and then every option and the typed answer take them: choose an option or **Other…** and the button appears, and a question with only a text field shows it from the start. The files follow the same [limits](/reference/limits#chat-with-ari) as files in the message box and reach Ari with your answers. Files for a typed answer show inside its field; files for a chosen option show in the message box. Files sent without text read **See attached files** when you chose **Other…**, or when the question has only a text field and is the only question on the form, apart from any you dismissed, that takes files. When two or more questions take files, a text field you leave empty counts as skipped. |
 | **Dismiss** beside a question | Declines that question. The record of your answers marks it **[Declined]**. **Undo** brings it back before you send. |
 | **Dismiss** in the footer | Sends the answers you picked and declines the questions still open. |
 | **Next** | Moves to the next question, answered or not. |
@@ -190,7 +260,7 @@ A plan that a newer plan replaced keeps its count and shows no status; later tur
 
 ### Tool-call approval card
 
-When Ari wants to call a service you connected under **Settings → Connections**, such as an MCP server or an API, it pauses and shows **Ari is asking to run "[tool]" on [service].**
+When Ari wants to call a service you connected under **Settings → Connections**, such as an MCP server or an API, it pauses and shows **Ari is asking to run "[tool]" on [service].** For an API, the card names the endpoint by its method and path, such as `POST /invoices`, in place of the tool, and the connection by its name; "the same tool" below then means the same endpoint on the same connection.
 
 | Control | What it does |
 | --- | --- |
@@ -325,14 +395,21 @@ A **Reply** button appears above words you select in one of Ari's finished answe
 | **Ari is having trouble reaching the model provider. This is usually temporary. Please try again in a moment.** | The AI model kept failing after retries. | Try again in a moment. |
 | **Ari hit a temporary connection problem and could not recover. Please try again in a moment.** | A connection inside cfo.ai kept failing after retries. | Try again in a moment. |
 | **Ari's turn ended: it waited [time] for [n] actions to finish, and the wait ran out before they did. Your conversation is saved.** | The actions Ari started in one step, such as reading two attached workbooks, did not finish in the time the turn allowed for them. | Select **Retry**, or ask for a smaller piece of the work first. |
-| **Ari hit an unexpected error. Please try again.** | Another failure, including a turn that spent ten minutes getting ready to ask the AI model without sending it a request. | Send the request again. |
+| **Ari hit an unexpected error. Please try again.** | Another failure, including a turn that spent ten minutes getting ready to ask the AI model without sending it a request, and a reply in which Ari twice spent more than three minutes writing one action; see [When Ari takes too long to write one action](#when-ari-takes-too-long-to-write-one-action). | Send the request again, or ask for a smaller change. |
 | **Ari could not finish its latest reply. Please try again.** | The reply ended without a visible answer. | Send the request again, or ask for a smaller piece first. |
+| **I couldn't confirm that a report reached cfo.ai engineering.** | A sentence inside Ari's reply. Ari wrote that it reported a problem to cfo.ai engineering, and cfo.ai found no delivered report behind that sentence, so it replaced the sentence with this one. The rest of the reply stands. | If you want the problem looked at, use **Ask a human** in the Help center; see [Ask a human](/reference/interface#ask-a-human). |
 | **Ari's reply stopped: the model reached its output limit of [N] tokens after [M] minutes of reasoning, before it wrote a reply. Your conversation is saved.** | The model spent its whole output on reasoning twice. | Ask for a smaller piece of the work. |
 | **This request is too large for Ari to continue. Start a new chat with a shorter request or fewer attachments.** | The chat outgrew what Ari can read in one request. No **Retry** is offered. | Start a new chat with **⌘ /** and restate what you need. Attach a file again only if the new request needs it. |
 | **Your session expired. Please sign in again.** | You were signed out. | Sign in again. |
 | **Start your free trial to continue.** / **Verify your work email to continue.** | A new workspace has a step left before Ari can continue. | Finish that step. |
 
 For what to try when Ari is slow or stuck, see [When Ari is slow, stuck, or wrong](/guides/ari-is-slow-stuck-or-wrong).
+
+### When Ari takes too long to write one action
+
+Ari has three minutes to write what one action needs, such as the new contents of a large Canvas block. The three minutes run from when Ari starts writing, and more text does not extend them. At three minutes the action is cancelled before it runs, so it changes nothing, and Ari continues the same reply, where it can try a smaller change.
+
+A second action cancelled this way in the same reply ends the reply. The chat in cfo.ai then shows **Ari hit an unexpected error. Please try again.** A conversation in Slack gets the reason in full: **Ari could not finish this reply: twice, it spent more than 3 minutes writing one action without completing it. Your conversation is saved. Try again, or ask for a smaller change.** Send the request again, or ask for a smaller change, such as one block or one table at a time.
 
 ### Billing stops: out of AI usage or over a limit
 
@@ -373,18 +450,19 @@ A chat opens on its newest messages, and scrolling up loads older ones. While Ar
 
 ## The chat list: find, rename, and archive chats
 
-The **Chats** section of the sidebar lists the chats you started in cfo.ai, newest activity first. A chat moves up only when something happens in it, not when you open it. You cannot pin a chat to the top of the list, and you cannot delete a chat you sent a message in: **Archive chat** hides it and keeps its messages and files. To have data deleted, see [Cancel your subscription or delete your data](/guides/cancel-or-delete). Chats you had with Ari in Slack, and chats an AI assistant started over MCP, are left out until you include them with the filter; see [Chats that live somewhere else](#chats-that-live-somewhere-else).
+The **Chats** section of the sidebar lists the chats you started in cfo.ai, newest activity first. Selecting a chat keeps the Page on screen; see [Open Pages and chats from the sidebar](/reference/interface#open-pages-and-chats-from-the-sidebar). A chat moves up only when something happens in it, not when you open it. You cannot pin a chat to the top of the list, and you cannot delete a chat you sent a message in: **Archive chat** hides it and keeps its messages and files. To have data deleted, see [Cancel your subscription or delete your data](/guides/cancel-or-delete). Chats you had with Ari in Slack, and chats an AI assistant started over MCP, are left out until you include them with the filter; see [Chats that live somewhere else](#chats-that-live-somewhere-else).
 
 | Control | What it does |
 | --- | --- |
 | Filter | Under **Status**, shows **Active** chats (the default), **Archived** chats, or **All**. Under **Include**, the checkbox **Slack, iMessage and MCP chats** adds the chats that live somewhere else; it starts off. Both choices are saved in this browser for you in this workspace, so they survive a reload and a return to the workspace. Another workspace, or another person signed in on this browser, starts with **Active** and the checkbox off. |
-| **Show more** | The list starts with your newest chats. After you expand it, scrolling to the bottom loads older chats, showing **Loading older chats…**, or **Retry loading chats** if a page fails. |
+| Scrolling the list | In a desktop browser, the list scrolls inside the **Chats** section, which starts tall enough for your 8 newest chats. Scrolling to the end loads older chats, showing **Loading older chats…**, or **Retry loading chats** if a page fails. To make the section taller or shorter, drag its bottom edge; see [Navigation sidebar](/reference/interface#navigation-sidebar). |
+| **Show more** | In the navigation drawer on a phone or tablet. The list starts with your 8 newest chats; after you expand it, scrolling to the bottom loads older chats in the same way. |
 | **Archive chat** | Hides the chat from the active list. Its messages and files stay stored. Not offered on a chat that lives in Slack, because Ari would still answer the next message there. |
 | **Unarchive chat** | Returns an archived chat to the active list. |
 | **Discard chat** | Offered instead of **Archive chat** on a chat you have not sent anything in. |
 | Chat name | Double-click it to rename the chat. **Enter** saves the name and **Esc** cancels. Ari sees the new name when it looks back at past chats. |
 
-Changing the filter, or closing the **Chats** section and opening it again, returns the list to its short form.
+On a phone or tablet, changing the filter, or closing the **Chats** section and opening it again, returns the list to its short form.
 
 A mark beside a chat shows its status. Point at it to read the status.
 
@@ -427,6 +505,8 @@ Ari chats in Slack direct messages, and in private channels an administrator add
 
 A message Ari sends you in Slack, as a direct message or a Trigger's channel post, can carry its detail as up to five replies in a thread under it, so the message itself stays a short headline; Ari chooses that shape for a report with tables, long lists, or detail per item, or when you ask for it. A reply that does not go through, because Slack refuses it or gives no clear answer, ends the thread, and the message stands with the replies that posted; a reply Slack gave no clear answer about is not sent again, so it may still be in the thread, and a reply Slack did not take but may take shortly, such as under a rate limit, is tried up to two more times. The five retries in the next paragraph apply to Ari's reply to your message, not to these thread replies.
 
+A message Ari sends you in Slack, as a direct message or a Trigger's channel post, can also carry one image saved in a chat: a PNG or JPEG of up to 10 MB, such as a picture Ari generated, a picture Ari took of a Canvas block, or an image you attached. The image posts first, as a message of its own under the file name the chat shows, then the text, then any thread replies. When the image does not go through, the text is not sent, so no message arrives that describes a missing picture; ask Ari to send the text without the image. A Slack workspace connected before cfo.ai asked for permission to upload images cannot take one until an administrator selects **Disconnect**, then **Add to Slack** again, in **Settings → Ari → Slack**. When a Trigger's run finds no Slack workspace connected, the copy it posts in your cfo.ai chat holds the text without the image.
+
 Ari's reply posts to the Slack thread once, whether the turn ran in your browser, because you had the same chat open in cfo.ai, or on cfo.ai's servers. When Slack is slow to answer or cannot be reached, cfo.ai tries again, starting 30 seconds later and up to five times. A reply that Slack still does not take stays in the chat in cfo.ai; see [When a reply does not reach Slack](#when-a-reply-does-not-reach-slack).
 
 | Message | Meaning |
@@ -436,10 +516,10 @@ Ari's reply posts to the Slack thread once, whether the turn ran in your browser
 | **Your CFO.ai account doesn't have access to this workspace's CFO.ai. Ask an admin for access, then message me again.** | Your cfo.ai account does not belong to the cfo.ai workspace this Slack workspace is connected to. |
 | **I work in direct messages, and in private channels a cfo.ai admin adds me to. Send me a direct message and I'll pick this up there.** | You mentioned Ari where it is not turned on: a public channel, a private channel Ari is not a member of, or a private channel where no cfo.ai administrator has added or @mentioned it yet. Ari reads nothing else there. |
 | **Hi, I'm Ari. [name] set me up in this channel, so anyone here can ask me about the company's numbers. I answer when you @mention me, and I join in when I can help. My answers use [name]'s cfo.ai access, and everyone in this channel can read them.** | An administrator added Ari to a private channel, or @mentioned it in a private channel it was already in. Every answer there uses that administrator's access. |
-| 👀 on a channel message | Ari is working on that message. |
+| 👀 on a channel message | Ari is working on that message. When the message did not @mention Ari and Ari ends its turn without a reply, the 👀 comes off and nothing posts. A message that @mentions Ari always gets a reply or an emoji reaction. |
 | **I only work in private channels, so I'm leaving this one. …**, **Only a cfo.ai admin can add me to a channel, so I'm leaving. …**, **A cfo.ai admin needs to disconnect Slack and add it again in cfo.ai Settings before I can work in channels, so I'm leaving. …**, **The admin who added me here no longer has admin access in cfo.ai, so I'm leaving. …** | Ari left the channel. [If Ari leaves a channel](/guides/use-ari-in-slack#if-ari-leaves-a-channel) explains each reason and what to do. |
 | **I can't read files or images in Slack yet. Paste the text into a message and I'll take it from there.** | You sent a file or image. Ari reads nothing in that message. |
-| A stop message, such as one that starts **I had to stop here** | Ari ended the turn with its own words about why, and they post in the thread in place of a reply. They are the messages in [Billing stops](#billing-stops-out-of-ai-usage-or-over-a-limit) and, from [When a reply stops early or shows an error](#when-a-reply-stops-early-or-shows-an-error), **This request is too large for Ari to continue. …**, **Ari is having trouble reaching the model provider. …**, **Ari hit a temporary connection problem and could not recover. …**, **Ari's turn ended: it waited [time] for [n] actions to finish …**, and **Ari hit an unexpected error. Please try again.** The same message is in the conversation in cfo.ai. |
+| A stop message, such as one that starts **I had to stop here** | Ari ended the turn with its own words about why, and they post in the thread in place of a reply. They are the messages in [Billing stops](#billing-stops-out-of-ai-usage-or-over-a-limit) and, from [When a reply stops early or shows an error](#when-a-reply-stops-early-or-shows-an-error), **This request is too large for Ari to continue. …**, **Ari is having trouble reaching the model provider. …**, **Ari hit a temporary connection problem and could not recover. …**, **Ari's turn ended: it waited [time] for [n] actions to finish …**, **Ari hit an unexpected error. Please try again.**, and **Ari could not finish this reply: twice, it spent more than 3 minutes writing one action without completing it. …** The same message is in the conversation in cfo.ai, except the last, which reads **Ari hit an unexpected error. Please try again.** there; see [When Ari takes too long to write one action](#when-ari-takes-too-long-to-write-one-action). |
 | **Something went wrong on my end and I couldn't finish that. Please try again.** | Ari's turn failed for another reason. |
 
 When an administrator removes Ari from a channel, the channel's conversations stay in cfo.ai as chats of the administrator who set Ari up there, and Ari forgets which chat each thread belonged to. If an administrator adds Ari to the channel again, a reply in an earlier thread starts a new conversation rather than continuing the old one.

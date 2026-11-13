@@ -25,7 +25,7 @@ Two consequences follow:
 
 A new Scenario normally starts from Main. When you want to try a second version of a plan you already built, start from that plan instead: duplicate the Scenario, or ask Ari for "a new Scenario from the Hiring plan". The copy is a regular Scenario with the same base as the original, Main for every Scenario created from Main, and it begins with everything the original changed: its values, formulas, Variables, Pages, and tables, with the sharing settings the original set on its Pages. From then on the two are independent. An edit to one stays in that one, and both keep receiving Main's updates where neither overrides them.
 
-A copy is not a Snapshot. A Snapshot is pinned to one moment and stops following its source; a copy keeps following Main and is listed beside the original, not under it. You can also duplicate a Snapshot: the copy is a regular Scenario on Main that starts with the Snapshot's pinned numbers and any edits made in the Snapshot since, so you can work from the plan the board approved while the Snapshot itself stays as it was. Where the copy's values match Main they follow Main from then on; where they differ, the copy keeps its own.
+A copy is not a Snapshot. A Snapshot is pinned to one moment and stops following its source; a copy keeps following Main and is listed beside the original, not under it. You can also duplicate a Snapshot: the copy is a regular Scenario on Main that starts with the Snapshot's pinned numbers and any edits made in the Snapshot since, so you can work from the plan the board approved while the Snapshot itself stays as it was. The copy is not pinned. It keeps only what differed from Main when you made it and follows Main for the rest. A formula that matched Main changes when Main changes it, and a formula the copy saved keeps its own value. A table added to Main appears in the copy. A table deleted from Main leaves the copy too, along with any values the copy held in that table. Only the Snapshot keeps the plan as it was, so keep the Snapshot for as long as you need that record.
 
 ## Merging brings a Scenario into Main
 
@@ -50,6 +50,8 @@ Every write to a Scenario is recorded, whether you made it or Ari did. Version h
 - **Undo** reverses one change, or one related batch of changes, and puts back only the fields that change wrote. Later changes to other fields stay, even on the same Page or Variable. When a later change edited one of those same fields, such as the same Page's name, the undo is refused and names that later change, so nothing is silently replaced.
 - **Restore** returns the whole Scenario to an earlier point and rolls back every change made after it. The restore is itself a recorded change, so you can undo it too. Ari calls this a revert.
 
+Undo can also return a Scenario to Main. When you undo the only edit a Scenario made to something it read from Main, such as a formula, a Canvas block, or a table's settings, the Scenario reads that item from Main again. It shows Main's current version, including edits made in Main since the Scenario's edit, and it follows later Main edits. Say a hiring Scenario changes a formula it read from Main, and someone then edits that formula in Main. Undoing the Scenario's change shows Main's edited formula.
+
 A change a Scenario inherited from Main cannot be undone from inside the Scenario. Undo it in Main.
 
 ## Scenario, Snapshot, or version history: which one to use
@@ -65,12 +67,27 @@ A change a Scenario inherited from Main cannot be undone from inside the Scenari
 
 ## Where Scenarios show up
 
-- A Page shows the Scenario you are viewing in the sidebar's Scenario picker.
+- A Page is open in one Scenario at a time. The sidebar's Scenario picker shows that Scenario, unless you have picked another one there to browse its Pages; the Page changes Scenario when you open it from that list.
 - A Table block can show other Scenarios beside its own, and a Canvas block can read up to three Scenarios at once.
 - A share link shows the one Scenario you choose for it. See [Sharing and access](/concepts/sharing-and-access).
-- Ari makes changes in the Scenario you are viewing when you send your message, unless you name another one. Switch Scenarios between messages and Ari follows. Ari also knows that Main is the plan of record. A new company model, baseline, Page, or report goes in Main unless you name a Scenario, so it stays available in every Scenario; a request to change the open Scenario's plan, such as planned hires, spending, or funding, stays in that Scenario with its Pages and tables. Ari names the destination when it differs from the Scenario on screen, and before it adds new amounts to Main while you view another Scenario, it explains their effect on the live Scenarios that inherit them. A correction goes where the original was made; a Scenario that keeps its own version of the number is named, and Ari offers to correct it too.
+- Ari makes changes in the chat's Scenario, the one that was on screen when you started the chat, unless you name another one. Opening a different Scenario afterwards does not move the chat. See [Each chat works in one Scenario](#each-chat-works-in-one-scenario). Ari also knows that Main is the plan of record. A new company model, baseline, Page, or report goes in Main unless you name a Scenario, so it stays available in every Scenario; a request to change the chat Scenario's plan, such as planned hires, spending, or funding, stays in that Scenario with its Pages and tables. Ari names the destination when it differs from the Scenario on screen, and before it adds new amounts to Main while you view another Scenario, it explains their effect on the live Scenarios that inherit them. A correction goes where the original was made; a Scenario that keeps its own version of the number is named, and Ari offers to correct it too.
 
-So if a Page or a change seems to be missing, check the Scenario picker: it may be in another Scenario.
+So if a Page or a change seems to be missing, check the Scenario picker: it may be in another Scenario. Ari's reply names the Scenario it edited when that is not the one on screen.
+
+## Each chat works in one Scenario
+
+A chat keeps working in the Scenario that was on screen when you started it. That answers a question people ask after they open another Scenario: "I switched to Main. Why did Ari still edit Hiring freeze?" Suppose you start a chat while a Page is open in Hiring freeze, then open the Page in Main to check a number. "Raise the engineering budget" still edits Hiring freeze. Because the Scenario on screen is now a different one, Ari names the Scenario it will edit when it starts and again when it finishes. When the chat and the screen use the same Scenario, Ari leaves the names out.
+
+What follows from this:
+
+- A question about what is on screen, such as "why is this cell negative?", is answered for the Scenario on screen. Ari then offers the same answer for the chat's Scenario.
+- A question that does not point at the screen is answered for the chat's Scenario, and Ari asks whether you meant the one on screen.
+- A request that names a Scenario, such as "In Main, add two engineers," edits that Scenario. The chat keeps its own.
+- A request to edit what is on screen while the screen shows another Scenario makes Ari ask first which Scenario you mean: the chat's Scenario, the one on screen from now on, or the one on screen this once.
+- To move a chat to another Scenario, ask Ari, for example "Switch this chat to Main." The switch applies from your next message, and you need edit access to that Scenario.
+- Nothing on screen names a chat's Scenario. Ask Ari which Scenario the chat works in.
+- If the chat's Scenario is deleted, or you lose access to it, Ari tells you and needs you to name a Scenario before it changes anything.
+- An older chat, started before chats kept a Scenario of their own, works in the Scenario on screen when you send each message, and cannot be switched.
 
 ## Related
 

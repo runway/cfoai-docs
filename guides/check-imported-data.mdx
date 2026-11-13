@@ -24,7 +24,7 @@ QuickBooks Online and Xero load your three most recent complete months first and
 
 ### Last close is not the month you think
 
-Your Model's **Last close**, your month-end, decides which months read as Actuals. In months after it, a Variable with a Forecast formula calculates that formula instead of reading your books. A Variable that only reads its connected column keeps showing the source's rows after Last close, so moving Last close does not change what it shows. If last month still shows forecast numbers, move Last close; see [Set Last close and date defaults](/guides/set-dates-and-last-close) and [Connected data before and after Last close](/concepts/actuals-and-forecast#connected-data-before-and-after-last-close).
+Your Model's **Last close**, your month-end, decides which months read as Actuals. In months after it, a Variable with a Forecast formula calculates that formula instead of reading your books. A Variable that only reads its connected column, with no Forecast formula, reads your books through Last close and shows its type's default after it, 0 for a number and an empty value for a date or text, so last month's postings appear once Last close includes that month. If last month still shows forecast numbers or zeros, move Last close; see [Set Last close and date defaults](/guides/set-dates-and-last-close) and [Connected data before and after Last close](/concepts/actuals-and-forecast#connected-data-before-and-after-last-close).
 
 ### A saved query filters rows on purpose
 
@@ -38,7 +38,7 @@ When two sources describe the same thing, a total can add both. For example, sal
 
 ### The source changed after the last sync
 
-A correction you made in your books reaches cfo.ai at the next sync, but QuickBooks Online re-reads only the last three months each night, plus, for a company that reports in one currency, the older months of the current fiscal year when the balance sheet's year-to-date net income differs from the stored months by one constant amount; see [QuickBooks Online](/reference/integrations#quickbooks-online). For any other older month, ask Ari to re-import the full history; see [Refresh data](/guides/refresh-data#re-import-past-months).
+A correction you made in your books reaches cfo.ai at the next sync, but QuickBooks Online re-reads only the last three months each night, plus, for a company that reports in one currency, the older months of the same fiscal year when the balance sheet's year-to-date net income differs from the stored months by one constant amount; see [QuickBooks Online](/reference/integrations#quickbooks-online). For any other older month, ask Ari to re-import the full history; see [Refresh data](/guides/refresh-data#re-import-past-months).
 
 ### The opening cash balance is an estimate
 

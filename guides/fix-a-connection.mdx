@@ -72,9 +72,9 @@ If a missing table belongs to a NetSuite feature you do not use, **Multiple Curr
 
 ## The first sync is taking hours
 
-HR and payroll systems, and sources that sync through Fivetran, run their own first sync of your account before cfo.ai can load anything. While cfo.ai waits, the connection reads **Syncing**, and the line says how long it has waited, what the provider last reported, and when the wait ends. A source such as Pipedrive can run out of API calls partway through its first sync; Fivetran then reschedules the sync, the line names when its next attempt is due, and cfo.ai keeps waiting and starts the sync again once that time has passed. Xero can also wait for its request allowance to reset. You do not need to do anything.
+HR and payroll systems, sources that sync through Fivetran, and banks connected through Plaid prepare your account's data on their side before cfo.ai can load anything. While cfo.ai waits, the connection reads **Syncing**, and the line says how long it has waited, what the provider last reported, and when the wait ends. A source such as Pipedrive can run out of API calls partway through its first sync; Fivetran then reschedules the sync, the line names when its next attempt is due, and cfo.ai keeps waiting and starts the sync again once that time has passed. Xero can also wait for its request allowance to reset. You do not need to do anything.
 
-If the provider still has not finished 20 hours after cfo.ai began waiting, the connection reads **First sync not ready**. The next nightly sync starts a new wait, or select **Retry** to start one now.
+If the provider still has not finished 20 hours after cfo.ai began waiting, the connection reads **First sync not ready**. The next nightly sync starts a new wait, or select **Retry** to start one now. A bank connected through Plaid is the exception: at the first check after the 20 hours, its first sync loads the recent transactions Plaid has ready, and later syncs add the older history. It reads **First sync not ready** only when Plaid has no recent transactions ready either. [Syncing](/reference/connection-statuses#syncing) lists what the line says while it waits.
 
 A payments system with a long history, such as Stripe, can spend a day or more in its first sync. Ask Ari whether the load is still running before you treat it as a failure.
 
@@ -103,6 +103,17 @@ A connection reads **Sync stopped**, with **Contact cfo.ai support if it isn’t
 ## An MCP server's or API's data sync needs attention
 
 An MCP server or API shows two statuses on its page and its sidebar card: **Connection**, for whether Ari can call it, and **Data sync**, for the sync setups Ari saved. **Connection: Connected** beside **Data sync: Needs attention** means Ari can still use the service and only the import failed. Select **Fix with Ari** in the **Data sync** section. A chat opens that asks Ari to inspect the latest run and the saved sync setup, repair or retry it, and check the result. If you cannot edit the connection, the section reads **Someone with edit access can fix this sync with Ari.** When a server limits the rate of requests it accepts (HTTP 429), the sync retries that page on its own, so it usually needs nothing from you; [Messages about MCP servers and APIs](/reference/connection-statuses#messages-about-mcp-servers-and-apis) gives the wait rules.
+
+## A source Ari fetches waits for a code or needs attention
+
+A source with no integration, which Ari fetches with a saved script, is listed with your APIs in **Settings → Connections**.
+
+- If its row shows a field labeled **Code [source] sent you**, the source texted or emailed you a sign-in code. Type it and select **Continue fetch** within 15 minutes of the email cfo.ai sent you. If the time ran out, ask Ari to fetch from the source again.
+- If it reads **Needs attention**, the latest fetch ended without data. Ask Ari to fetch from the source again; Ari reports what the source answered.
+- If the source's password or key changed, ask Ari to connect the source again, then remove the old connection. A source connection's saved login cannot be edited.
+- To go back to an earlier version of the script, open the connection's page and select **Restore** beside a revision under **Fetch script**.
+
+[Statuses of a source Ari fetches](/reference/connection-statuses#statuses-of-a-source-ari-fetches) lists each status and message.
 
 ## No queries yet
 

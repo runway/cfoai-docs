@@ -71,7 +71,7 @@ Variance is actual minus budget. For a cost, a positive variance means you spent
 
 ## Compare after each month-end close
 
-A month shows its actuals once your books for it are closed and **Last close** has moved past it; see [Set Last close and date defaults](/guides/set-dates-and-last-close). Compare complete months. When you ask Ari, it uses the latest month that both the actuals and the budget cover, and it labels a comparison of a month that is not complete.
+A month shows its actuals once your books for it are closed and **Last close** has moved past it; see [Set Last close and date defaults](/guides/set-dates-and-last-close). Compare complete months. When you ask Ari, it is told to use the latest complete month that both the actuals and the budget cover. If you ask about a month that is not complete, ask Ari to say so beside the comparison.
 
 To read the current month before it closes, use the built-in **Flash report** Skill, which compares the month so far with your plan; see [Turn on a built-in Skill](/guides/turn-on-built-in-skills).
 
@@ -83,13 +83,13 @@ Ask Ari about the variance after each close:
 
 > Explain the budget-to-actual gap for operating expense as a waterfall.
 
-Ari reports the largest differences with the accounts, teams, or transactions behind them, and labels which explanations are supported by your data and which are guesses. Without an approved budget, Ari can compare with your forecast or a draft plan, and says that the comparison is a what-if.
+Ask Ari to name the accounts, teams, or transactions behind each difference, and to say which explanations your data supports and which are guesses. Without an approved budget, ask Ari to compare actuals with your forecast or a draft plan instead.
 
 ## Keep another version of the budget in a Scenario
 
 Use a Scenario to try other versions of the plan, such as a budget with slower hiring. A Scenario reads everything it does not change from Main, including new actuals. Values you want to keep fixed must be entered in the Scenario itself; see [Scenarios, Snapshots, and version history](/concepts/scenarios).
 
-To compare a budget that lives in a Scenario, show the Scenario beside Main on the table with **Compare**, and turn on **Variance** and **Variance %**; see [Compare Scenarios side by side](/guides/compare-scenarios).
+To compare a budget that lives in a Scenario, view the budget Scenario, show Main beside it on the table with **Compare**, and turn on **Variance** and **Variance %**. **Variance** is then Main minus the budget, the same direction as the formula above, and **Variance %** divides it by the budget. If you view Main and add the budget Scenario instead, **Variance** is the budget minus Main, and **Variance %** divides it by Main. See [Compare Scenarios side by side](/guides/compare-scenarios).
 
 ## Related
 

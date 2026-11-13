@@ -21,7 +21,7 @@ cfo.ai can open only the files you pick in Google's file picker, nothing else in
 
     > Connect our hiring tracker from Google Sheets and use it for the headcount plan.
 
-    Ari opens the connection manager with Google Sheets. Select **Connect**, sign in with Google, and pick the file. Ari imports it in this chat, so it can ask you about the sheet while it works.
+    Ari opens the connection manager with Google Sheets. Select **Connect**, sign in with Google, and pick the file. The file attaches to this chat. Ari reads it here and imports what you asked for, so it can ask you about the sheet while it works.
   </Tab>
   <Tab title="By hand">
     <Steps>
@@ -35,13 +35,23 @@ cfo.ai can open only the files you pick in Google's file picker, nothing else in
         Sign in with Google. Google's file picker opens; choose the file. In Google Drive you can choose several files of any type. Each Google Sheet, Excel workbook, or CSV file you choose becomes its own connection, and Ari imports each one. Ari reads the other files, such as PDFs and Docs, when you ask about them. The card reads **Opening Google authentication…**, **Choosing in Google…**, **Completing connection…**, and then **Connected**.
       </Step>
       <Step title="Watch the import">
-        If none of the files you chose is a spreadsheet, nothing is imported, and the row says so; see [Google Drive](/reference/integrations#google-drive). Otherwise each spreadsheet has its own row, and Ari imports it in the background. Each row reads **Waiting for the first sync to read this file…**, then **Ari is importing this file…**. When the import is done, it reads **Imported to** and the Page Ari built, with **Ari updates the model when the file changes.**
+        If none of the files you chose is a spreadsheet, nothing is imported, and the row says so; see [Google Drive](/reference/integrations#google-drive). Otherwise each spreadsheet has its own row, and Ari imports it in the background. No chat tells this import what you need, so it covers every visible tab. Each row reads **Waiting for the first sync to read this file…**, then **Ari is importing this file…**. When the import is done, it reads **Imported to** and the Page Ari built, with **Ari updates the model when the file changes.**
       </Step>
     </Steps>
   </Tab>
 </Tabs>
 
 If you close Google's picker without choosing a file, the connection stays unfinished and reads **Setup not finished**. Select **Finish setup** on it to pick the file.
+
+## Import one tab instead of the whole spreadsheet
+
+To import only part of a spreadsheet, such as one tab, ask Ari in a chat to connect it, and say which part you need:
+
+> Connect our planning sheet from Google Sheets. I only need the Hiring plan tab for now.
+
+Ari starts the connection setup in that chat. The file attaches to the chat, and Ari reads it there and imports what you asked for. A spreadsheet you connect from the connection manager has no chat and no request to narrow it, so Ari imports every visible tab in the background.
+
+A later change to the file updates what the first import recorded on its import summary Page; see [Keep the file in sync](#keep-the-file-in-sync). When the Model holds no import summary Page for the earlier version, the update imports the new version as a whole, the way a file connected from the connection manager is imported.
 
 ## What Ari builds from the file
 
@@ -51,7 +61,7 @@ Ari reads the spreadsheet's visible tabs with their formulas, values, and number
 
 cfo.ai re-reads the file every night, and when you ask Ari to refresh it. When a value, a formula, a tab, or a defined name changed, Ari updates the parts of your Model that came from the changed sections. Edits you made in cfo.ai to sections that did not change stay. A modeling choice you made with Ari after the import, such as booking revenue from invoices instead of the sheet's formula, also stays when its section changes. Ari keeps it when it recorded the choice in its memory or on the import summary Page, the Page that the connection's **Import** section links to; see [The connection's page](/reference/connection-statuses#the-connections-page). The update's report, in the chat that handles the import, names each difference it kept for that reason. When the search for those saved choices fails or takes too long, the update still starts, and Ari is told that the saved choices were not included, so it can look them up itself. A sync that finds the same content starts no update and uses no AI usage, and the row adds **The last sync found no change.** A change to formatting alone, such as colors, column widths, or comments, starts no update either.
 
-Where the update happens follows where you connected the file. A file connected from a chat updates in that chat. A file connected from the connection manager updates in the background, and Ari opens a chat with you only when it needs you.
+Where the update happens follows where you connected the file. A file connected from a chat updates in that chat. A file connected from the connection manager updates in the background. Ari opens a chat with you when the update needs you. It also opens one when the update finished before it had read a note from one of the steps that did the work, so the note reaches you instead of nobody. Such a chat may need nothing from you.
 
 When the file changes again while an earlier update of it is still running or waiting for your answer, the new version goes to that update instead of starting another, and older updates of the same file that were still waiting are withdrawn. The chat says so, starting **Superseded tasks withdrawn**, and repeats a question that is still open; see [Messages in a chat](/reference/connection-statuses#messages-in-a-chat).
 
@@ -66,8 +76,8 @@ A tab or section that Ari imported as data, such as a long list of transactions,
 ## If something goes wrong
 
 - **Ari stopped before finishing this import. The next sync tries again.** The next nightly sync resumes it, or ask Ari to refresh the connection now.
-- **Ari stopped before finishing this import. Continue in the chat that connected it.** Open that chat and ask Ari to continue.
-- If either import stopped to ask you a question, the question waits in a chat, and answering it continues the import. When a newer version of the file arrives while the question waits, the newer version takes over the import that was waiting, and only that import's question stays open; the chat repeats it. Older waiting imports of the same file are withdrawn, and their questions no longer need answers. [Messages about uploaded files](/reference/connection-statuses#messages-about-uploaded-files) says which chat for each message.
+- **Ari stopped before finishing this import. Continue in the chat about this import.** The import waits for you, and a sync does not move it on. For a file you connected from a chat, open that chat and ask Ari to continue. For a file you connected from the connection manager, open the chat Ari started with the import's question and answer it there.
+- If either import stopped to ask you a question, the question waits in a chat, and answering it continues the import. For a file connected from the connection manager, the next sync answers for you only when the question is about how to read the file, such as which tab holds the forecast; any other question waits for your answer, and newer versions of the file are not imported until you give it. When a newer version of the file arrives while the question waits, the newer version takes over the import that was waiting, and only that import's question stays open; the chat repeats it. Older waiting imports of the same file are withdrawn, and their questions no longer need answers. [Messages about uploaded files](/reference/connection-statuses#messages-about-uploaded-files) says which chat for each message.
 
 For other problems, see [Fix a connection that needs attention](/guides/fix-a-connection).
 

@@ -59,7 +59,7 @@ if(Revenue <> 0, `Gross Profit` / Revenue, 0)
 cfo.ai shows 0 for a number cell that no formula or value covers. A formula reads that 0 when it looks for a value where none is saved. Check these causes:
 
 - The input has no months. A salary typed once per employee has no months, so a monthly formula that names it plainly reads 0. Read it through an absolute reference: `` `Annual Salary`$[Employee = this.Employee] / 12 ``. See [Read a per-item input that has no months](/guides/write-a-formula#read-a-per-item-input-that-has-no-months).
-- The input is imported and the month is in Forecast. An imported Variable has values only where its source has rows, usually through **Last close**, so a formula that reads it in a Forecast month reads 0. Give the imported Variable a Forecast formula; see [Use different formulas for Actuals and Forecast](/guides/actuals-and-forecast-formulas).
+- The input is imported and the month is in Forecast. An imported Variable with no saved formula, or whose only formula is its starting `sum` or `last` over the source column, reads its source only through **Last close**, even when the source has later rows, so a formula that reads it in a Forecast month reads 0. Give the imported Variable a Forecast formula; see [Use different formulas for Actuals and Forecast](/guides/actuals-and-forecast-formulas).
 - A filter names an item that is written differently. `Step = "Committed"` reaches nothing when the item is `Committed out`. Copy the item's exact name, or pick it from the filter's list.
 - The first Forecast month reads an empty last Actuals month. A formula with `[-1]` starts from the last closed month. Give that month a value, such as an opening balance.
 - A quarter or year shows 0 but its months have values. The Variable has no time rollup, so its months are not added into the longer period. Ask Ari to give the Variable a time rollup; see [Why a quarterly view shows zeros](/concepts/totals-and-rollups#why-a-quarterly-view-shows-zeros).
@@ -79,7 +79,7 @@ The formula saved, but the cells you are looking at still show another value. Wo
 1. Check the formula range. A formula saved for Actuals does not fill Forecast months, and the reverse. Open the row's formula and check both sections.
 2. Check the grain. A formula for one range must cover the Model's base periods, usually months. In a monthly Model, a formula written on a table by year is saved at year grain and fills only the year cells; the month cells do not read it.
 3. Check for a more specific formula. A formula for one item or one cell replaces the row's formula there; see [A cell does not follow its row's formula](#a-cell-does-not-follow-its-rows-formula).
-4. Check the Scenario. A formula saves in the Scenario shown in the sidebar's Scenario picker. Check that you are viewing the Scenario you changed.
+4. Check the Scenario. A formula saves in the Scenario the Page is open in. To check the Scenario you changed, pick it in the sidebar's Scenario picker and select the Page from its list.
 
 ## A total is higher than expected
 

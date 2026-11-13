@@ -9,7 +9,7 @@ cfo.ai adds numbers up in four places, and each one follows its own arithmetic. 
 | Kind of total | Where you see it | How it calculates |
 | --- | --- | --- |
 | Breakdown total | A parent row above its breakdown, such as Revenue above its products | A formula saved with the table that adds up the rows directly beneath it |
-| Summary column | A total column at the end of a group of columns, headed **SUM**, **LAST**, or **TOTAL**, for example | A summary of the cells shown in the group, on that table only; no formula is saved |
+| Summary column | A total column, the first column in a group of columns, headed **SUM**, **LAST**, or **TOTAL**, for example | A summary of the cells shown in the group, on that table only; no formula is saved |
 | Time rollup | Quarter, half-year, and year cells | A formula of the Variable's own at each coarser grain: the sum, last value, or average of its months |
 | Source aggregation | A Variable that reads a connected system | How the source's rows in one period combine into one value |
 
@@ -42,9 +42,9 @@ A rate you type on one bottom row blanks the rows above it; remove it, and the f
 
 The Variable's own format decides this, not a table's. Formatting a row as a percentage on one table changes only how it looks there, and the Variable keeps adding up. To make a ratio stop adding up, ask Ari to make the Variable a percentage. A ratio written with no time in its formula, such as `` iferror(Revenue / `Paying customers`, NULL) ``, is right at every level and in every period, quarters and years included.
 
-## Summary columns: total columns at the end of a group
+## Summary columns: total columns at the start of a group
 
-A summary column summarizes the cells shown in its column group, such as the months under each year, on that one table. It saves no formula, so it never changes a number anywhere else. Its header names the summary it uses, such as **SUM**, **AVG**, or **LAST**. The **None** summary is headed **TOTAL** and shows the Variable's own value for the whole group, such as its year value beside its months. Every summary, and the one each table starts with, is listed in [Table block controls and messages](/reference/table-blocks#total-columns). To change a column's summary, see [Format and arrange a table](/guides/format-a-table).
+A summary column is the first column in its column group, and it summarizes the cells shown in that group, such as the months under each year, on that one table. It saves no formula, so it never changes a number anywhere else. Its header names the summary it uses, such as **SUM**, **AVG**, or **LAST**. The **None** summary is headed **TOTAL** and shows the Variable's own value for the whole group, such as its year value beside its months. Every summary, and the one each table starts with, is listed in [Table block controls and messages](/reference/table-blocks#total-columns). To change a column's summary, see [Format and arrange a table](/guides/format-a-table).
 
 For a full-year total, the two most useful summaries differ. **Sum** adds the months the table shows. **None** shows the Variable's own year value, which comes from its time rollup or from a formula that applies to years. They agree for a flow such as revenue when the table shows all twelve months. They differ for a balance, for a ratio, and for a table that shows part of a year. A year column on Sum adds up monthly percentages, which is wrong; on None, a margin written with no time in its formula shows the year's profit over the year's revenue.
 

@@ -1,7 +1,7 @@
 ---
 title: "Break a number down"
 sidebarTitle: "Break a number down"
-description: "Split a row by a Dimension with Segment by, such as Revenue by Region, collapse or expand the breakdown, and see the inputs behind a calculated number with Drill in. Also add, rename, delete, or hide a Dimension's items, and choose which combinations of items a table shows."
+description: "Split a row by a Dimension with Segment by, such as Revenue by Region, collapse or expand the breakdown, and see which inputs a calculated number reads. Also add, rename, delete, or hide a Dimension's items, and choose which combinations of items a table shows."
 ---
 
 Use this guide to split a number into the parts that make it up, such as Revenue by Region. It also shows how to see what a calculated number is made of, such as the headcount and salaries behind Payroll. To learn what Dimensions and segments are, read [Assumptions and breakdowns: Variables and Dimensions](/concepts/variables-and-dimensions).
@@ -44,17 +44,17 @@ Collapsing changes only your own view, and your browser remembers it for up to 2
 
 Right-click the Dimension's label row, such as **REGION**, and choose **Remove dimension**. The rows leave this table; the Variable's values stay in your Model. When this is the Dimension's last row, column, or drill-in on any table, cfo.ai first asks **Delete variable or dimension?**, and choosing **Delete completely** deletes the Dimension from your Model; see [Build a Table block by hand](/guides/build-a-table#remove-a-row-or-delete-a-variable).
 
-## See the inputs behind a calculated number (Drill in)
+<a id="see-the-inputs-behind-a-calculated-number-drill-in"></a>
 
-Drill in shows what a calculated number is made of without changing the table.
+## See the inputs behind a calculated number
 
-1. Point at the row name of a calculated row, such as Payroll, and select the magnifier button, **Drill in**.
-2. The rows its formula reads, such as Headcount and Salary, open beneath it on a hatched background. Drill in on one of them to keep tracing. For a Variable that reads a connected system, drilling reaches the source records, such as the individual transactions.
-3. Select **Clear drill-in** on the row to close them, or right-click and choose **Remove all drill-in rows**.
+A calculated row's formula names the Variables it reads, such as Headcount and Salary for Payroll.
 
-Drill-in rows are not saved: they close when you reload the Page, and nobody else sees them. To label each input row with its Variable's name, right-click it and choose **Show variable name**.
+1. Point at the row name of a calculated row, such as Payroll, and select the **fx** button, **Edit variable formula**.
+2. Read the formula. Each Variable it names is an input of the number.
+3. Press **Esc** to close the editor without saving.
 
-Use **Segment by** to ask how a number splits across categories, and **Drill in** to ask which inputs produced it. To have Ari explain a number, see [Ask Ari about a number](/guides/ask-about-a-number).
+Use **Segment by** to ask how a number splits across categories, and the formula to ask which inputs produce it. To have Ari explain a number, see [Ask Ari about a number](/guides/ask-about-a-number).
 
 ## Add an item to a Dimension
 

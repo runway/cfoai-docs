@@ -8,16 +8,16 @@ Scenarios, Snapshots, and version history each have their own controls: the Scen
 
 ## Scenario picker
 
-The Scenario picker is the **Main Scenario** control in the sidebar's **Model** section, above the list of Pages. It shows the Scenario you are viewing. Selecting another Scenario switches every Page to it and changes the address bar, so you can bookmark the address or share it with a teammate.
+The Scenario picker is the **Main Scenario** control in the sidebar's **Model** section, above the list of Pages. It shows the Scenario of the Page on screen, until you pick another one here. Picking a Scenario changes which Pages the sidebar lists and nothing else: the Page on screen stays in its own Scenario. Select a Page in the list to open it in the picked Scenario; the address bar then names that Scenario, so you can bookmark it or share it with a teammate.
 
 | Control | What it does |
 | --- | --- |
-| A Scenario's row | Switches to that Scenario. |
+| A Scenario's row | Lists that Scenario's Pages in the sidebar. Select a Page to open it there. |
 | **Open actions for [Scenario]** (gear icon on a row) | Opens the [Scenario actions menu](#scenario-actions-menu). |
-| **Take snapshot** | Opens the [Take snapshot dialog](#take-snapshot-dialog) for the Scenario you are viewing. Not shown while you view a Snapshot. |
-| **Duplicate scenario** | Creates a new Scenario named **[Scenario] copy** (numbered when that name is taken) that starts with everything the Scenario you are viewing changed, and switches to it. The copy is a regular Scenario with the same base as the original, which is Main for every Scenario created from Main; it is listed beside the original, not under it. On a Snapshot, the copy is a regular Scenario on Main that starts with the Snapshot's pinned contents and its later edits, listed at the top level. Shown while you view any Scenario or Snapshot other than Main. If the copy fails, a notice reads **Couldn’t duplicate [Scenario]** with the reason, and the menu item stays so you can try again. |
-| **Create scenario** | Adds a row where you type the new Scenario's name. **Enter** creates it from Main and switches to it. |
-| **Merge** (beside the picker, while you view a Scenario) | Opens the [merge dialog](#merge-dialog). Its tooltip reads **Merge all changes into [target]**, **No changes to merge**, or **Checking for changes…**. Not shown for Main or a Snapshot. |
+| **Take snapshot** | Opens the [Take snapshot dialog](#take-snapshot-dialog) for the Scenario the picker shows. Not shown while the picker shows a Snapshot. |
+| **Duplicate scenario** | Creates a new Scenario named **[Scenario] copy** (numbered when that name is taken) that starts with everything the Scenario the picker shows changed, and lists the copy's Pages in the sidebar. The copy is a regular Scenario with the same base as the original, which is Main for every Scenario created from Main; it is listed beside the original, not under it. On a Snapshot, the copy is a regular Scenario on Main that starts with the Snapshot's pinned contents and its later edits, listed at the top level. Shown while the picker shows any Scenario or Snapshot other than Main. If the copy fails, a notice reads **Couldn’t duplicate [Scenario]** with the reason, and the menu item stays so you can try again. |
+| **Create scenario** | Adds a row where you type the new Scenario's name. **Enter** creates it from Main and lists its Pages in the sidebar. The Page on screen stays in the Scenario it was in; select a Page in the list to work in the new Scenario. |
+| **Merge** (beside the picker, while it shows a Scenario) | Opens the [merge dialog](#merge-dialog). Its tooltip reads **Merge all changes into [target]**, **No changes to merge**, or **Checking for changes…**. Not shown for Main or a Snapshot. |
 
 You must have permission to create Scenarios to see **Take snapshot**, **Duplicate scenario**, and **Create scenario**. None is offered on a phone.
 
@@ -28,7 +28,7 @@ You must have permission to create Scenarios to see **Take snapshot**, **Duplica
 | **Version history** | Opens the Scenario's [version history panel](#version-history-panel). |
 | **Last close** | Sets the Scenario's Last close date, the boundary between Actuals and Forecast. |
 | **Rename** | Renames the Scenario. Main cannot be renamed. |
-| **Delete** | Deletes the Scenario. Main, and a Scenario that has child Scenarios, cannot be deleted. |
+| **Delete** | Deletes the Scenario. Main, and a Scenario that has child Scenarios, cannot be deleted. A Snapshot is a child of the Scenario it was taken from, so **Delete** is not offered for a Scenario that has a Snapshot until you delete the Snapshot. To delete a Snapshot, open the Scenario picker, open the Snapshot's own actions menu, and choose **Delete**, or ask Ari. |
 
 Items you do not have permission for are not shown.
 
@@ -79,7 +79,7 @@ Point at an entry and select its **…** button (**Actions for [entry]**).
 
 | Control | What it does |
 | --- | --- |
-| **Undo this change** | Reverses this change and keeps everything after it. Undo restores only the fields the change wrote, such as a Page's name or one formula's text, so a later edit to another field of the same Page, table, Variable, or formula stays. When a later change edited one of the same fields, nothing is undone and a notice says so; see [Entry action messages](#entry-action-messages). Undo that later change first. Not offered for a change the Scenario inherited from Main. |
+| **Undo this change** | Reverses this change and keeps everything after it. Undo restores only the fields the change wrote, such as a Page's name or one formula's text, so a later edit to another field of the same Page, table, Variable, or formula stays. When a later change edited one of the same fields, nothing is undone and a notice says so; see [Entry action messages](#entry-action-messages). Undo that later change first. For what undo does to a Scenario's only edit of something it read from Main, see [Version history records every change](/concepts/scenarios#version-history-records-every-change). Not offered for a change the Scenario inherited from Main. |
 | **Redo this change** | Shown instead of **Undo this change** on the entry that recorded an undo. The entry it undid is struck through and carries the badge **Undone**; its own menu still reads **Undo this change**. |
 | **Restore this version** | Opens the [restore dialog](#viewing-a-past-version) for this point. Needs full access to the Scenario; otherwise its tooltip reads **Only people with full access to this scenario can restore it.** Not offered on a Snapshot, and neither is **Undo this change**. |
 | **Take snapshot here** | Opens the [Take snapshot dialog](#take-snapshot-dialog), pinned at this entry. |

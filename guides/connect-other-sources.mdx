@@ -1,7 +1,7 @@
 ---
 title: "Connect payroll, HR, CRM, payments, or a database"
 sidebarTitle: "Connect payroll, CRM, payments, or a database"
-description: "Connect Gusto, Rippling, or another payroll or HR system, HubSpot or Salesforce, Stripe, or a database so Ari plans from your records. What each one needs, how long the first sync takes, what reaches your Model, and what to do when you cannot connect."
+description: "Connect Gusto, Rippling, or another payroll or HR system, HubSpot or Salesforce, Stripe, or a database so Ari plans from your records. What each one needs, how long the first sync takes, what reaches your Model, how to have Ari build a connection to a system with no integration, and what to do when you cannot connect."
 ---
 
 Connect your other business systems when your plan needs more than your books: payroll and HR for headcount and pay, a CRM for pipeline and bookings, a payments system for revenue detail, or a database for your own records. Each one syncs every night, and cfo.ai only reads from it. To connect QuickBooks, Xero, NetSuite, or Rillet, see [Connect your accounting system](/guides/connect-accounting).
@@ -85,9 +85,68 @@ You can keep working while it syncs.
 
 If a connection reads **No queries yet**, its data synced but nothing brings it into your Model yet. Select **Set up queries with Ari** on its card.
 
+## Bring in data from a source that has no integration
+
+When a system is not in the directory, such as a tenant portal, a billing tool, or a vendor's API, ask Ari to build a connection to it. You store a login or an API key for the source, Ari writes a script that fetches the records you name, and cfo.ai runs that script again once a day. cfo.ai calls this a source connection. Use it for a source that signs you in with a username and password, a source that gives you an API key, or public data that needs no sign-in.
+
+You need to be a workspace admin, and you need a login or key for the source. Where the source lets you, create one for this connection with the least access it offers, such as a read-only user: the script signs in with it and can do in the source whatever that login can.
+
+<Tabs>
+  <Tab title="Ask Ari">
+    <Steps>
+      <Step title="Name the source and the data you want">
+        Say which system it is, which company or account, which records, and which period:
+
+        > Connect our tenant portal at portal.example.com and bring in the 2026 rent roll for Acme Rentals.
+
+        Ari first checks whether an integration, an MCP server, or an API already carries the source, and uses that when one does.
+      </Step>
+      <Step title="Enter the login or key on the card">
+        Ari posts a card titled **Connect [source]** that shows the source's address. For a login, fill in **Username** and **Password**. Fill in **Authenticator setup key (optional)** only when the source asks for a code from an authenticator app. For a key, fill in **Key**. Then select **Connect**; the card reads **Connection added**. Type the login or key only on the card, never in the chat.
+      </Step>
+      <Step title="Let Ari fetch">
+        Ari starts the fetch as background work, and you can keep working. It signs in to the source, fetches the records you named, checks them, and loads each table as a data source. The chat gets Ari's report when the fetch finishes or stops.
+      </Step>
+      <Step title="Enter a code, if the source sends you one">
+        If the source texts or emails you a sign-in code, the card shows a field labeled **Code [source] sent you**. Type the code and select **Continue fetch** within 15 minutes. The same field is on the connection's row in **Settings → Connections**, and cfo.ai emails you a link to it.
+      </Step>
+      <Step title="Check what came in">
+        Each table the fetch loaded appears under **Connections** in the sidebar, and the source is listed with your APIs in **Settings → Connections**. Ask Ari to build from the data, or to change what the fetch brings in.
+      </Step>
+    </Steps>
+  </Tab>
+  <Tab title="From the directory">
+    <Steps>
+      <Step title="Search the directory">
+        In the sidebar, point at **Connections** and select **+** (**Add integration**). On the **Integrations** tab, type the system's name in **Search integrations**.
+      </Step>
+      <Step title="Select Ask Ari to build it">
+        When nothing matches, the directory reads **No integrations found**, with **Not here?** and **Ask Ari to build it** under it. Select **Ask Ari to build it**. A chat opens with the message **Help me connect [what you searched for] to this workspace.**
+      </Step>
+      <Step title="Answer Ari and continue on the card">
+        Ari asks which product it is and what data you want from it, then posts the card. Continue from the second step of the **Ask Ari** tab.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+For public data that needs no sign-in, such as exchange rates from a public API, Ari shows no card. It builds one table from up to eight public API addresses and refreshes it the same way.
+
+After the first fetch, cfo.ai repeats it once a day without you: when the nightly run starts at 02:00 UTC, or at a time of day you ask Ari to set, such as "Fetch the tenant portal at 6:30 AM Pacific." Each fetch replaces the whole table. To get newer data sooner, ask Ari to fetch from the source again. See [Refresh data or change when it refreshes](/guides/refresh-data#change-when-a-connection-refreshes).
+
+If a fetch stops:
+
+- When a fetch you asked for stops with a question, such as a login the source rejected, Ari tells you in the chat that asked for it.
+- The connection reads **Needs attention** when the latest fetch ended without data: it failed, it loaded no table, or nobody entered the code in time. Ask Ari to fetch from the source again.
+- When a scheduled fetch gets the data but cannot load all of it, Ari tells the person who made the connection in a chat, the first night it happens: which file did not load and what it needs from you. Ari writes there once more on the night the files load again, and not on the nights in between.
+- cfo.ai has no form for changing a source connection's saved login or key. When the password or key changes, ask Ari to connect the source again, then remove the old connection in **Settings → Connections**.
+- cfo.ai does not open a browser to sign in for you. Ari's script signs in with web requests to the source's own domain, so a source that signs in only through a separate single sign-on provider or a browser check cannot be fetched this way. Use an API key if the source offers one, or export the data and [upload it as a CSV](/guides/upload-a-csv).
+
+[Connection statuses and actions](/reference/connection-statuses#statuses-of-a-source-ari-fetches) lists each status and message, and [How connected data reaches your Model](/concepts/connected-data#a-source-with-no-integration) explains what Ari can and cannot see.
+
 ## If you cannot connect
 
-- If your system is not in the directory, such as Toast or bill.com, export the data and [upload it as a CSV](/guides/upload-a-csv). For payroll, a payroll register or an employee list with one row per employee or pay run works well. For payments, use a transactions export with a date and an amount on each row. You can also attach the export to a chat and ask Ari to load it.
+- If your system is not in the directory, such as Toast or bill.com, ask Ari to build a connection to it; see [Bring in data from a source that has no integration](#bring-in-data-from-a-source-that-has-no-integration). Or export the data and [upload it as a CSV](/guides/upload-a-csv). For payroll, a payroll register or an employee list with one row per employee or pay run works well. For payments, use a transactions export with a date and an amount on each row. You can also attach the export to a chat and ask Ari to load it.
 - If you are not an admin in the system, [invite the person who is](/guides/invite-teammates) to your workspace and ask them to connect it, or export the data yourself and upload it.
 - If you cannot get a Rippling API key, upload an employee export as a CSV. To let Ari look up people in Rippling without syncing, connect Rippling's MCP server, which needs a Rippling AI trial or subscription. See [Give Ari access to another service](/guides/give-ari-another-service).
 - If your data is in a database cfo.ai does not list, copy it into a PostgreSQL-compatible database if you can, and connect that database.

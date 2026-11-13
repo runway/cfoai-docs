@@ -21,6 +21,10 @@ Where one value lives: a Variable, an item from each of its Dimensions, and a pe
 
 A member of a workspace. Every member is an administrator, who can see and edit every Page, invite others, and manage billing and settings. cfo.ai has no view-only or other lower role; to let someone read Pages without editing, use a [share link](#share-link). See [Sharing and access](/concepts/sharing-and-access).
 
+## Agent
+
+A named version of Ari with instructions that an administrator saves, such as "Cash watch". You chat with an agent in place of Ari or choose it for a Trigger, and it follows its instructions each time. It uses the same model and the same access as Ari. Ari is the default agent. See [Create an agent with its own name and instructions](/guides/create-an-agent).
+
 ## Aggregation
 
 How a Variable that reads a connected system combines the source's rows in one period into one value, such as their sum or the latest row. See [Totals, aggregation, and time rollups](/concepts/totals-and-rollups).
@@ -108,10 +112,6 @@ One entry in a Dimension, such as Sales in Department or West in Region. Called 
 ## Dimension mapping
 
 A one-way lookup that assigns each item of one Dimension to an item of another, such as GL accounts to P&L lines. See [Dimension mappings and shared Dimensions](/concepts/dimension-mappings).
-
-## Drill in
-
-To open, under a calculated row, the rows its formula reads. Drill-in rows have a hatched background, and **Clear drill-in** closes them. See [Break a number down](/guides/break-down-a-number#see-the-inputs-behind-a-calculated-number-drill-in).
 
 ## Empty value
 
@@ -223,7 +223,7 @@ A connection's update, which brings the source's latest data into your Model. Al
 
 ## Saved query
 
-The query that brings one table from a connection into your Model. See [How connected data reaches your Model](/concepts/connected-data).
+The query that brings rows from your connected data into your Model. It reads one synced table or joins several. See [How connected data reaches your Model](/concepts/connected-data), and [Saved queries](/reference/imported-data#saved-queries) for the rules.
 
 ## Scenario
 
@@ -263,11 +263,11 @@ A copy of Main or a Scenario pinned to one moment in its history, which no later
 
 ## Summary column
 
-A total column at the end of a group of columns on one table, headed **SUM**, **LAST**, or **TOTAL**, for example. It summarizes the cells shown in its group and saves no formula. See [Totals, aggregation, and time rollups](/concepts/totals-and-rollups).
+A total column, the first column in a group of columns on one table, headed **SUM**, **LAST**, or **TOTAL**, for example. It summarizes the cells shown in its group and saves no formula. See [Totals, aggregation, and time rollups](/concepts/totals-and-rollups).
 
 ## Sync setup
 
-A saved setup that copies the results of one read-only tool or endpoint of an MCP server or API into your data on each sync. Ari creates and edits sync setups. See [How imported data loads](/reference/imported-data#sync-setups-for-mcp-servers-and-apis).
+A saved setup that copies the results of one tool or endpoint of an MCP server or API into your data on each sync. Ari creates and edits sync setups. See [How imported data loads](/reference/imported-data#sync-setups-for-mcp-servers-and-apis).
 
 ## Table block
 

@@ -8,13 +8,15 @@ The cfo.ai app has a navigation sidebar on the left and the chat or Page you are
 
 ## Sign-in page
 
-The page is titled **Sign in to cfo.ai**.
+The sign-in page has the cfo.ai wordmark as its heading, which a screen reader reads as **Sign in to cfo.ai**. The page where you create an account has the same controls under the title **Get started with cfo.ai**.
 
 | Control | What it does |
 | --- | --- |
-| **Continue with Google** / **Sign in with Microsoft** | Signs you in with that account. When these are offered, the page reads **Choose how you want to continue.** |
-| **Work email** | Your work address, with the note **Use the address where you want to receive cfo.ai workspace updates.** When only email sign-in is offered, the page reads **Enter your work email and we’ll send a six-digit code.** A new account needs an address at your company's own domain; see [Work email required for new accounts](#work-email-required-for-new-accounts). |
-| **Send code** | Emails you a six-digit code and opens the code page. |
+| **Continue with Google** / **Sign in with Microsoft** | Signs you in with that account. When these are offered, the sign-in page reads **Choose how you want to continue.**, and a line above the email field reads **or continue with email**. |
+| **Work email** | Your work address. The empty field shows **you@company.com**, and on the sign-in page the note under it reads **Enter your work email to sign in.** A new account needs an address at your company's own domain; see [Work email required for new accounts](#work-email-required-for-new-accounts). |
+| **Continue** | Emails you a six-digit code and opens the code page. |
+
+Under the buttons, both pages read **By continuing, you agree to the Standard Terms and Conditions and acknowledge the Privacy Policy.**, with a link to each document. See [Privacy and legal](/reference/privacy-and-legal).
 
 A Google or Microsoft sign-in that fails shows **We couldn’t complete sign-in. Please try again.**
 
@@ -22,7 +24,7 @@ A Google or Microsoft sign-in that fails shows **We couldn’t complete sign-in.
 
 A new account must use a work email address. An address at a free or disposable email provider, such as Gmail, Outlook, Yahoo, iCloud, or Proton Mail, is refused before a code is sent, and also when a Google or Microsoft sign-in or a pending invitation would create the account. The form is replaced by a page titled **Use your work email**, with **New accounts require a work email address.**, **Personal email providers, such as Gmail, Outlook, and Yahoo, are not supported for new accounts.**, and **Already have an account? You can still sign in with your existing email.** Select **Use a different email** to return to an empty **Work email** field. An account that already exists with a personal address keeps signing in with it. cfo.ai does not check that a custom domain belongs to a company.
 
-When **Send code** cannot send a code, the message shows under the email field:
+When **Continue** cannot send a code, the message shows under the email field:
 
 | Message | Meaning | What to do |
 | --- | --- | --- |
@@ -54,7 +56,6 @@ If the browser has lost the email you typed, such as when the link opened in a d
 | **That code was not accepted. [n] codes were sent to this address in the last 10 minutes, and only the newest one works.** | You typed an older code. | Use the code in the newest email. |
 | **That code was already used. A code works once.** | The code was used before. | Select **Resend code**. |
 | **Too many wrong codes were entered, so that code no longer works.** | Too many wrong codes were tried. | Select **Resend code**. |
-| **We couldn’t find the email for this verification step. Head back and start from the email step again.** | The sign-in lost track of your email. | Select **Start over**. |
 
 For how many codes you can request and check, see [Limits and file types](/reference/limits#workspace-account-and-sign-in).
 
@@ -67,29 +68,48 @@ From top to bottom:
 | Logo | The cfo.ai logo, or your workspace brand's logo, is a link. Pointing at it shows where it goes: **New chat** when you can start a chat, or **Open** followed by the first Page's name when you cannot. **⌘**-click opens it in a new tab. |
 | **Collapse navigation** | Folds the sidebar to a narrow strip (**⌘ \\**, or **Ctrl \\** on Windows and Linux). On the strip, **Expand navigation** brings it back; pointing at the strip shows the sidebar over the page, and **Keep navigation open** pins it. Dragging the sidebar's edge resizes it, and dragging it narrow enough folds it. In a chat on a narrow window, the sidebar stays folded and the strip offers **Open navigation**. |
 | **Search** | Opens [workspace search](#workspace-search). |
-| **Chats** | Your chats, newest activity first, with **New chat** and a filter. Chats from Slack and from AI assistants are left out until the filter includes them. See [The chat list](/reference/chat#the-chat-list-find-rename-and-archive-chats). |
-| **Model** | Select **Model** to open or close the section. It holds the Scenario picker (**Main Scenario** until you pick another) and the Pages of that Scenario, and **New page** (**+**) creates a Page. The section appears once the workspace has its first Page. See [Scenario and version history controls](/reference/scenarios-and-history) and [Create and organize Pages and blocks](/guides/create-pages-and-blocks). |
+| **Chats** | Your chats, newest activity first, with **New chat** and a filter. Selecting a chat keeps the Page on screen. Chats from Slack and from AI assistants are left out until the filter includes them. See [The chat list](/reference/chat#the-chat-list-find-rename-and-archive-chats). |
+| **Model** | Select **Model** to open or close the section. It holds the Scenario picker (**Main Scenario** until you pick another) and the Pages of the Scenario the picker shows. **New page** (**+**) creates a Page in that Scenario and opens it, and a chat you have open stays open. The section appears once the workspace has its first Page. See [Scenario and version history controls](/reference/scenarios-and-history) and [Create and organize Pages and blocks](/guides/create-pages-and-blocks). |
 | **Connections** | Your connected systems, each with its status, and **Add integration** (**+**). Pointing at the heading shows a **…** menu with **Links sent** and, once a connection can take a link, **Select connections to send a link** (**⌥ click** on such a connection's row does the same). See [Connection statuses and actions](/reference/connection-statuses) and [Send a link so someone else can connect a source](/guides/send-a-connect-link). |
 | **Feedback** | Opens [Share feedback](#share-feedback). |
 | **Powered by cfo.ai** | Shown in a workspace with a brand. |
 | Your name and picture | Opens the [account menu](#account-menu). |
 
-The sidebar remembers its Scenario for each workspace, so opening a chat does not change which Pages it lists. A Page you pick in the sidebar opens full-screen in the sidebar's Scenario and closes the chat you had open.
+The sidebar lists the Pages of the Scenario of the Page on screen. When that Page or its Scenario changes, for example when you open a link, press Back, or follow Ari, the Scenario picker and the Page list change with it. Picking a Scenario in the sidebar's picker only changes the list: the Page on screen stays in its own Scenario until you select a Page from the list, and no Page is highlighted while the list shows a different Scenario. With no Page on screen, the sidebar keeps the Scenario it last showed in this browser.
+
+In a desktop browser, **Chats** and **Model** each grow with their rows up to a height limit, and a longer list scrolls inside its section. **Chats** starts tall enough for 8 chats, and **Model** for the Scenario picker and about 12 Pages. Drag a section's bottom edge to change its height; pointing at the edge shows **Drag to resize. Double-click to restore the default height.** With the edge selected, **↑** and **↓** resize it by about one row, and **Enter** restores the default. A section cannot be shorter than about two rows. The edge appears only when the section fills its limit or is at least one row taller than the smallest size; a closed section has none. The heights are saved in your browser and apply to every workspace you open in it. The drawer on a phone or tablet scrolls as one list and has no edges to drag.
 
 ### Pages in the sidebar
 
 | Control | What it does |
 | --- | --- |
-| A Page row | Opens the Page. Pointing at it shows **New subpage**, **Mention page in chat**, and **Delete page**, and, on a Page with subpages, **Expand subpages** or **Collapse subpages**. |
+| A Page row | Opens the Page and keeps the chat you have open; see [Open Pages and chats from the sidebar](#open-pages-and-chats-from-the-sidebar). Pointing at it shows **New subpage**, **Mention page in chat**, and **Delete page**, and, on a Page with subpages, **Expand subpages** or **Collapse subpages**. |
 
 | Message | Meaning |
 | --- | --- |
 | **Ari is building this page** | A mark on a Page that Ari is still building. |
-| **No pages in this scenario.** | The Scenario you are viewing has no Pages. |
+| **No pages in this scenario.** | The Scenario the sidebar's picker shows has no Pages. |
 | **Loading pages…** / **Couldn’t load pages.** with **Retry** | The list is loading, or it could not load. |
 | **Creating page…** / **Could not create the page.** | A new Page is being created, or it could not be created. |
 
 To move, nest, or rename Pages with the keyboard, see [Keyboard shortcuts](/reference/keyboard-shortcuts#pages-and-blocks). To organize Pages, see [Create and organize Pages and blocks](/guides/create-pages-and-blocks).
+
+### Open Pages and chats from the sidebar
+
+A click in the **Model** list changes the Page you see, and a click in the **Chats** list changes the chat you work with. Each keeps the other. The sidebar highlights both the Page on screen and the open chat.
+
+| You do | What happens |
+| --- | --- |
+| Select a Page while a chat is docked beside a Page | The Page replaces the one beside the chat. A folded model pane opens. |
+| Select a Page while a chat floats over a Page | The Page opens full-screen and the chat stays over it. A minimized chat stays minimized. |
+| **⌥**-click a Page (**Alt**-click on Windows and Linux) | The Page opens full-screen with no chat. Ari keeps working in the chat, and the chat stays in the **Chats** list. |
+| Select a chat while a Page is full-screen | The chat opens floating over the Page. Selecting the chat that already floats there docks it beside the Page. |
+| Select a chat while another chat is docked beside a Page | The chats swap. The Page, its Scenario, and a folded model pane stay as they are. |
+| Select a chat from another screen, such as the connection manager | The chat opens with the Page it last showed. |
+| **⌥**-click a chat (**Alt**-click) | The chat opens alone at full width. **Expand model pane** brings back the Page it last showed. |
+| **⌘**-click a Page or a chat | Opens it in a new browser tab. |
+
+To leave a chat without picking another Page, select **Close chat**; see [A chat and a Page together](#a-chat-and-a-page-together).
 
 ### A workspace with no Pages
 
@@ -125,9 +145,10 @@ The list under **Workspaces** is the workspace switcher; there is no other switc
 | **Run now** | Starts one run right away, even when the Trigger is paused. The schedule does not change. |
 | **Edit trigger** (pencil) | Opens **Edit trigger**. |
 | **Delete trigger** (trash can) | Opens **Delete [name]?**: **This trigger will stop running on its schedule. Runs already started will continue.** |
-| **Schedule** / **Time zone** / **Next scheduled** | The schedule, the time zone it runs in, and the next run, or **Nothing upcoming**, which a finished one-time Trigger always shows. A one-time Trigger shows no **Time zone** row; its date and time are written in your time zone. A schedule with its own time zone is described on that clock, such as **Daily at 2:15 PM**, with the note **Runs on [time zone] time. Next scheduled and history are shown in your timezone.** A schedule that runs in UTC is described in your time zone, with **Schedule and history are shown in your timezone.** |
+| **Agent** | Who runs the Trigger: **Ari**, or the agent chosen for it. See [Agents](/reference/chat#agents). |
+| **Schedule** / **Time zone** / **Next scheduled** | The schedule, the time zone it runs in, and the next run, or **Nothing upcoming** for a paused Trigger and for a finished one-time Trigger. A one-time Trigger shows no **Time zone** row; its date and time are written in your time zone. A schedule with its own time zone is described on that clock, such as **Daily at 2:15 PM**, with the note **Runs on [time zone] time. Next scheduled and history are shown in your timezone.** A schedule that runs in UTC is described in your time zone, with **Schedule and history are shown in your timezone.** |
 | **Instructions** | The saved instructions, with **Show full instructions** and **Show less**. |
-| **History** | **Open a run to see its conversation.** Every run, newest first, with its start time, its status, and, for a run that did not complete, its reason. **Show earlier** loads older runs. With none: **No history yet. Ari’s scheduled work will appear here.** |
+| **History** | **Open a run to see its conversation.** Every run, newest first, with its start time, its status, and, for a run that did not complete, its reason. **Show earlier** loads older runs. With none: **No history yet. Trigger runs will appear here.** |
 
 With no Triggers, the page reads **Put work on a schedule** and **Build a trigger with Ari or write the instructions and schedule manually.**
 
@@ -168,16 +189,16 @@ When the last scheduled attempt did not start a run, or cfo.ai paused the Trigge
 
 ### New trigger and Edit trigger
 
-The form has **Name** (placeholder **Weekday cash brief**), **Instructions**, and **Schedule**. **Repeat** offers:
+The form has **Name** (placeholder **Weekday cash brief**), **Agent**, **Instructions**, and **Schedule**. **Agent** chooses who runs the Trigger: **Ari**, which a new Trigger starts with, or one of the workspace's agents that is not archived. **Repeat** offers:
 
 - **Once**: **On date** and **At time**, for a Trigger that runs one time. The line under the schedule reads **Once on [date and time]**.
 - **Every few minutes**: 1, 2, 3, 5, 10, 15, 20, or 30.
 - **Hourly**: every 1, 2, 3, 4, 6, 8, or 12 hours, **At minute**.
 - **Daily**, **Weekdays**, or **Weekly** (**On these days**).
-- **Monthly**: **Day of month**, including **Last day**.
+- **Monthly**: **Day of month**, including **Last day**, which runs once a month on the month's last day, whatever its length. The line under the schedule, and the Trigger's row and details, then read **Last day of each month at [time]**.
 - **Advanced schedule**: **Edit advanced rule**, **Schedule expression ([time zone])**, a five-field cron expression read on that clock.
 
-The note under the schedule reads **Times in [time zone].**: your browser's time zone for a new Trigger or one that runs in UTC, and the Trigger's own time zone otherwise. Saving the schedule saves it with that time zone. A monthly day after the 28th adds **Months without this day are skipped. Choose Last day to run every month.** **Edit trigger** also has an **Enable trigger** switch (**Enabled** or **Disabled**); changing a finished one-time Trigger's date or time turns it back on. The buttons are **Create trigger** or **Save changes**, and **Cancel**.
+The note under the schedule reads **Times in [time zone].**: your browser's time zone for a new Trigger or one that runs in UTC, and the Trigger's own time zone otherwise. Saving the schedule saves it with that time zone. A monthly day after the 28th adds **Months without this day are skipped. Choose Last day to run every month.** **Edit trigger** also has an **Enable trigger** switch (**Enabled** or **Disabled**). Turning a paused recurring Trigger back on starts no run for the times it missed; **Next scheduled** then shows its next scheduled time. Changing a finished one-time Trigger's date or time turns it back on. The buttons are **Create trigger** or **Save changes**, and **Cancel**.
 
 ### Trigger messages
 
@@ -191,6 +212,7 @@ The note under the schedule reads **Times in [time zone].**: your browser's time
 | **This trigger is no longer available.** / **This trigger is no longer available. Close this dialog and refresh the list.** | The Trigger was deleted. |
 | **Could not save the trigger. Please try again.** / **Could not start the trigger. Please try again.** | The change or the run failed. |
 | **Could not load triggers.** with **Retry triggers**; **Could not load history.** with **Retry history** | The page could not load. |
+| **This agent is archived. Restore it before starting a new chat or trigger** | You turned on, or saved, a Trigger whose agent is archived. Restore the agent, or choose another under **Agent**; see [Archive and restore an agent](/reference/chat#archive-and-restore-an-agent). |
 | **Creating a trigger requires permission to create chats in this workspace.** | You cannot create Triggers in this workspace. |
 
 ## Help center
@@ -287,9 +309,10 @@ Results are grouped, up to eight in each group. The group with the best match co
 | **↑** / **↓** | Move through results |
 | **Enter** | Open the result |
 | **⌘ Enter**, or **⌘**-click | Open the result in a new browser tab |
+| **⌥ Enter**, or **⌥**-click (**Alt** on Windows and Linux) | Open the result alone: a Page with no chat, or a chat with its Page folded away. The bar at the bottom of the window lists it as **Open alone**. |
 | **Esc** | Close search |
 
-A Page opens full-screen in the sidebar's Scenario. A block opens its Page, scrolls to the block, and flashes it. A Variable or a Dimension item opens the table that shows it and marks its row. A Page found by its text scrolls to the passage. A workspace switches to that workspace. A chat opens.
+A result opens the way the same row in the sidebar does. A Page opens in the sidebar's Scenario and keeps the chat you have open: beside a docked chat, or full-screen under a floating one. A block opens its Page, scrolls to the block, and flashes it. A Variable or a Dimension item opens the table that shows it and marks its row. A Page found by its text scrolls to the passage. A workspace switches to that workspace. A chat opens over or beside the Page on screen; picking the chat that already floats over the Page docks it.
 
 ### Search messages
 
@@ -308,12 +331,12 @@ The bar above a Page, from left to right:
 
 | Control | What it does |
 | --- | --- |
-| Scenario picker and **/** | Shown only when a chat is open beside the Page. Switches the Page's Scenario. |
+| Scenario picker and **/** | Shown when a chat is open, docked beside the Page or floating over it. Switches the Scenario of the Page on screen, and the sidebar's Scenario picker and Page list follow. With no chat open, the header shows no Scenario: pick the Scenario in the sidebar and then select the Page from its list. |
 | Page icon | Pick or change the Page's icon. |
 | Page name | Opens **Pages**, the list of Pages in this Scenario, with **New page** and a **Search pages** button that shows a **Find a page…** field. |
 | **Merge** | Shown when a chat is open beside a Page in a Scenario other than Main. See [Merge a Scenario into Main](/guides/merge-a-scenario). |
 | **Building…** | Ari is building this Page. |
-| **Download spreadsheet** | The download icon. Starts an export of the Page's tables and Canvas data, or opens your **Recent exports** of the Page. On a Page with no Table block and no Canvas block with data it only lists past exports. See [Download spreadsheet](#download-spreadsheet). |
+| **Download spreadsheet** | The download icon. Opens **Download as Excel**, where you choose **With formulas** or **Values only** to export the Page's tables and Canvas data, and where your **Recent exports** of the Page are listed. On a Page with no Table block and no Canvas block with data it only lists past exports. See [Download spreadsheet](#download-spreadsheet). |
 | **Share** | Opens the [Share panel](#share-panel). Shown to people who can share the Page. A link icon on the button means an external link to the Page is on. |
 | **Version history** | The clock icon. Opens the version history panel. See [Scenario and version history controls](/reference/scenarios-and-history). |
 | **New chat** | On a full-screen Page with no chat open. Opens a floating chat over the Page. |
@@ -328,8 +351,10 @@ Below the header, a Page with a table, a chart, or a Canvas block with data has 
 | **Expand model pane** / **Collapse model pane** | In a chat, shows or folds the Page beside the conversation. |
 | **Show page navigation** / **Hide page navigation** | In a chat, shows or hides a list of Pages beside the Page. |
 | **Create page** | In the model pane of a chat when the workspace has no Pages (**No pages yet**) or the chat has opened none (**No pages open in this chat**). Creates a Page with an empty Table block and opens it. |
-| **Expand chat** | On a floating chat, docks it beside the Page. |
-| **Minimize chat** / **Close chat** | On a floating chat. Minimize keeps the conversation; a chat with nothing sent yet offers **Close chat**. |
+| **Collapse chat pane** | On a chat docked beside a Page. Floats the chat over the full-screen Page. |
+| **Expand chat** | On a floating chat. Docks it beside the Page. |
+| **Minimize chat** | On a floating chat you have sent a message in. Shrinks the chat to a button at the bottom right that shows the chat's name (**Show chat**). Select the button to bring the chat back. The chat stays minimized while you open other Pages. |
+| **Close chat** | On a floating chat and on a docked chat, once you have sent a message. Takes the chat off the screen and leaves the Page. Ari keeps working, and the chat stays in the **Chats** list; select it there to open it again. On a floating chat with nothing sent yet, **Close chat** discards the chat. |
 
 ## Writing on a Page
 
@@ -358,7 +383,7 @@ Text cuts, copies, and pastes as in any document. A Table block, Canvas block, o
 | Paste, copy, or cut inside a block, such as in a table's cells | The block handles it. A paste into a cell fills the cell and writes nothing into the Page's text. Copying cells copies the cells, even when the block is selected on the Page. |
 | Paste while a block is selected, as after a click on a table or after moving onto it with an arrow key | Nothing is pasted, and the block stays. A paste never replaces a block. |
 | Select a block, press **⌘ X**, click where it should go, and press **⌘ V** | The same block moves there with its settings, the same as dragging its handle, and the Page keeps saving. This works in the same tab and after a save and a reload. |
-| Select a block, press **⌘ C**, and paste it | An empty paragraph appears where the copy would go. Copying a Table block, Canvas block, or chart block is not supported; use **Duplicate block** in the block menu. A block pasted from another Page also arrives as an empty paragraph; use **Move to page** instead. |
+| Select a block, press **⌘ C**, and paste it | An empty paragraph appears where the copy would go. Copying a Table block, Canvas block, or chart block is not supported, and the menu of these blocks has no **Duplicate block**; ask Ari to copy a table. A block pasted from another Page also arrives as an empty paragraph; use **Move to page** instead. |
 
 A block put on the clipboard with **⌘ C** or **⌘ X** carries no text, so pasting it into another app or into a table cell pastes nothing.
 
@@ -378,25 +403,27 @@ Saving is continuous and shows nothing while it works. A line above the document
 
 **Download spreadsheet**, the download icon in the Page header, exports the Page's tables, and the data its Canvas blocks draw, as an Excel workbook. Its tooltip reads **Download tables and Canvas data as a spreadsheet**. cfo.ai has no button that downloads a Page as a PDF or a CSV; ask Ari for one. For what the workbook contains, see [Export a Page to Excel](/guides/download-a-spreadsheet); for a PDF, see [Get a PDF report or slide deck](/guides/get-a-pdf-or-slides).
 
-When the button is busy with an export, one this tab asked for or one it picked up when the Page opened, selecting it shows the notice below and opens no menu. When it is not busy, selecting it looks up your own exports of this Page in this Scenario. If the Page has a Table block or a Canvas block with data, and no export of it was asked for in the last 24 hours or is queued or running, the export starts at once. In every other case the button opens a menu titled **Recent exports**, with **Exports from the last 24 hours for this page and scenario.** It shows on a Page with neither too, where it can only list past exports:
+When the button is busy with an export, one this tab asked for or one it picked up when the Page opened, selecting it shows the notice below and opens no menu. When it is not busy, selecting it opens a menu titled **Download as Excel**. Opening the menu starts nothing: an export starts when you choose a format. The menu has the two formats, then **Recent exports**, your own exports of this Page in this Scenario:
 
 | Control or message | Meaning |
 | --- | --- |
-| **Start new export** | Starts a fresh export. Shown only on a Page that has a Table block or a Canvas block with data; unavailable while your export of this Page runs. |
-| An export's row | Its status, **Queued**, **Preparing**, **Ready**, **Failed**, **Cancelled**, or **Unavailable**, and the date and time you asked. A failed export shows its reason. An export whose workbook holds values instead of some formulas adds **[n] cells hold values instead of formulas. See Export notes.** |
+| **With formulas**, with **Cells keep their formulas, so numbers recalculate when you edit an input. Large models can take a while.** | Starts an export whose workbook holds Excel formulas and a **Model inputs** sheet. Someone without access to every Variable and Dimension in the Scenario, such as a person who opened the Page through a share link, gets the values-only workbook from this choice too. |
+| **Values only**, with **The numbers this page shows, without the model's formulas. Faster for large models.** | Starts an export whose workbook holds each Model formula's calculated value in place of the formula, and has no **Model inputs** sheet. Subtotal and comparison columns stay Excel formulas. See [Export values only](/guides/download-a-spreadsheet#export-values-only). |
+| **This page has no tables or Canvas data to export.** | Shown in place of the two formats on a Page with no Table block and no Canvas block with data, so no export can start. Past exports are still listed. |
+| **Recent exports**, with **Last 24 hours** | The heading of the list. |
+| An export's row | Its format, **With formulas** or **Values only**; then its status, **Queued**, **Preparing**, **Ready**, **Failed**, **Cancelled**, or **Unavailable**, and the date and time you asked. A failed export shows its reason. An export whose workbook holds values instead of some formulas adds **[n] cells hold values instead of formulas. See Export notes.** |
 | **Download** | On a **Ready** row. Saves that export's file and shows **Spreadsheet download started**. |
 | **Loading exports…** | The list is being read. |
-| **No exports from the last 24 hours.** | Nothing to list on a Page with a Table block or a Canvas block with data. |
-| **No recent exports. This page has no tables or Canvas data to export.** | Nothing to list, and the Page has no Table block and no Canvas block with data, so no export can start. |
+| **No exports from the last 24 hours.** | Nothing to list. |
 | **Could not load exports.**, with **Try again** | The list could not be read. Nothing was started. |
 
-The menu lists up to 10 exports: each you asked for in the last 24 hours, and any still queued or running. Exports other people asked for are not listed. While the menu is open, a queued or running export's status refreshes on its own.
+The list holds up to 10 exports: each you asked for in the last 24 hours, and any still queued or running. Exports other people asked for are not listed. While the menu is open, a queued or running export's status refreshes on its own. A **With formulas** export and a **Values only** export of the same Page are separate exports, each with its own row.
 
 While an export runs, the button spins and its tooltip shows the stage:
 
 | Message | Meaning |
 | --- | --- |
-| **Waiting for another spreadsheet to finish** | Another export in this workspace is running; yours starts when it ends. |
+| **Waiting since [time] for [other export]** | Another export in this workspace is queued or running; yours starts when it ends. |
 | **Spreadsheet queued** | Your export is waiting to start. |
 | **Preparing spreadsheet** | Your export is running. |
 
@@ -414,6 +441,7 @@ When it finishes:
 | **Spreadsheet download started**, with the file name | The workbook downloaded. |
 | **Spreadsheet download started**, with **[file]: [n] cells hold values instead of a formula. The Export notes sheet lists them.** and **Ask Ari to fix** | Some formulas could not be written as Excel formulas. **Ask Ari to fix** opens a chat that asks Ari to export the Page again and write a working formula into each of those cells. |
 | **Could not download spreadsheet**, with **[Page]: [reason]** | The export failed. |
+| **Could not download spreadsheet**, with **[Page]: [reason]** and **Download values only** | A **With formulas** export ran and failed. **Download values only** starts a **Values only** export of the same Page and Scenario. The button is not offered when a **Values only** export failed, when the export was cancelled, or when the request was refused before an export ran. |
 | **The Excel export of "[Page]" finished with [n] of [m] selected pages written.**, then **Pages left out ([k]): [names].** when some were | Posted in the chat that asked Ari for the export, when the export finished after Ari's reply had ended. A failed export posts **The Excel export of "[Page]"** followed by its reason instead. See [Export a Page to Excel](/guides/download-a-spreadsheet). |
 
 When you open a Page, it looks for your own newest export of that Page in that Scenario: one still queued or running, or one that ended within the last hour. It looks even when the Page no longer has a table. A running export makes the button busy again, with the tooltips above. When it finishes, the file downloads if this tab asked for it before a reload, or if you selected **Download spreadsheet** in this tab while it ran; an export that a closed tab, another tab, or Ari asked for is otherwise offered with **Spreadsheet ready** instead. An export that already ended shows one of these notices. A tab reports an export once, across its reloads, and a new tab reports it again:
@@ -421,13 +449,13 @@ When you open a Page, it looks for your own newest export of that Page in that S
 | Message | Meaning |
 | --- | --- |
 | **Spreadsheet ready**, with **[file], requested at [time]** and **Download** | The export finished after you left, or another tab or Ari asked for it. Select **Download** to save the file; it does not download on its own. When some formulas could not be written as Excel formulas, the notice adds the cell count and the **Export notes** sheet, and **Download** then shows **Spreadsheet download started** with **Ask Ari to fix**. |
-| **Could not download spreadsheet**, with **[Page], requested at [time]: [reason]** | The export failed after you left. |
+| **Could not download spreadsheet**, with **[Page], requested at [time]: [reason]** | The export failed after you left. A failed **With formulas** export adds **Download values only** here too. |
 
 A failed export's reason has up to three parts:
 
-- **The export failed while [stage] and produced no workbook.** The stage is **starting**, **loading the saved model**, **reading the model calendar**, **calculating the page tables**, **calculating the inputs the page tables read**, **writing the workbook**, or **storing the workbook**.
-- The cause, such as a formula whose input has no cell in the workbook, a formula that could not be written for Excel, **The export reached its time limit**, **The export was stopped before it finished.** for an export Ari cancelled, **The export worker stopped checking in before its final attempt finished. Memory exhaustion, a stopped worker, and a lost database connection can interrupt these checks; the job records only the missing check-ins.** for an export whose worker was lost, a Dimension whose list of items was larger than the export could read, or a table calculation that reached a limit: **A calculation in table "[table]" in scenario "[Scenario]" reached its 180-second time limit and was stopped before it finished.** or **A calculation in table "[table]" in scenario "[Scenario]" reached the [n] MiB memory limit of one calculation worker and was stopped before it finished.**
-- When it is known, whether to try again: **The failure is temporary: a new export of the same pages can succeed.** or **A new export fails the same way while the saved model is unchanged.** A calculation that reached its time limit is not tried again, because the next export reaches the same limit; narrow the table, or ask Ari why it is large.
+- **The export failed while [stage] and produced no workbook.** The stage is **starting**, **running on the export worker**, **loading the saved model**, **reading the model calendar**, **calculating the page tables**, **calculating the inputs the page tables read**, **writing the workbook**, or **storing the workbook**.
+- The cause, such as a formula whose input has no cell in the workbook, a formula that could not be written for Excel, **The export reached its time limit**, **The export was stopped before it finished.** for an export Ari cancelled, **The export worker stopped checking in before its final attempt finished. Memory exhaustion, a stopped worker, and a lost database connection can interrupt these checks; the job records only the missing check-ins.** for an export whose worker was lost, **The export stopped because the worker that ran it had less than 10% of its memory free for about 60 seconds of consecutive checks.** for an export stopped while its worker was low on memory, followed by **No other export was stopped with it.** or **The same check stopped [n] other exports on that worker; the stop does not record which export used the memory.** (**1 other export** when there was one), and then by **The export was working in table "[table]" in scenario "[Scenario]" when it stopped.** when that is known, a Dimension whose list of items was larger than the export could read, or a table calculation that reached a limit: **A calculation in table "[table]" in scenario "[Scenario]" reached its 180-second time limit and was stopped before it finished.** or **A calculation in table "[table]" in scenario "[Scenario]" reached the [n] MiB memory limit of one calculation worker and was stopped before it finished.**
+- When it is known, whether to try again: **The failure is temporary: a new export of the same pages can succeed.** or **A new export fails the same way while the saved model is unchanged.** A calculation that reached its time limit is not tried again, because the next export reaches the same limit; narrow the table, or ask Ari why it is large. An export stopped for low worker memory has no such sentence. When the same check stops several exports, cfo.ai runs each of them once more by itself; an export stopped alone, or stopped on its second run, fails. The table it names is where the export was working, which may not be what used the memory; the worker also runs imports. Start a new export when you want to try again, or choose **Values only**, which does not calculate the inputs that formulas read; the rule is in [Limits and file types](/reference/limits#tables-pages-sharing-and-exports).
 
 These reasons stand alone:
 
@@ -437,13 +465,14 @@ These reasons stand alone:
 | **The export was cancelled before it produced a workbook.** | The export was cancelled. |
 | **Table "[name]" requires at least [n] rows and [m] columns; Excel worksheet limits are 1048576 rows and 16384 columns.** | The table's saved layout does not fit one Excel worksheet. The export is refused at once, before anything is calculated, and a new export fails the same way while the table is unchanged. Ari's export reports the same limit as **The saved layout in table "[name]" requires …**. |
 
-An export that ran out of time or met an input too large to read can still succeed with part of the selection; see [When an export runs out of time](/guides/download-a-spreadsheet#when-an-export-runs-out-of-time). The workbook's **Export notes** sheet then says so:
+An export that ran out of time or met an input too large to read can still succeed with part of the selection; see [When an export runs out of time](/guides/download-a-spreadsheet#when-an-export-runs-out-of-time). The workbook's **Export notes** sheet then says so, and a values-only workbook's **Export notes** sheet says that it holds values:
 
 | Message | Meaning |
 | --- | --- |
+| **This workbook holds the values cfo.ai calculated, not the model's formulas, so its numbers do not update when you change an input. Subtotal and comparison columns, when present, still recalculate from these values.**, at the top of the sheet | The whole workbook is values only: you chose **Values only**, Ari exported it as values only, or it was downloaded by someone without access to every Variable and Dimension in the Scenario, such as a person who opened the Page through a share link. Such a workbook always has an **Export notes** sheet, after its other sheets. |
 | **The export's calculation time ran out before the tables of these selected pages were calculated, so this workbook does not contain them:**, followed by the Page names | Calculation stopped before the export's time limit, at the point that leaves time to write the workbook, or the export reached its allowance of calculated cells or calculation requests; the sheet uses the same sentence for both. Each named Page is left out of the workbook. Only an export of several Pages, which Ari makes, can leave a Page out. The limits are in [Limits and file types](/reference/limits#tables-pages-sharing-and-exports). |
 | **These cells hold the value cfo.ai calculated instead of a formula. They do not recalculate when you edit an input.**, with a row for each cell | The cells kept as values, with the sheet, cell, Variable, period, Scenario, and the reason. |
-| **[table] holds calculated values only. cfo.ai could not work out its formulas within the calculation time limit, so these numbers do not update when you change an input. Subtotal and comparison columns, when present, still recalculate from these fixed values.**, above the cell list and as the subtitle of that table's sheet | In a workspace on cfo.ai's faster calculation engine, working out the table's formulas reached the time limit for one table calculation, so the whole table was written as values. Its other cells are not listed one by one. |
+| **[table] holds calculated values only. cfo.ai could not work out its formulas within the calculation time limit, so these numbers do not update when you change an input. Subtotal and comparison columns, when present, still recalculate from these fixed values.**, above the cell list and as the subtitle of that table's sheet | Working out the table's formulas reached the time limit for one table calculation, so the whole table was written as values. Its other cells are not listed one by one. |
 | **cfo.ai could not work out this table's formulas within the calculation time limit.** | The reason on a listed cell of such a table. |
 | **Its formula has no spreadsheet equivalent yet.** | The reason for a formula that cannot be written for Excel. |
 | **It reads [Variable]**, then **for [items]** or **at [period]** when known, **, which this workbook does not contain.** | The reason for a cell that reads a value the workbook has no cell for, including an input calculation did not reach in time. |
@@ -554,7 +583,7 @@ A Canvas block can open your browser's own dialogs: a print button prints that b
 | Message | Meaning | What to do |
 | --- | --- | --- |
 | **This Canvas block didn't start because its libraries failed to load.** | The block's software did not load. | Select **Retry**. |
-| **This Canvas block didn't start because its runtime stopped with an error before it was ready.** | The block's software stopped before the block started. | Select **Retry**. |
+| **This Canvas block is unavailable because its runtime hit an error.** | The block's software stopped with an error before the block started. | Select **Retry**. |
 | **This Canvas block was still starting after 15 seconds.** | The block's software was still loading after 15 seconds with the Page in view. Time in a background tab does not count, and the wait starts over each time you return to the tab, so a tab you left for a while does not show this when you come back. | Select **Retry**, or wait. |
 | **This block failed to render.**, with the error | The block stopped with an error while drawing. | Select **Fix** to hand the block to Ari, or **Mention in chat**. |
 | **This block's "[data]" data didn't load because the connection to cfo.ai failed.** | Your connection to cfo.ai failed. | Wait. The block asks again when your connection returns. |
@@ -563,6 +592,8 @@ A Canvas block can open your browser's own dialogs: a print button prints that b
 | **Incompatible browser version. Please upgrade your browser.**, printed across a chart or gauge | The chart library did not recognize your browser's version. Firefox on iPhone and iPad and some apps' built-in browsers show it; Chrome on iPhone and iPad does not. The chart under it is drawn and correct. | Open the Page in Safari or Chrome. |
 
 A block that stopped with an error tries again by itself once after 2 seconds, and any block that did not start tries again when your connection to cfo.ai returns.
+
+Some browsers report an error inside a block with no file, line, or other detail; Safari and the other browsers built on its engine do this for an error in a block's own button or timer. cfo.ai cannot tell such a report from an error outside the block, so the block stays on the Page as it was and shows no message. A block that has reported one and still has not started after 15 seconds shows **This Canvas block is unavailable because its runtime hit an error.** in place of the 15-second message, and tries again once. An error while the block draws still shows **This block failed to render.**
 
 ## Input forms
 
@@ -574,7 +605,8 @@ People who can edit the Page see the frame in place of the form. People who can 
 
 | Control | What it does |
 | --- | --- |
-| **Form**, **Responses**, **Links** tabs | **Form** shows the form at a **Desktop** or **Phone** width, under the switch **Preview width**. **Responses** lists the answers, with their count in its label and a dot when some are held. **Links** holds the form link and the people it was sent to. A form Ari has not written yet shows only the **Form** tab, which reads **Collect input from anyone, no cfo.ai account needed, to use in your model.** with **Build with Ari**; readers see **Nothing in this form yet** and **Someone who can edit this page can ask Ari to write it.** |
+| Form name | The name in the frame's header; a form made from the library is **Untitled form** until someone names it. Select the name, type a new one, and press **Enter** or click anywhere else to save it. An empty name is not saved, and the header goes back to the saved name. The form's heading shows the saved name on the Page, in **Preview**, and on the form link's page; a form still named **Untitled form** keeps the heading Ari wrote. The name can be changed only in the form's own Scenario and in a desktop browser. Renaming a form Ari has written adds one entry to version history, **Renamed [old name] to [new name]**. |
+| **Form**, **Responses**, **Links** tabs | **Form** shows the form at a **Desktop** or **Phone** width, under the switch **Preview width**. **Responses** lists the answers, with their count in its label and a dot when some are held. **Links** holds the form link and the people it was sent to. A form Ari has not written yet shows only the **Form** tab, which reads **What should this form ask?** and **Anyone with the link can answer, without a cfo.ai account. Their answers fill a table you can use in your model.**, with **Build with Ari**; readers see **Nothing in this form yet** and **Someone who can edit this page can ask Ari to write it.** |
 | **Ask Ari to change it** (**Ask Ari** when narrow) | Opens the chat with the form's chip, for a change to its questions. |
 | **Preview** | Opens the form full size, headed **Preview · nothing is sent**, or **Preview of [Scenario]’s draft · nothing is sent** for a draft in another Scenario. **Close preview** returns to the Page. Answers in a preview are not saved. |
 | **Send** | Opens the chat with **Send [form] to**, for Ari to post the sending card described under [Emails and the sending card](#emails-and-the-sending-card). Outside the form's home Scenario, its tooltip reads **This form lives in [Scenario]. Switch to [Scenario] to change it.** |
@@ -595,7 +627,7 @@ Turning **Allow more than one response per person** on takes effect at once. Eve
 | **Discard [N] responses?** | **They aren’t in the table, so nothing there changes. They won’t be added later.**, or **They won’t be added to the table again.**, with **Their rows stay in the table.** or the ticked checkbox **Also remove their rows from [table]** and **Rows someone changed stay.** | **Discard [N] responses** / **Discarding…**; **Cancel** |
 | **Add [name]’s answer to [table]?** or **Add [N] answers to [table]?** | One or more of: **[name] already answered. Make sure this newer answer is really from them: the earlier one counts until you add this one.**; **[name]’s answer was flagged: [checks].** with the flagged text; **This replaces [N] values someone typed in the table.** Shown only when one of these applies; otherwise the add runs at once. | **Add to table** or **Add [N] answers** / **Adding…**; **Cancel** |
 
-Notices after these actions: **Closed [form]** or **[form] was already closed**; **Reopened [form]** or **[form] was already open**; **Deleted [form]** with **[table] keeps its rows.**; **Link replaced**; **Discarded [N] responses** or **Discarded [name]’s response**; **Removed [N] rows from [table]. [N] rows someone changed stay.**; **Added [N] answers · [N] rows** (or **· [N] values**); **Nothing changed in the table**; **The new answer goes in once its checks pass**. A notice for an add or a removal offers **Undo**; **That wasn’t undone. Try again in a moment.** means the undo failed. A failed action reads **That didn’t work** with **Try again in a moment.**, and **The form link wasn’t copied. Try again.** means the copy failed.
+Notices after these actions: **Closed [form]** or **[form] was already closed**; **Reopened [form]** or **[form] was already open**; **Deleted [form]** with **[table] keeps its rows.**; **Link replaced**; **Discarded [N] responses** or **Discarded [name]’s response**; **Removed [N] rows from [table]. [N] rows someone changed stay.**; **Added [N] answers · [N] rows** (or **· [N] values**); **Nothing changed in the table**; **The new answer goes in once its checks pass**. A notice for an add or a removal offers **Undo**; **That wasn’t undone. Try again in a moment.** means the undo failed. A failed action reads **That didn’t work** with **Try again in a moment.**, and **The form link wasn’t copied. Try again.** means the copy failed. A rename that does not save reads **Couldn’t rename the form** with the reason or **Try again in a moment.**
 
 ### Responses tab
 
@@ -692,6 +724,8 @@ A phone or tablet browser opens the same workspace in a reading layout, one scre
 | **New chat** | On a Page. Starts a chat. |
 
 Pages are read-only in this layout, whatever your access. You can read tables and Canvas blocks, and a table's **Table block settings** menu offers **Show formula bar** and **Show formula columns**, but you cannot edit cells, add rows or blocks, or create Pages or Scenarios. The Page header shows only the Page's name: **Share**, **Download spreadsheet**, and **Version history** are not offered. Empty states say **Pages are read-only in this browser. Use Desktop Site to create a page.** and **Scenarios are read-only in this browser. Use Desktop Site to create one.**
+
+**Follow Ari’s work** is not offered in this layout, so Ari does not move your view there. When Ari finishes, **Show it** above the message box opens the Page it edited last.
 
 To edit on a phone or tablet, ask your browser for its desktop site. You get the full desktop app, editing included.
 

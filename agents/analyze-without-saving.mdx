@@ -1,7 +1,7 @@
 ---
 title: "Analyze saved values without changing the Model"
 sidebarTitle: "Analyze without saving"
-description: "For agents: answer financial questions from saved tables, compare and rank existing values, read history, check a proposed formula without saving it, and know when a new result needs a saved row and the user's authorization."
+description: "For agents: answer financial questions from saved tables, compare and rank existing values, read history, and know when a new result, or a check of a proposed formula, needs a saved change and the user's authorization."
 searchable: false
 ---
 
@@ -15,8 +15,7 @@ Use `inspect_table_blocks` with its `read` block and the table that holds the va
 {
   "scenario": "Main",
   "read": {
-    "target": "Revenue by Customer",
-    "formula_origins": "all"
+    "target": "Revenue by Customer"
   }
 }
 ```
@@ -34,12 +33,11 @@ To narrow a follow-up to a visible row, cell, or subtree, copy row and column re
 - A historical read uses `as_of_point` against the same saved table and the same target, which keeps a before-and-after comparison tied to one stable artifact. [Read the Model at an earlier point](/agents/mcp-tools#read-the-model-at-an-earlier-point) lists the point types.
 - The `compare` block shows how a table changed since a saved change, named by `before_change_log_id`. It lists the rows removed or added since then under `row_membership`.
 
-## Check a proposed formula without saving it
+## Checking a proposed formula means saving it
 
-Only a new table can be checked without saving. `edit_table_blocks` `create` with `dry_run: true` validates the proposed table's structure, references, and formula syntax, runs the write in a transaction it rolls back, and returns `valid`, `warnings`, and `model_effects`. `update`, `reshape`, `copy`, `delete`, `set_time_rollup`, and `update_calendar` take no `dry_run`.
+`edit_table_blocks` cannot check a proposed table or formula without saving it. No action takes `dry_run`, and a call that sends it is refused. A `create` either saves and returns a receipt, or is refused and saves nothing.
 
-- A dry run checks the write. It returns no values, because calculation does not run, so it does not create a calculated series to inspect and does not detect circular references.
-- `update`, `reshape`, and `delete` take no dry run. Checking a change to an existing table means making the change, which needs the user's authorization. When the user wants to see a change before adopting it, make it in a Scenario other than Main.
+Checking a new table, or a change to an existing one, means making the change, which needs the user's authorization. When the user wants to see a change before adopting it, make it in a Scenario other than Main.
 
 [Validate and verify formula writes](/agents/validate-and-verify#validate-before-you-save) has the details.
 

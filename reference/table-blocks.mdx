@@ -150,6 +150,7 @@ A row or column for a Variable, such as Revenue, or a column that shows each row
 | **Insert above** / **Insert below** | Opens the Create or search field for a new row at that place. On a column: **Insert left** / **Insert right**. |
 | **Insert space** | Rows only. Adds a blank spacer row below. |
 | **Expand child rows** / **Collapse child rows** | Opens or closes the rows under it. |
+| **Expand all child rows** / **Collapse all child rows** | On a row name in the table. Opens or closes every row at this row's level; see the [Dimension item menu](#dimension-item-menu). |
 | **Remove item and drill-ins** | Removes the row, and any rows under it, from this table. When no other table shows the Variable, cfo.ai asks first; see [Removing and deleting](#removing-and-deleting). |
 
 ### Dimension item menu
@@ -164,6 +165,7 @@ A row or column for one item, such as Sales.
 | **Drill in** / **Clear drill-in** | On a calculated row. Adds or removes the **No input found** row; it does not open the row's inputs. See [Controls in the grid](#controls-in-the-grid). |
 | **Filter out this item** | Hides the item on this table. Not offered on a read-only table. |
 | **Expand child rows** / **Collapse child rows** | Opens or closes the rows under it. |
+| **Expand all child rows** / **Collapse all child rows** | On a row name in the table. Opens or closes every row at the same level of the same breakdown, under every parent, such as every department row under each region. It reads **Collapse all child rows** while any of those rows is open, and **Expand all child rows** when all are closed. Rows at other levels keep their state, so the rows under a closed row are as you left them when you open it again. |
 | **Format and display** | Opens the [format options](#format-and-display-options). |
 | **Rename** | Renames the item. **All tables.** Unavailable, with **Only items you created can be renamed**, for items from connected data. |
 | **Delete [Dimension] item** | Only on the table where the Dimension was created: deletes the item. **All tables.** Unavailable, with **Only items you created can be deleted**, for items from connected data. |

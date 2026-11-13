@@ -483,50 +483,20 @@ For time and size limits, see [Limits and file types](/reference/limits#tables-p
 
 ## Share panel
 
-**Share** in the Page header opens the panel, titled **Share [Page]**, with **Close**. The panel lists the Page's links; you choose a link's Pages and Scenarios in [New link](#new-link). From top to bottom:
+**Share** in the Page header opens the panel, titled **Share [Page]**, or **Share [n] pages** when the link opens several, with **Close**. From top to bottom:
 
 | Part | What it does |
 | --- | --- |
-| **External access** | **Create link**, which opens [New link](#new-link), and the links that already exist. With none, it says **No one outside your workspace has link access.** A Page can have up to 100 links. |
-| A link | Its address; **Anyone with this link can view. Shared by [name], updated [time]**, or **Anyone with this link can view. Updated [time]** for a link whose creator is not recorded; what it opens, as **[n] pages in [Scenario]** or **[n] pages across [n] scenarios**, with **Details**, which opens [Link details](#link-details); **Copy external link**; and **Turn off external link** (the trash icon). |
+| **Pages to share** | Lists the Page you started from, marked **Opens here**, and the other Pages in this Scenario you can share, each with the icon it has in the sidebar. Select Pages to add them to the link. Below it: **The first page opens when someone follows the link. Up to 50 pages can be shared.** |
+| **External access** | **Create link**, and the links that already exist. With none, it says **No one outside your workspace has link access.** A Page can have up to 100 links. |
+| A link | Its address; **Anyone with this link can view. Shared by [name], updated [time]**, or **Anyone with this link can view. Updated [time]** for a link whose creator is not recorded; the names of the Pages it opens; **Copy external link**; and **Turn off external link** (the trash icon). |
 | **Edit share preview** | On a link without a password. Opens the [Share preview](#share-preview) dialog. |
-| **Link settings** | Opens under a new link. **Shared scenario** picks the Scenario of a link whose Pages are all in one Scenario; a link that opens Pages in several Scenarios does not show it, and an old link that opens a Page in every Scenario shows **All scenarios** there, with nothing to pick. **Require password** turns the password on; turning it on fills in a generated password. The password field has **Show password** (**Hide password**) and **Generate password**. **Save changes** appears after a change; saving replaces the link with a new address, and the old address stops working. A link across several Scenarios keeps each Page in its own Scenario when it is replaced. |
+| **Link settings** | Opens under a new link. **Shared scenario** picks the link's Scenario. **Require password** turns the password on; turning it on fills in a generated password. The password field has **Show password** (**Hide password**) and **Generate password**. **Save changes** appears after a change; saving replaces the link with a new address, and the old address stops working. |
 | Footer | **Model data on this page may also be used on other pages.** |
-
-You cannot add or remove a link's Pages after you create it, or change the Scenarios of a link that opens several. Create a new link and turn off the old one.
 
 Turning a link off opens **Turn off this external link?**, which says **Anyone who has the link will no longer be able to open it.** The checkbox **Also remove access already granted by this link** is checked, with **Recommended for financial information. Direct invitations stay unchanged.** Select **Cancel** or **Turn off link**.
 
-An old link that opens a Page in every Scenario lists its Pages by name, without **Details**, and shows **All scenarios** as its **Shared scenario**. Only someone with full access to the Page can turn it off: **Only a page-wide owner can turn off this legacy link.**
-
-### New link
-
-**Create link** in the Share panel changes the panel to **New link**, where you choose the Pages the link opens in each Scenario. The view starts in the Scenario the Page is open in. Nothing is saved until you select **Create link** here. The back arrow (**Back to sharing**) and **Cancel** return to the panel without a link.
-
-| Part | What it does |
-| --- | --- |
-| **Pages** | The Pages in the Scenario that you can share, each with a checkbox. The Page you started from comes first, ticked and marked **Opens here**: readers land on it, and you cannot untick it. Once the link has several Scenarios, the heading reads **Pages in [Scenario]**. |
-| **Find a page** | Narrows the list to the Pages whose names match. With several Scenarios it reads **Find a page in [Scenario]**. |
-| **Select all** | Ticks every Page listed, or unticks them when all are ticked. It reads **Select all shown** while a search narrows the list. |
-| **In [Scenario].** with **Add scenario** | Shown below the Pages while the link has one Scenario. **Add scenario** opens **Add scenarios**, which says **You choose each scenario's pages next.** and lists the workspace's other Scenarios and Snapshots under **Scenarios** and **Snapshots**, with **Find a scenario** and **Select all**. Tick the ones to add and select **Add 1 scenario** or **Add [n] scenarios**. An added Scenario starts with the Pages ticked in the first Scenario, where those Pages exist in it. |
-| **Scenarios** | A list at the left once the link has two or more Scenarios. Each Scenario shows how many of its Pages are ticked, such as **3 pages**, or **None picked**. Select a Scenario to see and change its Pages. **Remove [Scenario]** (the × beside it) takes the Scenario and its ticks out of the link; the Scenario the link opens in has no ×. **Add scenario** is at the foot of the list. In a narrow window the list and a Scenario's Pages take turns, and **Scenarios** above the Pages goes back to the list. |
-| **All scenarios** | The first row of the **Scenarios** list. It shows every Page of the link's Scenarios once: **Tick a page here to share it in every scenario where it exists.** A Page ticked in only some of its Scenarios shows **In [Scenarios]**, and a Page that exists in only one shows **Only in [Scenario]**. |
-| Summary | At the foot: what the link will open, as **[n] pages in [Scenario]** or **[n] pages across [n] scenarios**, above **Opens [Page] in [Scenario]**. The summary counts a Page once, however many Scenarios open it. |
-| **Create link** | Creates the link and returns to the Share panel, where the new link shows with its **Link settings** open. |
-
-One link opens up to 50 Pages, and a Page counts once for each Scenario the link opens it in; see [Limits and file types](/reference/limits#tables-pages-sharing-and-exports).
-
-### Link details
-
-**Details** on a link opens **Link details**, a read-only list of what the link opens. Its back arrow and **Done** return to the Share panel.
-
-| Part | What it does |
-| --- | --- |
-| Address | The link's address with **Copy link**, which reads **Link copied** after a copy. Below it: **Anyone with this link can view. Opens [Page] in [Scenario].** |
-| **What this link opens** | The same summary as the link's row, **Find a page in this link**, and one heading for each Scenario with its count, such as **2 pages**. Select a heading to fold or unfold its Pages. The Page readers land on is marked **Opens here**. A link that opens more than 12 Pages, counting a Page once for each Scenario, starts with only its first Scenario unfolded. |
-| **Turn off link** | Opens **Turn off this external link?**, as the trash icon does. |
-
-A Scenario that was deleted shows as **Deleted scenario**, and its Pages, like any Page that was deleted, show as **Unavailable page**.
+An old link that opens a Page in every Scenario shows **All scenarios** as its **Shared scenario**, and only someone with full access to the Page can turn it off: **Only a page-wide owner can turn off this legacy link.**
 
 ### Share panel messages
 
@@ -535,17 +505,11 @@ A Scenario that was deleted shows as **Deleted scenario**, and its Pages, like a
 | **Checking external link access…** | The panel is loading the Page's links. |
 | **External link access could not be fully verified.** | Not every link could be checked; **Create link** stays off. |
 | **External links could not be loaded. Try again later.** | The links failed to load. |
-| **Checking pages…** | **New link** is still loading a Scenario's Pages; **Create link** stays off. A Scenario still loading reads **Loading…** in the **Scenarios** list, and its Pages read **Loading pages…**. |
-| **Could not load the pages in [Scenario].**, with **Retry** | **New link** could not load a Scenario's Pages. The Scenario reads **Not loaded** in the **Scenarios** list, and **Create link** stays off until the Pages load or you remove the Scenario. |
-| **No pages you can share here.** | The Scenario has no Page you can share. |
-| **No page matches “[text]”.** / **No scenario matches “[text]”.** | The search in **New link** or **Add scenarios** found nothing. |
-| **Every scenario is already in this link.** | **Add scenarios** has no Scenario left to add. |
-| **No pages picked in [Scenario], so it is left out of the link.** | A Scenario in **New link** has no Page ticked. The link is created without that Scenario. With several such Scenarios the message names them all and ends **so they are left out of the link.** |
-| **[n] of 50 allowed** | Shown beside **Opens [Page] in [Scenario]** once more than 40 Pages are ticked, counting a Page once for each Scenario. |
-| **[n] of 50. Remove [k] before creating a link: drop a scenario, or untick pages in one.** | More than 50 Pages are ticked, counting a Page once for each Scenario; **Create link** stays off. |
+| **Checking page access…** | The panel is checking which Pages you can share. |
+| **Access to a selected page could not be verified. Remove it or retry after access refreshes.** | One of the Pages you picked could not be checked. |
+| **Could not check access to some other pages. Retry after access refreshes.** | Some Pages are missing from **Pages to share**. |
+| **Remove [n] pages before creating a link.** | More than 50 Pages are selected. |
 | **Could not create an external link. Try again.** | Creating the link failed. |
-| **Could not load the page names in [Scenario].**, with **Retry** | **Link details** could not load a Scenario's Pages, which read **Name not loaded**. |
-| **No page in this link matches “[text]”.** | The search in **Link details** found nothing. |
 | **Enter a password before saving link settings.** | **Require password** is on with an empty password. |
 | **This link password could not be revealed.** / **This link password could not be loaded.** | The saved password could not be read. |
 | **Could not update this external link. Its old settings are unchanged.** | Saving settings failed and the old link still works. |
@@ -585,9 +549,6 @@ A memorable address has 3 to 64 lowercase letters, digits, or single hyphens bet
 | Other failure | **Something went wrong**, with **Please try again in a moment.** |
 | Strip above the Page | For a reader who is not signed in: your brand's logo and name with **Powered by cfo.ai**, or, without a brand, **Like what you see? Build a model like this for your own business.** with **Start your free trial now**, which the reader can dismiss. In a desktop browser, a brand with a logo shows no strip, because the sidebar already shows the logo and **Powered by cfo.ai**. A phone or tablet browser shows the strip, and so does a brand without a logo. |
 | **Keep your access** | A card for a reader who is not signed in: **Sign in to hold on to the pages shared with you.**, with an email field |
-| Scenario picker | In the sidebar's **Model** section, lists the Scenarios the reader's links share. Picking a Scenario that does not share the Page on screen opens the first Page that Scenario shares, in sidebar order. |
-| Strip after a Scenario change | **[Page] isn’t shared in [Scenario]**, with **Back to [Scenario]**, over the Page that opened. [Page] is the Page the reader had open. **Back to [Scenario]** returns to it, in the Scenario the reader came from. The strip goes away when the reader opens another Page or Scenario. |
-| **In other shared scenarios** | Below the sidebar's list of Pages: the Pages the reader can open only in other Scenarios. Each shows its Scenario's name, or **[n] scenarios** when several share it. Selecting one opens it in the first of those Scenarios, Main first. |
 
 A link's preview card in chat and social apps, and the browser title of the link's own page, name cfo.ai. When the workspace's **Show the brand on link previews** setting is on, they name the brand instead, and the card's picture shows the brand's dark-mode logo, or its name when it has no dark-mode logo, with **Powered by cfo.ai**; see [Settings](/reference/settings#brand). The card shows **Shared page unavailable** and **This link has expired or is no longer available.** once the link is off.
 

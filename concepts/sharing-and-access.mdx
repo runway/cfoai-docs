@@ -17,11 +17,9 @@ A share link lets someone read one or more Pages without joining the workspace a
 
 Take a board update. You create a link to the Board summary Page that also opens the Cash forecast Page, choose the Board plan Scenario, and add a password. The board members open the link, enter the password, and read both Pages. They cannot type into a cell or change a chart, and nothing else in the workspace opens for them.
 
-One link can also cover several versions of the plan. A Page is shared Scenario by Scenario, so the same link can open the Board summary and the Cash forecast in Main, and only the Revenue model in a Downside Scenario. The reader moves between those Scenarios with the Scenario picker, and in each one sees only the Pages you shared there.
-
 A link:
 
-- Opens the Pages it names, each only in the Scenarios you chose for it. A Page you share in Main does not open in another Scenario, even one created from Main, unless you share it there too.
+- Opens the Pages it names, in the one Scenario saved with it.
 - Never allows editing, whoever holds it.
 - Needs no sign-in. No setting can require one.
 - Works until someone turns it off. Links do not expire.
@@ -33,7 +31,7 @@ Only Pages can be shared. A Scenario, a chat, a Variable, or a formula has no li
 
 ## What a link's reader sees
 
-A reader sees the Pages as they are when they open them, with live numbers. When your Model changes, the shared Page changes too. To share numbers that stay fixed, such as the plan your board approved, share the Page in a Snapshot; see [Scenarios, Snapshots, and version history](/concepts/scenarios).
+A reader sees the Pages as they are when they open them, with live numbers. When your Model changes, the shared Page changes too. To share numbers that stay fixed, such as the plan your board approved, choose a Snapshot as the link's Scenario; see [Scenarios, Snapshots, and version history](/concepts/scenarios).
 
 A block shows the reader what it was saved to show:
 
@@ -43,7 +41,7 @@ A block shows the reader what it was saved to show:
 
 A reader on the desktop site can download a shared Page that has a Table block, or a Canvas block with data, as an Excel workbook. For a reader whose only access is the link, the workbook holds the numbers your Model calculated as values, not the formulas behind them. Subtotal and comparison columns can stay Excel formulas, because they read only cells the sheet shows. The workbook names only the Variables and Dimensions that the Page's tables show and that its Canvas blocks' datasets hold; see [Export a Page to Excel](/guides/download-a-spreadsheet#export-values-only).
 
-The other Pages in your workspace stay closed to the reader. When a link opens several Scenarios, a Page stays closed in every Scenario where you did not share it: if the reader picks such a Scenario, cfo.ai opens a Page that is shared there and says that the first Page is not, and the sidebar lists the Pages that are shared only in other Scenarios. The exact labels are in [What a link's reader sees](/reference/interface#what-a-links-reader-sees). A reader who is not signed in sees a strip above the Page. When the workspace has a brand, the strip shows the brand's logo and name with **Powered by cfo.ai**; in a desktop browser, a brand with a logo shows it in the sidebar and the strip is left out, and a brand without a logo keeps the strip. Without a brand, the strip invites the reader to try cfo.ai. Before the reader opens the link, its preview card in chat and social apps names cfo.ai, so a brand stays inside the Page unless an administrator chooses to show it on link previews too. See [Brand your workspace](/guides/brand-your-workspace).
+The other Pages in your workspace stay closed to the reader. A reader who is not signed in sees a strip above the Page. When the workspace has a brand, the strip shows the brand's logo and name with **Powered by cfo.ai**; in a desktop browser, a brand with a logo shows it in the sidebar and the strip is left out, and a brand without a logo keeps the strip. Without a brand, the strip invites the reader to try cfo.ai. Before the reader opens the link, its preview card in chat and social apps names cfo.ai, so a brand stays inside the Page unless an administrator chooses to show it on link previews too. See [Brand your workspace](/guides/brand-your-workspace).
 
 ## Keeping access to a shared Page
 
@@ -51,7 +49,7 @@ A reader who never signs in has access in that browser for seven days from their
 
 ## Turning a link off
 
-Turning a link off stops anyone from opening it again. By default it also removes access from everyone who already opened the Page through the link. Changing a link's Scenario or password does the same to the old link: cfo.ai replaces it with a new link at a new address. A link that opens Pages in several Scenarios keeps each Page in its own Scenario when it is replaced.
+Turning a link off stops anyone from opening it again. By default it also removes access from everyone who already opened the Page through the link. Changing a link's Scenario or password does the same to the old link: cfo.ai replaces it with a new link at a new address.
 
 ## Your chats are yours
 

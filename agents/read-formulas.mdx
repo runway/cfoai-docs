@@ -128,6 +128,32 @@ Each rendered target's formulas say whether `formula` and `clear_formula` can be
 
 The field name differs by level: a rendered target's formula names it `readOnlyReason`, while a row or column that cannot be written names its own reason `read_only_reason` beside `writable: false`. Dated Actuals and Forecast defaults keep their own writability.
 
+### Error cells counted over every selected row
+
+A `read` lists each cell error code, such as `#DIV/0!` or `#NUM!`, once under `issues`. Its `count` covers the cells with that code in the rows the result returns. When selected rows that the result does not return hold more cells with the code, the issue adds `selected`, so a page of 10 rows can report that 109 of the 384 selected rows fail:
+
+```json
+{"code": "#NUM!", "count": 2,
+ "selected": {"count": 109, "by_variable": {"probability_pct#8c7": 109}}}
+```
+
+- `selected.count` counts the cells with the code in every selected row, returned or not, in the returned columns. The selected rows are the rows `rows` and `depth` match, before `after` and `limit`, the rows `coverage.selected.rows` counts. Selecting fewer rows with `rows` changes the count; a lower `limit` changes only the page.
+- `selected.by_variable` splits that count by Variable reference: the cell's row Variable, or its column's when the row has none. It lists every Variable you can read that holds such a cell. A cell whose Variable you cannot read is in `selected.count` only.
+- The split is whole or absent. When it does not fit beside the rows, `selected.truncation` takes its place, with `by: "response_budget"`, `shown: 0`, and `total`, the number of Variables the split lists. On a result of more than one row, `selected.next` is `{"limit": 1}`: the same read with one row leaves the split the most room, and can still leave it out.
+- A code found only in rows outside the result is listed too, with `count: 0`, its `selected` counts, and no `message`.
+- A code whose cells the returned rows all hold carries no `selected`, and neither does a read that returns every selected row.
+- The page's rows are chosen first, as for a read with no error cells. To make room for `selected`, the page then gives up trailing rows one at a time, up to 32, and then tries one row, so reading a whole table can take one more call; `next.after` still continues from the last row returned. A page with no room for `selected` beside one row returns without it.
+
+### Totals whose finer periods are partly empty
+
+A row's `empty_periods` marks a total that includes periods with no value. It maps the reference of a returned column to `{"empty": n, "of": m}` when the row's cell in that column is a number that totals finer Date periods the same table shows, such as a year above its months or a quarter row above its month rows, and some, but not all, of the finest of those periods are empty. Q1 of 300 with January 100, February blank, and March 200 reads `{"empty": 1, "of": 3}`.
+
+- A period is empty when its cell is blank, or reads 0 only because no formula, value, or source covers it, the cells `uncovered_cells_zero_filled` counts. A 0 that a formula or a typed value gives is a value.
+- A total whose periods are all empty carries no mark, and neither does a table that shows only months or only quarters. A mark says that periods inside the total have no value; it does not say that the total is wrong.
+- The total is judged on the whole calculated table, so a read that returns the Q1 column without its months still marks it.
+- Comparison rows and columns, and a read with `grain`, carry no marks. A cell that totals periods along both its row and its column is not judged.
+- The marks are added last and never take a row's place. When they do not fit beside the returned rows, one `empty_periods_left_out` issue replaces them, with `count`, `truncation` (`by: "response_budget"`, `shown: 0`, and `total`, the number of marks left out), and, when a smaller page has room for the rows and their marks together, `next.limit`, the row count to send with the same read. When the issue itself does not fit, the page gives up trailing rows for it, up to 32, and a page with no room even then carries neither.
+
 ### Facts the read computed
 
 A `read` result also carries `figures`, facts about the returned numbers that no row or column states. Each key appears only when its fact holds:

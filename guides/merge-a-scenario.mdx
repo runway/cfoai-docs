@@ -27,7 +27,7 @@ Merge a Scenario when you decide to adopt it as your plan. Merging applies every
         Select **Merge** beside the Scenario picker. Its tooltip names where the changes go, such as **Merge all changes into Main Scenario**.
       </Step>
       <Step title="Review the changes">
-        The dialog lists every change the Scenario holds, across the whole Model, not only the Page you are on. It also reminds you that the Scenario is deleted after the merge.
+        The dialog summarizes every change the Scenario holds, across the whole Model, not only the Page you are on. It names each Page the Scenario changed with the number of changes on it, and gives one count for changes that belong to the whole Model, such as Variables and formulas. It does not show each change. It also reminds you that the Scenario is deleted after the merge.
       </Step>
       <Step title="Confirm">
         Select the confirm button, which counts the changes, such as **Merge 12 changes**.
@@ -44,7 +44,8 @@ A merge shows in the version history of the Scenario it merged into, usually Mai
 
 - **Merge** is dimmed with **No changes to merge** when the Scenario holds no changes.
 - A Snapshot taken from the Scenario does not block the merge. A Scenario from an older workspace that still has an editable child Scenario cannot be merged; the refusal names the child, such as **scenario cannot be merged while it has 1 child scenario**, and you merge or delete the child first.
-- Main and Snapshots cannot be merged.
+- Main and Snapshots cannot be merged, so **Merge** is not shown for them.
+- **Merge** is not shown on a phone or tablet, or while you are viewing an earlier version from version history. On a phone or tablet, ask Ari to merge, or ask your browser for its desktop site. In an earlier version, select **Back to latest** first.
 
 ## Related
 

@@ -62,6 +62,8 @@ Opened with **Show table setup**. It has four sections, from top to bottom: Layo
 | **Formula settings** → **Show formula columns** | Shows the formula columns. Unavailable, with **Formula columns require Variables in Rows or at the root of a Column group.**, when the layout cannot show them. |
 | **Formula settings** → one checkbox per range, such as **Actuals** and **Forecast** | Shows or hides that range's formula column. |
 
+On a table whose grain is **Daily**, **Weekly**, **Monthly**, **Quarterly**, **Half-yearly**, or **Yearly**, the formula column splits into **Actuals Formula** and **Forecast Formula**. A **Raw** table, and a table with no dates, keeps one **Formula** column.
+
 Which formula columns are open is remembered in your browser. See [Use different formulas for Actuals and Forecast](/guides/actuals-and-forecast-formulas).
 
 ### Columns and Rows sections
@@ -193,6 +195,7 @@ Opens from a Dimension's label row, such as **DEPARTMENT**, or from **[Dimension
 | **Insert above** / **Insert below** | Opens the Create or search field at that place. On a column: **Insert left** / **Insert right**. |
 | **Insert space** | Rows only. Adds a blank spacer row. |
 | **Pin column** / **Unpin column** | Columns only, not Date. |
+| **Hide totals** / **Show totals** | Columns only, on a level that has another level nested under it, such as Department over the months. Hides or shows the [total column](#total-columns) of each of its groups while the group is expanded. Saved with the table, for everyone. |
 | **Remove dimension** | Removes the Dimension from this table. When no other table shows it, cfo.ai asks first; see [Removing and deleting](#removing-and-deleting). |
 
 For actions that change the layout, such as **Filter items**, **Sort**, and **Insert above**, the Dimension's level must be saved on this table. A level that **Segment by** added under one item only offers none of them. On a read-only table, the menu has no **Format and display**; the table shows the saved **Display as** choice, or pills when none is saved.
@@ -208,6 +211,7 @@ For actions that change the layout, such as **Filter items**, **Sort**, and **In
 | **Copy value** (**⌃ ⌘ C**) | Copies the value as the cell shows it. A paste of this copy writes the value, not the formula. |
 | **Paste** | Pastes into the cell. |
 | **Mention cell in chat** | Adds the cell to the current chat. |
+| **Mention in new chat** | Starts a new chat with the cell in its message box and leaves the current chat as it is. |
 
 With several cells selected, the menu reads **[N] items selected** and offers **Format and display**, for each selected cell, and **Paste**.
 
@@ -231,7 +235,7 @@ Select a range that includes row names, or press **⌘ A**, and right-click a ro
 
 ### Total column header menu
 
-Right-click a total column's header and choose its summary: **None**, **Sum**, **Average**, **Minimum**, **Maximum**, **Count**, or **Last**. See [Total columns](#total-columns).
+Right-click a total column's header and choose its summary: **None**, **Sum**, **Average**, **Minimum**, **Maximum**, **Count**, or **Last**. Below the summaries, **Hide totals** hides the total column of every group at that level while the group is expanded; see [Total columns](#total-columns).
 
 ### Formula column header menu
 
@@ -257,6 +261,7 @@ No table owns a Variable or Dimension. The saved tables that show it, as a row, 
 | A row or column, while another saved table still shows the Variable or Dimension | It leaves this table only. |
 | Its last row, column, or drill-in on any table | cfo.ai asks **Delete variable or dimension?** before anything changes. Confirming deletes it from the Model. |
 | A table, with **Delete block**, or that table's Page | A Variable or Dimension another table still shows is kept. One no other table shows is deleted with the table, after the same question. |
+| A Variable or Dimension that several tables show, by asking Ari to delete it | Ari deletes it from the Model after you confirm. Its rows and columns leave the table recorded as its location, at first the table it was created on, and the table Ari was working on. Any other table that showed it keeps a row or column for it, marked [**Deleted property reference**](#table-header), until someone removes it there with **Remove deleted property from table** in the table setup panel. Ari's delete result names up to 20 such tables that you can open and counts the rest, so Ari can tell you which tables still list it. |
 
 The question is always asked, even when nothing else uses the Variable or Dimension:
 
@@ -310,7 +315,7 @@ Weeks are numbered Monday to Sunday, and **WE** shows the Sunday that ends the w
 
 ## Total columns
 
-A total column, also called a summary column, is the first column in each column group and summarizes the cells shown in the group. While [**Show total columns**](#table-block-settings-menu) is on, it stays in view when the group is expanded and when it is collapsed. It saves no formula. It is not the same as a parent row that adds up the rows beneath it; see [Totals, aggregation, and time rollups](/concepts/totals-and-rollups#summary-columns-total-columns-at-the-start-of-a-group).
+A total column, also called a summary column, is the first column in each column group and summarizes the cells shown in the group. While [**Show total columns**](#table-block-settings-menu) is on, it stays in view when the group is expanded and when it is collapsed, unless **Hide totals** is set for its level. It saves no formula. It is not the same as a parent row that adds up the rows beneath it; see [Totals, aggregation, and time rollups](/concepts/totals-and-rollups#summary-columns-total-columns-at-the-start-of-a-group).
 
 | Summary | Header | Shows |
 | --- | --- | --- |
@@ -323,6 +328,8 @@ A total column, also called a summary column, is the first column in each column
 | **None** | **TOTAL** | The Variable's own value for the whole group, such as its year value beside its months |
 
 A table starts with **Sum**, or **Last** when it shows a Dimension's values. Text and true-or-false values offer only **None**, **Count**, and **Last**; dates add **Minimum** and **Maximum**. The summary is saved with the table.
+
+**Hide totals** hides the total columns of one level of column groups, such as every department's total, while those groups are expanded. It is in the total column's header menu, below the summaries, and in the [Dimension menu](#dimension-menu) of the level that holds the groups, where it reads **Show totals** once the totals are hidden. The choice is saved with the table, for everyone, and other levels keep their total columns. A collapsed group still shows its total column, and the summary stays as chosen: **None** does not hide a total column. No number changes. A table you cannot edit, and a table on a phone, shows the saved choice and offers no entry.
 
 ## Column sort
 
@@ -344,6 +351,7 @@ A column sort orders a Dimension's rows by the values in one column, such as cus
 | What you see | Meaning |
 | --- | --- |
 | A dashed underline under a value | The cell holds its own value or formula, saved at that exact cell, in place of its row's formula. A picked item or date shows no underline. Clear it with **Delete**; see [Enter, paste, and clear values](/guides/enter-values). |
+| A dimmed formula in a formula column that you cannot edit | The row has no formula for the table's periods, so the cell shows the formula saved for the Scenario's default periods, usually months, in the same range. Point at it for the reason, such as **This row has no yearly formula, so this cell shows its monthly formula. The monthly formula can be edited in a monthly table.** on a **Yearly** table; the note names the table's grain and the formula's grain. The cell takes no typing, double-click, paste, fill, or delete, and the formula bar shows the same formula without opening an editor. To change the formula, switch the table to that grain. The values beside it do not change: a year or week cell that no formula covers still reads 0. **Couldn’t load** in place of the formula means it could not be read; point at it for **The monthly formula for this row could not be loaded.** |
 | A dimmed value | A newer value is on the way. Right after you edit a cell, that cell shows dimmed until its new calculation arrives. When a change made elsewhere, such as by Ari or a teammate, is being recalculated, every value dims. |
 | A green or red number with **+** or **-** | A change in a **Variance** or **Variance %** comparison column: green is good and red is bad, by the Variable's **Variance colors**. Plain values are never colored by sign. |
 | Colored pills | Items of a Dimension, in the Dimension's color. |
@@ -365,12 +373,13 @@ A column sort orders a Dimension's rows by the values in one column, such as cus
 | `(500)` | -500 |
 | `-` | 0 |
 | `1e3` | 1000 |
+| A number with a letter suffix, such as `1.5k`, in a number cell | Not a number. cfo.ai saves it as a formula, and the cell shows an error such as `#VALUE!`. Type the full number, `1500`. |
 | `=Revenue * 1.1`, or `Revenue * 1.1` in a number cell | The formula `Revenue * 1.1` |
 | `Finance assistant`, `N/A`, or `2026-01-01` in a text cell | That text |
 | `=Level * 2` in a text cell | The formula `Level * 2` |
 | A function call such as `if(Level = "L5", "Senior", "Junior")` in a text cell | That formula, without an `=` |
 
-Recognized currency signs, before or after the number: `$`, `€`, `£`, `¥`, `₹`, `A$`, `C$`, and `NZ$`. A number cannot carry both a currency sign and `%`. A pasted cell follows the same rules. A formula copied from a cfo.ai table pastes as that formula while you stay in the same browser tab and copy nothing else in between; in another tab, or after a reload, it pastes as the value the cell showed. **⌘ Shift V** pastes values only.
+Recognized currency signs, before or after the number: `$`, `€`, `£`, `¥`, `₹`, `A$`, `C$`, and `NZ$`. A number cannot carry both a currency sign and `%`. A pasted cell is read by the same rules, but a paste does not change the cell's format: a pasted `$1,000` saves 1000 and a pasted `50%` saves 0.5, each shown in the format the cell already has. A formula copied from a cfo.ai table pastes as that formula while you stay in the same browser tab and copy nothing else in between; in another tab, or after a reload, it pastes as the value the cell showed. **⌘ Shift V** pastes values only.
 
 ## Where to open the formula editor
 
@@ -479,7 +488,7 @@ When a table cannot load or calculate, its notices, such as **We couldn't load t
 
 | Saved | Settings |
 | --- | --- |
-| With the table, for everyone | Rows, columns, and breakdowns; filters, sorts, and column sorts; hidden rows and columns; the date range and grain; comparisons; **Format**, **Precision**, **Scale**, **Negatives**, **Date format**, **Background**, **Text color**, **Text style**, and **Indent**; **Display as** (**Pill** or **Plain text**); total column summaries; column widths; pinned columns; **Use as row names**; **Show dimension headers**; **Subtotals below details** |
+| With the table, for everyone | Rows, columns, and breakdowns; filters, sorts, and column sorts; hidden rows and columns; the date range and grain; comparisons; **Format**, **Precision**, **Scale**, **Negatives**, **Date format**, **Background**, **Text color**, **Text style**, and **Indent**; **Display as** (**Pill** or **Plain text**); total column summaries; **Hide totals**; column widths; pinned columns; **Use as row names**; **Show dimension headers**; **Subtotals below details** |
 | On the Variable or Dimension, for every table | Values and formulas; the name; the currency; the **Date** type; **Variance colors**; **Dimension color** |
 | In your browser only | Open formula columns; the formula bar; whether the setup panel is open; the table height; which rows and column groups you expanded or collapsed |
 | Not saved | **Show total columns**; **Pin total columns** |

@@ -57,7 +57,7 @@ When an item column reads its values from a connected system, the list shows **S
 
 A dashed underline marks a cell that holds its own value or formula, such as a number someone typed. That value replaces the row's formula in this cell only. A cell without the underline takes its number from the row's formula or from a connected system. A picked item or date is the exception: it belongs to the cell but never shows the underline.
 
-A number typed into a Forecast month applies while that month is in the Forecast. Once Last close moves past the month, the cell shows what Actuals gives it instead. The typed number is kept, and it shows again if Last close moves back before that month. The exact rule is in [Actuals, Forecast, and Last close](/concepts/actuals-and-forecast#a-variable-can-use-one-formula-for-actuals-and-another-for-forecast).
+A number typed into a Forecast month takes the range of the formula the cell was following. When that range is Forecast, the number applies while the month is in the Forecast: once Last close moves past the month, the cell shows what Actuals gives it instead. The typed number is kept, and it shows again if Last close moves back before that month. When the formula had no range, the typed number applies on both sides of Last close. The exact rule is in [Actuals, Forecast, and Last close](/concepts/actuals-and-forecast#a-variable-can-use-one-formula-for-actuals-and-another-for-forecast).
 
 To see the formula behind a cell, open it. A formula the cell inherits shows dimmed; point at it to see **Inherited from** and where the formula comes from. See [Override one cell](/guides/write-a-formula#override-one-cell).
 

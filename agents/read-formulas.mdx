@@ -130,7 +130,7 @@ The field name differs by level: a rendered target's formula names it `readOnlyR
 
 ### Error cells counted over every selected row
 
-A `read` lists each cell error code, such as `#DIV/0!` or `#NUM!`, once under `issues`. Its `count` covers the cells with that code in the rows the result returns. When selected rows that the result does not return hold more cells with the code, the issue adds `selected`, so a page of 10 rows can report that 109 of the 384 selected rows fail:
+A `read` lists each cell error code, such as `#DIV/0!` or `#NUM!`, once under `issues`. Its `count` covers the cells with that code in the rows the result returns. When selected rows that the result does not return hold more cells with the code, the issue adds `selected`, so a page of 10 rows can report the 109 cells with the code among the 384 selected rows:
 
 ```json
 {"code": "#NUM!", "count": 2,

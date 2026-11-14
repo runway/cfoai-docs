@@ -503,7 +503,7 @@ For time and size limits, see [Limits and file types](/reference/limits#tables-p
 | **Link settings** | Opens under a new link. **Shared scenario** picks the Scenario of a link whose Pages are all in one Scenario; a link that opens Pages in several Scenarios does not show it, and an old link that opens a Page in every Scenario shows **All scenarios** there, with nothing to pick. **Require password** turns the password on; turning it on fills in a generated password. The password field has **Show password** (**Hide password**) and **Generate password**. **Save changes** appears after a change; saving replaces the link with a new address, and the old address stops working. A link across several Scenarios keeps each Page in its own Scenario when it is replaced. |
 | Footer | **Model data on this page may also be used on other pages.** |
 
-You cannot add or remove a link's Pages after you create it, or change the Scenarios of a link that opens several. Create a new link and turn off the old one.
+To add or remove a link's Pages or Scenarios, use **Edit pages** in [Link details](#link-details); the link keeps its address and password. You cannot change the Page a link opens first.
 
 Turning a link off opens **Turn off this external link?**, which says **Anyone who has the link will no longer be able to open it.** The checkbox **Also remove access already granted by this link** is checked, with **Recommended for financial information. Direct invitations stay unchanged.** Select **Cancel** or **Turn off link**.
 
@@ -528,13 +528,14 @@ One link opens up to 50 Pages, and a Page counts once for each Scenario the link
 
 ### Link details
 
-**Details** on a link opens **Link details**, a read-only list of what the link opens. Its back arrow and **Done** return to the Share panel.
+**Details** on a link opens **Link details**, a list of what the link opens. Its back arrow and **Done** return to the Share panel.
 
 | Part | What it does |
 | --- | --- |
 | Address | The link's address with **Copy link**, which reads **Link copied** after a copy. Below it: **Anyone with this link can view. Opens [Page] in [Scenario].** |
 | **What this link opens** | The same summary as the link's row, **Find a page in this link**, and one heading for each Scenario with its count, such as **2 pages**. Select a heading to fold or unfold its Pages. The Page readers land on is marked **Opens here**. A link that opens more than 12 Pages, counting a Page once for each Scenario, starts with only its first Scenario unfolded. |
 | **Turn off link** | Opens **Turn off this external link?**, as the trash icon does. |
+| **Edit pages** | Opens **Edit pages**: the [New link](#new-link) view with the link's Pages ticked. The Page the link opens first cannot be unticked. A line under the list says what saving does, such as **Saving adds 1 page and removes 1 page. Anyone with this link can then open what you add.** **Save** stays off until a Page changes. Saving keeps the link's address and password. A removed Page stops opening at once for everyone who opened the link; an added Page opens the next time a reader opens the link's address. Not shown for an old link that opens a Page in every Scenario, or when the Scenario of the link's first Page was deleted. |
 
 A Scenario that was deleted shows as **Deleted scenario**, and its Pages, like any Page that was deleted, show as **Unavailable page**.
 
@@ -556,6 +557,8 @@ A Scenario that was deleted shows as **Deleted scenario**, and its Pages, like a
 | **Could not create an external link. Try again.** | Creating the link failed. |
 | **Could not load the page names in [Scenario].**, with **Retry** | **Link details** could not load a Scenario's Pages, which read **Name not loaded**. |
 | **No page in this link matches “[text]”.** | The search in **Link details** found nothing. |
+| **1 page on this link was deleted or is no longer yours to share. Saving removes it.** | **Edit pages** found a Page on the link that you can no longer share. With several, it reads **[n] pages on this link were deleted or are no longer yours to share. Saving removes them.** |
+| **Could not save the pages on this link. Try again.** | Saving in **Edit pages** failed; the link is unchanged. |
 | **Enter a password before saving link settings.** | **Require password** is on with an empty password. |
 | **This link password could not be revealed.** / **This link password could not be loaded.** | The saved password could not be read. |
 | **Could not update this external link. Its old settings are unchanged.** | Saving settings failed and the old link still works. |

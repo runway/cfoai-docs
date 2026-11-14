@@ -28,7 +28,7 @@ Add where the formula applies only when it matters. Ari reads the table you are 
 | Actuals or Forecast | "Use imported Payroll for Actuals and Headcount times Average Salary for Forecast." |
 | One cell | "Set March 2027 Marketing Spend to 50,000 and leave the other months alone." |
 
-A formula for Actuals or Forecast needs months. If the Variable cannot take one, Ari says why. See [Use different formulas for Actuals and Forecast](/guides/actuals-and-forecast-formulas).
+A formula for Actuals or Forecast needs time in its scope, such as months. If the Variable cannot take one, Ari says why. See [Use different formulas for Actuals and Forecast](/guides/actuals-and-forecast-formulas).
 
 ## Say which Scenario
 
@@ -82,11 +82,13 @@ Ask Ari to show you the formula and wait:
 
 > Show me the formula you would use, and wait for my OK before saving.
 
-When the formulas belong to a new table, Ari can also run a check that saves nothing:
+Ari cannot test a formula or a new table without saving it. The save itself checks each formula's syntax and the Variables and Dimensions it names, and a formula that fails those checks is not saved. Only saved formulas calculate, so read the formula Ari proposes, then check the numbers after it saves.
 
-> Draft the new table and check its formulas, but don't save anything yet.
+To try a change without touching your plan, have Ari make it in a Scenario other than Main:
 
-The check confirms the table's layout, the Variables and Dimensions its formulas name, and their syntax. It reports whether the table is valid, any warnings, and what saving it would change. It calculates nothing, so it returns no values and cannot find circular references. Changes to an existing table and deletions have no such check: read the formula Ari proposes, then check the numbers after it saves.
+> Make this change in a new Scenario, so I can compare it with Main first.
+
+See [Test a decision in a Scenario](/guides/test-a-decision-in-a-scenario).
 
 After Ari saves, see [Review Ari's formula changes](/guides/review-ari-formula-changes).
 

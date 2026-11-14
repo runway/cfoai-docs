@@ -18,7 +18,7 @@ A formula range needs the Model's base periods: months, unless your Model uses a
 
     > Forecast Software Spend as 4% of Revenue. Leave Actuals as they are.
 
-    Ari saves each formula for its range and tells you if a Variable cannot take a range-specific formula, for example because the table it sits on has no months. A range formula Ari saves on a Variable outside any table covers the Model's base periods, usually months.
+    Ari saves each formula for its range. Ari cannot save a range formula on a row of a table with no periods: the save is refused, and the row keeps its one formula for every period. A range formula Ari saves on a Variable outside any table covers the Model's base periods, usually months.
   </Tab>
   <Tab title="By hand">
     <Steps>
@@ -48,6 +48,8 @@ A formula range needs the Model's base periods: months, unless your Model uses a
 
 Check the first Forecast month after you save. A formula that reads the previous month, such as `` `Cash Balance`[-1] + `Net Cash Flow` ``, starts from the last Actuals month, so that month needs a value.
 
+If a number you typed into one month still shows after that month closes, it was saved with no range. Clear the cell to show the actual.
+
 ## When a section shows a dimmed formula
 
 A section with no formula of its own shows the formula it inherits, dimmed. Point at it to see the source: **Inherited from Actuals formula** (or **Forecast**), and the address that owns it.
@@ -60,13 +62,15 @@ A formula the section owns opens at full strength and edits in place.
 
 ## Show the Actuals and Forecast formulas side by side
 
-On a table with months, the formula column splits into **Actuals Formula** and **Forecast Formula**. To show the formula columns, see [Show or hide the formula columns](/guides/write-a-formula#show-or-hide-the-formula-columns).
+On a table that shows days, weeks, months, quarters, half-years, or years, the formula column splits into **Actuals Formula** and **Forecast Formula**. A table at the **Raw** grain keeps one **Formula** column. To show the formula columns, see [Show or hide the formula columns](/guides/write-a-formula#show-or-hide-the-formula-columns).
 
 - To hide one, right-click its header and choose **Hide column**.
 - To bring it back, right-click the other one's header and choose **Show Actuals column** or **Show Forecast column**.
 - **Hide all formula columns** hides both.
 
-A row that cannot split by range, such as a row with no months, shows its one formula in the first formula column shown.
+A row that cannot split by range, such as a row with no dates, shows its one formula in the first formula column shown.
+
+In a Model that calculates by month, a formula written for months fills month cells only. On a table of years, half-years, quarters, weeks, or days, a row with no formula for those periods shows its monthly formula in each column, Actuals or Forecast, dimmed, so you can read it without changing the table's grain. The dimmed formula is for reading only: it does not fill the cells beside it, so their values stay as they were. A column whose range has no monthly formula either shows 0. You cannot edit a dimmed formula there: switch the table to **Monthly** to change it. A formula saved for the table's own periods shows at full strength and edits as usual. See [What colors and marks mean](/reference/table-blocks#what-colors-and-marks-mean).
 
 ## Related
 

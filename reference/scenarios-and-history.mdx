@@ -8,16 +8,23 @@ Scenarios, Snapshots, and version history each have their own controls: the Scen
 
 ## Scenario picker
 
-The Scenario picker is the **Main Scenario** control in the sidebar's **Model** section, above the list of Pages. It shows the Scenario of the Page on screen, until you pick another one here. Picking a Scenario changes which Pages the sidebar lists and nothing else: the Page on screen stays in its own Scenario. Select a Page in the list to open it in the picked Scenario; the address bar then names that Scenario, so you can bookmark it or share it with a teammate.
+The Scenario picker is the control in the sidebar's **Model** section, above the list of Pages, that reads **Scenario** followed by a Scenario's name, such as **Scenario Main Scenario**. It shows the Scenario of the Page on screen, until you pick another one here. Picking a Scenario changes which Pages the sidebar lists and nothing else: the Page on screen stays in its own Scenario. Select a Page in the list to open it in the picked Scenario; the address bar then names that Scenario, so you can bookmark it or share it with a teammate.
+
+Pointing at the picker shows **Scenario: [name]**, which gives the whole name when the picker cuts a long one short. While **Merge** sits beside it, the picker shows no icon and no arrow, so the name has more room. The picker in the Page header, shown only while a chat is open, shows the Scenario's name without the word **Scenario** and opens the same list. Picking a Scenario there switches the Page on screen to it.
+
+The list keeps Scenarios and Snapshots in separate groups. From top to bottom:
 
 | Control | What it does |
 | --- | --- |
+| **Search…** | A search field at the top of the list, shown when the list holds more than eight Scenarios and Snapshots together, counting Main. Typing narrows both groups to the names that contain your text, ignoring capital letters, and hides a group with no match. **↓** moves from the field to the first row and **↑** to the last. When nothing matches, the list reads **No scenarios or snapshots match**. Closing the list clears the search. |
+| **Scenarios** | The first group; the list prints its heading in capital letters. When the picker shows a Scenario other than Main, that Scenario comes first, with a check, then Main Scenario, then your other Scenarios. When it shows Main or a Snapshot, Main Scenario comes first. |
+| **Snapshots** | The second group, shown once you have a Snapshot, also headed in capital letters. The Snapshot that keeps the latest saved version comes first; a Snapshot taken from an older version history entry sorts by that older version. A Snapshot the picker shows stays in this group, with a check. |
 | A Scenario's row | Lists that Scenario's Pages in the sidebar. Select a Page to open it there. |
 | **Open actions for [Scenario]** (gear icon on a row) | Opens the [Scenario actions menu](#scenario-actions-menu). |
 | **Take snapshot** | Opens the [Take snapshot dialog](#take-snapshot-dialog) for the Scenario the picker shows. Not shown while the picker shows a Snapshot. |
 | **Duplicate scenario** | Creates a new Scenario named **[Scenario] copy** (numbered when that name is taken) that starts with everything the Scenario the picker shows changed, and lists the copy's Pages in the sidebar. The copy is a regular Scenario with the same base as the original, which is Main for every Scenario created from Main; it is listed beside the original, not under it. On a Snapshot, the copy is a regular Scenario on Main that starts with the Snapshot's pinned contents and its later edits, listed at the top level. Shown while the picker shows any Scenario or Snapshot other than Main. If the copy fails, a notice reads **Couldn’t duplicate [Scenario]** with the reason, and the menu item stays so you can try again. |
 | **Create scenario** | Adds a row where you type the new Scenario's name. **Enter** creates it from Main and lists its Pages in the sidebar. The Page on screen stays in the Scenario it was in; select a Page in the list to work in the new Scenario. |
-| **Merge** (beside the picker, while it shows a Scenario) | Opens the [merge dialog](#merge-dialog). Its tooltip reads **Merge all changes into [target]**, **No changes to merge**, or **Checking for changes…**. Not shown for Main or a Snapshot. |
+| **Merge** (beside the picker, while it shows a Scenario) | Opens the [merge dialog](#merge-dialog). Its tooltip reads **Merge all changes into [target]**, **No changes to merge**, or **Checking for changes…**. Not shown for Main or a Snapshot, on a phone or tablet, or while you view an earlier version from version history. |
 
 You must have permission to create Scenarios to see **Take snapshot**, **Duplicate scenario**, and **Create scenario**. None is offered on a phone.
 
@@ -32,6 +39,10 @@ You must have permission to create Scenarios to see **Take snapshot**, **Duplica
 
 Items you do not have permission for are not shown.
 
+### Scenario names
+
+When you type a name in the app, for a new Scenario, a rename, or a Snapshot, cfo.ai does not compare it with your other Scenarios. Two Scenarios can therefore share a name, or have names that differ only in capital letters or in the spaces and punctuation between words, such as "Plan 2" and "plan-2". **Duplicate scenario** names its copy itself and numbers it when that name is taken. Ari does not create, rename, or snapshot a Scenario under a name that matches another Scenario in one of those ways, or under the name Main. When the name you ask for matches another Scenario you can see, Ari saves nothing and can tell you which Scenario it matches. Ari can rename a Scenario to a variant of its own name, such as "Plan 2" to "plan 2". To have both, create or rename the Scenario in the picker.
+
 ## Take snapshot dialog
 
 The dialog is titled **Take snapshot**, with **Keep a version for an approved budget or board meeting.** It says what it pins: **Pins [Scenario] at its latest saved version.**, or **Pins [Scenario] at [time].** when you open it from a version history entry. Then it reads **Later changes and integration syncs will stop flowing into this snapshot. You can still edit the snapshot manually.**
@@ -44,7 +55,7 @@ The dialog is titled **Take snapshot**, with **Keep a version for an approved bu
 
 ## Merge dialog
 
-The dialog is titled **Merge "[Scenario]" into [target]?**. The target is Main, which every Scenario branches from, or, for a Scenario from an older workspace that branched from another Scenario, that Scenario. It reads **Every change in "[Scenario]" moves into [target]:**, followed by a summary of the changes across the Model, and the note **"[Scenario]" is deleted after the merge.**
+The dialog is titled **Merge "[Scenario]" into [target]?**. The target is Main, which every Scenario branches from, or, for a Scenario from an older workspace that branched from another Scenario, that Scenario. It reads **Every change in "[Scenario]" moves into [target]:**, or **Every change in "[Scenario]" moves into [target], not just the ones on this page:** when the Page on screen holds some of the changes and other changes sit elsewhere. A summary follows: one row for each changed Page with its number of changes, the Page on screen first and marked **· this page**, then one row, **Across the model**, for changes that belong to the whole Model, such as Variables and formulas, with up to three of their names and, past three, **and [n] more**. The dialog does not list each change. It ends with the note **"[Scenario]" is deleted after the merge.**
 
 | Control | What it does |
 | --- | --- |
@@ -53,6 +64,9 @@ The dialog is titled **Merge "[Scenario]" into [target]?**. The target is Main, 
 
 | Message | Meaning |
 | --- | --- |
+| **Loading the changes in "[Scenario]"…** | The summary is still being read. |
+| **Could not load the changes in "[Scenario]".**, with the reason and **Retry** | The summary could not be read. **Retry** reads it again. |
+| **Nothing in "[Scenario]" differs from [target] yet.** | The Scenario holds no changes, so there is nothing to merge. |
 | **scenario cannot be merged while it has [n] child scenario**, followed by the children's names | The Scenario has editable child Scenarios, so the merge is refused. Snapshots taken from the Scenario do not block a merge. |
 
 ## Confirmation cards in the chat

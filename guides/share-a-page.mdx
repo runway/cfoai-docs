@@ -1,10 +1,10 @@
 ---
 title: "Share a Page outside your workspace"
 sidebarTitle: "Share a Page"
-description: "Send an investor, board member, judge, or accountant a read-only link to one or more Pages that opens without a sign-in or a cfo.ai account. Choose the Scenario it shows, add a password, give it a memorable address and preview, and turn it off later."
+description: "Send an investor, board member, judge, or accountant a read-only link to one or more Pages that opens without a sign-in or a cfo.ai account. Choose the Pages it opens in each Scenario, add a password, give it a memorable address and preview, and turn it off later."
 ---
 
-Use a share link when someone outside your workspace needs to read a report, such as a board update or a cash forecast. The link opens the Page read-only, without a sign-in or a cfo.ai account, in the Scenario you choose. Everyone inside your workspace can already open every Page, so you do not need a link for teammates.
+Use a share link when someone outside your workspace needs to read a report, such as a board update or a cash forecast. The link opens the Page read-only, without a sign-in or a cfo.ai account, in the Scenarios you choose. One link can open different Pages in several Scenarios, such as the Board summary in Main and the Revenue model in a Downside Scenario. Everyone inside your workspace can already open every Page, so you do not need a link for teammates.
 
 <Tabs>
   <Tab title="Ask Ari">
@@ -16,24 +16,34 @@ Use a share link when someone outside your workspace needs to read a report, suc
 
     > Create a view-only link to the Board summary Page that also opens the Cash forecast and Headcount plan Pages.
 
+    To have one link open Pages in several Scenarios, say which Scenario each Page belongs to:
+
+    > Create a view-only link to the Board summary Page in Main that also opens the Revenue model Page in the Downside Scenario.
+
     Creating a link does not change the Model. Ari cannot add a password, give the link a memorable address, or turn a link off; do those in the **Share** panel.
   </Tab>
   <Tab title="By hand">
     <Steps>
-      <Step title="Open the Page in the right Scenario">
-        Open the Page you want to share in the Scenario you want to show: pick the Scenario in the sidebar's Scenario picker, then select the Page from its list. A new link shows the Scenario the Page is open in.
+      <Step title="Open the Page readers should land on">
+        Open the Page in the Scenario readers should see first: pick the Scenario in the sidebar's Scenario picker, then select the Page from its list. The link opens on this Page, in this Scenario.
       </Step>
       <Step title="Open the Share panel">
-        Select **Share** in the Page header. The panel's title names the Page, so you can confirm you are sharing the right one; once you add more Pages, it counts them instead.
+        Select **Share** in the Page header. The panel's title names the Page, so you can confirm you are sharing the right one.
+      </Step>
+      <Step title="Start a new link">
+        Under **External access**, select **Create link**. The panel changes to **New link**, which lists the Pages you can share in this Scenario. The Page you started from is ticked and marked **Opens here**; readers land on it.
       </Step>
       <Step title="Add more Pages, if you want them">
-        Under **Pages to share**, select each other Page the link should open. The Page you started from is marked **Opens here**; readers land on it. One link opens up to 50 Pages.
+        Tick each other Page the link should open, or **Select all**. **Find a page** narrows a long list.
+      </Step>
+      <Step title="Add more Scenarios, if you want them">
+        Select **Add scenario**, tick the Scenarios or Snapshots to add, and select the button that counts them, such as **Add 2 scenarios**. Each added Scenario starts with the Pages you ticked in the first one, where they exist in it. To change a Scenario's Pages, select it in the **Scenarios** list. To tick a Page in every Scenario that has it, select **All scenarios**. A Scenario with no Page ticked is left out of the link. One link opens up to 50 Pages, and a Page counts once for each Scenario it opens in.
       </Step>
       <Step title="Create the link">
-        Under **External access**, select **Create link**. The new link appears with its **Link settings** open.
+        Select **Create link**. The panel returns to the Page's links, and the new link appears with its **Link settings** open.
       </Step>
-      <Step title="Change the Scenario or add a password, if you want">
-        In **Link settings**, choose another Scenario with **Shared scenario**, or turn on **Require password**. Turning on the password fills in a generated password; type your own instead if you prefer. Select **Save changes**. Saving gives the link a new address, so copy it after you save.
+      <Step title="Add a password, if you want">
+        In **Link settings**, turn on **Require password**. Turning on the password fills in a generated password; type your own instead if you prefer. Select **Save changes**. Saving gives the link a new address, so copy it after you save.
       </Step>
       <Step title="Copy the link">
         Select the copy button on the link (**Copy external link**) and send it to the reader. Send a password separately from the link.
@@ -48,10 +58,23 @@ The link works for anyone who has it until you turn it off, and cfo.ai does not 
 
 1. Open the Page and select **Share**.
 2. On the link, open **Link settings**.
-3. Change **Shared scenario**, turn **Require password** on or off, or select **Generate password** for a new one. **Show password** displays the current password.
+3. Change **Shared scenario**, turn **Require password** on or off, or select **Generate password** for a new one. **Show password** displays the current password. You can change **Shared scenario** only on a link whose Pages are all in one Scenario. A link that opens Pages in several Scenarios does not show it, and an old link that opens a Page in every Scenario shows it as **All scenarios**, with nothing to pick.
 4. Select **Save changes**.
 
 Saving replaces the link: the old address stops working, people who opened the Page through it lose that access, and the new address is shown in its place. Send the new address to everyone who should keep reading.
+
+To see what a link opens, select **Details** on it.
+
+## Change the Pages a link opens
+
+You can add or remove a link's Pages and Scenarios without changing its address or password, so people who saved the link keep one address. **Edit pages** is not offered on an old link that opens a Page in every Scenario, or on a link whose first Page is in a Scenario that was deleted. For those, create a new link, then turn off the old one.
+
+1. Open one of the link's Pages and select **Share**.
+2. On the link, select **Details**, then **Edit pages**.
+3. Tick or untick Pages, and add or remove Scenarios, as you did when you created the link. The Page the link opens first stays ticked.
+4. Read the line under the list, such as **Saving adds 1 page and removes 1 page. Anyone with this link can then open what you add.**, and select **Save**.
+
+A Page you remove stops opening at once for everyone who opened the link. A Page you add opens the next time a reader opens the link's address. You cannot change the Page a link opens first; create a new link for that, then turn off the old one.
 
 ## Give the link a memorable address and a preview
 
@@ -64,6 +87,16 @@ A link without a password gets a short public address and a preview card. The ca
 
 A memorable address can be guessed, so use a password-free link only for Pages you are happy for anyone with the address to read. Changing the address retires the old one. A link that needs a password has no memorable address or preview to edit; its password prompt shows your brand when **Show the brand on link previews** is on.
 
+## See every link your workspace has shared
+
+The **Share** panel lists the links of one Page. To see what the whole workspace has shared, ask Ari:
+
+> What have we shared outside the workspace?
+
+Ari lists the share links that are on and give access, newest first, across every Scenario. For each link it can tell you the Page readers land on and the other Pages the link opens, with the Scenario of each; when the link was created and, when a name is recorded, who created it; whether it needs a password; and how many accounts still hold access they got through it. That number counts accounts, including readers who never signed in. It does not count visits or people. A Page that was deleted, or that you cannot read, is counted but not named.
+
+Ari reads up to 100 links at a time, so in a workspace with more, ask it for the rest. Links that are turned off are left out. Ari does not show a link's address, and it cannot turn a link off or change what it opens. To copy the address or change the link, open one of its Pages and select **Share**.
+
 ## Turn a link off
 
 1. Open the Page and select **Share**.
@@ -71,7 +104,7 @@ A memorable address can be guessed, so use a password-free link only for Pages y
 3. **Also remove access already granted by this link** starts checked, so everyone who opened the Page through the link loses access too. To let them keep their access, clear it.
 4. Select **Turn off link**.
 
-Every message in the **Share** panel, and what a reader sees when a link is off or needs a password, is listed in [The cfo.ai interface](/reference/interface#share-panel).
+Every label and message in the **Share** panel and its **New link** view, and what a reader sees when a link is off, needs a password, or opens several Scenarios, is listed in [The cfo.ai interface](/reference/interface#share-panel).
 
 ## Related
 

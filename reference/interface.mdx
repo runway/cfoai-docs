@@ -20,6 +20,8 @@ Under the buttons, both pages read **By continuing, you agree to the Standard Te
 
 A Google or Microsoft sign-in that fails shows **We couldn’t complete sign-in. Please try again.**
 
+When your sign-in ends while a workspace is open in a browser tab, the tab opens the sign-in page, whether or not it is the tab in front. After you sign in, cfo.ai returns you to the page you were on.
+
 ### Work email required for new accounts
 
 A new account must use a work email address. An address at a free or disposable email provider, such as Gmail, Outlook, Yahoo, iCloud, or Proton Mail, is refused before a code is sent, and also when a Google or Microsoft sign-in or a pending invitation would create the account. The form is replaced by a page titled **Use your work email**, with **New accounts require a work email address.**, **Personal email providers, such as Gmail, Outlook, and Yahoo, are not supported for new accounts.**, and **Already have an account? You can still sign in with your existing email.** Select **Use a different email** to return to an empty **Work email** field. An account that already exists with a personal address keeps signing in with it. cfo.ai does not check that a custom domain belongs to a company.
@@ -69,7 +71,7 @@ From top to bottom:
 | **Collapse navigation** | Folds the sidebar to a narrow strip (**⌘ \\**, or **Ctrl \\** on Windows and Linux). On the strip, **Expand navigation** brings it back; pointing at the strip shows the sidebar over the page, and **Keep navigation open** pins it. Dragging the sidebar's edge resizes it, and dragging it narrow enough folds it. In a chat on a narrow window, the sidebar stays folded and the strip offers **Open navigation**. |
 | **Search** | Opens [workspace search](#workspace-search). |
 | **Chats** | Your chats, newest activity first, with **New chat** and a filter. Selecting a chat keeps the Page on screen. Chats from Slack and from AI assistants are left out until the filter includes them. See [The chat list](/reference/chat#the-chat-list-find-rename-and-archive-chats). |
-| **Model** | Select **Model** to open or close the section. It holds the Scenario picker (**Main Scenario** until you pick another) and the Pages of the Scenario the picker shows. **New page** (**+**) creates a Page in that Scenario and opens it, and a chat you have open stays open. The section appears once the workspace has its first Page. See [Scenario and version history controls](/reference/scenarios-and-history) and [Create and organize Pages and blocks](/guides/create-pages-and-blocks). |
+| **Model** | Select **Model** to open or close the section. It holds the Scenario picker (**Scenario** followed by the Scenario's name, **Main Scenario** until you pick another) and the Pages of the Scenario the picker shows. **New page** (**+**) creates a Page in that Scenario and opens it, and a chat you have open stays open. The section appears once the workspace has its first Page. See [Scenario and version history controls](/reference/scenarios-and-history) and [Create and organize Pages and blocks](/guides/create-pages-and-blocks). |
 | **Connections** | Your connected systems, each with its status, and **Add integration** (**+**). Pointing at the heading shows a **…** menu with **Links sent** and, once a connection can take a link, **Select connections to send a link** (**⌥ click** on such a connection's row does the same). See [Connection statuses and actions](/reference/connection-statuses) and [Send a link so someone else can connect a source](/guides/send-a-connect-link). |
 | **Feedback** | Opens [Share feedback](#share-feedback). |
 | **Powered by cfo.ai** | Shown in a workspace with a brand. |
@@ -83,7 +85,7 @@ In a desktop browser, **Chats** and **Model** each grow with their rows up to a 
 
 | Control | What it does |
 | --- | --- |
-| A Page row | Opens the Page and keeps the chat you have open; see [Open Pages and chats from the sidebar](#open-pages-and-chats-from-the-sidebar). Pointing at it shows **New subpage**, **Mention page in chat**, and **Delete page**, and, on a Page with subpages, **Expand subpages** or **Collapse subpages**. |
+| A Page row | Opens the Page and keeps the chat you have open; see [Open Pages and chats from the sidebar](#open-pages-and-chats-from-the-sidebar). Pointing at it shows **New subpage**, **Mention page in chat**, and **Delete page**. A Page with subpages always shows an arrow after its name, **Expand subpages** or **Collapse subpages**; a Page without subpages has no arrow. A name too long for the row is cut short before the arrow. |
 
 | Message | Meaning |
 | --- | --- |
@@ -217,7 +219,7 @@ The note under the schedule reads **Times in [time zone].**: your browser's time
 
 ## Help center
 
-Open it with **Help center** in the account menu, or press **⌘ ?** (**Ctrl ?**). It lists short interactive walkthroughs of the app. **Search help** at the top narrows the list as you type; with no match it says **No help found** and links to these docs. The sections, from top to bottom:
+Open it with **Help center** in the account menu, or press **⌘ ?** (**Ctrl ?**) while the sidebar is open. With the sidebar collapsed, the shortcut does nothing. It lists short interactive walkthroughs of the app. **Search help** at the top narrows the list as you type; with no match it says **No help found** and links to these docs. The sections, from top to bottom:
 
 | Section | What it holds |
 | --- | --- |
@@ -272,7 +274,7 @@ The dialog is titled **Ask a human**, with **Tell us what's going on — this go
 
 ## Workspace search
 
-Press **⌘ K** (**Ctrl K**) or select **Search** in the sidebar. Press **⌘ K** again or **Esc** to close it; a touch screen shows a close button. The box reads **Search pages, chats, and more**, and the window is marked **Preview**.
+Press **⌘ K** (**Ctrl K**) or select **Search** in the sidebar. Press **⌘ K** again or **Esc** to close it; a touch screen shows a close button. The box reads **Search pages, chats, and more**.
 
 Search covers the Scenario the sidebar shows and lists only what you can open. It is not offered while you view a past version, or before you finish signing up.
 
@@ -286,11 +288,11 @@ Results are grouped, up to eight in each group. The group with the best match co
 
 | Group | What it finds |
 | --- | --- |
-| **Pages** | Pages by title, and from two characters also by the words in their text. A Page found by its text shows the passage. |
+| **Pages** | Pages by title, and from two characters also by the words in their text, including the text written in their Canvas blocks. A Page found by its text shows the passage. See [What search reads in a Canvas block](#what-search-reads-in-a-canvas-block). |
 | **Blocks** | Named tables, and titled charts and Canvas blocks |
 | **Variables** | Variables that a table on one of your Pages shows |
 | **Dimensions** | Dimensions that a table on one of your Pages shows |
-| **Dimension items** | Items, such as a customer or a vendor, whose Dimension a table shows on its rows. Each names its Dimension and, for imported items, the connection it came from. |
+| **Dimension items** | Items, such as a customer or a vendor, whose Dimension a table shows on its rows. Each shows its Dimension and, for an imported item, the saved query it came from, as in **Vendor · from QuickBooks bills**. A second line names the Page the result opens and, when the table has a name, the table. |
 | **Workspaces** | Your other workspaces, by name |
 | **Chats** | Your chats by title. When none of the chats already loaded match, search also looks through your older chats once you pause typing. |
 
@@ -302,6 +304,14 @@ Results are grouped, up to eight in each group. The group with the best match co
 - From three letters, a word also matches inside a word: `count` finds Headcount.
 - From five letters, a small typo is forgiven: `salry` finds Salary.
 
+### What search reads in a Canvas block
+
+Search finds a Page by the text written into the layout of its Canvas blocks, such as headings and sentences, together with each block's title. The result shows the passage, and opening it scrolls to that Canvas block. A Canvas block found by its title alone is listed once, under **Blocks**.
+
+Search does not find everything a Canvas block shows. It leaves out text the block is given as a setting or takes from a list or from data, such as a chart's series names or the row names of a table drawn in the block, and every number the block calculates. When a word you can see in a block finds nothing, search for the block's title or for other words in it.
+
+Search reads this text when the window opens and keeps it for up to 30 seconds, so a heading written a moment ago may not be found yet. While it reads, a search that finds nothing shows **Loading pages…**.
+
 ### Search keys and what a result opens
 
 | Shortcut | What it does |
@@ -312,7 +322,7 @@ Results are grouped, up to eight in each group. The group with the best match co
 | **⌥ Enter**, or **⌥**-click (**Alt** on Windows and Linux) | Open the result alone: a Page with no chat, or a chat with its Page folded away. The bar at the bottom of the window lists it as **Open alone**. |
 | **Esc** | Close search |
 
-A result opens the way the same row in the sidebar does. A Page opens in the sidebar's Scenario and keeps the chat you have open: beside a docked chat, or full-screen under a floating one. A block opens its Page, scrolls to the block, and flashes it. A Variable or a Dimension item opens the table that shows it and marks its row. A Page found by its text scrolls to the passage. A workspace switches to that workspace. A chat opens over or beside the Page on screen; picking the chat that already floats over the Page docks it.
+A result opens the way the same row in the sidebar does. A Page opens in the sidebar's Scenario and keeps the chat you have open: beside a docked chat, or full-screen under a floating one. A block opens its Page, scrolls to the block, and flashes it. A Variable opens the table that shows it and marks its row. A Dimension item opens a table that lists its Dimension on rows, the one its second line names, and marks the item's row there. When several tables list the Dimension on their rows, search prefers a table whose saved row settings filter nothing, then a table with a saved filter that may still keep the item, and last a table whose saved list of items leaves the item out or whose rows for that Dimension are hidden. Search reads only saved settings, not the table's data, so the table it opens can still leave the item out. A Page found by its text scrolls to the passage. A workspace switches to that workspace. A chat opens over or beside the Page on screen; picking the chat that already floats over the Page docks it.
 
 ### Search messages
 
@@ -320,7 +330,7 @@ A result opens the way the same row in the sidebar does. A Page opens in the sid
 | --- | --- |
 | **Type to search your workspace.** | Nothing typed and no recent Pages |
 | **No results for “…”** | Nothing matched every word |
-| **Loading pages…** | The Page list is still loading |
+| **Loading pages…** | The Page list, or the text of its Canvas blocks, is still loading |
 | **Couldn’t load pages. Try again from the sidebar.** | The Page list failed to load |
 | **Searching dimension items…** / **Searching chats…** | A slower search is still running |
 | **Couldn’t search dimension items.** / **Couldn’t search chats.** | That part of the search failed; the other results still show |
@@ -483,20 +493,51 @@ For time and size limits, see [Limits and file types](/reference/limits#tables-p
 
 ## Share panel
 
-**Share** in the Page header opens the panel, titled **Share [Page]**, or **Share [n] pages** when the link opens several, with **Close**. From top to bottom:
+**Share** in the Page header opens the panel, titled **Share [Page]**, with **Close**. The panel lists the Page's links; you choose a link's Pages and Scenarios in [New link](#new-link). From top to bottom:
 
 | Part | What it does |
 | --- | --- |
-| **Pages to share** | Lists the Page you started from, marked **Opens here**, and the other Pages in this Scenario you can share, each with the icon it has in the sidebar. Select Pages to add them to the link. Below it: **The first page opens when someone follows the link. Up to 50 pages can be shared.** |
-| **External access** | **Create link**, and the links that already exist. With none, it says **No one outside your workspace has link access.** A Page can have up to 100 links. |
-| A link | Its address; **Anyone with this link can view. Shared by [name], updated [time]**, or **Anyone with this link can view. Updated [time]** for a link whose creator is not recorded; the names of the Pages it opens; **Copy external link**; and **Turn off external link** (the trash icon). |
+| **External access** | **Create link**, which opens [New link](#new-link), and the links that already exist. With none, it says **No one outside your workspace has link access.** A Page can have up to 100 links. |
+| A link | Its address; **Anyone with this link can view. Shared by [name], updated [time]**, or **Anyone with this link can view. Updated [time]** for a link whose creator is not recorded; what it opens, as **[n] pages in [Scenario]** or **[n] pages across [n] scenarios**, with **Details**, which opens [Link details](#link-details); **Copy external link**; and **Turn off external link** (the trash icon). |
 | **Edit share preview** | On a link without a password. Opens the [Share preview](#share-preview) dialog. |
-| **Link settings** | Opens under a new link. **Shared scenario** picks the link's Scenario. **Require password** turns the password on; turning it on fills in a generated password. The password field has **Show password** (**Hide password**) and **Generate password**. **Save changes** appears after a change; saving replaces the link with a new address, and the old address stops working. |
+| **Link settings** | Opens under a new link. **Shared scenario** picks the Scenario of a link whose Pages are all in one Scenario; a link that opens Pages in several Scenarios does not show it, and an old link that opens a Page in every Scenario shows **All scenarios** there, with nothing to pick. **Require password** turns the password on; turning it on fills in a generated password. The password field has **Show password** (**Hide password**) and **Generate password**. **Save changes** appears after a change; saving replaces the link with a new address, and the old address stops working. A link across several Scenarios keeps each Page in its own Scenario when it is replaced. |
 | Footer | **Model data on this page may also be used on other pages.** |
+
+To add or remove a link's Pages or Scenarios, use **Edit pages** in [Link details](#link-details); the link keeps its address and password. You cannot change the Page a link opens first.
 
 Turning a link off opens **Turn off this external link?**, which says **Anyone who has the link will no longer be able to open it.** The checkbox **Also remove access already granted by this link** is checked, with **Recommended for financial information. Direct invitations stay unchanged.** Select **Cancel** or **Turn off link**.
 
-An old link that opens a Page in every Scenario shows **All scenarios** as its **Shared scenario**, and only someone with full access to the Page can turn it off: **Only a page-wide owner can turn off this legacy link.**
+An old link that opens a Page in every Scenario lists its Pages by name, without **Details**, and shows **All scenarios** as its **Shared scenario**. Only someone with full access to the Page can turn it off: **Only a page-wide owner can turn off this legacy link.**
+
+### New link
+
+**Create link** in the Share panel changes the panel to **New link**, where you choose the Pages the link opens in each Scenario. The view starts in the Scenario the Page is open in. Nothing is saved until you select **Create link** here. The back arrow (**Back to sharing**) and **Cancel** return to the panel without a link.
+
+| Part | What it does |
+| --- | --- |
+| **Pages** | The Pages in the Scenario that you can share, each with a checkbox. The Page you started from comes first, ticked and marked **Opens here**: readers land on it, and you cannot untick it. Once the link has several Scenarios, the heading reads **Pages in [Scenario]**. |
+| **Find a page** | Narrows the list to the Pages whose names match. With several Scenarios it reads **Find a page in [Scenario]**. |
+| **Select all** | Ticks every Page listed, or unticks them when all are ticked. It reads **Select all shown** while a search narrows the list. |
+| **In [Scenario].** with **Add scenario** | Shown below the Pages while the link has one Scenario. **Add scenario** opens **Add scenarios**, which says **You choose each scenario's pages next.** and lists the workspace's other Scenarios and Snapshots under **Scenarios** and **Snapshots**, with **Find a scenario** and **Select all**. Tick the ones to add and select **Add 1 scenario** or **Add [n] scenarios**. An added Scenario starts with the Pages ticked in the first Scenario, where those Pages exist in it. |
+| **Scenarios** | A list at the left once the link has two or more Scenarios. Each Scenario shows how many of its Pages are ticked, such as **3 pages**, or **None picked**. Select a Scenario to see and change its Pages. **Remove [Scenario]** (the × beside it) takes the Scenario and its ticks out of the link; the Scenario the link opens in has no ×. **Add scenario** is at the foot of the list. In a narrow window the list and a Scenario's Pages take turns, and **Scenarios** above the Pages goes back to the list. |
+| **All scenarios** | The first row of the **Scenarios** list. It shows every Page of the link's Scenarios once: **Tick a page here to share it in every scenario where it exists.** A Page ticked in only some of its Scenarios shows **In [Scenarios]**, and a Page that exists in only one shows **Only in [Scenario]**. |
+| Summary | At the foot: what the link will open, as **[n] pages in [Scenario]** or **[n] pages across [n] scenarios**, above **Opens [Page] in [Scenario]**. The summary counts a Page once, however many Scenarios open it. |
+| **Create link** | Creates the link and returns to the Share panel, where the new link shows with its **Link settings** open. |
+
+One link opens up to 50 Pages, and a Page counts once for each Scenario the link opens it in; see [Limits and file types](/reference/limits#tables-pages-sharing-and-exports).
+
+### Link details
+
+**Details** on a link opens **Link details**, a list of what the link opens. Its back arrow and **Done** return to the Share panel.
+
+| Part | What it does |
+| --- | --- |
+| Address | The link's address with **Copy link**, which reads **Link copied** after a copy. Below it: **Anyone with this link can view. Opens [Page] in [Scenario].** |
+| **What this link opens** | The same summary as the link's row, **Find a page in this link**, and one heading for each Scenario with its count, such as **2 pages**. Select a heading to fold or unfold its Pages. The Page readers land on is marked **Opens here**. A link that opens more than 12 Pages, counting a Page once for each Scenario, starts with only its first Scenario unfolded. |
+| **Turn off link** | Opens **Turn off this external link?**, as the trash icon does. |
+| **Edit pages** | Opens **Edit pages**: the [New link](#new-link) view with the link's Pages ticked. The Page the link opens first cannot be unticked. A line under the list says what saving does, such as **Saving adds 1 page and removes 1 page. Anyone with this link can then open what you add.** **Save** stays off until a Page changes. Saving keeps the link's address and password. A removed Page stops opening at once for everyone who opened the link; an added Page opens the next time a reader opens the link's address. Not shown for an old link that opens a Page in every Scenario, or when the Scenario of the link's first Page was deleted. |
+
+A Scenario that was deleted shows as **Deleted scenario**, and its Pages, like any Page that was deleted, show as **Unavailable page**.
 
 ### Share panel messages
 
@@ -505,11 +546,19 @@ An old link that opens a Page in every Scenario shows **All scenarios** as its *
 | **Checking external link access…** | The panel is loading the Page's links. |
 | **External link access could not be fully verified.** | Not every link could be checked; **Create link** stays off. |
 | **External links could not be loaded. Try again later.** | The links failed to load. |
-| **Checking page access…** | The panel is checking which Pages you can share. |
-| **Access to a selected page could not be verified. Remove it or retry after access refreshes.** | One of the Pages you picked could not be checked. |
-| **Could not check access to some other pages. Retry after access refreshes.** | Some Pages are missing from **Pages to share**. |
-| **Remove [n] pages before creating a link.** | More than 50 Pages are selected. |
+| **Checking pages…** | **New link** is still loading a Scenario's Pages; **Create link** stays off. A Scenario still loading reads **Loading…** in the **Scenarios** list, and its Pages read **Loading pages…**. |
+| **Could not load the pages in [Scenario].**, with **Retry** | **New link** could not load a Scenario's Pages. The Scenario reads **Not loaded** in the **Scenarios** list, and **Create link** stays off until the Pages load or you remove the Scenario. |
+| **No pages you can share here.** | The Scenario has no Page you can share. |
+| **No page matches “[text]”.** / **No scenario matches “[text]”.** | The search in **New link** or **Add scenarios** found nothing. |
+| **Every scenario is already in this link.** | **Add scenarios** has no Scenario left to add. |
+| **No pages picked in [Scenario], so it is left out of the link.** | A Scenario in **New link** has no Page ticked. The link is created without that Scenario. With several such Scenarios the message names them all and ends **so they are left out of the link.** |
+| **[n] of 50 allowed** | Shown beside **Opens [Page] in [Scenario]** once more than 40 Pages are ticked, counting a Page once for each Scenario. |
+| **[n] of 50. Remove [k] before creating a link: drop a scenario, or untick pages in one.** | More than 50 Pages are ticked, counting a Page once for each Scenario; **Create link** stays off. |
 | **Could not create an external link. Try again.** | Creating the link failed. |
+| **Could not load the page names in [Scenario].**, with **Retry** | **Link details** could not load a Scenario's Pages, which read **Name not loaded**. |
+| **No page in this link matches “[text]”.** | The search in **Link details** found nothing. |
+| **1 page on this link was deleted or is no longer yours to share. Saving removes it.** | **Edit pages** found a Page on the link that you can no longer share. With several, it reads **[n] pages on this link were deleted or are no longer yours to share. Saving removes them.** |
+| **Could not save the pages on this link. Try again.** | Saving in **Edit pages** failed; the link is unchanged. |
 | **Enter a password before saving link settings.** | **Require password** is on with an empty password. |
 | **This link password could not be revealed.** / **This link password could not be loaded.** | The saved password could not be read. |
 | **Could not update this external link. Its old settings are unchanged.** | Saving settings failed and the old link still works. |
@@ -547,8 +596,11 @@ A memorable address has 3 to 64 lowercase letters, digits, or single hyphens bet
 | Link expired | **Link expired**, with **Ask the sharer for a fresh link.** |
 | A memorable address that cannot load | **This shared page is temporarily unavailable. Please try again.** |
 | Other failure | **Something went wrong**, with **Please try again in a moment.** |
-| Strip above the Page | For a reader who is not signed in: your brand's logo and name with **Powered by cfo.ai**, or, without a brand, **Like what you see? Build a model like this for your own business.** with **Start your free trial now**, which the reader can dismiss |
+| Strip above the Page | For a reader who is not signed in: your brand's logo and name with **Powered by cfo.ai**, or, without a brand, **Like what you see? Build a model like this for your own business.** with **Start your free trial now**, which the reader can dismiss. In a desktop browser, a brand with a logo shows no strip, because the sidebar already shows the logo and **Powered by cfo.ai**. A phone or tablet browser shows the strip, and so does a brand without a logo. |
 | **Keep your access** | A card for a reader who is not signed in: **Sign in to hold on to the pages shared with you.**, with an email field |
+| Scenario picker | In the sidebar's **Model** section, lists the Scenarios the reader's links share. Picking a Scenario that does not share the Page on screen opens the first Page that Scenario shares, in sidebar order. |
+| Strip after a Scenario change | **[Page] isn’t shared in [Scenario]**, with **Back to [Scenario]**, over the Page that opened. [Page] is the Page the reader had open. **Back to [Scenario]** returns to it, in the Scenario the reader came from. The strip goes away when the reader opens another Page or Scenario. |
+| **In other shared scenarios** | Below the sidebar's list of Pages: the Pages the reader can open only in other Scenarios. Each shows its Scenario's name, or **[n] scenarios** when several share it. Selecting one opens it in the first of those Scenarios, Main first. |
 
 A link's preview card in chat and social apps, and the browser title of the link's own page, name cfo.ai. When the workspace's **Show the brand on link previews** setting is on, they name the brand instead, and the card's picture shows the brand's dark-mode logo, or its name when it has no dark-mode logo, with **Powered by cfo.ai**; see [Settings](/reference/settings#brand). The card shows **Shared page unavailable** and **This link has expired or is no longer available.** once the link is off.
 

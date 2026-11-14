@@ -42,7 +42,7 @@ The connection reads **cfo.ai lost access** with **Reconnect to start syncing ag
 
 For Xero, if the consent screen lists your organisation as already connected, disconnect cfo.ai's app under **Connected apps** in Xero, then try again. The card names the app as Xero lists it.
 
-Asking Ari to connect a source never reconnects an existing connection. Ask Ari to reconnect the connection by name, or use **Reconnect**.
+Asking Ari to connect a source never reconnects an existing connection. Ask Ari to reconnect the connection by name, or use **Reconnect**. When you ask Ari, it leaves a **Connect integrations** card in the chat, and the connection manager stays closed. Select the card's **Connect integrations** button to start the sign-in for that connection. For a source that offers no **Reconnect**, such as a Google Sheet, the button opens the connection manager instead.
 
 ## A sync failed: retry it
 
@@ -102,7 +102,7 @@ A connection reads **Sync stopped**, with **Contact cfo.ai support if it isn’t
 
 ## An MCP server's or API's data sync needs attention
 
-An MCP server or API shows two statuses on its page and its sidebar card: **Connection**, for whether Ari can call it, and **Data sync**, for the sync setups Ari saved. **Connection: Connected** beside **Data sync: Needs attention** means Ari can still use the service and only the import failed. Select **Fix with Ari** in the **Data sync** section. A chat opens that asks Ari to inspect the latest run and the saved sync setup, repair or retry it, and check the result. If you cannot edit the connection, the section reads **Someone with edit access can fix this sync with Ari.** When a server limits the rate of requests it accepts (HTTP 429), the sync retries that page on its own, so it usually needs nothing from you; [Messages about MCP servers and APIs](/reference/connection-statuses#messages-about-mcp-servers-and-apis) gives the wait rules.
+An MCP server or API shows two statuses on its page and its sidebar card: **Connection**, for whether Ari can call it, and **Data sync**, for the sync setups Ari saved. **Connection: Connected** beside **Data sync: Needs attention** means Ari can still use the service and only the import failed. For people who can manage workspace settings, the page also has **Syncs**, where the row of each sync setup whose last run failed reads **Last run failed** with the time, and **Runs again** with the next scheduled start when one is planned; [Sync setup rows](/reference/connection-statuses#sync-setup-rows) lists every reading. Select **Fix with Ari** in the **Data sync** section. A chat opens that asks Ari to inspect the latest run and the saved sync setup, repair or retry it, and check the result. If you cannot edit the connection, the section reads **Someone with edit access can fix this sync with Ari.** When a server limits the rate of requests it accepts (HTTP 429), the sync retries that page on its own, so it usually needs nothing from you; [Messages about MCP servers and APIs](/reference/connection-statuses#messages-about-mcp-servers-and-apis) gives the wait rules.
 
 ## A source Ari fetches waits for a code or needs attention
 

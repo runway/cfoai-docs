@@ -48,7 +48,9 @@ Each entry of a `variable` or `dimension` read that names `target` carries `depe
 | `items` | Descriptions of up to 20 dependents |
 | `formula_rules` | Up to 20 of the formulas that read the object, each with whether it can run and what a forced delete does to it |
 
-A `delete` without `force` is refused exactly when `total` is above 0, and deletes at once when it is 0.
+An `items` line for a formula states the Variable or Dimension that holds the formula by reference, with one table that shows it and that table's Page: `formula on variable Revenue#a3f, which is shown on table Plan inputs#7fd on page Forecast#69c (in expression)`. A holder that no table you can read shows reads `which has no readable table location`, and a location in another Scenario ends with that Scenario's reference, as `in scenario Plan B#85c`. A formula's condition is quoted in the line, and it names only the Variables and Dimensions you can read; one you cannot read appears as the reference the formula stores, an internal ID in angle brackets, in place of its name.
+
+A `delete` without `force` is refused whatever `total` is, 0 included; `force` confirms the deletion.
 
 Each `formula_rules` entry describes one formula that reads the object. `formulas` still counts every reading formula, including ones the list leaves out.
 
@@ -104,6 +106,8 @@ Use the `read` block on the table that actually shows the result:
 - A `read` adds one `read_note` issue: **Cell formulas are not included in table reads for this workspace; a cell shown without a formula can still be calculated by a saved rule.**
 - `formula_origins` returns no ranked formulas. A read that sends `"all"` or `"zeros"` returns the same rows and values, and adds two `read_note` issues: **Formula attribution is disabled for this workspace; missing formula-origin and input explanations do not mean that a cell has no formula or inputs.** and **formula origins are unavailable from the calculation service for this read**.
 - `include_edit_rules: true` adds each returned row's and column's editing rules: the actions a write accepts there, its own Actuals and Forecast defaults with ownership and writability, and its formula roles.
+- A number cell that no saved formula and no source read computes reads 0, and a `read` marks it in two cases that the Variable's saved formulas settle. In the first, the Variable is not imported and has no saved formula, or only formulas written for a Date grain other than the cell's. In the second, only the Variable's source read reaches the cell, and the cell's period starts after Actuals ends at the cell's grain. A read at the table's own grain lists the marked cells in one `uncovered_cells_zero_filled` issue, with their `count`, up to five of them under `sample` as `row` and `column`, and the message **No formula, value, or source covers these cells, so they read 0.** A read at a coarser `grain` shows `#NO_ROLLUP` in the cell instead; see [Read a monthly table by quarter or year](#read-a-monthly-table-by-quarter-or-year).
+- An unmarked 0 does not prove that a formula computed it. The read leaves a cell unmarked when the Variable has a formula with no Date grain in its condition, other than the saved source read that `after_last_close` marks, or a formula or typed value at the cell's own grain, and when the cell's row or column has rows or columns nested under it. A read that compares Scenarios or periods marks no cell.
 
 Use the same Scenario for the formula read and the table read. The saved formula explains the intended calculation; the table read gives the values for the selected period, segment, and Scenario, and names a formula only where the saved formulas prove it.
 
@@ -123,6 +127,32 @@ Use the same Scenario for the formula read and the table read. The saved formula
 Each rendered target's formulas say whether `formula` and `clear_formula` can be written there. A target whose cells a direct write would refuse, such as cells that show a source read the engine generates for a Variable with no saved formula, or cells whose origin the read cannot establish, does not offer those actions; that read-only target's formula carries a `readOnlyReason` instead, so a write is not attempted where it would fail. A Variable whose saved formula reads an imported column, such as `sum(<column>)` at `[]`, is writable: a cell formula saves at that cell's address and a column formula at the column's grain, beside the source read, which keeps supplying every other cell.
 
 The field name differs by level: a rendered target's formula names it `readOnlyReason`, while a row or column that cannot be written names its own reason `read_only_reason` beside `writable: false`. Dated Actuals and Forecast defaults keep their own writability.
+
+### Error cells counted over every selected row
+
+A `read` lists each cell error code, such as `#DIV/0!` or `#NUM!`, once under `issues`. Its `count` covers the cells with that code in the rows the result returns. When selected rows that the result does not return hold more cells with the code, the issue adds `selected`, so a page of 10 rows can report the 109 cells with the code among the 384 selected rows:
+
+```json
+{"code": "#NUM!", "count": 2,
+ "selected": {"count": 109, "by_variable": {"probability_pct#8c7": 109}}}
+```
+
+- `selected.count` counts the cells with the code in every selected row, returned or not, in the returned columns. The selected rows are the rows `rows` and `depth` match, before `after` and `limit`, the rows `coverage.selected.rows` counts. Selecting fewer rows with `rows` changes the count; a lower `limit` changes only the page.
+- `selected.by_variable` splits that count by Variable reference: the cell's row Variable, or its column's when the row has none. It lists every Variable you can read that holds such a cell. A cell whose Variable you cannot read is in `selected.count` only.
+- The split is whole or absent. When it does not fit beside the rows, `selected.truncation` takes its place, with `by: "response_budget"`, `shown: 0`, and `total`, the number of Variables the split lists. On a result of more than one row, `selected.next` is `{"limit": 1}`: the same read with one row leaves the split the most room, and can still leave it out.
+- A code found only in rows outside the result is listed too, with `count: 0`, its `selected` counts, and no `message`.
+- A code whose cells the returned rows all hold carries no `selected`, and neither does a read that returns every selected row.
+- The page's rows are chosen first, as for a read with no error cells. To make room for `selected`, the page then gives up trailing rows one at a time, up to 32, and then tries one row, so reading a whole table can take one more call; `next.after` still continues from the last row returned. A page with no room for `selected` beside one row returns without it.
+
+### Totals whose finer periods are partly empty
+
+A row's `empty_periods` marks a total that includes periods with no value. It maps the reference of a returned column to `{"empty": n, "of": m}` when the row's cell in that column is a number that totals finer Date periods the same table shows, such as a year above its months or a quarter row above its month rows, and some, but not all, of the finest of those periods are empty. Q1 of 300 with January 100, February blank, and March 200 reads `{"empty": 1, "of": 3}`.
+
+- A period is empty when its cell is blank, or reads 0 only because no formula, value, or source covers it, the cells `uncovered_cells_zero_filled` counts. A 0 that a formula or a typed value gives is a value.
+- A total whose periods are all empty carries no mark, and neither does a table that shows only months or only quarters. A mark says that periods inside the total have no value; it does not say that the total is wrong.
+- The total is judged on the whole calculated table, so a read that returns the Q1 column without its months still marks it.
+- Comparison rows and columns, and a read with `grain`, carry no marks. A cell that totals periods along both its row and its column is not judged.
+- The marks are added last and never take a row's place. When they do not fit beside the returned rows, one `empty_periods_left_out` issue replaces them, with `count`, `truncation` (`by: "response_budget"`, `shown: 0`, and `total`, the number of marks left out), and, when a smaller page has room for the rows and their marks together, `next.limit`, the row count to send with the same read. When the issue itself does not fit, the page gives up trailing rows for it, up to 32, and a page with no room even then carries neither.
 
 ### Facts the read computed
 
@@ -166,7 +196,9 @@ Receipts from `edit_table_blocks` carry no `figures`.
 ```
 
 - Each period holds what the Model calculates at that grain: the Variable's time rollup (its base periods summed, closed, or averaged), or a timeless formula recomputed there.
-- A Variable with neither reads `#NO_ROLLUP` in those cells, explained as no formula computing it at that grain, with its values in the table's own periods. The app shows such a cell as 0, and a Scenario or time comparison read at a coarser grain also shows 0 there.
+- A Variable with neither reads `#NO_ROLLUP` in those cells, and one `#NO_ROLLUP` issue counts them and explains: **No saved rule or source read computes these YEAR cells, so the calculation returned default zeros, not computed YEAR totals.** The app shows such a cell as 0, and a Scenario or time comparison read at a coarser grain also shows 0 there.
+- A Variable that only its source read computes at that grain also reads `#NO_ROLLUP` in each period that starts after Actuals ends. At quarter and year grain, Actuals ends at the last period completed on or before Last close. With Last close on March 31, 2026, a read by year shows `#NO_ROLLUP` in the 2026 cell and the source total in the 2025 cell, and a read by quarter shows the source total through Q1 2026 and `#NO_ROLLUP` from Q2 2026.
+- The marker follows the rules for a cell that nothing computes under [Connect formulas to the values a table shows](#connect-formulas-to-the-values-a-table-shows), so a cell whose row or column has rows or columns nested under it shows its 0.
 - The period columns come back `writable: false`, because their references name the date each period starts and would name the saved month column in a write. A read at the grain the table already shows is the table's plain read, with writable period columns.
 - A finer grain, or a table with no Date axis, comes back as an `invalid` result rather than a tool error, with its reason: `grain QUARTER is finer than this table's YEAR periods; a read's grain shows the periods at their own grain or rolled up to a coarser one`, or `grain QUARTER sets the grain of a table's Date periods, and this table has no Date axis`.
 - Continuation cursors carry the grain.

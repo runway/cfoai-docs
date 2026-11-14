@@ -40,9 +40,9 @@ A `reshape` whose layout places no `formulas` group keeps the formula column the
 | `when` | `{"dimension": ..., "equals": ...}`: a branch condition that restricts this level to one item of an ancestor Dimension on the same path. |
 | `branches` | A fork: two or more sibling paths, each a list of up to 10 levels. A path from the top to the end may fork once. The saved table is counted as a read shows it: a level after the fork is saved once under every path, so a breakdown holds at most 50 Dimensions counting each level under every sibling path, at most 10 levels with the fork counted as one, and at most 10 levels in any one path counting the levels after the fork. A refusal reads, for example, **a variable's breakdown in the saved table would hold 52 dimensions, counting each level saved under every sibling path; a table read shows at most 50**. A table already over a bound keeps accepting edits that do not add to it. |
 | `space` | `true`: a blank separator row on create, or a saved empty slot on reshape. Available only in `rows`. |
-| `summary` | `NONE` keeps the parent's own modeled value. `SUM`, `AVG`, `MIN`, `MAX`, `COUNT`, or `LAST` combine the children instead, independently of the time rollup. |
+| `summary` | `NONE` keeps the parent's own modeled value. `SUM`, `AVG`, `MIN`, `MAX`, `COUNT`, or `LAST` combine the children instead, independently of the time rollup. A `summary` value never hides the summary column, `NONE` included; `summary_columns_hidden` on an `update` does, as [the tool list](/agents/mcp-tools#tables-formulas-and-mappings) describes. |
 | `sort` | The order of a grouping axis's items: `type` `AXIS_ASC` or `AXIS_DESC` by item value, or `MANUAL` with `manualOrdering` listing the leading items. With `column`, a saved value or field column named by its readable reference, `AXIS_ASC` or `AXIS_DESC` orders one Dimension row axis by that column's calculated values on every refresh, so an item that arrives later takes its place once its values are in; text sorts without regard to case, and blanks and errors sort last. The column must be a top-level value or field column of the final layout, with no breakdowns or comparisons; otherwise the write is refused, with **sort column "[name]" does not name a top-level value or field column** or **column sorting supports one dimension row axis without breakdowns or comparisons**. A later layout the sort no longer supports still saves: the rows return to their item order, a read leaves the inactive `sort` out, and the saved sort stays until a supported layout brings it back or another `sort` replaces it: `NONE`, `AXIS_ASC` or `AXIS_DESC` without `column` (by item name), or `MANUAL` with `manualOrdering` each replace a column sort, and a `sort` with a different `column` replaces the column. `row_updates` and `column_updates` take the same `sort`. |
-| `role` | `DIMENSION` lists a Dimension's items; `VARIABLE` holds one value of the Dimension for each item on the other axis. |
+| `role` | `DIMENSION` lists a Dimension's items; `VARIABLE` holds one value of the Dimension for each item on the other axis. A Dimension node that a `create` or `reshape` places with no `role`, on the side that holds a top-level Variable or a Dimension node marked `VARIABLE`, takes `VARIABLE`, whether or not it lists `items`: `items` says what the Dimension contains, not how the table shows it. So `{"dimension": "Customer", "items": ["Acme", "Globex"]}` beside `{"variable": "Amount"}` is one Customer column that holds each record's item, and `values` can fill it. `role: "DIMENSION"`, `members`, or `children` on the node keeps one row or column per item. On a side that holds no top-level Variable or marked Dimension node, such as rows opposite a Date axis that holds the Variables, a Dimension that lists `items` stays `DIMENSION`. |
 | `children` | The nodes nested beneath this node, in saved-node form: the same nesting a Variable's `breakdown` declares, and the way a Dimension node nests its levels. |
 
 A `space` node, a `branches` node, and a node kept as saved by `target` alone take none of `children`, `role`, `grain`, `sort`, `summary`, or `members`.
@@ -97,6 +97,23 @@ Each row in a table's view is either:
 - a **Dimension used as a mapping**, where each cell shows that Dimension's item for its row and column instead of a number. This suits a database-style list of entities and their attributes.
 
 A Variable row can carry its own breakdown, splitting only that row differently from the rest of the table. A mapping row takes no breakdown. On a table, a `breakdown` on a Dimension node is refused before anything saves with **breakdown belongs to a variable; nest a dimension's levels with children**. On a Canvas dataset the refusal explains the record-key and mapped-field roles instead: consecutive Dimensions on the record axis are the key rows, and a Dimension on the value axis is a field showing the item each record is mapped to.
+
+An `update` splits one saved row by Dimensions with `row_updates[].breakdown`, the breakdown that belongs to that one row. The entry selects exactly one row, and `breakdown` holds one root node; `[]` removes the row's breakdown, and leaving the field out keeps it. It does not replace a breakdown the layout shares across rows, and a `reshape` does not take it.
+
+```json
+{
+  "update": {
+    "target": "Operating Plan",
+    "row_updates": [
+      { "rows": ["Revenue"], "breakdown": [{ "dimension": "Region", "items": ["East", "West"] }] }
+    ]
+  }
+}
+```
+
+- A `dimension` level that matches one Dimension reuses it. A name that matches none creates the Dimension, with `items` and `data_type` when given, in the same change as the breakdown: the Dimension, its items, and the breakdown all save, or none does. A misspelled name therefore creates a new Dimension, as it does on a `create` or `reshape`.
+- Items the level declares that an existing Dimension lacks are added to it. That needs write access to the Dimension, on a `create` and a `reshape` as well; without it the whole write is refused. A Dimension the same request creates needs no such check.
+- A breakdown cannot create a Variable or a time axis, or set a Variable's formula, data type, or rollup. It is refused with **row_updates[0].breakdown declares a new variable or time axis, or a variable's formula, data_type, or rollup; a breakdown replacement creates dimensions only, reshape creates variables, and variable settings belong in variables**.
 
 ## Orientation
 

@@ -20,6 +20,8 @@ Under the buttons, both pages read **By continuing, you agree to the Standard Te
 
 A Google or Microsoft sign-in that fails shows **We couldn’t complete sign-in. Please try again.**
 
+When your sign-in ends while a workspace is open in a browser tab, the tab opens the sign-in page, whether or not it is the tab in front. After you sign in, cfo.ai returns you to the page you were on.
+
 ### Work email required for new accounts
 
 A new account must use a work email address. An address at a free or disposable email provider, such as Gmail, Outlook, Yahoo, iCloud, or Proton Mail, is refused before a code is sent, and also when a Google or Microsoft sign-in or a pending invitation would create the account. The form is replaced by a page titled **Use your work email**, with **New accounts require a work email address.**, **Personal email providers, such as Gmail, Outlook, and Yahoo, are not supported for new accounts.**, and **Already have an account? You can still sign in with your existing email.** Select **Use a different email** to return to an empty **Work email** field. An account that already exists with a personal address keeps signing in with it. cfo.ai does not check that a custom domain belongs to a company.
@@ -69,7 +71,7 @@ From top to bottom:
 | **Collapse navigation** | Folds the sidebar to a narrow strip (**⌘ \\**, or **Ctrl \\** on Windows and Linux). On the strip, **Expand navigation** brings it back; pointing at the strip shows the sidebar over the page, and **Keep navigation open** pins it. Dragging the sidebar's edge resizes it, and dragging it narrow enough folds it. In a chat on a narrow window, the sidebar stays folded and the strip offers **Open navigation**. |
 | **Search** | Opens [workspace search](#workspace-search). |
 | **Chats** | Your chats, newest activity first, with **New chat** and a filter. Selecting a chat keeps the Page on screen. Chats from Slack and from AI assistants are left out until the filter includes them. See [The chat list](/reference/chat#the-chat-list-find-rename-and-archive-chats). |
-| **Model** | Select **Model** to open or close the section. It holds the Scenario picker (**Main Scenario** until you pick another) and the Pages of the Scenario the picker shows. **New page** (**+**) creates a Page in that Scenario and opens it, and a chat you have open stays open. The section appears once the workspace has its first Page. See [Scenario and version history controls](/reference/scenarios-and-history) and [Create and organize Pages and blocks](/guides/create-pages-and-blocks). |
+| **Model** | Select **Model** to open or close the section. It holds the Scenario picker (**Scenario** followed by the Scenario's name, **Main Scenario** until you pick another) and the Pages of the Scenario the picker shows. **New page** (**+**) creates a Page in that Scenario and opens it, and a chat you have open stays open. The section appears once the workspace has its first Page. See [Scenario and version history controls](/reference/scenarios-and-history) and [Create and organize Pages and blocks](/guides/create-pages-and-blocks). |
 | **Connections** | Your connected systems, each with its status, and **Add integration** (**+**). Pointing at the heading shows a **…** menu with **Links sent** and, once a connection can take a link, **Select connections to send a link** (**⌥ click** on such a connection's row does the same). See [Connection statuses and actions](/reference/connection-statuses) and [Send a link so someone else can connect a source](/guides/send-a-connect-link). |
 | **Feedback** | Opens [Share feedback](#share-feedback). |
 | **Powered by cfo.ai** | Shown in a workspace with a brand. |
@@ -83,7 +85,7 @@ In a desktop browser, **Chats** and **Model** each grow with their rows up to a 
 
 | Control | What it does |
 | --- | --- |
-| A Page row | Opens the Page and keeps the chat you have open; see [Open Pages and chats from the sidebar](#open-pages-and-chats-from-the-sidebar). Pointing at it shows **New subpage**, **Mention page in chat**, and **Delete page**, and, on a Page with subpages, **Expand subpages** or **Collapse subpages**. |
+| A Page row | Opens the Page and keeps the chat you have open; see [Open Pages and chats from the sidebar](#open-pages-and-chats-from-the-sidebar). Pointing at it shows **New subpage**, **Mention page in chat**, and **Delete page**. A Page with subpages always shows an arrow after its name, **Expand subpages** or **Collapse subpages**; a Page without subpages has no arrow. A name too long for the row is cut short before the arrow. |
 
 | Message | Meaning |
 | --- | --- |
@@ -286,11 +288,11 @@ Results are grouped, up to eight in each group. The group with the best match co
 
 | Group | What it finds |
 | --- | --- |
-| **Pages** | Pages by title, and from two characters also by the words in their text. A Page found by its text shows the passage. |
+| **Pages** | Pages by title, and from two characters also by the words in their text, including the text written in their Canvas blocks. A Page found by its text shows the passage. See [What search reads in a Canvas block](#what-search-reads-in-a-canvas-block). |
 | **Blocks** | Named tables, and titled charts and Canvas blocks |
 | **Variables** | Variables that a table on one of your Pages shows |
 | **Dimensions** | Dimensions that a table on one of your Pages shows |
-| **Dimension items** | Items, such as a customer or a vendor, whose Dimension a table shows on its rows. Each names its Dimension and, for imported items, the connection it came from. |
+| **Dimension items** | Items, such as a customer or a vendor, whose Dimension a table shows on its rows. Each shows its Dimension and, for an imported item, the saved query it came from, as in **Vendor · from QuickBooks bills**. A second line names the Page the result opens and, when the table has a name, the table. |
 | **Workspaces** | Your other workspaces, by name |
 | **Chats** | Your chats by title. When none of the chats already loaded match, search also looks through your older chats once you pause typing. |
 
@@ -302,6 +304,14 @@ Results are grouped, up to eight in each group. The group with the best match co
 - From three letters, a word also matches inside a word: `count` finds Headcount.
 - From five letters, a small typo is forgiven: `salry` finds Salary.
 
+### What search reads in a Canvas block
+
+Search finds a Page by the text written into the layout of its Canvas blocks, such as headings and sentences, together with each block's title. The result shows the passage, and opening it scrolls to that Canvas block. A Canvas block found by its title alone is listed once, under **Blocks**.
+
+Search does not find everything a Canvas block shows. It leaves out text the block is given as a setting or takes from a list or from data, such as a chart's series names or the row names of a table drawn in the block, and every number the block calculates. When a word you can see in a block finds nothing, search for the block's title or for other words in it.
+
+Search reads this text when the window opens and keeps it for up to 30 seconds, so a heading written a moment ago may not be found yet. While it reads, a search that finds nothing shows **Loading pages…**.
+
 ### Search keys and what a result opens
 
 | Shortcut | What it does |
@@ -312,7 +322,7 @@ Results are grouped, up to eight in each group. The group with the best match co
 | **⌥ Enter**, or **⌥**-click (**Alt** on Windows and Linux) | Open the result alone: a Page with no chat, or a chat with its Page folded away. The bar at the bottom of the window lists it as **Open alone**. |
 | **Esc** | Close search |
 
-A result opens the way the same row in the sidebar does. A Page opens in the sidebar's Scenario and keeps the chat you have open: beside a docked chat, or full-screen under a floating one. A block opens its Page, scrolls to the block, and flashes it. A Variable or a Dimension item opens the table that shows it and marks its row. A Page found by its text scrolls to the passage. A workspace switches to that workspace. A chat opens over or beside the Page on screen; picking the chat that already floats over the Page docks it.
+A result opens the way the same row in the sidebar does. A Page opens in the sidebar's Scenario and keeps the chat you have open: beside a docked chat, or full-screen under a floating one. A block opens its Page, scrolls to the block, and flashes it. A Variable opens the table that shows it and marks its row. A Dimension item opens a table that lists its Dimension on rows, the one its second line names, and marks the item's row there. When several tables list the Dimension on their rows, search prefers a table whose saved row settings filter nothing, then a table with a saved filter that may still keep the item, and last a table whose saved list of items leaves the item out or whose rows for that Dimension are hidden. Search reads only saved settings, not the table's data, so the table it opens can still leave the item out. A Page found by its text scrolls to the passage. A workspace switches to that workspace. A chat opens over or beside the Page on screen; picking the chat that already floats over the Page docks it.
 
 ### Search messages
 
@@ -320,7 +330,7 @@ A result opens the way the same row in the sidebar does. A Page opens in the sid
 | --- | --- |
 | **Type to search your workspace.** | Nothing typed and no recent Pages |
 | **No results for “…”** | Nothing matched every word |
-| **Loading pages…** | The Page list is still loading |
+| **Loading pages…** | The Page list, or the text of its Canvas blocks, is still loading |
 | **Couldn’t load pages. Try again from the sidebar.** | The Page list failed to load |
 | **Searching dimension items…** / **Searching chats…** | A slower search is still running |
 | **Couldn’t search dimension items.** / **Couldn’t search chats.** | That part of the search failed; the other results still show |

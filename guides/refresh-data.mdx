@@ -51,7 +51,7 @@ Ari saves the time and time zone on the connection. From the next nightly run, t
 
 - CSV uploads never refresh. Upload the new version; see [Upload a CSV as a data source](/guides/upload-a-csv#replace-the-file-with-a-newer-version).
 - Google Sheets and Google Drive files are re-read every night, and when you ask Ari. An unchanged file starts no update.
-- MCP servers and APIs are called live when Ari needs them. A sync setup Ari saved for one refreshes nightly like an integration, and can take its own time.
+- MCP servers and APIs are called live when Ari needs them. A sync setup Ari saved for one refreshes nightly like an integration, and can take its own time. The connection's page shows each setup's **Schedule**, such as **Daily at 2:00 AM** in your time zone, and its **Next run**; see [Sync setup rows](/reference/connection-statuses#sync-setup-rows).
 - A source with no integration that Ari fetches for you is fetched again once a day, and can take its own time. Its tables have no refresh of their own: to get newer data sooner, ask Ari to fetch from the source again. See [Bring in data from a source that has no integration](/guides/connect-other-sources#bring-in-data-from-a-source-that-has-no-integration).
 
 ## If a refresh does not run

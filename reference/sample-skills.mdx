@@ -1,6 +1,6 @@
 ---
 title: "Sample Skills"
-description: "Four complete Skills you can save in your workspace as they are or adapt: three-statement-buildout, forecast-simulator, headcount-from-capacity, and interactive-profitability-bridge, each with its description and full instructions."
+description: "Four complete Skills you can save as they are or adapt: three-statement-buildout, forecast-simulator, headcount-from-capacity, and interactive-profitability-bridge, each with its description and full instructions."
 ---
 
 These are four complete Skills you can save as they are, or change to fit how you work. A Skill is a saved workflow that Ari follows whenever a request matches its description. Each sample has a name, a description that tells Ari when to use it, and full instructions.
@@ -206,9 +206,10 @@ Build an interactive forecast tool whose scenario ties exactly to the model base
   the component stays in sync when the model changes.
 
   ## Dataset rules
-  - **One breakdown per dataset.** Multiple variables each broken down by the same dimension
-    in a single dataset collapses the duplicate child labels — you get the totals and one set
-    of children, and the rest render blank. Split into one dataset per variable.
+  - **Several variables in one dataset.** When a dataset holds more than one variable broken
+    down by the same dimension, each breakdown series is labeled with its variable, such as
+    `Revenue — EMEA` and `Expenses — EMEA`. With one variable the label is the item alone.
+    Match series by `variable` and `segments`, not by a hardcoded label.
   - Max 8 datasets per block. Check `dataset_evidence` in the write receipt: `series_count`
     and `series_names` tell you what actually came back.
   - A series with empty `segments` is the variable **total**; populated `segments` are
@@ -299,7 +300,7 @@ Model headcount as a ratio to the business activity that sets it, not a growth r
 
   ## Reconcile to the P&L
   If the P&L carries labor as a % of revenue, either drive that line from this build
-  (`Units * Cost per Unit`) or add an explicit reconciliation row showing the implied
+  (`` Units * `Cost per Unit` ``) or add an explicit reconciliation row showing the implied
   percentage. Never let a bottom-up headcount plan sit beside a top-down labor percentage
   with no tie between them.
   ```
@@ -319,9 +320,7 @@ Build a reusable interactive Canvas visual from the organization's existing inco
   ```markdown expandable wrap
   # Interactive profitability bridge
 
-  Create a custom workspace skill called `interactive-profitability-bridge`.
-
-  The skill should create or update a reusable interactive Canvas visual based on the organization's existing income statement. It should work across different organizations and must not assume specific line-item names such as Subscription Revenue, Total COGS, Gross Profit, EBIT, or Net Income.
+  Create or update a reusable interactive Canvas visual based on the organization's existing income statement. The visual must work across different organizations and must not assume specific line-item names such as Subscription Revenue, Total COGS, Gross Profit, EBIT, or Net Income.
 
   ## When the skill runs
 

@@ -158,14 +158,10 @@ The group does not report failed steps. A failed step shows the normal check mar
 | **Edit pending message** | Takes the message back into the message box so you can change it and send it again. |
 | **Delete pending message** | Removes the message before Ari reads it. |
 
-Waiting messages sit above the message box until Ari takes them. A message that started a turn cannot be edited or deleted. Some waiting messages cannot be edited, only deleted, and editing says why:
+Waiting messages sit above the message box until Ari takes them. A message that started a turn cannot be edited or deleted. Some waiting messages have no **Edit pending message** button: a message that is still sending, a message with files, a reply to a passage, a plan approval, and answers to Ari's questions. Delete one of those and send it again. Editing can show these notices:
 
 | Message | What to do |
 | --- | --- |
-| **Messages that are still sending can't be edited yet.** | Wait a moment and try again. |
-| **Messages with attachments can't be edited yet.** | Delete it and send a new message. |
-| **Messages that reply to an excerpt can't be edited yet.** | Delete it and send a new message. |
-| **Plan approvals and answers to Ari's questions can't be edited.** | Delete it and answer again. |
 | **Finish editing the other queued message first.** | You are already editing one; finish it first. |
 | **Clear the current draft before editing a queued message.** | The message box has text in it; clear it first. |
 
@@ -373,6 +369,26 @@ When you ask Ari to merge, delete, or revert a Scenario and to let you confirm f
 
 The button turns off when the action is no longer possible, for example because the Scenario changed after Ari's summary. See [Scenario and version history controls](/reference/scenarios-and-history).
 
+### Connect Slack card
+
+When you ask Ari to connect Slack, Ari posts a card titled **Connect Slack**. Its **Connect** button runs the same Slack sign-in as **Add to Slack** in [Settings](/reference/settings#slack): you approve the app in Slack's own window, and Ari never sees the sign-in. To connect Slack step by step, see [Talk to Ari from Slack](/guides/use-ari-in-slack#connect-slack-to-your-workspace).
+
+| The card shows | Meaning |
+| --- | --- |
+| **Slack asks you to approve adding Ari to your Slack workspace.** with **Connect** | No Slack workspace is connected. **Connect** opens Slack's sign-in in a new window. |
+| **Checking connection…** | The card is reading the workspace's Slack connection. |
+| **Connecting…** with **Cancel** | Slack's sign-in window is open. **Cancel** closes it and brings back **Connect**. |
+| **Connected to [Slack workspace]** with **Ari can now DM you in this Slack workspace. It posts in a channel once a cfo.ai admin invites it there.** | Slack is connected, and the chat continues with your request. A card in an earlier chat reads the same whenever the workspace has a Slack connection. |
+| **Allow popups for cfo.ai, then try again.** | The browser blocked Slack's window. Allow pop-ups for cfo.ai, then select **Retry**. |
+| **Timed out waiting for Slack. Please try again.** | Slack's window sent no answer within 5 minutes. |
+| **Slack returned an error: [error]** | Slack refused the sign-in. |
+| **Could not reach cfo.ai to open Slack's sign-in. Try again.** / **Could not reach cfo.ai to save the Slack connection. Try again.** | The request got no answer from cfo.ai. |
+| **cfo.ai could not read this workspace's Slack connection.** with **Retry** | The card could not check whether Slack is connected. **Retry** checks again. |
+| **Slack is connected, but this chat could not continue.** | The connection was saved. Send Ari a message to go on. |
+| **A workspace admin must connect this service.** | You cannot add connections, so **Connect** is unavailable. |
+
+Ari posts the card only in a chat in the cfo.ai web app, to someone who may add connections, while no Slack workspace is connected. In a Slack or iMessage conversation, in a Trigger's run, or once Slack is connected, Ari says why it cannot post the card. Ari cannot disconnect Slack; use **Disconnect** in **Settings → Ari → Slack**.
+
 ### Other cards
 
 | Card | What it shows |
@@ -399,7 +415,7 @@ A **Reply** button appears above words you select in one of Ari's finished answe
 | --- | --- | --- |
 | **Conversation interrupted - tell Ari what to do differently.** | You stopped Ari, or the reply was interrupted. | Say what you want next. Changes saved before the interruption stay. |
 | **Couldn't stop Ari. Please try again.** | The stop did not reach Ari, so it is still working. | Select **Stop** again. |
-| **Ari stopped before finishing.** with **Retry** | The reply was cut off. | Select **Retry** to have Ari pick the work back up. |
+| **Ari stopped before finishing.** with **Retry** | The reply was cut off. | Select **Retry**. It sends your last message again, so Ari can pick the work back up. |
 | **I stopped before finishing this reply. It was interrupted, and repeated attempts to continue it did not finish. Changes I saved before the interruption are kept. Sending the message again starts a new reply.** | cfo.ai tried on its own to continue a reply that a fault inside cfo.ai cut off, for example a restart, and could not. A reply you ended with **Stop** is not continued on its own. | Send the request again. |
 | **No internet connection. Reconnect to continue with Ari.** | Your browser is offline. Ari keeps working on the server. | Reconnect. The chat catches up. |
 | **Connection lost. Reconnect to continue with Ari.** | The chat lost its connection to cfo.ai. | Reconnect, then select **Retry** if it is offered. |
@@ -549,7 +565,7 @@ When Ari finishes a reply but Slack does not take it, the reply stays in the sam
 
 | Message | Meaning |
 | --- | --- |
-| **Ari couldn't send this reply because Slack is disconnected. The full reply is here.** | The workspace's Slack connection was removed. Connect Slack again in **Settings → Ari → Slack**. |
+| **Ari couldn't send this reply because Slack is disconnected. The full reply is here.** | The workspace's Slack connection was removed. Connect Slack again in **Settings → Ari → Slack**, or ask Ari to connect Slack in a chat in cfo.ai. |
 | **Ari couldn't send this reply because the Slack connection needs to be reconnected in Settings. The full reply is here.** | Slack no longer accepts the connection's sign-in. An administrator selects **Disconnect**, then **Add to Slack** again. |
 | **Your Slack workspace's settings blocked Ari from posting this reply in the channel. The full reply is here.** | A setting of your Slack workspace stops the cfo.ai app from posting there. |
 | **Ari no longer has access to this Slack channel, so it couldn't post the reply there. The full reply is here.** | The cfo.ai app was removed from the channel, or the channel no longer exists. |

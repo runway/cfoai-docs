@@ -27,17 +27,19 @@ If your financial model lives in a spreadsheet, Ari can rebuild it as a cfo.ai M
     > Use our connected QuickBooks data for actuals instead of rebuilding the actuals tabs.
   </Step>
   <Step title="Review Ari's plan">
-    Ari reads the workbook first and tells you what it found. It rebuilds the sheets that are visible in the workbook, and the hidden cells those sheets read. Any other hidden sheet is left out, and Ari's plan marks it as hidden. To bring a hidden sheet in, name it in your request. It names the tabs that hold inputs, data, calculations, and reports, the repeated sections that are really one list, the cases that become Scenarios, and anything it cannot carry over. For a larger build it shows a plan card. Correct anything that is wrong, then select **Build it**.
+    Ari reads the workbook first and tells you what it found. It rebuilds the sheets that are visible in the workbook, and the hidden cells those sheets read. Any other hidden sheet is left out, and Ari's plan marks it as hidden. To bring a hidden sheet in, name it in your request. It names the tabs that hold inputs, data, calculations, and reports, the repeated sections that are really one list, the cases that become Scenarios, and anything it cannot carry over. Ari saves this plan on the import summary Page, a Page in Main that holds the import's plan and record, and shows it in the chat before it builds. For a larger build it shows a plan card. Correct anything that is wrong, then select **Build it**.
   </Step>
   <Step title="Let Ari build">
-    Each tab you are importing that holds assumptions, calculations, or a report becomes a Page with the same name. Each labeled section on it becomes a table named after that section, so you can compare them side by side. A tab that holds only records, such as an export from your accounting system, becomes no Page: Ari loads it as a source table, or, when a connection in cfo.ai already supplies those records, reads them from that connection and rebuilds the tabs that use them over it. Pages appear in the sidebar as Ari finishes them.
+    Ari builds one sheet at a time, each sheet after the sheets it reads. Each tab you are importing that holds assumptions, calculations, or a report becomes a Page with the same name. Each labeled section on it becomes a table named after that section, so you can compare them side by side. A tab that holds only records, such as an export from your accounting system, becomes no Page: Ari loads it as a source table, or, when a connection in cfo.ai already supplies those records, reads them from that connection and rebuilds the tabs that use them over it. Pages appear in the sidebar as Ari finishes them.
   </Step>
   <Step title="Check that it ties">
-    Turn on the optional **Model migration tie-out** Skill; see [Turn on a built-in Skill](/guides/turn-on-built-in-skills). Then ask, with the workbook attached:
+    As Ari finishes each sheet, it adds that sheet's checks to a table named **Workbook tie-out** on the import summary Page: for each cell it checked, the workbook's value, the value cfo.ai calculates, and the difference. When the import ends, Ari's reply lists each sheet with the cells it checked and each difference. [Workbook imports](/reference/imported-data#workbook-imports) describes the table.
+
+    For a bridge that groups the differences and lets you decide each one, turn on the optional **Model migration tie-out** Skill; see [Turn on a built-in Skill](/guides/turn-on-built-in-skills). Then ask, with the workbook attached:
 
     > Does this tie to my workbook? Build the tie-out page.
 
-    Ari builds a Page with a bridge from your workbook's numbers to cfo.ai's. The differences are grouped so you can drill into each one, and buttons hand each decision to Ari. Building the page changes nothing in your Model. Unless you ask for a Page like this, Ari keeps its comparisons against the workbook in its own checks and reports the remaining differences in the chat. Without the Skill, ask:
+    Ari builds a Page with a bridge from your workbook's numbers to cfo.ai's. The differences are grouped so you can drill into each one, and buttons hand each decision to Ari. Building the page changes nothing in your Model. Without the Skill, ask:
 
     > Reconcile revenue, payroll, and cash to the attached workbook for every quarter, and explain each difference.
   </Step>
@@ -85,7 +87,7 @@ For a very large workbook, you can scope the first pass to the core model, check
 
 ## If something goes wrong
 
-- If Ari stopped partway, select **Retry** on the message, or ask Ari to continue. Anything it saved stays in your Model.
+- If Ari stopped partway, select **Retry** on the message, or ask Ari to continue, in the same chat or a new one. Anything it saved stays in your Model. Ari reads the import summary Page, leaves the sheets that already have rows in **Workbook tie-out** as they are, and continues from the first sheet that has none.
 - If a rebuilt number does not match, ask Ari to trace it to its source cells. See [Check that your numbers match your books](/guides/check-imported-data).
 - If you want to start over, undo the import's changes from Version history. See [Undo a change or restore an earlier version](/guides/undo-changes).
 

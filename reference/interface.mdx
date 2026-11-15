@@ -292,7 +292,7 @@ Results are grouped, up to eight in each group. The group with the best match co
 | **Blocks** | Named tables, and titled charts and Canvas blocks |
 | **Variables** | Variables that a table on one of your Pages shows |
 | **Dimensions** | Dimensions that a table on one of your Pages shows |
-| **Dimension items** | Items, such as a customer or a vendor, whose Dimension a table shows on its rows. Each shows its Dimension and, for an imported item, the saved query it came from, as in **Vendor · from QuickBooks bills**. A second line names the Page the result opens and, when the table has a name, the table. |
+| **Dimension items** | Items, such as a customer or a vendor, whose Dimension a table shows on its rows. Each shows its Dimension and, for an imported item, the saved query it came from, in the form **[Dimension] · from [saved query]**. A second line names the Page the result opens and, when the table has a name, the table. |
 | **Workspaces** | Your other workspaces, by name |
 | **Chats** | Your chats by title. When none of the chats already loaded match, search also looks through your older chats once you pause typing. |
 
@@ -433,6 +433,7 @@ While an export runs, the button spins and its tooltip shows the stage:
 
 | Message | Meaning |
 | --- | --- |
+| **Waiting for edits to save** | A table edit you made in this browser tab is still saving, on this Page or another one: a cell or formula edit, a paste, a layout change, or a new Variable, Dimension, or item. The export starts once every such edit has saved, so the workbook includes them. |
 | **Waiting since [time] for [other export]** | Another export in this workspace is queued or running; yours starts when it ends. |
 | **Spreadsheet queued** | Your export is waiting to start. |
 | **Preparing spreadsheet** | Your export is running. |
@@ -441,6 +442,7 @@ The button stays clickable while its export runs. Selecting it again starts no s
 
 | Notice | Meaning |
 | --- | --- |
+| **Waiting for edits to save…**, with **[Page], requested at [time]** | Your export has not started, because a table edit from this tab is still saving. |
 | **Waiting for another spreadsheet…**, with **[Page] waits for [other export]. Waiting since [time]** | Your export is behind another one. |
 | **Spreadsheet queued** or **Preparing spreadsheet…**, with **[Page], requested at [time]** | Your export is waiting or running. The notice stays until the export ends or you close it. |
 
@@ -472,6 +474,9 @@ These reasons stand alone:
 | Message | Meaning |
 | --- | --- |
 | **Add a table or a Canvas block with data to this page before downloading a spreadsheet.** | The Page's last table or Canvas dataset was removed during the download. |
+| **An edit did not save, so the spreadsheet was not started. The file would not have included it.** | A table edit failed to save while the download waited for it. No export started. Fix or repeat the edit, then download again. |
+| **You switched workspaces while this download waited for edits to save, so the spreadsheet was not started.** | You opened another workspace during the wait. No export started. Open the Page again and download again. |
+| **Your edits are saved, but another change to this workspace is still being saved. The spreadsheet was not started, because it would not have included your edits. Try again in a minute.** | Your edits saved, but an earlier change in the workspace, such as one a teammate or Ari is making, was still saving 10 seconds after you asked. An export made then would have left your edits out, so none started. |
 | **The export was cancelled before it produced a workbook.** | The export was cancelled. |
 | **Table "[name]" requires at least [n] rows and [m] columns; Excel worksheet limits are 1048576 rows and 16384 columns.** | The table's saved layout does not fit one Excel worksheet. The export is refused at once, before anything is calculated, and a new export fails the same way while the table is unchanged. Ari's export reports the same limit as **The saved layout in table "[name]" requires …**. |
 
@@ -498,14 +503,17 @@ For time and size limits, see [Limits and file types](/reference/limits#tables-p
 | Part | What it does |
 | --- | --- |
 | **External access** | **Create link**, which opens [New link](#new-link), and the links that already exist. With none, it says **No one outside your workspace has link access.** A Page can have up to 100 links. |
-| A link | Its address; **Anyone with this link can view. Shared by [name], updated [time]**, or **Anyone with this link can view. Updated [time]** for a link whose creator is not recorded; what it opens, as **[n] pages in [Scenario]** or **[n] pages across [n] scenarios**, with **Details**, which opens [Link details](#link-details); **Copy external link**; and **Turn off external link** (the trash icon). |
+| **Find a link** | Shown once the Page has more than 5 links. Narrows the list to the links whose name, address, memorable address, or creator's name contains what you type. The count beside it reads **[n] links**, or **[k] of [n] links** while you search. |
+| A link | Its name with its address under it, or its address alone when it has no name; **Anyone with this link can view. Shared by [name], created [time]**, or **Anyone with this link can view. Created [time]** for a link whose creator is not recorded; what it opens, as **[n] pages in [Scenario]** or **[n] pages across [n] scenarios**, with **Details**, which opens [Link details](#link-details); **Copy external link**; **Name this link** (the pencil icon), which reads **Rename link** on a link that has a name; and **Turn off external link** (the trash icon). |
 | **Edit share preview** | On a link without a password. Opens the [Share preview](#share-preview) dialog. |
 | **Link settings** | Opens under a new link. **Shared scenario** picks the Scenario of a link whose Pages are all in one Scenario; a link that opens Pages in several Scenarios does not show it, and an old link that opens a Page in every Scenario shows **All scenarios** there, with nothing to pick. **Require password** turns the password on; turning it on fills in a generated password. The password field has **Show password** (**Hide password**) and **Generate password**. **Save changes** appears after a change; saving replaces the link with a new address, and the old address stops working. A link across several Scenarios keeps each Page in its own Scenario when it is replaced. |
 | Footer | **Model data on this page may also be used on other pages.** |
 
+A link's name is a label for the people in your workspace, such as "Board – Q4 investors". Readers never see it, and it is not part of the link's address. **Name this link** or **Rename link** puts the **Link name** field in place of the link's title, with the hint **Name this link, like Board – Q4 investors**. **Enter**, or clicking outside the field, saves the name; **Esc** keeps the old one; saving an empty field removes the name. A name is one line of up to 80 characters, and two links can have the same name. The person who made a link can rename it, and so can anyone with full access to every Page the link opens. Renaming keeps the link's address, Pages, and password, and a link that **Save changes** replaces keeps its name.
+
 To add or remove a link's Pages or Scenarios, use **Edit pages** in [Link details](#link-details); the link keeps its address and password. You cannot change the Page a link opens first.
 
-Turning a link off opens **Turn off this external link?**, which says **Anyone who has the link will no longer be able to open it.** The checkbox **Also remove access already granted by this link** is checked, with **Recommended for financial information. Direct invitations stay unchanged.** Select **Cancel** or **Turn off link**.
+Turning a link off opens **Turn off this external link?**, or **Turn off “[name]”?** for a link that has a name, which says **Anyone who has the link will no longer be able to open it.** The checkbox **Also remove access already granted by this link** is checked, with **Recommended for financial information. Direct invitations stay unchanged.** Select **Cancel** or **Turn off link**.
 
 An old link that opens a Page in every Scenario lists its Pages by name, without **Details**, and shows **All scenarios** as its **Shared scenario**. Only someone with full access to the Page can turn it off: **Only a page-wide owner can turn off this legacy link.**
 
@@ -515,6 +523,7 @@ An old link that opens a Page in every Scenario lists its Pages by name, without
 
 | Part | What it does |
 | --- | --- |
+| **Name** | An optional name for the new link, up to 80 characters, with the hint **Optional, like Board – Q4 investors**. Not shown in **Edit pages**. |
 | **Pages** | The Pages in the Scenario that you can share, each with a checkbox. The Page you started from comes first, ticked and marked **Opens here**: readers land on it, and you cannot untick it. Once the link has several Scenarios, the heading reads **Pages in [Scenario]**. |
 | **Find a page** | Narrows the list to the Pages whose names match. With several Scenarios it reads **Find a page in [Scenario]**. |
 | **Select all** | Ticks every Page listed, or unticks them when all are ticked. It reads **Select all shown** while a search narrows the list. |
@@ -528,13 +537,13 @@ One link opens up to 50 Pages, and a Page counts once for each Scenario the link
 
 ### Link details
 
-**Details** on a link opens **Link details**, a list of what the link opens. Its back arrow and **Done** return to the Share panel.
+**Details** on a link opens **Link details**, a list of what the link opens. The view is titled with the link's name, or **Link details** for a link without one, and **Name this link** or **Rename link** beside the title renames it as in the Share panel. Its back arrow and **Done** return to the Share panel.
 
 | Part | What it does |
 | --- | --- |
 | Address | The link's address with **Copy link**, which reads **Link copied** after a copy. Below it: **Anyone with this link can view. Opens [Page] in [Scenario].** |
 | **What this link opens** | The same summary as the link's row, **Find a page in this link**, and one heading for each Scenario with its count, such as **2 pages**. Select a heading to fold or unfold its Pages. The Page readers land on is marked **Opens here**. A link that opens more than 12 Pages, counting a Page once for each Scenario, starts with only its first Scenario unfolded. |
-| **Turn off link** | Opens **Turn off this external link?**, as the trash icon does. |
+| **Turn off link** | Opens **Turn off this external link?**, or **Turn off “[name]”?**, as the trash icon does. |
 | **Edit pages** | Opens **Edit pages**: the [New link](#new-link) view with the link's Pages ticked. The Page the link opens first cannot be unticked. A line under the list says what saving does, such as **Saving adds 1 page and removes 1 page. Anyone with this link can then open what you add.** **Save** stays off until a Page changes. Saving keeps the link's address and password. A removed Page stops opening at once for everyone who opened the link; an added Page opens the next time a reader opens the link's address. Not shown for an old link that opens a Page in every Scenario, or when the Scenario of the link's first Page was deleted. |
 
 A Scenario that was deleted shows as **Deleted scenario**, and its Pages, like any Page that was deleted, show as **Unavailable page**.
@@ -564,6 +573,10 @@ A Scenario that was deleted shows as **Deleted scenario**, and its Pages, like a
 | **Could not update this external link. Its old settings are unchanged.** | Saving settings failed and the old link still works. |
 | **Could not copy the external link.** | Your browser refused the copy. |
 | **Could not turn off this external link. Try again.** | Turning the link off failed. |
+| **No link matches “[text]”.** | **Find a link** found no link on the Page. |
+| **Could not rename this link. Try again.** | Saving the name failed; the link keeps its old name. |
+| **Only the person who made this link, or someone who can share all its pages, can rename it.** | You did not make the link and do not have full access to every Page it opens. |
+| **This link was turned off or does not exist.** / **This link has expired.** | The link ended before the name was saved. |
 
 ### Share preview
 
@@ -582,7 +595,7 @@ A memorable address has 3 to 64 lowercase letters, digits, or single hyphens bet
 
 | Message | Meaning |
 | --- | --- |
-| **use 3–64 characters: letters, numbers, or single hyphens between them** | The address breaks the rule above. |
+| **A memorable address contains 3–64 characters: letters, numbers, or single hyphens between them** | The address breaks the rule above. |
 | **this address is reserved** | The address is a reserved word. |
 | **this address is already reserved** | Another link uses the address, or used it before it was retired. |
 

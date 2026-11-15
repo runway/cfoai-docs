@@ -16,19 +16,44 @@ You need:
 
 ## Connect Slack to your workspace
 
-<Steps>
-  <Step title="Open the Slack setting">
-    Open the account menu, your name or picture at the bottom of the sidebar, choose **Settings**, and select **Ari**. Find the **Slack** section, which reads **Add Ari to Slack** and **Enable messages to and from Ari in DMs and channels.**
-  </Step>
-  <Step title="Add the app">
-    Select **Add to Slack**. A Slack window opens; choose your Slack workspace and approve the app. If nothing opens, allow pop-ups for cfo.ai in your browser and try again.
+Connect Slack from a chat with Ari or in **Settings**. Both run the same Slack sign-in.
 
-    Slack's approval screen lists what the app may do; [Settings](/reference/settings#slack) lists each permission and what it is for.
-  </Step>
-  <Step title="Check the connection">
-    A notice reads **Slack connected**, and the section shows the Slack workspace's name. The exact status messages are in [Settings](/reference/settings#slack).
-  </Step>
-</Steps>
+<Tabs>
+  <Tab title="Ask Ari">
+    <Steps>
+      <Step title="Ask in a chat in cfo.ai">
+        In a chat in the cfo.ai web app, ask Ari to connect Slack:
+
+        > Connect our Slack workspace to cfo.ai.
+
+        Ari posts a card titled **Connect Slack**, which reads **Slack asks you to approve adding Ari to your Slack workspace.**
+      </Step>
+      <Step title="Approve the app in Slack">
+        Select **Connect** on the card. A Slack window opens; choose your Slack workspace and approve the app. If the card reads **Allow popups for cfo.ai, then try again.**, allow pop-ups for cfo.ai in your browser and select **Retry**.
+      </Step>
+      <Step title="Check the connection">
+        The card reads **Connected to** and the Slack workspace's name, and the chat continues with your request.
+      </Step>
+    </Steps>
+
+    Ari posts the card only while no Slack workspace is connected, and only in a chat in the cfo.ai web app. In a Slack or iMessage conversation, or in a Trigger's run, Ari tells you why it cannot. Every message on the card is in [Chat controls and messages](/reference/chat#connect-slack-card).
+  </Tab>
+  <Tab title="By hand">
+    <Steps>
+      <Step title="Open the Slack setting">
+        Open the account menu, your name or picture at the bottom of the sidebar, choose **Settings**, and select **Ari**. Find the **Slack** section, which reads **Add Ari to Slack** and **Enable messages to and from Ari in DMs and channels.**
+      </Step>
+      <Step title="Add the app">
+        Select **Add to Slack**. A Slack window opens; choose your Slack workspace and approve the app. If nothing opens, allow pop-ups for cfo.ai in your browser and try again.
+      </Step>
+      <Step title="Check the connection">
+        A notice reads **Slack connected**, and the section shows the Slack workspace's name. The exact status messages are in [Settings](/reference/settings#slack).
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+Slack's approval screen lists what the app may do; [Settings](/reference/settings#slack) lists each permission and what it is for.
 
 A cfo.ai workspace connects to one Slack workspace. The connection serves everyone in your cfo.ai workspace, so each person does not need to connect it again.
 
@@ -148,7 +173,7 @@ Either way, do one of these:
 
 ## Disconnect Slack
 
-In **Settings → Ari → Slack**, select **Disconnect**, then confirm. Ari can no longer post to that Slack workspace until someone connects it again.
+In **Settings → Ari → Slack**, select **Disconnect**, then confirm. Ari can no longer post to that Slack workspace until someone connects it again. Ari cannot disconnect Slack for you.
 
 ## If something goes wrong
 

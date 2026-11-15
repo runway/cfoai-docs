@@ -39,7 +39,7 @@ To export a Page to Excel, select **Download spreadsheet** in the Page header an
         Select **Download spreadsheet**, the download icon in the Page header. A **Download as Excel** menu opens. Choose **With formulas** for a workbook whose numbers recalculate in Excel, or **Values only** for the numbers alone; the export starts when you choose. Under **Recent exports**, the menu lists up to 10 of your exports from the last 24 hours, and any still queued or running, with its format, its status, when you asked, and **Download** when its file is ready. A Page with no Table block and no Canvas block with data shows the button too, but its menu can only offer past exports.
       </Step>
       <Step title="Wait for the file">
-        The export runs in the background, and pointing at the button shows its progress; selecting it again shows a notice with the stage and when you asked, and starts no second export. You can open other Pages while you wait. When the file is ready, it downloads and a **Spreadsheet download started** notice names it.
+        If a table edit you made in this tab is still saving, the export waits until it has saved, so the workbook includes it. The export then runs in the background, and pointing at the button shows its progress; selecting it again shows a notice with the stage and when you asked, and starts no second export. You can open other Pages while you wait. When the file is ready, it downloads and a **Spreadsheet download started** notice names it.
 
         If you reload or close the tab while the export runs, the export keeps going. Open the Page again, in the same Scenario, and the button picks it up. After a reload, the file still downloads on its own when it is ready. In a new tab, or after you closed the tab that asked, the file is offered instead, with **Spreadsheet ready** and a **Download** button, and so is an export that finished within the last hour. For 24 hours after you asked, you can get the file again from the Page: select **Download spreadsheet**, then **Download** beside the export under **Recent exports**. [The cfo.ai interface](/reference/interface#download-spreadsheet) lists each notice, the menu, and when a tab shows them.
       </Step>
@@ -95,6 +95,10 @@ An input too large to read is left out, and the cells that read it keep their ca
 - A blank input stays blank rather than becoming 0, and an input that holds text, such as a customer name, stays text. A function of a blank, such as `round`, `abs`, or `year` of an empty cell, is written so that Excel also shows blank after it recalculates, instead of 0 or 1900, and an average or median skips those blanks as cfo.ai does.
 - In a workspace with a brand, the filled row at the top of each worksheet that holds the table's title in white takes the brand's text color as its fill, and the first three Dimension colors take the brand's chart colors when it has them. See [Brand your workspace](/guides/brand-your-workspace).
 
+## Fill your own Excel template
+
+To get your Model's numbers in your own Excel layout, such as an investor report template, attach the workbook to a chat and ask Ari to fill it. A Page export cannot start from your workbook; it writes one sheet for each table. With the optional **Workbook template fill** Skill turned on, Ari fills a copy that keeps your workbook's design and formulas, saves which cell gets which figure, and can fill it again every month; see [Turn on a built-in Skill](/guides/turn-on-built-in-skills).
+
 ## Other formats
 
 - For Google Sheets, upload the workbook to Google Drive and open it with Google Sheets.
@@ -103,7 +107,7 @@ An input too large to read is left out, and the cells that read it keep their ca
 
 ## If something goes wrong
 
-A failed export shows **Could not download spreadsheet** with the Page's name and the reason. When a **With formulas** export ran and then failed, the message also offers **Download values only**; see [Export values only](#export-values-only). An export that was cancelled, or refused before it started, does not offer it. When the reason names a table and Excel's worksheet limits, the table's saved layout is too large for one worksheet; narrow the table, or hide rows or columns, before exporting again. Every progress label and message is listed in [The cfo.ai interface](/reference/interface#download-spreadsheet). For export time and size limits, see [Limits and file types](/reference/limits#tables-pages-sharing-and-exports).
+A failed export shows **Could not download spreadsheet** with the Page's name and the reason. When a **With formulas** export ran and then failed, the message also offers **Download values only**; see [Export values only](#export-values-only). An export that was cancelled, or refused before it started, does not offer it. When the reason says an edit did not save, or that another change is still being saved, no export started: check the edit, wait a minute, and download again. When the reason names a table and Excel's worksheet limits, the table's saved layout is too large for one worksheet; narrow the table, or hide rows or columns, before exporting again. Every progress label and message is listed in [The cfo.ai interface](/reference/interface#download-spreadsheet). For export time and size limits, see [Limits and file types](/reference/limits#tables-pages-sharing-and-exports).
 
 ## Related
 

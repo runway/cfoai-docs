@@ -82,7 +82,7 @@ A payments system with a long history, such as Stripe, can spend a day or more i
 
 A later nightly sync can wait too. When a source that syncs through Fivetran is still running its own sync 45 minutes after cfo.ai asked for one, cfo.ai waits for that sync instead of starting another, checking about every 10 minutes for up to 20 hours, and loads it once it finishes. The connection reads **Syncing**, the data from the last loaded sync stays usable, and you do not need to do anything. If the source still reports the sync running after 20 hours, the sync fails with the reason on the card, and the next nightly sync tries again.
 
-cfo.ai waits the same way when Fivetran postpones a later sync because the source takes no more requests for now. cfo.ai asks for the sync once the time Fivetran set for its next attempt has passed, then loads it. A retry before that time would wait for the same attempt, so Ari offers none until then. [Connection statuses and actions](/reference/connection-statuses#syncing) has the line the card shows.
+cfo.ai waits the same way when Fivetran postpones a later sync because the source takes no more requests for now. cfo.ai asks for the sync once the time Fivetran set for its next attempt has passed, then loads it. A retry before that time would wait for the same attempt, so Ari offers none until then. When that time is more than 20 hours after the wait began, the sync fails at the 20-hour limit. [Connection statuses and actions](/reference/connection-statuses#syncing) has the line the card shows.
 
 ## Partly synced
 

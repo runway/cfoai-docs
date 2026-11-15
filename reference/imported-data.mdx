@@ -165,7 +165,7 @@ The import summary Page is a Page in Main that holds the import's plan and its r
 | **cfo.ai value** | A formula that reads the rebuilt Variable at that cell's period and Dimension items. |
 | **Tie-out difference** | **cfo.ai value** minus **Workbook value**. |
 
-Ari adds a sheet's rows as its last change for that sheet. A sheet with rows in the table is finished. A sheet without rows is unfinished, even when its Page already holds tables. A sheet the plan leaves out is not built and gets no rows. The table holds the cells Ari chose to check, typically each rebuilt table's total row, or its last row, at the sheet's first and last periods; it does not check every cell. An update from a newer version of the file enters the new file's values in **Workbook value**.
+Ari adds a sheet's rows as its last change for that sheet. A sheet with rows in the table is finished. A sheet without rows is unfinished, even when its Page already holds tables. A sheet the plan leaves out, such as a sheet with no cells to check, is not built and gets no rows, and a resumed import does not wait for it. The table holds the cells Ari chose to check, typically each rebuilt table's total row, or its last row, at the sheet's first and last periods; it does not check every cell. An update from a newer version of the file enters the new file's values in **Workbook value**.
 
 ### When a workbook import stops
 
@@ -203,12 +203,12 @@ A tool answer that puts a status line beside its data, as separate text blocks, 
 
 ### When a run reaches the 10-minute limit
 
-A replace or snapshot setup without a changes-since filter does not fail when a 10-minute run ends partway through a long result. When the run saved at least one page, cfo.ai starts another 10-minute run of the same setup at once, from the page after the last saved one, and repeats this until every page has arrived. The table keeps its last complete data until then.
+A replace or snapshot setup without a changes-since filter does not fail when a 10-minute run ends partway through a long result. When the run saved at least one page, cfo.ai starts another 10-minute run of the same setup at once, from the page after the last saved one, and repeats this until every page has arrived, up to the 10,000 pages one sync can save. The table keeps its last complete data until then.
 
 Two things end the runs early:
 
 - A run that reaches the limit without saving a page. The setup's sync then fails, and its saved pages stay for a later sync, as the table above describes. The failure Ari reads begins **the sync task stopped this setup after run [N] reached the time limit without saving a page.**
-- The end of the sync's one-hour attempt. The sync's next attempt runs the setup again from its saved pages, and the setup is not counted as synced until then.
+- The end of the sync's one-hour attempt. When an attempt remains, it runs the setup again from its saved pages, and the setup is not counted as synced until then. When the limit ends the third attempt, the setup's sync fails, and a later sync continues from the saved pages while they are kept.
 
 An upsert, append, or changes-since setup saves nothing until its last page arrives, so it gets one run. When the limit ends that run, the failure Ari reads begins **the sync task reached its 10-minute limit**, followed by the page and the call the limit cut off.
 

@@ -57,7 +57,7 @@ When setup itself failed, the connection reads **Connection failed** with **Retr
 
 ## Syncs paused: fix the source, then retry
 
-The connection reads **Syncs paused** when its first sync has never finished and its last three nightly syncs failed with the same error from the provider. cfo.ai stops the nightly syncs, because another try would fail the same way. The line under the status quotes the provider's report, such as **Contact NetSuite support (netsuite_internal_error)**.
+The connection reads **Syncs paused** when its first sync has never finished and its last three nightly syncs failed with the same error from the provider, and that error names a problem another try cannot clear. cfo.ai stops the nightly syncs, because another try would fail the same way. An error that can pass by itself keeps its nightly retries and never pauses the connection. The line under the status quotes the provider's report, such as **Contact NetSuite support (netsuite_internal_error)**.
 
 Fix what the report names, at the source or with the provider. Then select **Retry**, or ask Ari to sync the connection. Either one starts a sync and resumes the nightly syncs. See [Syncs paused](/reference/connection-statuses#syncs-paused).
 

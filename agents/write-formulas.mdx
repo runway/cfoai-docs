@@ -205,7 +205,7 @@ A `child_defaults` clear on `create` goes through the same planner an update use
 - says that `dimensions` `add_items`, `remove_items`, `replace_items`, and `rename_items` edit saved items, and that a retained breakdown edits its enclosing Variable's formula;
 - adds that "a dimension axis whose role is VARIABLE holds one value of that dimension for each member on the other axis, and a formula on it saves the rule that calculates that value".
 
-The `role` field's description and the item-condition refusal carry that same sentence. A formula that generates a source-linked Dimension's items has no write in the tool: the person writes it in a table, from the Dimension's label-row menu, with **Edit dimension formula**.
+The `role` field's description and the item-condition refusal carry that same sentence. The reason ends by saying that an update's `rules` field replaces the saved formula that generates a Dimension's items, as [Replace a saved formula and keep its scope](#replace-a-saved-formula-and-keep-its-scope) describes, and that a person can also write that formula from the Dimension's label-row menu, with **Edit dimension formula**.
 
 ## Save a Variable's formula without a table
 
@@ -260,6 +260,31 @@ A table edit names an address: the Variable, its condition, and its formula rang
 - An exact formula and an inheriting `[...]` formula at the same grain are not copies. The write edits the exact one, keeps the inheriting one, and names it in the receipt.
 
 A table read marks a default that has older copies with the `duplicate_default_formula` issue, which counts the copies and says that a write to the default deletes them. The default itself shows as `defined here` and can be written.
+
+## Replace a saved formula and keep its scope
+
+An `edit_table_blocks` `update` with `rules` replaces the formula of saved formulas you name by reference, without placing their Variable or Dimension on a table. Each entry gives `target`, the reference a `variable` or `dimension` read prints on each saved definition, such as `Rule#3f2a`, and `formula`, the new expression. Use it for a formula whose condition names items no table shows, such as one formula per Account and month, and for the formula that generates a Dimension's items.
+
+```json
+{
+  "update": {
+    "rules": [
+      { "target": "Rule#3f2a", "formula": "1200" },
+      { "target": "Rule#9c41", "formula": "Headcount * 150" }
+    ]
+  }
+}
+```
+
+- One call takes 1 to 100 entries and saves them in one change, which one undo reverts. It saves every entry or none: an invalid formula is listed as a `rule_refused` issue, and each entry held back with it as `rule_withheld`.
+- Only the formula changes. Each saved formula keeps its condition and its range, and the receipt's `rule_changes` lists each one replaced with its reference, its Variable or Dimension, the condition and range it kept, and the formula now saved.
+- The update takes no `target`, no `based_on`, and no other field. Any of them is refused with **the rules field takes no target, based_on, or other field: each rule belongs to its variable or dimension, and an update with rules saves only those rules**.
+- It accepts any saved formula of a Variable, and the formula that generates a Dimension's items. A Dimension formula whose condition names other Dimensions is a mapping, saved by `edit_dimension_mappings`; naming one is refused, and nothing saves.
+- A reference that is not of the form `Rule#` and hex digits, one named twice, and one that matches no saved formula the caller can read are refused. The last reads **rules[0].target Rule#3f2a names no saved rule in this scenario**, the same answer for a formula that does not exist and one the caller may not read.
+- The caller needs permission to edit formulas and to edit each formula's Variable or Dimension. A formula that reads a Variable or Dimension the caller cannot read is refused.
+- When another change alters a named formula's condition or range, or deletes it, while the call runs, the receipt is `refused` with **A rule this call names changed its condition or range, or was deleted, after the call read it, so no rule was saved.** Read the Variable or Dimension again and resend.
+
+The Date Dimension's formula generates the Model's calendar dates, so the tool holds it to one shape: a set of one or more date Dimensions, such as `{Booked[], Invoiced[]}`. Anything else is refused with **Date's rule generates the model's calendar dates; it is a set of one or more datetime dimensions, such as \{Booked[], Invoiced[]\}**, followed by the reason: the expression is not a set, or the set names a Variable, a Dimension that does not hold dates, or a connector's sync-time column. Changing this formula changes every calendar date in the Scenario. A set that leaves out a date Dimension the import added counts as customized, so later imports stop adding their date Dimensions to it; a set that lists every one keeps following new ones.
 
 ## Set where a source's rows sit on the calendar
 

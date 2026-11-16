@@ -138,6 +138,8 @@ A row or column for a Variable, such as Revenue, or a column that shows each row
 | **Edit formula** | Opens the formula for the whole row or column. |
 | **Edit formula for [Dimension]** | On a row with a breakdown: the formula for the items one level down. |
 | **Edit child formula** | The same, when there are several levels below; pick one. |
+| **Rename on this table** | Rows only. Opens the row's name for editing and saves what you type as the row's name on this table only, such as Total Bookings on the Bookings row. The Variable keeps its own name in formulas, the formula bar, search, charts and Canvas blocks, and every other table. The name holds one line of up to 200 characters. Clearing the text, or typing the Variable's own name, removes it. Offered on the Variable's own row, including each repeat of the row under a Dimension's items, and not on the item rows beneath it. Saved with the table, for everyone, and **Undo** reverses it. |
+| **Show variable name** | On a row with its own name on this table: removes that name, so the row shows the Variable's name again. The Variable's name shows beside the action. |
 | **Segment by** | Breaks the row down by a Dimension. |
 | **Drill in** / **Clear drill-in** | On a calculated row. Adds or removes the **No input found** row; it does not open the row's inputs. See [Controls in the grid](#controls-in-the-grid). |
 | **Go to another table** | Opens another table that shows the Variable: the first one you can open, taking Pages in sidebar order. Shown only when such a table exists. |
@@ -413,7 +415,7 @@ A change saves in the background. When cfo.ai refuses it, the cells go back to w
 | **The cells could not be cleared** | Pressing **Delete** or **Backspace**, or pasting a cut, which clears its source, did not save. |
 | **Could not update the parent rows** | Choosing **Yes** at **Propagate?** did not save. The text can read **The formula was saved, but not to the parent rows.** |
 | **Couldn't apply that change** | A change to the table's rows or columns was refused. The table goes back to its earlier layout. See [Why a layout change was undone](#why-a-layout-change-was-undone). |
-| **Couldn't confirm the table changes were saved**, with **Your changes are still shown.** and **Retry** | A **Format and display** choice, **Display as**, **Subtotals below details**, **Rows open to**, or a column sort was sent but not confirmed saved, such as after a lost connection. The table keeps showing your change. The notice stays until you select **Retry**, which sends the pending changes again, or until you leave the table. When cfo.ai refuses the change outright instead, the table returns to its last saved state with **Couldn't apply that change**. |
+| **Couldn't confirm the table changes were saved**, with **Your changes are still shown.** and **Retry** | A **Format and display** choice, **Display as**, **Subtotals below details**, **Rows open to**, a row's name from **Rename on this table**, or a column sort was sent but not confirmed saved, such as after a lost connection. The table keeps showing your change. The notice stays until you select **Retry**, which sends the pending changes again, or until you leave the table. When cfo.ai refuses the change outright instead, the table returns to its last saved state with **Couldn't apply that change**. |
 
 ### Why a change was not saved
 
@@ -513,7 +515,7 @@ Version history does not list changes to column widths or pinned columns.
 | Start column groups collapsed for everyone | Which column groups are expanded or collapsed is saved only in each person's browser. Rows can start collapsed for everyone: choose a level under [**Rows open to**](#table-block-settings-menu). |
 | Lock cells so teammates cannot edit them | Every member of a workspace can edit every Page. To let someone read without editing, share a link; see [Sharing and access](/concepts/sharing-and-access). |
 | Be edited on a phone | Ask the phone's browser for its desktop site, or use a computer. See [Phones and tablets](/reference/interface#phones-and-tablets). |
-| Show a Variable under a different name on one table | A row shows its Variable's name, and that name is the same on every table. Rename the Variable to change it everywhere. For a table that lists records, such as employees, you can show a field as each row's name; see [Show a field, such as Name, as the row names](/guides/format-a-table#show-a-field-such-as-name-as-the-row-names). |
+| Show a Dimension item or a column under a different name on one table | Only a Variable's row takes its own name on one table: right-click the row name and choose [**Rename on this table**](#variable-row-or-column-menu). A Dimension item and a column header show the same name on every table; rename the item or the Variable to change it everywhere. For a table that lists records, such as employees, you can show a field as each row's name; see [Show a field, such as Name, as the row names](/guides/format-a-table#show-a-field-such-as-name-as-the-row-names). |
 
 To add a chart, ask Ari; the block menu has no chart block. See [Create and organize Pages and blocks](/guides/create-pages-and-blocks#add-a-block-to-a-page).
 

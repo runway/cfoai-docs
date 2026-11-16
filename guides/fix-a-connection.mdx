@@ -55,6 +55,12 @@ The connection reads **Sync failed**. Read the line under it:
 
 When setup itself failed, the connection reads **Connection failed** with **Retry to set it up again.** Select **Retry**.
 
+## Syncs paused: fix the source, then retry
+
+The connection reads **Syncs paused** when its first sync has never finished and its last three nightly syncs failed with the same error from the provider. cfo.ai stops the nightly syncs, because another try would fail the same way. The line under the status quotes the provider's report, such as **Contact NetSuite support (netsuite_internal_error)**.
+
+Fix what the report names, at the source or with the provider. Then select **Retry**, or ask Ari to sync the connection. Either one starts a sync and resumes the nightly syncs. See [Syncs paused](/reference/connection-statuses#syncs-paused).
+
 ## NetSuite is missing access
 
 The connection reads **Missing access in NetSuite SuiteAnalytics** when NetSuite hides tables the financial statements need, including when a sync failed because a saved query read one of them. The connection's page lists the missing tables. **Retry** does not help until the access is fixed. See [NetSuite SuiteAnalytics](/reference/integrations#netsuite-suiteanalytics) for when cfo.ai adds its statement queries.
@@ -113,7 +119,7 @@ A source with no integration, which Ari fetches with a saved script, is listed w
 - If its row shows a field labeled **Code [source] sent you**, the source texted or emailed you a sign-in code. Type it and select **Continue fetch** within 15 minutes of the email cfo.ai sent you. If the time ran out, ask Ari to fetch from the source again.
 - If it reads **Needs attention**, the latest fetch ended without data. Ask Ari to fetch from the source again; Ari reports what the source answered.
 - If the source's password or key changed, ask Ari to connect the source again, then remove the old connection. A source connection's saved login cannot be edited.
-- To go back to an earlier version of the script, open the connection's page and select **Restore** beside a revision under **Fetch script**.
+- To go back to an earlier version of the script, open the connection's page and select **Restore** beside a revision under **Fetch script**. Or ask Ari, for example "List the fetch script's earlier versions for the vendor portal and restore the one from last week." Ari restores a revision only for someone who can restore it in Settings.
 
 [Statuses of a source Ari fetches](/reference/connection-statuses#statuses-of-a-source-ari-fetches) lists each status and message.
 

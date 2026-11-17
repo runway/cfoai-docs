@@ -6,7 +6,7 @@ description: "Have Ari forecast revenue and expenses from how your business work
 
 Ask Ari for a monthly forecast of revenue and expenses, such as a 12-month operating plan. Ari builds it from what moves your numbers: customers and price, deals in your pipeline, or people and vendors. The forecast lands in your Model as Pages you can open, trace, and edit.
 
-Before you start, connect your accounting system so the forecast starts from your actuals; see [Connect QuickBooks, Xero, NetSuite, or Rillet](/guides/connect-accounting). Then check that Last close is the last month you have closed; see [Set Last close and date defaults](/guides/set-dates-and-last-close). If your business has no data yet, skip to [Plan a new business that has no data yet](#plan-a-new-business-that-has-no-data-yet).
+Before you start, connect your accounting system so the forecast starts from your actuals; see [Connect QuickBooks, Xero, NetSuite, or Rillet](/guides/connect-accounting). To forecast revenue from your deals or payroll from your employee records, connect your CRM or payroll system too; see [Connect payroll, HR, CRM, payments, or a database](/guides/connect-other-sources). Then check that Last close is the last month you have closed; see [Set Last close and date defaults](/guides/set-dates-and-last-close). If your business has no data yet, skip to [Plan a new business that has no data yet](#plan-a-new-business-that-has-no-data-yet).
 
 <Steps>
   <Step title="Ask Ari for the forecast">
@@ -14,7 +14,13 @@ Before you start, connect your accounting system so the forecast starts from you
 
     > We sell annual software subscriptions in three plans. Forecast revenue for the next 12 months from customers by plan: new customers each month, churn, and renewals. Forecast expenses from headcount and our five largest vendors. Label every assumption you make.
 
-    For a larger build, Ari first shows a plan card that lists the assumptions it intends to use. Change any that are wrong, and select **Build it**. Pages appear in the sidebar as Ari builds them.
+    Ari starts building without waiting for an approval, because you can undo a change to your Model; see [Undo a change or restore an earlier version](/guides/undo-changes). It builds a new forecast in Main unless you name another Scenario. Pages appear in the sidebar as Ari builds them.
+
+    To check the plan before Ari builds anything, ask for it in the same message:
+
+    > Show me your plan and the assumptions you would use before you build anything.
+
+    Ari then shows a plan card that lists what it will create and the assumptions it intends to use, and waits. Change any assumption that is wrong, and select **Build it**. See [Approve a plan](/guides/approve-ari-actions#approve-a-plan).
   </Step>
   <Step title="Ask for the method that fits each part">
     Say how each part of the business really works, so the forecast follows it:
@@ -22,12 +28,12 @@ Before you start, connect your accounting system so the forecast starts from you
     | Your revenue comes from | Ask Ari to forecast it from |
     | --- | --- |
     | Subscriptions or ARR | Customers by plan: opening customers, new customers, churn, renewals, and price |
-    | A sales pipeline | Bookings from your deals: won deals in the month they closed, and open deals weighted by their probability in the month each is expected to close. Revenue then follows each contract's start date and terms. |
+    | A sales pipeline | Your deals: bookings from won deals in the month each closed, and weighted pipeline from open deals, each weighted by its probability in the month it is expected to close. Ask for revenue to follow each contract's start date and terms, so bookings, revenue, and cash collected stay separate lines. |
     | Usage or transactions | Volume times price |
     | Projects or services | Projects or billable people times their rate |
     | A steady history | A run rate or growth rate from your recent actuals |
 
-    Costs work the same way. Payroll follows headcount, hosting follows customers or usage, and a percentage of revenue fits only a cost that really moves with revenue. When several methods would work, Ari recommends one, uses it, and tells you what the others would change.
+    Costs work the same way. Payroll follows headcount, hosting follows customers or usage, and a percentage of revenue fits only a cost that really moves with revenue. When you are not sure which method fits, ask Ari to recommend one and to say what the others would change. Ari is instructed to state the method and the key assumptions when it hands over a build; ask for them when a reply leaves them out.
   </Step>
   <Step title="Check the starting month">
     Ari reads your connected actuals through Last close, and the forecast starts the month after. A forecast that grows from the last actual month repeats anything unusual in it, such as a one-time bill or a large refund. Ask Ari to start from an average instead when that month is not typical.
@@ -62,7 +68,9 @@ Before you start, connect your accounting system so the forecast starts from you
         On a table with months, point at the Variable's row name and select the **fx** button, **Edit variable formula**. Expand the **Forecast** section. See [Use different formulas for Actuals and Forecast](/guides/actuals-and-forecast-formulas).
       </Step>
       <Step title="Change the date range">
-        In the formula, select the date filter that reads **Last 3 months of actuals**, and choose **Last 6 months of actuals**. The other choices are **Last 12 months of actuals**, **Year to date**, **Quarter to date**, and **Custom range**.
+        In the formula, select the reference, such as Software spend. Its panel opens. Select the date filter that reads **Last 3 months of actuals**, and choose **Last 6 months of actuals**. The other choices are **Last 12 months of actuals**, **Year to date**, **Quarter to date**, and **Custom range**.
+
+        If the date filter reads **Custom range**, the formula uses a range that no preset names, such as the three months before each forecast month. Choosing **Last 6 months of actuals** replaces it with the six months that end at Last close, the same months for every forecast month. See [Date filter presets](/reference/formula-syntax#date-filter-presets).
       </Step>
       <Step title="Save">
         Press **Enter**. Every forecast month recalculates.
@@ -78,7 +86,9 @@ With no books to start from, Ari builds the forecast from your description of th
 In a new workspace, Ari's first card asks where you would like to start.
 
 - Choose **My business**, then **I want to type or upload context**, and describe your product, price, costs, team, and cash. Ari builds a complete first plan from your words, saves every number it estimated as an input you can change, and names those estimates in its reply.
-- Choose **Something hypothetical** to see a sample business first. Choose **A business like mine**, or **Another business, I'll choose** and type a name. Ari builds a complete model of that business, labeled as a sample, with the same Pages, records, controls, and Scenarios it would build for your own, and a walkthrough of them, and ends with two or three things to try next.
+- Choose **Something hypothetical** to see an example first. Then choose **A business like mine** for a sample business that resembles yours, labeled as a sample, or **Another business, I'll choose** and type a name. Ari builds a complete model of that business, with the same Pages, records, controls, and Scenarios it would build for your own, and a walkthrough of them, and ends with two or three things to try next.
+
+The card's last question, **What do you want to see first?**, is optional. Choose **P&L and forecast** to have Ari lead with the forecast, then select **Get started**. For every choice on the card, see [Starting card](/reference/chat#starting-card).
 
 In a workspace you already use, describe the business in a chat:
 

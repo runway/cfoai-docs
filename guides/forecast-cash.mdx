@@ -14,14 +14,14 @@ Before you start, connect your accounting system so the forecast starts from the
 
     > Forecast monthly cash for the next 18 months and show when cash falls below six months of operating expenses.
 
-    Ari starts from the cash balance on your balance sheet, as of the balance sheet's date, then adds the money coming in and subtracts the money going out, month by month. It names the first month the balance falls below your minimum, or below zero if you ask when cash runs out. If cash never falls that low within the forecast, Ari says it lasts through the last forecast month.
+    Ari starts from the cash balance on your balance sheet in the Last close month, then adds the money coming in and subtracts the money going out, month by month. It names the first month the balance falls below your minimum, or below zero if you ask when cash runs out. If cash never falls that low within the forecast, Ari says it lasts through the last forecast month.
   </Step>
   <Step title="Check where the cash comes from">
     > Where does the starting cash balance come from, and which inflows and outflows move the forecast the most?
 
-    The starting balance comes from the cash accounts on your synced balance sheet. When Ari has no balance to read, it uses a starting balance you can edit, and it tells you the cash runway depends on that number.
+    The starting balance comes from the cash accounts on your synced balance sheet. When Ari has no balance to read, it saves a starting balance as an input you can edit, and its reply names that balance as an assumption.
 
-    Cash moves when money is paid, which can be a different month from when it is earned. Ask Ari to use your real payment terms, such as customers paying 30 days after the invoice or annual contracts paid up front. A balance that goes negative stays visible in the forecast, and money you have actually raised stays separate from a raise you are only considering.
+    Cash moves when money is paid, which can be a different month from when it is earned. Ask Ari to use your real payment terms, such as customers paying 30 days after the invoice or annual contracts paid up front. To see how large a shortfall gets, ask for the lowest balance and its month. Keep a raise you are only considering out of this forecast, and test it in a Scenario as in the last step.
 
     To see whether the forecast breaks from your recent history, ask for the comparison:
 
@@ -32,7 +32,7 @@ Before you start, connect your accounting system so the forecast starts from the
   <Step title="Add a 13-week view, if you need one">
     > Build a 13-week cash forecast by week, starting next week.
 
-    Ari builds a weekly table and writes formulas for weeks, because formulas written for months do not fill week columns. Your accounting statements arrive one month at a time. Weekly actuals need a source with a date on every transaction, such as a bank export; see [Upload a CSV as a data source](/guides/upload-a-csv).
+    Ari builds a weekly table and writes formulas for weeks, because formulas written for months do not fill week columns. Your synced balance sheet holds one cash balance for each month, so weekly actuals need a source with a date on every transaction. A QuickBooks Online connection adds one, **QuickBooks Bank Movements**, and a Xero connection adds one, **Xero Cash Flow**; see [QuickBooks Online](/reference/integrations#quickbooks-online) and [Xero](/reference/integrations#xero). For another accounting system, upload a bank export; see [Upload a CSV as a data source](/guides/upload-a-csv).
   </Step>
   <Step title="Test a raise or a cut in a Scenario">
     Try each decision in its own Scenario, so Main stays as it is:
@@ -40,6 +40,8 @@ Before you start, connect your accounting system so the forecast starts from the
     > Create a Scenario called Bridge round: raise \$2 million in March, and compare cash runway with Main.
 
     > Create a Scenario where we cut marketing spend by 30% starting next month, and show the month cash runs out.
+
+    Say "create a Scenario" when you want to keep the result. When you only ask a what-if question, such as "what if we raise \$2 million in March?", Ari is instructed to answer it without changing your saved plans and without leaving a Scenario behind.
 
     See [Test a decision in a Scenario](/guides/test-a-decision-in-a-scenario) and [Compare Scenarios side by side](/guides/compare-scenarios).
   </Step>
@@ -52,6 +54,8 @@ Your cash actuals move forward when Last close moves past a month; see [Actuals,
 Give cash a formula that covers the month that moved into Actuals. A Variable with a Forecast formula and no Actuals formula has nothing covering that month, and a balance that reads its previous month runs forward from the 0 it finds there; see [What moving Last close changes](/concepts/actuals-and-forecast#what-moving-last-close-changes). Ask Ari for the Actuals side:
 
 > Cash reads 0 in the month we just closed. Give cash an Actuals formula that reads the cash accounts on our balance sheet, so the forecast carries forward from the closed balance.
+
+If no accounting system is connected, ask Ari to save the cash formula for Actuals as well as Forecast, and to enter the closing balance in the month you closed. The entered balance shows in that month, and each month you close afterward calculates from the month before it.
 
 When Ari moves Last close, it names the Variables the move leaves without a formula in the months that changed side; a move you make by hand does not. See [Ari's save warnings](/reference/formula-errors#aris-save-warnings).
 

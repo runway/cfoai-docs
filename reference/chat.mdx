@@ -399,6 +399,18 @@ Ari posts the card only in a chat in the cfo.ai web app, to someone who may add 
 | **Workspace connections** | Above the first message, while a connection is syncing: a count such as **2/3 connected**, and **Manage**, which opens the connection manager. In the chat that sets up your workspace, the card is titled **Connect integrations**, counts the sources that setup asked for, and reads **Ready** once they are connected. While a sign-in is open, the status reads **Connection flow open**. |
 | **Start walkthrough** / **Start tour** | Starts a Guide Ari built or presented. See [Walk someone through a Page with a Guide](/guides/create-a-guide). |
 
+## Links to Settings in Ari's answers
+
+Some steps stay with a person in Settings, such as changing the plan, signing a connected service in again, or letting Ari use a connected tool without asking. When Ari declines one of these in the cfo.ai web app, its answer can include a link named for the section that holds the step: **Settings → Billing**, **Settings → Usage**, **Settings → Connections**, or **Settings → Ari**. Selecting the link opens Settings on that section. A **Settings → Skills** link in an answer opens the same way.
+
+| Where you read the answer | What you get |
+| --- | --- |
+| A chat you started in the cfo.ai web app, while you can manage the workspace's settings | The link opens Settings on the named section. |
+| The same chat, when you cannot manage the workspace's settings | A notice titled **Settings is open to workspace admins**, with **Ask a workspace admin to make this change.** Settings stays closed. |
+| Slack, a client connected through the cfo.ai MCP server, a Trigger run, or other work Ari does in the background | The name of the Settings section in words, with no link, because a link to a Settings section opens only inside the web app. |
+
+The link only opens Settings. It changes no setting, and the step stays yours to take there.
+
 ## Copy an answer
 
 The most recent finished answer in a chat always shows its actions under the text, and keeps them while Ari writes the next answer. For an earlier answer, point at it or move keyboard focus into it; on a touch screen every answer's actions stay visible. **Copy answer** copies the whole answer two ways at once: as the Markdown Ari wrote, which plain-text editors take and which restores reference chips when pasted back into the message box, and as formatted text, which documents, email, and spreadsheets take with headings, lists, and tables intact. It is not offered while Ari is still writing. A selection you drag across more than one message copies exactly what is highlighted.

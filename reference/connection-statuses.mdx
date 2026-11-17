@@ -99,9 +99,22 @@ A later sync that the source still reports running when the 20 hours run out doe
 
 The source's daily request allowance ran out. Mark: steady orange dot. Line: **[Source]’s daily limit was reached. Progress is saved, and syncing picks up on the next scheduled run.** Action: none. Signing in again would not change the limit, so **Reconnect** is not offered.
 
-### Sync stopped
+### cfo.ai is fixing this
 
-cfo.ai's data warehouse refused the data. Mark: steady orange dot. Line: **Contact cfo.ai support if it isn’t fixed soon.** Action: none; only cfo.ai can fix it.
+A problem on cfo.ai's own side stopped the sync. Nothing in your source, your sign-in, or your file caused it. Mark: steady orange dot. Line: **A problem on cfo.ai’s side stopped this sync. Contact cfo.ai support if it isn’t fixed soon.** Action: none. Only cfo.ai can clear it, so the connection offers no **Retry**, **Reconnect**, **Sync now**, **Update file**, or **Investigate with Ari**. Ari reads the same cause and is told that a retry cannot clear it.
+
+A connection reads this status for one of these causes:
+
+| Cause | What happens next |
+| --- | --- |
+| cfo.ai's data warehouse refused the data. | The nightly refresh leaves the connection alone until cfo.ai repairs the warehouse's access or setup. |
+| cfo.ai's store for query results had no disk space left for a saved query's result. | The saved query keeps the rows of its last finished load. The nightly refresh syncs the connection again. |
+| The machine that ran the sync, or that loaded a saved query's result, ran low on memory. cfo.ai runs a sync or a load that stopped this way again by itself up to three times, after about 1, 2, and 30 minutes, and the status appears when the last run stopped too. | The nightly refresh syncs the connection again. |
+| Ari's import of a Google Sheets or Google Drive spreadsheet stopped because its calculations ran past a time or memory limit. | The import waits; see [Messages about uploaded files](#messages-about-uploaded-files). |
+
+For a full store or low memory, Ari can also start a sync when you ask, once no other sync of the connection is running. While the limit lasts, that sync stops the same way. The nightly refresh does not reload an uploaded file, so a file upload's data comes back only through a sync you ask Ari to start.
+
+A saved query that fails for a reason of its own, such as SQL the warehouse rejects, reads [**Sync failed**](#sync-failed) and keeps **Retry**.
 
 When several causes apply at once, this one is shown, because nothing else helps until it is fixed.
 
@@ -203,7 +216,7 @@ A source connection has no **Edit configuration**, so its saved login or key can
 | **Remove file** | Asks **Do you want to remove this file? This cannot be undone.** A Trigger whose instructions refer to the file's connection the way Ari writes it is paused the same way as for **Remove connection**. | On a file upload's row and page |
 | **Manage**, **Disconnect** | **Manage** opens the server's or API's connection page, the same page its sidebar row opens, where its tools or endpoints and their permissions live. **Disconnect**, in the row's **…** menu, does the same as **Remove connection** on that page. Disconnecting a server warns **Ari will no longer be able to use this server's tools until you reconnect.** | MCP servers and APIs, in **Settings → Connections** and on the **MCP** and **API** tabs. **Manage** appears on every row, including a server whose setup is not finished. |
 
-A connection never offers both **Retry** and **Reconnect**. No action appears while a sync is running, when only cfo.ai support can fix the failure, when cfo.ai has turned the source off, or for people who cannot manage connections. To rename a connection, open its page and select its name, or ask Ari to rename it, such as "Rename the QuickBooks connection to QuickBooks US". Ari renames a connection only for a person who may change that connection, and a name Ari sets can have up to 160 characters.
+A connection never offers both **Retry** and **Reconnect**. No action appears while a sync is running, when the connection reads [**cfo.ai is fixing this**](#cfoai-is-fixing-this), when cfo.ai has turned the source off, or for people who cannot manage connections. To rename a connection, open its page and select its name, or ask Ari to rename it, such as "Rename the QuickBooks connection to QuickBooks US". Ari renames a connection only for a person who may change that connection, and a name Ari sets can have up to 160 characters.
 
 ## The connection's page
 
@@ -312,7 +325,8 @@ Google Sheets and Google Drive connections report their import on the row and in
 | **Imported to [Page]. Ari updates the model when the file changes.** | The import finished. **The last sync found no change.** is added when the latest sync found the file unchanged. |
 | **Attached to the chat that connected it. Ari imports it there.** | Connected from a chat; that chat handles the import. Afterward it reads **The chat that connected it handles later changes.** |
 | **Ari stopped before finishing this import. The next sync tries again.** | A background import of a file connected from the connection manager stopped, and the next sync moves it on. The sync runs a failed or cancelled import again; an import that builds a Google Sheet one tab at a time runs again from the step that stopped, as [When a workbook import stops](/reference/imported-data#when-a-workbook-import-stops) describes. When the import stopped to ask how to read the file, such as which tab holds the forecast, Ari opens the question in a chat of yours; answer there and the import continues. If the question is still open at the next sync, the sync answers it for you: Ari is told to take the file's most likely reading and to record that choice on the import summary Page. |
-| **Ari stopped before finishing this import. Continue in the chat about this import.** | The import waits for a person, and no sync moves it on. For a file connected from a chat, continue in that chat; a question it stopped on is waiting there. For a file connected from the connection manager, the import stopped on a question the file cannot settle, such as a decision of yours, missing data or access, or a calculation that ran past its time or memory limit. Ari opens the question in a chat of yours; answer there and the import continues. Newer versions of the file are not imported while it waits. The row reads the same when the file changed after its finished import was removed from your Model: no import started, and Ari told you once in that chat; see [When the Model no longer holds the import](/guides/connect-a-google-sheet#when-the-model-no-longer-holds-the-import). |
+| **Ari stopped before finishing this import. Continue in the chat about this import.** | The import waits for a person, and no sync moves it on. For a file connected from a chat, continue in that chat; a question it stopped on is waiting there. For a file connected from the connection manager, the import stopped on a question the file cannot settle, such as a decision of yours or missing data or access. Ari opens the question in a chat of yours; answer there and the import continues. Newer versions of the file are not imported while it waits. The row reads the same when the file changed after its finished import was removed from your Model: no import started, and Ari told you once in that chat; see [When the Model no longer holds the import](/guides/connect-a-google-sheet#when-the-model-no-longer-holds-the-import). |
+| **A limit on cfo.ai’s side stopped Ari before it finished this import.** | The import's calculations ran past a time or memory limit, which no answer about the file can lift. The connection reads [**cfo.ai is fixing this**](#cfoai-is-fixing-this). No sync resumes the import, a sync Ari is asked to start does not either, and newer versions of the file are not imported while it waits. The import's question stays open in its chat, and a reply there continues the import once cfo.ai has lifted the limit. |
 | **This file is too large to import. Make it smaller and the next sync imports it.** | The file is over its limit: 50 MB for a Google Sheet, as its Excel workbook; 500 MB for an Excel or CSV file in Drive, as stored. |
 
 ## Messages about MCP servers and APIs

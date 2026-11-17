@@ -81,7 +81,8 @@ You can keep working while it syncs.
 | HR and payroll systems | An employee roster with jobs, pay, and groups such as departments, through the **HRIS Employees** saved query. Payroll systems that connect through Merge, such as Gusto, also sync each payroll run with each employee's gross and net pay; ask Ari for a saved query to bring them into your Model. Rippling syncs the roster tables, without payroll runs. |
 | HubSpot | Deals with their pipelines, stages, owners, contacts, companies, line items, and invoices, through **HubSpot Deals** |
 | Salesforce | Opportunities, accounts, and users, through **Salesforce Opportunities** |
-| Stripe, Shopify, databases, and other apps | The tables they sync. Ari writes the saved queries that bring them into your Model after the first sync. |
+| Databases and data warehouses | The tables they sync. cfo.ai saves one query for each synced table, which loads that table's rows, and Ari writes any other saved query you ask for. The query cfo.ai saves leaves out the rows of records your database deleted; see [Saved queries](/reference/imported-data#saved-queries). |
+| Stripe, Shopify, and other apps | The tables they sync. Ari writes the saved queries that bring them into your Model after the first sync. |
 
 If a connection reads **No queries yet**, its data synced but nothing brings it into your Model yet. Select **Set up queries with Ari** on its card.
 

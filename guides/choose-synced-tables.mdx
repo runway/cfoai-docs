@@ -45,7 +45,7 @@ Ask Ari, naming the connection and the tables:
 
 Tables you do not name keep their state. When you add a table:
 
-- It loads its full history, as far back as the connection's other tables reach. Ari starts a sync for it.
+- It loads its full history, as far back as the connection's other tables reach. Ari starts a sync for it. For a source that syncs through Fivetran, that sync waits while Fivetran copies the history, for up to 20 hours, and the connection reads **Syncing**. It does not finish early on a sync that Fivetran completed before you added the table. [Syncing](/reference/connection-statuses#syncing) lists what the line says while it waits.
 - It reaches the warehouse first and your Model only once a saved query reads it. Ask Ari for a query over it, such as "Load the subscriptions table into the Model."
 
 If you ask Ari about data the connection does not sync, such as usage records in Postgres, a search of the synced tables finds nothing. For a source with a table picker, and for HubSpot, Salesforce, Rippling, and NetSuite SuiteAnalytics, that search then also finds the tables the source offers under that name that are not selected, so Ari can name them and you can ask it to add one. A search that finds a synced table does not look at the unselected ones; ask Ari which tables the source offers when you want the full list.

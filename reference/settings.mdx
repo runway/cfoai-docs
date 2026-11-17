@@ -1,6 +1,6 @@
 ---
 title: "Settings"
-description: "Every section and field in cfo.ai Settings, in the order the app shows them: General, Workspace, Profile, Ari, Connections, Skills, Billing, and Usage. Covers the workspace name and brand, Last close and date defaults, negative numbers in parentheses, light or dark mode, inviting teammates, who sees each section, its messages, and what Settings has no setting for, such as a fiscal year or an API key."
+description: "Every section and field in cfo.ai Settings, in the order the app shows them: General, Workspace, Profile, Ari, Connections, Skills, Billing, and Usage. Covers the workspace name and brand, Last close and date defaults, negative numbers in parentheses, light or dark mode, inviting teammates, what a member limited to named Pages can and cannot do, who sees each section, its messages, and what Settings has no setting for, such as a fiscal year or an API key."
 ---
 
 Settings holds the workspace's options and your own preferences. To open it, select your name or picture at the bottom of the sidebar, then **Settings**. Settings opens on **General**, with the sections listed down the left side in this order.
@@ -16,7 +16,7 @@ Settings holds the workspace's options and your own preferences. To open it, sel
 | **Billing** | Workspaces billed in the app | Plan, payment methods, billing recipient, billing history, and cancellation |
 | **Usage** | Workspaces billed in the app | AI usage, extra usage, spend limit, auto-reload, and integration slots |
 
-Every member of a workspace is an administrator, so everyone sees **Workspace**. A workspace billed outside the app has no **Billing** or **Usage** section.
+Only administrators see **Workspace**. A member limited to named Pages cannot change the workspace's settings; see [Members limited to named Pages](#members-limited-to-named-pages). A workspace billed outside the app has no **Billing** or **Usage** section.
 
 ## General
 
@@ -136,13 +136,13 @@ In a workspace with a brand, **Theme** is replaced by **This workspace uses the*
 | **Email address** | The address to invite. |
 | **Add admin** | Unavailable until an address is typed. Creates the invitation and emails it; the form then reads **Admin invitation created for** [address]**.** Adding an address that already has a pending invitation sends the email again. An address that already has access to this workspace's shared Pages through a share link, and so belongs to the workspace without the administrator role, is made an administrator at once, with no email, and the form reads [address] **is now an admin.** See [Keeping access to a shared Page](/concepts/sharing-and-access#keeping-access-to-a-shared-page). The same line appears for an address that is already an administrator, and nothing changes. |
 
-cfo.ai has no other role to invite someone to: every invitation is for an administrator. For read-only access, use a share link; see [Share a Page outside your workspace](/guides/share-a-page).
+Every invitation from Settings is for an administrator. To invite a member limited to named Pages, ask Ari; see [Members limited to named Pages](#members-limited-to-named-pages). For read-only access without joining the workspace, use a share link; see [Share a Page outside your workspace](/guides/share-a-page).
 
 ### Admins
 
 | Control | What it does |
 | --- | --- |
-| **Ask Ari** | Starts a chat in which Ari lists the people in the workspace and the pending invitations, then asks what you want to change. Ari changes nothing until you answer. |
+| **Ask Ari** | Closes Settings and starts a chat that asks Ari to list everyone in the workspace and every pending invitation. Ari changes nothing until you tell it what to change. |
 | A row | A person's name and email, marked **(you)** for you, with **Admin** for someone who joined or **Invited** for a pending invitation. |
 | **Remove member** | On an **Admin** row's menu. Opens **Remove member?**: **They will lose access to this workspace. Any pending invitations for this email will also be cancelled. Their other workspaces are unaffected.** Your own row has no menu. |
 | **Cancel invitation** | On an **Invited** row's menu. Opens **Cancel invitation?**: **They will no longer be able to join through this invitation. If they have already joined, their membership stays unchanged.** |
@@ -152,6 +152,57 @@ cfo.ai has no other role to invite someone to: every invitation is for an admini
 | [email] **was removed from this workspace.** | The person was removed, and the list reloaded. |
 | [email] **invitation was cancelled.** | The invitation was cancelled, and the list reloaded. |
 | **Couldn’t load the admins of this workspace. Please try again.** | The list could not load. |
+
+### Members limited to named Pages
+
+A member limited to named Pages belongs to the workspace without the administrator role: they see only the Pages an administrator names, and they change Main only through an administrator. cfo.ai's own messages call such a person a scoped member. For how this works, see [Sharing and access](/concepts/sharing-and-access#members-limited-to-named-pages).
+
+Settings has no control for these members:
+
+- You invite one by asking Ari, not from **Invite admin**. See [Invite someone to named Pages only](/guides/invite-teammates#invite-someone-to-named-pages-only).
+- The **Admins** list leaves them out, joined or invited. Ask Ari to list everyone in the workspace. Ari's list names each person and each pending invitation and marks the administrators; it does not say which Pages a person holds.
+- Entering such a member's address under **Invite admin** makes them an administrator at once, which ends their limits.
+
+An invitation gives each named Page one of two levels:
+
+| Level | What the member can do with the Page |
+| --- | --- |
+| View | Open the Page, and read the Variables its tables show. |
+| Edit | Also change those Variables' values and formulas, in a Scenario of their own. |
+
+An invitation is refused, and nobody in the same request is invited, when:
+
+- It names no Page, or more than 20 Pages.
+- A Page it names is not a Page in Main.
+- The person already belongs to the workspace, or has a pending administrator invitation.
+- The welcome's first Page is not one of the Pages the invitation names.
+
+Inviting an address again before the person joins replaces the level of each Page named again and keeps the Pages named only in the earlier invitation.
+
+| A member limited to named Pages can | Details |
+| --- | --- |
+| Open their Pages | In Main, and in each Scenario of their own. The sidebar and workspace search hold only what they can read. |
+| Read formulas | Only a formula whose every reference they can read. Other formulas are left out. |
+| Create a Scenario and rename their own | A Scenario they create is theirs to edit. |
+| Change values and formulas | With edit access, on the Variables their Pages' tables show, in a Scenario of their own. A formula must refer only to what they can read. |
+| Chat with Ari | Ari works with the member's access. See [Ari follows the same access](/concepts/sharing-and-access#ari-follows-the-same-access). |
+| Ask for a merge | By asking Ari, which emails the administrators. See [Merge requests](/reference/scenarios-and-history#merge-requests). |
+
+| A member limited to named Pages cannot | Details |
+| --- | --- |
+| Change Main | Every change to Main, or to anything saved in it, is refused, whatever level their Pages have. |
+| Merge or delete a Scenario, or take a Snapshot | Including a Scenario of their own. |
+| Change a Page or a table's layout | No creating, renaming, moving, or deleting a Page or a block, and no saved change to a table's rows, columns, or filters. |
+| Undo, redo, or restore | Version history is closed to them too. |
+| Download a spreadsheet | In the app or by asking Ari. |
+| Attach or upload a file | In a chat or as a data upload. |
+| Add or change a connection | Ari also calls no connected API or MCP server for them. |
+| Create or change a Trigger, a Skill, an agent, or a share link | Workspace Skills still apply in their chats. |
+| Change the workspace's name, brand, billing, or people, or the **Date & Time** settings or Last close of any Scenario | They can read the date settings, and cfo.ai refuses a change to them, in a Scenario of their own too. |
+
+When the app shows why it refused such a member, the reason reads **Your access covers your pages, editing them in your own scenarios, merge requests and your Ari chats. Ask a workspace admin to do this.** For example, **Delete** on their own Scenario shows a notice titled **Couldn’t delete [Scenario]** with that reason.
+
+When a calculation or another request fails for such a member, cfo.ai tells them that it failed without the explanation, because the explanation can name a Variable they cannot read.
 
 ## Profile
 
@@ -200,13 +251,15 @@ When the browser blocks notifications, the switch is unavailable and reads **Not
 
 | Status | What the section shows |
 | --- | --- |
-| Not connected | **Add Ari to Slack** with **Add to Slack** and **Enable messages to and from Ari in DMs and private channels.** While Slack's sign-in window is open, the button reads **Cancel**. |
-| Connected | **Connected to** [Slack workspace] and **Ari can now DM you in this Slack workspace, and a cfo.ai admin can invite Ari to a private channel.**, with **Disconnect**. A notice reads **Slack connected** when the connection finishes. |
+| Not connected | **Add Ari to Slack** with **Add to Slack** and **Enable messages to and from Ari in DMs and channels.** While Slack's sign-in window is open, the button reads **Cancel**. |
+| Connected | **Connected to** [Slack workspace] and **Ari can now DM you in this Slack workspace, and a cfo.ai admin can invite Ari to a channel.**, with **Disconnect**. A notice reads **Slack connected** when the connection finishes. |
 | Disconnecting | **Disconnect "[Slack workspace]"?** with **cfo.ai Agent will no longer be able to post to this workspace until you reconnect.** |
 
-Slack's approval screen lists what the cfo.ai app may do. cfo.ai asks to read and send direct messages, read and post in the private channels Ari is added to, upload images for its Slack messages to show, see when it is @mentioned, list channels, add emoji reactions, show that it is typing, look up members' names and email addresses so it can match a Slack account to a cfo.ai account, and leave a channel it may not stay in. A Slack workspace connected before a permission was added keeps its earlier grant until an administrator selects **Disconnect** and then **Add to Slack** again.
+While no Slack workspace is connected, someone who may add connections can also connect Slack from a chat in the cfo.ai web app: ask Ari to connect Slack, and it posts a card that runs the same sign-in. See [Connect Slack card](/reference/chat#connect-slack-card). Disconnecting is done only here; Ari cannot disconnect Slack.
 
-Anyone whose Slack profile email matches a member of the workspace can message Ari in Slack direct messages, and Ari works as that person. An administrator can also add Ari to a private channel, where Ari answers everyone with that administrator's access. See [Talk to Ari from Slack](/guides/use-ari-in-slack).
+Slack's approval screen lists what the cfo.ai app may do. cfo.ai asks to read and send direct messages, read and post in the channels Ari is added to, private or public, upload images for its Slack messages to show, see when it is @mentioned, list channels, add emoji reactions, show that it is typing, look up members' names and email addresses so it can match a Slack account to a cfo.ai account, and leave a channel it may not stay in. A Slack workspace connected before a permission was added keeps its earlier grant until an administrator selects **Disconnect** and then **Add to Slack** again.
+
+Anyone whose Slack profile email matches a member of the workspace can message Ari in Slack direct messages, and Ari works as that person. An administrator can also add Ari to a channel, private or public, where Ari answers everyone with that administrator's access. In a public channel, anyone in the Slack workspace can read those answers. See [Talk to Ari from Slack](/guides/use-ari-in-slack).
 
 ## Connections
 
@@ -219,11 +272,11 @@ Each connected service has a row with **Manage**, which opens its connection pag
 
 | Control | What it does |
 | --- | --- |
-| **Edit configuration** | Opens **Edit [name]**. You can change the **Display name**, an API's **Provider name**, the **Base URL** of an API or the **MCP URL** of a server, and the **Authentication**: **Bearer token**, **API key header** with its **Header name**, **Basic: key as username**, or **No authentication**. A **Replacement API key** field reads **Leave blank to keep the saved credential.** An API connection saved with more secrets than its key also lists a **Replacement [header name]** field for each, under **Re-enter each additional credential for the new server or authentication. These values are never sent to Ari.** They must be filled in when the **Base URL** or **Authentication** changes, and a blank one is refused with **Enter a replacement value for [name].** A connection that signs in through the provider shows **Provider sign-in** and takes a new name only. A name longer than 160 characters is refused with **Use a name of at most 160 characters.** The connection keeps its ID, its saved API specification, its discovered tools, and its tool permissions. |
+| **Edit configuration** | Opens **Edit [name]**. You can change the **Display name**, an API's **Provider name**, the **Base URL** of an API or the **MCP URL** of a server, and the **Authentication**: **Bearer token**, **API key header** with its **Header name**, **Basic authentication**, or **No authentication**. A **Replacement API key** field reads **Leave blank to keep the saved credential.** With **Basic authentication**, the form adds a **Username** field, and the key field reads **Replacement password or API key**. Leave **Username** blank when the API key is the username. A saved username is never shown: on a connection already on Basic authentication the field starts empty and reads **A saved username is not shown. Enter it again with a new password, or leave it blank when the API key is the username.** A username typed with no password is refused with **Enter the password with the username.** A new password typed without the username, on a connection saved with one, is refused with **This connection has a saved username; a new password is saved together with that username.** [Messages about MCP servers and APIs](/reference/connection-statuses#messages-about-mcp-servers-and-apis) lists the messages for a username that cannot be sent. An API connection saved with more secrets than its key also lists a **Replacement [header name]** field for each, under **Re-enter each additional credential for the new server or authentication. These values are never sent to Ari.** They must be filled in when the **Base URL** or **Authentication** changes, and a blank one is refused with **Enter a replacement value for [name].** A connection that signs in through the provider shows **Provider sign-in** and takes a new name only. A name longer than 160 characters is refused with **Use a name of at most 160 characters.** The connection keeps its ID, its saved API specification, its discovered tools, and its tool permissions. |
 | Sign-in state, on an MCP server's row | **Sign-in saved**, **Sign-in saved · expiry unknown**, **Access expired · renewal on next use**, **Reconnect required**, **Sign-in incomplete**, or **Provider access not checked**. Each is defined in [Connection statuses](/reference/connection-statuses#statuses-for-mcp-servers-and-apis). |
 | **Reconnect** | On a server that reads **Reconnect required**. Opens the provider's sign-in again. The connection and its sync setups are kept; the new sign-in replaces the saved one only when it completes. Reconnecting runs no data sync. |
 | **Finish setup** | On a server whose sign-in never finished, for people who can add connections. Opens the server's details, where **Finish setup** starts a new sign-in and replaces the unfinished attempt; the details read **Starts a new sign-in, replacing any unfinished attempt for this server.** The button reads **Finishing setup…** while the sign-in runs. See [Connection statuses](/reference/connection-statuses#statuses-for-mcp-servers-and-apis). |
-| **Data freshness**, in a connection's details | The last successful sync of each of its sync setups, or **Sync history is unavailable for this workspace.** |
+| **Data freshness**, in a connection's details | Each of its sync setups with its **Schedule**, **Last synced**, and, when the row has one, **Next run**, as [Sync setup rows](/reference/connection-statuses#sync-setup-rows) describes, or **Sync history is unavailable for this workspace.** |
 
 While Ari cannot be used, for example when the workspace is out of AI usage, **Add with Ari** is unavailable, and a line reads **Add with Ari is unavailable.** followed by the reason. Data sources such as QuickBooks are connected from **Connections** in the sidebar; see [Connect QuickBooks, Xero, NetSuite, or Rillet](/guides/connect-accounting).
 
@@ -253,7 +306,7 @@ A row can carry one more line: **Shared by [name]** on a copy a teammate gave yo
 
 ### Workspace skills
 
-The heading shows once the workspace has a Skill that everyone in it shares. Each row shows the Skill's name, its description, **Everyone in this workspace**, **Promoted by [name]**, and, for a member of the workspace, **Edit** and **Delete**. Its **Delete** dialog reads **Ari will stop using this workspace skill for everyone here. Personal copies stay unchanged.** A workspace Skill always applies to its workspace only, so its editor has no **Use in**.
+The heading shows once the workspace has a Skill that everyone in it shares. Each row shows the Skill's name, its description, **Everyone in this workspace**, **Promoted by [name]**, and, for an administrator, **Edit** and **Delete**. Its **Delete** dialog reads **Ari will stop using this workspace skill for everyone here. Personal copies stay unchanged.** A workspace Skill always applies to its workspace only, so its editor has no **Use in**.
 
 | Editor field | Note in the editor |
 | --- | --- |
@@ -278,7 +331,7 @@ The heading shows once the workspace has a Skill that everyone in it shares. Eac
 
 ### Built-in skills
 
-The section reads **Enable ready-made workflows for everyone in this workspace. Skills stay up to date with improvements from cfo.ai.** Each optional built-in Skill has a switch, in this order: **Flash report**, **Model audit**, **Model migration tie-out**, and **Source tie-out**. A switch applies to everyone in the workspace. Built-in Skills cannot be edited. See [Turn on a built-in Skill](/guides/turn-on-built-in-skills).
+The section reads **Enable ready-made workflows for everyone in this workspace. Skills stay up to date with improvements from cfo.ai.** Each optional built-in Skill has a switch, with its name and a description of when Ari uses it: **Entity consolidation**, **Flash report**, **Investor review**, **Model audit**, **Model migration tie-out**, **Source tie-out**, and **Workbook template fill**. A switch applies to everyone in the workspace. Built-in Skills cannot be edited. See [Turn on a built-in Skill](/guides/turn-on-built-in-skills).
 
 ## Billing and Usage
 
@@ -287,7 +340,8 @@ The section reads **Enable ready-made workflows for everyone in this workspace. 
 ## What Settings has no setting for
 
 - A fiscal year that starts in a month other than January. See [Fiscal years](/concepts/actuals-and-forecast#fiscal-years-quarters-and-years-follow-the-calendar).
-- A view-only or other lower role, access to single Pages for one person, or user groups. Use a share link for read-only access; see [Sharing and access](/concepts/sharing-and-access).
+- Inviting a member limited to named Pages, listing such members, or changing their Pages. Ask Ari to invite one; see [Members limited to named Pages](#members-limited-to-named-pages).
+- User groups, or a view-only role for the whole workspace. Use a share link for read-only access; see [Sharing and access](/concepts/sharing-and-access).
 - An API key or access token for cfo.ai. AI tools connect to the MCP server and sign in through the browser; see [Is there a cfo.ai API or API key?](/guides/connect-an-ai-client#is-there-a-cfoai-api-or-api-key)
 - Deleting a workspace or an account. See [Cancel your subscription or delete your data](/guides/cancel-or-delete).
 - Pausing a subscription. See [Plans and billing](/reference/plans-and-billing#rules-and-limits).

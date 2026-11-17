@@ -4,7 +4,7 @@ sidebarTitle: "Answer and approve"
 description: "Respond when Ari waits for you and the chat shows Needs your response. Answer a question form, approve or change a plan before a build, allow or decline a call to a connected service, finish a form from an MCP server, and review an email before it is sent."
 ---
 
-Use this when a chat shows **Needs your response**, or Ari stops and shows a card. Ari waits for you before details that change the answer, before a large build, before calls to connected services that need approval, and before emailing anyone but you. Answer in the chat, and Ari continues on its own.
+Use this when a chat shows **Needs your response**, or Ari stops and shows a card. Ari waits for you before details that change the answer, before a build whose plan you asked to review, before calls to connected services that need approval, and before emailing anyone but you. Answer in the chat, and Ari continues on its own.
 
 ## Answer a question form
 
@@ -24,7 +24,7 @@ If you scrolled up when the form arrived, select **Scroll to latest messages** t
 
 ## Approve a plan
 
-For a larger build, Ari shows a plan card before it starts: what it will create and the assumptions it will use.
+When you ask Ari to show its plan before it builds, Ari shows a plan card and waits: what it will create and the assumptions it will use. Without that request, Ari starts a build, large or small, without waiting, because a Model change can be undone. Ari also shows a plan card before a high-risk decision that may not be reversible.
 
 <Steps>
   <Step title="Check the assumptions">
@@ -69,11 +69,13 @@ Ari emails you at your sign-in address as soon as you ask. An email to anyone el
   </Step>
 </Steps>
 
+Without Cc, each person in **To** gets their own email, and nobody sees who else got it. To send one shared email that everyone can see and reply to, ask Ari to copy people, such as "email the CFO and CC the controller". The card then shows a **Cc** row, and its addresses are fixed: **Edit** changes only the subject and the message, so ask Ari for a new card to change who is on the email. See [Copy people on an email (Cc)](/reference/chat#copy-people-on-an-email-cc).
+
 Scheduled Triggers work the same way, so a run that would email someone else stops at the preview in its chat. See [Email preview card](/reference/chat#email-preview-card) for every message the card shows.
 
 ## Answer questions from a scheduled run
 
-A scheduled Trigger runs without you, so it cannot wait for an answer. Questions it asks stay in its chat, which shows **Needs your response**. When you open the chat, questions the run asked at different points appear together on one form, and one reply answers them all. In a scheduled run, an MCP tool or an API endpoint set to **Ask first** does not run, and no approval card appears in the run's chat; see [What a run cannot do on its own](/concepts/automation#what-a-run-cannot-do-on-its-own).
+A scheduled Trigger runs without you, so it cannot wait for an answer. Questions it asks stay in its chat, which shows **Needs your response**. When you open the chat, questions the run asked at different points appear together on one form, and one reply answers them all. A choice only you can make also reaches you once, in a Slack direct message or in your cfo.ai chat; see [Answer a decision a Trigger waits on](/guides/schedule-a-trigger#answer-a-decision-a-trigger-waits-on). In a scheduled run, an MCP tool or an API endpoint set to **Ask first** does not run, and no approval card appears in the run's chat; see [What a run cannot do on its own](/concepts/automation#what-a-run-cannot-do-on-its-own).
 
 ## Confirm a Scenario merge, delete, or revert
 

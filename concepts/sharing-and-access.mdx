@@ -1,29 +1,51 @@
 ---
 title: "Sharing and access"
-description: "Who can see and change what in cfo.ai: why everyone in a workspace is an administrator, why read-only access means a share link, what a link's reader sees, who can see your chats, and how Ari follows the same access."
+description: "Who can see and change what in cfo.ai: administrators, who have the whole workspace; members limited to the Pages an administrator names, whose changes reach Main only through an administrator; share links for read-only access without an account; who can see your chats; and how Ari follows the same access."
 ---
 
-People ask two questions about access: "Can someone have read-only access?" and "Can I show this to someone who has no cfo.ai account?" In cfo.ai the answer to both is a share link. Everyone inside a workspace has full access, and everyone outside it reads through a link.
+People ask three questions about access: "Can a teammate see only part of the workspace?", "Can someone have read-only access?", and "Can I show this to someone who has no cfo.ai account?" cfo.ai answers them with two kinds of people inside a workspace and one way in from outside it:
 
-## Everyone in a workspace is an administrator
+- An administrator has the whole workspace.
+- A member limited to named Pages sees only the Pages an administrator names, and changes Main only through an administrator.
+- A share link lets anyone read the Pages it names, without joining the workspace.
 
-Everyone you invite to a workspace joins as an administrator, whether you invite them in Settings or through Ari. Administrators can see and edit every Page, invite other people, and manage billing and settings.
+## Administrators have the whole workspace
 
-There is no view-only role, no editor role, no per-person access to single Pages, and no user groups. You cannot give a teammate a lower role, by hand or through Ari, because no lower role exists. To add or remove people, or to give the administrator role to someone who joined without it, see [Invite or remove teammates](/guides/invite-teammates).
+Administrators can see and edit every Page, invite other people, and manage billing and settings. Everyone you invite from Settings joins as an administrator, and so does everyone you ask Ari to invite unless you ask for a member limited to named Pages.
 
-## Read-only access means a share link
+cfo.ai has no user groups, and no role between the two kinds of people described on this page. To add or remove people, or to make someone an administrator, see [Invite or remove teammates](/guides/invite-teammates).
 
-A share link lets someone read one or more Pages without joining the workspace and without a cfo.ai account. An investor, a board member, a judge, or an accountant can open it in any browser. The reader does not appear in your list of administrators.
+## Members limited to named Pages
+
+Take a department lead who should plan the Marketing budget without seeing payroll. You ask Ari to invite them to the Marketing budget Page with edit access. When they join, the Marketing budget Page is the only Page in their sidebar. The Payroll Page, its tables, and the Variables only those tables show stay closed to them, in the app, in search, and in a chat with Ari.
+
+Such a member differs from an administrator in four ways:
+
+- They see only what their Pages show. An invitation names up to 20 Pages, each with view or edit access. View access opens the Page and the Variables its tables show. Edit access also lets the member change those Variables' values and formulas. A formula reaches them only when they can read everything it refers to, so a formula that reads a Variable outside their Pages is left out of what they see, and they cannot save a formula that refers to one.
+- They work in their own Scenarios. The member can read their Pages in Main but cannot change Main. To try a change, they create a Scenario, which is theirs, and edit their Pages there.
+- Their changes reach Main through an administrator. The member cannot merge a Scenario. They ask Ari to request the merge, cfo.ai emails the workspace's administrators, and an administrator reviews the Scenario and merges it. See [Merge a Scenario into Main](/guides/merge-a-scenario#ask-an-administrator-to-merge-your-scenario).
+- The rest of the workspace is closed to them. cfo.ai refuses them everything outside a short list: their Pages, their own Scenarios, merge requests, and their own chats with Ari. So they cannot change a Page or a table's layout, open version history, undo, export, upload a file, change a connection, share a Page, or change the workspace's settings or billing. The full list is in [Members limited to named Pages](/reference/settings#members-limited-to-named-pages).
+
+The limits come from the invitation the person accepted. They stay in force until an administrator removes the person or makes them an administrator.
+
+A member limited to named Pages joins the workspace: they sign in with their own cfo.ai account, have their own chats with Ari, and, with edit access, propose changes for an administrator to merge. Someone who only needs to read a report, or who has no account, needs a share link instead.
+
+## Read-only access without joining means a share link
+
+A share link lets someone read one or more Pages without joining the workspace and without a cfo.ai account. An investor, a board member, a judge, or an accountant can open it in any browser. The reader does not appear in your list of administrators. Inside a workspace, view access exists only on the named Pages of a member limited to them. To let someone read without joining, use a link.
 
 Take a board update. You create a link to the Board summary Page that also opens the Cash forecast Page, choose the Board plan Scenario, and add a password. The board members open the link, enter the password, and read both Pages. They cannot type into a cell or change a chart, and nothing else in the workspace opens for them.
 
+One link can also cover several versions of the plan. A Page is shared Scenario by Scenario, so the same link can open the Board summary and the Cash forecast in Main, and only the Revenue model in a Downside Scenario. The reader moves between those Scenarios with the Scenario picker, and in each one sees only the Pages you shared there.
+
 A link:
 
-- Opens the Pages it names, in the one Scenario saved with it.
+- Opens the Pages it names, each only in the Scenarios you chose for it. A Page you share in Main does not open in another Scenario, even one created from Main, unless you share it there too.
 - Never allows editing, whoever holds it.
 - Needs no sign-in. No setting can require one.
 - Works until someone turns it off. Links do not expire.
 - Can require a password, which the reader types before the Page opens.
+- Can carry a name, such as "Board – Q4 investors", that tells the people in your workspace who the link is for. Readers never see the name, and it is not part of the address.
 
 A link adds view access and takes nothing away. A teammate who opens it keeps their own access, including the right to edit, so a link is not a way to make a teammate read-only.
 
@@ -31,17 +53,17 @@ Only Pages can be shared. A Scenario, a chat, a Variable, or a formula has no li
 
 ## What a link's reader sees
 
-A reader sees the Pages as they are when they open them, with live numbers. When your Model changes, the shared Page changes too. To share numbers that stay fixed, such as the plan your board approved, choose a Snapshot as the link's Scenario; see [Scenarios, Snapshots, and version history](/concepts/scenarios).
+A reader sees the Pages as they are when they open them, with live numbers. When your Model changes, the shared Page changes too. To share numbers that stay fixed, such as the plan your board approved, share the Page in a Snapshot; see [Scenarios, Snapshots, and version history](/concepts/scenarios).
 
 A block shows the reader what it was saved to show:
 
 - A Table block shows the comparison columns it was saved with, so a Scenario comparison renders for the reader.
-- A Canvas block shows the data of every Scenario it was saved to read, so a chart of Main beside a Downside Scenario renders too. Nothing else in those Scenarios opens through the link.
+- A Canvas block shows the data of every Scenario it was saved to read, so a chart of Main beside a Downside Scenario renders too. Nothing else in those Scenarios opens through the link. The reader receives each dataset the block reads whole, in the browser and in the Excel download, including rows the block does not draw. A block that draws one department from a dataset of every department sends every department. Before you share such a Page, ask Ari to narrow the dataset to the items the block shows; the Page and its download then carry only those.
 - A Canvas block's controls respond for the reader: a period dropdown, a toggle, a slider, or a button that changes what the block shows works in the reader's browser, and nothing is saved: a reader can change what the block shows, not the chart's saved setup. A button that opens another Page or hands work to Ari does nothing for the reader. How long the reader's choice lasts is in [Canvas block controls](/reference/interface#canvas-block-controls). The reader cannot drill into a block's numbers or ask Ari from it.
 
-A reader on the desktop site can download a shared Page that has a Table block, or a Canvas block with data, as an Excel workbook. For a reader whose only access is the link, the workbook holds the numbers your Model calculated as values, not the formulas behind them. Subtotal and comparison columns can stay Excel formulas, because they read only cells the sheet shows. The workbook names no Variable or Dimension that the Page's tables do not show; see [Export a Page to Excel](/guides/download-a-spreadsheet#export-values-only).
+A reader on the desktop site can download a shared Page that has a Table block, or a Canvas block with data, as an Excel workbook. For a reader whose only access is the link, the workbook holds the numbers your Model calculated as values, not the formulas behind them. Subtotal and comparison columns can stay Excel formulas, because they read only cells the sheet shows. The workbook names only the Variables and Dimensions that the Page's tables show and that its Canvas blocks' datasets hold; see [Export a Page to Excel](/guides/download-a-spreadsheet#export-values-only).
 
-The other Pages in your workspace stay closed to the reader. A reader who is not signed in sees a strip above the Page. When the workspace has a brand, the strip shows the brand's logo and name with **Powered by cfo.ai**; otherwise, it invites the reader to try cfo.ai. Before the reader opens the link, its preview card in chat and social apps names cfo.ai, so a brand stays inside the Page unless an administrator chooses to show it on link previews too. See [Brand your workspace](/guides/brand-your-workspace).
+The other Pages in your workspace stay closed to the reader. When a link opens several Scenarios, a Page stays closed in every Scenario where you did not share it: if the reader picks such a Scenario, cfo.ai opens a Page that is shared there and says that the first Page is not, and the sidebar lists the Pages that are shared only in other Scenarios. The exact labels are in [What a link's reader sees](/reference/interface#what-a-links-reader-sees). A reader who is not signed in sees a strip above the Page. When the workspace has a brand, the strip shows the brand's logo and name with **Powered by cfo.ai**; in a desktop browser, a brand with a logo shows it in the sidebar and the strip is left out, and a brand without a logo keeps the strip. Without a brand, the strip invites the reader to try cfo.ai. Before the reader opens the link, its preview card in chat and social apps names cfo.ai, so a brand stays inside the Page unless an administrator chooses to show it on link previews too. See [Brand your workspace](/guides/brand-your-workspace).
 
 ## Keeping access to a shared Page
 
@@ -49,7 +71,7 @@ A reader who never signs in has access in that browser for seven days from their
 
 ## Turning a link off
 
-Turning a link off stops anyone from opening it again. By default it also removes access from everyone who already opened the Page through the link. Changing a link's Scenario or password does the same to the old link: cfo.ai replaces it with a new link at a new address.
+Turning a link off stops anyone from opening it again. By default it also removes access from everyone who already opened the Page through the link. Changing a link's Scenario or password does the same to the old link: cfo.ai replaces it with a new link at a new address. A link that opens Pages in several Scenarios keeps each Page in its own Scenario when it is replaced. Changing which Pages a link opens does not replace it: the address and password stay, a Page you remove closes at once for everyone who opened the link, and a Page you add opens the next time a reader opens the link's address. The Page the link opens first cannot be removed, and some old links cannot be changed this way; see [Link details](/reference/interface#link-details).
 
 ## Your chats are yours
 
@@ -57,11 +79,20 @@ A chat belongs to the person who started it. Your teammates do not see your chat
 
 ## Ari follows the same access
 
-Ari works with the access of the person it is talking to. For an administrator, that is the whole workspace. If someone who can only view a Page asks Ari to change it, Ari refuses and saves nothing. Ari can create a share link for you, with the limits listed in [Share a Page outside your workspace](/guides/share-a-page).
+Ari works with the access of the person it is talking to. For an administrator, that is the whole workspace. If someone who can only view a Page asks Ari to change it, Ari refuses and saves nothing. Ari can create a share link for you and tell you which links the workspace has shared, with the limits listed in [Share a Page outside your workspace](/guides/share-a-page).
+
+For a member limited to named Pages, Ari reads and changes only what that member can. It can read their Pages, tables, and Scenarios, change values and formulas on the Pages they have edit access to, in a Scenario of their own, create a Scenario, and send a merge request. Three more limits keep the rest of the workspace out of their chats:
+
+- Ari reaches nothing outside cfo.ai for them: no web search, no connected API or MCP server, and no email, Slack message, or text message. The merge request email to administrators is the one exception.
+- Ari's memory holds only what that member told it. Workspace memories are neither read nor written in their chats; see [What Ari remembers](/concepts/ari-memory).
+- When something fails, the member is told that it failed but not why, because the reason can name a Variable they cannot see.
+
+Workspace Skills are the exception: they apply in every chat in the workspace, including such a member's, so keep figures a member should not see out of a workspace Skill's instructions.
 
 ## Related
 
 - [Share a Page outside your workspace](/guides/share-a-page)
 - [Invite or remove teammates](/guides/invite-teammates)
+- [Members limited to named Pages](/reference/settings#members-limited-to-named-pages)
 - [Pages, Table blocks, and Canvas blocks](/concepts/pages-and-blocks)
 - [The cfo.ai interface](/reference/interface#share-panel)

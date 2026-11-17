@@ -34,7 +34,7 @@ A mapping always runs from source to target. Pick the shared reporting Dimension
 - A condition tests the source items only. It cannot test a Variable's value, so a list of exceptions that depends on an amount stays a list of items.
 - One target can be fed by a one-key lookup and a two-key lookup, such as Account alone and Account with Account ID. A row that the two-key lookup has no assignment for falls back to the one-key assignment.
 
-A Dimension whose items come from a formula cannot also be a mapping target. A Dimension whose items were typed in by hand, with no mapping yet, does not take its first mapping either: mapped membership follows the input records, so the typed list would stop standing on its own. Clear the typed items first, or map into a separate Dimension. A Dimension that already has a mapping, an empty one, or one fed by a connected source takes a mapping as before.
+A Dimension whose items come from a formula cannot also be a mapping target. A Dimension whose items were typed in by hand, with no mapping yet, does not take its first mapping either: mapped membership follows the input records, so the typed list would stop standing on its own. The exception is a mapping column on a saved table: a cell there accepts an item that is already in the typed list, and the typed items and the values saved on them stay. A mapping whose target is a separate Dimension leaves the typed list unchanged. Clearing the typed items first deletes the values saved on them. A Dimension that already has a mapping, an empty one, or one fed by a connected source takes a mapping as before.
 
 ## The catch-all covers everything else
 
@@ -52,6 +52,19 @@ When Ari creates a Dimension for a mapping, such as a new P&L Line, it gives the
 A mapping column belongs beside the Dimension it is mapped from. An assignment applies only on a row that carries every Dimension its lookup keys on: a lookup keyed by Account alone needs the account, and one keyed by Account and Account ID needs both. So a mapping column beside a different Dimension's rows, such as Reporting Line beside departments, reads the catch-all on every row, or stays blank when the mapping has none. Ari warns when it reads or builds a table laid out that way.
 
 Renaming an item, on a table or through Ari, also renames it in the mapping and in formulas that compare against it, as one change that one undo reverses.
+
+## When a forecast is entered by a broader group than the report's category
+
+A report can group a number by a category that a mapping assigns to each detailed item, while the forecast is entered by a broader group of the same items. Say revenue reports by Class, and a mapping gives each Product its Class: Hardware, Software, or Services. The forecast is entered by product Family, and a second mapping gives each Product its Family. A forecast formula saved for the Core family names no Product, so it carries no Class. When Core's Products all share one Class, nothing is unclear. When Core holds a Hardware Product and a Software Product, nothing saved says how Core's forecast divides between Hardware and Software.
+
+When Ari reads a table like this, or builds or reshapes one, the result tells it where the category comes from and names each group whose items belong to more than one category with no split saved. Ari can then tell you which groups need a split and ask how each one divides. Ari's modeling instructions tell it to keep the amounts as saved until you answer, so it does not divide a group's forecast on its own. The table on the Page shows no mark.
+
+This check reads only saved mappings and saved formulas, so it has limits:
+
+- It covers mappings keyed by one Dimension, where each row maps one item to one fixed item.
+- A group stays on the list while the Variable has any formula or typed value saved for that group that names neither the category nor the detailed item. A split saved for some months leaves the group listed for the others, and a split saved another way, such as a separate percentage Variable, still reads as no split.
+- A group is left off when two mapping rows of equal rank give one of its items different results, and on a table that compares Scenarios.
+- Ari gets these facts only when you can read the category, the detailed Dimension, the group's Dimension, and the Variable.
 
 ## Shared Dimensions across accounting connections
 

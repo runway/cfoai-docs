@@ -94,6 +94,10 @@ The optional **Source tie-out** Skill checks that the statements imported from Q
 
 > Does our QuickBooks data tie?
 
+## Check a rebuilt workbook against the file
+
+When Ari rebuilds a workbook as a Model, it records its checks in a **Workbook tie-out** table on the import summary Page: the workbook's value, the value cfo.ai calculates, and the difference for each cell it checked. The table recalculates with your Model, so a later edit that breaks a tie shows as a difference. [Workbook imports](/reference/imported-data#the-workbook-tie-out-table) describes its columns. If your import has no such table, or you want every difference explained, see [Import an existing spreadsheet model](/guides/import-a-spreadsheet-model).
+
 ## Run a Model audit
 
 The optional **Model audit** Skill checks the whole Model at once. It checks whether formulas, mappings, and statements hold together, whether the Model ties to your ledger and bank, and what is still typed in or estimated. It writes a short audit page and fixes problems when you ask. Turn it on first; see [Turn on a built-in Skill](/guides/turn-on-built-in-skills). Then ask:

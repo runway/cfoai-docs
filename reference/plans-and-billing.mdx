@@ -3,7 +3,7 @@ title: "Plans and billing"
 description: "cfo.ai's Starter, Growth, and Enterprise plans and every billing rule and message: when the free trial charges your card, monthly and annual billing, changing or canceling a plan, invoices and receipts, Settings → Billing and Usage, banners, locked workspaces, and AI usage notices."
 ---
 
-cfo.ai has three plans: Starter, Growth, and Enterprise. A plan is bought for a workspace, not per person, and its price is shown in the app. Billing lives in two Settings sections, **Billing** and **Usage**, which every member can open because every member is an administrator. A workspace billed outside the app shows neither. Ari can read your plan, usage, balance, spend limit, and connection slots, but it cannot change billing; it tells you which Settings section to use. In a workspace that cfo.ai has exempted from billing, Ari says instead that there is no plan to choose or pay for, AI usage is not metered, and connections have no plan limits. For how plans work, see [Plans, AI usage, and connection slots](/concepts/plans-and-usage).
+cfo.ai has three plans: Starter, Growth, and Enterprise. A plan is bought for a workspace, not per person, and its price is shown in the app. Billing lives in two Settings sections, **Billing** and **Usage**, which every administrator can open. cfo.ai refuses a member limited to named Pages every read of, and change to, the workspace's billing. A workspace billed outside the app shows neither. For an administrator, Ari can read the plan, usage, balance, spend limit, and connection slots, but it cannot change billing; it tells you which Settings section to use. In a workspace that cfo.ai has exempted from billing, Ari says instead that there is no plan to choose or pay for, AI usage is not metered, and connections have no plan limits. For how plans work, see [Plans, AI usage, and connection slots](/concepts/plans-and-usage).
 
 ## Plans
 
@@ -70,6 +70,10 @@ A free trial lasts 14 days and needs a card to start. When it ends, the paid pla
 | **We ask for a card to confirm you’re a real person and keep** [plan] **active after the trial. Cancel in Settings before** [date] **and you won’t be charged. You still get all 14 days free.** | **Add a payment method**, starting a trial |
 | **This plan has no free trial. Starting it charges your card immediately.** | **Add a payment method**, plan with no trial |
 | **By starting a plan, you agree to the Standard Terms and Conditions and acknowledge the Privacy Policy.** | Plan page; see [Privacy, security, and legal documents](/reference/privacy-and-legal) |
+| **This sets up a new workspace. You’re already a member of [workspace].**, with **Open [workspace]** | Plan page, under the subtitle, when you are a member of one other workspace that can open now. The link opens that workspace. |
+| **This sets up a new workspace. You’re already a member of [n] others.**, with **Choose a workspace** | Plan page, under the subtitle, when you are a member of several such workspaces. **Choose a workspace** lists them under **Workspaces**; with six or more, a **Search workspaces…** field narrows the list, and workspaces that share a name also show their addresses. |
+
+The line about your other workspaces leaves out a workspace you are not a member of, one that is locked, and one that is itself waiting for its first plan. With no other workspace to offer, the plan page shows no such line. When it shows one, the **Close** button (×) in the page's corner opens the first of those workspaces. The line goes away once the page reads **Finishing setup**.
 
 ## Plan chooser
 
@@ -83,9 +87,11 @@ A free trial lasts 14 days and needs a card to start. When it ends, the paid pla
 | **Your current plan** / **Your current trial** | The plan you have, marked **Current plan** or **Current trial**. |
 | **Keep** [plan] | Calls off a scheduled change or a cancellation. |
 | **Keep and switch to** [plan] | Calls off a cancellation and switches plan. |
-| **Starts** [date] / **Change scheduled** | The plan you are switching to at renewal. |
+| **Starts** [date] / **Change scheduled** | The plan you are switching to at renewal. The button is grayed out. It reads **Keep current plan to review changes** when your current plan is also canceled. |
 | **Contact support to change plan** | Your plan is a custom plan that cannot be changed here. |
 | **Talk to sales** | Enterprise. |
+
+When your plan is canceled and has not ended yet, the plan chooser reads **Your [plan] plan is canceled and ends on [date]. Keep it to carry on, or pick another plan — either way the cancellation is called off.** For a custom plan that cannot be changed here, it ends **Call the cancellation off to carry on.**
 
 A card you cannot choose is grayed out, and pointing at its button says why:
 
@@ -215,7 +221,7 @@ Shown while you have a plan that is not already ending. It reads **Your plan sta
 
 | Control | What it does |
 | --- | --- |
-| **Monthly spend limit** | The most extra usage may cost per billing cycle, or **No limit**, with the amount spent this cycle. **Adjust limit** opens a box: type an amount and select **Save** (**Takes effect immediately.**), or select **Remove limit**. |
+| **Monthly spend limit** | The most extra usage may cost per billing cycle, or **No limit**, with the amount spent this cycle. A new workspace starts with a limit; [Limits](/reference/limits#workspace-account-and-sign-in) gives the amount. **Adjust limit** opens a box: type an amount and select **Save** (**Takes effect immediately.**), or select **Remove limit**. |
 | **Purchased usage balance** | [amount] **available**, with **Auto-reload on**, **off**, or **paused**. When paused: **A payment failed. Update the payment method or buy credits to resume automatic reloads.** |
 | **Buy credits** | Opens the purchase page, below. |
 | **Auto-reload** | A switch. When on: **When the balance falls below** [amount] **, add** [amount], and **Save**. Needs a default card in **Settings → Billing**. |
@@ -315,7 +321,7 @@ Dismissing a notice hides it until the next threshold or the next billing cycle.
 
 ## Rules and limits
 
-- Every member is an administrator, so every member can change the plan, buy usage, and change the spend limit and auto-reload. Adding people does not change the price.
+- Every administrator can change the plan, buy usage, and change the spend limit and auto-reload. A member limited to named Pages cannot. Adding people of either kind does not change the price.
 - Canceling keeps the plan until the end of the term you paid for, and a trial until its end date. Under the Standard Terms and Conditions, fees already paid are not refunded. The one exception is **Cancel subscription** on a locked workspace's **We couldn’t charge your card** page, which ends the subscription at once.
 - You can undo a cancellation any time before it takes effect, except that cancellation from the locked workspace's page.
 - A subscription cannot be paused.

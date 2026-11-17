@@ -20,6 +20,8 @@ Under the buttons, both pages read **By continuing, you agree to the Standard Te
 
 A Google or Microsoft sign-in that fails shows **We couldn’t complete sign-in. Please try again.**
 
+When your sign-in ends while a workspace is open in a browser tab, the tab opens the sign-in page, whether or not it is the tab in front. After you sign in, cfo.ai returns you to the page you were on.
+
 ### Work email required for new accounts
 
 A new account must use a work email address. An address at a free or disposable email provider, such as Gmail, Outlook, Yahoo, iCloud, or Proton Mail, is refused before a code is sent, and also when a Google or Microsoft sign-in or a pending invitation would create the account. The form is replaced by a page titled **Use your work email**, with **New accounts require a work email address.**, **Personal email providers, such as Gmail, Outlook, and Yahoo, are not supported for new accounts.**, and **Already have an account? You can still sign in with your existing email.** Select **Use a different email** to return to an empty **Work email** field. An account that already exists with a personal address keeps signing in with it. cfo.ai does not check that a custom domain belongs to a company.
@@ -68,8 +70,8 @@ From top to bottom:
 | Logo | The cfo.ai logo, or your workspace brand's logo, is a link. Pointing at it shows where it goes: **New chat** when you can start a chat, or **Open** followed by the first Page's name when you cannot. **⌘**-click opens it in a new tab. |
 | **Collapse navigation** | Folds the sidebar to a narrow strip (**⌘ \\**, or **Ctrl \\** on Windows and Linux). On the strip, **Expand navigation** brings it back; pointing at the strip shows the sidebar over the page, and **Keep navigation open** pins it. Dragging the sidebar's edge resizes it, and dragging it narrow enough folds it. In a chat on a narrow window, the sidebar stays folded and the strip offers **Open navigation**. |
 | **Search** | Opens [workspace search](#workspace-search). |
-| **Chats** | Your chats, newest activity first, with **New chat** and a filter. Selecting a chat keeps the Page on screen. Chats from Slack and from AI assistants are left out until the filter includes them. See [The chat list](/reference/chat#the-chat-list-find-rename-and-archive-chats). |
-| **Model** | Select **Model** to open or close the section. It holds the Scenario picker (**Main Scenario** until you pick another) and the Pages of the Scenario the picker shows. **New page** (**+**) creates a Page in that Scenario and opens it, and a chat you have open stays open. The section appears once the workspace has its first Page. See [Scenario and version history controls](/reference/scenarios-and-history) and [Create and organize Pages and blocks](/guides/create-pages-and-blocks). |
+| **Chats** | Your chats, newest activity first unless you sort them by **Created**, with **New chat** and a filter. Selecting a chat keeps the Page on screen. Chats from Slack and from AI assistants are left out until the filter includes them. See [The chat list](/reference/chat#the-chat-list-find-rename-and-archive-chats). |
+| **Model** | Select **Model** to open or close the section. It holds the Scenario picker (**Scenario** followed by the Scenario's name, **Main Scenario** until you pick another) and the Pages of the Scenario the picker shows. **New page** (**+**) creates a Page named **New Page** in that Scenario, with one blank Table block titled **New Table Block** on it, and opens it, and a chat you have open stays open. The section appears once the workspace has its first Page. See [Scenario and version history controls](/reference/scenarios-and-history) and [Create and organize Pages and blocks](/guides/create-pages-and-blocks). |
 | **Connections** | Your connected systems, each with its status, and **Add integration** (**+**). Pointing at the heading shows a **…** menu with **Links sent** and, once a connection can take a link, **Select connections to send a link** (**⌥ click** on such a connection's row does the same). See [Connection statuses and actions](/reference/connection-statuses) and [Send a link so someone else can connect a source](/guides/send-a-connect-link). |
 | **Feedback** | Opens [Share feedback](#share-feedback). |
 | **Powered by cfo.ai** | Shown in a workspace with a brand. |
@@ -83,7 +85,7 @@ In a desktop browser, **Chats** and **Model** each grow with their rows up to a 
 
 | Control | What it does |
 | --- | --- |
-| A Page row | Opens the Page and keeps the chat you have open; see [Open Pages and chats from the sidebar](#open-pages-and-chats-from-the-sidebar). Pointing at it shows **New subpage**, **Mention page in chat**, and **Delete page**, and, on a Page with subpages, **Expand subpages** or **Collapse subpages**. |
+| A Page row | Opens the Page and keeps the chat you have open; see [Open Pages and chats from the sidebar](#open-pages-and-chats-from-the-sidebar). Pointing at it shows **New subpage**, **Mention page in chat**, and **Delete page**. A Page with subpages always shows an arrow after its name, **Expand subpages** or **Collapse subpages**; a Page without subpages has no arrow. A name too long for the row is cut short before the arrow. |
 
 | Message | Meaning |
 | --- | --- |
@@ -113,7 +115,7 @@ To leave a chat without picking another Page, select **Close chat**; see [A chat
 
 ### A workspace with no Pages
 
-A workspace with no Pages opens on **Ready to model, [your name]?**, with **Create with Ari** and **Add block** (**Table block**, **Text block**, or **Canvas block**). Someone who cannot create Pages sees **No pages yet** and the reason, such as **This workspace has no pages.** or **Pages are read-only in this browser. Use Desktop Site to create a page.**
+A workspace with no Pages opens the chat you already have there, such as the chat a new workspace starts with. Select **Expand model pane** at the top right of the chat to open the pane beside it, which reads **No pages yet** and **Create your first page to start modeling.** with a **Create page** button; for someone who cannot create Pages it reads **Pages will appear here when they are available.** and has no button. **Create page** creates a Page named **New Page** with one blank Table block on it and opens it beside the chat. When you have no chat there, it opens on **Ready to model, [your name]?**, with **Create with Ari** and **Add block** (**Table block**, **Text block**, or **Canvas block**). Someone who cannot create Pages sees **No pages yet** there and the reason, such as **This workspace has no pages.** or **Pages are read-only in this browser. Use Desktop Site to create a page.**
 
 ## Account menu
 
@@ -125,6 +127,7 @@ Select your name and picture at the bottom of the sidebar. From top to bottom:
 | **Appearance** | **Auto**, **Light**, or **Dark** for you alone. The current choice shows beside it. |
 | **Settings** | Opens Settings. See [Settings](/reference/settings). |
 | **Help center** | Opens the [Help center](#help-center) (**⌘ ?**). |
+| **Talk to us on Slack** | Opens [Talk to the cfo.ai team on Slack](#talk-to-us-on-slack), which invites your workspace to a Slack channel shared with the cfo.ai team. |
 | **Manage memories** | Starts a chat in which Ari shows what it remembers about you and the workspace and helps you change it. See [What Ari remembers](/concepts/ari-memory). |
 | **Manage triggers** | Opens the [Triggers page](#triggers-page). |
 | **Workspaces** | Every workspace you belong to, with a check beside the one you are in. Select another to switch to it; **⌘**-click opens it in a new tab. |
@@ -187,6 +190,23 @@ When the last scheduled attempt did not start a run, or cfo.ai paused the Trigge
 | **This trigger is paused**, with **One-time schedule paused after 24 hours without queueing a run. Resume it or set a new future date and enable it.** | A one-time Trigger could not start for 24 hours after its date and time. Set a new date and time in **Edit trigger**. |
 | **The last scheduled attempt was skipped**, with **The run that started [time] was still going. No run has started since then.**, **The run queued [time] was still waiting to start. No run has been queued since then.**, or **Ari was still working on the previous task.** | An earlier run of the Trigger was still going or waiting, so no new run started. |
 
+### A decision a Trigger waits on
+
+When a run reports a choice only you can make, cfo.ai sends it to you once and the Trigger waits on it. To answer one, see [Schedule a Trigger](/guides/schedule-a-trigger#answer-a-decision-a-trigger-waits-on).
+
+| What you see | Meaning |
+| --- | --- |
+| A Slack direct message with the decision, then **Your schedule “[name]” waits on this.** and the link **Answer in its chat** | The first run that reported the decision sent it. The link opens that run's chat. The message goes to you alone, never to a Slack channel the Trigger posts in, and it is sent even when the Trigger's instructions name no Slack delivery. |
+| The same message in your cfo.ai chat | Slack had no way to reach you, for example because the workspace has no Slack connection or Slack has no account under your cfo.ai email. The message is posted in the chat you created the Trigger from, or in your most recent chat in the workspace when that chat is gone. |
+| A run's reason in **History** that starts **Waiting since [date] for this decision:**, followed by the decision | The Trigger was waiting on the decision when the run reported. The date is the day cfo.ai sent it, in the Trigger's time zone. The line shows on a run that reads **Delivered with gaps** or **Did not complete**. |
+
+- A run that repeats the same decision sends nothing. A run that reports a different decision sends that one, and it replaces the first. A Trigger waits on one decision at a time.
+- A run that reports no decision ends the wait.
+- When the message could not be sent, for example because Slack was rate limiting, or because Slack had no way to reach you and you have no chat in the workspace, the Trigger does not start waiting, and the next run that reports the decision sends it.
+- When Slack gives no clear answer about whether it posted the message, cfo.ai treats it as sent and does not send it again.
+
+A Trigger also keeps the instructions it had before their latest change, one version back. The Triggers page does not show them. Ask Ari to show them or to put them back; see [Undo a fix a run made](/guides/schedule-a-trigger#undo-a-fix-a-run-made).
+
 ### New trigger and Edit trigger
 
 The form has **Name** (placeholder **Weekday cash brief**), **Agent**, **Instructions**, and **Schedule**. **Agent** chooses who runs the Trigger: **Ari**, which a new Trigger starts with, or one of the workspace's agents that is not archived. **Repeat** offers:
@@ -217,7 +237,7 @@ The note under the schedule reads **Times in [time zone].**: your browser's time
 
 ## Help center
 
-Open it with **Help center** in the account menu, or press **⌘ ?** (**Ctrl ?**). It lists short interactive walkthroughs of the app. **Search help** at the top narrows the list as you type; with no match it says **No help found** and links to these docs. The sections, from top to bottom:
+Open it with **Help center** in the account menu, or press **⌘ ?** (**Ctrl ?**) while the sidebar is open. With the sidebar collapsed, the shortcut does nothing. It lists short interactive walkthroughs of the app. **Search help** at the top narrows the list as you type; with no match it says **No help found** and links to these docs. The sections, from top to bottom:
 
 | Section | What it holds |
 | --- | --- |
@@ -242,11 +262,13 @@ Guides your team saved are not listed in the Help center; ask Ari to start one. 
 
 ### Contact support
 
-You can reach a person at cfo.ai three ways.
+You can reach a person at cfo.ai in these ways.
 
 | Control | What it does |
 | --- | --- |
 | **Help center → Getting started → Ask a human** | Opens [Ask a human](#ask-a-human), which sends a message straight to the cfo.ai team. |
+| Asking Ari in a chat | When you ask Ari for a person, Ari offers to send your request to the cfo.ai team in your words, and sends it once you agree. The request goes to the same team as **Ask a human**, with your name and email. Ari cannot attach screenshots; use **Ask a human** to send those. Ari sends a request only for a signed-in administrator who is in the chat, so a Trigger's run cannot send one, and neither can a member limited to named Pages. |
+| **Talk to us on Slack** in the account menu | Opens [Talk to the cfo.ai team on Slack](#talk-to-us-on-slack), which emails every member of the workspace a Slack invitation to a private channel shared with the cfo.ai team. You can also ask Ari in a chat to send these invitations. |
 | **Feedback** in the sidebar | Sends product feedback to the cfo.ai team. |
 | Email [success@cfo.ai](mailto:success@cfo.ai) | The **Support** link at the top of these docs. |
 
@@ -266,13 +288,28 @@ The dialog is titled **Ask a human**, with **Tell us what's going on — this go
 | **Could not send your message**, with the reason | The message was not sent. |
 | **Could not attach screenshot**, with **Attach up to 3 screenshots.**, **Screenshots must be PNG, JPG, or WebP files.**, or **Screenshots must be 5 MB or smaller.** | The screenshots you added were not attached: the message would have more than 3, a file is another type, or a file is larger than 5 MB. |
 
+### Talk to us on Slack
+
+**Talk to us on Slack** in the account menu opens the dialog **Talk to the cfo.ai team on Slack**. It lists every member of the workspace under **Workspace members**. While a member can still be invited, it reads **Get help, ask questions, and share feedback in a private Slack channel with our team. We’ll set it up and automatically email invitations to everyone in your workspace.**
+
+| Control or message | Meaning |
+| --- | --- |
+| **Join us on Slack** | Sets up the channel and has Slack email an invitation to every member listed as **Will receive an invitation**. The button reads **Send remaining invitations** when some members already have one. |
+| **Will receive an invitation** / **Invitation sent** / **Already in channel** | Each member's status. |
+| **Invitations sent**, with **Open the email from Slack to join your shared channel with the cfo.ai team.** | Every member has an invitation or is in the channel. |
+| **Already connected**, with **Everyone is already in the channel. Open Slack to talk with the cfo.ai team.** | Every member is in the channel. |
+| **Accept the invitation in your own Slack workspace. Your Slack admin may need to approve it.** | Shown while a member has an invitation waiting or still to be sent. |
+| **Slack support is unavailable right now. Use Feedback in the sidebar to reach us.** | The Slack channel cannot be set up at the moment. Use **Feedback**, or [Ask a human](#ask-a-human). |
+
+When you ask Ari in a chat to connect you with the cfo.ai team on Slack, Ari can send the same invitations. Ari sends them only for a signed-in administrator who is in the chat.
+
 ### Share feedback
 
 **Feedback** in the sidebar opens **Share feedback**, with the placeholder **Write your feedback and include any links here**, the same screenshot rules and messages as **Ask a human**, and **Submit feedback** (**⌘ Enter**). It confirms with **Feedback sent**, or shows **Could not send feedback** with the reason.
 
 ## Workspace search
 
-Press **⌘ K** (**Ctrl K**) or select **Search** in the sidebar. Press **⌘ K** again or **Esc** to close it; a touch screen shows a close button. The box reads **Search pages, chats, and more**, and the window is marked **Preview**.
+Press **⌘ K** (**Ctrl K**) or select **Search** in the sidebar. Press **⌘ K** again or **Esc** to close it; a touch screen shows a close button. The box reads **Search pages, chats, and more**.
 
 Search covers the Scenario the sidebar shows and lists only what you can open. It is not offered while you view a past version, or before you finish signing up.
 
@@ -286,11 +323,11 @@ Results are grouped, up to eight in each group. The group with the best match co
 
 | Group | What it finds |
 | --- | --- |
-| **Pages** | Pages by title, and from two characters also by the words in their text. A Page found by its text shows the passage. |
+| **Pages** | Pages by title, and from two characters also by the words in their text, including the text written in their Canvas blocks. A Page found by its text shows the passage. See [What search reads in a Canvas block](#what-search-reads-in-a-canvas-block). |
 | **Blocks** | Named tables, and titled charts and Canvas blocks |
 | **Variables** | Variables that a table on one of your Pages shows |
 | **Dimensions** | Dimensions that a table on one of your Pages shows |
-| **Dimension items** | Items, such as a customer or a vendor, whose Dimension a table shows on its rows. Each names its Dimension and, for imported items, the connection it came from. |
+| **Dimension items** | Items, such as a customer or a vendor, whose Dimension a table shows on its rows. Each shows its Dimension and, for an imported item, the saved query it came from, in the form **[Dimension] · from [saved query]**. A second line names the Page the result opens and, when the table has a name, the table. |
 | **Workspaces** | Your other workspaces, by name |
 | **Chats** | Your chats by title. When none of the chats already loaded match, search also looks through your older chats once you pause typing. |
 
@@ -302,6 +339,14 @@ Results are grouped, up to eight in each group. The group with the best match co
 - From three letters, a word also matches inside a word: `count` finds Headcount.
 - From five letters, a small typo is forgiven: `salry` finds Salary.
 
+### What search reads in a Canvas block
+
+Search finds a Page by the text written into the layout of its Canvas blocks, such as headings and sentences, together with each block's title. The result shows the passage, and opening it scrolls to that Canvas block. A Canvas block found by its title alone is listed once, under **Blocks**.
+
+Search does not find everything a Canvas block shows. It leaves out text the block is given as a setting or takes from a list or from data, such as a chart's series names or the row names of a table drawn in the block, and every number the block calculates. When a word you can see in a block finds nothing, search for the block's title or for other words in it.
+
+Search reads this text when the window opens and keeps it for up to 30 seconds, so a heading written a moment ago may not be found yet. While it reads, a search that finds nothing shows **Loading pages…**.
+
 ### Search keys and what a result opens
 
 | Shortcut | What it does |
@@ -312,7 +357,7 @@ Results are grouped, up to eight in each group. The group with the best match co
 | **⌥ Enter**, or **⌥**-click (**Alt** on Windows and Linux) | Open the result alone: a Page with no chat, or a chat with its Page folded away. The bar at the bottom of the window lists it as **Open alone**. |
 | **Esc** | Close search |
 
-A result opens the way the same row in the sidebar does. A Page opens in the sidebar's Scenario and keeps the chat you have open: beside a docked chat, or full-screen under a floating one. A block opens its Page, scrolls to the block, and flashes it. A Variable or a Dimension item opens the table that shows it and marks its row. A Page found by its text scrolls to the passage. A workspace switches to that workspace. A chat opens over or beside the Page on screen; picking the chat that already floats over the Page docks it.
+A result opens the way the same row in the sidebar does. A Page opens in the sidebar's Scenario and keeps the chat you have open: beside a docked chat, or full-screen under a floating one. A block opens its Page, scrolls to the block, and flashes it. A Variable opens the table that shows it and marks its row. A Dimension item opens a table that lists its Dimension on rows, the one its second line names, and marks the item's row there. When several tables list the Dimension on their rows, search prefers a table whose saved row settings filter nothing, then a table with a saved filter that may still keep the item, and last a table whose saved list of items leaves the item out or whose rows for that Dimension are hidden. Search reads only saved settings, not the table's data, so the table it opens can still leave the item out. A Page found by its text scrolls to the passage. A workspace switches to that workspace. A chat opens over or beside the Page on screen; picking the chat that already floats over the Page docks it.
 
 ### Search messages
 
@@ -320,7 +365,7 @@ A result opens the way the same row in the sidebar does. A Page opens in the sid
 | --- | --- |
 | **Type to search your workspace.** | Nothing typed and no recent Pages |
 | **No results for “…”** | Nothing matched every word |
-| **Loading pages…** | The Page list is still loading |
+| **Loading pages…** | The Page list, or the text of its Canvas blocks, is still loading |
 | **Couldn’t load pages. Try again from the sidebar.** | The Page list failed to load |
 | **Searching dimension items…** / **Searching chats…** | A slower search is still running |
 | **Couldn’t search dimension items.** / **Couldn’t search chats.** | That part of the search failed; the other results still show |
@@ -423,6 +468,7 @@ While an export runs, the button spins and its tooltip shows the stage:
 
 | Message | Meaning |
 | --- | --- |
+| **Waiting for edits to save** | A table edit you made in this browser tab is still saving, on this Page or another one: a cell or formula edit, a paste, a layout change, or a new Variable, Dimension, or item. The export starts once every such edit has saved, so the workbook includes them. |
 | **Waiting since [time] for [other export]** | Another export in this workspace is queued or running; yours starts when it ends. |
 | **Spreadsheet queued** | Your export is waiting to start. |
 | **Preparing spreadsheet** | Your export is running. |
@@ -431,6 +477,7 @@ The button stays clickable while its export runs. Selecting it again starts no s
 
 | Notice | Meaning |
 | --- | --- |
+| **Waiting for edits to save…**, with **[Page], requested at [time]** | Your export has not started, because a table edit from this tab is still saving. |
 | **Waiting for another spreadsheet…**, with **[Page] waits for [other export]. Waiting since [time]** | Your export is behind another one. |
 | **Spreadsheet queued** or **Preparing spreadsheet…**, with **[Page], requested at [time]** | Your export is waiting or running. The notice stays until the export ends or you close it. |
 
@@ -462,6 +509,9 @@ These reasons stand alone:
 | Message | Meaning |
 | --- | --- |
 | **Add a table or a Canvas block with data to this page before downloading a spreadsheet.** | The Page's last table or Canvas dataset was removed during the download. |
+| **An edit did not save, so the spreadsheet was not started. The file would not have included it.** | A table edit failed to save while the download waited for it. No export started. Fix or repeat the edit, then download again. |
+| **You switched workspaces while this download waited for edits to save, so the spreadsheet was not started.** | You opened another workspace during the wait. No export started. Open the Page again and download again. |
+| **Your edits are saved, but another change to this workspace is still being saved. The spreadsheet was not started, because it would not have included your edits. Try again in a minute.** | Your edits saved, but an earlier change in the workspace, such as one a teammate or Ari is making, was still saving 10 seconds after you asked. An export made then would have left your edits out, so none started. |
 | **The export was cancelled before it produced a workbook.** | The export was cancelled. |
 | **Table "[name]" requires at least [n] rows and [m] columns; Excel worksheet limits are 1048576 rows and 16384 columns.** | The table's saved layout does not fit one Excel worksheet. The export is refused at once, before anything is calculated, and a new export fails the same way while the table is unchanged. Ari's export reports the same limit as **The saved layout in table "[name]" requires …**. |
 
@@ -483,20 +533,55 @@ For time and size limits, see [Limits and file types](/reference/limits#tables-p
 
 ## Share panel
 
-**Share** in the Page header opens the panel, titled **Share [Page]**, or **Share [n] pages** when the link opens several, with **Close**. From top to bottom:
+**Share** in the Page header opens the panel, titled **Share [Page]**, with **Close**. The panel lists the Page's links; you choose a link's Pages and Scenarios in [New link](#new-link). From top to bottom:
 
 | Part | What it does |
 | --- | --- |
-| **Pages to share** | Lists the Page you started from, marked **Opens here**, and the other Pages in this Scenario you can share, each with the icon it has in the sidebar. Select Pages to add them to the link. Below it: **The first page opens when someone follows the link. Up to 50 pages can be shared.** |
-| **External access** | **Create link**, and the links that already exist. With none, it says **No one outside your workspace has link access.** A Page can have up to 100 links. |
-| A link | Its address; **Anyone with this link can view. Shared by [name], updated [time]**, or **Anyone with this link can view. Updated [time]** for a link whose creator is not recorded; the names of the Pages it opens; **Copy external link**; and **Turn off external link** (the trash icon). |
+| **External access** | **Create link**, which opens [New link](#new-link), and the links that already exist. With none, it says **No one outside your workspace has link access.** A Page can have up to 100 links. |
+| **Find a link** | Shown once the Page has more than 5 links. Narrows the list to the links whose name, address, memorable address, or creator's name contains what you type. The count beside it reads **[n] links**, or **[k] of [n] links** while you search. |
+| A link | Its name with its address under it, or its address alone when it has no name; **Anyone with this link can view. Shared by [name], created [time]**, or **Anyone with this link can view. Created [time]** for a link whose creator is not recorded; what it opens, as **[n] pages in [Scenario]** or **[n] pages across [n] scenarios**, with **Details**, which opens [Link details](#link-details); **Copy external link**; **Name this link** (the pencil icon), which reads **Rename link** on a link that has a name; and **Turn off external link** (the trash icon). |
 | **Edit share preview** | On a link without a password. Opens the [Share preview](#share-preview) dialog. |
-| **Link settings** | Opens under a new link. **Shared scenario** picks the link's Scenario. **Require password** turns the password on; turning it on fills in a generated password. The password field has **Show password** (**Hide password**) and **Generate password**. **Save changes** appears after a change; saving replaces the link with a new address, and the old address stops working. |
+| **Link settings** | Opens under a new link. **Shared scenario** picks the Scenario of a link whose Pages are all in one Scenario; a link that opens Pages in several Scenarios does not show it, and an old link that opens a Page in every Scenario shows **All scenarios** there, with nothing to pick. **Require password** turns the password on; turning it on fills in a generated password. The password field has **Show password** (**Hide password**) and **Generate password**. **Save changes** appears after a change; saving replaces the link with a new address, and the old address stops working. A link across several Scenarios keeps each Page in its own Scenario when it is replaced. |
 | Footer | **Model data on this page may also be used on other pages.** |
 
-Turning a link off opens **Turn off this external link?**, which says **Anyone who has the link will no longer be able to open it.** The checkbox **Also remove access already granted by this link** is checked, with **Recommended for financial information. Direct invitations stay unchanged.** Select **Cancel** or **Turn off link**.
+A link's name is a label for the people in your workspace, such as "Board – Q4 investors". Readers never see it, and it is not part of the link's address. **Name this link** or **Rename link** puts the **Link name** field in place of the link's title, with the hint **Name this link, like Board – Q4 investors**. **Enter**, or clicking outside the field, saves the name; **Esc** keeps the old one; saving an empty field removes the name. A name is one line of up to 80 characters, and two links can have the same name. The person who made a link can rename it, and so can anyone with full access to every Page the link opens. Renaming keeps the link's address, Pages, and password, and a link that **Save changes** replaces keeps its name.
 
-An old link that opens a Page in every Scenario shows **All scenarios** as its **Shared scenario**, and only someone with full access to the Page can turn it off: **Only a page-wide owner can turn off this legacy link.**
+To add or remove a link's Pages or Scenarios, use **Edit pages** in [Link details](#link-details); the link keeps its address and password. You cannot change the Page a link opens first.
+
+Turning a link off opens **Turn off this external link?**, or **Turn off “[name]”?** for a link that has a name, which says **Anyone who has the link will no longer be able to open it.** The checkbox **Also remove access already granted by this link** is checked, with **Recommended for financial information. Direct invitations stay unchanged.** Select **Cancel** or **Turn off link**.
+
+An old link that opens a Page in every Scenario lists its Pages by name, without **Details**, and shows **All scenarios** as its **Shared scenario**. Only someone with full access to the Page can turn it off: **Only a page-wide owner can turn off this legacy link.**
+
+### New link
+
+**Create link** in the Share panel changes the panel to **New link**, where you choose the Pages the link opens in each Scenario. The view starts in the Scenario the Page is open in. Nothing is saved until you select **Create link** here. The back arrow (**Back to sharing**) and **Cancel** return to the panel without a link.
+
+| Part | What it does |
+| --- | --- |
+| **Name** | An optional name for the new link, up to 80 characters, with the hint **Optional, like Board – Q4 investors**. Not shown in **Edit pages**. |
+| **Pages** | The Pages in the Scenario that you can share, each with a checkbox. The Page you started from comes first, ticked and marked **Opens here**: readers land on it, and you cannot untick it. Once the link has several Scenarios, the heading reads **Pages in [Scenario]**. |
+| **Find a page** | Narrows the list to the Pages whose names match. With several Scenarios it reads **Find a page in [Scenario]**. |
+| **Select all** | Ticks every Page listed, or unticks them when all are ticked. It reads **Select all shown** while a search narrows the list. |
+| **In [Scenario].** with **Add scenario** | Shown below the Pages while the link has one Scenario. **Add scenario** opens **Add scenarios**, which says **You choose each scenario's pages next.** and lists the workspace's other Scenarios and Snapshots under **Scenarios** and **Snapshots**, with **Find a scenario** and **Select all**. Tick the ones to add and select **Add 1 scenario** or **Add [n] scenarios**. An added Scenario starts with the Pages ticked in the first Scenario, where those Pages exist in it. |
+| **Scenarios** | A list at the left once the link has two or more Scenarios. Each Scenario shows how many of its Pages are ticked, such as **3 pages**, or **None picked**. Select a Scenario to see and change its Pages. **Remove [Scenario]** (the × beside it) takes the Scenario and its ticks out of the link; the Scenario the link opens in has no ×. **Add scenario** is at the foot of the list. In a narrow window the list and a Scenario's Pages take turns, and **Scenarios** above the Pages goes back to the list. |
+| **All scenarios** | The first row of the **Scenarios** list. It shows every Page of the link's Scenarios once: **Tick a page here to share it in every scenario where it exists.** A Page ticked in only some of its Scenarios shows **In [Scenarios]**, and a Page that exists in only one shows **Only in [Scenario]**. |
+| Summary | At the foot: what the link will open, as **[n] pages in [Scenario]** or **[n] pages across [n] scenarios**, above **Opens [Page] in [Scenario]**. The summary counts a Page once, however many Scenarios open it. |
+| **Create link** | Creates the link and returns to the Share panel, where the new link shows with its **Link settings** open. |
+
+One link opens up to 50 Pages, and a Page counts once for each Scenario the link opens it in; see [Limits and file types](/reference/limits#tables-pages-sharing-and-exports).
+
+### Link details
+
+**Details** on a link opens **Link details**, a list of what the link opens. The view is titled with the link's name, or **Link details** for a link without one, and **Name this link** or **Rename link** beside the title renames it as in the Share panel. Its back arrow and **Done** return to the Share panel.
+
+| Part | What it does |
+| --- | --- |
+| Address | The link's address with **Copy link**, which reads **Link copied** after a copy. Below it: **Anyone with this link can view. Opens [Page] in [Scenario].** |
+| **What this link opens** | The same summary as the link's row, **Find a page in this link**, and one heading for each Scenario with its count, such as **2 pages**. Select a heading to fold or unfold its Pages. The Page readers land on is marked **Opens here**. A link that opens more than 12 Pages, counting a Page once for each Scenario, starts with only its first Scenario unfolded. |
+| **Turn off link** | Opens **Turn off this external link?**, or **Turn off “[name]”?**, as the trash icon does. |
+| **Edit pages** | Opens **Edit pages**: the [New link](#new-link) view with the link's Pages ticked. The Page the link opens first cannot be unticked. A line under the list says what saving does, such as **Saving adds 1 page and removes 1 page. Anyone with this link can then open what you add.** **Save** stays off until a Page changes. Saving keeps the link's address and password. A removed Page stops opening at once for everyone who opened the link; an added Page opens the next time a reader opens the link's address. Not shown for an old link that opens a Page in every Scenario, or when the Scenario of the link's first Page was deleted. |
+
+A Scenario that was deleted shows as **Deleted scenario**, and its Pages, like any Page that was deleted, show as **Unavailable page**.
 
 ### Share panel messages
 
@@ -505,16 +590,28 @@ An old link that opens a Page in every Scenario shows **All scenarios** as its *
 | **Checking external link access…** | The panel is loading the Page's links. |
 | **External link access could not be fully verified.** | Not every link could be checked; **Create link** stays off. |
 | **External links could not be loaded. Try again later.** | The links failed to load. |
-| **Checking page access…** | The panel is checking which Pages you can share. |
-| **Access to a selected page could not be verified. Remove it or retry after access refreshes.** | One of the Pages you picked could not be checked. |
-| **Could not check access to some other pages. Retry after access refreshes.** | Some Pages are missing from **Pages to share**. |
-| **Remove [n] pages before creating a link.** | More than 50 Pages are selected. |
+| **Checking pages…** | **New link** is still loading a Scenario's Pages; **Create link** stays off. A Scenario still loading reads **Loading…** in the **Scenarios** list, and its Pages read **Loading pages…**. |
+| **Could not load the pages in [Scenario].**, with **Retry** | **New link** could not load a Scenario's Pages. The Scenario reads **Not loaded** in the **Scenarios** list, and **Create link** stays off until the Pages load or you remove the Scenario. |
+| **No pages you can share here.** | The Scenario has no Page you can share. |
+| **No page matches “[text]”.** / **No scenario matches “[text]”.** | The search in **New link** or **Add scenarios** found nothing. |
+| **Every scenario is already in this link.** | **Add scenarios** has no Scenario left to add. |
+| **No pages picked in [Scenario], so it is left out of the link.** | A Scenario in **New link** has no Page ticked. The link is created without that Scenario. With several such Scenarios the message names them all and ends **so they are left out of the link.** |
+| **[n] of 50 allowed** | Shown beside **Opens [Page] in [Scenario]** once more than 40 Pages are ticked, counting a Page once for each Scenario. |
+| **[n] of 50. Remove [k] before creating a link: drop a scenario, or untick pages in one.** | More than 50 Pages are ticked, counting a Page once for each Scenario; **Create link** stays off. |
 | **Could not create an external link. Try again.** | Creating the link failed. |
+| **Could not load the page names in [Scenario].**, with **Retry** | **Link details** could not load a Scenario's Pages, which read **Name not loaded**. |
+| **No page in this link matches “[text]”.** | The search in **Link details** found nothing. |
+| **1 page on this link was deleted or is no longer yours to share. Saving removes it.** | **Edit pages** found a Page on the link that you can no longer share. With several, it reads **[n] pages on this link were deleted or are no longer yours to share. Saving removes them.** |
+| **Could not save the pages on this link. Try again.** | Saving in **Edit pages** failed; the link is unchanged. |
 | **Enter a password before saving link settings.** | **Require password** is on with an empty password. |
 | **This link password could not be revealed.** / **This link password could not be loaded.** | The saved password could not be read. |
 | **Could not update this external link. Its old settings are unchanged.** | Saving settings failed and the old link still works. |
 | **Could not copy the external link.** | Your browser refused the copy. |
 | **Could not turn off this external link. Try again.** | Turning the link off failed. |
+| **No link matches “[text]”.** | **Find a link** found no link on the Page. |
+| **Could not rename this link. Try again.** | Saving the name failed; the link keeps its old name. |
+| **Only the person who made this link, or someone who can share all its pages, can rename it.** | You did not make the link and do not have full access to every Page it opens. |
+| **This link was turned off or does not exist.** / **This link has expired.** | The link ended before the name was saved. |
 
 ### Share preview
 
@@ -533,7 +630,7 @@ A memorable address has 3 to 64 lowercase letters, digits, or single hyphens bet
 
 | Message | Meaning |
 | --- | --- |
-| **use 3–64 characters: letters, numbers, or single hyphens between them** | The address breaks the rule above. |
+| **A memorable address contains 3–64 characters: letters, numbers, or single hyphens between them** | The address breaks the rule above. |
 | **this address is reserved** | The address is a reserved word. |
 | **this address is already reserved** | Another link uses the address, or used it before it was retired. |
 
@@ -547,8 +644,11 @@ A memorable address has 3 to 64 lowercase letters, digits, or single hyphens bet
 | Link expired | **Link expired**, with **Ask the sharer for a fresh link.** |
 | A memorable address that cannot load | **This shared page is temporarily unavailable. Please try again.** |
 | Other failure | **Something went wrong**, with **Please try again in a moment.** |
-| Strip above the Page | For a reader who is not signed in: your brand's logo and name with **Powered by cfo.ai**, or, without a brand, **Like what you see? Build a model like this for your own business.** with **Start your free trial now**, which the reader can dismiss |
+| Strip above the Page | For a reader who is not signed in: your brand's logo and name with **Powered by cfo.ai**, or, without a brand, **Like what you see? Build a model like this for your own business.** with **Start your free trial now**, which the reader can dismiss. In a desktop browser, a brand with a logo shows no strip, because the sidebar already shows the logo and **Powered by cfo.ai**. A phone or tablet browser shows the strip, and so does a brand without a logo. |
 | **Keep your access** | A card for a reader who is not signed in: **Sign in to hold on to the pages shared with you.**, with an email field |
+| Scenario picker | In the sidebar's **Model** section, lists the Scenarios the reader's links share. Picking a Scenario that does not share the Page on screen opens the first Page that Scenario shares, in sidebar order. |
+| Strip after a Scenario change | **[Page] isn’t shared in [Scenario]**, with **Back to [Scenario]**, over the Page that opened. [Page] is the Page the reader had open. **Back to [Scenario]** returns to it, in the Scenario the reader came from. The strip goes away when the reader opens another Page or Scenario. |
+| **In other shared scenarios** | Below the sidebar's list of Pages: the Pages the reader can open only in other Scenarios. Each shows its Scenario's name, or **[n] scenarios** when several share it. Selecting one opens it in the first of those Scenarios, Main first. |
 
 A link's preview card in chat and social apps, and the browser title of the link's own page, name cfo.ai. When the workspace's **Show the brand on link previews** setting is on, they name the brand instead, and the card's picture shows the brand's dark-mode logo, or its name when it has no dark-mode logo, with **Powered by cfo.ai**; see [Settings](/reference/settings#brand). The card shows **Shared page unavailable** and **This link has expired or is no longer available.** once the link is off.
 
@@ -620,7 +720,7 @@ Turning **Allow more than one response per person** on takes effect at once. Eve
 | --- | --- | --- |
 | **Close [form]?** | **People can’t send or change answers after this.** and **Closing changes nothing in [table].** | **Close form**, shown as **Closing…** while it runs; **Cancel** |
 | **Reopen [form]?** | **People can send and change answers again until you close it.**, or **People can send and change answers again until [date].**, or **Its due date, [date], has passed, so it stays open until you close it. Ask Ari to set a new due date.**, then **Reopening changes nothing in [table].** | **Reopen form** / **Reopening…**; **Cancel** |
-| **Allow only one response per person?** | **Each person’s latest answer counts. If it’s held for review, the one before it counts until someone adds it. Their earlier answers stay on the Responses tab as replaced.** and **The next add takes the rows of those earlier answers off [table].** | **Allow only one** / **Saving…**; **Cancel** |
+| **Allow only one response per person?** | **Each person’s latest answer counts. If it’s held for review, the one before it counts until someone adds it. Their earlier answers stay on the Responses tab as replaced.** and **The next add takes the rows of those earlier answers off [table].** The dialog's wording aside, the **Responses** tab does not list an answer that a later one replaced; see the **Responses** row below. | **Allow only one** / **Saving…**; **Cancel** |
 | **Delete [form]?** | **The form goes from its page, and its form link stops taking answers.** and **[Table] keeps every row, and the answers people sent are kept.** | **Delete form** / **Deleting…**; **Cancel** |
 | **Replace this link?** | **This address stops working. A new link replaces it.** | **Replace link** / **Replacing…**; **Cancel** |
 | **Discard [name]’s response?** | **It won’t be added to the table again.**, with **Its rows stay in the table.** when its rows cannot be removed here. When they can, the checkbox **Also remove its [N] rows from [table]** is ticked, and a note says how many rows someone changed stay: **Remove it in the table if you want it gone.** | **Discard response** / **Discarding…**; **Cancel** |
@@ -639,7 +739,7 @@ Notices after these actions: **Closed [form]** or **[form] was already closed**;
 | **Filter by name** | Appears once the form has 30 or more answers; **No answers match “[text]”.** when none match. |
 | **Select** / **Done** | On a narrow block, shows and hides the checkboxes. The checkboxes are labeled **Select [name]** and **Select all in [group]**. |
 | **[N] selected**, with **Add to table**, **Discard**, and **Clear** | The bar for picked answers. Up to 200 answers can be picked. **Add to table** is unavailable with **None of these are waiting to go in.**, **[reason]. Discard it, or ask them to answer again.**, or **None of these can go in yet. Discard them, or ask them to answer again.** |
-| **In the table**, **Replaced by a later answer**, **Discarded** | An answer's state. |
+| **In the table** | The state of a listed answer whose rows are in the table. The list holds each person's latest answer, or every standing answer when the form takes more than one per person. A discarded answer, and one a later answer replaced, is not listed. |
 | **Not checked against the table** | The answer could not be compared with the table, for example because it is not ready. |
 | **Doesn’t fit the form’s rules**, **Still being checked**, **Needs an amount for each month** | Why an answer cannot go in yet. |
 | **Held for your review** / **Not in table yet**, with **Why it was held** and **What changes** (or **What changes from [date]**) | The notice on a held answer, with **Add to table** and **Discard response**. **Held. [N] rows from an earlier add are in the table.** names rows an earlier answer of the same person already wrote. |
@@ -694,6 +794,21 @@ The form link opens a page of its own, outside the app, titled **[form] · cfo.a
 | The receipt | Subject **We got your answers to [form]**. It reads **You can change them until [date].** or **You can change them while the form is open.**, with the button **Change your answers** and a warning that anyone with that link can change the answers, so it should not be forwarded. A person gets at most one receipt every 10 minutes. An answer on the Page gets no receipt. |
 | The flagged-answer email | To the person who made the form. Subject **An answer to [form] was kept out of the table**; the body names the checks and says to look at the answer on the **Responses** tab and press **Add to table** if the check got it wrong. |
 | A saved email that links forms | Lists them under **Linked form** or **Linked forms**; one email can carry up to 10 forms. |
+
+### What Ari can do with a form
+
+Ari writes a form and changes its questions, name, due date, and settings when you ask. It can reopen a closed form, and it prepares the sending and reminder cards. Ari also reads a form's answers for someone who can edit the form's Page: who answered and how, whether each answer is in the table, the totals of the numbers, and who was emailed. Ari does not get the text of a held answer, and in a run nobody started from a chat, such as a Trigger's scheduled run, it gets no typed text at all.
+
+Ari can also do four of the form's own actions. Each one works only in the form's own Scenario, for a signed-in person who can edit the form's Page.
+
+| Ask Ari to | What happens | Limits |
+| --- | --- | --- |
+| Add answers to the table | The same as **Add to table**. A flagged answer goes in whole. A held second answer from another browser becomes that person's latest answer and goes in once its checks pass. An answer that is still being checked, or that does not fit the form's rules, stays out. An add that changes the table is one entry in version history, which you or Ari can undo. | Up to 200 answers at once. You must also be able to change the form's table. Ari adds answers only during a chat turn of yours, or work that turn started; a Trigger's scheduled run cannot add them. |
+| Discard answers | Each answer stays out of the table from then on. Rows it already put in the table stay. Ari has no way to remove those rows with the discard; use **Discard response** with **Also remove its [N] rows from [table]** on the **Responses** tab. | Up to 200 answers at once |
+| Close the form | The same as **Close form**. The form takes no more answers until it is reopened, and answers already sent still go in once their checks pass. | — |
+| Replace the form's link | The same as **Replace link**. The old address stops working for good, and Ari gets the new link to give you. | — |
+
+A request outside these rules changes nothing. From another Scenario, Ari is told the form lives in its own Scenario; without edit access to the Page, or without access to the table for an add, Ari is refused the same way the buttons are.
 
 ## Chart blocks
 

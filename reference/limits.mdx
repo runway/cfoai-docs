@@ -17,12 +17,12 @@ This page lists every size, count, and time limit in cfo.ai, grouped by part of 
 | Size of a picture shown to Ari | 3.75 million pixels. A larger image is scaled down before Ari sees it, and Ari can reopen a part of an image enlarged up to 4 times, within the same ceiling, to read small text. An image of more than 25 million pixels cannot be opened as a picture at all, whole or in part. |
 | Images and PDFs Ari looks at directly in one turn | 21 MB in all. Ari opens every attached file in its private workspace; an image or PDF it opens is also shown to it as a picture until the turn's 21 MB is used, and after that it reads the file in the workspace. When one request would carry more than 20 images and PDFs, an image wider or taller than 2,000 pixels is not shown; Ari reads it in the workspace instead. |
 | Size of a CSV attached in a chat that can become a data source | 500 MB, the same as any other file; every CSV you can attach can become a data source |
-| Recipients of one email Ari drafts | 10 |
+| Recipients of one email Ari drafts | 10. On an email with Cc, the To and Cc addresses together count toward the 10, each address once |
 | Size of a page of conventions you ask Ari to remember | 32 KiB of text, saved as up to 12 separate facts at a time |
 | Files Ari delivers at once | 10, each up to 50 MB, and 250 MB in all |
 | Time a download link for a file in a chat works | 5 minutes after you select the file; select it again for a new link |
 | Table Ari posts in Slack as a Slack table | The first table in a message, up to 100 rows, 20 columns, and 10,000 characters of cell text; a larger or later table, and a table inside a code block, posts as text, and a message whose text around the table is too long for Slack posts whole as text |
-| Image Ari posts in Slack with a message | 1 for each message, a PNG or JPEG saved in a chat, up to 10 MB; an image that does not go through stops the message. See [Ari in Slack](/reference/chat#ari-in-slack) |
+| Image Ari posts in Slack, with a message or alone in a Slack conversation with Ari | 1 for each message or post, a PNG or JPEG saved in a chat, up to 10 MB; when an image sent with a message does not go through, the message is not sent, and when an image sent alone does not go through, Ari's reply still posts. Text sent in one message with the image, as a heading above it, holds up to 3,000 characters, counted with each link's full address. See [Ari in Slack](/reference/chat#ari-in-slack) |
 | Workspace memories Ari reads when it decides whether to reply to a Slack channel message | Up to 12, the closest matches to how Ari takes part in Slack, each up to 600 characters, and 6,000 bytes of text in all; a longer memory is cut at 600 characters. Private memories are not read for this decision. Once Ari has started on the message, it can read the private memories of the administrator whose access the channel uses. When saved memory does not answer within 5 seconds, Ari decides from the messages alone. See [Tell Ari when to reply in a channel](/guides/use-ari-in-slack#tell-ari-when-to-reply-in-a-channel) |
 | Time Ari can spend writing one action before the action is cancelled | 3 minutes, counted from when Ari starts writing it; Ari then continues the reply, and a second action cancelled this way in the same reply ends the reply. See [When Ari takes too long to write one action](/reference/chat#when-ari-takes-too-long-to-write-one-action) |
 | Length of one chat | No fixed limit; when a chat grows too large for Ari to read in one request, the chat says so, and you start a new chat |
@@ -35,11 +35,13 @@ See [Attach files to a chat](/guides/attach-files) and [Chat controls and messag
 | --- | --- |
 | Size of a CSV uploaded as a data source | 500 MB, in a `.csv` file, with up to 16 MiB in one row |
 | Size of a connected Google Sheet | 50 MB, read as an Excel workbook |
+| Tabs a background first import of a Google Sheet builds in a step of their own | 48. The import holds up to 50 steps, and two of them read the workbook and report the tie-out. With more visible tabs, neighboring tabs share a step; see [Workbook imports](/reference/imported-data#when-a-workbook-import-stops) |
 | Size of an Excel or CSV file read from Google Drive | 500 MB, the same as a file attached to a chat; a CSV becomes a data source only up to 50 MB |
 | Tables one connection syncs | 100, for sources with a table picker |
 | Time a connect link works, for someone else to connect a source | 7 days, or until someone finishes it or it is turned off |
 | Sources in one connect link | 10 |
-| Time cfo.ai waits for a provider's own first sync, or for a later sync the provider is still running after 45 minutes | 20 hours, checking every 10 minutes; the data from the last sync cfo.ai loaded stays as it is meanwhile |
+| Connect links Ari turns off in one request | 50 |
+| Time cfo.ai waits for a provider's own first sync, for a later sync the provider is still running after 45 minutes, or for a later sync Fivetran rescheduled to a later time | 20 hours, checking every 10 minutes; the data from the last sync cfo.ai loaded stays as it is meanwhile |
 | Time to plan a saved query | 40 seconds |
 | History in the first load of QuickBooks Online or Xero | From January 1 of the previous year; the 3 most recent complete months arrive first |
 | Months the nightly refresh of QuickBooks Online reads again | The last 3, plus the older months of a fiscal year whose net income no longer matches the balance sheet; ask Ari for a full-history import to correct other months |
@@ -51,10 +53,11 @@ See [Attach files to a chat](/guides/attach-files) and [Chat controls and messag
 | Time one load of a saved query's result can run | 15 minutes on its first attempt, 30 on its second, and 60 on its third and last; a load that reaches its limit is tried again, and its failure names the limit and the attempt |
 | Times an import stopped for low worker memory runs again | 3. Imports and spreadsheet exports share a worker, and the worker stops its imports when less than 10% of its memory is free. A stopped import waits about 1 minute, then about 2 minutes, then about 30 minutes, each up to 20% shorter or longer, and runs again; a fourth stop fails it. A stop for low memory does not use up one of the import's other attempts, such as the three attempts of a saved query's load |
 | When the nightly refresh runs a connection's saved queries | When every one of the workspace's sources has finished syncing, or at the four-hour cutoff for the sources that have; a source still syncing at the cutoff gets its queries within about two minutes after its sync ends, checked for up to 20 hours |
-| Time one run of a sync setup for an MCP server or API can take | 10 minutes |
-| Results one run of a sync setup can save | 10,000 pages for every sync, each page one source response of up to 1 MiB from an API or 2 MiB from an MCP server. A replace or snapshot sync without a changes-since filter saves page by page; an upsert, append, or changes-since sync holds its whole result, up to 16 MiB in all. A run stops after 10 minutes |
+| Time one run of a sync setup for an MCP server or API can take | 10 minutes. A replace or snapshot sync without a changes-since filter that reaches the limit after saving at least one page runs again at once from its last saved page, for as many 10-minute runs as it needs; an upsert, append, or changes-since sync gets one run |
+| Time one sync of a connection's sync setups can take | 1 hour for each attempt, and three attempts. The setups run one after another, and a later attempt skips the setups already finished |
+| Results one sync of a sync setup can save | 10,000 pages for every sync, counted across its runs, each page one source response of up to 1 MiB from an API or 2 MiB from an MCP server. A replace or snapshot sync without a changes-since filter saves page by page; an upsert, append, or changes-since sync holds its whole result, up to 16 MiB in all |
 | Size of one page an MCP server returns to a sync setup | 2 MiB |
-| One tool call in a sync page from an MCP server | 45 seconds; connecting, listing the server's tools, and the call each get 45 seconds. A time limit named in the tool's own description is the server's own; cfo.ai's limit applies either way |
+| One request for a page from an MCP server | No limit of its own in a sync: connecting, listing the server's tools, and the call can each take the time left in the setup's 10-minute run. When Ari reads a setup's first page to check or repair it, each of the three gets 45 seconds. A time limit named in the tool's own description is the server's own |
 | How often cfo.ai fetches a source that has no integration | Once a day, when the nightly run starts at 02:00 UTC or at the connection's own time of day; ask Ari to fetch again for newer data sooner |
 | Fetches of one source that has no integration at a time | 1; a fetch asked for while another runs does not start |
 | Time to enter a sign-in code that such a source sent you | 15 minutes from when the fetch asked for it; a code is 4 to 12 letters and digits |
@@ -72,7 +75,9 @@ See [How imported data loads](/reference/imported-data) and [Integrations direct
 | Scenarios one Canvas block can read | 3, counting only the Scenarios its datasets read; several datasets on one Scenario count once, and the Scenario you are viewing is not counted unless a dataset reads it, so a block that compares three named Scenarios opens from a fourth |
 | Size of a Canvas block's source | 256 KB (262,144 bytes), pictures embedded in the block included |
 | External links on one Page | 100 |
-| Pages one share link opens | 50 |
+| Pages one share link opens | 50, across all its Scenarios. A Page counts once for each Scenario the link opens it in, so a Page shared in three Scenarios counts as 3. A link has no separate limit on Scenarios. |
+| Length of a share link's name | 80 characters, on one line |
+| Links on a Page before **Find a link** appears in the Share panel | More than 5 |
 | Length of a share link's memorable address | 3 to 64 characters: lowercase letters, digits, and single hyphens |
 | Pages in one workbook Ari exports | 64 |
 | Spreadsheet exports a workspace prepares at once | 1; [Export a Page to Excel](/guides/download-a-spreadsheet) says how Ari frees the slot |
@@ -107,6 +112,9 @@ See [Export a Page to Excel](/guides/download-a-spreadsheet), [Share a Page outs
 | Time a one-time Trigger keeps trying to start after its date and time | 24 hours, with attempts from once a minute to once an hour; then it pauses |
 | Runs in a row that end without finishing the task and without a message to you before a Trigger pauses itself | 3 |
 | Time a download link in a scheduled run's message works | 24 hours |
+| Cells Ari writes when it fills your own workbook with the **Workbook template fill** Skill | Input cells only, with a number, text, a date, or a yes/no value. Ari does not write a cell that holds a formula, a cell inside merged cells other than the top-left one, a cell an array formula fills, or a new heading for an Excel table's column; a fill that names one writes nothing. The copy keeps the workbook's formatting, charts, images, sparklines, comments, print settings, and other sheets |
+| Formula cells in a workbook Ari filled | Hold no stored result, so Excel, Google Sheets, and LibreOffice calculate them when they open the copy for editing. Excel's Protected View and file previews show those cells empty until then |
+| Where Ari reads the template for a later fill | The chat you attached it in. After that chat is deleted, attach the workbook again |
 | Saved Guides in one workspace | 200 |
 | Length of a Guide's name | 64 characters: lowercase letters, digits, and hyphens |
 
@@ -132,8 +140,8 @@ See [Create an agent with its own name and instructions](/guides/create-an-agent
 | Length of an answer | 1,000 characters of text, 10,000 for a long text, 254 for an email address; a row name 80 characters; one answer 4 MB in all |
 | Months a month-by-month question can ask for | 36 |
 | Answers one person can store on one form, replaced ones included | 50 |
-| Answers one form link can store | 2,000 |
-| Answers you can add or discard at once | 200 |
+| Answers one form link can store | 2,000. A replaced link starts a new count. |
+| Answers you can add or discard at once | 200, on the **Responses** tab or through Ari |
 | When a form with a due date closes | Noon UTC the day after the due date |
 | Receipts one person gets | 1 every 10 minutes at most |
 | Time a draft through the form link is kept in the browser | 14 days; a draft on the Page lasts for the browser tab |
@@ -159,8 +167,11 @@ See [Connect Claude, ChatGPT, Codex, or another AI tool to cfo.ai](/guides/conne
 | Email address for a new account | Not at a free or disposable email provider. An address at a provider such as Gmail, Outlook, or Yahoo is refused for a new account and keeps working for an account that already has it; any other domain is accepted, and cfo.ai does not check that the domain belongs to your company; see [Work email required for new accounts](/reference/interface#work-email-required-for-new-accounts) |
 | Length of the free trial | 14 days, once per workspace |
 | Amount of one extra AI usage purchase or one auto-reload | \$5 to \$10,000 |
+| Monthly spend limit on extra AI usage in a new workspace | \$500, until you change or remove it |
 | Length of a welcome note in an invitation | 600 characters, with up to 3 questions of 200 characters each |
 | People Ari invites in one request | 50 |
+| Pages in one invitation for a member limited to named Pages | 20, each with view or edit access; see [Members limited to named Pages](/reference/settings#members-limited-to-named-pages) |
+| Administrators one merge request emails | 50; see [Merge requests](/reference/scenarios-and-history#merge-requests) |
 | Sign-in codes for one email address | 5 sent and 10 checked in 15 minutes; past that, sign-in answers **Too many requests** until the 15 minutes pass |
 | Time a sign-in code works | 10 minutes |
 | Length of an **Ask a human** message | 4,000 characters, with up to 3 PNG, JPG, or WebP screenshots of 5 MB or less each |

@@ -1,7 +1,7 @@
 ---
 title: "Table block controls and messages"
 sidebarTitle: "Table block controls"
-description: "Every control in a Table block: the header, the Table block settings menu, the setup panel, the right-click menus for Variables, Dimensions, items, and cells, format options (currency, percentages, decimal places, negatives in parentheses) and date formats, column sorts, subtotals below details, total columns, what colors and marks mean, what you can type into a cell, where to open the formula editor, every notice when a change is not saved, and what a table cannot do, such as cell comments."
+description: "Every control in a Table block: the header, the Table block settings menu, the setup panel, the right-click menus for Variables, Dimensions, items, and cells, format options (currency, percentages, decimal places, negatives in parentheses) and date formats, column sorts, subtotals below details, total columns, what colors and marks mean, what you can type into a cell, where to open the formula editor, every notice when a change is not saved, how a table can always show one Scenario whatever Scenario its Page is open in, and what a table cannot do, such as cell comments."
 ---
 
 This page lists every control, menu action, option, and message of a Table block, in the order the table shows them. For steps, see the guides linked in each section. Keyboard shortcuts are in [Keyboard shortcuts](/reference/keyboard-shortcuts#table-cells).
@@ -24,8 +24,9 @@ The strip above the grid, from left to right.
 | **Compare** | Shows other Scenarios or an earlier period beside the table's values. **Compare between** offers **None**, **Scenarios**, and **Time periods**. On a table with no Date row or column, or with more than one, **Time periods** shows **Time periods unavailable** with **Add one date row or column to compare time periods.** or **Use exactly one date row or column to compare time periods.** See [Compare Scenarios side by side](/guides/compare-scenarios). |
 | **Mention table in chat** | Adds the table to the current chat. See [Chat controls and messages](/reference/chat). |
 | **Table block settings** (**…**) | Opens the [settings menu](#table-block-settings-menu). |
+| **Scenario this table shows** | A branch icon at the right end of the header, shown to people who can edit the Page. Opens a menu with **The page’s scenario** and each Scenario and Snapshot in your list. Choosing one makes the table show that Scenario whatever Scenario its Page is open in, and the header then shows that Scenario's name in place of the icon. See [A table that always shows one Scenario](#a-table-that-always-shows-one-scenario). |
 
-On a phone, the header shows the title, the date range, **Mention table in chat**, and **Table block settings**.
+On a phone, the header shows the title, the date range, **Mention table in chat**, and **Table block settings**. A table that always shows one Scenario also shows that Scenario's name there, with no menu.
 
 ## Table block settings menu
 
@@ -264,7 +265,7 @@ No table owns a Variable or Dimension. The saved tables that show it, as a row, 
 | A row or column, while another saved table still shows the Variable or Dimension | It leaves this table only. |
 | Its last row, column, or drill-in on any table | cfo.ai asks **Delete variable or dimension?** before anything changes. Confirming deletes it from the Model. |
 | A table, with **Delete block**, or that table's Page | A Variable or Dimension another table still shows is kept. One no other table shows is deleted with the table, after the same question. |
-| A Variable or Dimension that several tables show, by asking Ari to delete it | Ari deletes it from the Model after you confirm. Its rows and columns leave the table recorded as its location, at first the table it was created on, and the table Ari was working on. Any other table that showed it keeps a row, column, or drill-in for it, marked [**Deleted property reference**](#table-header), until someone removes it there with **Remove deleted property from table** in the table setup panel. Ari's delete result names up to 20 such tables that you can open and counts the rest, so Ari can tell you which tables still list it. |
+| A Variable or Dimension that several tables show, by asking Ari to delete it | Ari deletes it from the Model after you confirm. Its rows and columns leave the table recorded as its location, at first the table it was created on, and the table Ari was working on. On those tables, the rows or columns beneath a deleted Variable that break it down by a Dimension's items leave with it, because they show nothing without the Variable. One case keeps them: when the delete would leave a Dimension with no row or column, in that Scenario or in one that inherits the table, that Dimension's rows stay and move up into the Variable's place. Any other table that showed it keeps a row, column, or drill-in for it, marked [**Deleted property reference**](#table-header), until someone removes it there with **Remove deleted property from table** in the table setup panel. Ari's delete result names up to 20 such tables that you can open and counts the rest, so Ari can tell you which tables still list it. The result also lists the rows and columns the delete removed and each Dimension whose rows stayed. |
 
 The question is always asked, even when nothing else uses the Variable or Dimension:
 
@@ -348,6 +349,26 @@ A column sort orders a Dimension's rows by the values in one column, such as cus
 | Copies | A copy of the table that Ari makes keeps the sort on the copy's matching column. |
 | Everyone sees the same order | The rows are ordered when the table's values are calculated, so every reader, Ari, and a spreadsheet download get the same order. |
 | Saved | With the table, for everyone. When the save cannot be confirmed, the table shows **Couldn't confirm the table changes were saved** with **Retry**; see [When a change is not saved](#when-a-change-is-not-saved). |
+
+## A table that always shows one Scenario
+
+A table shows the Scenario its Page is open in, unless you choose one Scenario for it. With a Scenario chosen, the table shows that Scenario whatever Scenario the Page is open in, so one Page can hold a Plan table beside a Plan+ table. Choose it with [**Scenario this table shows**](#table-header) in the table header. For steps, see [Keep a table on one Scenario](/guides/compare-scenarios#keep-a-table-on-one-scenario).
+
+| Rule | What happens |
+| --- | --- |
+| Menu | **The page’s scenario**, then each Scenario and Snapshot in your list. A check marks the current choice. **The page’s scenario** removes the choice, and the table follows its Page again. |
+| Header | The chosen Scenario's name, with the tooltip **Scenario this table shows**. People who can edit the Page, in a desktop browser, open the menu from the name. Everyone else, a phone or tablet, and a past version opened from version history show the name with no menu. A table with no Scenario chosen shows the branch icon to people who can edit the Page and nothing to other readers. |
+| What the table shows | The chosen Scenario's copy of the table: its rows and columns, values, formulas, formatting, and comparisons, with the **LC** mark at that Scenario's Last close. The numbers are the ones the table shows when its Page is open in that Scenario. |
+| Edits | A value, formula, row, column, or format you change in the table saves in the chosen Scenario. You can edit when you can edit the Page and can edit the table in the chosen Scenario; otherwise the table is read-only. While the Page is open in another Scenario, the **LC** badge shows the chosen Scenario's Last close and does not open **Edit last close**; change Last close with the Page open in that Scenario. |
+| Who can choose | Someone who can edit the table on the Page and can open the Scenario they choose. A choice that is refused or fails shows **Couldn’t change the table’s scenario**, with the reason when cfo.ai gives one, and the table keeps its earlier choice. |
+| Where the choice is saved | With the table, in the Scenario the Page is open in, for everyone. A Scenario that inherits the table from that Scenario inherits the choice. |
+| After you choose **The page’s scenario** again | The table shows the copy that the Page's Scenario holds. Layout and format changes made while another Scenario was chosen were saved in that Scenario. |
+| A Scenario that is not in your list | The table shows its name and **This table shows a scenario that isn’t available to you.**, with no values, and the header reads **Unavailable scenario**. This covers a Scenario you cannot open and one that was deleted or merged. The choice stays saved; someone who can edit the Page picks another Scenario from the same menu. |
+| A table you cannot read in the chosen Scenario | The table shows its name and **This table isn’t available to you in [Scenario].**, with no values. The same note shows when that Scenario does not hold the table. |
+| The table cannot load | **Couldn’t load this table from [Scenario].** with **Retry**. |
+| Spreadsheet download | The table's worksheet holds the chosen Scenario's numbers and formulas and names that Scenario under the sheet title. A table whose chosen Scenario the person exporting cannot open, or cannot read the table in, is left out of the workbook. See [Export a Page to Excel](/guides/download-a-spreadsheet#what-you-get). |
+
+A comparison is a different setting: **Compare** adds other Scenarios beside the Scenario the table shows, and it cannot replace that Scenario.
 
 ## What colors and marks mean
 
@@ -491,7 +512,7 @@ When a table cannot load or calculate, its notices, such as **We couldn't load t
 
 | Saved | Settings |
 | --- | --- |
-| With the table, for everyone | Rows, columns, and breakdowns; filters, sorts, and column sorts; hidden rows and columns; the date range and grain; comparisons; **Format**, **Precision**, **Scale**, **Negatives**, **Date format**, **Background**, **Text color**, **Text style**, and **Indent**; **Display as** (**Pill** or **Plain text**); total column summaries; **Hide totals**; column widths; pinned columns; **Use as row names**; **Show dimension headers**; **Subtotals below details**; **Rows open to** |
+| With the table, for everyone | Rows, columns, and breakdowns; filters, sorts, and column sorts; hidden rows and columns; the date range and grain; comparisons; **Format**, **Precision**, **Scale**, **Negatives**, **Date format**, **Background**, **Text color**, **Text style**, and **Indent**; **Display as** (**Pill** or **Plain text**); total column summaries; **Hide totals**; column widths; pinned columns; **Use as row names**; **Show dimension headers**; **Subtotals below details**; **Rows open to**; the Scenario a table always shows |
 | On the Variable or Dimension, for every table | Values and formulas; the name; the currency; the **Date** type; **Variance colors**; **Dimension color** |
 | In your browser only | Open formula columns; the formula bar; whether the setup panel is open; the table height; which rows and column groups you expanded or collapsed |
 | Not saved | **Show total columns**; **Pin total columns** |

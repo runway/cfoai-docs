@@ -53,6 +53,19 @@ A mapping column belongs beside the Dimension it is mapped from. An assignment a
 
 Renaming an item, on a table or through Ari, also renames it in the mapping and in formulas that compare against it, as one change that one undo reverses.
 
+## When a forecast is entered by a broader group than the report's category
+
+A report can group a number by a category that a mapping assigns to each detailed item, while the forecast is entered by a broader group of the same items. Say revenue reports by Class, and a mapping gives each Product its Class: Hardware, Software, or Services. The forecast is entered by product Family, and a second mapping gives each Product its Family. A forecast formula saved for the Core family names no Product, so it carries no Class. When Core's Products all share one Class, nothing is unclear. When Core holds a Hardware Product and a Software Product, nothing saved says how Core's forecast divides between Hardware and Software.
+
+When Ari reads a table like this, or builds or reshapes one, the result tells it where the category comes from and names each group whose items belong to more than one category with no split saved. Ari can then tell you which groups need a split and ask how each one divides. Ari's modeling instructions tell it to keep the amounts as saved until you answer, so it does not divide a group's forecast on its own. The table on the Page shows no mark.
+
+This check reads only saved mappings and saved formulas, so it has limits:
+
+- It covers mappings keyed by one Dimension, where each row maps one item to one fixed item.
+- A group stays on the list while the Variable has any formula or typed value saved for that group that names neither the category nor the detailed item. A split saved for some months leaves the group listed for the others, and a split saved another way, such as a separate percentage Variable, still reads as no split.
+- A group is left off when two mapping rows of equal rank give one of its items different results, and on a table that compares Scenarios.
+- Ari gets these facts only when you can read the category, the detailed Dimension, the group's Dimension, and the Variable.
+
 ## Shared Dimensions across accounting connections
 
 When a connection's accounting statements load for the first time, each category column, such as **Entity**, **Currency**, or **Vendor**, joins an existing Dimension that matches it. A match has the same accounting system, column name, type, and aggregation. If several match, it joins the one that the most sources already feed, and the older one when two are tied. So two QuickBooks Online companies share one Entity Dimension and one Currency Dimension, and a Model can report on each company and on the group.

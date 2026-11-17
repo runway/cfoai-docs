@@ -1,7 +1,7 @@
 ---
 title: "Compare Scenarios side by side"
 sidebarTitle: "Compare Scenarios"
-description: "Show another version of your plan, or an earlier period, beside a table's values: compare Scenarios or time periods, choose the variance measures, and see how Variance and Variance % are calculated."
+description: "Show another version of your plan, or an earlier period, beside a table's values: compare Scenarios or time periods, choose the variance measures, see how Variance and Variance % are calculated, and keep a table on one Scenario so one Page can show two Scenarios in separate tables."
 ---
 
 Use a comparison when you want to see two versions of your plan, such as Main and a Scenario, or this period against an earlier one, on the same table. A comparison is saved with the table, so everyone who opens the Page sees it, including readers of a share link.
@@ -39,6 +39,36 @@ Use a comparison when you want to see two versions of your plan, such as Main an
 </Tabs>
 
 A table compares either Scenarios or time periods, not both at once. Comparing time periods needs exactly one Date row or column on the table.
+
+## Keep a table on one Scenario
+
+To show two Scenarios in separate tables on one Page, such as a Plan table above a Plan+ table, choose a Scenario for each table. A table with a Scenario chosen shows that Scenario whatever Scenario the Page is open in. A comparison cannot do this: it adds columns beside the Scenario the table already shows.
+
+You need a desktop browser, edit access to the Page, and access to the Scenario you choose.
+
+<Tabs>
+  <Tab title="Ask Ari">
+    > On the Board summary Page, make the Plan revenue table always show the Plan Scenario and the Plan+ revenue table always show Plan+.
+
+    To undo it:
+
+    > Make the Plan revenue table show the Page's Scenario again.
+  </Tab>
+  <Tab title="By hand">
+    <Steps>
+      <Step title="Open the table's Scenario menu">
+        Select the branch icon at the right end of the table's header, after **Table block settings**. Its tooltip reads **Scenario this table shows**.
+      </Step>
+      <Step title="Choose the Scenario">
+        Choose a Scenario from the list. The header shows its name in place of the icon, and the table shows that Scenario's rows, values, and formulas.
+      </Step>
+    </Steps>
+
+    To make the table follow its Page again, select the Scenario's name in the header and choose **The page’s scenario**.
+  </Tab>
+</Tabs>
+
+What you change in such a table saves in the Scenario it shows, not in the Scenario the Page is open in. A reader who cannot open that Scenario sees a note in place of the table's values, and a spreadsheet download writes the table with that Scenario's numbers. The rules and messages are in [A table that always shows one Scenario](/reference/table-blocks#a-table-that-always-shows-one-scenario).
 
 ## How Variance and Variance % are calculated
 

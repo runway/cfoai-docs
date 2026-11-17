@@ -704,7 +704,7 @@ Notices after these actions: **Closed [form]** or **[form] was already closed**;
 | **Filter by name** | Appears once the form has 30 or more answers; **No answers match “[text]”.** when none match. |
 | **Select** / **Done** | On a narrow block, shows and hides the checkboxes. The checkboxes are labeled **Select [name]** and **Select all in [group]**. |
 | **[N] selected**, with **Add to table**, **Discard**, and **Clear** | The bar for picked answers. Up to 200 answers can be picked. **Add to table** is unavailable with **None of these are waiting to go in.**, **[reason]. Discard it, or ask them to answer again.**, or **None of these can go in yet. Discard them, or ask them to answer again.** |
-| **In the table**, **Replaced by a later answer**, **Discarded** | An answer's state. |
+| **In the table** | The state of a listed answer whose rows are in the table. The list holds each person's latest answer, or every standing answer when the form takes more than one per person. A discarded answer, and one a later answer replaced, is not listed. |
 | **Not checked against the table** | The answer could not be compared with the table, for example because it is not ready. |
 | **Doesn’t fit the form’s rules**, **Still being checked**, **Needs an amount for each month** | Why an answer cannot go in yet. |
 | **Held for your review** / **Not in table yet**, with **Why it was held** and **What changes** (or **What changes from [date]**) | The notice on a held answer, with **Add to table** and **Discard response**. **Held. [N] rows from an earlier add are in the table.** names rows an earlier answer of the same person already wrote. |
@@ -759,6 +759,21 @@ The form link opens a page of its own, outside the app, titled **[form] · cfo.a
 | The receipt | Subject **We got your answers to [form]**. It reads **You can change them until [date].** or **You can change them while the form is open.**, with the button **Change your answers** and a warning that anyone with that link can change the answers, so it should not be forwarded. A person gets at most one receipt every 10 minutes. An answer on the Page gets no receipt. |
 | The flagged-answer email | To the person who made the form. Subject **An answer to [form] was kept out of the table**; the body names the checks and says to look at the answer on the **Responses** tab and press **Add to table** if the check got it wrong. |
 | A saved email that links forms | Lists them under **Linked form** or **Linked forms**; one email can carry up to 10 forms. |
+
+### What Ari can do with a form
+
+Ari writes a form and changes its questions, name, due date, and settings when you ask. It can reopen a closed form, and it prepares the sending and reminder cards. Ari also reads a form's answers for someone who can edit the form's Page: who answered and how, whether each answer is in the table, the totals of the numbers, and who was emailed. Ari does not get the text of a held answer, and in a run nobody started from a chat, such as a Trigger's scheduled run, it gets no typed text at all.
+
+Ari can also do four of the form's own actions. Each one works only in the form's own Scenario, for a signed-in person who can edit the form's Page.
+
+| Ask Ari to | What happens | Limits |
+| --- | --- | --- |
+| Add answers to the table | The same as **Add to table**. A flagged answer goes in whole. A held second answer from another browser becomes that person's latest answer and goes in once its checks pass. An answer that is still being checked, or that does not fit the form's rules, stays out. An add that changes the table is one entry in version history, which you or Ari can undo. | Up to 200 answers at once. You must also be able to change the form's table. Ari adds answers only during a chat turn of yours, or work that turn started; a Trigger's scheduled run cannot add them. |
+| Discard answers | Each answer stays out of the table from then on. Rows it already put in the table stay. Ari has no way to remove those rows with the discard; use **Discard response** with **Also remove its [N] rows from [table]** on the **Responses** tab. | Up to 200 answers at once |
+| Close the form | The same as **Close form**. The form takes no more answers until it is reopened, and answers already sent still go in once their checks pass. | — |
+| Replace the form's link | The same as **Replace link**. The old address stops working for good, and Ari gets the new link to give you. | — |
+
+A request outside these rules changes nothing. From another Scenario, Ari is told the form lives in its own Scenario; without edit access to the Page, or without access to the table for an add, Ari is refused the same way the buttons are.
 
 ## Chart blocks
 

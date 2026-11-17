@@ -1,7 +1,7 @@
 ---
 title: "Collect numbers and answers from people with a form"
 sidebarTitle: "Collect answers with a form"
-description: "Ask department heads, managers, or people outside cfo.ai for budget figures, hiring plans, or other inputs through a form Ari builds on a Page. The answers land as rows in a Table block. Send the form, read the Responses tab, add or discard held answers, remind people, and close the form."
+description: "Ask department heads, managers, or people outside cfo.ai for budget figures, hiring plans, or other inputs through a form Ari builds on a Page. The answers land as rows in a Table block. Send the form, read the Responses tab, add or discard held answers yourself or through Ari, remind people, and close the form."
 ---
 
 Use a form when the numbers you need live with other people: next year's budget from each department head, a hiring plan from each manager, or event costs from a vendor who has no cfo.ai account. Ari builds the form as a Canvas block on a Page, above the Table block its answers fill, and each person's answers become rows under their name. The form asks one question at a time, works on a phone, and needs no account to answer. To type numbers into a table yourself, see [Enter, paste, and clear values](/guides/enter-values).
@@ -27,9 +27,9 @@ You need edit access to the Page the form sits on. A form lives in the Scenario 
     To share the form yourself instead, open the **Links** tab, where the form's address reads **Anyone with this link can answer.**, and select **Copy link**. Everyone who can view the Page can also answer on the Page itself; see [Who can answer, and what they see](#who-can-answer-and-what-they-see).
   </Step>
   <Step title="Read the answers">
-    The **Responses** tab counts the answers and lists them under **Completed** and **Held for review**. Each answer shows **In the table**, **Replaced by a later answer**, or **Discarded**. An answer that passes cfo.ai's checks goes into the table on its own, as one entry in version history that reads **Added [N] answers from [form] automatically: [names]**, so you can undo it there.
+    The **Responses** tab counts the answers and lists them under **Held for review** and **Completed**. An answer whose rows are in the table reads **In the table**. An answer you discarded, or one a later answer replaced, leaves the list. An answer that passes cfo.ai's checks goes into the table on its own, as one entry in version history that reads **Added [N] answers from [form] automatically: [names]**, so you can undo it there.
 
-    A held answer explains itself under **Why it was held**, and **What changes** shows the rows and values it would write. Select **Add to table** to let it in, or **Discard response** to leave it out; the discard dialog offers **Also remove its [N] rows from [table]** when the answer already has rows, and reads **Its rows stay in the table.** when they cannot be removed from here. Tick several answers to use **Add to table** or **Discard** on all of them, up to 200 at once. The notice after an add or a removal has **Undo**. [How answers reach your table](#how-answers-reach-your-table) explains why an answer is held.
+    A held answer explains itself under **Why it was held**, and **What changes** shows the rows and values it would write. Select **Add to table** to let it in, or **Discard response** to leave it out; the discard dialog offers **Also remove its [N] rows from [table]** when the answer already has rows, and reads **Its rows stay in the table.** when they cannot be removed from here. Tick several answers to use **Add to table** or **Discard** on all of them, up to 200 at once. The notice after an add or a removal has **Undo**. [How answers reach your table](#how-answers-reach-your-table) explains why an answer is held. To have Ari do this for you, see [Ask Ari to act on a form](#ask-ari-to-act-on-a-form).
   </Step>
   <Step title="Remind the people who have not answered">
     On the **Links** tab, **Sent to** lists each person the form was emailed to, with **Answered** or **Not yet**, and the filters **All**, **Answered**, and **Not yet**. Select **Remind [N]**. The chat opens with a reminder request, Ari posts a card titled **Remind about [form]**, and you press **Send**. cfo.ai sends no reminder on its own.
@@ -40,6 +40,21 @@ You need edit access to the Page the form sits on. A form lives in the Scenario 
 </Steps>
 
 The same menu has **Replace link**, which gives the form a new address; the old one then reads **This link no longer works.** It also has **Delete form**, which removes the block from the Page. The table keeps every row, the answers people sent are kept, and the form's link then reads **This form is not taking answers.** Every label, dialog, and message is listed in [Input forms](/reference/interface#input-forms).
+
+## Ask Ari to act on a form
+
+Ari can do four of these jobs for you when you ask in a chat: add held answers to the table, discard answers, close the form, and replace its link. Ari can also tell you who has answered and total the numbers they sent. Ask in the form's own Scenario, and name the form:
+
+> Who still has a held answer on the Budget requests form? Add Marco Ruiz's answer to the table and discard the two test answers.
+
+- Ari works with your access. You need edit access to the form's Page, and to add answers you also need to be able to change the form's table.
+- Ari cannot read the text of a held answer, so read it on the **Responses** tab before you ask Ari to add it.
+- Ari adds held answers only during a chat turn of yours. A Trigger's scheduled run can discard answers, close the form, and replace its link, but it cannot add a held answer.
+- An answer Ari discards stays out of the table from then on, and rows it already put there stay. To take the rows out too, discard the answer on the **Responses** tab and keep **Also remove its [N] rows from [table]** ticked.
+- An add that changes the table is one entry in version history. Undo it there, or ask Ari to undo it.
+- After Ari replaces the link, the old address stops working for good. Ask Ari for the new link, or copy it from the **Links** tab.
+
+To open a closed form again, select **Reopen form**, or ask Ari to reopen it. [What Ari can do with a form](/reference/interface#what-ari-can-do-with-a-form) lists each action and its limits.
 
 ## Rename a form
 
@@ -75,7 +90,8 @@ A form is made in a Scenario and stays there: sending it, its due date, closing 
 - **This link no longer works.**, with **Ask the person who sent it for a new one.** The link was replaced. Send the new one from the **Links** tab.
 - **This form is not taking answers.** The form was deleted, or the workspace is not active.
 - **You've changed your answers as many times as this form allows.** The person reached the limit on stored answers for one form, replaced ones included; see [Limits and file types](/reference/limits#input-forms).
-- **This form has taken as many answers through this link as it can.** The link reached its limit on stored answers. Ask Ari for a new form.
+- **This form has taken as many answers through this link as it can.** The link reached its limit on stored answers. Select **Replace link** in the **More actions** menu and share the new link; a new link starts its own count.
+- An answer that passed its checks sits under **Held for review** as **Not in table yet**. cfo.ai adds checked answers as the person who made the form. If that person left the workspace, or can no longer edit the Page or the table, the answers wait. Tick them and select **Add to table**.
 - **Discard responses from a computer.** Discarding, closing, reopening, replacing the link, and deleting need a desktop browser.
 
 [Input forms](/reference/interface#input-forms) lists every message, and [Limits and file types](/reference/limits#input-forms) every limit.

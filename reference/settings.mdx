@@ -1,6 +1,6 @@
 ---
 title: "Settings"
-description: "Every section and field in cfo.ai Settings, in the order the app shows them: General, Workspace, Profile, Ari, Connections, Skills, Billing, and Usage. Covers the workspace name and brand, Last close and date defaults, negative numbers in parentheses, light or dark mode, inviting teammates, who sees each section, its messages, and what Settings has no setting for, such as a fiscal year or an API key."
+description: "Every section and field in cfo.ai Settings, in the order the app shows them: General, Workspace, Profile, Ari, Connections, Skills, Billing, and Usage. Covers the workspace name and brand, Last close and date defaults, negative numbers in parentheses, light or dark mode, inviting teammates, what a member limited to named Pages can and cannot do, who sees each section, its messages, and what Settings has no setting for, such as a fiscal year or an API key."
 ---
 
 Settings holds the workspace's options and your own preferences. To open it, select your name or picture at the bottom of the sidebar, then **Settings**. Settings opens on **General**, with the sections listed down the left side in this order.
@@ -16,7 +16,7 @@ Settings holds the workspace's options and your own preferences. To open it, sel
 | **Billing** | Workspaces billed in the app | Plan, payment methods, billing recipient, billing history, and cancellation |
 | **Usage** | Workspaces billed in the app | AI usage, extra usage, spend limit, auto-reload, and integration slots |
 
-Every member of a workspace is an administrator, so everyone sees **Workspace**. A workspace billed outside the app has no **Billing** or **Usage** section.
+Only administrators see **Workspace**. A member limited to named Pages cannot change the workspace's settings; see [Members limited to named Pages](#members-limited-to-named-pages). A workspace billed outside the app has no **Billing** or **Usage** section.
 
 ## General
 
@@ -136,7 +136,7 @@ In a workspace with a brand, **Theme** is replaced by **This workspace uses the*
 | **Email address** | The address to invite. |
 | **Add admin** | Unavailable until an address is typed. Creates the invitation and emails it; the form then reads **Admin invitation created for** [address]**.** Adding an address that already has a pending invitation sends the email again. An address that already has access to this workspace's shared Pages through a share link, and so belongs to the workspace without the administrator role, is made an administrator at once, with no email, and the form reads [address] **is now an admin.** See [Keeping access to a shared Page](/concepts/sharing-and-access#keeping-access-to-a-shared-page). The same line appears for an address that is already an administrator, and nothing changes. |
 
-cfo.ai has no other role to invite someone to: every invitation is for an administrator. For read-only access, use a share link; see [Share a Page outside your workspace](/guides/share-a-page).
+Every invitation from Settings is for an administrator. To invite a member limited to named Pages, ask Ari; see [Members limited to named Pages](#members-limited-to-named-pages). For read-only access without joining the workspace, use a share link; see [Share a Page outside your workspace](/guides/share-a-page).
 
 ### Admins
 
@@ -152,6 +152,57 @@ cfo.ai has no other role to invite someone to: every invitation is for an admini
 | [email] **was removed from this workspace.** | The person was removed, and the list reloaded. |
 | [email] **invitation was cancelled.** | The invitation was cancelled, and the list reloaded. |
 | **Couldn’t load the admins of this workspace. Please try again.** | The list could not load. |
+
+### Members limited to named Pages
+
+A member limited to named Pages belongs to the workspace without the administrator role: they see only the Pages an administrator names, and they change Main only through an administrator. cfo.ai's own messages call such a person a scoped member. For how this works, see [Sharing and access](/concepts/sharing-and-access#members-limited-to-named-pages).
+
+Settings has no control for these members:
+
+- You invite one by asking Ari, not from **Invite admin**. See [Invite someone to named Pages only](/guides/invite-teammates#invite-someone-to-named-pages-only).
+- The **Admins** list leaves them out, joined or invited. Ask Ari to list everyone in the workspace. Ari's list names each person and each pending invitation and marks the administrators; it does not say which Pages a person holds.
+- Entering such a member's address under **Invite admin** makes them an administrator at once, which ends their limits.
+
+An invitation gives each named Page one of two levels:
+
+| Level | What the member can do with the Page |
+| --- | --- |
+| View | Open the Page, and read the Variables its tables show. |
+| Edit | Also change those Variables' values and formulas, in a Scenario of their own. |
+
+An invitation is refused, and nobody in the same request is invited, when:
+
+- It names no Page, or more than 20 Pages.
+- A Page it names is not a Page in Main.
+- The person already belongs to the workspace, or has a pending administrator invitation.
+- The welcome's first Page is not one of the Pages the invitation names.
+
+Inviting an address again before the person joins replaces the level of each Page named again and keeps the Pages named only in the earlier invitation.
+
+| A member limited to named Pages can | Details |
+| --- | --- |
+| Open their Pages | In Main, and in each Scenario of their own. The sidebar and workspace search hold only what they can read. |
+| Read formulas | Only a formula whose every reference they can read. Other formulas are left out. |
+| Create a Scenario and rename their own | A Scenario they create is theirs to edit. |
+| Change values and formulas | With edit access, on the Variables their Pages' tables show, in a Scenario of their own. A formula must refer only to what they can read. |
+| Chat with Ari | Ari works with the member's access. See [Ari follows the same access](/concepts/sharing-and-access#ari-follows-the-same-access). |
+| Ask for a merge | By asking Ari, which emails the administrators. See [Merge requests](/reference/scenarios-and-history#merge-requests). |
+
+| A member limited to named Pages cannot | Details |
+| --- | --- |
+| Change Main | Every change to Main, or to anything saved in it, is refused, whatever level their Pages have. |
+| Merge or delete a Scenario, or take a Snapshot | Including a Scenario of their own. |
+| Change a Page or a table's layout | No creating, renaming, moving, or deleting a Page or a block, and no saved change to a table's rows, columns, or filters. |
+| Undo, redo, or restore | Version history is closed to them too. |
+| Download a spreadsheet | In the app or by asking Ari. |
+| Attach or upload a file | In a chat or as a data upload. |
+| Add or change a connection | Ari also calls no connected API or MCP server for them. |
+| Create or change a Trigger, a Skill, an agent, or a share link | Workspace Skills still apply in their chats. |
+| Change the workspace's name, brand, date settings, billing, or people | |
+
+When the app shows why it refused such a member, the reason reads **Your access covers your pages, editing them in your own scenarios, merge requests and your Ari chats. Ask a workspace admin to do this.** For example, **Delete** on their own Scenario shows a notice titled **Couldn’t delete [Scenario]** with that reason.
+
+When a calculation or another request fails for such a member, cfo.ai tells them that it failed without the explanation, because the explanation can name a Variable they cannot read.
 
 ## Profile
 
@@ -289,7 +340,8 @@ The section reads **Enable ready-made workflows for everyone in this workspace. 
 ## What Settings has no setting for
 
 - A fiscal year that starts in a month other than January. See [Fiscal years](/concepts/actuals-and-forecast#fiscal-years-quarters-and-years-follow-the-calendar).
-- A view-only or other lower role, access to single Pages for one person, or user groups. Use a share link for read-only access; see [Sharing and access](/concepts/sharing-and-access).
+- Inviting a member limited to named Pages, listing such members, or changing their Pages. Ask Ari to invite one; see [Members limited to named Pages](#members-limited-to-named-pages).
+- User groups, or a view-only role for the whole workspace. Use a share link for read-only access; see [Sharing and access](/concepts/sharing-and-access).
 - An API key or access token for cfo.ai. AI tools connect to the MCP server and sign in through the browser; see [Is there a cfo.ai API or API key?](/guides/connect-an-ai-client#is-there-a-cfoai-api-or-api-key)
 - Deleting a workspace or an account. See [Cancel your subscription or delete your data](/guides/cancel-or-delete).
 - Pausing a subscription. See [Plans and billing](/reference/plans-and-billing#rules-and-limits).

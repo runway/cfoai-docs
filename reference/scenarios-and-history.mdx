@@ -1,7 +1,7 @@
 ---
 title: "Scenario and version history controls"
 sidebarTitle: "Scenarios and history"
-description: "Every control, label, and message for Scenarios (versions of your plan), Snapshots, and version history: the Scenario picker with Create scenario and Duplicate scenario, its actions menu, the Take snapshot and merge dialogs, and the version history panel where you undo a change or restore an earlier version."
+description: "Every control, label, and message for Scenarios (versions of your plan), Snapshots, and version history: the Scenario picker with Create scenario and Duplicate scenario, its actions menu, the Take snapshot and merge dialogs, the merge request email, and the version history panel where you undo a change or restore an earlier version."
 ---
 
 Scenarios, Snapshots, and version history each have their own controls: the Scenario picker in the sidebar, the **Take snapshot** and merge dialogs, and the version history panel. This page lists every control and message, in the order the app shows them. For what each one is for, see [Scenarios, Snapshots, and version history](/concepts/scenarios).
@@ -39,6 +39,11 @@ You must have permission to create Scenarios to see **Take snapshot**, **Duplica
 
 Items you do not have permission for are not shown.
 
+| Message | Meaning |
+| --- | --- |
+| **Couldn’t rename [Scenario]**, with the reason | The rename was refused or failed. The row goes back to the saved name. Without a reason from cfo.ai, the notice reads **Could not rename the scenario.** |
+| **Couldn’t delete [Scenario]**, with the reason | The delete was refused or failed, and the Scenario stays. Without a reason from cfo.ai, the notice reads **Could not delete the scenario.** A member limited to named Pages gets this notice for a Scenario of their own, because such a member cannot delete a Scenario; see [Members limited to named Pages](/reference/settings#members-limited-to-named-pages). |
+
 ### Scenario names
 
 When you type a name in the app, for a new Scenario, a rename, or a Snapshot, cfo.ai does not compare it with your other Scenarios. Two Scenarios can therefore share a name, or have names that differ only in capital letters or in the spaces and punctuation between words, such as "Plan 2" and "plan-2". **Duplicate scenario** names its copy itself and numbers it when that name is taken. Ari does not create, rename, or snapshot a Scenario under a name that matches another Scenario in one of those ways, or under the name Main. When the name you ask for matches another Scenario you can see, Ari saves nothing and can tell you which Scenario it matches. Ari can rename a Scenario to a variant of its own name, such as "Plan 2" to "plan 2". To have both, create or rename the Scenario in the picker.
@@ -68,6 +73,21 @@ The dialog is titled **Merge "[Scenario]" into [target]?**. The target is Main, 
 | **Could not load the changes in "[Scenario]".**, with the reason and **Retry** | The summary could not be read. **Retry** reads it again. |
 | **Nothing in "[Scenario]" differs from [target] yet.** | The Scenario holds no changes, so there is nothing to merge. |
 | **scenario cannot be merged while it has [n] child scenario**, followed by the children's names | The Scenario has editable child Scenarios, so the merge is refused. Snapshots taken from the Scenario do not block a merge. |
+
+## Merge requests
+
+A member limited to named Pages cannot merge a Scenario. They ask Ari to request the merge, and cfo.ai emails the workspace's administrators. The app has no button for the request. See [Ask an administrator to merge your Scenario](/guides/merge-a-scenario#ask-an-administrator-to-merge-your-scenario).
+
+| Part of the email | What it reads |
+| --- | --- |
+| Subject and heading | **[Name] asks to merge [Scenario] into [target]**. The name is the person who asked, or their email address when their account has no name. The target is the Scenario's parent, which is Main for a Scenario created from Main. |
+| Text | **Open the scenario to compare it with [target], then merge it from the scenario menu.** To merge, use **Merge** beside the Scenario picker; see [Merge dialog](#merge-dialog). |
+| Button | **Open [Scenario]**, which opens the workspace in that Scenario. |
+
+- The email goes to up to 50 of the workspace's administrators. The person who asked is left out.
+- In a workspace with a brand, the email carries the brand and comes from the brand's name **via cfo.ai**, as an invitation does.
+- A request saves nothing and locks nothing. The app does not list requests, and nothing marks a Scenario as waiting for a merge.
+- A request is refused for Main and for a Snapshot, which cannot be merged.
 
 ## Confirmation cards in the chat
 

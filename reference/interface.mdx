@@ -70,7 +70,7 @@ From top to bottom:
 | Logo | The cfo.ai logo, or your workspace brand's logo, is a link. Pointing at it shows where it goes: **New chat** when you can start a chat, or **Open** followed by the first Page's name when you cannot. **⌘**-click opens it in a new tab. |
 | **Collapse navigation** | Folds the sidebar to a narrow strip (**⌘ \\**, or **Ctrl \\** on Windows and Linux). On the strip, **Expand navigation** brings it back; pointing at the strip shows the sidebar over the page, and **Keep navigation open** pins it. Dragging the sidebar's edge resizes it, and dragging it narrow enough folds it. In a chat on a narrow window, the sidebar stays folded and the strip offers **Open navigation**. |
 | **Search** | Opens [workspace search](#workspace-search). |
-| **Chats** | Your chats, newest activity first, with **New chat** and a filter. Selecting a chat keeps the Page on screen. Chats from Slack and from AI assistants are left out until the filter includes them. See [The chat list](/reference/chat#the-chat-list-find-rename-and-archive-chats). |
+| **Chats** | Your chats, newest activity first unless you sort them by **Created**, with **New chat** and a filter. Selecting a chat keeps the Page on screen. Chats from Slack and from AI assistants are left out until the filter includes them. See [The chat list](/reference/chat#the-chat-list-find-rename-and-archive-chats). |
 | **Model** | Select **Model** to open or close the section. It holds the Scenario picker (**Scenario** followed by the Scenario's name, **Main Scenario** until you pick another) and the Pages of the Scenario the picker shows. **New page** (**+**) creates a Page in that Scenario and opens it, and a chat you have open stays open. The section appears once the workspace has its first Page. See [Scenario and version history controls](/reference/scenarios-and-history) and [Create and organize Pages and blocks](/guides/create-pages-and-blocks). |
 | **Connections** | Your connected systems, each with its status, and **Add integration** (**+**). Pointing at the heading shows a **…** menu with **Links sent** and, once a connection can take a link, **Select connections to send a link** (**⌥ click** on such a connection's row does the same). See [Connection statuses and actions](/reference/connection-statuses) and [Send a link so someone else can connect a source](/guides/send-a-connect-link). |
 | **Feedback** | Opens [Share feedback](#share-feedback). |
@@ -127,6 +127,7 @@ Select your name and picture at the bottom of the sidebar. From top to bottom:
 | **Appearance** | **Auto**, **Light**, or **Dark** for you alone. The current choice shows beside it. |
 | **Settings** | Opens Settings. See [Settings](/reference/settings). |
 | **Help center** | Opens the [Help center](#help-center) (**⌘ ?**). |
+| **Talk to us on Slack** | Opens [Talk to the cfo.ai team on Slack](#talk-to-us-on-slack), which invites your workspace to a Slack channel shared with the cfo.ai team. |
 | **Manage memories** | Starts a chat in which Ari shows what it remembers about you and the workspace and helps you change it. See [What Ari remembers](/concepts/ari-memory). |
 | **Manage triggers** | Opens the [Triggers page](#triggers-page). |
 | **Workspaces** | Every workspace you belong to, with a check beside the one you are in. Select another to switch to it; **⌘**-click opens it in a new tab. |
@@ -189,6 +190,23 @@ When the last scheduled attempt did not start a run, or cfo.ai paused the Trigge
 | **This trigger is paused**, with **One-time schedule paused after 24 hours without queueing a run. Resume it or set a new future date and enable it.** | A one-time Trigger could not start for 24 hours after its date and time. Set a new date and time in **Edit trigger**. |
 | **The last scheduled attempt was skipped**, with **The run that started [time] was still going. No run has started since then.**, **The run queued [time] was still waiting to start. No run has been queued since then.**, or **Ari was still working on the previous task.** | An earlier run of the Trigger was still going or waiting, so no new run started. |
 
+### A decision a Trigger waits on
+
+When a run reports a choice only you can make, cfo.ai sends it to you once and the Trigger waits on it. To answer one, see [Schedule a Trigger](/guides/schedule-a-trigger#answer-a-decision-a-trigger-waits-on).
+
+| What you see | Meaning |
+| --- | --- |
+| A Slack direct message with the decision, then **Your schedule “[name]” waits on this.** and the link **Answer in its chat** | The first run that reported the decision sent it. The link opens that run's chat. The message goes to you alone, never to a Slack channel the Trigger posts in, and it is sent even when the Trigger's instructions name no Slack delivery. |
+| The same message in your cfo.ai chat | Slack had no way to reach you, for example because the workspace has no Slack connection or Slack has no account under your cfo.ai email. The message is posted in the chat you created the Trigger from, or in your most recent chat in the workspace when that chat is gone. |
+| A run's reason in **History** that starts **Waiting since [date] for this decision:**, followed by the decision | The Trigger was waiting on the decision when the run reported. The date is the day cfo.ai sent it, in the Trigger's time zone. The line shows on a run that reads **Delivered with gaps** or **Did not complete**. |
+
+- A run that repeats the same decision sends nothing. A run that reports a different decision sends that one, and it replaces the first. A Trigger waits on one decision at a time.
+- A run that reports no decision ends the wait.
+- When the message could not be sent, for example because Slack was rate limiting, or because Slack had no way to reach you and you have no chat in the workspace, the Trigger does not start waiting, and the next run that reports the decision sends it.
+- When Slack gives no clear answer about whether it posted the message, cfo.ai treats it as sent and does not send it again.
+
+A Trigger also keeps the instructions it had before their latest change, one version back. The Triggers page does not show them. Ask Ari to show them or to put them back; see [Undo a fix a run made](/guides/schedule-a-trigger#undo-a-fix-a-run-made).
+
 ### New trigger and Edit trigger
 
 The form has **Name** (placeholder **Weekday cash brief**), **Agent**, **Instructions**, and **Schedule**. **Agent** chooses who runs the Trigger: **Ari**, which a new Trigger starts with, or one of the workspace's agents that is not archived. **Repeat** offers:
@@ -244,11 +262,13 @@ Guides your team saved are not listed in the Help center; ask Ari to start one. 
 
 ### Contact support
 
-You can reach a person at cfo.ai three ways.
+You can reach a person at cfo.ai in these ways.
 
 | Control | What it does |
 | --- | --- |
 | **Help center → Getting started → Ask a human** | Opens [Ask a human](#ask-a-human), which sends a message straight to the cfo.ai team. |
+| Asking Ari in a chat | When you ask Ari for a person, Ari offers to send your request to the cfo.ai team in your words, and sends it once you agree. The request goes to the same team as **Ask a human**, with your name and email. Ari cannot attach screenshots; use **Ask a human** to send those. Ari sends a request only for a signed-in member of the workspace who is in the chat, so a Trigger's run cannot send one. |
+| **Talk to us on Slack** in the account menu | Opens [Talk to the cfo.ai team on Slack](#talk-to-us-on-slack), which emails every member of the workspace a Slack invitation to a private channel shared with the cfo.ai team. You can also ask Ari in a chat to send these invitations. |
 | **Feedback** in the sidebar | Sends product feedback to the cfo.ai team. |
 | Email [success@cfo.ai](mailto:success@cfo.ai) | The **Support** link at the top of these docs. |
 
@@ -267,6 +287,21 @@ The dialog is titled **Ask a human**, with **Tell us what's going on — this go
 | **Message sent** | The message was sent to the cfo.ai team. |
 | **Could not send your message**, with the reason | The message was not sent. |
 | **Could not attach screenshot**, with **Attach up to 3 screenshots.**, **Screenshots must be PNG, JPG, or WebP files.**, or **Screenshots must be 5 MB or smaller.** | The screenshots you added were not attached: the message would have more than 3, a file is another type, or a file is larger than 5 MB. |
+
+### Talk to us on Slack
+
+**Talk to us on Slack** in the account menu opens the dialog **Talk to the cfo.ai team on Slack**. It lists every member of the workspace under **Workspace members**. While a member can still be invited, it reads **Get help, ask questions, and share feedback in a private Slack channel with our team. We’ll set it up and automatically email invitations to everyone in your workspace.**
+
+| Control or message | Meaning |
+| --- | --- |
+| **Join us on Slack** | Sets up the channel and has Slack email an invitation to every member listed as **Will receive an invitation**. The button reads **Send remaining invitations** when some members already have one. |
+| **Will receive an invitation** / **Invitation sent** / **Already in channel** | Each member's status. |
+| **Invitations sent**, with **Open the email from Slack to join your shared channel with the cfo.ai team.** | Every member has an invitation or is in the channel. |
+| **Already connected**, with **Everyone is already in the channel. Open Slack to talk with the cfo.ai team.** | Every member is in the channel. |
+| **Accept the invitation in your own Slack workspace. Your Slack admin may need to approve it.** | Shown while a member has an invitation waiting or still to be sent. |
+| **Slack support is unavailable right now. Use Feedback in the sidebar to reach us.** | The Slack channel cannot be set up at the moment. Use **Feedback**, or [Ask a human](#ask-a-human). |
+
+When you ask Ari in a chat to connect you with the cfo.ai team on Slack, Ari can send the same invitations. Ari sends them only for a signed-in member of the workspace who is in the chat.
 
 ### Share feedback
 

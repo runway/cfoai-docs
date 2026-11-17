@@ -9,24 +9,21 @@ Everything Ari builds, you can also build yourself. In this lesson we build a sm
 You need about 15 minutes and a desktop browser. Pages cannot be edited in a phone browser.
 
 <Note>
-  In a workspace with no Pages yet, the sidebar has no **Model** section. On the empty screen, choose **Add block**, then **Table block**. cfo.ai creates a Page with a table on it. Rename the Page from its title, then continue from step 3.
+  In a workspace with no Pages yet, the sidebar has no **Model** section. Open a chat and select **Expand model pane**. The pane reads **No pages yet**. Select **Create page**. cfo.ai creates a Page named **New Page** with a blank table on it, and the **Model** section appears in the sidebar. Name the Page as step 1 describes, then continue from step 2.
 </Note>
 
 <Steps>
   <Step title="Create a Page">
-    In the sidebar's **Model** section, select the **+** button labeled **New page**. cfo.ai creates a Page named **New Page** and opens it.
+    In the sidebar's **Model** section, select the **+** button, **New page**. cfo.ai creates a Page named **New Page** and opens it.
 
-    Click the **New Page** title at the top of the Page, type `Coffee cart`, and press **Enter**.
-  </Step>
-  <Step title="Add a Table block">
-    On the empty Page, choose **Table block**.
+    Notice that the Page already holds a table, titled **New Table Block**, with the hint **Build your table**. A new table is blank until you add rows or columns.
 
-    Notice the hint **Build your table**. A new table is blank until you add rows or columns.
+    In the sidebar, double-click **New Page**, type `Coffee cart`, and press **Enter**. The sidebar and the top of the Page show the new name.
   </Step>
   <Step title="Add your first Variable">
     Select **Add row** at the bottom of the table. In the search field, type `Cups Sold`, then select **Create variable: Cups Sold**.
 
-    Notice that cfo.ai adds a row of months across the top, or of your workspace's default period, such as quarters. A Variable is a named line of the Model, and it has one value for each period.
+    Notice that cfo.ai adds the **Cups Sold** row and a column for each month across the top, or for each of your workspace's default periods, such as quarters. After a moment, the table's title changes from **New Table Block** to a suggested name. A Variable is a named line of the Model, and it has one value for each period.
   </Step>
   <Step title="Type some values">
     Select the first month's cell in the **Cups Sold** row and type `1000`. Press **Tab** to move to the next month, type `1200`, press **Tab**, type `1500`, and press **Enter**.
@@ -34,20 +31,20 @@ You need about 15 minutes and a desktop browser. Pages cannot be edited in a pho
     Notice the dashed underline under each number. It marks a cell that holds its own value.
   </Step>
   <Step title="Give a Variable one value for every month">
-    Add another row and create a Variable named `Price per Cup`. Point at its row name and select the **fx** icon, **Edit variable formula**.
+    Select **Add row** again, type `Price per Cup`, and select **Create variable: Price per Cup**. Point at the **Price per Cup** row name and select the **fx** icon, **Edit variable formula**.
 
-    If your workspace has a Last close, the editor has two sections, **Actuals** and **Forecast**: the months up to Last close, and the months after it. Type `4` in **Actuals**, select **Forecast** to open it, type `4` there too, and press **Enter**. If you see one editor instead, type `4` and press **Enter**.
+    The formula editor opens with two sections, **Actuals** and **Forecast**, written in capitals: the months up to Last close, and the months after it. **Actuals** is open and holds `0`, the value an empty Variable shows. Replace the `0` with `4`. Select **Forecast** to open it, replace its `0` with `4` too, and press **Enter**.
 
     Notice that every month now shows 4, with no underline. The row's formula fills every month for you; in a spreadsheet you would have copied the value across.
   </Step>
   <Step title="Write a formula">
-    Add a third row and create a Variable named `Cart Revenue`. Open its formula editor the same way, and type this in both sections, or in the one editor if that is what you see:
+    Add a third row and create a Variable named `Cart Revenue`. Open its formula editor the same way. In **Actuals**, replace the `0` with this formula:
 
     ```text
     `Cups Sold` * `Price per Cup`
     ```
 
-    As you type, autocomplete suggests the Variable names. Backticks wrap a name that contains spaces. Press **Enter**.
+    As you type, autocomplete suggests the Variable names, and each name you finish becomes a chip. Backticks wrap a name that contains spaces. Select **Forecast**, replace its `0` with the same formula, and press **Enter**.
 
     Notice that **Cart Revenue** fills in for every month: 4,000 in the first month, 4,800 in the second, and 6,000 in the third. Later months show 0, because **Cups Sold** has no value there yet. The formula refers to Variables by name, not to cells such as `B7`, so it works in every month at once.
   </Step>
@@ -59,7 +56,7 @@ You need about 15 minutes and a desktop browser. Pages cannot be edited in a pho
   <Step title="See what a number is made of">
     Point at the **Cart Revenue** row name and select the **fx** icon, **Edit variable formula**, again.
 
-    Notice the formula you wrote. It names **Cups Sold** and **Price per Cup**, the inputs of this number. Press **Esc** to close the editor without saving.
+    Notice the formula you wrote, in both sections. It names **Cups Sold** and **Price per Cup**, the inputs of this number. Press **Esc** to close the editor without saving.
   </Step>
 </Steps>
 
@@ -73,4 +70,4 @@ You built a working piece of a Model by hand: three Variables, typed values, a f
 - Split a row by product or region: [Break a number down](/guides/break-down-a-number).
 - Format numbers as currency and arrange the table: [Format and arrange a table](/guides/format-a-table).
 - Look up every formula function: [Formula functions](/reference/functions).
-- Delete the practice Page when you are done: point at it in the sidebar and select **Delete page**.
+- Delete the practice Page when you are done: point at it in the sidebar and select its trash button, **Delete page**. cfo.ai asks **Delete variables or dimensions?**, because no other table shows the three Variables. Choose **Delete completely**.

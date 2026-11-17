@@ -267,7 +267,7 @@ You can reach a person at cfo.ai in these ways.
 | Control | What it does |
 | --- | --- |
 | **Help center → Getting started → Ask a human** | Opens [Ask a human](#ask-a-human), which sends a message straight to the cfo.ai team. |
-| Asking Ari in a chat | When you ask Ari for a person, Ari offers to send your request to the cfo.ai team in your words, and sends it once you agree. The request goes to the same team as **Ask a human**, with your name and email. Ari cannot attach screenshots; use **Ask a human** to send those. Ari sends a request only for a signed-in member of the workspace who is in the chat, so a Trigger's run cannot send one. |
+| Asking Ari in a chat | When you ask Ari for a person, Ari offers to send your request to the cfo.ai team in your words, and sends it once you agree. The request goes to the same team as **Ask a human**, with your name and email. Ari cannot attach screenshots; use **Ask a human** to send those. Ari sends a request only for a signed-in administrator who is in the chat, so a Trigger's run cannot send one, and neither can a member limited to named Pages. |
 | **Talk to us on Slack** in the account menu | Opens [Talk to the cfo.ai team on Slack](#talk-to-us-on-slack), which emails every member of the workspace a Slack invitation to a private channel shared with the cfo.ai team. You can also ask Ari in a chat to send these invitations. |
 | **Feedback** in the sidebar | Sends product feedback to the cfo.ai team. |
 | Email [success@cfo.ai](mailto:success@cfo.ai) | The **Support** link at the top of these docs. |
@@ -301,7 +301,7 @@ The dialog is titled **Ask a human**, with **Tell us what's going on — this go
 | **Accept the invitation in your own Slack workspace. Your Slack admin may need to approve it.** | Shown while a member has an invitation waiting or still to be sent. |
 | **Slack support is unavailable right now. Use Feedback in the sidebar to reach us.** | The Slack channel cannot be set up at the moment. Use **Feedback**, or [Ask a human](#ask-a-human). |
 
-When you ask Ari in a chat to connect you with the cfo.ai team on Slack, Ari can send the same invitations. Ari sends them only for a signed-in member of the workspace who is in the chat.
+When you ask Ari in a chat to connect you with the cfo.ai team on Slack, Ari can send the same invitations. Ari sends them only for a signed-in administrator who is in the chat.
 
 ### Share feedback
 
@@ -720,7 +720,7 @@ Turning **Allow more than one response per person** on takes effect at once. Eve
 | --- | --- | --- |
 | **Close [form]?** | **People can’t send or change answers after this.** and **Closing changes nothing in [table].** | **Close form**, shown as **Closing…** while it runs; **Cancel** |
 | **Reopen [form]?** | **People can send and change answers again until you close it.**, or **People can send and change answers again until [date].**, or **Its due date, [date], has passed, so it stays open until you close it. Ask Ari to set a new due date.**, then **Reopening changes nothing in [table].** | **Reopen form** / **Reopening…**; **Cancel** |
-| **Allow only one response per person?** | **Each person’s latest answer counts. If it’s held for review, the one before it counts until someone adds it. Their earlier answers stay on the Responses tab as replaced.** and **The next add takes the rows of those earlier answers off [table].** | **Allow only one** / **Saving…**; **Cancel** |
+| **Allow only one response per person?** | **Each person’s latest answer counts. If it’s held for review, the one before it counts until someone adds it. Their earlier answers stay on the Responses tab as replaced.** and **The next add takes the rows of those earlier answers off [table].** The dialog's wording aside, the **Responses** tab does not list an answer that a later one replaced; see the **Responses** row below. | **Allow only one** / **Saving…**; **Cancel** |
 | **Delete [form]?** | **The form goes from its page, and its form link stops taking answers.** and **[Table] keeps every row, and the answers people sent are kept.** | **Delete form** / **Deleting…**; **Cancel** |
 | **Replace this link?** | **This address stops working. A new link replaces it.** | **Replace link** / **Replacing…**; **Cancel** |
 | **Discard [name]’s response?** | **It won’t be added to the table again.**, with **Its rows stay in the table.** when its rows cannot be removed here. When they can, the checkbox **Also remove its [N] rows from [table]** is ticked, and a note says how many rows someone changed stay: **Remove it in the table if you want it gone.** | **Discard response** / **Discarding…**; **Cancel** |

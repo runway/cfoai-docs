@@ -107,12 +107,12 @@ A connection reads this status for one of these causes:
 
 | Cause | What happens next |
 | --- | --- |
-| cfo.ai's data warehouse refused the data. | The nightly refresh leaves the connection alone until cfo.ai repairs the warehouse's access or setup. |
+| cfo.ai's data warehouse refused the data, because of the warehouse's own access or setup. An incident that Fivetran reports at the warehouse is a different case: it reads [**Sync failed**](#sync-failed) and is tried again at each scheduled sync. | The nightly refresh leaves the connection alone until cfo.ai repairs the warehouse's access or setup. |
 | cfo.ai's store for query results had no disk space left for a saved query's result. | The saved query keeps the rows of its last finished load. The nightly refresh syncs the connection again. |
 | The machine that ran the sync, or that loaded a saved query's result, ran low on memory. cfo.ai runs a sync or a load that stopped this way again by itself up to three times, after about 1, 2, and 30 minutes, and the status appears when the last run stopped too. | The nightly refresh syncs the connection again. |
 | Ari's import of a Google Sheets or Google Drive spreadsheet stopped because its calculations ran past a time or memory limit. | The import waits; see [Messages about uploaded files](#messages-about-uploaded-files). |
 
-For a full store or low memory, Ari can also start a sync when you ask, once no other sync of the connection is running. While the limit lasts, that sync stops the same way. The nightly refresh does not reload an uploaded file, so a file upload's data comes back only through a sync you ask Ari to start.
+For a full store or low memory, Ari can also start a sync when you ask, once no other sync of the connection is running. While the limit lasts, that sync stops the same way. The nightly refresh does not reload an uploaded file, so a file upload's data comes back only through a sync you ask Ari to start. That sync loads the file you already uploaded again; to load a newer version of the file, use **Update file**.
 
 A saved query that fails for a reason of its own, such as SQL the warehouse rejects, reads [**Sync failed**](#sync-failed) and keeps **Retry**.
 

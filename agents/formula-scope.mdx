@@ -5,7 +5,7 @@ description: "For agents: how a formula's condition sets which cells it controls
 searchable: false
 ---
 
-A formula's scope is the set of Model values it controls. Its condition says where it applies, and its formula range says whether it covers Actuals, Forecast, or both. A visible Table block target is the preferred authority for both, because the server derives the actual cell address and formula range from it. For the customer-facing explanation, see [How formulas work](/concepts/formulas) and [Actuals, Forecast, and Last close](/concepts/actuals-and-forecast).
+A formula's scope is the set of Model values it controls. Its condition says where it applies, and its formula range says whether it covers Actuals, Forecast, or both. A visible Table block target is the preferred authority for both, because the server derives the actual cell address from it, and a row or column update names the range as `actuals` or `forecast`. For the customer-facing explanation, see [How formulas work](/concepts/formulas) and [Actuals, Forecast, and Last close](/concepts/actuals-and-forecast).
 
 ## Start from the visible target
 
@@ -14,7 +14,7 @@ Inspect the saved table, and copy the returned row or column reference into `edi
 - Use a row or a column for a formula that applies along that axis.
 - Use a cell for one exact visible result.
 
-The server derives the scope and the formula range from the target. You do not invent Dimension IDs, array positions, formula-range IDs, or conditions for a visible edit.
+The server derives the scope from the target. You do not invent Dimension IDs, array positions, formula-range IDs, or conditions for a visible edit. For a row or column formula on a dated table, you name the range: `default_formulas.actuals` or `default_formulas.forecast`. The periods the table shows do not choose it.
 
 ## Write a condition
 
@@ -71,7 +71,7 @@ Formula ranges separate parts of the timeline that use different calculations. A
 
 ### Let the visible target choose the range
 
-When the formula belongs to a visible row, column, or cell, inspect the saved table and use `edit_table_blocks` to target the actual result. The server derives the formula range from the target, so you do not invent or fetch a formula-range ID.
+When the formula belongs to a visible row, column, or cell, inspect the saved table and use `edit_table_blocks` to target the actual result. You do not invent or fetch a formula-range ID. A row or column formula on a dated table goes in the range you name, `default_formulas.actuals` or `default_formulas.forecast`, whatever periods the table shows; a timeless `formula` names no range.
 
 ### Dated formulas need Date at the base grain
 

@@ -210,6 +210,7 @@ For actions that change the layout, such as **Filter items**, **Sort**, and **In
 | --- | --- |
 | **Fix** | On a cell that shows an error: starts a chat that asks Ari to fix it. |
 | **Edit formula** | Opens the formula editor for this cell. |
+| **Show source** | Opens a panel beside the menu that says where the cell's number came from: a formula, a typed-in value, or a saved query. See [Show source](#show-source-where-a-cells-number-came-from). |
 | **Format and display** | Format options for this cell only. |
 | **Copy** (**⌘ C**) | Copies the cell. Shown when the cell has a formula. The clipboard holds the value the cell shows, so the copy pastes into a spreadsheet as a number, or as text for a text cell; pasting it into a cfo.ai table in the same browser tab, with nothing else copied in between, writes the formula, and a paste in another tab or after a reload writes the shown value. |
 | **Copy value** (**⌃ ⌘ C**) | Copies the value as the cell shows it. A paste of this copy writes the value, not the formula. |
@@ -218,6 +219,34 @@ For actions that change the layout, such as **Filter items**, **Sort**, and **In
 | **Mention in new chat** | Starts a new chat with the cell in its message box and leaves the current chat as it is. |
 
 With several cells selected, the menu reads **[N] items selected** and offers **Format and display**, for each selected cell, and **Paste**.
+
+### Show source: where a cell's number came from
+
+To see what set a cell's number, right-click the cell and choose **Show source**. A panel opens beside the menu, or over it when the window has no room beside it. The menu offers **Show source** on a cell that holds a Variable's value, on a read-only table too.
+
+| The cell's number comes from | The panel shows |
+| --- | --- |
+| A formula | **Formula**, with the formula. When the formula reads one saved query's table and nothing else, the panel adds **Query: [name]** and **Connection: [name]**, with **Open connection**. |
+| A value typed into the cell, by you, a teammate, or Ari | **Typed-in value**, with **Last changed by [name] on [date and time]**. When you cannot open the Scenario's version history, it reads **Last changed on [date and time]**. |
+| A value Ari read from a file attached to a chat, when Ari recorded the file with the value | **Read from [file name]**, then **In sheet [sheet], cell [B7]** (**cells [B4:M9]** for a block of cells, and **In cell [B7]** for a file with no sheets), then **Recorded with the value. Not checked against the file.** **Download file** downloads the file. Only a person who can open the chat that holds the file sees these lines; everyone else sees the typed-in value lines alone. |
+| A typed-in value that a Scenario holds itself, where its parent Scenario holds one too | **This scenario holds its own value here. Changes to the parent scenario do not update it.**, above the last change. |
+| A saved query, with no formula saved on the cell | **Loaded by a query**, with **Query: [name]**, **Connection: [name]**, and **Open connection**, which opens the connection's details. |
+| Nothing entered | **Source**, with **No formula or typed-in value sets this cell.** |
+
+On a table that compares Scenarios, **Show source** on a compared Scenario's cell, or on a **Variance** or **Variance %** cell beside it, shows the source of that Scenario's value, under **Scenario: [name]**. With one such cell selected, the formula bar shows that Scenario's formula after the Scenario's name, and does not open the editor.
+
+| Message | Meaning |
+| --- | --- |
+| **Loading source…** | The panel is reading the source. |
+| **Could not load this cell’s source.**, with **Try again** | The source did not load. |
+| **Preparing download…** | **Download file** is getting the file. |
+| **This file is unavailable or you do not have access to it.** | The file was removed, or you can no longer open its chat. |
+
+Limits:
+
+- The recorded file is what Ari stated when it saved the value. cfo.ai does not compare the value with the file.
+- **Show source** is not offered while you view an earlier version, with several cells selected, or on a time comparison's **Comparison value**, **Variance**, and **Variance %** cells.
+- A value that changes after Ari recorded its file loses the record, unless the new value is saved with a file too.
 
 ### Menu for several selected rows
 
@@ -265,7 +294,7 @@ No table owns a Variable or Dimension. The saved tables that show it, as a row, 
 | A row or column, while another saved table still shows the Variable or Dimension | It leaves this table only. |
 | Its last row, column, or drill-in on any table | cfo.ai asks **Delete variable or dimension?** before anything changes. Confirming deletes it from the Model. |
 | A table, with **Delete block**, or that table's Page | A Variable or Dimension another table still shows is kept. One no other table shows is deleted with the table, after the same question. |
-| A Variable or Dimension that several tables show, by asking Ari to delete it | Ari deletes it from the Model after you confirm. Its rows and columns leave the table recorded as its location, at first the table it was created on, and the table Ari was working on. On those tables, the rows or columns beneath a deleted Variable that break it down by a Dimension's items leave with it, because they show nothing without the Variable. One case keeps them: when the delete would leave a Dimension with no row or column, in that Scenario or in one that inherits the table, that Dimension's rows stay and move up into the Variable's place. Ari's delete is refused, and nothing is deleted, when a Scenario that inherits the table added its only rows for a Dimension directly beneath the Variable's row; Ari names the Dimension and the Scenario. Any other table that showed it keeps a row, column, or drill-in for it, marked [**Deleted property reference**](#table-header), until someone removes it there with **Remove deleted property from table** in the table setup panel. Ari's delete result names up to 20 such tables that you can open and counts the rest, so Ari can tell you which tables still list it. The result also lists the rows and columns the delete removed and each Dimension whose rows stayed. |
+| A Variable or Dimension that several tables show, by asking Ari to delete it | Ari deletes it from the Model after you confirm. Its rows and columns leave the table recorded as its location, at first the table it was created on, and the table Ari was working on. On those tables, the rows or columns beneath a deleted Variable that break it down by a Dimension's items leave with it, because they show nothing without the Variable. One case keeps them: when the delete would leave a Dimension with no row or column, in that Scenario or in one that inherits the table, that Dimension's rows stay and move up into the Variable's place. Ari's delete is refused, and nothing is deleted, when a Scenario that inherits the table added its only rows for a Dimension directly beneath the Variable's row; Ari names the Dimension and the Scenario. Any other table that showed it keeps a row, column, or drill-in for it, marked [**Deleted property reference**](#table-header), until someone removes it there with **Remove deleted property from table** in the table setup panel. Ari's delete result names up to 20 such tables that you can open and counts the rest, so Ari can tell you which tables still list it. The result also lists the rows and columns the delete removed and each Dimension whose rows stayed. It names each formula you can read that still reads what was deleted, including formulas no table shows, so you can ask Ari to rewrite or delete those formulas. |
 
 The question is always asked, even when nothing else uses the Variable or Dimension:
 

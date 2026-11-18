@@ -85,7 +85,7 @@ Keep each paragraph to one idea. When an edge case needs more than a sentence, i
 
 Ari and the site search return short excerpts cut at headings, not whole pages, so a fact only helps when its own heading and first sentence match the question.
 
-- Title a page and its headings with the job in the customer's words, and keep the product term beside it: "Export a Page to Excel", with **Download spreadsheet** in the first sentence. Customers say "assumptions" (Variables), "breakdowns" or "categories" (Dimensions), "sheets" or "tabs" (Pages), "add a user" (invite an administrator), "month-end" (Last close), "multi-entity" (several companies), "versions of the plan" (Scenarios), and "export" (download).
+- Title a page and its headings with the job in the customer's words, and keep the product term beside it: "Export a Page to Excel", with **Share** and its **Export** tab in the first sentence. Customers say "assumptions" (Variables), "breakdowns" or "categories" (Dimensions), "sheets" or "tabs" (Pages), "add a user" (invite an administrator), "month-end" (Last close), "multi-entity" (several companies), "versions of the plan" (Scenarios), and "export" (download).
 - Put the answer in the first sentence under the heading. Put background after it.
 - Say plainly what cfo.ai does not do, with the workaround, on the reference page for that part of the product: "You cannot add a chart block from the block menu. Ask Ari for a chart." When the docs are silent, Ari tends to guess, and has told customers a feature does not exist when the docs only left it out.
 - Give each integration, setting, function, and message its own heading or table row, so one excerpt answers one question.

@@ -189,7 +189,7 @@ A saved block compiles, but only a browser shows whether it renders.
 | Situation | Result |
 | --- | --- |
 | The blocks in one call read a lot of calculated data | They render in several consecutive requests. Blocks share a request while their calculated data fits in 20 MiB together. A block that alone reads more than 20 MiB, up to 40 MiB, renders in a request of its own. |
-| One block alone reads more than 40 MiB | That block is not rendered. Its result is `valid: false`, with one message per theme that states its size and that nothing about how it renders was observed. The other blocks still render, and `observed` counts how many did. |
+| One block alone reads more than 40 MiB | That block is not rendered. Its result is `valid: false`, with one message per theme that states its size and that nothing about how it renders was observed. The other blocks still render, and `observed` counts how many did. The 40 MiB is the block's total: one dataset may read all of it, and a dataset has no smaller limit of its own. When the read of one dataset is stopped at 40 MiB, the message names that dataset instead of the block's size: **This block was not rendered: dataset "revenue" reads more than 41943040 bytes (40 MiB) of calculated data, the most one browser render request carries.** |
 | Browser validation is switched off or unreachable | `enabled: false`, with a note that the saved block was not rendered or validated. |
 | The render run failed | `ok: false`, `error_kind: browser_validation_unavailable`, `transient: true`, and a message that the browser render check failed before it reported on these blocks, with the error behind it. Send the same call again. |
 

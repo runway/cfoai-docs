@@ -112,7 +112,7 @@ Copy names and references, such as `Gross Profit#3f2`, from inspection results i
 ## Work safely
 
 - Writes apply to the live Model immediately and are recorded in its changelog under the user's name. `edit_history` undoes, redoes, or reverts them, so reverse a wrong change rather than patching over it.
-- Use a Scenario other than Main when the user wants to try a change without altering the current plan. Name it in `_context.scenario` on each call; a call without it works in Main. See [The Scenario a call uses](/agents/mcp-tools#the-scenario-a-call-uses).
+- Use a Scenario other than Main when the user wants to try a change without altering the current plan. Name it on each call, in the tool's own `scenario` field where it has one, or in `_context.scenario`; a call that names neither works in Main. See [The Scenario a call uses](/agents/mcp-tools#the-scenario-a-call-uses).
 - Before you delete a Variable or Dimension from the last table that shows it, read what depends on it, tell the user, and let them choose to cancel or to delete it completely. Only then retry the delete with `force`. See [Delete a Variable or Dimension](/agents/write-formulas#delete-a-variable-or-dimension).
 - Connections, access changes, invitations, share links, and emails have effects outside model undo. Confirm those with the user before you make them.
 - Honor read-only and review-before-write requests. [Analyze saved values without changing the Model](/agents/analyze-without-saving) covers answering from what is saved.
@@ -123,9 +123,10 @@ Copy names and references, such as `Gross Profit#3f2`, from inspection results i
 - **`cfoai` is missing from the client.** Restart the client and check whether the server registration succeeded.
 - **Browser approval fails.** Confirm that the user is signed in to the intended cfo.ai account and can open the intended workspace, then start the sign-in again. In cfo.ai, Ari can list the user's own recent sign-in attempts and why each one failed.
 - **Tools report authorization errors after a previous success.** Repeat the client's sign-in flow.
-- **A call answers `org_id is required`.** The user belongs to several workspaces. Call `list_orgs` and pass the intended workspace as `org_id`.
+- **A call answers `org_id is required`.** The user belongs to several workspaces. The count includes a workspace that `list_orgs` leaves out because it has not started its free trial or a plan, so this can follow a `list_orgs` result that holds one workspace. Call `list_orgs` and pass the intended workspace as `org_id`.
 - **A call answers `you do not have access to this workspace`.** The signed-in account is not a member of that workspace. Check `list_orgs` and the account the user approved with.
 - **A call answers `start the free trial before using external_mcp`, or `list_orgs` answers `trial required`.** The user must start the workspace's free trial or a plan in cfo.ai.
+- **A call answers that a tool `is for people who may start Ari chats in this workspace, and the current user may not`.** The signed-in account belongs to the workspace but cannot use Ari there. It can still call `list_orgs`, `inspect_pages` (`list`, `read`, `share_links`), `inspect_table_blocks` (`list`, `read`), `inspect_canvas_blocks`, and `inspect_scenarios` (`list`, `read`, `subtree`). Tell the user which tool was refused; see [A user who cannot start Ari chats](/agents/mcp-tools#a-user-who-cannot-start-ari-chats).
 - **A call answers `no org_id supplied and you are not a member of any cfo.ai workspace`.** The signed-in account has no workspace. The user finishes setup in cfo.ai, or asks someone to invite them.
 - **A call answers `rate limit exceeded for` a tool.** Wait and send it again. Each tool accepts up to 60 calls a minute for each user, workspace, and tool; `list_orgs` has no limit.
 - **Calls built from the client's tool list are refused because they no longer match the published schema.** The client's tool definitions are stale. Refresh its tool list or start a new conversation, then call again.

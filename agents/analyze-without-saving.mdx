@@ -44,6 +44,6 @@ Checking a new table, or a change to an existing one, means making the change, w
 
 ## Create a new result only when authorized
 
-A new ratio, signal, or comparison that does not exist yet needs a saved, visible Model artifact. A request for the new result is the authorization, and a change that is easy to undo from the changelog needs no separate confirmation: use `edit_table_blocks` to add a row and its first formula, then inspect the saved result.
+A new ratio, signal, or comparison that does not exist yet needs a saved, visible Model artifact. A request for the new result is the authorization to save it: use `edit_table_blocks` to add a row and its first formula, then inspect the saved result.
 
-If the user asked for no Model changes, or to review changes before they are made, explain what you can answer from the existing information, and name the saved change a new calculation would require.
+If the user asked for no Model changes, explain what you can answer from the existing information, and name the saved change a new calculation would require. If the user asked to review a change before it is made, describe the change and wait; when they want to see it working before adopting it, make it in a Scenario other than Main, as the section above says.

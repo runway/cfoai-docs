@@ -50,7 +50,7 @@ The last sync finished without some of the source's tables. The data that arrive
 
 A refusal is the source answering a sync request with a sign-in or permission error, such as HTTP 401 or 403, or QuickBooks Online's **Permission Denied**. A rate limit, a timeout, or a failure in cfo.ai's own reader is not a refusal.
 
-A table that is only [still loading](#still-loading) is not counted as missed. When the last sync missed one table and left another still loading, the connection reads **Partly synced**, and the line gives the missed table's sentence, then the **Still loading** sentence, then **Everything else is up to date.**
+A table that is only [still loading](#still-loading) is not counted as missed. When the last sync missed one table and left another still loading, the connection reads **Partly synced**, and the line gives the missed table's sentences, then **Still loading [table] ([N] [records] read so far). Each sync picks up where the last one stopped.**, and ends once with **Everything else is up to date.**
 
 ### Still loading
 

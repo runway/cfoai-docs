@@ -448,7 +448,7 @@ Saving is continuous and shows nothing while it works. A line above the document
 
 To export a Page to Excel, select **Share** in the Page header, then the **Export** tab, which holds **Download as Excel**. The export writes the Page's tables, and the data its Canvas blocks draw, to an Excel workbook. cfo.ai has no button that downloads a Page as a PDF or a CSV; ask Ari for one. For what the workbook contains, see [Export a Page to Excel](/guides/download-a-spreadsheet); for a PDF, see [Get a PDF report or slide deck](/guides/get-a-pdf-or-slides).
 
-Where **Download as Excel** is depends on whether you can share the Page. The Page header shows one of the two controls, never both:
+Where **Download as Excel** is depends on whether you can share the Page. In a desktop browser, the Page header shows one of the two controls, never both:
 
 | Who | Where **Download as Excel** is |
 | --- | --- |
@@ -472,7 +472,7 @@ Opening the **Export** tab or the menu starts nothing: an export starts when you
 
 The list holds up to 10 exports: each you asked for in the last 24 hours, and any still queued or running. Exports other people asked for are not listed. While the **Export** tab or the menu is open, a queued or running export's status refreshes on its own. A **With formulas** export and a **Values only** export of the same Page are separate exports, each with its own row.
 
-While your export of the Page runs, the **Export** tab shows the stage in a line under **Download as Excel**, and its two formats cannot be selected, so no second export starts. The download icon spins instead, and its tooltip shows the stage:
+While your export of the Page runs, where its stage shows depends on the control you have. For someone who can share the Page, the **Export** tab shows the stage in a line under **Download as Excel**, and its two formats cannot be selected, so no second export starts. For a reader who has the **Download spreadsheet** icon, the icon spins and its tooltip shows the stage. The stages read the same in both places:
 
 | Message | Meaning |
 | --- | --- |
@@ -481,7 +481,7 @@ While your export of the Page runs, the **Export** tab shows the stage in a line
 | **Spreadsheet queued** | Your export is waiting to start. |
 | **Preparing spreadsheet** | Your export is running. |
 
-A notice at the corner of the window shows the same stage and the time you asked, and you can close it. An export started from the **Export** tab shows the notice as soon as you choose a format, because the Share panel closes. The download icon stays clickable while its export runs: selecting it again starts no second export and opens no menu, and shows the notice:
+A notice at the corner of the window shows the same stage and the time you asked, and you can close it. From the **Export** tab, the notice shows as soon as you choose a format, because the Share panel closes. For a reader, the **Download spreadsheet** icon stays clickable while its export runs: selecting it again starts no second export and opens no menu, and shows the notice:
 
 | Notice | Meaning |
 | --- | --- |
@@ -499,7 +499,7 @@ When it finishes:
 | **Could not download spreadsheet**, with **[Page]: [reason]** and **Download values only** | A **With formulas** export ran and failed. **Download values only** starts a **Values only** export of the same Page and Scenario. The button is not offered when a **Values only** export failed, when the export was cancelled, or when the request was refused before an export ran. |
 | **The Excel export of "[Page]" finished with [n] of [m] selected pages written.**, then **Pages left out ([k]): [names].** when some were | Posted in the chat that asked Ari for the export, when the export finished after Ari's reply had ended. A failed export posts **The Excel export of "[Page]"** followed by its reason instead. See [Export a Page to Excel](/guides/download-a-spreadsheet). |
 
-When you open a Page, it looks for your own newest export of that Page in that Scenario: one still queued or running, or one that ended within the last hour. It looks even when the Page no longer has a table. A running export shows as running again: the **Export** tab shows its stage, and the download icon spins with the tooltips above. When it finishes, the file downloads if this tab asked for it before a reload, or if you selected the **Download spreadsheet** icon in this tab while it ran; an export that a closed tab, another tab, or Ari asked for is otherwise offered with **Spreadsheet ready** instead. An export that already ended shows one of these notices. A tab reports an export once, across its reloads, and a new tab reports it again:
+When you open a Page, it looks for your own newest export of that Page in that Scenario: one still queued or running, or one that ended within the last hour. It looks even when the Page no longer has a table. A running export shows as running again: the **Export** tab shows its stage, or, for a reader, the download icon spins with the tooltips above. When it finishes, the file downloads if this tab asked for it before a reload, or if you selected the **Download spreadsheet** icon in this tab while it ran; an export that a closed tab, another tab, or Ari asked for is otherwise offered with **Spreadsheet ready** instead. An export that already ended shows one of these notices. A tab reports an export once, across its reloads, and a new tab reports it again:
 
 | Message | Meaning |
 | --- | --- |

@@ -26,7 +26,7 @@ A question that existing values can answer stays read-only. A new calculated res
 
 ## Start from the visible table
 
-Read the relevant Table block once, reuse the row and column references it returns, and send related edits together. The server derives the Variable, the formula's scope, and its Date grain from that visible target, and the read tells you whether each cell is writable, so you never build those yourself. The range of a row or column formula is the one you name: `default_formulas.actuals` or `default_formulas.forecast`. The periods the table shows do not choose it. A timeless `formula` applies in both ranges; see [Where a timeless formula is written](/agents/write-formulas#where-a-timeless-formula-is-written).
+Read the relevant Table block once, reuse the row and column references it returns, and send related edits together. The server derives the Variable, the formula's scope, and its Date grain from that visible target, and the read tells you whether each cell is writable, so you never build those yourself. The range of a row or column formula limited to Actuals or to Forecast is the one you name: `default_formulas.actuals` or `default_formulas.forecast`. The periods the table shows do not choose it. A timeless `formula` applies in both ranges; see [Where a timeless formula is written](/agents/write-formulas#where-a-timeless-formula-is-written).
 
 When the work has no table yet, read the existing Variables and Dimensions first, and reuse their returned references, such as `Revenue#3f2`, when you compose a formula.
 

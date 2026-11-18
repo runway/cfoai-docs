@@ -1,38 +1,19 @@
 ---
 title: "Sharing and access"
-description: "Who can see and change what in cfo.ai: administrators, who have the whole workspace; members limited to the Pages an administrator names, whose changes reach Main only through an administrator; share links for read-only access without an account; who can see your chats; and how Ari follows the same access."
+description: "Who can see and change what in cfo.ai: why everyone in a workspace is an administrator, why read-only access means a share link, what a link's reader sees, who can see your chats, and how Ari follows the same access."
 ---
 
-People ask three questions about access: "Can a teammate see only part of the workspace?", "Can someone have read-only access?", and "Can I show this to someone who has no cfo.ai account?" cfo.ai answers them with two kinds of people inside a workspace and one way in from outside it:
+People ask two questions about access: "Can someone have read-only access?" and "Can I show this to someone who has no cfo.ai account?" In cfo.ai the answer to both is a share link. Everyone inside a workspace has full access, and everyone outside it reads through a link.
 
-- An administrator has the whole workspace.
-- A member limited to named Pages sees only the Pages an administrator names, and changes Main only through an administrator.
-- A share link lets anyone read the Pages it names, without joining the workspace.
+## Everyone in a workspace is an administrator
 
-## Administrators have the whole workspace
+Everyone you invite to a workspace joins as an administrator, whether you invite them in Settings or through Ari. Administrators can see and edit every Page, invite other people, and manage billing and settings.
 
-Administrators can see and edit every Page, invite other people, and manage billing and settings. Everyone you invite from Settings joins as an administrator, and so does everyone you ask Ari to invite unless you ask for a member limited to named Pages.
+There is no view-only role, no editor role, no per-person access to single Pages, and no user groups. You cannot give a teammate a lower role, by hand or through Ari, because no lower role exists. To add or remove people, or to give the administrator role to someone who joined without it, see [Invite or remove teammates](/guides/invite-teammates).
 
-cfo.ai has no user groups, and no role between the two kinds of people described on this page. To add or remove people, or to make someone an administrator, see [Invite or remove teammates](/guides/invite-teammates).
+## Read-only access means a share link
 
-## Members limited to named Pages
-
-Take a department lead who should plan the Marketing budget without seeing payroll. You ask Ari to invite them to the Marketing budget Page with edit access. When they join, the Marketing budget Page is the only Page in their sidebar. The Payroll Page, its tables, and the Variables only those tables show stay closed to them, in the app, in search, and in a chat with Ari.
-
-Such a member differs from an administrator in four ways:
-
-- They see only what their Pages show. An invitation names up to 20 Pages, each with view or edit access. View access opens the Page and the Variables its tables show. Edit access also lets the member change those Variables' values and formulas. A formula reaches them only when they can read everything it refers to, so a formula that reads a Variable outside their Pages is left out of what they see, and they cannot save a formula that refers to one.
-- They work in their own Scenarios. The member can read their Pages in Main but cannot change Main. To try a change, they create a Scenario, which is theirs, and edit their Pages there.
-- Their changes reach Main through an administrator. The member cannot merge a Scenario. They ask Ari to request the merge, cfo.ai emails the workspace's administrators, and an administrator reviews the Scenario and merges it. See [Merge a Scenario into Main](/guides/merge-a-scenario#ask-an-administrator-to-merge-your-scenario).
-- The rest of the workspace is closed to them. cfo.ai refuses them everything outside a short list: their Pages, their own Scenarios, merge requests, and their own chats with Ari. So they cannot change a Page or a table's layout, open version history, undo, export, upload a file, change a connection, share a Page, or change the workspace's settings or billing. The full list is in [Members limited to named Pages](/reference/settings#members-limited-to-named-pages).
-
-The limits come from the invitation the person accepted. They stay in force until an administrator removes the person or makes them an administrator.
-
-A member limited to named Pages joins the workspace: they sign in with their own cfo.ai account, have their own chats with Ari, and, with edit access, propose changes for an administrator to merge. Someone who only needs to read a report, or who has no account, needs a share link instead.
-
-## Read-only access without joining means a share link
-
-A share link lets someone read one or more Pages without joining the workspace and without a cfo.ai account. An investor, a board member, a judge, or an accountant can open it in any browser. The reader does not appear in your list of administrators. Inside a workspace, view access exists only on the named Pages of a member limited to them. To let someone read without joining, use a link.
+A share link lets someone read one or more Pages without joining the workspace and without a cfo.ai account. An investor, a board member, a judge, or an accountant can open it in any browser. The reader does not appear in your list of administrators.
 
 Take a board update. You create a link to the Board summary Page that also opens the Cash forecast Page, choose the Board plan Scenario, and add a password. The board members open the link, enter the password, and read both Pages. They cannot type into a cell or change a chart, and nothing else in the workspace opens for them.
 
@@ -81,18 +62,9 @@ A chat belongs to the person who started it. Your teammates do not see your chat
 
 Ari works with the access of the person it is talking to. For an administrator, that is the whole workspace. If someone who can only view a Page asks Ari to change it, Ari refuses and saves nothing. Ari can create a share link for you and tell you which links the workspace has shared, with the limits listed in [Share a Page outside your workspace](/guides/share-a-page).
 
-For a member limited to named Pages, Ari reads and changes only what that member can. It can read their Pages, tables, and Scenarios, change values and formulas on the Pages they have edit access to, in a Scenario of their own, create a Scenario, and send a merge request. Three more limits keep the rest of the workspace out of their chats:
-
-- Ari reaches nothing outside cfo.ai for them: no web search, no connected API or MCP server, and no email, Slack message, or text message. The merge request email to administrators is the one exception.
-- Ari's memory holds only what that member told it. Workspace memories are neither read nor written in their chats; see [What Ari remembers](/concepts/ari-memory).
-- When something fails, the member is told that it failed but not why, because the reason can name a Variable they cannot see.
-
-Workspace Skills are the exception: they apply in every chat in the workspace, including such a member's, so keep figures a member should not see out of a workspace Skill's instructions.
-
 ## Related
 
 - [Share a Page outside your workspace](/guides/share-a-page)
 - [Invite or remove teammates](/guides/invite-teammates)
-- [Members limited to named Pages](/reference/settings#members-limited-to-named-pages)
 - [Pages, Table blocks, and Canvas blocks](/concepts/pages-and-blocks)
 - [The cfo.ai interface](/reference/interface#share-panel)

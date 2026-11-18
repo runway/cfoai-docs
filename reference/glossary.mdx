@@ -19,7 +19,7 @@ Where one value lives: a Variable, an item from each of its Dimensions, and a pe
 
 ## Administrator
 
-A person in a workspace who can see and edit every Page, invite others, and manage billing and settings. Settings labels an administrator **Admin**. The other kind of person in a workspace is a [member limited to named Pages](#member-limited-to-named-pages). To let someone read Pages without joining, use a [share link](#share-link). See [Sharing and access](/concepts/sharing-and-access).
+A member of a workspace. Every member is an administrator, who can see and edit every Page, invite others, and manage billing and settings. cfo.ai has no view-only or other lower role; to let someone read Pages without editing, use a [share link](#share-link). See [Sharing and access](/concepts/sharing-and-access).
 
 ## Agent
 
@@ -181,10 +181,6 @@ The Scenario that holds your plan, which other Scenarios branch from. Pages show
 
 A way for AI tools to work with a service. cfo.ai's MCP server, at `https://api.cfo.ai/mcp`, lets AI tools such as Claude, ChatGPT, or Codex read your Model and make the changes you ask for, as you. In **Settings → Connections**, you can also give Ari other services' MCP servers. See [Connect Claude, ChatGPT, Codex, or another AI tool to cfo.ai](/guides/connect-an-ai-client).
 
-## Member limited to named Pages
-
-A person an administrator invited to chosen Pages only, each with view or edit access. They see nothing else in the workspace, work in Scenarios of their own, and change Main only when an administrator merges their Scenario. cfo.ai's messages call such a person a scoped member. See [Members limited to named Pages](/concepts/sharing-and-access#members-limited-to-named-pages).
-
 ## Mention
 
 A chip in the message box that points Ari at an exact cell, row, column, block, Page, or formula, so you do not have to describe it. See [Chat controls and messages](/reference/chat#start-a-chat).
@@ -236,10 +232,6 @@ A branch of your Model where you can try a different plan, such as a hiring free
 ## Scope
 
 Where a formula applies: every cell of its Variable, one item, one formula range, or one cell. See [How formulas work](/concepts/formulas).
-
-## Scoped member
-
-The name cfo.ai's messages use for a [member limited to named Pages](#member-limited-to-named-pages).
 
 ## Segment
 
@@ -307,7 +299,7 @@ A scheduled instruction that has Ari run a recurring task at the time you choose
 
 ## User
 
-A person in a workspace is an [administrator](#administrator) or a [member limited to named Pages](#member-limited-to-named-pages). To add a user, invite them as one or the other. See [Invite or remove teammates](/guides/invite-teammates).
+cfo.ai calls the people in a workspace administrators. To add a user, invite them as an administrator. See [Administrator](#administrator).
 
 ## Variable
 

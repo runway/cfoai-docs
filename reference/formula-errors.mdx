@@ -15,17 +15,17 @@ When a cell has no message of its own, it reads **Formula evaluation failed. The
 
 ### #DIV/0!
 
-`#DIV/0!` means the formula divides by zero or by an empty value. The message reads **division by zero**. The `%` remainder operator and a zero raised to a negative power cause it too. Guard the divisor with `if(Revenue <> 0, ..., 0)`, or wrap the division in `iferror`.
+`#DIV/0!` means the formula divides by zero or by an empty value. The message reads **division by zero**. The `%` remainder operator and a zero raised to a negative power cause it too. Guard a divisor that can be 0 with `if(Revenue <> 0, ..., 0)`. That test does not catch an empty divisor, because an empty value does not equal 0; when the divisor can be empty, wrap the division in `iferror`.
 
 ### #VALUE!
 
-`#VALUE!` means a value has the wrong type, a function has the wrong number of arguments, or the formula text cannot be read. The message names the problem, for example **IF requires exactly 3 arguments**, **SUM requires between 1 and 10 arguments**, **DATE expects numeric values**, **DATEDIF expects date values**, **DAYSIN expects a date value**, or **Invalid string escape**. A formula with a syntax mistake shows the editor's message for it.
+`#VALUE!` means a value has the wrong type, a function has the wrong number of arguments, or the formula text cannot be read. The message names the problem, for example **IF requires exactly 3 arguments**, **SUM requires between 1 and 10 arguments**, **DATE expects numeric values**, **DATEDIF expects date values**, **DAYSIN expects a date value**, or **Invalid string escape**. A formula with a syntax mistake shows a message that begins **Syntax errors:** and gives the position of the mistake. A name you typed that matches no Variable or Dimension is saved as typed and shows this error too, not `#REF!`; the message does not name it, and the formula editor underlines it with **Unknown variable or dimension name**.
 
 **Dot lookup requires a dimension before the dot** means a Variable's name stands before a dot, as in `Revenue[Date.Month = "2026-01"].Date.Month`. The name before each dot must be a Dimension, such as `Account` in `Account.Bucket`; the last name may be a Variable. Read the Variable directly, or start the path from the Dimension. See [Lookups through a Dimension mapping](/reference/formula-syntax#lookups-through-a-dimension-mapping).
 
 ### #REF!
 
-`#REF!` means the formula names a Variable or Dimension that does not exist, for example one that was deleted or a name with a typo. The message begins with **Variable or dimension not found**, or reads **Unsupported reference** or **Expected a property reference**. Point the reference at a Variable that exists.
+`#REF!` means the formula reads a Variable or Dimension that no longer exists, usually because it was deleted. A name with a typo shows [`#VALUE!`](#value) instead. The message begins with **Variable or dimension not found**, or reads **Unsupported reference** or **Expected a property reference**. Point the reference at a Variable that exists.
 
 ### #NAME?
 

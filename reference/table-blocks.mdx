@@ -78,12 +78,12 @@ Each section lists what is on that axis as a tree. Drag an item to reorder it, t
 | **…** (**Open Column Options**, **Open Row Options**) → **Reset columns** / **Reset rows** | Removes every column, or every row, from the table. |
 | Eye button, **Hide [name]** / **Show [name]** | Hides or shows that item for everyone who opens the table. Hidden items keep their settings. |
 | **Sort** | **None**, **Ascending**, **Descending**, or **Manual**, for a Dimension other than Date. Reads **By column** while a [column sort](#column-sort) orders the rows, or **Column sort inactive** when the saved column sort cannot apply. |
-| Funnel button, **Filter [name]** | Opens the item list: **All Items**, the items, **Cancel**, and **Save**. For a Dimension other than Date, in rows or columns. When Ari saved a condition on the axis, a **Filter formula** section above the list shows it read-only, with **Edit with Ari**, which puts a request to change or remove it in the message box and closes the list without saving pending checkbox changes. The list has no field to edit the condition and no button to remove it; see [A filter Ari wrote as a formula](/guides/filter-and-sort-a-table#a-filter-ari-wrote-as-a-formula). |
+| Funnel button, **Filter [name]** | Opens the item list: **Search items**, **All Items**, the items, **Cancel**, and **Save**. For a Dimension whose items are not dates, in rows or columns. When Ari saved a condition on the axis, a **Filter formula** section above the list shows it read-only, with **Edit with Ari**, which puts a request to change or remove it in the message box and closes the list without saving pending checkbox changes. The list has no field to edit the condition and no button to remove it; see [A filter Ari wrote as a formula](/guides/filter-and-sort-a-table#a-filter-ari-wrote-as-a-formula). |
 | **Segment by** | Adds a breakdown level under that item. |
 | **Date granularity** | For a Date axis: **Inherit**, **Raw**, **Day**, **Week**, **Month**, **Quarter**, **Half**, or **Year**. |
 | **Remove from table** | Removes the item from this table. When no other table shows the Variable or Dimension, cfo.ai asks first; see [Removing and deleting](#removing-and-deleting). For a deleted Variable or Dimension it reads **Remove deleted property from table**. |
 
-At rest, each item shows small marks for what is set on it: an eye with a line through it when hidden, the sort, a funnel with the number of items the filter keeps, a branch with the number of breakdown levels, and the date grain. Right-click an item for the same [right-click menus](#right-click-menus) as in the grid; here the remove action reads **Remove item**, or **Remove item and drill-ins** for an item with levels under it.
+At rest, each item shows small marks for what is set on it: an eye with a line through it when hidden, the sort, a funnel with the number of items the filter keeps, or a funnel with no number when only a condition filters the Dimension, a branch with the number of breakdown levels, and the date grain. Right-click an item for the same [right-click menus](#right-click-menus) as in the grid; here the remove action reads **Remove item**, or **Remove item and drill-ins** for an item with levels under it.
 
 ## Controls in the grid
 
@@ -169,7 +169,7 @@ A row or column for one item, such as Sales.
 | **Mention in chat** | Adds the item to the current chat. |
 | **Segment by** | Breaks this item down by another Dimension. |
 | **Drill in** / **Clear drill-in** | On a calculated row. Adds or removes the **No input found** row; it does not open the row's inputs. See [Controls in the grid](#controls-in-the-grid). |
-| **Filter out this item** | Hides the item on this table. Not offered on a read-only table. |
+| **Filter out this item** | Hides the item on this table. Not offered on a read-only table, or on an item of a Dimension whose items are dates. |
 | **Expand child rows** / **Collapse child rows** | Opens or closes the rows under it. |
 | **Expand all child rows** / **Collapse all child rows** | On a row name in the table. Opens or closes every row at the same level of the same breakdown, under every parent, such as every department row under each region. It reads **Collapse all child rows** while any of those rows is open, and **Expand all child rows** when all are closed. Rows at other levels keep their state, so the rows under a closed row are as you left them when you open it again. |
 | **Format and display** | Opens the [format options](#format-and-display-options). |
@@ -189,7 +189,7 @@ Opens from a Dimension's label row, such as **DEPARTMENT**, or from **[Dimension
 | **Segment by** | Breaks every item at this level down by another Dimension. |
 | **Filter items** | Rows only. Chooses which items show. Shows the number of items kept when filtered. |
 | **Filter** | On a list of records: filters the rows by this column's value. |
-| **Sort** | **None**, **Ascending**, **Descending**, or **Manual**, by item name. Not offered for Date. Reads **By column** while a [column sort](#column-sort) orders the items, or **Column sort inactive** when the saved sort column has left the table; choosing any of the four replaces the column sort. |
+| **Sort** | **None**, **Ascending**, **Descending**, or **Manual**, by item name. Under **Manual**, items that join the Dimension later follow the ones you ordered, A to Z. Not offered for Date. Reads **By column** while a [column sort](#column-sort) orders the items, or **Column sort inactive** when the saved sort column has left the table; choosing any of the four replaces the column sort. |
 | **Date granularity** | For Date: **Inherit**, **Raw**, **Day**, **Week**, **Month**, **Quarter**, **Half**, or **Year**. |
 | **Use as** | **Segmentation** or **Mapping**. |
 | **Segment generation** | **Show only matching segments** shows the combinations that have data. **Expand to create all segments** shows every combination; for a Dimension of numbers, set **Start Value** and **End Value**, and for a Dimension of dates, set **Start / End dates**. The range is saved only when both ends are set, and clearing both removes it. |
@@ -370,11 +370,11 @@ A column sort orders a Dimension's rows by the values in one column, such as cus
 
 | Rule | What happens |
 | --- | --- |
-| Where it applies | Any column: a Variable such as Revenue, a field such as Start date, one item of a column Dimension such as a month, or a comparison column such as a Scenario's delta. The table can have breakdowns, drill-ins, and comparisons. One column orders the table; sorting by another column replaces it. |
+| Where it applies | A column that shows values: a Variable such as Revenue, a field such as Start date, one item of a column Dimension such as a month, or a comparison column such as a Scenario's **Variance** or **Variance %**. A header that groups other columns does not offer it, and the table needs a Dimension in its rows. The table can have breakdowns, drill-ins, and comparisons. One column orders the table; sorting by another column replaces it. |
 | Order | Each level sorts inside its parent: on a table that lists Regions with Customers under each, the Regions sort by their totals and the Customers within each Region by their own values. Blanks and errors come last in both directions. Text sorts without regard to case, and exact text breaks a tie between two spellings. Rows with equal values keep the same order every time. |
 | A new item | Waits at the end of the rows until the table's values refresh, then takes its place in the order. |
 | **By column** | **Sort** in the Dimension's menu and in the setup panel reads this while the column sort orders the rows. |
-| **Column sort inactive** | The sort is saved but cannot apply, because the sort column was removed from the table. The rows show the Dimension's normal item order; the saved direction never sorts the names. Choose **Sort ascending** or **Sort descending** on another column to sort again, or choose **None**, **Ascending**, **Descending**, or **Manual** under **Sort** to replace it. Adding a comparison, a spacer, or another level does not stop the sort. |
+| **Column sort inactive** | The sort is saved but cannot apply, because the sort column was removed from the table, was moved under another column level, or had a level added under it. The rows show the Dimension's normal item order; the saved direction never sorts the names. Choose **Sort ascending** or **Sort descending** on another column to sort again, or choose **None**, **Ascending**, **Descending**, or **Manual** under **Sort** to replace it. Adding a comparison, a spacer, or another level of rows does not stop the sort. |
 | Copies | A copy of the table that Ari makes keeps the sort on the copy's matching column. |
 | Everyone sees the same order | The rows are ordered when the table's values are calculated, so every reader, Ari, and a spreadsheet download get the same order. |
 | Saved | With the table, for everyone. When the save cannot be confirmed, the table shows **Couldn't confirm the table changes were saved** with **Retry**; see [When a change is not saved](#when-a-change-is-not-saved). |

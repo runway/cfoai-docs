@@ -57,9 +57,9 @@ When setup itself failed, the connection reads **Connection failed** with **Retr
 
 ## Syncs paused: fix the source, then retry
 
-The connection reads **Syncs paused** when its first sync has never finished and its last three nightly syncs failed with the same error from the provider, and that error names a problem another try cannot clear. cfo.ai stops the nightly syncs, because another try would fail the same way. An error that can pass by itself keeps its nightly retries and never pauses the connection. The line under the status quotes the provider's report, such as **Contact NetSuite support (netsuite_internal_error)**.
+The connection reads **Syncs paused** when its first sync has never finished and its last three nightly syncs failed with the same error from the provider, and that error names a problem another try cannot clear. cfo.ai then tries the sync once a week instead of every night, because another try is likely to fail the same way, and the line under the status gives the date of the next try. An error that can pass by itself keeps its nightly retries and never pauses the connection. The line under the status quotes the provider's report, such as **Contact NetSuite support (netsuite_internal_error)**.
 
-Fix what the report names, at the source or with the provider. Then select **Retry**, or ask Ari to sync the connection. Either one starts a sync and resumes the nightly syncs. See [Syncs paused](/reference/connection-statuses#syncs-paused).
+Fix what the report names, at the source or with the provider. Then select **Retry**, or ask Ari to sync the connection. Either one starts a sync and resumes the nightly syncs. You do not have to wait for the weekly try. If the failing table is one you do not need, ask Ari to turn it off; Ari starts a sync when it does. See [Syncs paused](/reference/connection-statuses#syncs-paused).
 
 A NetSuite connection that syncs more tables than cfo.ai's statements read can fail its first sync on a table no statement uses. Its report then ends **The connection can be narrowed to the tables its reports read**, whether the connection reads **Sync failed** or **Syncs paused**, and you do not need NetSuite support. Ask Ari:
 

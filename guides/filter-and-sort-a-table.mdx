@@ -23,10 +23,10 @@ You need a desktop browser and edit access to the Page.
         Choose **Filter items**. A list of the Dimension's items opens.
       </Step>
       <Step title="Pick the items to keep">
-        Check the items to show. Type in **Search items** to find one in a long list.
+        The list opens with every item checked. Clear the check beside each item to hide. Or clear **All Items** to uncheck every item, then check the items to show. Type in **Search items** to find one in a long list.
       </Step>
       <Step title="Save">
-        Select **Save**.
+        Select **Save**. It is unavailable until at least one item is checked.
       </Step>
     </Steps>
   </Tab>
@@ -34,13 +34,17 @@ You need a desktop browser and edit access to the Page.
 
 **Filter items** is in the menu for Dimensions in the rows. For a Dimension in the columns, use the table setup panel: select **Show table setup** at the left of the table header, point at the Dimension under **Columns**, and select its funnel button. The same list opens.
 
+A filter saves the list of items to keep. An item that joins the Dimension later, such as a new department from your payroll system, stays hidden on this table until you check it in the list or clear the filter.
+
 ## Hide one item
 
 Right-click the item, such as **Contractors**, and choose **Filter out this item**. The table must keep at least one item, so you cannot filter out the last one.
 
+To hide several items at once, select their row names, right-click one of them, and choose **Filter selected items**. See [Menu for several selected rows](/reference/table-blocks#menu-for-several-selected-rows).
+
 ## Clear a filter so every item shows again
 
-A filter leaves no mark on the table itself. To check whether a Dimension is filtered, open **Show table setup**: a funnel with a number beside a Dimension shows how many items the filter keeps. In the right-click menu, **Filter items** shows the same number.
+A filter on a Dimension's items leaves no mark on the table itself. To check whether a Dimension is filtered, open **Show table setup**: a funnel with a number beside a Dimension shows how many items the filter keeps. In the right-click menu, **Filter items** shows the same number. A funnel with no number means a condition filters the Dimension; see [A filter Ari wrote as a formula](#a-filter-ari-wrote-as-a-formula).
 
 To clear the filter:
 
@@ -56,22 +60,30 @@ To clear the filter:
   </Step>
 </Steps>
 
+**All Items** clears the checked list only. A condition saved on the same Dimension keeps filtering it until you change or remove the condition, as the next section describes.
+
 ## A filter Ari wrote as a formula
 
-Ari can filter an axis by a condition instead of a list of items, such as the employees whose Status is Active. The condition compares Dimension values: it can read the axis's own Dimension, a Dimension mapped from it, and another Dimension loaded from the same source table, such as an employee's Department. A condition cannot read a Variable, so rows are not chosen by their numbers this way. Two things come close. To hide rows with nothing in them, ask Ari to hide the rows whose values are all zero or empty; whether they hide also depends on your workspace's rule for empty results, and a row with a negative or small value still shows. To choose rows by a number, ask Ari to add a Dimension column whose formula reads the Variable. That gives each row one value, and a condition on the axis can compare it.
+Ari can filter an axis by a condition instead of a list of items, such as the employees whose Status is Active. The condition compares Dimension values: it can read the axis's own Dimension, a Dimension mapped from it, and another Dimension loaded from the same source table, such as an employee's Department. A condition cannot read a Variable, so rows are not chosen by their numbers this way. Two things come close. To hide rows with nothing in them, ask Ari to hide the rows whose values are all zero or empty; whether they hide also depends on your workspace's policy for empty results, and a row with a negative or small value still shows. To choose rows by a number, ask Ari to add a Dimension column whose formula reads the Variable. That gives each row one value, and a condition on the axis can compare it.
 
-When you open **Filter items** or the funnel on such an axis, the list opens with a **Filter formula** section at the top that shows the condition, read-only, above the item checkboxes. To change or remove it, select **Edit with Ari**: a request with the table and the axis attached lands in the message box for you to finish and send. The list has no field to edit the condition and no button to remove it. The checkboxes below are a separate filter and keep working, but **Edit with Ari** closes the list without saving them, so select **Save** first when you also changed a checkbox.
+When you open **Filter items** or the funnel on such an axis, the list opens with a **Filter formula** section at the top that shows the condition, read-only, above the item checkboxes. To change or remove it, select **Edit with Ari**: a request with the table and the axis attached lands in the message box for you to finish and send. The list has no field to edit the condition and no button to remove it. The checkboxes below are a separate filter, and the table shows the items that pass both. **Edit with Ari** closes the list without saving the checkboxes, so select **Save** first when you also changed a checkbox.
+
+Ari saves one or the other on an axis. When Ari saves a condition, the checked list on that axis is cleared, and when Ari saves a list of items, the condition is removed. If you need both, check the items again by hand after Ari changes the condition.
+
+A filter you set from a column header, described in [Filter a list by a column's value](#filter-a-list-by-a-columns-value), is saved as a condition too, so it also shows under **Filter formula**. Change that one from the funnel in the column header.
 
 > Remove the formula filter on the Employee axis of the Headcount table and show every employee.
 
 ## Filter a list by a column's value
 
-You can filter a table that lists records, such as one row per employee, by a column's value. This works for a column that shows which item each row belongs to, such as Status or Department.
+You can filter a table that lists records, such as one row per employee, by a column's value. This works for a column that shows which item each row belongs to, such as Status or Department. The table's rows must start with one Dimension, such as Employee, with no Variable or second Dimension beside it at the top level.
 
 1. Right-click the column header, such as **Status**, and choose **Filter**.
-2. Check the values to keep under **Show rows where Status is**, and select **Save**.
+2. Under **Show rows where Status is**, every value starts checked. Clear the values to hide, or clear **Any value** and check only the values to keep. Then select **Save**.
 
 A funnel then appears in the column header. Point at it to see which values the filter keeps. To change or clear it, select the funnel; choose **Any value** and **Save** to show every row again.
+
+If Ari saved a condition on the rows that this list cannot show, the list's title says that saving replaces the custom filter, and **Save** replaces Ari's condition with your choice. The funnel's wording for such a condition is in [What colors and marks mean](/reference/table-blocks#what-colors-and-marks-mean).
 
 ## Sort items A to Z, Z to A, or in your own order
 
@@ -89,7 +101,7 @@ A funnel then appears in the column header. Point at it to see which values the 
 
         - **Ascending** for A to Z, or smallest to largest for number items.
         - **Descending** for Z to A.
-        - **Manual** for your own order. Drag the items in the list that opens; each move saves.
+        - **Manual** for your own order. Drag the items in the list that opens; each move saves. Items that join the Dimension later follow the ones you ordered, A to Z.
         - **None** to return to the standard order, A to Z.
       </Step>
     </Steps>
@@ -107,15 +119,15 @@ A sort applies to the whole level, so every group on the table that shows that D
     > On the Customers table, sort the rows by Customer First ARR Month, oldest first.
   </Tab>
   <Tab title="By hand">
-    Right-click any column header and choose **Sort ascending** or **Sort descending**. A check marks the current choice.
+    Right-click the header of the column to sort by and choose **Sort ascending** or **Sort descending**. A check marks the current choice.
   </Tab>
 </Tabs>
 
-The Dimension's items reorder by their values in that column, and they keep that order as values change and new items arrive. Any column works: a Variable such as Revenue, a field such as Start date, one month of a table segmented by Date, or a comparison column such as a scenario's delta.
+The Dimension's items reorder by their values in that column, and they keep that order as values change and new items arrive. This works on a column that shows values: a Variable such as Revenue, a field such as Start date, one month of a table segmented by Date, or a comparison column such as a Scenario's **Variance**. A header that groups other columns, a total column, and a formula column do not offer it, and the table needs a Dimension in its rows. One column orders the table at a time, so sorting by another column replaces the first.
 
-Each level sorts inside its parent. On a table that lists Regions with Customers under each, sorting by Revenue orders the Regions by their totals and the Customers within each Region by their own values. A row that has no value or shows an error goes last either way. Choose **Clear column sort** on the same header to return to the item order, or pick **Ascending**, **Descending**, or **Manual** under **Sort** to order the items by name again.
+Each level sorts inside its parent. On a table that lists Regions with Customers under each, sorting by Revenue orders the Regions by their totals and the Customers within each Region by their own values. A row that has no value or shows an error goes last either way. Choose **Clear column sort** on the same header to return to the item order, or pick **None**, **Ascending**, **Descending**, or **Manual** under **Sort** to replace the column sort with an item order.
 
-The sort stays saved with the table when you add a comparison, a spacer, or another level. If the sort column leaves the table, the rows show their item order and the Dimension's **Sort** reads **Column sort inactive** until the column comes back. The full rules are in [Column sort](/reference/table-blocks#column-sort).
+The sort stays saved with the table when you add a comparison, a spacer, or another level of rows. If the sort column leaves the table, or you nest it under another column level, the rows show their item order and the Dimension's **Sort** reads **Column sort inactive** until the column comes back. The full rules are in [Column sort](/reference/table-blocks#column-sort).
 
 Variable rows have no sort; drag them into the order you want. Date columns always run in date order; to show fewer periods, change the table's date range.
 
@@ -129,6 +141,14 @@ The menu leaves out actions that cannot apply. Check which case you are in:
 
 <Accordion title="The Dimension is Date">
   The Date axis cannot be filtered or sorted. Change the date range instead; see [Build a Table block by hand](/guides/build-a-table#set-the-dates-and-the-time-grain). A column that holds dates, such as First ARR Month, can still order the rows; see [Sort rows by a column's values](#sort-rows-by-a-columns-values).
+</Accordion>
+
+<Accordion title="The Dimension's items are dates">
+  A Dimension of dates other than Date, such as Start month, has **Sort** but no **Filter items**, and its items have no **Filter out this item**.
+</Accordion>
+
+<Accordion title="The Dimension is in the columns">
+  The right-click menu of a column Dimension has **Sort** but not **Filter items**. Use the funnel in the table setup panel; see [Filter a table to show only some items](#filter-a-table-to-show-only-some-items).
 </Accordion>
 
 <Accordion title="The row is a Variable">

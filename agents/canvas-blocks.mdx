@@ -35,7 +35,7 @@ A `read` returns each entry's instructions, its props skeleton, and its runtime 
 
 ## Create a Canvas block
 
-`edit_canvas_blocks` `create` requires `page`, `title`, and `source`:
+`edit_canvas_blocks` `create` requires `page`, `title`, and exactly one of `source`, `builtin_template`, or `source_template`. Most blocks give `source`:
 
 ```json
 {
@@ -60,6 +60,7 @@ A `read` returns each entry's instructions, its props skeleton, and its runtime 
 - `page` is the Page that receives the block, by name or as `inspect_pages` prints it. `after_block` places the block under another one; without it the block goes last.
 - `title` is the block's name. Later updates and page edits name the block by it.
 - `source_template` stands in for `source`: `{"publication", "version"}`, and `file` for a workspace template's Canvas file such as `canvas/summary.jsx`, copy a published template's Canvas code exactly as published as the block's source. A `create` gives `source` or `source_template`, not both.
+- `builtin_template` also stands in for `source` on a `create`: it copies one of cfo.ai's built-in Canvas blocks exactly as the block's source. The one value is `source-model-tie-out`, the tie-out Canvas that compares a source's totals with the Model's. A `create` that gives more than one of the three is refused with **create accepts only one of source, builtin_template, or source_template**, and an unknown name with **unknown builtin_template**, followed by the valid names. An `update` does not take it.
 - The receipt names the new block two ways. `target` is the block's name-form selector, which the page and Canvas tools accept wherever they take a block as `target`. `ref` is the block's pasteable reference, such as `Pipeline by stage#a74`, which they accept wherever a result's block reference is accepted, such as `reorder_blocks` `block_order`. The reference keeps naming the block in later `edit_pages` calls even after a rename.
 - The receipt also carries `dataset_evidence`, one series and one row per dataset as the block receives them, and `source_notes`. A dataset still calculating when the result was due is listed with `status: "unavailable"` and `error`: **this dataset's calculation had not finished when this result was due, so it was stopped**. A dataset whose Scenario access check was still running at that moment reads **this dataset's scenario access check had not finished when this result was due, so no access decision was made and the dataset was not read**; one that names a Scenario the person cannot read reads **scenario access denied**; any other failure of that check reads **authorization check failed:** followed by the cause. The block is saved either way, and the other datasets keep their evidence.
 

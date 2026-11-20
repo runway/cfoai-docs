@@ -31,6 +31,7 @@ You do not need to stop Ari when it is slow to write one action, such as a very 
 - If your message shows **Not sent.**, select **Send again** to send the same text as a new message.
 - If the chat says **Ari's turn ended: it waited [time] for [n] actions to finish**, select **Retry**, or ask for a smaller piece first. [Chat controls and messages](/reference/chat#when-a-reply-stops-early-or-shows-an-error) explains the message.
 - If the chat says **This message is too large for Ari to read.**, the message you sent is too large by itself. Send a shorter message, or fewer or smaller files, in the same chat. A long chat does not cause this: Ari summarizes a long chat's earlier messages and keeps going. A chat saved earlier can show **This request is too large for Ari to continue.** for the same stop; do the same there.
+- If the chat says **Ari's reply stopped: the model provider's content filter withheld it.**, start a new chat and ask again. The same chat would be stopped again, so no **Retry** is offered. Changes Ari saved before the stop stay.
 - If the chat says **No internet connection** or **Connection lost**, reconnect, then select **Retry** if it is offered. Ari keeps working on the server meanwhile.
 - If a reply starts **I had to stop here**, billing stopped the turn. The message names the cause and where to fix it. See [Billing stops](/reference/chat#billing-stops-out-of-ai-usage-or-over-a-limit).
 

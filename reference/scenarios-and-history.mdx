@@ -90,7 +90,7 @@ The version history panel lists every change to the Model, yours and Ari's. Open
 | Scenario line | Names the Scenario and shows **Live**, or the version you are viewing. |
 | **Show Main Scenario changes** | In a Scenario other than Main, also lists the changes it inherited from Main. |
 
-Each entry names who made the change, when, and what it touched. A merge is listed in the history of the Scenario it merged into, as **Merged [Scenario] into [target]**, and it opens, previews, and undoes like any other entry. A formula entry names the Variable. For a formula with a condition, the entry also names the condition and its reach: **includes additional dimensions** when it also covers cells that carry more Dimensions, or **exact grain** when it matches exactly the Dimensions it names.
+Each entry names who made the change, when, and what it touched. A merge is listed in the history of the Scenario it merged into, as **Merged [Scenario] into [target]**, and it opens, previews, and undoes like any other entry. A formula entry names the Variable. For a formula with a condition, the entry also names the condition and its reach: **Includes additional dimensions** when it also covers cells that carry more Dimensions, or **Exact grain** when it matches exactly the Dimensions it names.
 
 ### Entry actions
 
@@ -100,7 +100,7 @@ Point at an entry and select its **…** button (**Actions for [entry]**).
 | --- | --- |
 | **Undo this change** | Reverses this change and keeps everything after it. Undo restores only the fields the change wrote, such as a Page's name or one formula's text, so a later edit to another field of the same Page, table, Variable, or formula stays. When a later change edited one of the same fields, nothing is undone and a notice says so; see [Entry action messages](#entry-action-messages). Undo that later change first. For what undo does to a Scenario's only edit of something it read from Main, see [Version history records every change](/concepts/scenarios#version-history-records-every-change). Not offered for a change the Scenario inherited from Main. |
 | **Redo this change** | Shown instead of **Undo this change** on the entry that recorded an undo. The entry it undid is struck through and carries the badge **Undone**; its own menu still reads **Undo this change**. |
-| **Restore this version** | Opens the [restore dialog](#viewing-a-past-version) for this point. Needs full access to the Scenario; otherwise its tooltip reads **Only people with full access to this scenario can restore it.** Not offered on a Snapshot, and neither is **Undo this change**. |
+| **Restore this version** | Opens the [restore dialog](#viewing-a-past-version) for this point. Needs full access to the Scenario; otherwise its tooltip reads **Only people with full access to this scenario can restore it.** On a Snapshot, **Restore this version** is unavailable for everyone and shows the same tooltip, and **Undo this change** is not shown. |
 | **Take snapshot here** | Opens the [Take snapshot dialog](#take-snapshot-dialog), pinned at this entry. |
 | **Copy link to version** | Copies a link that opens the Model as it was at this entry. |
 

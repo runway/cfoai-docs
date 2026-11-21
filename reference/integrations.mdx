@@ -55,7 +55,7 @@ The **Integrations** tab of the connection manager holds the same catalog. Open 
 | **Filter integrations** | Shows **All integrations**, or one type: **Accounting**, **CRM**, **Data upload**, **Data Warehouse**, **HR & Payroll**, **Recruiting**, **Support & Ticketing**, or **Other** |
 | **Sort integrations** | **Relevance**, **A–Z**, or **Z–A**. **Relevance** shows a **Featured** group first: QuickBooks Online, Xero, Rillet, Gusto, Rippling, Google Sheets, Justworks, HubSpot, and Salesforce. The other sources follow. In each group, sources you already connected come first; after them, the **Featured** group keeps the order above and the other sources are alphabetical. |
 | **List view**, **Grid view** | Changes how the cards are laid out |
-| **No integrations found**, with **Not here?** and **Ask Ari to build it** | Shown when your search matches no source and no MCP connector. **Ask Ari to build it**, which carries a **Preview** label, opens a chat with the message **Help me connect [your search] to this workspace.** There Ari sets up a connection to a system with no integration; see [A source with no integration](#a-source-with-no-integration). People who cannot add connections see **No integrations found** alone. While the workspace's AI usage is blocked, the button is unavailable and the line under it reads **Ask Ari is unavailable.** followed by the reason. |
+| **“[your search]” isn’t in the catalogue yet. I can build it for you, though.**, with **Build this for me** | Shown beside Ari's icon when your search matches no source and no MCP connector. **Build this for me**, which carries a **Preview** label, opens a chat with the message **Help me connect [your search] to this workspace.** There Ari sets up a connection to a system with no integration; see [A source with no integration](#a-source-with-no-integration). People who cannot add connections see **No integrations found** instead, and so does anyone whose filter hides every match. While the workspace's AI usage is blocked, the button is unavailable and the line under it reads **Ari is unavailable.** followed by the reason. |
 
 [Connection statuses and actions](/reference/connection-statuses#directory-cards) explains each card's button.
 
@@ -489,7 +489,7 @@ When no integration, MCP server, or API can bring a system's data in, Ari can bu
 
 | Fact | Value |
 | --- | --- |
-| How to start | Ask Ari in a chat, or search the directory and select **Ask Ari to build it** |
+| How to start | Ask Ari in a chat, or search the directory and select **Build this for me** |
 | Who can set one up | A workspace admin. Anyone else sees **A workspace admin must connect this service.** on Ari's card. |
 | Sign-in | A username and password, with an authenticator setup key when the source asks for codes from an authenticator app; or one API key or token; or none, for public APIs. Ari can also build the script on an MCP server you already connected, when every tool the script calls is set to **Allow**. |
 | Address | A public `https://` address with a host name: the site of the sign-in page for a portal, or the base address for an API |

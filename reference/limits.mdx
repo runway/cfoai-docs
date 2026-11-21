@@ -15,8 +15,9 @@ This page lists every size, count, and time limit in cfo.ai, grouped by part of 
 | Size of one other file, such as a PDF, Excel workbook, ZIP, CSV, or text file | 500 MB |
 | Quoted excerpts in one message | 5, each up to 2,000 characters |
 | Size of a picture shown to Ari | 3.75 million pixels. A larger image is scaled down before Ari sees it, and Ari can reopen a part of an image enlarged up to 4 times, within the same ceiling, to read small text. An image of more than 25 million pixels cannot be opened as a picture at all, whole or in part. |
-| Images and PDFs Ari looks at directly in one turn | 21 MB in all. Ari opens every attached file in its private workspace; an image or PDF it opens is also shown to it as a picture until the turn's 21 MB is used, and after that it reads the file in the workspace. When one request would carry more than 20 images and PDFs, an image wider or taller than 2,000 pixels is not shown; Ari reads it in the workspace instead. |
-| Size of a CSV attached in a chat that can become a data source | 500 MB, the same as any other file; every CSV you can attach can become a data source |
+| Images Ari looks at directly in one turn | 21 MB in all. Ari opens every attached file in its private workspace; an image it opens is also shown to it as a picture until the turn's 21 MB is used, and after that it reads the file in the workspace. When one request would carry more than 20 images, an image wider or taller than 2,000 pixels is not shown; Ari reads it in the workspace instead. |
+| Size of a PDF whose text Ari reads | 100 MB. Ari reads a PDF as the text of its pages, not as a picture. One read returns as many pages as fit in 100,000 tokens, and Ari reads the later pages from a text file in its workspace. Ari can turn a page with no text, such as a scan, into a picture and look at it. |
+| Size of a CSV attached in a chat that can become a data source | 500 MB, the same as any other file |
 | Recipients of one email Ari drafts | 10. On an email with Cc, the To and Cc addresses together count toward the 10, each address once |
 | Size of a page of conventions you ask Ari to remember | 32 KiB of text, saved as up to 12 separate facts at a time |
 | Files Ari delivers at once | 10, each up to 50 MB, and 250 MB in all |

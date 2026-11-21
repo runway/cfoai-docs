@@ -18,7 +18,7 @@ Ask Ari to build a budget, for the year or by department, and then compare each 
 
     > Load the attached board-approved budget as Budget Variables by department and month.
 
-    Ari's reply names every number it had to assume. See [Attach files to a chat](/guides/attach-files).
+    Ari is told to say in its reply which numbers are estimates and what each one rests on. See [Attach files to a chat](/guides/attach-files).
   </Tab>
   <Tab title="By hand">
     <Steps>
@@ -73,7 +73,7 @@ Variance is actual minus budget. For a cost, a positive variance means you spent
 
 A month shows its actuals once your books for it are closed and **Last close** has moved past it; see [Set Last close and date defaults](/guides/set-dates-and-last-close). Compare complete months. When you ask Ari, it is told to use the latest complete month that both the actuals and the budget cover. If you ask about a month that is not complete, ask Ari to say so beside the comparison.
 
-To read the current month before it closes, use the built-in **Flash report** Skill, which compares the month so far with your plan; see [Turn on a built-in Skill](/guides/turn-on-built-in-skills).
+To read the current month before it closes, use the built-in **Flash report** Skill, which compares its estimate of the whole month with your plan. It is optional; see [Turn on a built-in Skill](/guides/turn-on-built-in-skills) for how to turn it on and what it builds.
 
 ## Explain the largest differences
 
@@ -87,9 +87,11 @@ Ask Ari to name the accounts, teams, or transactions behind each difference, and
 
 ## Keep another version of the budget in a Scenario
 
-Use a Scenario to try other versions of the plan, such as a budget with slower hiring. A Scenario reads everything it does not change from Main, including new actuals. Values you want to keep fixed must be entered in the Scenario itself; see [Scenarios, Snapshots, and version history](/concepts/scenarios).
+Use a Scenario to try other versions of the plan, such as a budget with slower hiring. A Scenario reads everything it does not change from Main, including new actuals. Values you want to keep fixed must be entered in the Scenario itself, and a number typed into a Forecast month holds only until Last close moves past that month, as the end of this section explains; see [Scenarios, Snapshots, and version history](/concepts/scenarios).
 
 To compare a budget that lives in a Scenario, view the budget Scenario, show Main beside it on the table with **Compare**, and turn on **Variance** and **Variance %**. **Variance** is then Main minus the budget, the same direction as the formula above, and **Variance %** divides it by the budget. If you view Main and add the budget Scenario instead, **Variance** is the budget minus Main, and **Variance %** divides it by Main. See [Compare Scenarios side by side](/guides/compare-scenarios).
+
+A budget typed over Forecast formulas in a Scenario does not stay after you close the month. A Scenario follows Main's Last close until someone changes it in that Scenario, and a number typed into a Forecast month applies only while that month is in the Forecast. Once Last close moves past the month, the cell shows what Actuals gives it. To compare closed months against a budget, keep the budget in its own Variables, as described above. See [Actuals, Forecast, and Last close](/concepts/actuals-and-forecast#what-moving-last-close-changes).
 
 ## Related
 

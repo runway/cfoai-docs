@@ -57,11 +57,12 @@ Each `formula_rules` entry describes one formula that reads the object. `formula
 | Field | Values |
 | --- | --- |
 | `dependent` | The reading formula, described as `items` describes it |
+| `rule` | The formula's reference, such as `Rule#3f2a`, which an `edit_table_blocks` `update` takes in `rules` to [replace the formula or delete it](/agents/write-formulas#replace-a-saved-formula-and-keep-its-scope). Left out for a formula whose condition names a Variable or Dimension the user cannot read. |
 | `activity` | `dormant`: the saved formula cannot run in any affected Scenario at this snapshot. `potentially_active`: that is not proven. |
 | `reason` | For a dormant formula: `outside_range` (the date it is pinned to is outside its range), `outranked` (a newer formula at the same scope wins), or `mixed_dormancy` (the reason differs across the affected Scenarios) |
 | `force_effect` | What a delete with `force` does to the formula. `removes_rule` deletes the unused formula. `clears_expression` keeps its range and empties its expression, so the cell reads blank if its month enters the range later. `keeps_reference` leaves the saved reference, which then breaks, including when the user cannot edit the Variable that holds the formula. |
 
-A refused `edit_table_blocks` `delete` and a refused `edit_pages` `delete_block` carry the same entries under `formula_rules`, and a table delete adds `formula_rules_omitted` when some did not fit the result.
+A refused `edit_table_blocks` `delete` and a refused `edit_pages` `delete_block` carry the same entries under `formula_rules`, and a table delete adds `formula_rules_omitted` when some did not fit the result. A completed delete of listed Variables or Dimensions with `force` carries them too, for the formulas it left reading a deleted object; see [Delete a Variable or Dimension](/agents/write-formulas#delete-a-variable-or-dimension).
 
 ### How each definition's scope is described
 

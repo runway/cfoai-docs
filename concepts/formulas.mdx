@@ -41,7 +41,7 @@ Keep one clear default, and add other formulas only where the business really wo
 When several formulas could fill a cell, cfo.ai uses the most specific one. It compares them in this order:
 
 1. A value or formula typed into one cell wins in that cell.
-2. A formula that names more Dimensions beats one that names fewer. A formula for every department in every region beats a formula for every department, which beats the Variable's default.
+2. A formula that names more Dimensions beats one that names fewer. A formula for every department in every region beats a formula for every department, which beats the Variable's default. Date counts as a Dimension here, so a formula for every department in every month beats a formula for Sales that has no time in its scope.
 3. Among formulas that name the same Dimensions, one that applies to its own rows only beats one that also applies to the rows beneath it.
 4. Then a formula for a named item beats one that covers every item, so a formula for Sales beats a formula for every department. One item beats a list of items.
 5. When two formulas are still tied, the one saved most recently wins.

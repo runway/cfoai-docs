@@ -67,7 +67,7 @@ While Ari works, Slack shows that it **is typing…**. Its reply posts in the sa
 
 When Ari needs an answer from you before it can go on, its questions post in the same thread as a message of their own, under its reply when it wrote one, each with its choices. Reply in the thread to answer. [Ari in Slack](/reference/chat#ari-in-slack) has the details.
 
-When Ari has to stop before it can answer, for example because the workspace has no active plan or the request has grown too large for it, the message that says why posts in the thread in place of a reply. [Ari in Slack](/reference/chat#ari-in-slack) lists these messages, and the same message is in the conversation in cfo.ai.
+When Ari has to stop before it can answer, for example because the workspace has no active plan or your message is too large for it to read, the message that says why posts in the thread in place of a reply. [Ari in Slack](/reference/chat#ari-in-slack) lists these messages, and the same message is in the conversation in cfo.ai.
 
 ## What you can do in Slack
 
@@ -100,9 +100,11 @@ To get a picture with the message, ask for it. Ari can post one image saved in a
 
 ## Who can message Ari
 
-Anyone in your Slack workspace whose Slack profile email matches the email of someone in your cfo.ai workspace can message Ari. Ari works as that person, with that person's access, so each person's Slack conversations, memory, and permissions stay their own.
+Anyone in your Slack workspace whose Slack profile email matches the email of an administrator of your cfo.ai workspace can message Ari. Ari works as that person, with that person's access, so each person's Slack conversations, memory, and permissions stay their own.
 
 Someone without a matching cfo.ai account gets a reply that Ari could not find a cfo.ai account for their Slack email. To let them use Ari, invite the email address on their Slack profile to your workspace. Once they accept, they can message Ari. See [Invite or remove teammates](/guides/invite-teammates).
+
+Someone whose cfo.ai account only keeps Pages that were shared with it by link is not an administrator. Ari replies that their access does not include chatting with Ari, and starts no chat. To let them use Ari, invite their address as an administrator; they become one at once.
 
 ## Add Ari to a channel
 
@@ -131,6 +133,7 @@ In a channel, Ari works like this:
 - Ari adds 👀 to a message while it works on it, and Slack shows in the message's thread that Ari is working. The 👀 comes off when Ari's answer posts. On a message that did not @mention it, Ari can decide after it starts that no reply is needed. It then removes the 👀 and the working status and posts nothing.
 - Ari answers in a thread: a top-level message gets a reply in a thread under it, and a message in a thread gets a reply in that thread. Each thread is its own conversation, so reply in the thread to follow up. A new top-level message starts a new conversation, in which Ari reads the channel's recent top-level messages but not what it answered in other threads.
 - Every answer in the channel uses the access of the administrator who added Ari or turned it on by @mentioning it, whoever asked. Everyone in the channel, including guests from another company in a channel shared through Slack Connect, reads what that administrator could read. In a public channel, anyone in your Slack workspace can read Ari's answers too, and can join the channel and ask Ari. A private channel that is later made public keeps Ari on, unless your Slack workspace was connected before cfo.ai supported public channels; see [If Ari leaves a channel](#if-ari-leaves-a-channel). Add Ari only to channels where that is what you want.
+- A link Ari posts to a Page or block opens only for someone who can already read it in cfo.ai. A channel member outside your cfo.ai workspace can read Ari's answer but cannot open the link. To give them the Page, [share it with a link](/guides/share-a-page).
 - Ari reads the words of channel messages, not their files, as in direct messages.
 
 To stop Ari in a channel, remove the cfo.ai app from the channel. What happens to the channel's earlier threads is in [Ari in Slack](/reference/chat#ari-in-slack). A workspace administrator's Trigger can post its result in a channel Ari is in; see [Choose where the result goes](/guides/schedule-a-trigger#choose-where-the-result-goes).

@@ -48,7 +48,7 @@ Asking Ari to connect a source never reconnects an existing connection. Ask Ari 
 
 The connection reads **Sync failed**. Read the line under it:
 
-- **[Source]’s sync hit an error. cfo.ai will try again on the next scheduled sync.** The provider's own run failed, often for a moment. Do nothing, or select **Retry** to run it now. When the line includes the provider's report, such as a user that cannot access a table, fix that at the source first.
+- **[Source]’s sync hit an error. cfo.ai will try again on the next scheduled sync.** The provider's own run failed, often for a moment. Do nothing, or select **Retry** to run it now. When the line includes the provider's report, such as a user that cannot access a table, fix that at the source first. For an HR or payroll system that syncs through Merge, the report names Merge's open issues for the account, such as **Missing Permissions (Missing employee permissions.)**: give the account that connected the system the permission it names.
 - Any other reason, or **The last sync couldn’t finish.** Select **Retry**. If it fails again, select **Investigate with Ari**, which opens a chat where Ari looks for the cause.
 
 **Retry** runs the import again with the same sign-in and does not use another plan slot.
@@ -57,9 +57,15 @@ When setup itself failed, the connection reads **Connection failed** with **Retr
 
 ## Syncs paused: fix the source, then retry
 
-The connection reads **Syncs paused** when its first sync has never finished and its last three nightly syncs failed with the same error from the provider, and that error names a problem another try cannot clear. cfo.ai stops the nightly syncs, because another try would fail the same way. An error that can pass by itself keeps its nightly retries and never pauses the connection. The line under the status quotes the provider's report, such as **Contact NetSuite support (netsuite_internal_error)**.
+The connection reads **Syncs paused** when its first sync has never finished and its last three nightly syncs failed with the same error from the provider, and that error names a problem another try cannot clear. cfo.ai then tries the sync once a week instead of every night, because another try is likely to fail the same way, and the line under the status gives the date of the next try. An error that can pass by itself keeps its nightly retries and never pauses the connection. The line under the status quotes the provider's report, such as **Contact NetSuite support (netsuite_internal_error)**.
 
-Fix what the report names, at the source or with the provider. Then select **Retry**, or ask Ari to sync the connection. Either one starts a sync and resumes the nightly syncs. See [Syncs paused](/reference/connection-statuses#syncs-paused).
+Fix what the report names, at the source or with the provider. Then select **Retry**, or ask Ari to sync the connection. Either one starts a sync and resumes the nightly syncs. You do not have to wait for the weekly try. If the failing table is one you do not need, ask Ari to turn it off; Ari starts a sync when it does. Ari refuses to turn off a table that a saved query reads. See [Syncs paused](/reference/connection-statuses#syncs-paused).
+
+A NetSuite connection that syncs more tables than cfo.ai's statements read can fail its first sync on a table no statement uses. Its report then ends **The connection can be narrowed to the tables its reports read**, whether the connection reads **Sync failed** or **Syncs paused**, and you do not need NetSuite support. Ask Ari:
+
+> Narrow our NetSuite connection to the tables its reports read, then sync it.
+
+Ari turns the other tables off and starts a sync. Ari can do this only before the connection's first sync has finished, and it refuses when a saved query reads a table it would turn off. **Retry** alone syncs the same tables again.
 
 ## NetSuite is missing access
 
@@ -82,7 +88,7 @@ HR and payroll systems, sources that sync through Fivetran, and banks connected 
 
 If the provider still has not finished 20 hours after cfo.ai began waiting, the connection reads **First sync not ready**. The next nightly sync starts a new wait, or select **Retry** to start one now. A bank connected through Plaid is the exception: at the first check after the 20 hours, its first sync loads the recent transactions Plaid has ready, and later syncs add the older history. It reads **First sync not ready** only when Plaid has no recent transactions ready either. [Syncing](/reference/connection-statuses#syncing) lists what the line says while it waits.
 
-A payments system with a long history, such as Stripe, can spend a day or more in its first sync. Ask Ari whether the load is still running before you treat it as a failure.
+A payments system with a long history, such as Stripe, can spend a day or more in its first sync. Ask Ari whether the load is still running before you treat it as a failure. Afterward, a Stripe (Direct) connection can read **Still loading** for several nights while one large table, such as payment methods, fills. The line says how far the read has got, and you do not need to do anything; see [Still loading](/reference/connection-statuses#still-loading).
 
 ## A later sync is still running
 

@@ -31,7 +31,8 @@ To narrow a follow-up to a visible row, cell, or subtree, copy row and column re
 ## Read the Model as it was
 
 - A historical read uses `as_of_point` against the same saved table and the same target, which keeps a before-and-after comparison tied to one stable artifact. [Read the Model at an earlier point](/agents/mcp-tools#read-the-model-at-an-earlier-point) lists the point types.
-- The `compare` block shows how a table changed since a saved change, named by `before_change_log_id`. It lists the rows removed or added since then under `row_membership`.
+- The `compare` block shows how a table changed since a saved change. It takes the table as `target` and the earlier change as `before_change_log_id`, and returns the table's read with a `changes` object beside it. For the table, `changes.tables` holds `before` and `after` counts of rows, columns, non-empty cells, formula errors, and dependent tables, their difference under `value_delta`, the rows removed or added since then under `row_membership`, and the saved changes in between under `operations`.
+- A `compare` does not return each cell's earlier value. To put numbers side by side, read the table once with `as_of_point` and once without.
 
 ## Checking a proposed formula means saving it
 
@@ -43,6 +44,6 @@ Checking a new table, or a change to an existing one, means making the change, w
 
 ## Create a new result only when authorized
 
-A new ratio, signal, or comparison that does not exist yet needs a saved, visible Model artifact. If the user authorizes that work, use `edit_table_blocks` to add a row and its first formula, then inspect the saved result.
+A new ratio, signal, or comparison that does not exist yet needs a saved, visible Model artifact. A request for the new result is the authorization to save it: use `edit_table_blocks` to add a row and its first formula, then inspect the saved result.
 
-If the user asked for no Model changes, explain what you can answer from the existing information, and name the saved change a new calculation would require.
+If the user asked for no Model changes, explain what you can answer from the existing information, and name the saved change a new calculation would require. If the user asked to review a change before it is made, describe the change and wait; when they want to see it working before adopting it, make it in a Scenario other than Main, as the section above says.

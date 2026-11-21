@@ -16,10 +16,11 @@ A Scenario branches from Main. It stores only what differs from Main, such as va
 
 Take a hiring Scenario in which two engineers start in January. When QuickBooks syncs new Actuals overnight, Main updates, and so does the hiring Scenario, because it reads those Actuals from Main. The two extra salaries stay in the Scenario alone. You never have to copy new data into your Scenarios by hand.
 
-Two consequences follow:
+Three consequences follow:
 
 - A value that the Scenario inherits from Main changes when Main changes. If you set a cell in a Scenario to the value it already inherits, nothing is saved, and the cell keeps following Main. To make a number hold still while Main moves, give the Scenario a different value.
 - Connected data is shared. A Scenario changes Model formulas, values, and presentation; it never makes a private copy of an integration. Saved queries that read your connections also belong to Main, so every ordinary Scenario sees the same imported rows.
+- A deletion in Main reaches the Scenarios built on Main. A table or Canvas block you delete in Main is deleted in each of those Scenarios too, including a Scenario's own edited version of the block. A Snapshot keeps its copy. When Ari deletes a block, the result it gets back names the other Scenarios that lose it, among those you can read, so ask Ari which Scenarios a deletion reached. A Scenario you cannot read can lose the block without being named.
 
 ## A copy starts where another Scenario is
 
@@ -47,7 +48,7 @@ A Snapshot is not read-only. You and Ari can still type values over its numbers,
 
 Every write to a Scenario is recorded, whether you made it or Ari did. Version history gives you two ways to go back:
 
-- **Undo** reverses one change, or one related batch of changes, and puts back only the fields that change wrote. Later changes to other fields stay, even on the same Page or Variable. When a later change edited one of those same fields, such as the same Page's name, the undo is refused and names that later change, so nothing is silently replaced.
+- **Undo** reverses one change, or one related batch of changes, and puts back only the fields that change wrote. Later changes to other fields stay, even on the same Page or Variable. When a later change edited one of those same fields, such as the same Page's name, the undo is refused and says what the later change edited, so nothing is silently replaced.
 - **Restore** returns the whole Scenario to an earlier point and rolls back every change made after it. The restore is itself a recorded change, so you can undo it too. Ari calls this a revert.
 
 Undo can also return a Scenario to Main. When you undo the only edit a Scenario made to something it read from Main, such as a formula, a Canvas block, or a table's settings, the Scenario reads that item from Main again. It shows Main's current version, including edits made in Main since the Scenario's edit, and it follows later Main edits. Say a hiring Scenario changes a formula it read from Main, and someone then edits that formula in Main. Undoing the Scenario's change shows Main's edited formula.

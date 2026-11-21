@@ -78,12 +78,12 @@ Each section lists what is on that axis as a tree. Drag an item to reorder it, t
 | **…** (**Open Column Options**, **Open Row Options**) → **Reset columns** / **Reset rows** | Removes every column, or every row, from the table. |
 | Eye button, **Hide [name]** / **Show [name]** | Hides or shows that item for everyone who opens the table. Hidden items keep their settings. |
 | **Sort** | **None**, **Ascending**, **Descending**, or **Manual**, for a Dimension other than Date. Reads **By column** while a [column sort](#column-sort) orders the rows, or **Column sort inactive** when the saved column sort cannot apply. |
-| Funnel button, **Filter [name]** | Opens the item list: **All Items**, the items, **Cancel**, and **Save**. For a Dimension other than Date, in rows or columns. When Ari saved a condition on the axis, a **Filter formula** section above the list shows it read-only, with **Edit with Ari**, which puts a request to change or remove it in the message box and closes the list without saving pending checkbox changes. The list has no field to edit the condition and no button to remove it; see [A filter Ari wrote as a formula](/guides/filter-and-sort-a-table#a-filter-ari-wrote-as-a-formula). |
+| Funnel button, **Filter [name]** | Opens the item list: **Search items**, **All Items**, the items, **Cancel**, and **Save**. For a Dimension whose items are not dates, in rows or columns. A saved condition on the axis comes from Ari or from [filtering a list by a column's value](/guides/filter-and-sort-a-table#filter-a-list-by-a-columns-value). When the axis has one, a **Filter formula** section above the list shows it read-only, with **Edit with Ari**, which puts a request to change or remove it in the message box and closes the list without saving pending checkbox changes. A condition set by filtering a column's value can also be changed or cleared from that column's funnel. The list has no field to edit the condition and no button to remove it; see [A filter Ari wrote as a formula](/guides/filter-and-sort-a-table#a-filter-ari-wrote-as-a-formula). |
 | **Segment by** | Adds a breakdown level under that item. |
 | **Date granularity** | For a Date axis: **Inherit**, **Raw**, **Day**, **Week**, **Month**, **Quarter**, **Half**, or **Year**. |
 | **Remove from table** | Removes the item from this table. When no other table shows the Variable or Dimension, cfo.ai asks first; see [Removing and deleting](#removing-and-deleting). For a deleted Variable or Dimension it reads **Remove deleted property from table**. |
 
-At rest, each item shows small marks for what is set on it: an eye with a line through it when hidden, the sort, a funnel with the number of items the filter keeps, a branch with the number of breakdown levels, and the date grain. Right-click an item for the same [right-click menus](#right-click-menus) as in the grid; here the remove action reads **Remove item**, or **Remove item and drill-ins** for an item with levels under it.
+At rest, each item shows small marks for what is set on it: an eye with a line through it when hidden, the sort, a funnel with the number of items the filter keeps, or a funnel with no number when only a condition filters the Dimension, a branch with the number of breakdown levels, and the date grain. Right-click an item for the same [right-click menus](#right-click-menus) as in the grid; here the remove action reads **Remove item**, or **Remove item and drill-ins** for an item with levels under it.
 
 ## Controls in the grid
 
@@ -169,7 +169,7 @@ A row or column for one item, such as Sales.
 | **Mention in chat** | Adds the item to the current chat. |
 | **Segment by** | Breaks this item down by another Dimension. |
 | **Drill in** / **Clear drill-in** | On a calculated row. Adds or removes the **No input found** row; it does not open the row's inputs. See [Controls in the grid](#controls-in-the-grid). |
-| **Filter out this item** | Hides the item on this table. Not offered on a read-only table. |
+| **Filter out this item** | Hides the item on this table. Not offered on a read-only table, or on an item of a Dimension whose items are dates. |
 | **Expand child rows** / **Collapse child rows** | Opens or closes the rows under it. |
 | **Expand all child rows** / **Collapse all child rows** | On a row name in the table. Opens or closes every row at the same level of the same breakdown, under every parent, such as every department row under each region. It reads **Collapse all child rows** while any of those rows is open, and **Expand all child rows** when all are closed. Rows at other levels keep their state, so the rows under a closed row are as you left them when you open it again. |
 | **Format and display** | Opens the [format options](#format-and-display-options). |
@@ -189,7 +189,7 @@ Opens from a Dimension's label row, such as **DEPARTMENT**, or from **[Dimension
 | **Segment by** | Breaks every item at this level down by another Dimension. |
 | **Filter items** | Rows only. Chooses which items show. Shows the number of items kept when filtered. |
 | **Filter** | On a list of records: filters the rows by this column's value. |
-| **Sort** | **None**, **Ascending**, **Descending**, or **Manual**, by item name. Not offered for Date. Reads **By column** while a [column sort](#column-sort) orders the items, or **Column sort inactive** when the saved sort column has left the table; choosing any of the four replaces the column sort. |
+| **Sort** | **None**, **Ascending**, **Descending**, or **Manual**, by item name. Under **Manual**, items that join the Dimension later follow the ones you ordered, A to Z. Not offered for Date. Reads **By column** while a [column sort](#column-sort) orders the items, or **Column sort inactive** when the saved sort column has left the table; choosing any of the four replaces the column sort. |
 | **Date granularity** | For Date: **Inherit**, **Raw**, **Day**, **Week**, **Month**, **Quarter**, **Half**, or **Year**. |
 | **Use as** | **Segmentation** or **Mapping**. |
 | **Segment generation** | **Show only matching segments** shows the combinations that have data. **Expand to create all segments** shows every combination; for a Dimension of numbers, set **Start Value** and **End Value**, and for a Dimension of dates, set **Start / End dates**. The range is saved only when both ends are set, and clearing both removes it. |
@@ -210,6 +210,7 @@ For actions that change the layout, such as **Filter items**, **Sort**, and **In
 | --- | --- |
 | **Fix** | On a cell that shows an error: starts a chat that asks Ari to fix it. |
 | **Edit formula** | Opens the formula editor for this cell. |
+| **Show source** | Opens a panel beside the menu that says where the cell's number came from: a formula, a typed-in value, or a saved query. See [Show source](#show-source-where-a-cells-number-came-from). |
 | **Format and display** | Format options for this cell only. |
 | **Copy** (**⌘ C**) | Copies the cell. Shown when the cell has a formula. The clipboard holds the value the cell shows, so the copy pastes into a spreadsheet as a number, or as text for a text cell; pasting it into a cfo.ai table in the same browser tab, with nothing else copied in between, writes the formula, and a paste in another tab or after a reload writes the shown value. |
 | **Copy value** (**⌃ ⌘ C**) | Copies the value as the cell shows it. A paste of this copy writes the value, not the formula. |
@@ -218,6 +219,34 @@ For actions that change the layout, such as **Filter items**, **Sort**, and **In
 | **Mention in new chat** | Starts a new chat with the cell in its message box and leaves the current chat as it is. |
 
 With several cells selected, the menu reads **[N] items selected** and offers **Format and display**, for each selected cell, and **Paste**.
+
+### Show source: where a cell's number came from
+
+To see what set a cell's number, right-click the cell and choose **Show source**. A panel opens beside the menu, or over it when the window has no room beside it. The menu offers **Show source** on a cell that holds a Variable's value, on a read-only table too.
+
+| The cell's number comes from | The panel shows |
+| --- | --- |
+| A formula | **Formula**, with the formula. When the formula reads one saved query's table and nothing else, the panel adds **Query: [name]** and **Connection: [name]**, with **Open connection**. |
+| A value typed into the cell, by you, a teammate, or Ari | **Typed-in value**, with **Last changed by [name] on [date and time]**. When you cannot open the Scenario's version history, it reads **Last changed on [date and time]**. |
+| A value Ari read from a file attached to a chat, when Ari recorded the file with the value | **Read from [file name]**, then **In sheet [sheet], cell [B7]** (**cells [B4:M9]** for a block of cells, and **In cell [B7]** for a file with no sheets), then **Recorded with the value. Not checked against the file.** **Download file** downloads the file. Only a person who can open the chat that holds the file sees these lines; everyone else sees the typed-in value lines alone. |
+| A typed-in value that a Scenario holds itself, where its parent Scenario holds one too | **This scenario holds its own value here. Changes to the parent scenario do not update it.**, above the last change. |
+| A saved query, with no formula saved on the cell | **Loaded by a query**, with **Query: [name]**, **Connection: [name]**, and **Open connection**, which opens the connection's details. |
+| Nothing entered | **Source**, with **No formula or typed-in value sets this cell.** |
+
+On a table that compares Scenarios, **Show source** on a compared Scenario's cell, or on a **Variance** or **Variance %** cell beside it, shows the source of that Scenario's value, under **Scenario: [name]**. With one such cell selected, the formula bar shows that Scenario's formula after the Scenario's name, and does not open the editor.
+
+| Message | Meaning |
+| --- | --- |
+| **Loading source…** | The panel is reading the source. |
+| **Could not load this cell’s source.**, with **Try again** | The source did not load. |
+| **Preparing download…** | **Download file** is getting the file. |
+| **This file is unavailable or you do not have access to it.** | The file was removed, or you can no longer open its chat. |
+
+Limits:
+
+- The recorded file is what Ari stated when it saved the value. cfo.ai does not compare the value with the file.
+- **Show source** is not offered while you view an earlier version, with several cells selected, or on a time comparison's **Comparison value**, **Variance**, and **Variance %** cells.
+- A value that changes after Ari recorded its file loses the record, unless the new value is saved with a file too.
 
 ### Menu for several selected rows
 
@@ -265,7 +294,7 @@ No table owns a Variable or Dimension. The saved tables that show it, as a row, 
 | A row or column, while another saved table still shows the Variable or Dimension | It leaves this table only. |
 | Its last row, column, or drill-in on any table | cfo.ai asks **Delete variable or dimension?** before anything changes. Confirming deletes it from the Model. |
 | A table, with **Delete block**, or that table's Page | A Variable or Dimension another table still shows is kept. One no other table shows is deleted with the table, after the same question. |
-| A Variable or Dimension that several tables show, by asking Ari to delete it | Ari deletes it from the Model after you confirm. Its rows and columns leave the table recorded as its location, at first the table it was created on, and the table Ari was working on. On those tables, the rows or columns beneath a deleted Variable that break it down by a Dimension's items leave with it, because they show nothing without the Variable. One case keeps them: when the delete would leave a Dimension with no row or column, in that Scenario or in one that inherits the table, that Dimension's rows stay and move up into the Variable's place. Ari's delete is refused, and nothing is deleted, when a Scenario that inherits the table added its only rows for a Dimension directly beneath the Variable's row; Ari names the Dimension and the Scenario. Any other table that showed it keeps a row, column, or drill-in for it, marked [**Deleted property reference**](#table-header), until someone removes it there with **Remove deleted property from table** in the table setup panel. Ari's delete result names up to 20 such tables that you can open and counts the rest, so Ari can tell you which tables still list it. The result also lists the rows and columns the delete removed and each Dimension whose rows stayed. |
+| A Variable or Dimension that several tables show, by asking Ari to delete it | Ari deletes it from the Model after you confirm. Its rows and columns leave the table recorded as its location, at first the table it was created on, and the table Ari was working on. On those tables, the rows or columns beneath a deleted Variable that break it down by a Dimension's items leave with it, because they show nothing without the Variable. One case keeps them: when the delete would leave a Dimension with no row or column, in that Scenario or in one that inherits the table, that Dimension's rows stay and move up into the Variable's place. Ari's delete is refused, and nothing is deleted, when a Scenario that inherits the table added its only rows for a Dimension directly beneath the Variable's row; Ari names the Dimension and the Scenario. Any other table that showed it keeps a row, column, or drill-in for it, marked [**Deleted property reference**](#table-header), until someone removes it there with **Remove deleted property from table** in the table setup panel. Ari's delete result names up to 20 such tables that you can open and counts the rest, so Ari can tell you which tables still list it. The result also lists the rows and columns the delete removed and each Dimension whose rows stayed. It names each formula you can read that still reads what was deleted, including formulas no table shows, so you can ask Ari to rewrite or delete those formulas. |
 
 The question is always asked, even when nothing else uses the Variable or Dimension:
 
@@ -341,11 +370,11 @@ A column sort orders a Dimension's rows by the values in one column, such as cus
 
 | Rule | What happens |
 | --- | --- |
-| Where it applies | Any column: a Variable such as Revenue, a field such as Start date, one item of a column Dimension such as a month, or a comparison column such as a Scenario's delta. The table can have breakdowns, drill-ins, and comparisons. One column orders the table; sorting by another column replaces it. |
+| Where it applies | A column that shows values: a Variable such as Revenue, a field such as Start date, one item of a column Dimension such as a month, or a comparison column such as a Scenario's **Variance** or **Variance %**. A header that groups other columns does not offer it, and the table needs a Dimension in its rows. The table can have breakdowns, drill-ins, and comparisons. One column orders the table; sorting by another column replaces it. |
 | Order | Each level sorts inside its parent: on a table that lists Regions with Customers under each, the Regions sort by their totals and the Customers within each Region by their own values. Blanks and errors come last in both directions. Text sorts without regard to case, and exact text breaks a tie between two spellings. Rows with equal values keep the same order every time. |
 | A new item | Waits at the end of the rows until the table's values refresh, then takes its place in the order. |
 | **By column** | **Sort** in the Dimension's menu and in the setup panel reads this while the column sort orders the rows. |
-| **Column sort inactive** | The sort is saved but cannot apply, because the sort column was removed from the table. The rows show the Dimension's normal item order; the saved direction never sorts the names. Choose **Sort ascending** or **Sort descending** on another column to sort again, or choose **None**, **Ascending**, **Descending**, or **Manual** under **Sort** to replace it. Adding a comparison, a spacer, or another level does not stop the sort. |
+| **Column sort inactive** | The sort is saved but cannot apply, because the sort column was removed from the table, was moved under another column level, or had a level added under it. The rows show the Dimension's normal item order; the saved direction never sorts the names. Choose **Sort ascending** or **Sort descending** on another column to sort again, or choose **None**, **Ascending**, **Descending**, or **Manual** under **Sort** to replace it. Adding a comparison, a spacer, or another level of rows does not stop the sort. |
 | Copies | A copy of the table that Ari makes keeps the sort on the copy's matching column. |
 | Everyone sees the same order | The rows are ordered when the table's values are calculated, so every reader, Ari, and a spreadsheet download get the same order. |
 | Saved | With the table, for everyone. When the save cannot be confirmed, the table shows **Couldn't confirm the table changes were saved** with **Retry**; see [When a change is not saved](#when-a-change-is-not-saved). |
@@ -534,7 +563,7 @@ Version history does not list changes to column widths or pinned columns.
 | Take new items by hand in a Dimension of numbers, dates, or true-or-false values | Only text Dimensions take new items by hand. Use **Segment generation** → **Expand to create all segments**: for a Dimension of numbers, set **Start Value** and **End Value**; for a Dimension of dates, set **Start / End dates**. |
 | Hide a row from the grid's menu | Use the eye button in the table setup panel. |
 | Start column groups collapsed for everyone | Which column groups are expanded or collapsed is saved only in each person's browser. Rows can start collapsed for everyone: choose a level under [**Rows open to**](#table-block-settings-menu). |
-| Lock cells so teammates cannot edit them | Every administrator can edit every Page. To keep a teammate out of Main, invite them as a member limited to named Pages, with view access to a Page they should only read; to let someone read without joining, share a link. See [Sharing and access](/concepts/sharing-and-access). |
+| Lock cells so teammates cannot edit them | Every administrator of a workspace, which is everyone you invite, can edit every Page. To let someone outside the workspace read without editing, share a link. A teammate who opens the link keeps their edit access. See [Sharing and access](/concepts/sharing-and-access). |
 | Be edited on a phone | Ask the phone's browser for its desktop site, or use a computer. See [Phones and tablets](/reference/interface#phones-and-tablets). |
 | Show a Dimension item or a column under a different name on one table | Only a Variable's row takes its own name on one table: right-click the row name and choose [**Rename on this table**](#variable-row-or-column-menu). A Dimension item and a column header show the same name on every table; rename the item or the Variable to change it everywhere. For a table that lists records, such as employees, you can show a field as each row's name; see [Show a field, such as Name, as the row names](/guides/format-a-table#show-a-field-such-as-name-as-the-row-names). |
 

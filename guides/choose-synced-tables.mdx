@@ -12,7 +12,7 @@ Use this guide when you connect a database or an app through Fivetran, which can
 | --- | --- |
 | Databases and data warehouses, and most apps through Fivetran, such as Shopify or Sage Intacct | A table picker at setup. Every table starts selected. |
 | Pipedrive | A table picker at setup. Seven recommended sales tables start selected instead of every table; see [Other CRMs](/reference/integrations#other-crms). |
-| NetSuite SuiteAnalytics | A table picker at setup. The tables the statements need are locked; tables for NetSuite features you do not use start unchecked. Tables that already sync cannot be removed later. |
+| NetSuite SuiteAnalytics | A table picker at setup. The tables the statements need are locked; tables for NetSuite features you do not use start unchecked. A new connection starts with only the tables cfo.ai's statements read. Ask Ari to add other tables later, which then sync too, or to remove one that no saved query reads; the statement tables stay locked. See [NetSuite SuiteAnalytics](/reference/integrations#netsuite-suiteanalytics). |
 | HubSpot, Salesforce, Rippling | No picker. cfo.ai selects the tables its reports need and keeps them locked. Ask Ari to add other tables later. |
 | Rillet | No picker. The statement tables always sync. Journal lines are the one optional table and start turned off; ask Ari to turn them on or off. See [Rillet](/reference/integrations#rillet). |
 | QuickBooks Online, Xero, Stripe (Direct), HR and payroll systems through Merge, Google Sheets, Google Drive, CSV uploads | No table choice |

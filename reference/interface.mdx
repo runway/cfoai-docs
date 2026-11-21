@@ -1,7 +1,7 @@
 ---
 title: "The cfo.ai interface"
 sidebarTitle: "Interface"
-description: "Every part of the cfo.ai app and what it does: the sign-in page and its code messages, the sidebar and its Page list, the account menu and workspace switcher, the Triggers page, the Help center and how to contact support, workspace search, the Page header, Download spreadsheet (export to Excel) and Share messages, Canvas and chart blocks, and the phone and tablet layout."
+description: "Every part of the cfo.ai app and what it does: the sign-in page and its code messages, the sidebar and its Page list, the account menu and workspace switcher, the Triggers page, the Help center and how to contact support, workspace search, the Page header, the Share panel and its Export tab (export to Excel), Download spreadsheet and Share messages, Canvas and chart blocks, and the phone and tablet layout."
 ---
 
 The cfo.ai app has a navigation sidebar on the left and the chat or Page you are working in beside it. This page describes each part in the order you meet it, starting with signing in, with every label and message. It describes a desktop browser; for phones and tablets, see [Phones and tablets](#phones-and-tablets). For keyboard shortcuts, see [Keyboard shortcuts](/reference/keyboard-shortcuts).
@@ -242,14 +242,14 @@ Open it with **Help center** in the account menu, or press **⌘ ?** (**Ctrl ?**
 | Section | What it holds |
 | --- | --- |
 | **Recently viewed** | Walkthroughs and explanations you ran since the app last loaded, including ones Ari made. Each has a button that asks Ari to refresh it with your latest numbers. |
-| **Getting started** | **Get to know navigating your workspace**, **Ask Ari to change your model**, **Start from a Canvas template**, **Find your way around the model**, and **Ask a human**. |
+| **Getting started** | **Get to know navigating your workspace**, **Ask Ari to change your model**, **Start from a Canvas example**, **Find your way around the model**, and **Ask a human**. |
 | **Tables & formulas** | **Get to know table blocks**, **Ask Ari about any number**, **Compare scenarios side by side**, and **See how a number is calculated**. |
 | **Collaboration** | **Share pages with a link** and **Find and undo a change**. |
 | **Data & integrations** | **Connect your data sources**. |
 | **Keyboard shortcuts** | The common shortcuts. |
 | **Additional resources** | **cfo.ai Docs** (these pages) and **System status** (service availability and incidents). Both open in a new tab. |
 
-**Ask Ari to change your model** opens a new chat with suggested prompts, such as **Explain my cash** and **Plan next year’s hiring**, and puts the one you pick in the message box. **Start from a Canvas template** points at the palette button under the message box and opens the Canvas block library.
+**Ask Ari to change your model** opens a new chat with suggested prompts, such as **Explain my cash** and **Plan next year’s hiring**, and puts the one you pick in the message box. **Start from a Canvas example** points at the palette button under the message box and opens the Canvas block library.
 
 An entry added in the last 30 days shows **New** until you complete it, and a completed entry shows a check. Selecting an entry shows what it covers, its number of steps, and **Start walkthrough**. If the walkthrough needs something the workspace lacks, the button is off and a line says what to add, such as **This needs a table. Add a table to a page to try this.**, **This needs a page. Add a page to your model, then start this again.**, or **Open a page with a table, then start this again.** Add it, then select **Check again**.
 
@@ -267,7 +267,7 @@ You can reach a person at cfo.ai in these ways.
 | Control | What it does |
 | --- | --- |
 | **Help center → Getting started → Ask a human** | Opens [Ask a human](#ask-a-human), which sends a message straight to the cfo.ai team. |
-| Asking Ari in a chat | When you ask Ari for a person, Ari offers to send your request to the cfo.ai team in your words, and sends it once you agree. The request goes to the same team as **Ask a human**, with your name and email. Ari cannot attach screenshots; use **Ask a human** to send those. Ari sends a request only for a signed-in administrator who is in the chat, so a Trigger's run cannot send one, and neither can a member limited to named Pages. |
+| Asking Ari in a chat | When you ask Ari for a person, Ari offers to send your request to the cfo.ai team in your words, and sends it once you agree. The request goes to the same team as **Ask a human**, with your name and email. Ari cannot attach screenshots; use **Ask a human** to send those. Ari sends a request only for a signed-in administrator who is in the chat, so a Trigger's run cannot send one. |
 | **Talk to us on Slack** in the account menu | Opens [Talk to the cfo.ai team on Slack](#talk-to-us-on-slack), which emails every member of the workspace a Slack invitation to a private channel shared with the cfo.ai team. You can also ask Ari in a chat to send these invitations. |
 | **Feedback** in the sidebar | Sends product feedback to the cfo.ai team. |
 | Email [success@cfo.ai](mailto:success@cfo.ai) | The **Support** link at the top of these docs. |
@@ -381,8 +381,8 @@ The bar above a Page, from left to right:
 | Page name | Opens **Pages**, the list of Pages in this Scenario, with **New page** and a **Search pages** button that shows a **Find a page…** field. |
 | **Merge** | Shown when a chat is open beside a Page in a Scenario other than Main. See [Merge a Scenario into Main](/guides/merge-a-scenario). |
 | **Building…** | Ari is building this Page. |
-| **Download spreadsheet** | The download icon. Opens **Download as Excel**, where you choose **With formulas** or **Values only** to export the Page's tables and Canvas data, and where your **Recent exports** of the Page are listed. On a Page with no Table block and no Canvas block with data it only lists past exports. See [Download spreadsheet](#download-spreadsheet). |
-| **Share** | Opens the [Share panel](#share-panel). Shown to people who can share the Page. A link icon on the button means an external link to the Page is on. |
+| **Download spreadsheet** | The download icon. Shown only to someone who can read the Page but cannot share it, such as a reader who opened it through a share link; people who can share the Page export from **Share** instead. Opens **Download as Excel**, where you choose **With formulas** or **Values only** to export the Page's tables and Canvas data, and where your **Recent exports** of the Page are listed. On a Page with no Table block and no Canvas block with data it only lists past exports. See [Download spreadsheet](#download-spreadsheet). |
+| **Share** | Opens the [Share panel](#share-panel), which has a **Share** tab for the Page's links and an **Export** tab that exports the Page to Excel. Shown to people who can share the Page. A link icon on the button means an external link to the Page is on. |
 | **Version history** | The clock icon. Opens the version history panel. See [Scenario and version history controls](/reference/scenarios-and-history). |
 | **New chat** | On a full-screen Page with no chat open. Opens a floating chat over the Page. |
 | **Collapse model pane** | When the Page is beside a chat. Folds the Page to a narrow rail; **Expand model pane** opens it again. |
@@ -446,9 +446,17 @@ Saving is continuous and shows nothing while it works. A line above the document
 
 ## Download spreadsheet
 
-**Download spreadsheet**, the download icon in the Page header, exports the Page's tables, and the data its Canvas blocks draw, as an Excel workbook. Its tooltip reads **Download tables and Canvas data as a spreadsheet**. cfo.ai has no button that downloads a Page as a PDF or a CSV; ask Ari for one. For what the workbook contains, see [Export a Page to Excel](/guides/download-a-spreadsheet); for a PDF, see [Get a PDF report or slide deck](/guides/get-a-pdf-or-slides).
+To export a Page to Excel, select **Share** in the Page header, then the **Export** tab, which holds **Download as Excel**. The export writes the Page's tables, and the data its Canvas blocks draw, to an Excel workbook. cfo.ai has no button that downloads a Page as a PDF or a CSV; ask Ari for one. For what the workbook contains, see [Export a Page to Excel](/guides/download-a-spreadsheet); for a PDF, see [Get a PDF report or slide deck](/guides/get-a-pdf-or-slides).
 
-When the button is busy with an export, one this tab asked for or one it picked up when the Page opened, selecting it shows the notice below and opens no menu. When it is not busy, selecting it opens a menu titled **Download as Excel**. Opening the menu starts nothing: an export starts when you choose a format. The menu has the two formats, then **Recent exports**, your own exports of this Page in this Scenario:
+Where **Download as Excel** is depends on whether you can share the Page. In a desktop browser, the Page header shows **Share** or the **Download spreadsheet** icon, never both:
+
+| Who | Where **Download as Excel** is |
+| --- | --- |
+| Someone who can share the Page, such as an administrator of the workspace | The **Export** tab of the [Share panel](#share-panel). The panel opens on its **Share** tab each time, so select **Export**. The Page header shows no download icon. |
+| Someone who can read the Page but cannot share it, such as a reader who opened it through a share link | **Download spreadsheet**, the download icon in the Page header. Its tooltip reads **Download tables and Canvas data as a spreadsheet**, and it opens a menu titled **Download as Excel**. |
+| Anyone in a phone or tablet browser | Neither control is offered; see [Phones and tablets](#phones-and-tablets). |
+
+Opening the **Export** tab or the menu starts nothing: an export starts when you choose a format, and the panel or the menu then closes. Both hold the two formats, then **Recent exports**, your own exports of this Page in this Scenario:
 
 | Control or message | Meaning |
 | --- | --- |
@@ -462,9 +470,9 @@ When the button is busy with an export, one this tab asked for or one it picked 
 | **No exports from the last 24 hours.** | Nothing to list. |
 | **Could not load exports.**, with **Try again** | The list could not be read. Nothing was started. |
 
-The list holds up to 10 exports: each you asked for in the last 24 hours, and any still queued or running. Exports other people asked for are not listed. While the menu is open, a queued or running export's status refreshes on its own. A **With formulas** export and a **Values only** export of the same Page are separate exports, each with its own row.
+The list holds up to 10 exports: each you asked for in the last 24 hours, and any still queued or running. Exports other people asked for are not listed. While the **Export** tab or the menu is open, a queued or running export's status refreshes on its own. A **With formulas** export and a **Values only** export of the same Page are separate exports, each with its own row.
 
-While an export runs, the button spins and its tooltip shows the stage:
+While your export of the Page runs, where its stage shows depends on the control you have. For someone who can share the Page, the **Export** tab shows the stage in a line under **Download as Excel**, and its two formats cannot be selected, so no second export starts. For a reader who has the **Download spreadsheet** icon, the icon spins and its tooltip shows the stage. The stages read the same in both places:
 
 | Message | Meaning |
 | --- | --- |
@@ -473,7 +481,7 @@ While an export runs, the button spins and its tooltip shows the stage:
 | **Spreadsheet queued** | Your export is waiting to start. |
 | **Preparing spreadsheet** | Your export is running. |
 
-The button stays clickable while its export runs. Selecting it again starts no second export and opens no menu; it shows a notice with the same stage and the time you asked, which you can close:
+A notice at the corner of the window shows the same stage and the time you asked, and you can close it. From the **Export** tab, the notice shows as soon as you choose a format, because the Share panel closes. For a reader, the **Download spreadsheet** icon stays clickable while its export runs: selecting it again starts no second export and opens no menu, and shows the notice:
 
 | Notice | Meaning |
 | --- | --- |
@@ -491,7 +499,7 @@ When it finishes:
 | **Could not download spreadsheet**, with **[Page]: [reason]** and **Download values only** | A **With formulas** export ran and failed. **Download values only** starts a **Values only** export of the same Page and Scenario. The button is not offered when a **Values only** export failed, when the export was cancelled, or when the request was refused before an export ran. |
 | **The Excel export of "[Page]" finished with [n] of [m] selected pages written.**, then **Pages left out ([k]): [names].** when some were | Posted in the chat that asked Ari for the export, when the export finished after Ari's reply had ended. A failed export posts **The Excel export of "[Page]"** followed by its reason instead. See [Export a Page to Excel](/guides/download-a-spreadsheet). |
 
-When you open a Page, it looks for your own newest export of that Page in that Scenario: one still queued or running, or one that ended within the last hour. It looks even when the Page no longer has a table. A running export makes the button busy again, with the tooltips above. When it finishes, the file downloads if this tab asked for it before a reload, or if you selected **Download spreadsheet** in this tab while it ran; an export that a closed tab, another tab, or Ari asked for is otherwise offered with **Spreadsheet ready** instead. An export that already ended shows one of these notices. A tab reports an export once, across its reloads, and a new tab reports it again:
+When you open a Page, it looks for your own newest export of that Page in that Scenario: one still queued or running, or one that ended within the last hour. It looks even when the Page no longer has a table. A running export shows as running again: the **Export** tab shows its stage, or, for a reader, the download icon spins with the tooltips above. When it finishes, the file downloads if this tab asked for it before a reload, or if you selected the **Download spreadsheet** icon in this tab while it ran; an export that a closed tab, another tab, or Ari asked for is otherwise offered with **Spreadsheet ready** instead. An export that already ended shows one of these notices. A tab reports an export once, across its reloads, and a new tab reports it again:
 
 | Message | Meaning |
 | --- | --- |
@@ -533,7 +541,9 @@ For time and size limits, see [Limits and file types](/reference/limits#tables-p
 
 ## Share panel
 
-**Share** in the Page header opens the panel, titled **Share [Page]**, with **Close**. The panel lists the Page's links; you choose a link's Pages and Scenarios in [New link](#new-link). From top to bottom:
+**Share** in the Page header opens the panel, titled **Share [Page]**, with **Close**. Under the title are two tabs. **Share** is selected each time the panel opens. **Export** holds **Download as Excel**, which exports the Page to Excel; see [Download spreadsheet](#download-spreadsheet). A change you have not saved on the **Share** tab, such as a password you typed, is kept while you look at **Export**.
+
+The **Share** tab lists the Page's links; you choose a link's Pages and Scenarios in [New link](#new-link). From top to bottom:
 
 | Part | What it does |
 | --- | --- |
@@ -548,7 +558,9 @@ A link's name is a label for the people in your workspace, such as "Board – Q4
 
 To add or remove a link's Pages or Scenarios, use **Edit pages** in [Link details](#link-details); the link keeps its address and password. You cannot change the Page a link opens first.
 
-Turning a link off opens **Turn off this external link?**, or **Turn off “[name]”?** for a link that has a name, which says **Anyone who has the link will no longer be able to open it.** The checkbox **Also remove access already granted by this link** is checked, with **Recommended for financial information. Direct invitations stay unchanged.** Select **Cancel** or **Turn off link**.
+Turning a link off opens **Turn off this external link?**, or **Turn off “[name]”?** for a link that has a name, which says **Anyone who has the link will no longer be able to open it.** The checkbox **Also remove access already granted by this link** is checked, with **Recommended for financial information. Direct invitations stay unchanged.** Select **Cancel** or **Turn off link**. A link that is off cannot be turned back on.
+
+Ari can turn a link off, change its Pages, move it to another Scenario, and set its memorable address. Ari cannot rename a link, set its password, or edit its preview. See [Ask Ari to change a link or turn it off](/guides/share-a-page#ask-ari-to-change-a-link-or-turn-it-off).
 
 An old link that opens a Page in every Scenario lists its Pages by name, without **Details**, and shows **All scenarios** as its **Shared scenario**. Only someone with full access to the Page can turn it off: **Only a page-wide owner can turn off this legacy link.**
 
@@ -642,7 +654,9 @@ A memorable address has 3 to 64 lowercase letters, digits, or single hyphens bet
 | Password | **Enter the link password**, with **Ask the person who shared this page for its password.**, a **Password** field, and **Open shared page**. A wrong password shows **That password does not match** and **Check the password you were given and try again.** When the workspace's **Show the brand on link previews** setting is on, the brand strip shows above the prompt. |
 | Link turned off, wrong, or to Pages that were all deleted | **Link not found**, with **This share link may have been revoked or never existed.** A link that opens several Pages keeps opening while one of them exists. |
 | Link expired | **Link expired**, with **Ask the sharer for a fresh link.** |
+| A link that grants no access, such as a link to a Page or block that Ari posts in Slack or in an email, opened by someone signed in who cannot read what it names | **You don’t have access yet**, with **Ask the person who shared this link to give you access, then open it again.** The reader sees the same screen after the Page or block is deleted. A reader who is not signed in is sent to sign in first. The link's preview card shows neither the Page's name nor your brand. |
 | A memorable address that cannot load | **This shared page is temporarily unavailable. Please try again.** |
+| Workspace locked for billing | **This workspace is unavailable**, with **A workspace admin needs to update billing before anyone can get back in.** The reader sees no plan, price, or usage, and no billing banner. See [When the workspace locks](/reference/plans-and-billing#when-the-workspace-locks). |
 | Other failure | **Something went wrong**, with **Please try again in a moment.** |
 | Strip above the Page | For a reader who is not signed in: your brand's logo and name with **Powered by cfo.ai**, or, without a brand, **Like what you see? Build a model like this for your own business.** with **Start your free trial now**, which the reader can dismiss. In a desktop browser, a brand with a logo shows no strip, because the sidebar already shows the logo and **Powered by cfo.ai**. A phone or tablet browser shows the strip, and so does a brand without a logo. |
 | **Keep your access** | A card for a reader who is not signed in: **Sign in to hold on to the pages shared with you.**, with an email field |
@@ -660,7 +674,7 @@ The controls sit inside the block's upper-right corner, over its content, and st
 
 | Control | What it does |
 | --- | --- |
-| **Add** | At the block's top corner, for people who can edit the Page. Opens the Canvas block library to pick components and templates for Ari to add. |
+| **Add** | At the block's top corner, for people who can edit the Page. Opens the Canvas block library to pick components and examples for Ari to add. |
 | **Select element** | At the block's top corner. Click one part of the block to add it to the chat as a reference. |
 | **Mention in chat** | At the block's top corner. Adds the block to the chat's message box. |
 | **Inspect data** | At the block's top corner, on a block that reads Model data, for workspace admins only; its tooltip reads **Inspect the data behind this Canvas block**. Opens the **Canvas data** dialog, which shows each data view the block reads as its own read-only table. A table's header offers **Add to page**, which puts a copy of that table on the Page just before the Canvas block and then reads **Added to page**. The copy is an ordinary Table block, so you can edit it as you would any table; cells a connected system fills stay read-only there too. **Add to page** needs edit access to the Page and is unavailable in a historical view, for a view that reads another Scenario, and while the Page is refreshing. The dialog stays open while the Page refreshes, including after **Add to page**. |
@@ -793,7 +807,6 @@ The form link opens a page of its own, outside the app, titled **[form] · cfo.a
 | The invitation | From **[your name] via cfo.ai**, replies to you. **Hi [first name],** or **Hello,**, then **[You] asked for your answers to [form].**, **You'll get an email with a link to change your answers until [date].**, the button **Open the form**, and **The form asks for your name and email first.** |
 | The receipt | Subject **We got your answers to [form]**. It reads **You can change them until [date].** or **You can change them while the form is open.**, with the button **Change your answers** and a warning that anyone with that link can change the answers, so it should not be forwarded. A person gets at most one receipt every 10 minutes. An answer on the Page gets no receipt. |
 | The flagged-answer email | To the person who made the form. Subject **An answer to [form] was kept out of the table**; the body names the checks and says to look at the answer on the **Responses** tab and press **Add to table** if the check got it wrong. |
-| A saved email that links forms | Lists them under **Linked form** or **Linked forms**; one email can carry up to 10 forms. |
 
 ### What Ari can do with a form
 
@@ -838,7 +851,7 @@ A phone or tablet browser opens the same workspace in a reading layout, one scre
 | **Back to chat** | On a Page opened from a chat. Returns to the conversation. |
 | **New chat** | On a Page. Starts a chat. |
 
-Pages are read-only in this layout, whatever your access. You can read tables and Canvas blocks, and a table's **Table block settings** menu offers **Show formula bar** and **Show formula columns**, but you cannot edit cells, add rows or blocks, or create Pages or Scenarios. The Page header shows only the Page's name: **Share**, **Download spreadsheet**, and **Version history** are not offered. Empty states say **Pages are read-only in this browser. Use Desktop Site to create a page.** and **Scenarios are read-only in this browser. Use Desktop Site to create one.**
+Pages are read-only in this layout, whatever your access. You can read tables and Canvas blocks, and a table's **Table block settings** menu offers **Show formula bar** and **Show formula columns**, but you cannot edit cells, add rows or blocks, or create Pages or Scenarios. The Page header shows only the Page's name: **Share**, with its **Export** tab, **Download spreadsheet**, and **Version history** are not offered. Empty states say **Pages are read-only in this browser. Use Desktop Site to create a page.** and **Scenarios are read-only in this browser. Use Desktop Site to create one.**
 
 **Follow Ari’s work** is not offered in this layout, so Ari does not move your view there. When Ari finishes, **Show it** above the message box opens the Page it edited last.
 

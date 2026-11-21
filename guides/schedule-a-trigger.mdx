@@ -115,6 +115,7 @@ A run can fix a problem itself when the fix can be undone: it can change the Tri
 
 - To undo a change to the instructions, ask Ari, for example "Put back the previous instructions for my Monday cash Trigger". cfo.ai keeps the instructions a Trigger had before its latest change, so this also undoes a change you or Ari made in a chat or in **Edit trigger**. It keeps one earlier version. The Triggers page does not show the earlier instructions; ask Ari to show them.
 - To undo an edit to your Model, use version history; see [Undo a change or restore an earlier version](/guides/undo-changes).
+- To undo a change to a saved query, ask Ari or use version history in Main. When the query had loaded rows, the run's message gives its rows and changed totals before and after the change. Undo puts back the query's earlier SQL, and the rows the changed query loaded stay until the query runs again; see [Saved queries](/reference/imported-data#saved-queries).
 
 To keep runs from changing the instructions, say so in the instructions. Ari treats a change the instructions forbid as a decision for you, and the Trigger waits on it.
 

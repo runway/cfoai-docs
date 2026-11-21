@@ -16,10 +16,11 @@ A Scenario branches from Main. It stores only what differs from Main, such as va
 
 Take a hiring Scenario in which two engineers start in January. When QuickBooks syncs new Actuals overnight, Main updates, and so does the hiring Scenario, because it reads those Actuals from Main. The two extra salaries stay in the Scenario alone. You never have to copy new data into your Scenarios by hand.
 
-Two consequences follow:
+Three consequences follow:
 
 - A value that the Scenario inherits from Main changes when Main changes. If you set a cell in a Scenario to the value it already inherits, nothing is saved, and the cell keeps following Main. To make a number hold still while Main moves, give the Scenario a different value.
 - Connected data is shared. A Scenario changes Model formulas, values, and presentation; it never makes a private copy of an integration. Saved queries that read your connections also belong to Main, so every ordinary Scenario sees the same imported rows.
+- A deletion in Main reaches the Scenarios built on Main. A table or Canvas block you delete in Main is deleted in each of those Scenarios too, including a Scenario's own edited version of the block. A Snapshot keeps its copy. When Ari deletes a block, it names the other Scenarios that lose it.
 
 ## A copy starts where another Scenario is
 

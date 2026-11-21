@@ -279,7 +279,7 @@ It takes exactly two arguments. An empty value is not an error, so `iferror` ret
 
 ## Date-part functions
 
-Date-part functions return one part of a date as a number. Each takes exactly one date, except `weekday` and `weeknum`. A value that is not a date, such as a number or text that does not read as a date, returns `#VALUE!`.
+Date-part functions return one part of a date as a number. Each takes exactly one date, except `weekday` and `weeknum`. A value that is not empty and is not a date, such as a number or text that does not read as a date, returns `#VALUE!`. An empty value returns an empty value.
 
 ### year
 

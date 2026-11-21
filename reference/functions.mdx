@@ -279,7 +279,7 @@ It takes exactly two arguments. An empty value is not an error, so `iferror` ret
 
 ## Date-part functions
 
-Date-part functions return one part of a date as a number. Each takes exactly one date, except `weekday` and `weeknum`.
+Date-part functions return one part of a date as a number. Each takes exactly one date, except `weekday` and `weeknum`. A value that is not a date, such as a number or text that does not read as a date, returns `#VALUE!`.
 
 ### year
 
@@ -330,7 +330,7 @@ weekday(date, return_type)
 weekday(Date.Day, 2)
 ```
 
-The optional return type sets the numbering: 1 (Sunday is 1, the default), 2 (Monday is 1), 3 (Monday is 0), or 11 to 17 (the week starts on Monday through Sunday).
+The optional return type sets the numbering: 1 (Sunday is 1, the default), 2 (Monday is 1), 3 (Monday is 0), or 11 to 17 (the week starts on Monday through Sunday). Any other return type returns `#VALUE!`.
 
 ### weeknum
 
@@ -341,7 +341,7 @@ weeknum(date, return_type)
 weeknum(Date.Week, 21)
 ```
 
-The optional return type sets the first day of the week: 1 (Sunday, the default), 2 (Monday), or 11 to 17 (Monday through Sunday). Return type 21 uses ISO 8601 weeks.
+The optional return type sets the first day of the week: 1 (Sunday, the default), 2 (Monday), or 11 to 17 (Monday through Sunday). Return type 21 uses ISO 8601 weeks. Any other return type returns `#VALUE!`.
 
 ### isoweeknum
 
@@ -414,7 +414,7 @@ dateadd(date, amount, "unit")
 dateadd(Date.Month, -1, "month")
 ```
 
-The unit must be in quotes and in lowercase: `"day"`, `"week"`, `"month"`, `"quarter"`, `"half"`, or `"year"`. The amount is a whole number; a negative amount moves back.
+The unit must be in quotes and in lowercase: `"day"`, `"week"`, `"month"`, `"quarter"`, `"half"`, or `"year"`. Any other unit, such as `"Month"` or `"months"`, returns `#VALUE!`. The amount is a whole number; a negative amount moves back.
 
 ### datedif
 
@@ -425,7 +425,7 @@ datedif(start_date, end_date, "unit")
 datedif(`Start Date`, Date.Month, "M")
 ```
 
-The unit is `"Y"`, `"M"`, `"D"`, `"MD"`, `"YM"`, or `"YD"`. The count leaves out the end day, so add 1 to count both ends. A start date after the end date returns `#NUM!`, and a value that is not a date returns `#VALUE!`.
+The unit is `"Y"`, `"M"`, `"D"`, `"MD"`, `"YM"`, or `"YD"`, in capital or lowercase letters. Any other unit returns `#VALUE!`. The count leaves out the end day, so add 1 to count both ends. A start date after the end date returns `#NUM!`, and a value that is not a date returns `#VALUE!`.
 
 ### daysin
 
@@ -436,7 +436,7 @@ daysin(date, "unit")
 daysin(Date.Month, "month")
 ```
 
-The unit is one of the `dateadd` units, in quotes. Use it to spread an amount by calendar days, such as `` `Annual Fee` / 365 * daysin(Date.Month, "month") ``.
+The unit is one of the `dateadd` units, in quotes and in lowercase; any other unit returns `#VALUE!`, and so does a value that is not a date. Use it to spread an amount by calendar days, such as `` `Annual Fee` / 365 * daysin(Date.Month, "month") ``.
 
 ### date
 

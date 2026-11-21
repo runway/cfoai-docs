@@ -126,7 +126,7 @@ A Variable or Dimension shows its integration's logo on table row and column lab
 | --- | --- |
 | Integrations | Once a day, in a shared nightly run that starts at 02:00 UTC (7 PM Pacific the evening before during daylight saving time, 6 PM in winter); each workspace's connections start at the workspace's own fixed point within the following hour. The run reruns the saved queries once every source has finished syncing, or at the four-hour cutoff for the sources that have; a source still syncing then gets its queries within about two minutes after its sync ends, checked for up to 20 hours. A source waiting for a sync that Fivetran is still running or has rescheduled to a later time counts as still syncing, so on such a night the other sources' queries run at the cutoff. A query already refreshed after its source's latest sync does not run again. |
 | A connection with its own refresh time | Once a day at that time of day, in its time zone, keeping that clock time across daylight saving changes. A new time applies from the next nightly run. |
-| Google Sheets and Google Drive | Nightly and when you ask Ari. An unchanged file starts no update. |
+| Google Sheets and Google Drive | Nightly and when you ask Ari. An unchanged file starts no update. A changed file updates your Model only when automatic updates are on for the connection; see [Google Sheets](/reference/integrations#google-sheets). |
 | CSV uploads | Never |
 | MCP servers and APIs | Live when Ari calls them. A saved sync setup refreshes nightly, like an integration. |
 | A source with no integration that Ari fetches | Once a day, once its first fetch has saved a script: when the nightly run starts at 02:00 UTC, without the workspace's delay, or at the connection's own time of day. The fetch runs as the person who made the connection and repeats the connection's latest request. A fetch still running from the day before is left to finish, and no new one starts on top of it. When every table the source loaded has been removed, the daily fetch stops until someone asks Ari to fetch again. |
@@ -181,7 +181,7 @@ Ari adds a sheet's rows as its last change for that sheet. A sheet with rows in 
 | A first import of an Excel workbook (`.xlsx`) stored in Google Drive, or of a Google Sheet with one visible tab | One step. The next sync runs that step again, and Ari is told to build only the sheets that have no rows in **Workbook tie-out**. |
 | An update from a changed version of the file | One step, for every file. The next sync runs that step again. |
 
-A newer version of the file waits while a first import that builds tab by tab is running, waiting for your answer, or stopped on a failure. The sync resumes that import, and a sync after it finishes starts the update. An import that was cancelled does not hold a newer version back.
+A newer version of the file waits while a first import that builds tab by tab is running, waiting for your answer, or stopped on a failure. The sync resumes that import, and a sync after it finishes starts the update. An import that was cancelled does not hold a newer version back, and no sync runs it again. While automatic updates are off for the connection, no sync moves a stopped import on; see [Turn automatic updates on or off](/guides/connect-a-google-sheet#turn-automatic-updates-on-or-off).
 
 ## Sync setups for MCP servers and APIs
 

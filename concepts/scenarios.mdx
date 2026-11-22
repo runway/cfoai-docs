@@ -20,7 +20,7 @@ Three consequences follow:
 
 - A value that the Scenario inherits from Main changes when Main changes. If you set a cell in a Scenario to the value it already inherits, nothing is saved, and the cell keeps following Main. To make a number hold still while Main moves, give the Scenario a different value.
 - Connected data is shared. A Scenario changes Model formulas, values, and presentation; it never makes a private copy of an integration. Saved queries that read your connections also belong to Main, so every ordinary Scenario sees the same imported rows.
-- A deletion in Main reaches the Scenarios built on Main. A table or Canvas block you delete in Main is deleted in each of those Scenarios too, including a Scenario's own edited version of the block. A Snapshot keeps its copy. When Ari deletes a block, the result it gets back names the other Scenarios that lose it, among those you can read, so ask Ari which Scenarios a deletion reached. A Scenario you cannot read can lose the block without being named.
+- A deletion in Main reaches the Scenarios built on Main. A Page, table, or Canvas block you delete in Main is deleted in each of those Scenarios too, including a Scenario's own edited version of it. A Snapshot keeps its copy. When Ari deletes a Page or a block, the result it gets back names the other Scenarios that lose it, among those you can read, so ask Ari which Scenarios a deletion reached. A Scenario you cannot read can lose the Page or block without being named.
 
 ## A copy starts where another Scenario is
 

@@ -86,7 +86,7 @@ If a missing table belongs to a NetSuite feature you do not use, **Multiple Curr
 
 HR and payroll systems, sources that sync through Fivetran, and banks connected through Plaid prepare your account's data on their side before cfo.ai can load anything. While cfo.ai waits, the connection reads **Syncing**, and the line says how long it has waited, what the provider last reported, and when the wait ends. A source such as Pipedrive can run out of API calls partway through its first sync; Fivetran then reschedules the sync, the line names when its next attempt is due, and cfo.ai keeps waiting and starts the sync again once that time has passed. Xero can also wait for its request allowance to reset. You do not need to do anything.
 
-If the provider still has not finished 20 hours after cfo.ai began waiting, the connection reads **First sync not ready**. The next nightly sync starts a new wait, or select **Retry** to start one now. A bank connected through Plaid is the exception: at the first check after the 20 hours, its first sync loads the recent transactions Plaid has ready, and later syncs add the older history. It reads **First sync not ready** only when Plaid has no recent transactions ready either. [Syncing](/reference/connection-statuses#syncing) lists what the line says while it waits.
+If the provider still has not finished 20 hours after cfo.ai began waiting, the connection reads **First sync not ready**. The next nightly sync starts a new wait, or select **Retry** to start one now. A bank connected through Plaid seldom waits this long: its first sync loads recent transactions as soon as Plaid has them ready, and later syncs add the older history. It reads **First sync not ready** only when Plaid has nothing ready after the 20 hours. [Syncing](/reference/connection-statuses#syncing) lists what the line says while it waits.
 
 A payments system with a long history, such as Stripe, can spend a day or more in its first sync. Ask Ari whether the load is still running before you treat it as a failure. Afterward, a Stripe (Direct) connection can read **Still loading** for several nights while one large table, such as payment methods, fills. The line says how far the read has got, and you do not need to do anything; see [Still loading](/reference/connection-statuses#still-loading).
 
@@ -98,11 +98,11 @@ cfo.ai waits the same way when Fivetran postpones a later sync because the sourc
 
 ## Partly synced
 
-The connection reads **Partly synced** when the last sync finished without some tables. The data that arrived is usable. Until cfo.ai has read why each table failed, for a moment after you open the connection or for as long as cfo.ai cannot read the sync's outcome, the line says only that the last sync could not refresh those tables, and **Reconnect** is offered as for any connection that needs attention. Once the cause is known, the line says whose side it is on:
+The connection reads **Partly synced** when the last sync finished without some tables. The data that arrived is usable. Until cfo.ai has read why each table failed, for a moment after you open the connection or for as long as cfo.ai cannot read the sync's outcome, the line says only that the last sync could not refresh those tables, and **Reconnect** is offered as for any connection that needs attention. Once cfo.ai has read the outcome, the line names any table the source refused:
 
 - If it says the source **refused this connection access** to a table, the account you signed in with cannot read that table. Select **Reconnect** and sign in with an account that can, and the next sync refreshes it. Everything else is already up to date.
-- If it says **A problem on cfo.ai’s or [source]’s side kept the last sync from refreshing** a table, reconnecting does not help, and no **Reconnect** is offered. cfo.ai retries the table on the next sync. You do not need to do anything.
-- If it names both, **Reconnect** repairs only the refused tables.
+- If it says only that the last sync **couldn’t refresh** a table, and no **Reconnect** is offered, the source did not refuse the table. cfo.ai retries it on the next sync. You do not need to do anything.
+- If it names refused tables and then says the last sync **also couldn’t refresh** others, **Reconnect** repairs only the refused tables.
 
 [Connection statuses and actions](/reference/connection-statuses#partly-synced) lists each line.
 

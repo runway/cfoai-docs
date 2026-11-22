@@ -42,9 +42,34 @@ Right-click the item, such as **Contractors**, and choose **Filter out this item
 
 To hide several items at once, select their row names, right-click one of them, and choose **Filter selected items**. See [Menu for several selected rows](/reference/table-blocks#menu-for-several-selected-rows).
 
+## Show one product or one country without adding rows
+
+To limit a whole table to chosen items of a Dimension that is not on its rows or columns, such as one product or one country, use the table's item filter.
+
+<Tabs>
+  <Tab title="Ask Ari">
+    > Filter the Revenue table to the Widget product and the US.
+  </Tab>
+  <Tab title="By hand">
+    <Steps>
+      <Step title="Open Filter items">
+        Open the table's **…** menu, **Table block settings**, and choose **Filter items…**.
+      </Step>
+      <Step title="Choose a Dimension and its items">
+        Choose a Dimension under **Add a dimension…**, check the item to show, and select **Apply**. Add another Dimension the same way.
+      </Step>
+      <Step title="Save">
+        Select **Save filter**.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+The table header then names the filter, such as **Country: US · Product: Widget**. With one item for each Dimension, the cells stay editable, and a value you type saves for that item. With several items of a Dimension, each cell shows their total and cannot be edited. To clear the filter, select the filter in the header, select **Remove** beside each Dimension, and select **Save filter**. The exact rules are in [Item filter](/reference/table-blocks#item-filter).
+
 ## Clear a filter so every item shows again
 
-A filter on a Dimension's items leaves no mark on the table itself. To check whether a Dimension is filtered, open **Show table setup**: a funnel with a number beside a Dimension shows how many items the filter keeps. In the right-click menu, **Filter items** shows the same number. A funnel with no number means a condition filters the Dimension; see [A filter Ari wrote as a formula](#a-filter-ari-wrote-as-a-formula).
+A filter on a Dimension's items leaves no mark on the table itself. An item filter set with **Filter items…** in the table's **…** menu is different: the table header names it. To check whether a Dimension is filtered, open **Show table setup**: a funnel with a number beside a Dimension shows how many items the filter keeps. In the right-click menu, **Filter items** shows the same number. A funnel with no number means a condition filters the Dimension; see [A filter Ari wrote as a formula](#a-filter-ari-wrote-as-a-formula).
 
 To clear the filter:
 

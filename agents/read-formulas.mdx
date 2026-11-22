@@ -30,11 +30,19 @@ A `variable` or `dimension` block without `target` lists every Variable or Dimen
 { "scenario": "Main", "variable": { "contains": "fee" } }
 ```
 
-- Each entry holds `variable` or `dimension` with `display_name`, `ref`, and `location`: one table that shows the object, with its Page, or `Model` or `Source` when no table you can read shows it. An entry carries no formulas, dependents, or source. Pass its `ref` as `target` to read the object in full.
+- Each entry holds `variable` or `dimension` with `display_name`, `ref`, and `location`: one table that shows the object, with its Page, or `Model` or `Source` when no table you can read shows it. A `variable` entry also states the Variable's own saved `format`, such as `CURRENCY` or `PERCENTAGE`, and its saved `currency` code, such as `EUR`; each is absent when the Variable saves none. An entry carries no formulas, dependents, or source. Pass its `ref` as `target` to read the object in full.
+- Add `currency` to a `variable` listing to keep only the currency-format Variables shown in one currency: `{ "scenario": "Main", "variable": { "currency": "EUR" } }`. It takes a three-letter ISO code in any letter case. A Variable matches when its own format is `CURRENCY` and its code is the one asked for. A currency Variable that saves no code shows USD, so `"currency": "USD"` lists it, with `format: "CURRENCY"` and no `currency` in its entry. A code no Variable shows returns an empty `entries` list. `currency` and `contains` may be sent together, and a Variable must pass both. The `dimension` block does not take `currency`. The filter reads the Variable's own format: a table that formats a row as currency does not make its Variable match.
 - A page holds up to 500 entries, or as many as `limit` asks for, from 1 to 500. A page that stops early carries `truncation`, with `by` reading `count_limit` or `response_budget`, `shown`, and `total`, the count of every match, and `next`. Pass `next` back unchanged as the next call's input.
 - Text that no name holds returns an empty `entries` list.
-- `contains` belongs to a listing and `conditions` to a read with `target`. `contains` beside `target` is refused with **contains narrows the listing that a read without target returns; this read names target**, and `conditions` without `target` with **conditions selects the saved formula definitions that a read with target returns; a listing returns no definitions**.
-- A cursor belongs to its listing. Sent back with a different `contains` or snapshot, it is refused with **after names no variable of this listing at the selected snapshot and contains; a listing's after is its next.after**.
+- `contains` and `currency` belong to a listing and `conditions` to a read with `target`. `contains` beside `target` is refused with **contains narrows the listing that a read without target returns; this read names target**, `currency` beside `target` with **currency narrows the listing that a read without target returns; this read names target**, and `conditions` without `target` with **conditions selects the saved formula definitions that a read with target returns; a listing returns no definitions**.
+- A cursor belongs to its listing. Sent back with a different `contains`, `currency`, or snapshot, it is refused with **after names no variable of this listing at the selected snapshot and filters; a listing's after is its next.after**.
+
+### When the Dimension is saved in another Scenario
+
+A Dimension created in a Scenario exists only in that Scenario and in the Scenarios built on it, and an `items` or `bounds` read looks for the name only in the Scenario the call names. When a plain name matches no Dimension there and other Scenarios you can read hold it, the read is refused as `not_found` with **no readable dimension matches "[name]" in this scenario. Each candidate is another scenario where "[name]" names one dimension you can read**. Each of `candidates` is one such Scenario. Pass a candidate's `ref` as `scenario` and send the read again.
+
+- A Scenario is listed only when you can read it and exactly one Dimension of that name in it. Anything you cannot read is left out and not counted.
+- A read that names the Dimension by a `Name#hex` reference, and a name no readable Scenario holds, keep the refusal **no dimension named "[name]"**.
 
 ### What reads each object
 
@@ -50,14 +58,14 @@ Each entry of a `variable` or `dimension` read that names `target` carries `depe
 
 An `items` line for a formula states the Variable or Dimension that holds the formula by reference, with one table that shows it and that table's Page: `formula on variable Revenue#a3f, which is shown on table Plan inputs#7fd on page Forecast#69c (in expression)`. A holder that no table you can read shows reads `which has no readable table location`, and a location in another Scenario ends with that Scenario's reference, as `in scenario Plan B#85c`. A formula's condition is quoted in the line, and it names only the Variables and Dimensions you can read; one you cannot read appears as the reference the formula stores, an internal ID in angle brackets, in place of its name.
 
-A `delete` without `force` is refused whatever `total` is, 0 included; `force` confirms the deletion.
+A `delete` of the listed Variable or Dimension without `force` is refused whatever `total` is, 0 included; `force` confirms the deletion.
 
 Each `formula_rules` entry describes one formula that reads the object. `formulas` still counts every reading formula, including ones the list leaves out.
 
 | Field | Values |
 | --- | --- |
 | `dependent` | The reading formula, described as `items` describes it |
-| `rule` | The formula's reference, such as `Rule#3f2a`, which an `edit_table_blocks` `update` takes in `rules` to [replace the formula or delete it](/agents/write-formulas#replace-a-saved-formula-and-keep-its-scope). Left out for a formula whose condition names a Variable or Dimension the user cannot read. |
+| `rule` | The formula's reference: `Rule#` and the 32 hex digits of the formula's ID, such as `Rule#3f2a91c04d7e4b18a6f25c0e9d7b1a34`, which an `edit_table_blocks` `update` takes in `rules` to [replace the formula or delete it](/agents/write-formulas#replace-a-saved-formula-and-keep-its-scope). Left out for a formula whose condition names a Variable or Dimension the user cannot read. |
 | `activity` | `dormant`: the saved formula cannot run in any affected Scenario at this snapshot. `potentially_active`: that is not proven. |
 | `reason` | For a dormant formula: `outside_range` (the date it is pinned to is outside its range), `outranked` (a newer formula at the same scope wins), or `mixed_dormancy` (the reason differs across the affected Scenarios) |
 | `force_effect` | What a delete with `force` does to the formula. `removes_rule` deletes the unused formula. `clears_expression` keeps its range and empties its expression, so the cell reads blank if its month enters the range later. `keeps_reference` leaves the saved reference, which then breaks, including when the user cannot edit the Variable that holds the formula. |
@@ -114,6 +122,7 @@ Use the same Scenario for the formula read and the table read. The saved formula
 
 ### Select rows and columns
 
+- On a timeless table, one whose window is `NO_GRANULARITY` and that has no Date row or column and no Dimension of dates, a month or day in `columns` reads every column, because the values are not split by period. The read adds one `read_note`: **This table is timeless, with no Date rows or columns, so its values are not split by period, and the columns selectors [selectors] read every column.** A `columns` selector that is not a period is still refused.
 - Select rows and columns by the references a read prints, by unambiguous names or full paths, or by coordinate predicates. A name in backticks selects the same row as the bare name.
 - An item row is selected by its path from its Variable or axis Dimension, one bracket per breakdown level, as a readback prints it: `Revenue[West]`, `Revenue[West][Enterprise]`, `Employee ID[E-207]`. The leading Variable may carry its reference suffix, `Revenue#a1b[West]`, which picks one of two same-named Variables; for rows made only of items, the first item's Dimension may lead the same way, `Employee ID#c2d[E-207]`. A selector that differs from exactly one saved coordinate only in whitespace or zero-width characters binds to it.
 - A nested item written without the items above it, such as `Revenue[Enterprise]` for `Revenue[West][Enterprise]`, selects the one saved coordinate that ends in it. When several do, the read is refused as ambiguous and names each.
@@ -122,6 +131,13 @@ Use the same Scenario for the formula read and the table read. The saved formula
 - The item that holds rows with no value displays as **None** and is written `empty:None` in a selector, such as `Region[empty:None]`.
 - A text item is printed as written, even when it contains a colon. The read's `member` field, a receipt's `members` list, and a row reference such as `Cash Step[Expected in: open invoice #483]#c00` all write it `Expected in: open invoice #483`, and a formula matches that exact text.
 - A read that names rows or columns by item holds every item of the layout, zero and empty items included, whatever the saved display hides; a header reference is the exception above and selects the displayed items. A read that names none shows what the app displays.
+
+### A table with columns and no rows
+
+A saved table can keep its columns after every row is removed, such as after a delete of the Variables its rows showed. A `read` of such a table returns its columns and one row, the row the app shows as **Value**, with a `ref` such as `Value#dff`. Select it in a later read by that `ref`.
+
+- When no column shows a Variable, the row holds no values. It reads `writable: false` with the `read_only_reason` **this row is the Value row of a table with no rows, and no column shows a variable**, and offers no edit.
+- When the columns show Variables, the row holds each Variable's value and is writable: a `values` entry or a `row_updates` `formula` that names the row's `ref` saves on the column's Variable.
 
 ### Which targets take a write
 
@@ -179,6 +195,7 @@ Receipts from `edit_table_blocks` carry no `figures`.
 - A `comparison` object compares the selected Scenario with each Scenario it names in this one read, whatever the table saves, and leaves the saved table unchanged: `{"scenarios": ["Budget"], "measures": ["VALUE", "DELTA"]}`. `measures` takes up to three of `VALUE`, `DELTA` (the compared Scenario minus the selected one), and `PERCENT` (`DELTA` over the selected Scenario's value); it defaults to `VALUE`.
 - A column or row that is not the selected Scenario's own reads `writable: false`, with a `read_only_reason` that says what it shows: another Scenario's values, saved in that Scenario; another period's values, saved in that period; or the difference between two Scenarios or two periods, which is calculated and has no saved value.
 - The comparison qualifier alone makes nothing read-only. The selected Scenario's own column or row is as writable under either reference the read prints, with or without the qualifier, as the same cells are in a read with no comparison.
+- A row or column reference from a read with the comparison selects the same row or column in a read with `comparison: "none"`, and the other way round, in reads and in writes. A reference whose digits also start a compared Scenario's copy of that row or column, or an earlier row or column of the same name, is refused as ambiguous.
 
 ## List tables and their layouts
 

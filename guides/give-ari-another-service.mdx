@@ -79,7 +79,7 @@ Each tool of an MCP server, and each endpoint of an API, has a permission:
 | **Ask first** | Asks you to approve each call. See [Answer Ari's questions and approve its actions](/guides/approve-ari-actions). In a Trigger run, scheduled or started with **Run now**, nobody can approve, so a tool or endpoint on **Ask first** does not run; see [What a run cannot do on its own](/concepts/automation#what-a-run-cannot-do-on-its-own). |
 | **Block** | Never uses it |
 
-A new MCP server starts with every tool on **Ask first**. A new API starts by method: reads (`GET` and `HEAD`) on **Allow**, deletes on **Block**, and every other call on **Ask first**. When Ari asks and you choose **Always allow**, that tool stays on **Allow** for the whole workspace.
+cfo.ai sorts a new MCP server's tools the first time Ari uses the server, or the first time someone opens its connection page. Tools that only view information start on **Allow**, and tools that change or delete something start on **Ask first**. A tool cfo.ai could not sort starts on **Ask first**. Sorting never changes a permission you chose. A new API starts by method: reads (`GET` and `HEAD`) on **Allow**, deletes on **Block**, and every other call on **Ask first**. When Ari asks and you choose **Always allow**, that tool stays on **Allow** for the whole workspace. For an API, that lasts until the connection's address changes.
 
 Ari can also call a path the API's specification leaves out. A read (`GET` or `HEAD`) of such a path runs without asking, unless you have set one of the API's listed reads to **Ask first** or **Block**, in which case Ari asks first. A delete of such a path never runs, and any other call to one asks you first; in a Trigger run, nobody can approve, so it does not run. A call that waited for your approval is listed on the connection page's **Endpoints** afterward, where you can set its permission, and **Always allow** on its card allows that exact path only. Updating the specification removes those added paths and their permissions unless the new specification includes them.
 
@@ -104,7 +104,7 @@ When a server limits the rate of requests it accepts (HTTP 429), the sync waits 
 
 ## Change a connection's name, address, or authentication
 
-When a service changes its address, or you set up its authentication the wrong way, change the saved connection instead of disconnecting and adding it again. The connection keeps its ID, its tools, its tool permissions, and its sync setups. This applies to a connection you added with a key or token. A connection that signs in through the provider takes a new name only; when its sign-in breaks, use [Reconnect an MCP server](#reconnect-an-mcp-server) instead.
+When a service changes its address, or you set up its authentication the wrong way, change the saved connection instead of disconnecting and adding it again. The connection keeps its ID, its tools, its tool permissions, and its sync setups. One exception: when you change an API's address, each **Always allow** chosen on an approval card for that API ends, and Ari asks again the next time it calls that endpoint. Permissions you set on the connection page stay. This applies to a connection you added with a key or token. A connection that signs in through the provider takes a new name only; when its sign-in breaks, use [Reconnect an MCP server](#reconnect-an-mcp-server) instead.
 
 <Tabs>
   <Tab title="Ask Ari">

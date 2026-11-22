@@ -58,13 +58,13 @@ Each row and cell takes the most specific formula that covers it, so a row often
 - Someone gave the row or cell its own formula, such as a different price for one product, or typed a value into it. That is an override.
 - The cells fall in different formula ranges. A closed month uses the Actuals formula, and a later month uses the Forecast formula.
 
-To see which formula a cell uses and where that formula is saved, open the cell's formula, or ask Ari about the cell; see [Ask Ari about a number](/guides/ask-about-a-number).
+To see which formula a cell uses and where that formula is saved, open the cell's formula, select **All formulas** in the table's formula bar for every formula the Variable has, or ask Ari about the cell; see [Ask Ari about a number](/guides/ask-about-a-number).
 
 ## A typed value is the cell's own formula: overrides
 
 When you or Ari type a number into a cell, cfo.ai saves it as that cell's own formula. The number is the expression. The scope is the cell's full address: its Variable, its items, and its period. A typed value is a formula that happens to be constant, so cfo.ai ranks it like every other formula. Nothing is more specific than one cell, so the typed value wins in that cell and nowhere else. This is an **override**: it overrides the formula the cell would otherwise take from its row.
 
-A dashed underline marks a cell whose formula is saved for that cell alone, such as a typed number. A cell that follows its row's formula has no underline, and neither does a cell where someone picked an item or a date from a list.
+A typed value shows in blue, wherever it was typed. A dashed underline marks a cell whose formula is saved for that cell alone, such as a typed number. A cell that follows its row's formula has no underline, and neither does a cell where someone picked an item or a date from a list.
 
 An override appears when someone types or pastes into a cell, or when Ari sets a value for one period, such as an opening cash balance. To remove one, clear the cell's own value; the cell then follows its row's formula again. See [Enter, paste, and clear values](/guides/enter-values). If you are not sure which cells hold their own values, ask Ari to list the overrides on a Variable.
 

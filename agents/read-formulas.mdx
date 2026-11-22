@@ -39,10 +39,10 @@ A `variable` or `dimension` block without `target` lists every Variable or Dimen
 
 ### When the Dimension is saved in another Scenario
 
-A Dimension created in a Scenario exists only in that Scenario and in the Scenarios built on it, and an `items` or `bounds` read looks for the name only in the Scenario the call names. When a plain name matches no Dimension there and other Scenarios you can read hold it, the read is refused as `not_found` with **no readable dimension matches "[name]" in this scenario. Each candidate is another scenario where "[name]" names one dimension you can read**. Each of `candidates` is one such Scenario. Pass a candidate's `ref` as `scenario` and send the read again.
+A Dimension created in a Scenario exists only in that Scenario and in the Scenarios built on it, and an `items` or `bounds` read looks for the name only in the Scenario the call names. When a plain name matches no Dimension there, and at least one other Scenario you can read holds exactly one Dimension of that name that you can read, the read is refused as `not_found` with **no readable dimension matches "[name]" in this scenario. Each candidate is another scenario where "[name]" names one dimension you can read**. Each of `candidates` is one such Scenario. Pass a candidate's `ref` as `scenario` and send the read again.
 
 - A Scenario is listed only when you can read it and exactly one Dimension of that name in it. Anything you cannot read is left out and not counted.
-- A read that names the Dimension by a `Name#hex` reference, and a name no readable Scenario holds, keep the refusal **no dimension named "[name]"**.
+- When no Scenario qualifies as a candidate, the read keeps the refusal **no dimension named "[name]"**. That covers a name no readable Scenario holds, a name that only Scenarios with two such Dimensions hold, and a read that names the Dimension by a `Name#hex` reference.
 
 ### What reads each object
 
@@ -195,7 +195,7 @@ Receipts from `edit_table_blocks` carry no `figures`.
 - A `comparison` object compares the selected Scenario with each Scenario it names in this one read, whatever the table saves, and leaves the saved table unchanged: `{"scenarios": ["Budget"], "measures": ["VALUE", "DELTA"]}`. `measures` takes up to three of `VALUE`, `DELTA` (the compared Scenario minus the selected one), and `PERCENT` (`DELTA` over the selected Scenario's value); it defaults to `VALUE`.
 - A column or row that is not the selected Scenario's own reads `writable: false`, with a `read_only_reason` that says what it shows: another Scenario's values, saved in that Scenario; another period's values, saved in that period; or the difference between two Scenarios or two periods, which is calculated and has no saved value.
 - The comparison qualifier alone makes nothing read-only. The selected Scenario's own column or row is as writable under either reference the read prints, with or without the qualifier, as the same cells are in a read with no comparison.
-- A row or column reference from a read with the comparison selects the same row or column in a read with `comparison: "none"`, and the other way round, in reads and in writes. A reference whose digits also start a compared Scenario's copy of that row or column, or an earlier row or column of the same name, is refused as ambiguous.
+- A row or column reference from a read with the comparison selects the same row or column in a read with `comparison: "none"`, and the other way round, in reads and in writes. A reference is refused as ambiguous when it could also select a compared Scenario's copy of that row or column, or a row or column of the same name that the table held before. Send the reference from a fresh read.
 
 ## List tables and their layouts
 

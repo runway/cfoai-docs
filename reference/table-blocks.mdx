@@ -404,7 +404,7 @@ Open it with **Filter items…** in the [settings menu](#table-block-settings-me
 | Several items of a Dimension | Shows their total and cannot be edited. |
 | **All items** of a Dimension | Is not limited by that Dimension. Items checked one by one are kept as a list, even when they are all of them. |
 
-While a table has an item filter, **Edit variable formula** on a row name or column header offers no formula, and a Dimension label row's formula cell does not open. A table that has only its **Value** column cannot be filtered, and neither can Date or another Dimension of dates. The dialog lists every Dimension in the workspace that is not on the table, so a filter on a Dimension that a Variable does not have limits nothing for that Variable. An Excel download calculates the table under its filter. Version history lists a filter change as a table settings change.
+While a table has an item filter, **Edit variable formula** on a row name or column header offers no formula, and a Dimension label row's formula cell does not open. A table that has only its **Value** column cannot be filtered, and neither can Date or another Dimension of dates. The dialog lists every Dimension in the workspace that is not on the table and is not a date, so a filter on a Dimension that a Variable does not have limits nothing for that Variable. An Excel download calculates the table under its filter. Version history lists a filter change as a table settings change.
 
 ## A table that always shows one Scenario
 
@@ -498,7 +498,7 @@ With one or more cells of one Variable selected, the formula bar shows **All for
 | **Override** | On a **Source default**. Opens **Add formula · [Variable]**, and **Save formula** saves a new formula at the same place. |
 | **Show more formulas ([N] remaining)** | The list shows 50 formulas at a time. The formula marked **Applies here** is always listed. |
 
-**Edit** and **Override** appear only where the table takes edits. A table you cannot edit, a phone or tablet, and an earlier version opened from version history show the list without them. While it loads, the list reads **Loading formulas…**. When it cannot load, it reads **Couldn’t load the formulas for [Variable].** with **Try again**. A Variable with none reads **[Variable] has no saved formulas.** The list cannot add or delete a formula, and it is not available while the formula bar is hidden.
+**Edit** and **Override** appear only where the table takes edits. A table you cannot edit, a phone or tablet, and an earlier version opened from version history show the list without them. While it loads, the list reads **Loading formulas…**. When it cannot load, it reads **Couldn’t load the formulas for [Variable].** with **Try again**. A Variable with none reads **[Variable] has no saved formulas.** The list cannot delete a formula, and it adds one only through **Override** on a **Source default**. It is not available while the formula bar is hidden.
 
 ## When a change is not saved
 
@@ -602,7 +602,7 @@ Version history does not list changes to column widths or pinned columns.
 | --- | --- |
 | Hold a comment or note on a cell | Write a note on the Page beside the table, or ask Ari for a text Variable, such as Notes, on a table that lists records. |
 | Turn off the blue of typed values, or change that blue | Set a **Text color** on the row, column, or cell; it replaces the blue there. See [What colors and marks mean](#what-colors-and-marks-mean). |
-| Add or delete a formula from **All formulas** in the formula bar | Edit the formula there, or clear the row's or cell's formula; see [Write a formula](/guides/write-a-formula#remove-an-override-or-a-rows-formula). |
+| Delete a formula from **All formulas** in the formula bar, or add one there other than by **Override** on a **Source default** | Edit the formula there, or clear the row's or cell's formula; see [Write a formula](/guides/write-a-formula#remove-an-override-or-a-rows-formula). |
 | Filter a table that has only a **Value** column, or filter by a Dimension of dates, with **Filter items…** | Add a column such as Date, or change the date range. |
 | Filter or sort dates | Change the date range. Dates always run in date order. |
 | Show two grains on one Date axis, such as quarters and years | Ask Ari for annual columns over the months; it nests a year level above the month level, and the grain button then changes only the months. For two separate tables, ask Ari to copy the table, and give each copy its own grain; a Table block's menu has no **Duplicate block**. |

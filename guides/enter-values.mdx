@@ -55,9 +55,9 @@ When an item column reads its values from a connected system, the list shows **S
 
 ## See whether a number is typed or calculated
 
-A typed value shows in blue, and a calculated value shows in the normal text color. Blue marks a number, a percent, or text that someone typed, whether into that cell or once for the whole row, so a row that holds 4 in every month is blue in every month.
+A typed value shows in blue, and a calculated value shows in the normal text color. Blue marks a number, a percent, or text that someone typed, whether into that cell or once for its row, its column, or a group of items, so a row that holds 4 in every month is blue in every month. Totals, comparison columns, and picked items are never blue; [What colors and marks mean](/reference/table-blocks#what-colors-and-marks-mean) lists every case.
 
-A dashed underline marks a cell that holds its own value or formula, such as a number someone typed into it. That value replaces the row's formula in this cell only. A cell without the underline takes its number from the row's formula or from a connected system, so a blue number without the underline was typed for the whole row. A picked item or date is the exception: it belongs to the cell but never shows the underline.
+A dashed underline marks a cell that holds its own value or formula, such as a number someone typed into it. That value replaces the row's formula in this cell only. A cell without the underline takes its number from the row's formula or from a connected system, so a blue number without the underline was typed once for its row, its column, or a group of items. A picked item or date is the exception: it belongs to the cell but never shows the underline.
 
 A number typed into a Forecast month takes the range of the formula the cell was following. When that range is Forecast, the number applies while the month is in the Forecast: once Last close moves past the month, the cell shows what Actuals gives it instead. The typed number is kept, and it shows again if Last close moves back before that month. When the formula had no range, the typed number applies on both sides of Last close. The exact rule is in [Actuals, Forecast, and Last close](/concepts/actuals-and-forecast#a-variable-can-use-one-formula-for-actuals-and-another-for-forecast).
 

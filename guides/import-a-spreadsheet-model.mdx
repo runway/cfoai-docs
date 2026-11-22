@@ -69,7 +69,7 @@ A large set of fixed values loads as a source table because each value typed int
 
 ## Update the Model after the spreadsheet changes
 
-A connected Google Sheet is re-read every night. When a section changed and [automatic updates are on](/guides/connect-a-google-sheet#turn-automatic-updates-on-or-off) for the connection, Ari updates that section's tables, formulas, and inputs, reloads a section that was loaded as a source table, and leaves sections that did not change as they are, including edits you made in cfo.ai. A number or formula changed in cfo.ai after the import stays even in a section that changed; see [Keep the file in sync](/guides/connect-a-google-sheet#keep-the-file-in-sync). For an Excel file, attach the new version and ask:
+A connected Google Sheet is re-read every night. When a section changed and [automatic updates are on](/guides/connect-a-google-sheet#turn-automatic-updates-on-or-off) for the connection, Ari updates that section's tables, formulas, and inputs, reloads a section that was loaded as a source table, and leaves sections that did not change as they are, including edits you made in cfo.ai. Ari is told to keep a number or formula changed in cfo.ai after the import, even in a section that changed, and the update's report lists each one; see [Keep the file in sync](/guides/connect-a-google-sheet#keep-the-file-in-sync). For an Excel file, attach the new version and ask:
 
 > Here is the new version of the workbook. Update the import.
 

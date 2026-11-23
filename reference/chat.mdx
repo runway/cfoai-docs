@@ -274,6 +274,8 @@ For an API, a line under the buttons says what **Always allow** covers before an
 | An endpoint the API's specification lists | **Always allow lets every call to this endpoint run without asking, with any query or request body, in every chat and in scheduled runs.** |
 | A path the specification leaves out | **Always allow lets every later call with this method and path, including these IDs, run without asking. It applies with any query or request body, in every chat and in scheduled runs. Other paths are not covered.** |
 
+The second line covers one exact path: the method and the path as the card shows them, with the IDs in that path. The same path with a different ID is another path, so **Always allow** on this card does not cover it.
+
 For an API, the card also shows **Request**, the exact request your approval sends: the method and full address, each header, and the body. A header that comes from the connection's saved credential shows no value, a saved header that selects an account shows **ending in** and its last four characters, and a credential inside the body reads **[redacted]**. If you already allowed a request on this connection in this chat, the card reads **Same request as the last one allowed in this chat.** or lists the differences under **Changed since the last one allowed in this chat**, with removed lines starting `-` and added lines starting `+`. After **Allow**, cfo.ai sends the request only if it still matches what the card showed. If the connection's address, its saved credential, or the request changed in between, nothing is sent and Ari asks again with a new card.
 
 After you choose, the card reads **Allowed**, **Always allowed**, or **Declined**, and the chat sends Ari a short message for you, such as **I approved the requested action — please go ahead.**, or **I approved the pending API call — please go ahead and run it.** for an API. Ari then continues on its own.
@@ -491,7 +493,7 @@ When the stop cut work short, the same message goes on to say what the turn had 
 | --- | --- |
 | **Before stopping, I finished 1 step that saved changes (change log ID: [ID]).** | Steps that finished before the stop and saved changes. Those changes stay. The IDs name the saved changes; the sentence ends after **saved changes** when a step reported none. |
 | **1 step was blocked before it started, so it did not run.** | Billing blocked the step before it began, so it saved nothing. |
-| **1 step had not finished when I stopped, so I don't know if it saved anything.** | The step was running when the turn stopped. It may or may not have saved a change, so check the Page it worked on before you ask Ari to do the same thing again. |
+| **1 step had not finished when I stopped, so I don't know if it saved anything.** | The step was running when the turn stopped. It may or may not have made its change, so check the Page it worked on, or the connected service when the step called one, before you ask Ari to do the same thing again. |
 
 ### A message that never reached Ari
 

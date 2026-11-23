@@ -23,7 +23,7 @@ The [integrations directory](/reference/integrations) lists what each source syn
 
 <Steps>
   <Step title="Review the list">
-    After you sign in, the table picker lists every table the source offers, grouped by schema. Search with **Search tables**. The count reads, for example, **84 of 312 tables selected (max 100)**.
+    After you sign in, the table picker lists every table the source offers, grouped by schema. For a new connection, the page can first read **Finding [source]'s tables** for a few minutes while Fivetran searches the source; the picker appears on its own when the list is ready. If the search fails, select **Try again**; see [Messages while connecting](/reference/connection-statuses#messages-while-connecting). Search with **Search tables**. The count reads, for example, **84 of 312 tables selected (max 100)**.
   </Step>
   <Step title="Uncheck what you do not need">
     Keep the tables that hold the records your plan reads, such as transactions and their lines, invoices and payments, customers and subscriptions, orders and products, and employees and pay. Also keep the lookup tables they refer to, such as accounts or departments. Leave out logs, audit trails, sessions, webhooks, staging tables, and personal data you have no use for. A connection syncs at most 100 tables, so a source that offers more makes you uncheck some before you can finish.

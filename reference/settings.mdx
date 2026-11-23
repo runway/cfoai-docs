@@ -1,6 +1,6 @@
 ---
 title: "Settings"
-description: "Every section and field in cfo.ai Settings, in the order the app shows them: General, Workspace, Profile, Ari, Connections, Skills, Billing, and Usage. Covers the workspace name and brand, Last close and date defaults, negative numbers in parentheses, light or dark mode, inviting teammates, who sees each section, its messages, and what Settings has no setting for, such as a fiscal year or an API key."
+description: "Every section and field in cfo.ai Settings, in the order the app shows them: General, Workspace, Profile, Ari, Connections, Skills, Dimensions, Billing, and Usage. Covers the workspace name and brand, the list of every Dimension with its items and the tables that use it, Last close and date defaults, negative numbers in parentheses, light or dark mode, inviting teammates, who sees each section, its messages, and what Settings has no setting for, such as a fiscal year or an API key."
 ---
 
 Settings holds the workspace's options and your own preferences. To open it, select your name or picture at the bottom of the sidebar, then **Settings**. Settings opens on **General**, with the sections listed down the left side in this order.
@@ -13,6 +13,7 @@ Settings holds the workspace's options and your own preferences. To open it, sel
 | **Ari** | Everyone | Ari's thinking animation, sound, notifications, and Slack |
 | **Connections** | Everyone, once the workspace has started its trial or a plan | The cfo.ai MCP server address, and the MCP servers and APIs Ari can call |
 | **Skills** | Everyone | Your own Skills, wherever they apply, and the workspace's optional built-in Skills |
+| **Dimensions** | Everyone | Every Dimension you can read, with its items and the tables and Variables that use it |
 | **Billing** | Workspaces billed in the app | Plan, payment methods, billing recipient, billing history, and cancellation |
 | **Usage** | Workspaces billed in the app | AI usage, extra usage, spend limit, auto-reload, and integration slots |
 
@@ -96,7 +97,7 @@ The section is headed **Date & Time**. Its settings belong to the Scenario of th
 | Control | What it does |
 | --- | --- |
 | **Default date granularity** | The period new tables show: **Raw**, **Day**, **Week**, **Month**, **Quarter**, **Half**, or **Year**. **Month** unless changed. Last close snaps to the end of a period at this granularity. |
-| **Default date range** | The first and last dates new tables show. A new workspace starts from January 1 of the year six months ago through December 31 of the year six months ahead. Existing tables keep their own range. |
+| **Default date range** | The first and last dates new tables show. A new workspace starts from January 1 of the year six months ago through December 31 of the year six months ahead. Existing tables keep their own range. A table added to a Page that has its own date range starts with the Page's range instead; see [The Page's date range](/concepts/pages-and-blocks#the-pages-date-range). |
 | **Last close** | The end of the last period you closed, your month-end. Periods up to it are Actuals, and later periods are Forecast. Pick a period from the list the picker opens, which shows periods at the default date granularity, such as months; cfo.ai saves its last day. A new workspace starts at the last day of the previous calendar month, and Last close never moves on its own. See [Actuals, Forecast, and Last close](/concepts/actuals-and-forecast). |
 
 There is no fiscal-year setting: quarters, half-years, and years follow the calendar year, January to December. See [Fiscal years](/concepts/actuals-and-forecast#fiscal-years-quarters-and-years-follow-the-calendar).
@@ -285,6 +286,50 @@ The heading shows once the workspace has a Skill that everyone in it shares. Eac
 ### Built-in skills
 
 The section reads **Enable ready-made workflows for everyone in this workspace. Skills stay up to date with improvements from cfo.ai.** Each optional built-in Skill has a switch, with its name and a description of when Ari uses it: **Entity consolidation**, **Flash report**, **Investor review**, **Model audit**, **Model migration tie-out**, **Source tie-out**, and **Workbook template fill**. A switch applies to everyone in the workspace. Built-in Skills cannot be edited. See [Turn on a built-in Skill](/guides/turn-on-built-in-skills).
+
+## Dimensions
+
+**Dimensions** lists every Dimension, which people also call a breakdown or category, in the Scenario on your screen, so you can review and change them in one place. It reads **Each dimension's items and the tables and variables that use it. A change here shows in every table.** The list shows what you can read with your own access, and leaves out the Dimensions cfo.ai generates, such as Date. For steps, see [See and change every Dimension in one place](/guides/break-down-a-number#see-and-change-every-dimension-in-one-place).
+
+### The list of Dimensions
+
+| Control or text | Meaning |
+| --- | --- |
+| **Search dimensions** | Narrows the list by name as you type. With no match it reads **No dimension matches “[text]”.** |
+| A Dimension's row | Its color, its name, and one line: where its items come from, how many items it has, and how many tables and Variables use it, such as **Hand-made · 12 items · 3 tables · 2 variables**. The list is sorted by name. Select a row to open the Dimension. |
+| **Hand-made** | The items were added by hand or by Ari. |
+| **Imported from [import]** | The items come from connected or uploaded data. It reads **Imported** when you cannot read the import. |
+| **Mapped** | A formula fills the items from other Dimensions. |
+| **Item count unavailable** | The count could not be read. It is never shown as zero. |
+| **Items not shown** | The items are mapped from Dimensions you cannot view, so neither they nor their count are shown. |
+| **No dimensions yet. A dimension appears here once a table or an import adds one.** | The Scenario has no Dimension you can read. |
+| **Loading dimensions…** / **Could not load dimensions.** with **Try again** | The list is loading, or failed to load. |
+
+### One Dimension
+
+| Control or text | Meaning |
+| --- | --- |
+| **Dimensions** | The back button. Returns to the list. |
+| **Item color: [color]** | The colored dot before the name. Opens **Item color, in every table**, where you choose the color of the Dimension's item pills on every table. Shown as a plain dot when you cannot edit the Dimension. |
+| **Rename** | Opens the name for editing, with **Save** and **Cancel**. **Enter** saves, and **Escape** cancels the rename without closing Settings. The new name shows everywhere. |
+| **Tables** | Each table that shows or filters the Dimension, with the Page it is on, such as **Revenue plan** on **Forecast**. Select one to close Settings and open it. Only tables you can open are listed. |
+| **Variables** | The Variables whose formulas name the Dimension, or that use it as the date their numbers are reported on. |
+| **No table or variable you can open uses it.** | Shown in place of **Tables** and **Variables**. |
+| **Items** | The Dimension's items, loaded 200 at a time as you scroll. An item saved only under an item of another Dimension shows **Under [Dimension]: [item]**. An item with no value reads **None**. |
+| **New item** and **Add item** | Adds an item to a Dimension of text items. Offered when a table you can edit shows the Dimension and offers **Create [Dimension] item**; otherwise the section reads **Add items from a table you can edit that shows [Dimension].** |
+| **Rename item** | The pencil on an item added by hand. Renames the item everywhere, with **Save** and **Cancel**. |
+| **Delete item** | The trash can on an item added by hand and saved on its own, not under another Dimension's item. Offered when you can edit the table the Dimension was created on. It asks **Delete item?** first when something still uses the item, and the **Deleted “[item]”** notice offers **Undo**. |
+| **These items come from [import]. Change them there.** | An imported Dimension's items are read-only here. |
+| **These items are mapped from dimensions you can’t view, so they aren’t shown.** | The reason for **Items not shown**. |
+| **Its import has not run yet, so only hand-made items are listed.** | The Dimension's import has no run to read items from yet. |
+| **No items yet.** | The Dimension has no items. |
+| **Loading items…**, **Loading more items…** | Items are loading. |
+| **Could not load items.**, **Could not load more items.**, or **Could not refresh items, so these may be out of date.**, each with **Try again** | A read of the items failed. |
+| **You can no longer view these items.** | Your access to the items changed while the list was open. |
+| **This is an earlier version. Return to the latest version before applying changes.** | You opened Settings while version history shows a past version. The page shows that version, and offers no edits. |
+| **Could not rename**, **Could not change the color**, **Could not create item** | The change failed. Try again. |
+
+Each edit here is the same change as the one in a table's right-click menu, so it needs the same access, shows the same notices, and can be undone the same way. The notices for renaming and deleting items are listed in [Table block controls and messages](/reference/table-blocks#other-notices).
 
 ## Billing and Usage
 

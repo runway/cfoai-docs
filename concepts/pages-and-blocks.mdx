@@ -66,6 +66,8 @@ The check has limits. Apart from that one click for a picture, it does not click
 
 A Page that holds a table, a chart, or a Canvas block with data has a date-range control, **Page date range**, in a row above its blocks. Changing it sets the same range on every table, chart, and Canvas dataset on the Page at once.
 
+A Page has a date range of its own from the first time someone changes **Page date range**. A Page made with **New page** has one from the start: the range of the blank table it opens with, which is the Scenario's default date range at that time. A table, chart, or Canvas dataset added to such a Page starts with the Page's range, unless it is created with a range of its own. So after you change the Scenario's default date range, a table you add to an older Page still starts with that Page's range. On a Page with no range of its own, a new table starts with the Scenario's default date range.
+
 One exception keeps a chart honest. A Canvas dataset can be pinned to fixed dates, such as a forecast window of October to December or last year's full year. When the Page's range moves, a pinned dataset keeps its own dates, so a chart that compares this year's actuals with a fixed forecast still reads the forecast months instead of reading zeros. Ari pins a dataset when you ask; the **Canvas data** dialog shows each dataset read-only, and there is no control on the Page to pin one by hand. A Page whose only dated blocks are Canvas blocks with every dataset pinned shows no date-range control, because nothing on it would change.
 
 ## Choosing a block

@@ -32,7 +32,7 @@ Before you start, connect your accounting system so the forecast starts from the
   <Step title="Add a 13-week view, if you need one">
     > Build a 13-week cash forecast by week, starting next week.
 
-    Ari builds a weekly table and writes formulas for weeks, because formulas written for months do not fill week columns. Your synced balance sheet holds one cash balance for each month, so weekly actuals need a source with a date on every transaction. A QuickBooks Online connection adds one, **QuickBooks Bank Movements**, and a Xero connection adds one, **Xero Cash Flow**; see [QuickBooks Online](/reference/integrations#quickbooks-online) and [Xero](/reference/integrations#xero). For another accounting system, upload a bank export; see [Upload a CSV as a data source](/guides/upload-a-csv).
+    Ari builds a weekly table and writes formulas for weeks, because formulas written for months do not fill week columns. Your synced balance sheet holds one cash balance for each month, so weekly actuals need a source with a date on every transaction. A QuickBooks Online connection adds one, **QuickBooks Bank Movements**, and a Xero connection adds one, **Xero Cash Flow**; see [QuickBooks Online](/reference/integrations#quickbooks-online) and [Xero](/reference/integrations#xero). With any accounting system, you can also connect a US bank, which adds its posted transactions with their dates as **Plaid Transactions**; see the **Other banks** row in [Check whether your system is supported](/reference/integrations#check-whether-your-system-is-supported). Or upload a bank export; see [Upload a CSV as a data source](/guides/upload-a-csv).
   </Step>
   <Step title="Test a raise or a cut in a Scenario">
     Try each decision in its own Scenario, so Main stays as it is:
@@ -51,7 +51,7 @@ Your cash actuals move forward when Last close moves past a month; see [Actuals,
 
 ## If your cash forecast starts at 0 after you close a month
 
-Give cash a formula that covers the month that moved into Actuals. A Variable with a Forecast formula and no Actuals formula has nothing covering that month, and a balance that reads its previous month runs forward from the 0 it finds there; see [What moving Last close changes](/concepts/actuals-and-forecast#what-moving-last-close-changes). Ask Ari for the Actuals side:
+Give cash a formula that covers the month that moved into Actuals. A Variable with a Forecast formula and no Actuals formula has nothing covering that month, and a balance that reads its previous month runs forward from the 0 it finds there. The closed month's own cell can show empty instead of 0; see [What moving Last close changes](/concepts/actuals-and-forecast#what-moving-last-close-changes). Ask Ari for the Actuals side:
 
 > Cash reads 0 in the month we just closed. Give cash an Actuals formula that reads the cash accounts on our balance sheet, so the forecast carries forward from the closed balance.
 

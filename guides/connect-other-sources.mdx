@@ -60,7 +60,7 @@ The [integrations directory](/reference/integrations) lists every source and how
 
 | Source | Usual time |
 | --- | --- |
-| HR and payroll through Merge | Minutes, or hours when Merge is still building its first sync of your account. cfo.ai waits up to 20 hours, and the card says how long it has waited. |
+| HR and payroll through Merge | Minutes, or hours when Merge is still building its first sync of your account. cfo.ai waits for as long as Merge reports that sync unfinished, and the card says how long it has waited. |
 | Rippling | Minutes |
 | HubSpot, Salesforce | Minutes to an hour |
 | Stripe (Direct) | A day or more for an account with a long history, because the first sync lists every object |
@@ -140,6 +140,8 @@ If a fetch stops:
 - When a fetch you asked for stops with a question, such as a login the source rejected, Ari tells you in the chat that asked for it.
 - The connection reads **Needs attention** when the latest fetch ended without data: it failed, it loaded no table, or nobody entered the code in time. Ask Ari to fetch from the source again.
 - When a scheduled fetch gets the data but cannot load all of it, Ari tells the person who made the connection in a chat, the first night it happens: which file did not load and what it needs from you. Ari writes there once more on the night the files load again, and not on the nights in between.
+- When a scheduled fetch fails and delivers nothing, even after Ari tried to repair its script, Ari tells the person who made the connection in a chat what the fetch tried, the first night it happens. Ari does not write again about later nights that deliver nothing, until a fetch has delivered data again. A fetch that someone stopped says nothing.
+- When a scheduled fetch changes the saved script, as a repair does, Ari tells the person who made the connection which revision the fetch saved and which earlier revision to restore to undo the change. Ari says so even when the data loaded. To restore a revision, see [A source Ari fetches waits for a code or needs attention](/guides/fix-a-connection#a-source-ari-fetches-waits-for-a-code-or-needs-attention).
 - cfo.ai has no form for changing a source connection's saved login or key. When the password or key changes, ask Ari to connect the source again, then remove the old connection in **Settings → Connections**.
 - cfo.ai does not open a browser to sign in for you. Ari's script signs in with web requests to the source's own domain, so a source that signs in only through a separate single sign-on provider or a browser check cannot be fetched this way. Use an API key if the source offers one, or export the data and [upload it as a CSV](/guides/upload-a-csv).
 

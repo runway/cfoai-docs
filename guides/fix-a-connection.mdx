@@ -44,6 +44,12 @@ For Xero, if the consent screen lists your organisation as already connected, di
 
 Asking Ari to connect a source never reconnects an existing connection. Ask Ari to reconnect the connection by name, or use **Reconnect**. When you ask Ari, it leaves a **Connect integrations** card in the chat, and the connection manager stays closed. Select the card's **Connect integrations** button to start the sign-in for that connection. For a source that offers no **Reconnect**, such as a Google Sheet, the button opens the connection manager instead.
 
+## Grant a source's new permissions on a connection that works
+
+A source sometimes adds data that needs a permission you did not grant when you connected, and the provider grants it only through a new sign-in. You do not need to remove the connection. Open the connection's page and select **Reconnect** at the bottom, beside **Remove connection**, then sign in to the same company. The connection keeps its saved queries and sync setup, and the next sync uses the new sign-in.
+
+The button appears only while the connection is healthy and no sync is running. [The connection's page](/reference/connection-statuses#the-connections-page) lists which sources offer it.
+
 ## A sync failed: retry it
 
 The connection reads **Sync failed**. Read the line under it:
@@ -60,6 +66,8 @@ When setup itself failed, the connection reads **Connection failed** with **Retr
 The connection reads **Syncs paused** when its first sync has never finished and its last three nightly syncs failed with the same error from the provider, and that error names a problem another try cannot clear. cfo.ai then tries the sync once a week instead of every night, because another try is likely to fail the same way, and the line under the status gives the date of the next try. An error that can pass by itself keeps its nightly retries and never pauses the connection. The line under the status quotes the provider's report, such as **Contact NetSuite support (netsuite_internal_error)**.
 
 Fix what the report names, at the source or with the provider. Then select **Retry**, or ask Ari to sync the connection. Either one starts a sync and resumes the nightly syncs. You do not have to wait for the weekly try. If the failing table is one you do not need, ask Ari to turn it off; Ari starts a sync when it does. Ari refuses to turn off a table that a saved query reads. See [Syncs paused](/reference/connection-statuses#syncs-paused).
+
+When the nightly sync that starts the pause was not started from a chat, it also starts Ari's background repair for the person who connected the source, once for each pause. If the repair needs you or has something to report, a chat titled **[Connection name] stopped updating** appears in that person's chat list; see [When cfo.ai repairs a source for you](#when-cfoai-repairs-a-source-for-you).
 
 A NetSuite connection that syncs more tables than cfo.ai's statements read can fail its first sync on a table no statement uses. Its report then ends **The connection can be narrowed to the tables its reports read**, whether the connection reads **Sync failed** or **Syncs paused**, and you do not need NetSuite support. Ask Ari:
 
@@ -86,15 +94,15 @@ If a missing table belongs to a NetSuite feature you do not use, **Multiple Curr
 
 HR and payroll systems, sources that sync through Fivetran, and banks connected through Plaid prepare your account's data on their side before cfo.ai can load anything. While cfo.ai waits, the connection reads **Syncing**, and the line says how long it has waited, what the provider last reported, and when the wait ends. A source such as Pipedrive can run out of API calls partway through its first sync; Fivetran then reschedules the sync, the line names when its next attempt is due, and cfo.ai keeps waiting and starts the sync again once that time has passed. Xero can also wait for its request allowance to reset. You do not need to do anything.
 
-If the provider still has not finished 20 hours after cfo.ai began waiting, the connection reads **First sync not ready**. The next nightly sync starts a new wait, or select **Retry** to start one now. A bank connected through Plaid does not wait for its full history: its first sync loads recent transactions as soon as Plaid has them ready, and later syncs add the older history. It reads **First sync not ready** only when Plaid has nothing ready by then. [Syncing](/reference/connection-statuses#syncing) lists what the line says while it waits.
+cfo.ai keeps waiting for as long as the provider reports that its first sync is still unfinished, so a first sync that takes more than a day is not cut off. If 20 hours pass with no such report, the connection reads **First sync not ready**. The next nightly sync starts a new wait, or select **Retry** to start one now. A bank connected through Plaid does not wait for its full history: its first sync loads recent transactions as soon as Plaid has them ready, and later syncs add the older history. It reads **First sync not ready** only when Plaid had nothing ready when the wait ended. [Syncing](/reference/connection-statuses#syncing) lists what the line says while it waits.
 
 A payments system with a long history, such as Stripe, can spend a day or more in its first sync. Ask Ari whether the load is still running before you treat it as a failure. Afterward, a Stripe (Direct) connection can read **Still loading** for several nights while one large table, such as payment methods, fills. The line says how far the read has got, and you do not need to do anything; see [Still loading](/reference/connection-statuses#still-loading).
 
 ## A later sync is still running
 
-A later nightly sync can wait too. When a source that syncs through Fivetran is still running its own sync 45 minutes after cfo.ai asked for one, cfo.ai waits for that sync instead of starting another, checking about every 10 minutes for up to 20 hours, and loads it once it finishes. The connection reads **Syncing**, the data from the last loaded sync stays usable, and you do not need to do anything. If the source still reports the sync running after 20 hours, the sync fails with the reason on the card, and the next nightly sync tries again.
+A later nightly sync can wait too. When a source that syncs through Fivetran is still running its own sync 45 minutes after cfo.ai asked for one, cfo.ai waits for that sync instead of starting another, checking about every 10 minutes for as long as the source reports that sync still running, and loads it once it finishes. The connection reads **Syncing**, the data from the last loaded sync stays usable, and you do not need to do anything. If 20 hours pass with no report that the sync is still running, the sync fails with the reason on the card, and the next nightly sync tries again.
 
-cfo.ai waits the same way when Fivetran postpones a later sync because the source takes no more requests for now. cfo.ai asks for the sync once the time Fivetran set for its next attempt has passed, then loads it. A retry before that time would wait for the same attempt, so Ari offers none until then. When that time is more than 20 hours after the wait began, the sync fails at the 20-hour limit. [Connection statuses and actions](/reference/connection-statuses#syncing) has the line the card shows.
+cfo.ai waits the same way when Fivetran postpones a later sync because the source takes no more requests for now. cfo.ai asks for the sync once the time Fivetran set for its next attempt has passed, then loads it. A retry before that time would wait for the same attempt, so Ari offers none until then. The wait goes on when that time is more than 20 hours away, because each check at which Fivetran reports the sync postponed counts as a report. [Connection statuses and actions](/reference/connection-statuses#syncing) has the line the card shows.
 
 ## Partly synced
 

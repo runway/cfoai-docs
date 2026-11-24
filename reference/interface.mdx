@@ -1,7 +1,7 @@
 ---
 title: "The cfo.ai interface"
 sidebarTitle: "Interface"
-description: "Every part of the cfo.ai app and what it does: the sign-in page and its code messages, the sidebar and its Page list, the account menu and workspace switcher, the Triggers page, the Help center and how to contact support, workspace search, the Page header, the Share panel and its Export tab (export to Excel), Download spreadsheet and Share messages, Canvas and chart blocks, and the phone and tablet layout."
+description: "Every part of the cfo.ai app and what it does: the sign-in page and its code messages, the sidebar and its Page list, Ari's profile, the account menu and workspace switcher, the Triggers page, the Help center and how to contact support, workspace search, the Page header, the Share panel and its Export tab (export to Excel), Download spreadsheet and Share messages, Canvas and chart blocks, and the phone and tablet layout."
 ---
 
 The cfo.ai app has a navigation sidebar on the left and the chat or Page you are working in beside it. This page describes each part in the order you meet it, starting with signing in, with every label and message. It describes a desktop browser; for phones and tablets, see [Phones and tablets](#phones-and-tablets). For keyboard shortcuts, see [Keyboard shortcuts](/reference/keyboard-shortcuts).
@@ -73,7 +73,7 @@ From top to bottom:
 | **Chats** | Your chats, newest activity first unless you sort them by **Created**, with **New chat** and a filter. Selecting a chat keeps the Page on screen. Chats from Slack and from AI assistants are left out until the filter includes them. See [The chat list](/reference/chat#the-chat-list-find-rename-and-archive-chats). |
 | **Model** | Select **Model** to open or close the section. It holds the Scenario picker (**Scenario** followed by the Scenario's name, **Main Scenario** until you pick another) and the Pages of the Scenario the picker shows. **New page** (**+**) creates a Page named **New Page** in that Scenario, with one blank Table block titled **New Table Block** on it, and opens it, and a chat you have open stays open. The section appears once the workspace has its first Page. See [Scenario and version history controls](/reference/scenarios-and-history) and [Create and organize Pages and blocks](/guides/create-pages-and-blocks). |
 | **Connections** | Your connected systems, each with its status, and **Add integration** (**+**). Pointing at the heading shows a **…** menu with **Links sent** and, once a connection can take a link, **Select connections to send a link** (**⌥ click** on such a connection's row does the same). See [Connection statuses and actions](/reference/connection-statuses) and [Send a link so someone else can connect a source](/guides/send-a-connect-link). |
-| **Feedback** | Opens [Share feedback](#share-feedback). |
+| **Ari** | Opens or closes [Ari's profile](#aris-profile). Someone who is not signed in, such as a reader of a shared link, sees **Feedback** in this row instead, which opens [Share feedback](#share-feedback). |
 | **Powered by cfo.ai** | Shown in a workspace with a brand. |
 | Your name and picture | Opens the [account menu](#account-menu). |
 
@@ -117,6 +117,33 @@ To leave a chat without picking another Page, select **Close chat**; see [A chat
 
 A workspace with no Pages opens the chat you already have there, such as the chat a new workspace starts with. Select **Expand model pane** at the top right of the chat to open the pane beside it, which reads **No pages yet** and **Create your first page to start modeling.** with a **Create page** button; for someone who cannot create Pages it reads **Pages will appear here when they are available.** and has no button. **Create page** creates a Page named **New Page** with one blank Table block on it and opens it beside the chat. When you have no chat there, it opens on **Ready to model, [your name]?**, with **Create with Ari** and **Add block** (**Table block**, **Text block**, or **Canvas block**). Someone who cannot create Pages sees **No pages yet** there and the reason, such as **This workspace has no pages.** or **Pages are read-only in this browser. Use Desktop Site to create a page.**
 
+### Ari's profile
+
+**Ari** in the sidebar, in the row above your name, opens Ari's profile. The profile shows whether Ari is working right now, and lists the tools you can connect so that you can reach Ari in Slack and Ari can read more about your business. Everyone who is signed in sees it. To close it, select **Ari** again, select **Close Ari**, or press **Esc**.
+
+In a desktop browser, the profile opens as a pane beside the sidebar, and the sidebar folds to its narrow strip. Whenever the sidebar is folded, the strip shows Ari's picture and your own at the bottom: Ari's opens or closes the profile, and yours opens the [account menu](#account-menu). Closing the profile puts the sidebar back the way it was. In a narrow window, the profile floats over the Page. On a phone or tablet, see [Phones and tablets](#phones-and-tablets).
+
+| Part | What it shows |
+| --- | --- |
+| Top of the profile | Ari's picture, the name **Ari**, and Ari's status: **Working** while Ari is working in one of your chats, and **Available** the rest of the time. |
+| **Contact** | **Slack**, the way to reach Ari outside the app. Until a Slack workspace is connected, the row reads **Not connected**. Once one is connected, the row shows no status, and selecting it opens the Slack section of [Settings](/reference/settings#slack). |
+| **Context** | Four tools Ari can read through their MCP servers: **Notion** (**Docs, plans, and notes**), **Linear** (**What the team is building**), **Intercom** (**What customers are saying**), and **Attio** (**Your sales pipeline**). A tool the workspace already has a connection to comes first, whatever the connection's status: its row reads **MCP**, shows the same status mark as its row under **Connections**, and opens its connection page when you select it. The rest sit under **Suggested MCPs**. Until one of the four has a working connection, a note reads **Onboard Ari to your business to work better together.** |
+
+| Control or message | Meaning |
+| --- | --- |
+| **Connect** | On a row that is not connected. Opens that tool's sign-in window at once. For Slack it is the same sign-in as **Add to Slack** in Settings. It is offered only to people who may make that connection. |
+| A spinner with **Cancel** | The sign-in window is open. **Cancel** closes it, and for an MCP server it removes the unfinished connection. Each tool signs in on its own, so you can start another one meanwhile. Closing the profile cancels every sign-in still open. |
+| **View all** | Opens the **MCP** tab of the connection picker, with every MCP server in the catalog. Offered to people who may add connections. |
+| **Checking…** | The profile is reading the workspace's connections. |
+| **[Tool] connected** | A notice when the sign-in finishes. |
+| **[Tool] connection failed**, with the reason | A notice when the sign-in fails. **Popup blocked. Allow popups for this site, then try again.** means the browser stopped the sign-in window. |
+
+In a desktop browser, pointing at a row opens a card with the tool's status, a line about what it holds, and **Connect** when you may connect it.
+
+Before the workspace has started its trial or a plan, the profile has no **Contact** section and offers no **Connect** or **View all**.
+
+The profile does not list Ari's chats or what Ari did in them. For that, use the **Chats** list and each chat's **Activity**; see [Chat controls and messages](/reference/chat). To connect a tool that is not one of the four, see [Give Ari access to another service with MCP or an API](/guides/give-ari-another-service).
+
 ## Account menu
 
 Select your name and picture at the bottom of the sidebar. From top to bottom:
@@ -127,6 +154,7 @@ Select your name and picture at the bottom of the sidebar. From top to bottom:
 | **Appearance** | **Auto**, **Light**, or **Dark** for you alone. The current choice shows beside it. |
 | **Settings** | Opens Settings. See [Settings](/reference/settings). |
 | **Help center** | Opens the [Help center](#help-center) (**⌘ ?**). |
+| **Feedback** | Opens [Share feedback](#share-feedback). |
 | **Talk to us on Slack** | Opens [Talk to the cfo.ai team on Slack](#talk-to-us-on-slack), which invites your workspace to a Slack channel shared with the cfo.ai team. |
 | **Manage memories** | Starts a chat in which Ari shows what it remembers about you and the workspace and helps you change it. See [What Ari remembers](/concepts/ari-memory). |
 | **Manage triggers** | Opens the [Triggers page](#triggers-page). |
@@ -200,7 +228,7 @@ When a run reports a choice only you can make, cfo.ai sends it to you once and t
 | The same message in your cfo.ai chat | Slack had no way to reach you, for example because the workspace has no Slack connection or Slack has no account under your cfo.ai email. The message is posted in the chat you created the Trigger from, or in your most recent chat in the workspace when that chat is gone. |
 | A run's reason in **History** that starts **Waiting since [date] for this decision:**, followed by the decision | The Trigger was waiting on the decision when the run reported. The date is the day cfo.ai sent it, in the Trigger's time zone. The line shows on a run that reads **Delivered with gaps** or **Did not complete**. |
 
-- A run that repeats the same decision sends nothing. A run that reports a different decision sends that one, and it replaces the first. A Trigger waits on one decision at a time.
+- A run that repeats the same decision in the same words sends nothing; differences in spacing do not count. A run that reports a different decision, or the same one in other words, sends that one, and it replaces the first. A Trigger waits on one decision at a time.
 - A run that reports no decision ends the wait.
 - When the message could not be sent, for example because Slack was rate limiting, or because Slack had no way to reach you and you have no chat in the workspace, the Trigger does not start waiting, and the next run that reports the decision sends it.
 - When Slack gives no clear answer about whether it posted the message, cfo.ai treats it as sent and does not send it again.
@@ -269,7 +297,7 @@ You can reach a person at cfo.ai in these ways.
 | **Help center → Getting started → Ask a human** | Opens [Ask a human](#ask-a-human), which sends a message straight to the cfo.ai team. |
 | Asking Ari in a chat | When you ask Ari for a person, Ari offers to send your request to the cfo.ai team in your words, and sends it once you agree. The request goes to the same team as **Ask a human**, with your name and email. Ari cannot attach screenshots; use **Ask a human** to send those. Ari sends a request only for a signed-in administrator who is in the chat, so a Trigger's run cannot send one. |
 | **Talk to us on Slack** in the account menu | Opens [Talk to the cfo.ai team on Slack](#talk-to-us-on-slack), which emails every member of the workspace a Slack invitation to a private channel shared with the cfo.ai team. You can also ask Ari in a chat to send these invitations. |
-| **Feedback** in the sidebar | Sends product feedback to the cfo.ai team. |
+| **Feedback** in the account menu | Sends product feedback to the cfo.ai team. |
 | Email [success@cfo.ai](mailto:success@cfo.ai) | The **Support** link at the top of these docs. |
 
 ### Ask a human
@@ -299,13 +327,13 @@ The dialog is titled **Ask a human**, with **Tell us what's going on — this go
 | **Invitations sent**, with **Open the email from Slack to join your shared channel with the cfo.ai team.** | Every member has an invitation or is in the channel. |
 | **Already connected**, with **Everyone is already in the channel. Open Slack to talk with the cfo.ai team.** | Every member is in the channel. |
 | **Accept the invitation in your own Slack workspace. Your Slack admin may need to approve it.** | Shown while a member has an invitation waiting or still to be sent. |
-| **Slack support is unavailable right now. Use Feedback in the sidebar to reach us.** | The Slack channel cannot be set up at the moment. Use **Feedback**, or [Ask a human](#ask-a-human). |
+| **Slack support is unavailable right now. Use Feedback in the sidebar to reach us.** | The Slack channel cannot be set up at the moment. Use **Feedback**, which is in the account menu, or [Ask a human](#ask-a-human). |
 
 When you ask Ari in a chat to connect you with the cfo.ai team on Slack, Ari can send the same invitations. Ari sends them only for a signed-in administrator who is in the chat.
 
 ### Share feedback
 
-**Feedback** in the sidebar opens **Share feedback**, with the placeholder **Write your feedback and include any links here**, the same screenshot rules and messages as **Ask a human**, and **Submit feedback** (**⌘ Enter**). It confirms with **Feedback sent**, or shows **Could not send feedback** with the reason.
+**Feedback** in the account menu opens **Share feedback**, with the placeholder **Write your feedback and include any links here**, the same screenshot rules and messages as **Ask a human**, and **Submit feedback** (**⌘ Enter**). It confirms with **Feedback sent**, or shows **Could not send feedback** with the reason.
 
 ## Workspace search
 
@@ -478,8 +506,7 @@ While your export of the Page runs, where its stage shows depends on the control
 | Message | Meaning |
 | --- | --- |
 | **Waiting for edits to save** | A table edit you made in this browser tab is still saving, on this Page or another one: a cell or formula edit, a paste, a layout change, or a new Variable, Dimension, or item. The export starts once every such edit has saved, so the workbook includes them. |
-| **Waiting since [time] for [other export]** | Another export in this workspace is queued or running; yours starts when it ends. |
-| **Spreadsheet queued** | Your export is waiting to start. |
+| **Spreadsheet queued** | Your export is waiting to start: for a free worker, or for another export in this workspace to end. A workspace prepares one export at a time and queues the rest; none is refused. |
 | **Preparing spreadsheet** | Your export is running. |
 
 A notice at the corner of the window shows the same stage and the time you asked, and you can close it. From the **Export** tab, the notice shows as soon as you choose a format, because the Share panel closes. For a reader, the **Download spreadsheet** icon stays clickable while its export runs: selecting it again starts no second export and opens no menu, and shows the notice:
@@ -487,7 +514,6 @@ A notice at the corner of the window shows the same stage and the time you asked
 | Notice | Meaning |
 | --- | --- |
 | **Waiting for edits to save…**, with **[Page], requested at [time]** | Your export has not started, because a table edit from this tab is still saving. |
-| **Waiting for another spreadsheet…**, with **[Page] waits for [other export]. Waiting since [time]** | Your export is behind another one. |
 | **Spreadsheet queued** or **Preparing spreadsheet…**, with **[Page], requested at [time]** | Your export is waiting or running. The notice stays until the export ends or you close it. |
 
 When it finishes:
@@ -510,7 +536,7 @@ When you open a Page, it looks for your own newest export of that Page in that S
 A failed export's reason has up to three parts:
 
 - **The export failed while [stage] and produced no workbook.** The stage is **starting**, **running on the export worker**, **loading the saved model**, **reading the model calendar**, **calculating the page tables**, **calculating the inputs the page tables read**, **writing the workbook**, or **storing the workbook**.
-- The cause, such as a formula whose input has no cell in the workbook, a formula that could not be written for Excel, **The export reached its time limit**, **The export was stopped before it finished.** for an export Ari cancelled, **The export worker stopped checking in before its final attempt finished. Memory exhaustion, a stopped worker, and a lost database connection can interrupt these checks; the job records only the missing check-ins.** for an export whose worker was lost, **The export stopped because the worker that ran it had less than 10% of its memory free for about 60 seconds of consecutive checks.** for an export stopped while its worker was low on memory, followed by **No other export was stopped with it.** or **The same check stopped [n] other exports on that worker; the stop does not record which export used the memory.** (**1 other export** when there was one), and then by **The export was working in table "[table]" in scenario "[Scenario]" when it stopped.** when that is known, a Dimension whose list of items was larger than the export could read, or a table calculation that reached a limit: **A calculation in table "[table]" in scenario "[Scenario]" reached its 180-second time limit and was stopped before it finished.** or **A calculation in table "[table]" in scenario "[Scenario]" reached the [n] MiB memory limit of one calculation worker and was stopped before it finished.**
+- The cause, such as a formula whose input has no cell in the workbook, a formula that could not be written for Excel, **The export made no progress for its full time limit and stopped.** for an export that stalled, **One request hit its own time limit while the export kept making progress.** for a request inside the export that timed out, **The export was stopped before it finished.** for an export Ari cancelled, **The export worker stopped checking in before its final attempt finished. Memory exhaustion, a stopped worker, and a lost database connection can interrupt these checks; the job records only the missing check-ins.** for an export whose worker was lost, **The export stopped because the worker that ran it had less than 10% of its memory free for about 60 seconds of consecutive checks.** for an export stopped while its worker was low on memory, followed by **No other export was stopped with it.** or **The same check stopped [n] other exports on that worker; the stop does not record which export used the memory.** (**1 other export** when there was one), and then by **The export was working in table "[table]" in scenario "[Scenario]" when it stopped.** when that is known, a Dimension whose list of items was larger than the export could read, or a table calculation that reached a limit: **A calculation in table "[table]" in scenario "[Scenario]" reached its 180-second time limit and was stopped before it finished.** or **A calculation in table "[table]" in scenario "[Scenario]" reached the [n] MiB memory limit of one calculation worker and was stopped before it finished.**
 - When it is known, whether to try again: **The failure is temporary: a new export of the same pages can succeed.** or **A new export fails the same way while the saved model is unchanged.** A calculation that reached its time limit is not tried again, because the next export reaches the same limit; narrow the table, or ask Ari why it is large. An export stopped for low worker memory has no such sentence. When the same check stops several exports, cfo.ai runs each of them once more by itself; an export stopped alone, or stopped on its second run, fails. The table it names is where the export was working, which may not be what used the memory; the worker also runs imports. Start a new export when you want to try again, or choose **Values only**, which does not calculate the inputs that formulas read; the rule is in [Limits and file types](/reference/limits#tables-pages-sharing-and-exports).
 
 These reasons stand alone:
@@ -524,19 +550,19 @@ These reasons stand alone:
 | **The export was cancelled before it produced a workbook.** | The export was cancelled. |
 | **Table "[name]" requires at least [n] rows and [m] columns; Excel worksheet limits are 1048576 rows and 16384 columns.** | The table's saved layout does not fit one Excel worksheet. The export is refused at once, before anything is calculated, and a new export fails the same way while the table is unchanged. Ari's export reports the same limit as **The saved layout in table "[name]" requires …**. |
 
-An export that ran out of time or met an input too large to read can still succeed with part of the selection; see [When an export runs out of time](/guides/download-a-spreadsheet#when-an-export-runs-out-of-time). The workbook's **Export notes** sheet then says so, and a values-only workbook's **Export notes** sheet says that it holds values:
+An export that reached its calculation allowance or met an input too large to read can still succeed with part of the selection; see [When an export leaves Pages or formulas out](/guides/download-a-spreadsheet#when-an-export-leaves-pages-or-formulas-out). The workbook's **Export notes** sheet then says so, and a values-only workbook's **Export notes** sheet says that it holds values:
 
 | Message | Meaning |
 | --- | --- |
 | **This workbook holds the values cfo.ai calculated, not the model's formulas, so its numbers do not update when you change an input. Subtotal and comparison columns, when present, still recalculate from these values.**, at the top of the sheet | The whole workbook is values only: you chose **Values only**, Ari exported it as values only, or it was downloaded by someone without access to every Variable and Dimension in the Scenario, such as a person who opened the Page through a share link. Such a workbook always has an **Export notes** sheet, after its other sheets. |
-| **The export's calculation time ran out before the tables of these selected pages were calculated, so this workbook does not contain them:**, followed by the Page names | Calculation stopped before the export's time limit, at the point that leaves time to write the workbook, or the export reached its allowance of calculated cells or calculation requests; the sheet uses the same sentence for both. Each named Page is left out of the workbook. Only an export of several Pages, which Ari makes, can leave a Page out. The limits are in [Limits and file types](/reference/limits#tables-pages-sharing-and-exports). |
+| **The export's calculation time ran out before the tables of these selected pages were calculated, so this workbook does not contain them:**, followed by the Page names | The export reached its allowance of calculated cells or calculation requests. The sheet words this as calculation time, although an export has no calculation time limit of its own. Each named Page is left out of the workbook. Only an export of several Pages, which Ari makes, can leave a Page out. The limits are in [Limits and file types](/reference/limits#tables-pages-sharing-and-exports). |
 | **The chart "[name]" ([type]) and its data are not in this workbook.**, followed by the reason | A chart block the workbook leaves out, one line for each. The reason is **This export does not support waterfall charts.**, **This export does not support Nightingale charts.**, **The chart compares scenarios, which this export does not support.**, **The chart stacks each of its variables on its own, which one Excel chart cannot.**, **There is no data in the chart's range.**, **Its [n] series are more than the 255 an Excel chart draws.**, **Its [n] columns and their total are more than Excel's 16384-column worksheet holds.**, or **The calculation service refused the chart's data.** See [What you get](/guides/download-a-spreadsheet#what-you-get). |
 | **These cells hold the value cfo.ai calculated instead of a formula. They do not recalculate when you edit an input.**, with a row for each cell | The cells kept as values, with the sheet, cell, Variable, period, Scenario, and the reason. |
 | **[table] holds calculated values only. cfo.ai could not work out its formulas within the calculation time limit, so these numbers do not update when you change an input. Subtotal and comparison columns, when present, still recalculate from these fixed values.**, above the cell list and as the subtitle of that table's sheet | Working out the table's formulas reached the time limit for one table calculation, so the whole table was written as values. Its other cells are not listed one by one. |
 | **cfo.ai could not work out this table's formulas within the calculation time limit.** | The reason on a listed cell of such a table. |
 | **Its formula has no spreadsheet equivalent yet.** | The reason for a formula that cannot be written for Excel. |
-| **It reads [Variable]**, then **for [items]** or **at [period]** when known, **, which this workbook does not contain.** | The reason for a cell that reads a value the workbook has no cell for, including an input calculation did not reach in time. |
-| **It reads [Variable] across several dimension items or dates, and this workbook may hold only some of those cells.** | The reason for a total or other read across items or dates of a Variable whose input was too large to read, or was cut short when time ran out. The value is kept so the workbook never adds up part of the data. |
+| **It reads [Variable]**, then **for [items]** or **at [period]** when known, **, which this workbook does not contain.** | The reason for a cell that reads a value the workbook has no cell for, including an input the export did not reach before its calculation allowance ran out. |
+| **It reads [Variable] across several dimension items or dates, and this workbook may hold only some of those cells.** | The reason for a total or other read across items or dates of a Variable whose input was too large to read, or was cut short when the export's calculation allowance ran out. The value is kept so the workbook never adds up part of the data. |
 | **It reads [Variable] as text or dates across several periods or dimension items; an implicit sum cannot preserve those values.** | The reason for a cell that reads text or dates, such as a cost center or an end date, from several cells. An Excel sum cannot combine text or dates, so the value is kept. A text or date read that matches one cell stays a reference. |
 
 For time and size limits, see [Limits and file types](/reference/limits#tables-pages-sharing-and-exports).
@@ -662,6 +688,7 @@ A memorable address has 3 to 64 lowercase letters, digits, or single hyphens bet
 | Other failure | **Something went wrong**, with **Please try again in a moment.** |
 | Strip above the Page | For a reader who is not signed in: your brand's logo and name with **Powered by cfo.ai**, or, without a brand, **Like what you see? Build a model like this for your own business.** with **Start your free trial now**, which the reader can dismiss. In a desktop browser, a brand with a logo shows no strip, because the sidebar already shows the logo and **Powered by cfo.ai**. A phone or tablet browser shows the strip, and so does a brand without a logo. |
 | **Keep your access** | A card for a reader who is not signed in: **Sign in to hold on to the pages shared with you.**, with an email field |
+| Sidebar | The **Model** section lists the Pages the reader's links share. For a reader, the section has no height limit and no edge to drag, so a long list scrolls with the rest of the sidebar, down to the last shared Page. A reader sees no **Connections** section, in a desktop browser or in the drawer on a phone or tablet. |
 | Scenario picker | In the sidebar's **Model** section, lists the Scenarios the reader's links share. Picking a Scenario that does not share the Page on screen opens the first Page that Scenario shares, in sidebar order. |
 | Strip after a Scenario change | **[Page] isn’t shared in [Scenario]**, with **Back to [Scenario]**, over the Page that opened. [Page] is the Page the reader had open. **Back to [Scenario]** returns to it, in the Scenario the reader came from. The strip goes away when the reader opens another Page or Scenario. |
 | **In other shared scenarios** | Below the sidebar's list of Pages: the Pages the reader can open only in other Scenarios. Each shows its Scenario's name, or **[n] scenarios** when several share it. Selecting one opens it in the first of those Scenarios, Main first. |
@@ -786,7 +813,7 @@ Notices after these actions: **Closed [form]** or **[form] was already closed**;
 | **In the table** | The state of a listed answer whose rows are in the table. The list holds each person's latest answer, or every standing answer when the form takes more than one per person. A discarded answer, and one a later answer replaced, is not listed. |
 | **Not checked against the table** | The answer could not be compared with the table, for example because it is not ready. |
 | **Doesn’t fit the form’s rules**, **Still being checked**, **Needs an amount for each month** | Why an answer cannot go in yet. |
-| **Held for your review** / **Not in table yet**, with **Why it was held** and **What changes** (or **What changes from [date]**) | The notice on a held answer, with **Add to table** and **Discard response**. **Held. [N] rows from an earlier add are in the table.** names rows an earlier answer of the same person already wrote. |
+| **Held for your review** / **Not in table yet**, with **Why it was held** and **What changes** (or **What changes from [date]**) | The notice on a held answer, with **Add to table** and **Discard response**. **What changes** shows only when the person answered before, and lists each answer that differs from their earlier one as **[before] → [after]**. **Held. [N] rows from an earlier add are in the table.** names rows an earlier answer of the same person already wrote. |
 | Reasons under **Why it was held** | **It doesn’t fit the form’s rules: […].**; **[name] answered again.** or **[name] answered again, replacing their answer from [date].**; **A check flagged it: [check].**; **Its checks are still running. It goes into the table once they pass.**; **A question that asks one amount per month got one amount. It goes in once [name] gives an amount for each month.** The checks are **Possible instructions**, **Possibly abusive**, **Possible personal data**, **Unusual amount**, **Over the amount set for review**, **Couldn't be checked**, **Doesn't pass the form's rules**, **Needs months**, **Waiting for credits**, and **Held for review**. |
 | Notes under **What changes** | **Their earlier answer counts until you add this one.** and **Adding it replaces [N] values someone typed in the table.** |
 | **Changed from the answer of [date]**, with **Added** and **Removed** | How a later answer differs from the person's earlier one. |
@@ -876,7 +903,7 @@ A phone or tablet browser opens the same workspace in a reading layout, one scre
 
 | Control | What it does |
 | --- | --- |
-| **Open navigation** | Opens a drawer with the logo, **Search**, your chats, the **Model** section with its Pages, and **Connections**. Picking a chat, a search result, or **New chat** closes it; so does **Close navigation**. |
+| **Open navigation** | Opens a drawer with the logo, **Search**, your chats, the **Model** section with its Pages, **Connections**, and **Ari**. Picking a chat, a search result, or **New chat** closes it; so does **Close navigation**. Selecting **Ari** shows [Ari's profile](#aris-profile) in the drawer in place of the navigation, and **Back to navigation** returns to it. Rows in the profile open no card there; use **Connect** on the row. |
 | **Open page panel** | In a chat's header. Opens the Page beside the conversation. |
 | **Back to chat** | On a Page opened from a chat. Returns to the conversation. |
 | **New chat** | On a Page. Starts a chat. |

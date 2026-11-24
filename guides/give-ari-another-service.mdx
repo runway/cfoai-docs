@@ -27,7 +27,7 @@ If the service has no MCP server and no API definition, Ari can fetch its data o
 
     Ari reads the provider's official documentation and posts a card titled **Connect [service]**. The card shows the service's logo, its address, how it signs in, such as **MCP token** for a server that takes a token, or **API key**, **Username and password, or API key**, or **No sign-in required** for an API, and a **Provider documentation** link. Select **Connect**. A service that uses OAuth opens its sign-in window; one that takes a token or key shows a secure field on the card. An API that signs in with Basic authentication shows two fields: **Username**, already filled in when Ari proposed one, and **Password or API key**. Leave **Username** blank when the API key is the username. A service that needs more than one secret, such as a bearer token and an `AccessKey` header, shows one more secure field for each, labeled with the header's name, and a field left blank is refused with **The [name] field is required.** What you type there goes to cfo.ai's connection service, not to Ari or the chat. Never paste a key into a chat message.
 
-    Before Ari offers a Connect card for a server that signs in with OAuth, it checks whether the provider accepts cfo.ai as an app. When the provider signs in only apps registered with it in advance, Ari says so in the chat instead of posting a card that would fail; a check that cannot finish within ten seconds still offers the card.
+    Before Ari offers a Connect card for a server that signs in with OAuth, it checks whether the provider accepts cfo.ai as an app. When the provider accepts only apps registered with it in advance, the card adds two fields, **Client ID** and **Client secret**, for an OAuth app your workspace registered with the provider, and names the redirect URL that app must allow; see [Sign in with your own OAuth app](#sign-in-with-your-own-oauth-app). A check that cannot finish within ten seconds offers the usual card.
 
     The card reads **Connecting…**, then **Checking connection…**, then **Connected** for an MCP server or **Connection added** for an API. Ari then checks that the tools or endpoints answer before it relies on them. **Connection added** means the specification loaded, not that the API answers, so Ari checks access with a read before relying on it, and for an API that takes a key that read also shows whether the key works; the card says **Ari will check access before using this connection.** If an MCP server's sign-in fails or you cancel it, Ari learns what went wrong in the same chat and can suggest what to try next. When an API's definition has parts cfo.ai cannot use but at least one usable operation, the connection imports the usable operations, and Ari's result lists the skipped ones with their reasons; a definition with no usable operation is refused instead, with the message listed in [Connection statuses and actions](/reference/connection-statuses#messages-about-mcp-servers-and-apis).
   </Tab>
@@ -40,7 +40,7 @@ If the service has no MCP server and no API definition, Ari can fetch its data o
         Search the catalog and select **Connect** on the service's card. An OAuth service opens its sign-in window; a service that uses a token or key asks for it.
       </Step>
       <Step title="Or add one manually">
-        Select **Add manually**. For an MCP server, **Add MCP server** asks for a **Name** and the **MCP URL**. Under **Advanced**, choose the **Authentication**: **OAuth**, **Bearer token**, or **API key header**, which also takes a **Header name**, such as `X-API-Key`, and the **API key**.
+        Select **Add manually**. For an MCP server, **Add MCP server** asks for a **Name** and the **MCP URL**. Under **Advanced**, choose the **Authentication**: **OAuth**, **Bearer token**, or **API key header**, which also takes a **Header name**, such as `X-API-Key`, and the **API key**. With **OAuth**, **Use my own OAuth client** signs in with an app you registered with the provider; see [Sign in with your own OAuth app](#sign-in-with-your-own-oauth-app).
 
         For an API, **Add API** asks for a **Display name**, the **Authentication** (**Bearer token**, **API key header**, **Basic authentication**, or **No authentication**), the **API key**, and the **OpenAPI specification**, as a **Specification URL** or with **Paste JSON**. With **Basic authentication**, the form adds a **Username** field and the key field reads **Password or API key**; leave **Username** blank when the API key is the username. The address may start with `http://`: cfo.ai fetches the definition at its `https://` address and never over plain HTTP. A specification that declares several servers also needs the **Base URL** under **Advanced**.
 
@@ -54,6 +54,26 @@ If the service has no MCP server and no API definition, Ari can fetch its data o
 </Tabs>
 
 **Add with Ari** on the same tabs opens a chat that starts the Ask Ari path, and the connection picker closes once the chat is open. While the workspace cannot use AI, the button is off and a line under it reads **Add with Ari is unavailable.** with the reason, such as **This workspace is out of AI usage.** **Add manually** still works.
+
+For Notion, Linear, Intercom, or Attio, there is a shorter path: select **Ari** in the sidebar, in the row above your name, and select **Connect** on the service's row under **Context**. The service's sign-in window opens at once. **View all** there opens the **MCP** tab. See [Ari's profile](/reference/interface#aris-profile).
+
+### Sign in with your own OAuth app
+
+Some providers sign in only OAuth apps that were registered with them in advance, so cfo.ai cannot register itself when you connect. Connect such a server with an app your workspace registered with the provider.
+
+<Steps>
+  <Step title="Register an app with the provider">
+    In the provider's developer settings, create an OAuth app and allow the redirect URL `https://app.cfo.ai/integrations/mcp/callback`. Copy the app's client ID and client secret.
+  </Step>
+  <Step title="Enter the app in cfo.ai">
+    Select **Add manually** on the **MCP** tab, enter the **Name** and **MCP URL**, open **Advanced**, keep **Authentication** on **OAuth**, and check **Use my own OAuth client**. Enter the **Client ID** and **Client secret**. If Ari posted a Connect card with those two fields, enter them there instead.
+  </Step>
+  <Step title="Sign in">
+    Select **Log in with OAuth**, or **Connect** on Ari's card, and approve access in the provider's window.
+  </Step>
+</Steps>
+
+cfo.ai stores the client secret encrypted on the connection and never sends it to Ari. **Reconnect** and **Finish setup** use the saved app, so you do not enter it again.
 
 ### Rippling's MCP server
 
@@ -129,7 +149,7 @@ To have a teammate sign the server in, ask Ari for a link you can forward. Ari p
 
 ## Finish a sign-in that did not complete
 
-When a server reads **Waiting for you**, or its sign-in state reads **Sign-in incomplete**, select **Finish setup** on its row in **Settings → Connections**, in its details, or on its card in the sidebar. It starts a new sign-in and replaces the unfinished attempt, and the sign-in finishes even if the cfo.ai tab that started it reloads before the provider sends you back. [Connection statuses and actions](/reference/connection-statuses#statuses-for-mcp-servers-and-apis) lists the statuses, what the page the provider returns you to says, and what to do when the browser blocks the provider's window.
+When a server reads **Waiting for you**, or its sign-in state reads **Sign-in incomplete**, select **Finish setup** on its row in **Settings → Connections**, in its details, or on its card in the sidebar. It starts a new sign-in and replaces the unfinished attempt, and the sign-in finishes even if the cfo.ai tab that started it reloads before the provider sends you back. The sign-in has no time limit. If its window never comes back, select **Finish setup** again to start over. [Connection statuses and actions](/reference/connection-statuses#statuses-for-mcp-servers-and-apis) lists the statuses, what the page the provider returns you to says, and what to do when the browser blocks the provider's window.
 
 ## Disconnect a service
 
@@ -138,7 +158,8 @@ In **Settings → Connections**, open the service's **…** menu and select **Di
 ## If something goes wrong
 
 - **The provider must allow cfo.ai's redirect URI https://app.cfo.ai/integrations/mcp/callback before you can connect.** The provider has to allow that exact address first; trying again does not help until its administrator does. For NetSuite, see [NetSuite's MCP server](#netsuites-mcp-server).
-- **This provider signs in only apps registered with it in advance.** The server cannot be connected with OAuth. When Ari can check the provider first, it tells you this before offering a Connect card. Use a token if the provider offers one.
+- **This provider accepts only OAuth apps registered with it in advance.** The sign-in brought no app of your own. Register an app with the provider and connect with **Use my own OAuth client**; see [Sign in with your own OAuth app](#sign-in-with-your-own-oauth-app).
+- If a sign-in window never comes back, select **Reconnect** or **Finish setup** again. The button stays selectable while a sign-in waits, and a new click starts the sign-in over in a new window.
 - **Reconnect this source to continue.** The saved sign-in no longer works. Sign in to the server again.
 
 [Connection statuses and actions](/reference/connection-statuses#messages-about-mcp-servers-and-apis) lists every message.

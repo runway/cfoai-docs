@@ -214,7 +214,7 @@ A replace or snapshot setup without a changes-since filter does not fail when a 
 Two things end the runs early:
 
 - A run that reaches the limit without saving a page. The setup's sync then fails, and its saved pages stay for a later sync, as the table above describes. The failure Ari reads begins **the sync task stopped this setup after run [N] reached the time limit without saving a page.**
-- The end of the sync's one-hour attempt. When an attempt remains, it runs the setup again from its saved pages, and the setup is not counted as synced until then. When the limit ends the third attempt, the setup's sync fails, and a later sync continues from the saved pages while they are kept.
+- The end of the sync's attempt, which stops when the sync makes no progress for 1 hour. When an attempt remains, it runs the setup again from its saved pages, and the setup is not counted as synced until then. When a stall ends the third attempt, the setup's sync fails, and a later sync continues from the saved pages while they are kept.
 
 An upsert, append, or changes-since setup saves nothing until its last page arrives, so it gets one run. When the limit ends that run, the failure Ari reads begins **the sync task reached its 10-minute limit**, followed by the page and the call the limit cut off.
 

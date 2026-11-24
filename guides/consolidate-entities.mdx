@@ -31,7 +31,7 @@ Before you start, connect each entity's books. Connect each QuickBooks Online co
     See [Map one Dimension's items to another](/guides/map-dimensions).
   </Step>
   <Step title="Convert currencies, if your entities use more than one">
-    cfo.ai does not convert currencies on its own. Amounts load in the currency the source reports them in, so a total across companies that report in different currencies adds unlike numbers. NetSuite is the exception: its two statements load each amount already converted to the parent subsidiary's currency at NetSuite's own consolidated exchange rates, so do not convert them again; see [NetSuite SuiteAnalytics](/reference/integrations#netsuite-suiteanalytics). Ask Ari to convert to your reporting currency at a rate you choose:
+    cfo.ai does not convert currencies on its own. Amounts load in the currency the source reports them in, so a total across companies that report in different currencies adds unlike numbers. NetSuite is the exception: its two statements load each amount already converted to the parent subsidiary's currency at NetSuite's own consolidated exchange rates, so do not convert them again unless your reporting currency differs from the parent subsidiary's; see [NetSuite SuiteAnalytics](/reference/integrations#netsuite-suiteanalytics). For amounts that are not yet in your reporting currency, ask Ari to convert them at a rate you choose:
 
     > Convert the UK company's results from GBP to USD at 1.27, and show the group total in USD.
 

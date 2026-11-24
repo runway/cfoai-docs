@@ -47,7 +47,9 @@ After a forget, Ari searches memory for the forgotten text. When the text still 
 
 ## Memory is separate from chat history
 
-Ari can also look back at your earlier chats, which is different from memory. Memory is the short list Ari applies every time. Chat history is a record Ari reads only when it needs to, for example when you say "use the churn definition we agreed on last week". In a chat in the cfo.ai web app, Ari is also told which of your other chats in the workspace hold messages from you that are newer than your last message in the chat it is working in, with each chat's name and the time of its newest message. This matters when Ari acts without a new message from you, such as when an import finishes: it can read what you asked elsewhere before it decides what to do. A chat in Slack does not get this list.
+Ari can also look back at your earlier chats, which is different from memory. Memory is the short list Ari applies every time. Chat history is a record Ari reads only when it needs to, for example when you say "use the churn definition we agreed on last week".
+
+In a chat in the cfo.ai web app, Ari is also told which of your other chats in the workspace hold newer messages from you. The list gives each chat's name and the time of its newest message. This matters when Ari acts without a new message from you, such as when an import finishes: it can read what you asked elsewhere before it decides what to do. A chat in Slack does not get this list.
 
 Ari sees each of your chats under the name shown in your chat list, including a name you gave it, so naming a chat after what it settled helps Ari find it later. Ari reads only your own chats, never a teammate's. Archiving a chat keeps its messages and files, so Ari can still read it.
 

@@ -72,6 +72,26 @@ Ari can list the workspace's agents, and for an administrator it can create, cha
 
 A new chat shows the heading **How can I help you?** and the placeholder **Ask anything about your business or data...** in the message box. Four chips below it open suggested prompts for four kinds of question: **Explain** (what something means), **Benchmark** (whether a number is good), **Decide** (what to do), and **Pressure-test** (whether you are wrong). Selecting a suggestion puts it in the message box.
 
+### Welcome back and suggestions from your recent chats
+
+When you come back to a workspace after 24 hours or more away, the chat can greet you with **Welcome back, [first name].**, or **Welcome back.** when your account has no first name, and suggest work to pick up. cfo.ai prepares the suggestions from up to five of your most recent chats in that workspace: your own chats that are not shared or archived, and in which Ari has finished or is waiting for your answer. With no such chat, there is no greeting. You get at most one greeting in 24 hours.
+
+| Where you are when you come back | What you see |
+| --- | --- |
+| An empty chat | **Welcome back, [first name].** takes the place of **How can I help you?**. Under the message box, **Want to pick up where we left off?**, or **Want to revisit what we were working on?** after seven days or more away, takes the place of the four chips, with up to two suggestions under **From your recent chats**. Each suggestion shows what to do next, why, and the title of the chat it comes from with how long ago you last wrote in it. When no suggestion is ready, the greeting shows alone, with a **Dismiss welcome** button (×). |
+| One of your own chats of that kind, scrolled to its end | The greeting above the message box, with **Dismiss**. When cfo.ai has a suggestion for continuing that chat, a line about it and **Continue** show too. |
+
+Selecting a suggestion, or **Continue**, puts a suggested message in the message box. Nothing is sent until you send it, and you can change the message first. A suggestion that continues a chat opens that chat. A suggestion for new work starts a new chat, adds the lines it draws on from the earlier chat as quotes under the suggested message, and shows **From [chat title]** above the message box; select it to open the earlier chat.
+
+The greeting and suggestions go away when you dismiss them, type in the message box, click, scroll, or press a key anywhere else in the app, or leave the browser tab or window. After **Dismiss**, or the × beside **From your recent chats**, those chats are not suggested again until you write in them again. The greeting does not show while Ari is working in the chat on your screen, while a question form is open, while the message box holds text or a file, or while the workspace is out of AI usage.
+
+| Message | Meaning |
+| --- | --- |
+| **Your draft is preserved. Clear or send it before using “[suggestion]”.**, with **Use suggestion** | The chat the suggestion opens already has a draft. Clear or send the draft, then select **Use suggestion**. |
+| **Finish your other draft before starting this suggestion.** | An unsent draft in a new chat is in the way. Send or clear that draft first. |
+| **This suggestion is no longer available.** | The chat it came from changed after the suggestion was prepared, or the greeting ended, for example in another tab. The suggestion leaves the list. |
+| **Welcome is unavailable.** | cfo.ai could not open the suggestion. Try again, or start the chat yourself. |
+
 ## The message box
 
 | Control | What it does |
@@ -366,6 +386,8 @@ Ari's saved memory lives in an outside service. When that service cannot answer,
 
 Work that Ari runs in the background from a chat, such as an overnight update from a connected Google Sheet, reports back to that chat when it finishes, stops, or cannot finish. When you ask Ari in that chat to stop a connected file's import, no separate report follows: Ari's answer is the report. Ari usually answers in its own words. When Ari has nothing to add, the chat shows the work's own report as Ari's reply instead of staying silent. It starts **Background work** and says whether the work finished, could not finish, or was stopped, and whether its review passed it, then names the work in quotation marks, then gives one line for each step with what it reported. The report does not count what the work changed in your Model. The report can name items by their short references, such as `#7a1`. It sends no email or Slack message. For files the work delivered, see [Download a file Ari made](#download-a-file-ari-made).
 
+Two kinds of background work can send their reports to another chat of yours: the import of a Google Sheets or Google Drive file you connected, and Ari's background import work on one connection. For a file's import, ask Ari in that other chat to follow the import, to answer its question, or to give it an instruction. For import work on a connection, ask Ari there to give the work an instruction or to load that connection's data. From then on, the work's questions, progress, and report go to the chat that asked last. What an earlier chat already received stays there, and asking again in the first chat moves the reports back. Only your own chats can do this: another person's chat cannot, and neither can a Trigger run.
+
 ### Download a file Ari made
 
 A file Ari makes for you, such as a workbook, an image, or a document, appears as a card with its name and size directly under the answer that ends the turn. PNG, JPEG, GIF, and WebP images show a preview. When the answer names the file by its exact file name, with the same letter case and extension and outside a code block, that name is a link to the same download. When two files have the same name, the name links to the one delivered last.
@@ -481,7 +503,7 @@ When billing stops a turn, the reply ends with Ari's own explanation, which star
 | **I had to stop here: this workspace reached its monthly AI spend limit. Raise the limit in Settings → Usage, then send a new message and I'll pick up where we left off.** | No AI usage is left, auto-reload is on, and the monthly spend limit keeps it from buying more. Reaching the limit while usage remains does not stop Ari. |
 | **I had to stop here: this workspace has reached a limit of its current plan. Upgrade the plan in Settings → Billing, then send a new message and I'll pick up where we left off.** | Plan limit reached |
 | **I had to stop here: the workspace's last usage purchase failed, so no more AI usage could be added. Update the payment method in Settings → Billing, then send a new message and I'll pick up where we left off.** | A usage purchase failed |
-| **I had to stop here while more AI usage is on the way. Send a new message in a moment and I'll pick up where we left off.** | Usage is being added, for example by auto-reload |
+| **I had to stop here while more AI usage is on the way. Send a new message in a moment and I'll pick up where we left off.** | An earlier reply stopped while usage was still being added, for example by auto-reload. A reply no longer stops this way: it waits for the purchase to finish and then continues; see [Notices in the chat](/reference/plans-and-billing#notices-in-the-chat). A chat saved before that change still shows this message. |
 | **I had to stop here: this workspace has not started its trial yet. Start the trial, then send a new message and I'll pick up where we left off.** | Trial not started |
 | **I had to stop here: this workspace doesn't have an active plan. Choose one — or fix the payment method if a charge has failed — in Settings → Billing, then send a new message and I'll pick up where we left off.** | No active plan |
 | **I had to stop here: the workspace's subscription payment is failing, so usage is paused. Update the payment method in Settings → Billing, then send a new message and I'll pick up where we left off.** | Subscription payment failing |

@@ -107,6 +107,20 @@ Most sources connect through Merge or Fivetran, outside services that copy a sou
 
 When a sign-in asks for a permission you do not have, the person who administers that system must connect it, or grant you access first. See each source below for what it needs.
 
+### Settings of a source that syncs through Fivetran
+
+Ari can read and change the settings in Fivetran's setup form for any connection that syncs through Fivetran, such as a HubSpot, Salesforce, NetSuite, or database connection. Ask Ari in a chat, and name the connection. You need edit access to the connection. A change saves the setting, Fivetran runs its setup tests in the same step, and Ari tells you each test's result. A change starts no sync.
+
+| What you ask for | What Ari does |
+| --- | --- |
+| Read the settings | Reads them from Fivetran at that moment: each saved value, the fields that hold no value, and which fields are credentials. Fivetran hides the value of a credential, such as a password or an API key, so Ari never reads one. |
+| Change a credential | Refuses, with or without your approval. Credentials never pass through Ari. Ask Ari to reconnect the connection, or select **Reconnect**, and enter the credential in Fivetran's setup window; see [cfo.ai lost access: reconnect](/guides/fix-a-connection#cfoai-lost-access-reconnect). |
+| Fill in a field that holds no value | Asks for your approval in the chat first. The change has no undo, because there is no earlier value to set back. |
+| Change a text setting on a connection that holds credentials | Asks for your approval in the chat first, and the change has no undo. A text setting, such as a subdomain, can decide where Fivetran sends the saved credentials, and the setup tests connect at once. A connection holds credentials when its setup form has a credential or sign-in field, or when Fivetran hides one of its saved values. |
+| Change any other setting that already holds a value, such as a true-or-false or number setting | Saves it at once, and can set the earlier value back when you ask. |
+
+Your approval counts only in a message you write in the chat. A Trigger run and an AI client connected over MCP cannot approve a change. When Fivetran changes another setting along with the one you named, Ari tells you, and setting the earlier values back restores that one too, unless Fivetran cleared it or hides its value. When Fivetran refuses a change, nothing is saved, and Ari gives you Fivetran's own code and message.
+
 ## Accounting
 
 The app's **Accounting** filter also holds payment and commerce sources, such as Stripe (Direct) and Shopify, so they are listed here. In each table, a saved query is the query that brings a synced table into your Model; see [Saved query](/reference/glossary#saved-query).
@@ -164,7 +178,7 @@ The app's **Accounting** filter also holds payment and commerce sources, such as
 | Currency | Both statements load each amount converted to the parent subsidiary's currency, at NetSuite's own consolidated exchange rates, so subsidiaries that keep their books in different currencies arrive in one currency. **Currency Name** on the income statement names the currency of the transaction, not of the amount. cfo.ai does not load the unconverted amounts into these statements. |
 | History | The full history of each table |
 | First sync | Can take many hours, because Fivetran copies every table's full history first |
-| Table choice | Setup shows a table picker. Required tables are locked. Tables for features your account does not use, **Multiple Currencies**, **Multiple Calendars**, or **Multi-Book Accounting**, start unchecked. After setup, the 23 statement tables stay locked. Ari can add another table, and can remove one that no saved query reads. A connection that syncs tables outside the 23 and has not finished its first sync can be narrowed to them: ask Ari to narrow the connection to the tables its reports read. Ari then starts a sync. Ari refuses when a saved query reads a table the change would turn off. Once a first sync has finished, the connection cannot be narrowed this way; ask Ari to remove tables one at a time. One failing table fails the whole first sync, so a failure on a table no statement reads says the connection can be narrowed; see [Sync failed](/reference/connection-statuses#sync-failed). |
+| Table choice | Setup shows a table picker. Required tables are locked. Tables for features your account does not use, **Multiple Currencies**, **Multiple Calendars**, or **Multi-Book Accounting**, start unchecked. After setup, Ari cannot turn off any of the 23 statement tables, and can turn one back on if it has stopped syncing. Ari can add another table, and can remove one that no saved query reads. A connection that syncs tables outside the 23 and has not finished its first sync can be narrowed to them: ask Ari to narrow the connection to the tables its reports read. Ari then starts a sync. Ari refuses when a saved query reads a table the change would turn off. Once a first sync has finished, the connection cannot be narrowed this way; ask Ari to remove tables one at a time. One failing table fails the whole first sync, so a failure on a table no statement reads says the connection can be narrowed; see [Sync failed](/reference/connection-statuses#sync-failed). |
 | You need first | A NetSuite admin creates an access token for the **Data Warehouse Integrator** role. Entering a different role ID with an existing token does not change what cfo.ai can see. |
 | Writes back | No |
 
@@ -245,6 +259,8 @@ Acumatica (premium), Adyen, Afterpay, Anaplan (premium), Anvyl, Aumni, AWS Cost 
 
 ## HR and payroll
 
+For an HR or payroll system that connects through Merge, such as Gusto or Justworks, the **HRIS Employees** saved query reads each person's pay from the employment records the system returns. Each pay field, such as **Pay Rate**, **Pay Period**, and **Pay Currency**, takes the most recent employment record that holds it, so a newer record with no pay does not blank the pay. An employment record dated on or after a person's termination date is ignored. A month that synced before cfo.ai saved employment records keeps the pay that sync saved. If you edited the **HRIS Employees** query, it keeps your SQL.
+
 ### Gusto
 
 | Fact | Detail |
@@ -276,7 +292,7 @@ Acumatica (premium), Adyen, Afterpay, Anaplan (premium), Anvyl, Aumni, AWS Cost 
 | --- | --- |
 | How it connects | Fivetran setup window with a Rippling API key. Before the window opens, a dialog titled **Before you connect Rippling** says: **You’ll need a Rippling API key to continue. API access may need to be enabled as a paid feature in your Rippling account.** |
 | Standard or premium | Standard |
-| What syncs | The seven tables the employee roster reads: workers, users, worker details, departments, teams, team membership, and work locations. There is no table picker. Ari can add other Rippling tables later; these seven stay locked. |
+| What syncs | The seven tables the employee roster reads: workers, users, worker details, departments, teams, team membership, and work locations. There is no table picker. Ari can add other Rippling tables later. Ari cannot turn off any of these seven, and can turn one back on if it has stopped syncing. |
 | Saved query cfo.ai adds | **HRIS Employees** |
 | You need first | A Rippling API key. If you cannot get one, upload an employee export as a CSV, or connect the Rippling MCP server for Ari. |
 | Writes back | No |
@@ -299,7 +315,7 @@ These HR, scheduling, and learning tools sync through Fivetran, with a table pic
 | --- | --- |
 | How it connects | Fivetran setup window, where you sign in to HubSpot |
 | Standard or premium | Standard |
-| What syncs | A fixed set of 20 tables: deals, deal pipelines and their stages, owners, contacts, companies, line items, products, and invoices; the links between deals, contacts, companies, line items, and invoices; and the property histories of line items, products, and invoices. A table HubSpot does not expose is skipped. There is no table picker. Ari can add other HubSpot tables later; these 20 stay locked. |
+| What syncs | A fixed set of 20 tables: deals, deal pipelines and their stages, owners, contacts, companies, line items, products, and invoices; the links between deals, contacts, companies, line items, and invoices; and the property histories of line items, products, and invoices. A table HubSpot does not expose is skipped. There is no table picker. Ari can add other HubSpot tables later. Ari cannot turn off any of these 20, and can turn one back on if it has stopped syncing. |
 | Saved query cfo.ai adds | **HubSpot Deals**, which keeps every deal that is not deleted; a deal whose owner, stage, or pipeline HubSpot has no record for keeps its other details, and that one is left empty |
 | Writes back | No |
 
@@ -309,7 +325,7 @@ These HR, scheduling, and learning tools sync through Fivetran, with a table pic
 | --- | --- |
 | How it connects | Fivetran setup window, where you sign in to Salesforce |
 | Standard or premium | Standard |
-| What syncs | Opportunities, accounts, and users. There is no table picker. Ari can add other Salesforce objects later; these three stay locked. |
+| What syncs | Opportunities, accounts, and users. There is no table picker. Ari can add other Salesforce objects later. Ari cannot turn off any of these three, and can turn one back on if it has stopped syncing. |
 | Saved query cfo.ai adds | **Salesforce Opportunities** |
 | Writes back | No |
 
@@ -338,7 +354,7 @@ Premium, through Fivetran, with a table picker. If the sync fails with Fivetran'
 - BigQuery Admin on the project.
 - BigQuery Job User and BigQuery Read Session User on the project, plus a custom role on the dataset with `bigquery.datasets.get`, `bigquery.tables.get`, `bigquery.tables.getData`, `bigquery.tables.list`, `bigquery.tables.create`, `bigquery.tables.update`, and `bigquery.tables.updateData`. With a separate working dataset, only that dataset needs the last three.
 
-While it syncs, Fivetran creates and drops temporary tables, by default in the dataset it reads. To have it use a separate working dataset, create a dataset in the same region that Fivetran's service account can write to, and ask Ari to use it as the connection's working dataset. Ari saves the setting, Fivetran runs its setup tests, and Ari tells you each test's result and how to undo the change. Ari asks for your approval in the chat before it sets a working dataset where none was set. The change starts no sync, and tables Fivetran already left in the source dataset stay until you drop them in BigQuery. These are the only fields of Fivetran's setup form that Ari reads or changes, and you need edit access to the connection.
+While it syncs, Fivetran creates and drops temporary tables, by default in the dataset it reads. To have it use a separate working dataset, create a dataset in the same region that Fivetran's service account can write to, and ask Ari to use it as the connection's working dataset. Ari saves the setting, Fivetran runs its setup tests, and Ari tells you each test's result and which parts of the change it can set back. Ari asks for your approval in the chat before it sets a working dataset where none was set, or changes the dataset's name on a connection that holds credentials; that part of the change has no undo. The change starts no sync, and tables Fivetran already left in the source dataset stay until you drop them in BigQuery. You need edit access to the connection. [Settings of a source that syncs through Fivetran](#settings-of-a-source-that-syncs-through-fivetran) has the rules for every setting Ari reads or changes.
 
 A connection that reads **Sync failed** shows Fivetran's report and then the two options on the line under its name, and Ari gives the same when you ask why the sync failed. Have your Google Cloud admin grant one of the two, then select **Retry**.
 
@@ -373,7 +389,7 @@ Amazon Redshift is not in the catalog.
 | Standard or premium | Standard. Every Google Sheets connection in a workspace shares one slot. |
 | What it loads | Ari imports the spreadsheet's visible tabs with their formulas, values, and number formats, together with the hidden cells they read, and rebuilds them in your Model; a hidden tab is otherwise left out unless you name it. See [Import an existing spreadsheet model](/guides/import-a-spreadsheet-model). |
 | How much it imports | It depends on where you connect the spreadsheet. A spreadsheet connected from a chat with Ari attaches to that chat, and Ari imports what you asked for there, such as one tab. A spreadsheet connected from the connection manager is imported in the background with every visible tab, because no chat narrows the import. When you ask Ari, in a chat in the cfo.ai web app, to import the whole spreadsheet in the background, Ari can open the connection setup so that the spreadsheet belongs to no chat, and it is imported the same way as one connected from the connection manager. Ari cannot start that from a conversation in Slack or for an AI assistant connected over MCP, because the connection setup must open in the web app. It also cannot start it while the source has an unfinished setup that started in a chat, because finishing that setup attaches the spreadsheet to that chat; finish or remove that setup first. A spreadsheet file connected through Google Drive follows the same rules. See [Import one tab instead of the whole spreadsheet](/guides/connect-a-google-sheet#import-one-tab-instead-of-the-whole-spreadsheet). |
-| Refresh | Nightly and when you ask Ari. An unchanged spreadsheet starts no update and uses no AI usage. A changed value or formula updates what was imported into your Model when automatic updates are on for the connection, and Ari is told to keep a number or formula someone changed in cfo.ai after the import; the update's report lists the ones that the person who connected the file can see in version history. Automatic updates are on for a spreadsheet connected from the connection manager and off for one connected from a chat, and the person who connected it can ask Ari to change that; see [Turn automatic updates on or off](/guides/connect-a-google-sheet#turn-automatic-updates-on-or-off). A spreadsheet connected from a chat that nobody has imported starts no import when it changes; see [When the Model no longer holds the import](/guides/connect-a-google-sheet#when-the-model-no-longer-holds-the-import). |
+| Refresh | Nightly and when you ask Ari. An unchanged spreadsheet starts no update and uses no AI usage. A changed value or formula updates what was imported into your Model when automatic updates are on for the connection, and Ari is told to keep a number or formula someone changed in cfo.ai after the import; the update's report lists the ones that the person who connected the file can see in version history. Automatic updates are on for a spreadsheet connected from the connection manager and off for one connected from a chat, and the person who connected it can ask Ari to change that; see [Turn automatic updates on or off](/guides/connect-a-google-sheet#turn-automatic-updates-on-or-off). A spreadsheet connected from a chat that nobody has imported starts no import when it changes while automatic updates are off. Once the person who connected it asks Ari to keep the Model updated, the next sync imports the whole spreadsheet in the background, changed or not; see [Turn automatic updates on or off](/guides/connect-a-google-sheet#turn-automatic-updates-on-or-off). |
 | Limits | One spreadsheet per connection, up to 50 MB when exported as an Excel workbook. The same spreadsheet cannot be connected twice in a workspace. |
 
 ### Google Drive

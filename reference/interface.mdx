@@ -13,7 +13,7 @@ The sign-in page has the cfo.ai wordmark as its heading, which a screen reader r
 | Control | What it does |
 | --- | --- |
 | **Continue with Google** / **Sign in with Microsoft** | Signs you in with that account. When these are offered, the sign-in page reads **Choose how you want to continue.**, and a line above the email field reads **or continue with email**. |
-| **Work email** | Your work address. The empty field shows **you@company.com**, and on the sign-in page the note under it reads **Enter your work email to sign in.** A new account needs an address at your company's own domain; see [Work email required for new accounts](#work-email-required-for-new-accounts). |
+| **Work email** | Your work address. The empty field shows **you@company.com**, and on the sign-in page the note under it reads **Enter your work email to sign in.** A new account needs an address at your company's own domain, unless a teammate invited your personal address; see [Work email required for new accounts](#work-email-required-for-new-accounts). |
 | **Continue** | Emails you a six-digit code and opens the code page. |
 
 Under the buttons, both pages read **By continuing, you agree to the Standard Terms and Conditions and acknowledge the Privacy Policy.**, with a link to each document. See [Privacy and legal](/reference/privacy-and-legal).
@@ -24,7 +24,9 @@ When your sign-in ends while a workspace is open in a browser tab, the tab opens
 
 ### Work email required for new accounts
 
-A new account must use a work email address. An address at a free or disposable email provider, such as Gmail, Outlook, Yahoo, iCloud, or Proton Mail, is refused before a code is sent, and also when a Google or Microsoft sign-in or a pending invitation would create the account. The form is replaced by a page titled **Use your work email**, with **New accounts require a work email address.**, **Personal email providers, such as Gmail, Outlook, and Yahoo, are not supported for new accounts.**, and **Already have an account? You can still sign in with your existing email.** Select **Use a different email** to return to an empty **Work email** field. An account that already exists with a personal address keeps signing in with it. cfo.ai does not check that a custom domain belongs to a company.
+A new account must use a work email address, unless a teammate invited the address to a workspace. An address at a free or disposable email provider, such as Gmail, Outlook, Yahoo, iCloud, or Proton Mail, is refused before a code is sent, and also when a Google or Microsoft sign-in would create the account. The form is replaced by a page titled **Use your work email**, with **Use a work email to create a workspace.**, **If someone invited you to a workspace, sign in with the email address they invited.**, and **Already have an account? You can still sign in with your existing email.** Select **Use a different email** to return to an empty **Work email** field. An account that already exists with a personal address keeps signing in with it. cfo.ai does not check that a custom domain belongs to a company.
+
+A personal address that has a pending invitation to a workspace is not refused. The person signs in with exactly the invited address, by code or with Google or Microsoft, and joins that workspace. An invitation that was canceled or already accepted, or one to a workspace that was deleted or deactivated, does not count. An account with a personal address cannot create a workspace: **Create workspace** in the account menu answers **Use a work email to create a workspace.**
 
 When **Continue** cannot send a code, the message shows under the email field:
 
@@ -159,14 +161,14 @@ Select your name and picture at the bottom of the sidebar. From top to bottom:
 | **Manage memories** | Starts a chat in which Ari shows what it remembers about you and the workspace and helps you change it. See [What Ari remembers](/concepts/ari-memory). |
 | **Manage triggers** | Opens the [Triggers page](#triggers-page). |
 | **Workspaces** | Every workspace you belong to, with a check beside the one you are in. Select another to switch to it; **⌘**-click opens it in a new tab. |
-| **Create workspace** | Opens a **Workspace name** field. Press **Enter**, or select **Create "[name]"** under the field, to create the workspace and open it. If it fails, the field says **Unable to create workspace right now.** See [Create a second workspace or switch workspaces](/guides/manage-workspaces). |
+| **Create workspace** | Opens a **Workspace name** field. Press **Enter**, or select **Create "[name]"** under the field, to create the workspace and open it. If it fails, the field says **Unable to create workspace right now.** For an account whose email address is personal, such as a Gmail address, the field says **Use a work email to create a workspace.** See [Create a second workspace or switch workspaces](/guides/manage-workspaces). |
 | **Log out** | Signs you out. |
 
 The list under **Workspaces** is the workspace switcher; there is no other switcher control. Workspace search also finds your other workspaces by name.
 
 ## Triggers page
 
-**Manage triggers** in the account menu opens **Triggers**, marked **Preview**. It lists only your own Triggers. To set one up, see [Schedule a report or a reminder with a Trigger](/guides/schedule-a-trigger).
+**Manage triggers** in the account menu opens **Triggers**. It lists only your own Triggers. To set one up, see [Schedule a report or a reminder with a Trigger](/guides/schedule-a-trigger).
 
 | Control | What it does |
 | --- | --- |
@@ -328,6 +330,8 @@ The dialog is titled **Ask a human**, with **Tell us what's going on — this go
 | **Already connected**, with **Everyone is already in the channel. Open Slack to talk with the cfo.ai team.** | Every member is in the channel. |
 | **Accept the invitation in your own Slack workspace. Your Slack admin may need to approve it.** | Shown while a member has an invitation waiting or still to be sent. |
 | **Slack support is unavailable right now. Use Feedback in the sidebar to reach us.** | The Slack channel cannot be set up at the moment. Use **Feedback**, which is in the account menu, or [Ask a human](#ask-a-human). |
+| **We couldn't load Slack support. Try again.** | The dialog could not load the members and their statuses. No invitation was sent. Select **Try again**. |
+| **We couldn't invite everyone. Try again to send the remaining invitations, or contact us through Feedback.** | Not every invitation was sent. The list shows who still has none; select the button again to send the rest. |
 
 When you ask Ari in a chat to connect you with the cfo.ai team on Slack, Ari can send the same invitations. Ari sends them only for a signed-in administrator who is in the chat.
 
@@ -410,7 +414,7 @@ The bar above a Page, from left to right:
 | **Merge** | Shown when a chat is open beside a Page in a Scenario other than Main. See [Merge a Scenario into Main](/guides/merge-a-scenario). |
 | **Building…** | Ari is building this Page. |
 | **Collapse all tables** / **Expand all tables** | Shown on a Page that has a table, to everyone who can open the Page. Collapses every table on the Page to its title bar. Once every table is collapsed, it reads **Expand all tables** and opens them all. The choice is kept in your browser and changes nothing for anyone else; see [Collapse a table to its title bar](/reference/table-blocks#collapse-a-table-to-its-title-bar). |
-| **Download spreadsheet** | The download icon. Shown only to someone who can read the Page but cannot share it, such as a reader who opened it through a share link; people who can share the Page export from **Share** instead. Opens **Download as Excel**, where you choose **With formulas** or **Values only** to export the Page's text, tables, charts, and Canvas data, and where your **Recent exports** of the Page are listed. On a Page with no Table block, no chart block, and no Canvas block with data it only lists past exports. See [Download spreadsheet](#download-spreadsheet). |
+| **Download spreadsheet** | The download icon. Shown only to someone who can read the Page but cannot share it, such as a reader who opened it through a share link; people who can share the Page export from **Share** instead. Opens **Download as Excel**, where you choose a format to export the Page's text, tables, charts, and Canvas data, and where your **Recent exports** of the Page are listed. A reader whose access comes from a share link is offered one format, **Values only**. On a Page with no Table block, no chart block, and no Canvas block with data it only lists past exports. See [Download spreadsheet](#download-spreadsheet). |
 | **Share** | Opens the [Share panel](#share-panel), which has a **Share** tab for the Page's links and an **Export** tab that exports the Page to Excel. Shown to people who can share the Page. A link icon on the button means an external link to the Page is on. |
 | **Version history** | The clock icon. Opens the version history panel. See [Scenario and version history controls](/reference/scenarios-and-history). |
 | **New chat** | On a full-screen Page with no chat open. Opens a floating chat over the Page. |
@@ -440,6 +444,7 @@ A Page is a document: Text blocks typed in place, with Table blocks and Canvas b
 | Block list | **Table block**, **Canvas block**, **Heading 1**, **Heading 2**, **Heading 3**, **Toggle Heading 1**, **Toggle Heading 2**, **Toggle Heading 3**, **Quote**, **Toggle List**, **Numbered List**, **Bullet List**, **Check List**, **Paragraph**, **Code Block**, **Divider**, and **Simple table**. Typing after the **/** narrows the list; **Enter** adds the highlighted block; **Esc** closes it. |
 | **Add block** (**+**) | At the left edge of the line you point at. Opens the block list on that line, or on a new line below it when the line has text. |
 | **Open block menu** | The six-dot grip beside **Add block**. Drag it to move the block. Click it for the block's menu: **Mention text in chat** (**Mention table in chat** on a simple table), **Mention in new chat**, **Duplicate block**, and **Delete block** for a Text block; the Table block and Canvas block menu for those blocks. Selected text has no chat action of its own; mention the Text block from this menu. |
+| **Copy link to block** | In the menu of a Table block, Canvas block, or chart block, under **Explain with Ari**. Copies the block's web address: its Page, in the Scenario on screen, with the block named at the end. A notice reads **Link copied**. If the browser refuses the copy, the notice reads **Couldn’t copy link**, with **Allow clipboard access in your browser, then try again.** Opened in a new browser tab, the address opens the Page in that Scenario and scrolls to the block. The link gives no access of its own: it opens for someone who is signed in and can already open the Page. A Text block's menu has no **Copy link to block**. |
 | Formatting toolbar | Above selected text: **Text style** (**Heading 1**, **Heading 2**, **Heading 3**, **Normal**), **Bold**, **Italic**, **Underline**, **Strikethrough**, **Code**, **Link**, and **Bullet list**. On a simple table it adds **Merge cells**. It does not open for a selected Table block or Canvas block, and a click on a table cell keeps that cell's selection and formula bar. |
 | **Link** | Asks for a URL. An address that is not `http` or `https` is refused with **Enter a valid HTTP or HTTPS URL**. On linked text, removes the link. |
 | **@** | Opens **Mentions**: the Pages you can open, **Date** (**Type or choose an exact date**), and **Variable** (**Reference a model value at a specific segment**). |
@@ -485,19 +490,23 @@ Where **Download as Excel** is depends on whether you can share the Page. In a d
 | Someone who can read the Page but cannot share it, such as a reader who opened it through a share link | **Download spreadsheet**, the download icon in the Page header. Its tooltip reads **Download tables, charts and Canvas data as a spreadsheet**, and it opens a menu titled **Download as Excel**. |
 | Anyone in a phone or tablet browser | Neither control is offered; see [Phones and tablets](#phones-and-tablets). |
 
-Opening the **Export** tab or the menu starts nothing: an export starts when you choose a format, and the panel or the menu then closes. Both hold the two formats, then **Recent exports**, your own exports of this Page in this Scenario:
+Opening the **Export** tab or the menu starts nothing: an export starts when you choose a format, and the panel or the menu then closes. Both hold the formats, then **Recent exports**, your own exports of this Page in this Scenario. The formats cannot be selected until the list of exports has been read, because that answer also says which formats you get:
 
 | Control or message | Meaning |
 | --- | --- |
-| **With formulas**, with **Cells keep their formulas, so numbers recalculate when you edit an input. Large models can take a while.** | Starts an export whose workbook holds Excel formulas and a **Model inputs** sheet. Someone without access to every Variable and Dimension in the Scenario, such as a person who opened the Page through a share link, gets the values-only workbook from this choice too. |
+| **With formulas**, with **Cells keep their formulas, so numbers recalculate when you edit an input. Large models can take a while.** | Starts an export whose workbook holds Excel formulas and a **Model inputs** sheet. Not offered to a share-link reader. |
 | **Values only**, with **The numbers this page shows, without the model's formulas. Faster for large models.** | Starts an export whose workbook holds each Model formula's calculated value in place of the formula, and has no **Model inputs** sheet. Subtotal and comparison columns stay Excel formulas. See [Export values only](/guides/download-a-spreadsheet#export-values-only). |
+| **Values only**, with **The values this page shows you, without formulas. The file is made when requested and available while the page is unchanged.** | The one format offered to a share-link reader: someone who reads some of the Page's data only because the Page shows it, such as a person who opened the Page through a share link. Starts an export whose workbook holds what the Page shows that reader, as values, with no **Model inputs** sheet. See [A share-link reader's file](#a-share-link-readers-file). |
 | **This page has no tables, charts or Canvas data to export.** | Shown in place of the two formats on a Page with no Table block, no chart block, and no Canvas block with data, such as a Page that holds only text, so no export can start. Past exports are still listed. |
 | **Recent exports**, with **Last 24 hours** | The heading of the list. |
-| An export's row | Its format, **With formulas** or **Values only**; then its status, **Queued**, **Preparing**, **Ready**, **Failed**, **Cancelled**, or **Unavailable**, and the date and time you asked. A failed export shows its reason. An export whose workbook holds values instead of some formulas adds **[n] cells hold values instead of formulas. See Export notes.** |
-| **Download** | On a **Ready** row. Saves that export's file and shows **Spreadsheet download started**. |
+| An export's row | Its format, **With formulas** or **Values only**; then its status, **Queued**, **Preparing**, **Ready**, **Failed**, **Cancelled**, **Out of date**, or **Unavailable**, and the date and time you asked. A failed or out-of-date export shows its reason. An export whose workbook holds values instead of some formulas adds **[n] cells hold values instead of formulas. See Export notes.** |
+| **Download** | On a **Ready** row. Saves that export's file and shows **Spreadsheet download started**. For a share-link reader, cfo.ai first checks that the Page still shows the reader what the file holds. When it does not, the notice **Making the spreadsheet again** shows the reason, and a new export of the Page starts in place of the download. |
+| **Out of date**, with **The page changed after this file was made, so it is no longer available. Download again for a new file.** | A share-link reader's file that the Page no longer matches. The row has no **Download**. See [A share-link reader's file](#a-share-link-readers-file). |
+| **Out of date**, with **What you can see on this page changed after this file was made, so it is no longer available. Download again for a new file.** | A share-link reader's file that holds a block the reader can no longer read on the Page. The note does not name the block. |
+| **Out of date**, with **This file has no record of what the page showed you, so it is no longer available. Download again for a new file.** | A share-link reader's file that was stored without the record cfo.ai compares with the Page. |
 | **Loading exports…** | The list is being read. |
 | **No exports from the last 24 hours.** | Nothing to list. |
-| **Could not load exports.**, with **Try again** | The list could not be read. Nothing was started. |
+| **Could not load exports.**, with **Try again** | The list could not be read. Nothing was started. When the list has not been read once, the formats cannot be selected until **Try again** reads it. |
 
 The list holds up to 10 exports: each you asked for in the last 24 hours, and any still queued or running. Exports other people asked for are not listed. While the **Export** tab or the menu is open, a queued or running export's status refreshes on its own. A **With formulas** export and a **Values only** export of the same Page are separate exports, each with its own row.
 
@@ -523,6 +532,8 @@ When it finishes:
 | **Spreadsheet download started**, with the file name | The workbook downloaded. |
 | **Spreadsheet download started**, with **[file]: [n] cells hold values instead of a formula. The Export notes sheet lists them.** and **Ask Ari to fix** | Some formulas could not be written as Excel formulas. **Ask Ari to fix** opens a chat that asks Ari to export the Page again and write a working formula into each of those cells. |
 | **Could not download spreadsheet**, with **[Page]: [reason]** | The export failed. |
+| **Making the spreadsheet again**, with **[Page]: This page now shows you other data than this spreadsheet holds.** | A share-link reader selected **Download** on a listed file that the Page no longer matches. A new export of the Page starts, and its file downloads when it is ready. |
+| **Could not download spreadsheet**, with **[Page]: This page now shows you other data than this spreadsheet holds.** | A share-link reader's file went out of date twice in a row, because the Page changed while each file was made. After the first time, cfo.ai makes the file once more by itself. Download again once the Page has stopped changing. |
 | **Could not download spreadsheet**, with **[Page]: [reason]** and **Download values only** | A **With formulas** export ran and failed. **Download values only** starts a **Values only** export of the same Page and Scenario. The button is not offered when a **Values only** export failed, when the export was cancelled, or when the request was refused before an export ran. |
 | **The Excel export of "[Page]" finished with [n] of [m] selected pages written.**, then **Pages left out ([k]): [names].** when some were | Posted in the chat that asked Ari for the export, when the export finished after Ari's reply had ended. A failed export posts **The Excel export of "[Page]"** followed by its reason instead. See [Export a Page to Excel](/guides/download-a-spreadsheet). |
 
@@ -531,7 +542,7 @@ When you open a Page, it looks for your own newest export of that Page in that S
 | Message | Meaning |
 | --- | --- |
 | **Spreadsheet ready**, with **[file], requested at [time]** and **Download** | The export finished after you left, or another tab or Ari asked for it. Select **Download** to save the file; it does not download on its own. When some formulas could not be written as Excel formulas, the notice adds the cell count and the **Export notes** sheet, and **Download** then shows **Spreadsheet download started** with **Ask Ari to fix**. |
-| **Could not download spreadsheet**, with **[Page], requested at [time]: [reason]** | The export failed after you left. A failed **With formulas** export adds **Download values only** here too. |
+| **Could not download spreadsheet**, with **[Page], requested at [time]: [reason]** | The export failed after you left. A failed **With formulas** export adds **Download values only** here too. For a share-link reader, the reason can be one of the **Out of date** notes above: the export another tab asked for ended with a file the Page no longer matches. An out-of-date export that this tab asked for is made again instead, with no notice. |
 
 A failed export's reason has up to three parts:
 
@@ -554,7 +565,7 @@ An export that reached its calculation allowance or met an input too large to re
 
 | Message | Meaning |
 | --- | --- |
-| **This workbook holds the values cfo.ai calculated, not the model's formulas, so its numbers do not update when you change an input. Subtotal and comparison columns, when present, still recalculate from these values.**, at the top of the sheet | The whole workbook is values only: you chose **Values only**, Ari exported it as values only, or it was downloaded by someone without access to every Variable and Dimension in the Scenario, such as a person who opened the Page through a share link. Such a workbook always has an **Export notes** sheet, after its other sheets. |
+| **This workbook holds the values cfo.ai calculated, not the model's formulas, so its numbers do not update when you change an input. Subtotal and comparison columns, when present, still recalculate from these values.**, at the top of the sheet | The whole workbook is values only: you chose **Values only**, Ari exported it as values only, or it was downloaded by a share-link reader, who is offered no other format. Such a workbook always has an **Export notes** sheet, after its other sheets. |
 | **The export's calculation time ran out before the tables of these selected pages were calculated, so this workbook does not contain them:**, followed by the Page names | The export reached its allowance of calculated cells or calculation requests. The sheet words this as calculation time, although an export has no calculation time limit of its own. Each named Page is left out of the workbook. Only an export of several Pages, which Ari makes, can leave a Page out. The limits are in [Limits and file types](/reference/limits#tables-pages-sharing-and-exports). |
 | **The chart "[name]" ([type]) and its data are not in this workbook.**, followed by the reason | A chart block the workbook leaves out, one line for each. The reason is **This export does not support waterfall charts.**, **This export does not support Nightingale charts.**, **The chart compares scenarios, which this export does not support.**, **The chart stacks each of its variables on its own, which one Excel chart cannot.**, **There is no data in the chart's range.**, **Its [n] series are more than the 255 an Excel chart draws.**, **Its [n] columns and their total are more than Excel's 16384-column worksheet holds.**, or **The calculation service refused the chart's data.** See [What you get](/guides/download-a-spreadsheet#what-you-get). |
 | **These cells hold the value cfo.ai calculated instead of a formula. They do not recalculate when you edit an input.**, with a row for each cell | The cells kept as values, with the sheet, cell, Variable, period, Scenario, and the reason. |
@@ -566,6 +577,21 @@ An export that reached its calculation allowance or met an input too large to re
 | **It reads [Variable] as text or dates across several periods or dimension items; an implicit sum cannot preserve those values.** | The reason for a cell that reads text or dates, such as a cost center or an end date, from several cells. An Excel sum cannot combine text or dates, so the value is kept. A text or date read that matches one cell stays a reference. |
 
 For time and size limits, see [Limits and file types](/reference/limits#tables-pages-sharing-and-exports).
+
+### A share-link reader's file
+
+A share-link reader's Excel file can be downloaded only while the Page still shows that reader what the file holds. A share-link reader is someone who reads some of a Page's data only because the Page shows it, such as a person who opened the Page through a share link. The file is a workbook of values, made from the Page as it is when the reader asks. cfo.ai checks the file against the Page each time it would hand the file out: when the export finishes, when the reader selects **Download**, when **Recent exports** is listed, and when the Page opens.
+
+The file goes out of date when any of these changes after it was made:
+
+- A table, chart block, or Canvas block on the Page is saved differently, such as with another filter, layout, comparison, or title.
+- A block with data is added to the Page or removed from it, or the reader can no longer read a block the file holds.
+- The Page's name or text changes, or a Scenario the file shows is renamed.
+- A Variable, a Dimension, or a saved query that the file's sheets read is edited, such as a formula.
+
+A table saved on another Page does not put the file out of date. The check compares what the Page shows and what its numbers read, not each number, so a file that is still available can hold older numbers for the same rows.
+
+A file that is out of date is never downloaded. The reader gets a new file instead: cfo.ai makes the file again once by itself when the Page changed while the file was made, or when the reader selects **Download** on a listed file. The messages are in the tables above. A person with their own access to everything on the Page, such as an administrator of the workspace, is not a share-link reader. Their files are checked against their own access instead: a file stops downloading, and leaves **Recent exports**, once they can no longer read a table it holds.
 
 ## Share panel
 

@@ -92,9 +92,11 @@ The line about your other workspaces leaves out a workspace you are not a member
 | **Contact support to change plan** | Your plan is a custom plan that cannot be changed here. |
 | **Talk to sales** | Enterprise. |
 
+Selecting anywhere on another plan's card, such as its name, its price, or a feature line, does what its button does: it opens **Confirm plan change**, and nothing changes until you confirm there. On your current plan's card, on the Enterprise card, and on a card whose button is grayed out, selecting the card only scrolls the button, and any reason under it, into view, and puts the keyboard focus on a button that can be used. Every card on the plan page where you choose a first plan works that second way too, so a plan starts only when you select its button. Dragging across a card, or selecting its text, does nothing.
+
 When your plan is canceled and has not ended yet, the plan chooser reads **Your [plan] plan is canceled and ends on [date]. Keep it to carry on, or pick another plan — either way the cancellation is called off.** For a custom plan that cannot be changed here, it ends **Call the cancellation off to carry on.**
 
-A card you cannot choose is grayed out, and pointing at its button says why. The two cadence reasons apply on a paid plan only: during a trial those cards are not grayed out, because every change applies right away.
+A card you cannot choose has a grayed-out button, and the reason shows under the button, on a phone as well as in a desktop browser. The plan page where you choose a first plan shows the first and last of these reasons the same way. The two cadence reasons apply on a paid plan only: during a trial those cards are not grayed out, because every change applies right away.
 
 | Reason | Text |
 | --- | --- |
@@ -308,7 +310,7 @@ When billing stops Ari, its reply ends with a message that starts **I had to sto
 
 After a purchase, the panel reads **Usage added. This workspace will update in a moment.** and may suggest **Turn on auto-reload to avoid running out of AI usage next time.** with **Enable auto-reload**. In a trial whose usage is used up, it offers **Start plan & save**. Teammates who cannot buy usage see **Ask a workspace admin to add usage.**
 
-While auto-reload buys usage, the chat shows **Adding AI usage to your workspace…**, then **AI usage added to your workspace.**
+While auto-reload buys usage, the chat shows **Adding AI usage to your workspace…**, then **AI usage added to your workspace.** In a chat whose reply ran out of usage and is waiting for that purchase, the line reads **Adding AI usage to your workspace — Ari will continue in a moment.**, and you cannot send a message in that chat until the wait ends. The reply waits for as long as the purchase takes; the wait has no time limit. Ari continues the reply when the usage arrives. If the purchase fails, the reply stops with the **I had to stop here** message for the cause. To end the wait yourself, select **Stop**.
 
 Before usage runs out, one notice at a time can appear above the message box:
 
@@ -319,6 +321,8 @@ Before usage runs out, one notice at a time can appear above the message box:
 | **AI usage is low, but the monthly top-up limit keeps auto-reload from adding more.** | Auto-reload is blocked by the spend limit. | **Adjust limit** |
 
 Dismissing a notice hides it until the next threshold or the next billing cycle.
+
+Once the included usage is used up and the workspace is spending usage it bought, a small **Using usage credits** link shows above the message box. It opens **Settings → Usage**, and it cannot be dismissed.
 
 ## Rules and limits
 

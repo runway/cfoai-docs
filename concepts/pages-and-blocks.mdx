@@ -44,9 +44,9 @@ So you can build a second table of the same Variables with a different layout or
 
 A Canvas block reads the Model the way a table does. It names datasets, each a set of Variables broken down by Dimensions and dates, and the Model calculates them every time the block loads. When Actuals sync overnight or someone changes an assumption, the chart redraws with the new values. A blank or error cell, such as `#DIV/0!` from a formula, reaches the visual as no value; the fix is in the Model, not in the chart.
 
-A Canvas block reads the Scenario of the Page you are viewing, unless a dataset names another one. One block can read up to three Scenarios, so a single chart can show Main, an Upside, and a Downside side by side. Everyone who can read the Page sees the data of every Scenario the block was saved to read, including someone who opened it through a share link. See [Sharing and access](/concepts/sharing-and-access).
+A Canvas block reads the Scenario of the Page you are viewing, unless a dataset names another one. One block can read several Scenarios, with no fixed limit, so a single chart can show Main, an Upside, and a Downside side by side. Everyone who can read the Page sees the data of every Scenario the block was saved to read, including someone who opened it through a share link. See [Sharing and access](/concepts/sharing-and-access).
 
-A Canvas block takes its colors, heading typeface, and corner shape from the theme in effect: your workspace brand, or each person's own theme. A color that Ari fixed on purpose, such as a brand color, stays the same in light and dark mode. A Canvas block can show a picture that Ari saves inside the block, such as a logo. It cannot load an image from a web address.
+A Canvas block takes its colors, heading typeface, and corner shape from the theme in effect: your workspace brand, or each person's own theme. A color that Ari fixed on purpose, such as a brand color, stays the same in light and dark mode. A Canvas block can show a picture that Ari saves inside the block, such as a logo. It cannot load an image from a web address, and it cannot connect to a website or an outside service: the Model data it shows comes only from its datasets.
 
 ## Controls change the view, never the Model
 

@@ -210,8 +210,8 @@ Build an interactive forecast tool whose scenario ties exactly to the model base
     down by the same dimension, each breakdown series is labeled with its variable, such as
     `Revenue — EMEA` and `Expenses — EMEA`. With one variable the label is the item alone.
     Match series by `variable` and `segments`, not by a hardcoded label.
-  - Max 8 datasets per block. Check `dataset_evidence` in the write receipt: `series_count`
-    and `series_names` tell you what actually came back.
+  - Check `dataset_evidence` in the write receipt: `series_count` and `series_names` tell
+    you what actually came back.
   - A series with empty `segments` is the variable **total**; populated `segments` are
     breakdown items. Filter to `segments.length` before stacking, or the total
     double-counts against its children.

@@ -12,8 +12,8 @@ Use this guide when you connect a database or an app through Fivetran, which can
 | --- | --- |
 | Databases and data warehouses, and most apps through Fivetran, such as Shopify or Sage Intacct | A table picker at setup. Every table starts selected. |
 | Pipedrive | A table picker at setup. Seven recommended sales tables start selected instead of every table; see [Other CRMs](/reference/integrations#other-crms). |
-| NetSuite SuiteAnalytics | A table picker at setup. The tables the statements need are locked; tables for NetSuite features you do not use start unchecked. A new connection starts with only the tables cfo.ai's statements read. Ask Ari to add other tables later, which then sync too, or to remove one that no saved query reads; the statement tables stay locked. See [NetSuite SuiteAnalytics](/reference/integrations#netsuite-suiteanalytics). |
-| HubSpot, Salesforce, Rippling | No picker. cfo.ai selects the tables its reports need and keeps them locked. Ask Ari to add other tables later. |
+| NetSuite SuiteAnalytics | A table picker at setup. The tables the statements need are locked; tables for NetSuite features you do not use start unchecked. A new connection starts with only the tables cfo.ai's statements read. Ask Ari to add other tables later, which then sync too, or to remove one that no saved query reads. Ari cannot turn off a statement table, and can turn one back on if it has stopped syncing. See [NetSuite SuiteAnalytics](/reference/integrations#netsuite-suiteanalytics). |
+| HubSpot, Salesforce, Rippling | No picker. cfo.ai selects the tables its reports need. Ask Ari to add other tables later. Ari cannot turn off a table the reports need, and can turn one back on if it has stopped syncing. |
 | Rillet | No picker. The statement tables always sync. Journal lines are the one optional table and start turned off; ask Ari to turn them on or off. See [Rillet](/reference/integrations#rillet). |
 | QuickBooks Online, Xero, Stripe (Direct), HR and payroll systems through Merge, Google Sheets, Google Drive, CSV uploads | No table choice |
 
@@ -43,7 +43,11 @@ Ask Ari, naming the connection and the tables:
 
 > Stop syncing the audit_log table from Postgres.
 
-Tables you do not name keep their state. When you add a table:
+Tables you do not name keep their state. The same kind of request turns back on a table that cfo.ai's reports read and that has stopped syncing, such as a HubSpot deals table:
+
+> Turn the deals table back on for our HubSpot connection.
+
+When you add a table or turn one back on:
 
 - It loads its full history, as far back as the connection's other tables reach. Ari starts a sync for it. For a source that syncs through Fivetran, that sync waits while Fivetran copies the history, for as long as Fivetran reports the copy still running, and the connection reads **Syncing**. It does not finish early on a sync that Fivetran completed before you added the table. [Syncing](/reference/connection-statuses#syncing) lists what the line says while it waits.
 - It reaches the warehouse first and your Model only once a saved query reads it. Ask Ari for a query over it, such as "Load the subscriptions table into the Model."
@@ -56,9 +60,10 @@ If you ask Ari about data the connection does not sync, such as usage records in
 - Removing the last selected table. To stop syncing a source, remove the connection instead.
 - Changing a connection whose setup is not finished. Finish setup in the picker first.
 - Adding a table past the 100-table limit.
-- Removing a table HubSpot, Salesforce, Rippling, NetSuite, or Rillet needs for cfo.ai's reports.
+- Removing a table HubSpot, Salesforce, Rippling, NetSuite, or Rillet needs for cfo.ai's reports. cfo.ai keeps these tables syncing because its built-in reports read them. For HubSpot, Salesforce, Rippling, and NetSuite, only turning one off is refused: Ari can turn one back on.
+- Adding or removing a table that Fivetran itself has locked. Ari tells you the reason Fivetran gives, when it gives one.
 
-To see what a connection syncs, ask Ari "Which tables does our HubSpot connection sync?" Ari lists them in the source's own names. For a source with a table picker, and for HubSpot, Salesforce, Rippling, and NetSuite SuiteAnalytics, Ari can also list the tables the source offers that do not sync, and say which tables it cannot add or remove.
+To see what a connection syncs, ask Ari "Which tables does our HubSpot connection sync?" Ari lists them in the source's own names. For a source with a table picker, and for HubSpot, Salesforce, Rippling, and NetSuite SuiteAnalytics, Ari can also list the tables the source offers that do not sync. It can say which tables it cannot turn off because cfo.ai's reports read them, and which tables Fivetran has locked, with Fivetran's reason.
 
 ## Related
 

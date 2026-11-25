@@ -9,6 +9,8 @@ description: "What Ari carries from one chat to the next: saved facts in your pr
 
 Ari's memory is a short list of facts it applies without being asked, such as "show ending cash in thousands", "our fiscal year starts in February", or "Bookings means signed contract value". Ari saves a fact when you ask it to remember something, when you state a lasting preference, or when you repeat a correction on work that recurs, such as a weekly report. It does not save a transcript of what you said. Each memory keeps a note of why it was saved and whose words or request it came from, and whether it was saved as one fact, taken from a longer saved note, or both, so a later chat can tell what you said from what was concluded from it.
 
+Ari saves only what a person states, in a message of their own or in a document they give Ari to remember. What Ari reads on a Page or in connected data, the results of its own work, its own replies, and system notices do not become memories. A payment amount Ari read from your bank feed is not saved; "we pay rent on the first of the month" is, once you say it. cfo.ai checks this on every save: Ari can save a memory only while it answers a message you wrote in your own chat. When Ari works without one, such as after an import finishes or in a scheduled Trigger run, it saves nothing.
+
 When you start a chat, Ari searches the saved facts that match your first message and uses them. That is how a preference you stated last week reaches a chat you start today. Later in the same chat, Ari does not search memory on every message; it looks again when it decides a message needs it, or when you ask it to check what it remembers.
 
 Your preferences about how Ari should work with you do not wait for a matching topic. When Ari saves a private fact about naming, the text on your Pages, formatting, or how it should communicate with you, it marks the fact as a working-style preference. Every chat you open loads your working-style preferences first, the most recently saved first, whatever your first message is about, and then adds the facts that match the message, within the same amount of memory a chat can carry. So a revenue question still opens with your rule that Page titles leave out job titles. When you correct such a preference, the corrected version takes the old one's place in that opening list, as the newest preference. Facts saved before this marking existed still reach a chat through topic search alone; state the preference again to have it marked.
@@ -49,6 +51,8 @@ After a forget, Ari searches memory for the forgotten text. When the text still 
 
 Ari can also look back at your earlier chats, which is different from memory. Memory is the short list Ari applies every time. Chat history is a record Ari reads only when it needs to, for example when you say "use the churn definition we agreed on last week".
 
+When Ari looks back at a message, it reads the time the message was sent on your clock, with the same time in UTC beside it. That lets Ari say "the answers you sent at 3:22 PM" and mean 3:22 PM where you are. Your clock is the time zone of the newest message you wrote in the workspace, or, when none of your messages carries one, of a Trigger you set in a time zone other than UTC. A message that a teammate or cfo.ai support wrote in your chat does not change it. When cfo.ai knows no time zone for you, Ari reads the time in UTC.
+
 In a chat in the cfo.ai web app, Ari is also told which of your other chats in the workspace hold newer messages from you. The list gives each chat's name and the time of its newest message. This matters when Ari acts without a new message from you, such as when an import finishes: it can read what you asked elsewhere before it decides what to do. A chat in Slack does not get this list.
 
 Ari sees each of your chats under the name shown in your chat list, including a name you gave it, so naming a chat after what it settled helps Ari find it later. Ari reads only your own chats, never a teammate's. Archiving a chat keeps its messages and files, so Ari can still read it.
@@ -66,7 +70,7 @@ Some things you tell Ari are saved as settings or as work in the Model, not as m
 - A process you repeat, such as your month-end review, is saved as a Skill, with instructions Ari follows each time. A Skill is yours, not the workspace's: it goes with you to every workspace where you are a member unless you limit it to one. See [Save a workflow as a Skill](/guides/save-a-skill).
 - Numbers and definitions that should calculate, such as a churn rate, belong in the Model as Variables and formulas, where every Page can use them.
 
-A scheduled Trigger also keeps a record of each run, so the next run can build on the last one. That record is not memory: it stays in the Trigger's history, and Ari reads the latest run's summary from there when you ask about a run. See [Skills, Triggers, and Guides](/concepts/automation).
+A scheduled Trigger also keeps a record of each run, so the next run can build on the last one. That record is not memory: it stays in the Trigger's history, and Ari reads the latest run's summary from there when you ask about a run. A run cannot save a memory; see [The record each run keeps](/concepts/automation#the-record-each-run-keeps).
 
 ## Related
 

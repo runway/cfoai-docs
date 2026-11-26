@@ -90,7 +90,7 @@ The version history panel lists every change to the Model, yours and Ari's. Open
 | Scenario line | Names the Scenario and shows **Live**, or the version you are viewing. |
 | **Show Main Scenario changes** | In a Scenario other than Main, also lists the changes it inherited from Main. |
 
-Each entry names who made the change, when, and what it touched. A merge is listed in the history of the Scenario it merged into, as **Merged [Scenario] into [target]**, and it opens, previews, and undoes like any other entry. A formula entry names the Variable. An entry for one value typed into a cell reads **Edited cell [cell] for [Variable] to [value]**, such as **Edited cell Mar-26 for Marketing to 6000**. It names the cell's period in the **Abbreviated** date format, such as **Mar-26**, **Q2-26**, or **2026**, whatever **Date format** the table uses, and names any other Dimension with its item, as in **Region = West, Q2-26**. For a formula with a condition, the entry also names the condition and its reach: **Includes additional dimensions** when it also covers cells that carry more Dimensions, or **Exact grain** when it matches exactly the Dimensions it names.
+Each entry names who made the change, when, and what it touched. A merge is listed in the history of the Scenario it merged into, as **Merged [Scenario] into [target]**, and it opens, previews, and undoes like any other entry. A formula entry names the Variable. An entry for one value typed into a cell reads **Edited cell [cell] for [Variable] to [value]**, such as **Edited cell Mar-26 for Marketing to 6000**. The entry always names the cell's period in the **Abbreviated** date format, such as **Mar-26**, **Q2-26**, or **2026**, even when the table shows its dates in another **Date format**. It names any other Dimension with its item, as in **Region = West, Q2-26**. For a formula with a condition, the entry also names the condition and its reach: **Includes additional dimensions** when it also covers cells that carry more Dimensions, or **Exact grain** when it matches exactly the Dimensions it names.
 
 ### Entry actions
 
@@ -110,7 +110,7 @@ Point at an entry and select its **…** button (**Actions for [entry]**).
 
 | Message | Meaning |
 | --- | --- |
-| **Couldn’t undo changes**, with **A later change edited the [field] of [subject], so this change can’t be undone on its own.** | A later change edited one of the same fields, so nothing was undone. Undo that later change first. The notice adds **Later changes also edited [n] other items.** when more than one later change did. |
+| **Couldn’t undo changes**, with **A later change edited the [field] of [subject], so this change can’t be undone on its own.** | A later change edited one of the same fields, so nothing was undone. Undo that later change first. When later changes also edited other items this change touched, the notice adds **Later changes also edited 1 other item.** or **Later changes also edited [n] other items.** |
 
 ### Viewing a past version
 

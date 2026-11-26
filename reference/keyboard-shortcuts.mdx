@@ -33,17 +33,17 @@ Undo and redo work anywhere in the app except while you are typing in a text fie
 | --- | --- |
 | **Changes undone** / **Changes redone** | The undo or redo finished. |
 | **Couldn’t undo changes** / **Couldn’t redo changes**, with **Try again.** | The undo or redo failed, and the change stays as it was. |
-| **Couldn’t undo changes** / **Couldn’t redo changes**, with **A later change edited the [field] of [subject], so this change can’t be [undone / redone] on its own.** | A later change edited one of the same fields, so nothing was undone or redone; undo that later change first. The notice adds **Later changes also edited [n] other items.** when more than one later change did. |
+| **Couldn’t undo changes** / **Couldn’t redo changes**, with **A later change edited the [field] of [subject], so this change can’t be [undone / redone] on its own.** | A later change edited one of the same fields, so nothing was undone or redone; undo that later change first. When later changes also edited other items this change touched, the notice adds **Later changes also edited 1 other item.** or **Later changes also edited [n] other items.** |
 
 ## Chat with Ari
 
 | Shortcut | What it does |
 | --- | --- |
-| **⌘ /** | Start a new chat about the selected cell or block, or about the open Page. With nothing selected and no Page open, such as in a chat with no Page beside it, the key does nothing; select **New chat** instead. |
-| **⌘ L** | Mention the selected cell, row, column, or block in the current chat. With text selected in one of Ari's answers, quote that text in your reply. |
+| **⌘ /** | Start a new chat about the selected block. With no block selected and a Page open alone, with no chat beside it, the chat is about the selected cell, or about the open Page when no cell is selected. With a chat open, alone or with a Page beside it, the key works only with a block selected; otherwise it does nothing, so select **New chat** instead. |
+| **⌘ L** | Mention the selected block, or the selected cell, in the current chat. With several cells selected, it mentions the first one. To mention a row or a column, right-click its name or header and choose **Mention in chat**. With text selected in one of Ari's answers, quote that text in your reply. |
 | **⌥**-click a mention button (**Alt**-click) | Mention it in a new chat instead of the current one. Works on the button above a selected cell, the **@** in the formula editor, a Canvas block's **Mention in chat**, a Page's **Mention page in chat** in the sidebar, and **Add selection to chat** on selected text. |
 | **Enter** | Send your message. While Ari is working, the message reaches Ari at its next step. |
-| **⌥ Enter** | While Ari is working, queue your message for after Ari finishes. When Ari is not working, start a new line. |
+| **⌥ Enter** | While Ari is working, queue your message for after Ari finishes. When Ari is not working, the key does nothing; use **Shift Enter** or **⌘ Enter** for a new line. |
 | **Shift Enter** | Start a new paragraph in the message box. In a list, start the next item, or leave the list from an empty item. Inside code, insert a line break. |
 | **⌘ Enter** | Insert a line break in the message box |
 | **Esc** in the message box | Stop Ari while it is working |
@@ -58,6 +58,9 @@ Undo and redo work anywhere in the app except while you are typing in a text fie
 | --- | --- |
 | **↑** / **↓** | Move through Pages in the sidebar, or through blocks on a Page |
 | **→** / **←** | Expand or collapse a Page in the sidebar |
+| **Home** / **End** | Move to the first or last Page in the sidebar |
+| A letter or number | In the sidebar's Pages, move to the next Page whose name starts with what you type. Letters typed within 0.7 seconds of each other count as one name. |
+| **Enter** or **Space** on a Page in the sidebar | Open the Page |
 | **⌥ ↑** / **⌥ ↓** | Move the selected Page up or down among its siblings |
 | **⌥ →** | Nest the selected Page under the Page above it |
 | **⌥ ←** | Move the selected Page out one level |
@@ -72,6 +75,7 @@ Undo and redo work anywhere in the app except while you are typing in a text fie
 | Shortcut | What it does |
 | --- | --- |
 | **Enter** | Edit the selected cell. While editing, save and move down. |
+| Any letter, number, or symbol | Start editing the selected cell, replacing what it showed |
 | **Shift Enter** | Save and move up |
 | **Tab** / **Shift Tab** | Save and move right or left |
 | **⌘ Enter** | Save and stay on the cell |
@@ -92,8 +96,10 @@ Undo and redo work anywhere in the app except while you are typing in a text fie
 | **Ctrl Space** | Open formula autocomplete |
 | **⌥ F12** | Show the syntax and a description of the function under the cursor |
 | **F2** | Start selecting a cell or row to reference |
-| **Arrow keys** | While selecting a reference, point at the neighboring cell |
-| **Enter** | Insert the selected reference. When the editor is closed, save the formula. |
+| **Arrow keys** | In a cell's editor, with the cursor where a reference can go, point at the neighboring cell and insert its reference. After **F2**, move to the next or previous cell or row you can reference; **Tab** and **Shift Tab** do the same. |
+| **Enter** | After **F2**, insert the selected reference. With the autocomplete list open, choose the highlighted item. Otherwise, save the formula and close the editor. |
+| **↑** / **↓**, then **Enter** | In the autocomplete list, or in a filter's list of items, move through the list and choose the highlighted entry |
+| **→** or **Tab** in a cell that shows its row's formula dimmed | Copy that formula into the cell so you can edit it. **Backspace** or **Delete** discards it. |
 | **Esc** | Cancel reference selection, or close the editor without saving |
 | **⌥ ↓** | Open the filters on the reference at the cursor |
 | **F4** | Make the reference at the cursor absolute, or release it |

@@ -46,7 +46,7 @@ A Snapshot is not read-only. You and Ari can still type values over its numbers,
 
 ## Version history records every change
 
-Every write to a Scenario is recorded, whether you made it or Ari did. For a change Ari made, version history also keeps who asked for it and the message that asked, so an administrator can see why a number changed without opening anyone's chat; see [The message that asked Ari](/reference/scenarios-and-history#the-message-that-asked-ari). Version history gives you two ways to go back:
+Every write to a Scenario is recorded, whether you made it or Ari did. For a change Ari made, version history also keeps who asked for it. When the request came from a chat in the cfo.ai web app, it keeps the message that asked too, so an administrator can see why a number changed without opening anyone's chat. Work that started elsewhere, such as in Slack or in a Trigger's run, shows no message; see [The message that asked Ari](/reference/scenarios-and-history#the-message-that-asked-ari). Version history gives you two ways to go back:
 
 - **Undo** reverses one change, or one related batch of changes, and puts back only the fields that change wrote. Later changes to other fields stay, even on the same Page or Variable. When a later change edited one of those same fields, such as the same Page's name, the undo is refused and says what the later change edited, so nothing is silently replaced.
 - **Restore** returns the whole Scenario to an earlier point and rolls back every change made after it. The restore is itself a recorded change, so you can undo it too. Ari calls this a revert.
@@ -85,7 +85,7 @@ What follows from this:
 - A question about what is on screen, such as "why is this cell negative?", is answered for the Scenario on screen. Ari then offers the same answer for the chat's Scenario.
 - A question that does not point at the screen is answered for the chat's Scenario, and Ari asks whether you meant the one on screen.
 - A request that names a Scenario, such as "In Main, add two engineers," edits that Scenario. The chat keeps its own.
-- A request to edit what is on screen, such as "delete this report" or "change this cell to 3", edits the Scenario on screen, with no question first. Ari names that Scenario in its reply, and the chat keeps its own Scenario. When the table you point at is set to always show one Scenario, the edit saves in that Scenario.
+- A request to edit what is on screen, such as "delete this report" or "change this cell to 3", edits the Scenario or Snapshot on screen, with no question first. Ari names it in its reply, and the chat keeps its own Scenario. When the table you point at is set to always show one Scenario or Snapshot, the edit saves in the one the table shows.
 - To move a chat to another Scenario, ask Ari, for example "Switch this chat to Main." The switch applies from your next message, and you need edit access to that Scenario.
 - Nothing on screen names a chat's Scenario. Ask Ari which Scenario the chat works in.
 - If the chat's Scenario is deleted, or you lose access to it, Ari tells you and needs you to name a Scenario before it changes anything.

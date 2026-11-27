@@ -73,7 +73,7 @@ The dialog is titled **Merge "[Scenario]" into [target]?**. The target is Main, 
 | **Could not load the changes in "[Scenario]".**, with the reason and **Retry** | The summary could not be read. **Retry** reads it again. |
 | **Nothing in "[Scenario]" differs from [target] yet.** | The Scenario holds no changes, so there is nothing to merge. |
 | **scenario cannot be merged while it has [n] child scenario**, followed by the children's names | The Scenario has editable child Scenarios, so the merge is refused. Snapshots taken from the Scenario do not block a merge. |
-| **The scenario was not merged, and nothing changed: another change was saving into it on every attempt. Merging again is safe.** | A notice after you confirm. Another change, such as an edit by Ari or a teammate, was saving into the Scenario on each of the merge's five tries, over about three seconds. Nothing changed. Merge again. |
+| **The scenario was not merged, and nothing changed: another change was saving into it on every attempt. Merging again is safe.** | A notice after you confirm. Another change, such as an edit by Ari or a teammate, was saving into the Scenario on each of the merge's five tries, over about three seconds. Nothing changed, so a second merge cannot apply anything twice. Merge again after Ari or your teammate finishes; a merge started while they are still saving can be refused the same way. |
 
 ## Confirmation cards in the chat
 

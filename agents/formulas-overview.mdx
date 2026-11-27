@@ -30,7 +30,15 @@ Read the relevant Table block once, reuse the row and column references it retur
 
 When the work has no table yet, read the existing Variables and Dimensions first, and reuse their returned references, such as `Revenue#3f2`, when you compose a formula.
 
-Write expressions with readable Variable names. Put backticks around a name that contains spaces, punctuation, or a reserved word, such as `` `Gross Profit` ``. After a dot, also put backticks around a name that is a Date grain word: `Day`, `Week`, `Month`, `Quarter`, `Half`, or `Year`. `` Employee.`Year` `` looks up the Variable named Year for the cell's employee, while `Employee.Year` asks for Employee at the year grain. A read returns the backticked form, and it also puts backticks around a name that would otherwise run into the word before it, as in `` not`Revenue` ``. When a formula fails to parse and its bare words match a Variable or Dimension in the Model, the refusal ends with the accepted form, such as "a name with spaces is written in backticks, as in `` `Gross Profit` ``". Add a returned reference's short suffix only when two names collide. After a backticked name, the suffix follows the closing backtick, as in `` `Gross Profit`#3f2 ``.
+Write expressions with readable Variable names. Put backticks around a name that contains spaces, punctuation, or a reserved word, such as `` `Gross Profit` ``.
+
+After a dot, also put backticks around a name that is a grain word: `Day`, `Week`, `Month`, `Quarter`, `Half`, or `Year`. A bare grain word after a dot is a grain on the name before it, as in `Date.Year`; see [Date grains](/reference/formula-syntax#date-grains). In backticks, it is a name to look up. `` Employee.`Year` `` is the Variable named Year for the cell's employee, the same kind of lookup as `Employee.Salary`; see [Lookups through a Dimension mapping](/reference/formula-syntax#lookups-through-a-dimension-mapping).
+
+A read returns such a name in backticks. A read also puts backticks around a name that would otherwise run into the word before it, as in `` not`Revenue` ``.
+
+When a formula fails to parse and its bare words match a Variable or Dimension in the Model, the refusal ends with the accepted form, such as "a name with spaces is written in backticks, as in `` `Gross Profit` ``".
+
+Add a returned reference's short suffix only when two names collide. After a backticked name, the suffix follows the closing backtick, as in `` `Gross Profit`#3f2 ``.
 
 ## Respect the Scenario
 

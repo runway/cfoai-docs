@@ -226,14 +226,14 @@ When a run reports a choice only you can make, cfo.ai sends it to you once and t
 
 | What you see | Meaning |
 | --- | --- |
-| A Slack direct message with the decision, then **Your schedule “[name]” waits on this.** and the link **Answer in its chat** | The first run that reported the decision sent it. The link opens that run's chat. The message goes to you alone, never to a Slack channel the Trigger posts in, and it is sent even when the Trigger's instructions name no Slack delivery. |
+| A Slack direct message with the decision, then **Your schedule “[name]” waits on this.** and the link **Answer in its chat** | The first run that reported the decision sent it. The link opens that run's chat. The message goes to you alone, never to a Slack channel the Trigger posts in, and it is sent even when the Trigger's instructions name no Slack delivery. A decision has no length limit; one too long for a single Slack message arrives as consecutive messages, and the last one ends with **Your schedule “[name]” waits on this.** and the link. See [Limits](/reference/limits#chat-with-ari). |
 | The same message in your cfo.ai chat | Slack had no way to reach you, for example because the workspace has no Slack connection or Slack has no account under your cfo.ai email. The message is posted in the chat you created the Trigger from, or in your most recent chat in the workspace when that chat is gone. |
 | A run's reason in **History** that starts **Waiting since [date] for this decision:**, followed by the decision | The Trigger was waiting on the decision when the run reported. The date is the day cfo.ai sent it, in the Trigger's time zone. The line shows on a run that reads **Delivered with gaps** or **Did not complete**. |
 
 - A run that repeats the same decision in the same words sends nothing; differences in spacing do not count. A run that reports a different decision, or the same one in other words, sends that one, and it replaces the first. A Trigger waits on one decision at a time.
-- A run that reports no decision ends the wait.
+- A run that reports no decision ends the wait, and no message about the decision is sent.
 - When the message could not be sent, for example because Slack was rate limiting, or because Slack had no way to reach you and you have no chat in the workspace, the Trigger does not start waiting, and the next run that reports the decision sends it.
-- When Slack gives no clear answer about whether it posted the message, cfo.ai treats it as sent and does not send it again.
+- When Slack gives no clear answer about whether it posted the message, or posts only the first part of a decision sent as several messages, cfo.ai treats it as sent and does not send it again.
 
 A Trigger also keeps the instructions it had before their latest change, one version back. The Triggers page does not show them. Ask Ari to show them or to put them back; see [Undo a fix a run made](/guides/schedule-a-trigger#undo-a-fix-a-run-made).
 
@@ -415,7 +415,7 @@ The bar above a Page, from left to right:
 | **Building…** | Ari is building this Page. |
 | **Collapse all tables** / **Expand all tables** | Shown on a Page that has a table, to everyone who can open the Page. Collapses every table on the Page to its title bar. Once every table is collapsed, it reads **Expand all tables** and opens them all. The choice is kept in your browser and changes nothing for anyone else; see [Collapse a table to its title bar](/reference/table-blocks#collapse-a-table-to-its-title-bar). |
 | **Download spreadsheet** | The download icon. Shown only to someone who can read the Page but cannot share it, such as a reader who opened it through a share link; people who can share the Page export from **Share** instead. Opens **Download as Excel**, where you choose a format to export the Page's text, tables, charts, and Canvas data, and where your **Recent exports** of the Page are listed. A reader whose access comes from a share link is offered one format, **Values only**. On a Page with no Table block, no chart block, and no Canvas block with data it only lists past exports. See [Download spreadsheet](#download-spreadsheet). |
-| **Share** | Opens the [Share panel](#share-panel), which has a **Share** tab for the Page's links and an **Export** tab that exports the Page to Excel. Shown to people who can share the Page. A link icon on the button means an external link to the Page is on. |
+| **Share** | Opens the [Share panel](#share-panel), which has a **Share** tab for the Page's links and an **Export** tab that exports the Page to Excel. Shown to people who can share the Page. A link icon on the button means people outside your workspace can open this Page, in the Scenario you are viewing, through a share link that is on. cfo.ai counts every such link: a link made from another Page that also opens this one, a link that lands in another Scenario and opens this Page in this one, and a link you cannot manage, which the panel does not list. A link that needs a password counts. The button shows no icon when cfo.ai cannot check. |
 | **Version history** | The clock icon. Opens the version history panel. See [Scenario and version history controls](/reference/scenarios-and-history). |
 | **New chat** | On a full-screen Page with no chat open. Opens a floating chat over the Page. |
 | **Collapse model pane** | When the Page is beside a chat. Folds the Page to a narrow rail; **Expand model pane** opens it again. |
@@ -487,7 +487,7 @@ Where **Download as Excel** is depends on whether you can share the Page. In a d
 | Who | Where **Download as Excel** is |
 | --- | --- |
 | Someone who can share the Page, such as an administrator of the workspace | The **Export** tab of the [Share panel](#share-panel). The panel opens on its **Share** tab each time, so select **Export**. The Page header shows no download icon. |
-| Someone who can read the Page but cannot share it, such as a reader who opened it through a share link | **Download spreadsheet**, the download icon in the Page header. Its tooltip reads **Download tables, charts and Canvas data as a spreadsheet**, and it opens a menu titled **Download as Excel**. |
+| Someone who can read the Page but cannot share it, such as a viewer or a reader who opened it through a share link | **Download spreadsheet**, the download icon in the Page header. Its tooltip reads **Download tables, charts and Canvas data as a spreadsheet**, and it opens a menu titled **Download as Excel**. |
 | Anyone in a phone or tablet browser | Neither control is offered; see [Phones and tablets](#phones-and-tablets). |
 
 Opening the **Export** tab or the menu starts nothing: an export starts when you choose a format, and the panel or the menu then closes. Both hold the formats, then **Recent exports**, your own exports of this Page in this Scenario. The formats cannot be selected until the list of exports has been read, because that answer also says which formats you get:
@@ -597,11 +597,11 @@ A file that is out of date is never downloaded. The reader gets a new file inste
 
 **Share** in the Page header opens the panel, titled **Share [Page]**, with **Close**. Under the title are two tabs. **Share** is selected each time the panel opens. **Export** holds **Download as Excel**, which exports the Page to Excel; see [Download spreadsheet](#download-spreadsheet). A change you have not saved on the **Share** tab, such as a password you typed, is kept while you look at **Export**.
 
-The **Share** tab lists the Page's links; you choose a link's Pages and Scenarios in [New link](#new-link). From top to bottom:
+The **Share** tab lists the links to the Page that you can manage: the links you made, and the links whose every Page you have full access to. You choose a link's Pages and Scenarios in [New link](#new-link). From top to bottom:
 
 | Part | What it does |
 | --- | --- |
-| **External access** | **Create link**, which opens [New link](#new-link), and the links that already exist. With none, it says **No one outside your workspace has link access.** A Page can have up to 100 links. |
+| **External access** | **Create link**, which opens [New link](#new-link), and the links you can manage. With none to list, one line says whether anyone outside can open the Page in this Scenario: **No one outside your workspace has link access.**, **People outside your workspace can open this page through a link. You have no external links to manage here.**, or **You have no external links to manage.** Each is explained in [Share panel messages](#share-panel-messages). A Page can have up to 100 links. |
 | **Find a link** | Shown once the Page has more than 5 links. Narrows the list to the links whose name, address, memorable address, or creator's name contains what you type. The count beside it reads **[n] links**, or **[k] of [n] links** while you search. |
 | A link | Its name with its address under it, or its address alone when it has no name; **Anyone with this link can view. Shared by [name], created [time]**, or **Anyone with this link can view. Created [time]** for a link whose creator is not recorded; what it opens, as **[n] pages in [Scenario]** or **[n] pages across [n] scenarios**, with **Details**, which opens [Link details](#link-details); **Copy external link**; **Name this link** (the pencil icon), which reads **Rename link** on a link that has a name; and **Turn off external link** (the trash icon). |
 | **Edit share preview** | On a link without a password. Opens the [Share preview](#share-preview) dialog. |
@@ -616,6 +616,10 @@ Turning a link off opens **Turn off this external link?**, or **Turn off “[nam
 
 Ari can turn a link off, change its Pages, move it to another Scenario, and set its memorable address. Ari cannot rename a link, set its password, or edit its preview. See [Ask Ari to change a link or turn it off](/guides/share-a-page#ask-ari-to-change-a-link-or-turn-it-off).
 
+The **Share** panel does not show how often a link was opened, or by whom. Ask Ari; see [See how often a link was opened](/guides/share-a-page#see-how-often-a-link-was-opened).
+
+The **Share** panel has no field for inviting a person by email, and it does not list a guest you invited to view the Page. Ask Ari in a chat in cfo.ai to invite one person to view a Page, to cancel a guest's invitation, or to remove a guest; see [Invite one person by email to view a Page](/guides/share-a-page#invite-one-person-by-email-to-view-a-page). A guest's invitation is not a share link: it does not put the link icon on **Share**, and it does not change the line under **External access**.
+
 An old link that opens a Page in every Scenario lists its Pages by name, without **Details**, and shows **All scenarios** as its **Shared scenario**. Only someone with full access to the Page can turn it off: **Only a page-wide owner can turn off this legacy link.**
 
 ### New link
@@ -629,7 +633,7 @@ An old link that opens a Page in every Scenario lists its Pages by name, without
 | **Find a page** | Narrows the list to the Pages whose names match. With several Scenarios it reads **Find a page in [Scenario]**. |
 | **Select all** | Ticks every Page listed, or unticks them when all are ticked. It reads **Select all shown** while a search narrows the list. |
 | **In [Scenario].** with **Add scenario** | Shown below the Pages while the link has one Scenario. **Add scenario** opens **Add scenarios**, which says **You choose each scenario's pages next.** and lists the workspace's other Scenarios and Snapshots under **Scenarios** and **Snapshots**, with **Find a scenario** and **Select all**. Tick the ones to add and select **Add 1 scenario** or **Add [n] scenarios**. An added Scenario starts with the Pages ticked in the first Scenario, where those Pages exist in it. |
-| **Scenarios** | A list at the left once the link has two or more Scenarios. Each Scenario shows how many of its Pages are ticked, such as **3 pages**, or **None picked**. Select a Scenario to see and change its Pages. **Remove [Scenario]** (the × beside it) takes the Scenario and its ticks out of the link; the Scenario the link opens in has no ×. **Add scenario** is at the foot of the list. In a narrow window the list and a Scenario's Pages take turns, and **Scenarios** above the Pages goes back to the list. |
+| **Scenarios** | A list at the left once the link has two or more Scenarios. Each Scenario shows how many of its Pages are ticked, such as **3 pages**, or **None picked**. A Scenario with no Page ticked is left out of the link. Select a Scenario to see and change its Pages. **Remove [Scenario]** (the × beside it) takes the Scenario and its ticks out of the link; the Scenario the link opens in has no ×. **Add scenario** is at the foot of the list. In a narrow window the list and a Scenario's Pages take turns, and **Scenarios** above the Pages goes back to the list. |
 | **All scenarios** | The first row of the **Scenarios** list. It shows every Page of the link's Scenarios once: **Tick a page here to share it in every scenario where it exists.** A Page ticked in only some of its Scenarios shows **In [Scenarios]**, and a Page that exists in only one shows **Only in [Scenario]**. |
 | Summary | At the foot: what the link will open, as **[n] pages in [Scenario]** or **[n] pages across [n] scenarios**, above **Opens [Page] in [Scenario]**. The summary counts a Page once, however many Scenarios open it. |
 | **Create link** | Creates the link and returns to the Share panel, where the new link shows with its **Link settings** open. |
@@ -645,7 +649,7 @@ One link opens up to 50 Pages, and a Page counts once for each Scenario the link
 | Address | The link's address with **Copy link**, which reads **Link copied** after a copy. Below it: **Anyone with this link can view. Opens [Page] in [Scenario].** |
 | **What this link opens** | The same summary as the link's row, **Find a page in this link**, and one heading for each Scenario with its count, such as **2 pages**. Select a heading to fold or unfold its Pages. The Page readers land on is marked **Opens here**. A link that opens more than 12 Pages, counting a Page once for each Scenario, starts with only its first Scenario unfolded. |
 | **Turn off link** | Opens **Turn off this external link?**, or **Turn off “[name]”?**, as the trash icon does. |
-| **Edit pages** | Opens **Edit pages**: the [New link](#new-link) view with the link's Pages ticked. The Page the link opens first cannot be unticked. A line under the list says what saving does, such as **Saving adds 1 page and removes 1 page. Anyone with this link can then open what you add.** **Save** stays off until a Page changes. Saving keeps the link's address and password. A removed Page stops opening at once for everyone who opened the link; an added Page opens the next time a reader opens the link's address. Not shown for an old link that opens a Page in every Scenario, or when the Scenario of the link's first Page was deleted. |
+| **Edit pages** | Opens **Edit pages**: the [New link](#new-link) view with the link's Pages ticked. The Page the link opens first cannot be unticked. **Save** stays off until the ticked Pages differ from the Pages the link opens. A Page on the link that was deleted, or that you can no longer share, is not listed; **Save** is then on from the start, and saving takes that Page off the link. No line says what saving adds or removes. Saving keeps the link's address and password. A removed Page stops opening at once for everyone who opened the link; an added Page opens the next time a reader opens the link's address. Not shown for an old link that opens a Page in every Scenario, or when the Scenario of the link's first Page was deleted. |
 
 A Scenario that was deleted shows as **Deleted scenario**, and its Pages, like any Page that was deleted, show as **Unavailable page**.
 
@@ -656,18 +660,18 @@ A Scenario that was deleted shows as **Deleted scenario**, and its Pages, like a
 | **Checking external link access…** | The panel is loading the Page's links. |
 | **External link access could not be fully verified.** | Not every link could be checked; **Create link** stays off. |
 | **External links could not be loaded. Try again later.** | The links failed to load. |
+| **No one outside your workspace has link access.** | You have no link to manage here, and no share link that is on opens this Page in this Scenario. |
+| **People outside your workspace can open this page through a link. You have no external links to manage here.** | A share link that is on opens this Page in this Scenario, and it is one you did not make and cannot manage, so the panel does not list it. An administrator can ask Ari for every link the workspace has shared; see [See every link your workspace has shared](/guides/share-a-page#see-every-link-your-workspace-has-shared). |
+| **You have no external links to manage.** | You have no link to manage here, and cfo.ai could not check whether another link opens the Page. |
 | **Checking pages…** | **New link** is still loading a Scenario's Pages; **Create link** stays off. A Scenario still loading reads **Loading…** in the **Scenarios** list, and its Pages read **Loading pages…**. |
 | **Could not load the pages in [Scenario].**, with **Retry** | **New link** could not load a Scenario's Pages. The Scenario reads **Not loaded** in the **Scenarios** list, and **Create link** stays off until the Pages load or you remove the Scenario. |
 | **No pages you can share here.** | The Scenario has no Page you can share. |
 | **No page matches “[text]”.** / **No scenario matches “[text]”.** | The search in **New link** or **Add scenarios** found nothing. |
 | **Every scenario is already in this link.** | **Add scenarios** has no Scenario left to add. |
-| **No pages picked in [Scenario], so it is left out of the link.** | A Scenario in **New link** has no Page ticked. The link is created without that Scenario. With several such Scenarios the message names them all and ends **so they are left out of the link.** |
-| **[n] of 50 allowed** | Shown beside **Opens [Page] in [Scenario]** once more than 40 Pages are ticked, counting a Page once for each Scenario. |
-| **[n] of 50. Remove [k] before creating a link: drop a scenario, or untick pages in one.** | More than 50 Pages are ticked, counting a Page once for each Scenario; **Create link** stays off. |
+| **[n] of 50. Remove [k] before creating a link: drop a scenario, or untick pages in one.** | More than 50 Pages are ticked, counting a Page once for each Scenario; **Create link** stays off. In **Edit pages** it reads **[n] of 50. Remove [k] before saving: drop a scenario, or untick pages in one.**, and **Save** stays off. |
 | **Could not create an external link. Try again.** | Creating the link failed. |
 | **Could not load the page names in [Scenario].**, with **Retry** | **Link details** could not load a Scenario's Pages, which read **Name not loaded**. |
 | **No page in this link matches “[text]”.** | The search in **Link details** found nothing. |
-| **1 page on this link was deleted or is no longer yours to share. Saving removes it.** | **Edit pages** found a Page on the link that you can no longer share. With several, it reads **[n] pages on this link were deleted or are no longer yours to share. Saving removes them.** |
 | **Could not save the pages on this link. Try again.** | Saving in **Edit pages** failed; the link is unchanged. |
 | **Enter a password before saving link settings.** | **Require password** is on with an empty password. |
 | **This link password could not be revealed.** / **This link password could not be loaded.** | The saved password could not be read. |
@@ -934,7 +938,7 @@ A phone or tablet browser opens the same workspace in a reading layout, one scre
 | **Back to chat** | On a Page opened from a chat. Returns to the conversation. |
 | **New chat** | On a Page. Starts a chat. |
 
-Pages are read-only in this layout, whatever your access. You can read tables and Canvas blocks, and a table's **Table block settings** menu offers **Show formula bar** and **Show formula columns**, but you cannot edit cells, add rows or blocks, or create Pages or Scenarios. The Page header shows the Page's name and, on a Page with a table, **Collapse all tables**: **Share**, with its **Export** tab, **Download spreadsheet**, and **Version history** are not offered. One edit works here for someone who can edit the Page: text that Ari marked as editable in a Canvas block; see [Text you can edit in a Canvas block](#text-you-can-edit-in-a-canvas-block). Empty states say **Pages are read-only in this browser. Use Desktop Site to create a page.** and **Scenarios are read-only in this browser. Use Desktop Site to create one.**
+Pages are read-only in this layout, whatever your access. You can read tables and Canvas blocks, and a table's **Table block settings** menu offers **Show formula bar** and **Show formula columns**, and shows **Wrap column headings** dimmed with the saved choice, but you cannot edit cells, add rows or blocks, or create Pages or Scenarios. The Page header shows the Page's name and, on a Page with a table, **Collapse all tables**: **Share**, with its **Export** tab, **Download spreadsheet**, and **Version history** are not offered. One edit works here for someone who can edit the Page: text that Ari marked as editable in a Canvas block; see [Text you can edit in a Canvas block](#text-you-can-edit-in-a-canvas-block). Empty states say **Pages are read-only in this browser. Use Desktop Site to create a page.** and **Scenarios are read-only in this browser. Use Desktop Site to create one.**
 
 **Follow Ari’s work** is not offered in this layout, so Ari does not move your view there. When Ari finishes, **Show it** above the message box opens the Page it edited last.
 

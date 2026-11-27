@@ -22,6 +22,24 @@ A Skill of your own can also be limited to one workspace, for a procedure built 
 
 A new or changed Skill reaches a new chat at once, and a chat already open within a message or two. A Skill holds a process. A fact that everyone at a company should share, such as how the company defines bookings, belongs in workspace memory instead, which applies to every administrator's chats in the workspace; see [What Ari remembers](/concepts/ari-memory).
 
+## Files saved with a Skill
+
+"Can my teammate run my report Skill without my template?" Yes, when the template is saved with the Skill. A Skill carries a file when its instructions refer to a file that the person saving the Skill uploaded in that workspace. The built-in **Workbook template fill** Skill has Ari do this with your workbook when it saves which cell gets which figure.
+
+Ari can open a file saved with a Skill for each person it runs that Skill for. For your own Skill, that is you, in any of your chats in the workspace, even after you delete the chat you attached the file in. When you give a teammate a copy of the Skill, or make it available to everyone in the workspace, the file goes with it, and Ari can open it for those people too.
+
+Take a monthly investor workbook. Dana attaches the template, Ari fills it and saves the mapping as a Skill, and Dana gives Lee a copy of the Skill. Next month Lee asks Ari for the workbook, and Ari fills Dana's template without Lee attaching it.
+
+Lee does not see Dana's chat or the message she sent with the file. Ari does read the file and use what is in it for Lee, so treat a file saved with a Skill as shared with everyone who has that Skill.
+
+Three rules keep this narrow:
+
+- Only a file a person uploaded can be saved with a Skill, and only when that person is the one who saves the instructions that refer to it. A file Ari made and a copy of a connected Google Sheet cannot.
+- The file opens only in the workspace it was uploaded in, and only while the Skill's instructions still refer to it. Taking the reference out of the instructions takes the file off the Skill for everyone.
+- Sharing a Skill or making it a workspace Skill carries the files already saved with it, and never adds a file of the person who shares it.
+
+If Ari cannot open a file that a Skill refers to, the file is not saved with that Skill. Have the person who owns the file attach it again and ask Ari to update the Skill. To save a Skill with a file, see [Save a workflow as a Skill](/guides/save-a-skill).
+
 ## How a Trigger runs with nobody watching
 
 A Trigger is a saved request with a schedule that runs on the Trigger's own time zone, or with one date and time for a job that runs once, such as a reminder; see [Schedule a report or a reminder with a Trigger](/guides/schedule-a-trigger). At each scheduled time, cfo.ai starts a new chat for the run and Ari works through the saved instructions, with the access of the person who set up the Trigger. The saved instructions are the authorization for the run.

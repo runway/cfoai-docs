@@ -79,7 +79,7 @@ An item is one entry of a Dimension, such as West in Region.
 - Or right-click the Dimension's label row, such as **REGION**, and choose **Create Region item**. From an item, the same entry is under **Region dimension settings**.
 - Or point at the left edge of an item row, select **Insert row below**, type the name, and press **Enter**.
 
-The new item appears on every table that breaks down by that Dimension, unless you add it under a parent row. An item you add under a parent row, such as a vendor under one account when the table shows vendors under accounts, belongs to that account only; it does not appear under the other accounts. An item you add on a row with no parent items above it is available everywhere the Dimension is shown.
+The new item appears on every table that breaks down by that Dimension, unless you add it under a parent row. An item you add under a parent row, such as a vendor under one account when the table shows vendors under accounts, belongs to that account only; it does not appear under the other accounts. An item you add on a row with no parent items above it is available everywhere the Dimension is shown. When a connected system already supplies an item with that name, cfo.ai keeps that item and saves no second copy of it.
 
 You can add items only to a Dimension of text items, not of numbers, dates, or true-or-false values. While the Dimension shows only a chosen list of items, the action is unavailable until you clear the filter; see [Filter and sort a table](/guides/filter-and-sort-a-table#clear-a-filter-so-every-item-shows-again).
 
@@ -98,7 +98,7 @@ To delete an item you created, right-click it on the table where the Dimension w
 - An item nothing uses is deleted at once. The notice that confirms it offers **Undo**.
 - An item that formulas, filters, or other tables still use opens **Delete item?**, which lists what the deletion changes. Choose **Cancel**, or **Delete anyway**. Deleting also removes the values typed into the item's row, which cfo.ai stores as formulas for that item alone.
 
-On any other table, hide the item instead: right-click it and choose **Filter out this item**. Items from a connected system cannot be deleted. Every notice is listed in [Table block controls and messages](/reference/table-blocks#other-notices).
+On any other table, hide the item instead: right-click it and choose **Filter out this item**. Items from a connected system cannot be deleted. When someone also added the same item by hand, **Delete Region item** shows **Hand-made copy** and removes only that copy; the imported item stays, with its rows and formulas. Every notice is listed in [Table block controls and messages](/reference/table-blocks#other-notices).
 
 ## See and change every Dimension in one place
 
@@ -119,7 +119,7 @@ To review all your Dimensions, which you may call breakdowns or categories, open
   </Step>
 </Steps>
 
-A change here saves in the Scenario the **Scenario** picker shows, and shows on every table in that Scenario. A Scenario reads from Main whatever it has not changed, so a change you make in Main can show in other Scenarios too; see [Scenarios, Snapshots, and version history](/concepts/scenarios). A color or item change is the same as the one in a table's right-click menu, and **Undo** works the same way. A table's right-click menu has no entry that renames a Dimension, so rename it here. Items that come from a connected system or an upload are read-only, and the page names the import. If **Add item** is missing, add the Dimension to a table you can edit first. If the trash can is missing, you cannot edit the table the Dimension was created on, or the item is saved under another Dimension's item. Every label and message is in [Settings](/reference/settings#dimensions).
+A change here saves in the Scenario the **Scenario** picker shows, and shows on every table in that Scenario. A Scenario reads from Main whatever it has not changed, so a change you make in Main can show in other Scenarios too; see [Scenarios, Snapshots, and version history](/concepts/scenarios). A color or item change is the same as the one in a table's right-click menu, and **Undo** works the same way. A table's right-click menu has no entry that renames a Dimension, so rename it here. Items that come from a connected system or an upload cannot be renamed or added here, and the page names the import. An imported item that someone also added by hand shows the trash can, which removes only the copy added by hand. If **Add item** is missing, add the Dimension to a table you can edit first. If the trash can is missing, you cannot edit the table the Dimension was created on, or the item is saved under another Dimension's item. Every label and message is in [Settings](/reference/settings#dimensions).
 
 ## Choose which combinations of items appear
 

@@ -160,13 +160,24 @@ A range includes both ends. A range written from the later date to the earlier o
 | `sum(Revenue[Date.Month in startofyear([0]):[0]])` | Year to date |
 | `sum(Revenue[Date.Month in startofquarter([0]):[0]])` | Quarter to date |
 
+### Last close in a formula
+
+`` `Last close` `` in a formula is the Scenario's Last close date, your month-end. Write it in backticks, because the name has a space. Use it when a formula should read your latest closed month: the formula follows Last close when it moves, and no month is typed into it.
+
+| You write | It reads |
+| --- | --- |
+| `` Revenue[Date.Month = startofmonth(`Last close`)] `` | Revenue in the Last close month |
+| `` sum(Revenue[Date.Month in dateadd(startofmonth(`Last close`), -2, "month"):startofmonth(`Last close`)]) `` | The three months that end with the Last close month |
+
+To move Last close, see [Set Last close and date defaults](/guides/set-dates-and-last-close).
+
 ### Date filter presets
 
 When you add a date filter to a reference in the formula editor, the presets write a range for you. What a preset covers depends on whether you are editing an Actuals formula.
 
 | Preset | In an Actuals formula | In any other formula, such as a Forecast formula |
 | --- | --- | --- |
-| **Last 3 months of actuals** | The cell's month and the two before it. When the reference reads the formula's own Variable, the three months before the cell's month. | The three months that end with the **Last close** month, the same months for every cell |
+| **Last 3 months of actuals** | The cell's month and the two before it. When the reference reads the formula's own Variable, the three months before the cell's month. | The three months that end with the **Last close** month, the same months for every cell; the range is written with `` `Last close` ``, as in [Last close in a formula](#last-close-in-a-formula) |
 | **Last 6 months of actuals**, **Last 12 months of actuals** | As above, for 6 or 12 months | As above, for 6 or 12 months |
 | **Year to date** | `startofyear([0]):[0]`: January through the cell's month | The same |
 | **Quarter to date** | `startofquarter([0]):[0]`: the quarter's first month through the cell's month | The same |

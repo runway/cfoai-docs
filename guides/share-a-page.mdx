@@ -1,7 +1,7 @@
 ---
 title: "Share a Page outside your workspace"
 sidebarTitle: "Share a Page"
-description: "Send an investor, board member, judge, or accountant a read-only link to one or more Pages that opens without a sign-in or a cfo.ai account. Choose the Pages it opens in each Scenario, name the link, add a password, give it a memorable address and preview, and turn it off later."
+description: "Send an investor, board member, judge, or accountant a read-only link to one or more Pages that opens without a sign-in or a cfo.ai account. Choose the Pages it opens in each Scenario, name the link, add a password, give it a memorable address and preview, and turn it off later. Or ask Ari to invite one named person by email to view one Page after they sign in."
 ---
 
 Use a share link when someone outside your workspace needs to read a report, such as a board update or a cash forecast. The link opens the Page read-only, without a sign-in or a cfo.ai account, in the Scenarios you choose. One link can open different Pages in several Scenarios, such as the Board summary in Main and the Revenue model in a Downside Scenario. Everyone inside your workspace can already open every Page, so you do not need a link for teammates.
@@ -89,7 +89,7 @@ You can add or remove a link's Pages and Scenarios without changing its address 
 1. Open one of the link's Pages and select **Share**.
 2. On the link, select **Details**, then **Edit pages**.
 3. Tick or untick Pages, and add or remove Scenarios, as you did when you created the link. The Page the link opens first stays ticked.
-4. Read the line under the list, such as **Saving adds 1 page and removes 1 page. Anyone with this link can then open what you add.**, and select **Save**.
+4. Select **Save**. It stays off until the ticked Pages differ from the Pages the link opens.
 
 A Page you remove stops opening at once for everyone who opened the link. A Page you add opens the next time a reader opens the link's address. You cannot change the Page a link opens first; create a new link for that, then turn off the old one. You can also [ask Ari](#ask-ari-to-change-a-link-or-turn-it-off) to add or remove a link's Pages.
 
@@ -110,9 +110,28 @@ The **Share** panel lists the links of one Page. To see what the whole workspace
 
 > What have we shared outside the workspace?
 
-Ari lists the share links that are on and give access, newest first, across every Scenario. An administrator's list holds every such link. For anyone else, the list holds the links they made and the links that open only Pages they have full access to. For each link it can tell you the link's name, when it has one; its address, and its memorable address when it has one; the Page readers land on and the other Pages the link opens, with the Scenario of each; when the link was created and, when a name is recorded, who created it; whether it needs a password; and how many accounts still hold access they got through it. That number counts accounts, including readers who never signed in. It does not count visits or people. A Page that was deleted, or that you cannot read, is counted but not named.
+Ari lists the share links that are on and give access, newest first, across every Scenario. An administrator's list holds every such link. For anyone else, the list holds the links they made and the links that open only Pages they have full access to. For each link it can tell you the link's name, when it has one; its address, and its memorable address when it has one; the Page readers land on and the other Pages the link opens, with the Scenario of each; when the link was created and, when a name is recorded, who created it; whether it needs a password; how many accounts still hold access they got through it; and how often the link was opened. The access number counts accounts, including readers who never signed in. It does not count visits or people; for those, see [See how often a link was opened](#see-how-often-a-link-was-opened). A Page that was deleted, or that you cannot read, is counted but not named.
 
 Ari reads up to 100 links at a time, so in a workspace with more, ask it for the rest. Links that are turned off are left out. The list holds each link's address, so to find out which link an address belongs to, paste the address or the memorable address into the chat and ask Ari. Ari can match it only to a link that is still on. For a link whose first Page you can open, Ari can also give you an address that opens that Page with the **Share** panel already open. That works in a desktop browser; on a phone or tablet the address opens the Page alone, because that layout has no **Share**.
+
+You can also ask Ari which Pages people outside the workspace can open; it answers for one Scenario at a time and names only Pages you have full access to.
+
+## See how often a link was opened
+
+To find out whether an investor or a board member opened a link, ask Ari:
+
+> How many times has the "Board – Q4 investors" link been opened?
+
+> Who opened the board link, and when?
+
+Ari answers for a link that is still on and that the list above shows you. It can tell you:
+
+- How many times the link was opened. Every open counts, including a second open by the same person and an open by a teammate who already has access.
+- How many accounts opened it. The number can be higher than the number of people: a reader who is not signed in counts again in another browser, or after their access in a browser has ended.
+- When the link was last opened.
+- Each open, newest first, with its time. An open by someone signed in to cfo.ai shows that person's name. An open by a reader who was not signed in shows no name, even if that reader signs in later.
+
+cfo.ai counts an open when someone opens the link's address and gets in. A wrong password adds nothing, and neither does moving on to the link's other Pages. Opens are counted from the time cfo.ai began recording them, and earlier opens are not listed, so a count of zero on an older link does not mean nobody read it. Ari can tell you when recording began. Once a link is turned off, Ari no longer reports its opens.
 
 ## Ask Ari to change a link or turn it off
 
@@ -143,6 +162,30 @@ Turn a link off in the **Share** panel, as below, or [ask Ari](#ask-ari-to-chang
 4. Select **Turn off link**.
 
 Every label and message in the **Share** panel and its **New link** view, and what a reader sees when a link is off, needs a password, or opens several Scenarios, is listed in [The cfo.ai interface](/reference/interface#share-panel).
+
+## Invite one person by email to view a Page
+
+Use an invitation when a Page should open only for a named person who signs in, such as your accountant, and a link that anyone could forward is too open. You do this by asking Ari in a chat in cfo.ai. The **Share** panel has no field for inviting a person by email, and Ari cannot prepare an invitation from Slack or from an AI tool you connected.
+
+<Steps>
+  <Step title="Ask Ari">
+    In a chat in cfo.ai, ask Ari to invite the person to view the Page, and give the address:
+
+    > Invite pat@example.com to view the Board summary Page.
+
+    One request can name up to 20 addresses.
+  </Step>
+  <Step title="Check the card">
+    Ari shows a card that names each person, the Page, and the Scenario. Nothing is saved or sent yet.
+  </Step>
+  <Step title="Select Invite">
+    Select **Invite** on the card. cfo.ai saves the invitations and emails each person, and the card says what happened, such as **Invitations sent.**
+  </Step>
+</Steps>
+
+Each person gets an email with a button that opens the Page. The Page opens only after they sign in with exactly the address you invited, so forwarding the email gives nobody else access. They can view that Page in that Scenario and nothing else, and they see it as a share link's reader does; see [What a link's reader sees](/concepts/sharing-and-access#what-a-links-reader-sees).
+
+An invitation is not a share link. The **Share** button shows no link icon for it, and the **Share** panel does not list the people you invited. **Settings → Workspace** does not list them either. To take the access away, ask Ari to cancel the person's invitation, or, once they have signed in, to remove them from the workspace. The card's labels and messages are in [Page invitation card](/reference/chat#page-invitation-card).
 
 ## Related
 

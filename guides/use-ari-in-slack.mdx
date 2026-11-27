@@ -106,7 +106,7 @@ Anyone in your Slack workspace whose Slack profile email matches the email of an
 
 Someone without a matching cfo.ai account gets a reply that Ari answers with each person's own cfo.ai access and that no cfo.ai account matches the email on their Slack profile. In a channel, Ari posts that reply in the message's thread only when the person @mentions Ari or selects one of its buttons, and it does not reply or react to their other messages. [Chat controls and messages](/reference/chat#ari-in-slack) lists each reply. To let them use Ari, invite the email address on their Slack profile to your workspace. Once they accept, they can message Ari. See [Invite or remove teammates](/guides/invite-teammates).
 
-Someone whose cfo.ai account only keeps Pages that were shared with it by link is not an administrator. Ari replies that their access does not include chatting with Ari, and starts no chat. To let them use Ari, invite their address as an administrator; they become one at once.
+A viewer, or someone whose cfo.ai account only keeps Pages that were shared with it, is not an administrator. Ari replies that their access does not include chatting with Ari, and starts no chat. To let them use Ari, invite their address as an administrator; they become one at once.
 
 ## Add Ari to a channel
 
@@ -133,10 +133,10 @@ In a channel, Ari works like this:
 
 - Ari answers every message that @mentions it, with a reply or an emoji reaction. For other messages, Ari reads the conversation and decides whether to reply, to react with an emoji, or to stay quiet. It speaks up only when it can clearly help: it replies to a question or request about the company's numbers, Model, plans, or connected data that it can answer or carry out, and to a follow-up to its own last answer. It reacts when an acknowledgment is the whole answer, such as thanks for its last answer. It leaves people who are talking to each other alone. What your workspace asked Ari to remember about taking part in Slack counts in this decision; see [Tell Ari when to reply in a channel](#tell-ari-when-to-reply-in-a-channel).
 - Ari adds 👀 to a message while it works on it, and Slack shows in the message's thread that Ari is working. The 👀 comes off when Ari's answer posts. On a message that did not @mention it, Ari can decide after it starts that no reply is needed. It then removes the 👀 and the working status and posts nothing.
-- Ari answers in a thread: a top-level message gets a reply in a thread under it, and a message in a thread gets a reply in that thread. Reply in the thread to follow up. Each person who writes to Ari in a thread has their own conversation with it there, and that conversation uses that person's access. When a second person asks in the same thread, Ari answers in that person's conversation: it reads the thread's earlier messages, its own replies to other people among them, but not the work behind those replies. A new top-level message starts a new conversation, in which Ari reads the channel's recent top-level messages but not what it answered in other threads.
+- Ari answers in a thread: a top-level message gets a reply in a thread under it, and a message in a thread gets a reply in that thread. Reply in the thread to follow up. Each person who writes to Ari in a thread has their own conversation with it there, and that conversation uses that person's access. When a second person asks in the same thread, Ari answers in that person's conversation: it reads the thread's earlier messages, its own replies to other people among them, but not the work behind those replies. A new top-level message starts a new conversation. In it, Ari reads the channel's recent top-level messages and, for each one whose thread it answered in, its own most recent replies there as Slack shows them. Ari does not get the work behind those replies. When Slack cannot give a thread's full history, Ari is told that its latest reply there is unknown. How many messages Ari reads is in [Limits](/reference/limits#chat-with-ari).
 - Each answer in the channel uses the access of the person who asked, not the access of the administrator who added Ari. Ari answers only people whose Slack profile email belongs to a member of your cfo.ai workspace who can chat with Ari. Anyone else who @mentions Ari, such as a guest from another company in a channel shared through Slack Connect, gets a reply in the thread that says why Ari cannot answer and what a cfo.ai admin can do; see [Who can message Ari](#who-can-message-ari). Everyone in the channel can read Ari's answers, including people who cannot read the same numbers in cfo.ai, so ask in a channel only what the whole channel may read. In a public channel, anyone in your Slack workspace can read Ari's answers too, and can join the channel. A private channel that is later made public keeps Ari on, unless your Slack workspace was connected before cfo.ai supported public channels; see [If Ari leaves a channel](#if-ari-leaves-a-channel).
 - A link Ari posts to a Page or block opens only for someone who can already read it in cfo.ai. A channel member outside your cfo.ai workspace can read Ari's answer but cannot open the link. To give them the Page, [share it with a link](/guides/share-a-page).
-- Ari reads the words of channel messages, not their files, as in direct messages.
+- Ari reads the words of channel messages, not their files, as in direct messages. An earlier message that only shares a file reaches Ari as a note that a file was shared.
 
 To stop Ari in a channel, remove the cfo.ai app from the channel. What happens to the channel's earlier threads is in [Ari in Slack](/reference/chat#ari-in-slack). A workspace administrator's Trigger can post its result in a channel Ari is in; see [Choose where the result goes](/guides/schedule-a-trigger#choose-where-the-result-goes).
 
@@ -178,7 +178,20 @@ Either way, do one of these:
 
 ## Disconnect Slack
 
-In **Settings → Ari → Slack**, select **Disconnect**, then confirm. Ari can no longer post to that Slack workspace until someone connects it again. Ari cannot disconnect Slack for you.
+<Tabs>
+  <Tab title="Ask Ari">
+    Ask Ari to disconnect Slack:
+
+    > Disconnect Slack from this workspace.
+
+    Ari disconnects Slack right away. It does not ask you to confirm first, as Settings does. You need permission to add connections in your cfo.ai workspace, the same permission you need to connect Slack.
+  </Tab>
+  <Tab title="By hand">
+    In **Settings → Ari → Slack**, select **Disconnect**, then confirm.
+  </Tab>
+</Tabs>
+
+Either way, Ari can no longer send Slack direct messages or post in channels in that Slack workspace, for anyone in your cfo.ai workspace, until someone connects it again.
 
 ## If something goes wrong
 

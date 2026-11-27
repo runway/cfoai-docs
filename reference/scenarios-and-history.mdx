@@ -73,6 +73,7 @@ The dialog is titled **Merge "[Scenario]" into [target]?**. The target is Main, 
 | **Could not load the changes in "[Scenario]".**, with the reason and **Retry** | The summary could not be read. **Retry** reads it again. |
 | **Nothing in "[Scenario]" differs from [target] yet.** | The Scenario holds no changes, so there is nothing to merge. |
 | **scenario cannot be merged while it has [n] child scenario**, followed by the children's names | The Scenario has editable child Scenarios, so the merge is refused. Snapshots taken from the Scenario do not block a merge. |
+| **The scenario was not merged, and nothing changed: another change was saving into it on every attempt. Merging again is safe.** | A notice after you confirm. Another change, such as an edit by Ari or a teammate, was saving into the Scenario on each of the merge's five tries, over about three seconds. Nothing changed. Merge again. |
 
 ## Confirmation cards in the chat
 
@@ -90,7 +91,21 @@ The version history panel lists every change to the Model, yours and Ari's. Open
 | Scenario line | Names the Scenario and shows **Live**, or the version you are viewing. |
 | **Show Main Scenario changes** | In a Scenario other than Main, also lists the changes it inherited from Main. |
 
-Each entry names who made the change, when, and what it touched. A merge is listed in the history of the Scenario it merged into, as **Merged [Scenario] into [target]**, and it opens, previews, and undoes like any other entry. A formula entry names the Variable. An entry for one value typed into a cell reads **Edited cell [cell] for [Variable] to [value]**, such as **Edited cell Mar-26 for Marketing to 6000**. The entry always names the cell's period in the **Abbreviated** date format, such as **Mar-26**, **Q2-26**, or **2026**, even when the table shows its dates in another **Date format**. It names any other Dimension with its item, as in **Region = West, Q2-26**. For a formula with a condition, the entry also names the condition and its reach: **Includes additional dimensions** when it also covers cells that carry more Dimensions, or **Exact grain** when it matches exactly the Dimensions it names.
+Each entry names who made the change, when, and what it touched. An entry for a change Ari made also names the person who asked for it: its summary reads **Ari, asked by [name]**, or **Ari** alone when no name was recorded for the change. See [The message that asked Ari](#the-message-that-asked-ari). A merge is listed in the history of the Scenario it merged into, as **Merged [Scenario] into [target]**, and it opens, previews, and undoes like any other entry. A formula entry names the Variable. An entry for one value typed into a cell reads **Edited cell [cell] for [Variable] to [value]**, such as **Edited cell Mar-26 for Marketing to 6000**. The entry always names the cell's period in the **Abbreviated** date format, such as **Mar-26**, **Q2-26**, or **2026**, even when the table shows its dates in another **Date format**. It names any other Dimension with its item, as in **Region = West, Q2-26**. For a formula with a condition, the entry also names the condition and its reach: **Includes additional dimensions** when it also covers cells that carry more Dimensions, or **Exact grain** when it matches exactly the Dimensions it names.
+
+### The message that asked Ari
+
+To see why Ari made a change, expand its entry with the arrow at the entry's left edge (**Expand change details**). Above the change's details, **[name] asked Ari** shows the message that started the work. The label reads **Asked Ari** when no name was recorded. A long message scrolls inside its box.
+
+The message is the one message the person sent, in a chat in the cfo.ai web app, that started Ari's work on that change. No other message from that chat is shown.
+
+| Who is reading | What an entry for Ari's change shows |
+| --- | --- |
+| The person who sent the message | **Ari, asked by [name]** and the message |
+| An administrator of the workspace | **Ari, asked by [name]** and the message |
+| Anyone else who can open version history | **Ari, asked by [name]** only |
+
+No message is shown for work that started anywhere other than a chat in the cfo.ai web app: in Slack, in iMessage, in an AI tool connected to cfo.ai, in a Trigger's run, or in other background work. No message is shown once the chat has been deleted. The message of an archived chat still shows.
 
 ### Entry actions
 

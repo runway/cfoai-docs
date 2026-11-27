@@ -1,12 +1,12 @@
 ---
 title: "Send a link so someone else can connect a source"
 sidebarTitle: "Send a connect link"
-description: "Ask the person who holds a system's login, such as a founder or a controller, to connect QuickBooks, Ramp, or another source to your workspace through a link that needs no cfo.ai account. Make the link in cfo.ai or ask Ari, see the links you sent, and turn one off."
+description: "Ask the person who holds a system's login, such as a founder or a controller, to connect QuickBooks, Ramp, or another source to your workspace, or to enter an API key, through a link that needs no cfo.ai account. Make the link in cfo.ai or ask Ari, see the links you sent, and turn one off."
 ---
 
 Send a connect link when the login a source needs belongs to someone outside your workspace, such as a founder whose QuickBooks you are setting up as their fractional CFO, or a controller who holds the Ramp sign-in. Whoever opens the link signs in to that source on a page that shows only that connection, and the connection lands in your workspace. A link you make in cfo.ai, or ask Ari for, is one anyone can open: no cfo.ai account is needed, and the opener sees none of your Pages, Model, or other connections. Ari can instead make a link that only a signed-in member of your workspace can open, when you ask for one.
 
-A link works for 7 days, until someone finishes it, or until you turn it off. It can carry up to 10 sources, one card each, and the person can connect them in any order. Each source starts importing as soon as it is connected, and the source's row in your sidebar updates when they finish.
+A link works for 7 days, until someone finishes it, or until you turn it off. It can carry up to 10 sources, one card each, and the person can connect them in any order. A link that asks for an API key carries that one API and nothing else; see [Send a link so someone else can enter an API key](#send-a-link-so-someone-else-can-enter-an-api-key). Each source starts importing as soon as it is connected, and the source's row in your sidebar updates when they finish.
 
 <Tabs>
   <Tab title="Ask Ari">
@@ -42,6 +42,21 @@ A link works for 7 days, until someone finishes it, or until you turn it off. It
 When a connection shows **Finish setup** or **Reconnect** and the sign-in it needs is not yours, select **Send link** beside that button on the connection's page; its tooltip reads **For someone else with the [source] sign-in**. The connection's hover card in the sidebar offers the same as **Send them a link**. The link continues that same connection, so nothing is duplicated, and the connection's row in your sidebar updates when they finish.
 
 To put several such connections in one link, point at **Connections** in the sidebar, open its **…** menu, and choose **Select connections to send a link**; the item appears once a connection can take a link. Holding **⌥** (**Alt**) while you click such a connection starts the same picking. Tick the connections and select **Send link**; the dialog is headed **Send a link for N connections**.
+
+## Send a link so someone else can enter an API key
+
+When the key to an API belongs to someone else, such as a controller who holds your Mercury API key, ask Ari for a link to that API:
+
+> Make a link our controller can use to connect the Mercury API.
+
+Ari posts the same card as for any connect link. Whoever opens the link sees a page headed **Connect Mercury** with one field, **Mercury API key**, and a **Connect** button. The key goes to cfo.ai's connection service, not to Ari or the chat, and the API connection is saved in your workspace. The page then reads **Mercury connected** and **You can close this page.**
+
+- Only Ari makes this link. A link you make with **Send them a link** in the directory cannot ask for an API key.
+- You need the access that adding an API in **Settings → Connections** takes.
+- The API must be one of the listed APIs on the **API** tab that takes a key. An API you added with your own specification, and an API that needs no key, cannot go in a link.
+- One link carries one API and no other source, and it saves one connection. After that, the link is used.
+
+[The page a link for an API key opens](/reference/connection-statuses#the-page-a-link-for-an-api-key-opens) lists the page's labels and every message it can show.
 
 ## What the person sees
 

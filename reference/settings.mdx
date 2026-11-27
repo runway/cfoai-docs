@@ -8,7 +8,7 @@ Settings holds the workspace's options and your own preferences. To open it, sel
 | Section | Who sees it | What it holds |
 | --- | --- | --- |
 | **General** | Everyone | The workspace name and brand, date defaults and Last close, how every table shows negative numbers, and your appearance |
-| **Workspace** | Administrators | Inviting, removing, and listing administrators |
+| **Workspace** | Administrators | Inviting, removing, and listing administrators and viewers |
 | **Profile** | Everyone | Your name and sign-in email |
 | **Ari** | Everyone | Ari's thinking animation, sound, notifications, and Slack |
 | **Connections** | Everyone, once the workspace has started its trial or a plan | The cfo.ai MCP server address, and the MCP servers and APIs Ari can call |
@@ -17,7 +17,7 @@ Settings holds the workspace's options and your own preferences. To open it, sel
 | **Billing** | Workspaces billed in the app | Plan, payment methods, billing recipient, billing history, and cancellation |
 | **Usage** | Workspaces billed in the app | AI usage, extra usage, spend limit, auto-reload, and integration slots |
 
-Everyone you invite to a workspace is an administrator, so everyone you invite sees **Workspace**. A workspace billed outside the app has no **Billing** or **Usage** section.
+Administrators see **Workspace**. A viewer does not, and sees no **Billing** or **Usage** section. A workspace billed outside the app has no **Billing** or **Usage** section.
 
 ## General
 
@@ -132,31 +132,63 @@ Ari can build or change a theme of your own. Ari cannot set **Color mode**, choo
 
 ## Workspace
 
-### Invite admin
+### Invite people
 
-**Invite admin** adds a teammate to the workspace. The section reads **Admins can see and edit all pages in the workspace, invite others, and manage billing and other settings.** See [Invite or remove teammates](/guides/invite-teammates).
+**Invite people** adds a teammate to the workspace as an administrator or a viewer. The section reads **Admins can see and edit all pages in the workspace, invite others, and manage billing and other settings. Viewers can see every page and table and cannot change anything.** See [Invite or remove teammates](/guides/invite-teammates).
 
 | Control | What it does |
 | --- | --- |
+| **Role** | **Admin** or **Viewer**. **Admin** is selected when the section opens. |
 | **Email address** | The address to invite. |
-| **Add admin** | Unavailable until an address is typed. Creates the invitation and emails it; the form then reads **Admin invitation created for** [address]**.** Adding an address that already has a pending invitation sends the email again. An address that already has access to this workspace's shared Pages through a share link, and so belongs to the workspace without the administrator role, is made an administrator at once, with no email, and the form reads [address] **is now an admin.** See [Keeping access to a shared Page](/concepts/sharing-and-access#keeping-access-to-a-shared-page). The same line appears for an address that is already an administrator, and nothing changes. |
+| **Add admin** | Unavailable until an address is typed. Creates the invitation and emails it; the form then reads **Admin invitation created for** [address]**.** Adding an address that already has a pending invitation sends the email again. An address that already has access to this workspace's shared Pages through a share link, and so belongs to the workspace without the administrator role, is made an administrator at once, with no email, and the form reads [address] **is now an admin.** See [Keeping access to a shared Page](/concepts/sharing-and-access#keeping-access-to-a-shared-page). The same line appears for an address that is already an administrator, and nothing changes. A viewer you add here is made an administrator the same way. |
+| **Add viewer** | Shown in place of **Add admin** when **Role** is **Viewer**. Unavailable until an address is typed. Creates the invitation and emails it; the form then reads **Viewer invitation created for** [address]**.** Adding an address that already has a pending viewer invitation replaces that invitation and sends the email again. |
 
-cfo.ai has no other role to invite someone to: every invitation is for an administrator. For read-only access, use a share link; see [Share a Page outside your workspace](/guides/share-a-page).
+| Message | Meaning |
+| --- | --- |
+| **workspace member already exists** | **Add viewer** was used for an address that already belongs to the workspace in any role, such as an administrator or a person who signed in to keep a Page shared by link. |
+| **this email has a pending admin invitation** | **Add viewer** was used for an address that holds a pending administrator invitation. Cancel that invitation first. |
+| **permissions: invalid argument: this email has a pending viewer invitation** | **Add admin** was used for an address that holds a pending viewer invitation. Cancel that invitation first. |
+| **invite email is invalid** | **Add viewer** was used with an address that is not a valid email address. |
+| **Could not add viewer. Please try again.** | The viewer invitation could not be created. |
+| **Viewer invitations are no longer available in this workspace. Choose a role to continue.** | Shown under **Role** when the workspace stopped offering viewer invitations while **Viewer** was chosen. Nothing is sent until you choose **Admin**. |
+| **Your viewer role does not allow this action. A workspace admin can help or change your role.** | What a viewer gets when cfo.ai refuses an action, because a viewer can read and cannot change anything. |
 
-### Admins
+An invitation is for an administrator or a viewer. What each role can do is in [Administrators and viewers](/concepts/sharing-and-access#administrators-and-viewers). cfo.ai has no editor role, no list of Pages that limits what a teammate can open, and no user groups.
+
+What cfo.ai does not do here, and what to do instead:
+
+- You cannot change an administrator into a viewer. Remove the person in [Admins and viewers](#admins-and-viewers), then invite them again with **Role** set to **Viewer**.
+- You cannot invite a person as a viewer while they already belong to the workspace. Remove them first, then invite them as a viewer.
+- A viewer cannot start a chat with Ari. To let them use Ari, add their address with **Role** set to **Admin**.
+- Settings does not list a guest you invited by email to view one Page, or that guest's pending invitation. Ask Ari to list everyone in the workspace, to cancel a guest's invitation, or to remove a guest; see [Invite one person by email to view a Page](/guides/share-a-page#invite-one-person-by-email-to-view-a-page).
+
+### Admins and viewers
 
 | Control | What it does |
 | --- | --- |
 | **Ask Ari** | Closes Settings and starts a chat that asks Ari to list everyone in the workspace and every pending invitation. Ari changes nothing until you tell it what to change. |
-| A row | A person's name and email, marked **(you)** for you, with **Admin** for someone who joined or **Invited** for a pending invitation. |
-| **Remove member** | On an **Admin** row's menu. Opens **Remove member?**: **They will lose access to this workspace. Any pending invitations for this email will also be cancelled. Their other workspaces are unaffected.** Your own row has no menu. |
-| **Cancel invitation** | On an **Invited** row's menu. Opens **Cancel invitation?**: **They will no longer be able to join through this invitation. If they have already joined, their membership stays unchanged.** |
+| A row | A person's name and email, marked **(you)** for you, with **Admin** or **Viewer** for someone who joined, and **Invited** or **Invited as viewer** for a pending invitation. |
+| **Remove member** | On an **Admin** or **Viewer** row's menu. Opens **Remove member?**: **They will lose access to this workspace. Any pending invitations for this email will also be cancelled. Their other workspaces are unaffected.** Your own row has no menu. |
+| **Cancel invitation** | On an **Invited** or **Invited as viewer** row's menu. Opens **Cancel invitation?**: **They will no longer be able to join through this invitation. If they have already joined, their membership stays unchanged.** |
 
 | Message | Meaning |
 | --- | --- |
 | [email] **was removed from this workspace.** | The person was removed, and the list reloaded. |
 | [email] **invitation was cancelled.** | The invitation was cancelled, and the list reloaded. |
 | **Couldn’t load the admins of this workspace. Please try again.** | The list could not load. |
+
+### Access history
+
+Settings shows who has access now, not how access changed. An administrator can ask Ari to list the changes between two dates; see [See who was given or lost access](/guides/invite-teammates#see-who-was-given-or-lost-access).
+
+| Fact | Detail |
+| --- | --- |
+| What cfo.ai records | Each time a person is given access to the workspace or to something in it, loses that access, or has it changed, and each time a person joins or leaves a role. Each change holds its time, the person who made it when one was recorded, the person or role it applies to, and the access before and after. |
+| Access through a share link | Recorded when a reader opens the link, with the person who created the link as the person who made the change. A reader who is not signed in is listed without a name or an email address. |
+| What is not recorded | A share link nobody has opened, access that a Page passes down to the Pages under it, and a Page moving to another place among the Pages. An empty answer means no change was recorded, not that access stayed the same. |
+| How far back it goes | To the time cfo.ai began recording access changes. Ari states that time when the period you ask about starts before it. |
+| What Ari leaves out | A change to something you cannot open now, including something that has since been deleted. |
+| Who can ask | An administrator. Ari refuses anyone else. |
 
 ## Profile
 
@@ -209,7 +241,7 @@ When the browser blocks notifications, the switch is unavailable and reads **Not
 | Connected | **Connected to** [Slack workspace] and **Ari can now DM you in this Slack workspace, and a cfo.ai admin can invite Ari to a channel.**, with **Disconnect**. A notice reads **Slack connected** when the connection finishes. |
 | Disconnecting | **Disconnect "[Slack workspace]"?** with **cfo.ai Agent will no longer be able to post to this workspace until you reconnect.** |
 
-While no Slack workspace is connected, someone who may add connections can also connect Slack from a chat in the cfo.ai web app: ask Ari to connect Slack, and it posts a card that runs the same sign-in. See [Connect Slack card](/reference/chat#connect-slack-card). **Connect** beside **Slack** in [Ari's profile](/reference/interface#aris-profile) runs the same sign-in too. Disconnecting is done only here; Ari cannot disconnect Slack.
+While no Slack workspace is connected, someone who may add connections can also connect Slack from a chat in the cfo.ai web app: ask Ari to connect Slack, and it posts a card that runs the same sign-in. See [Connect Slack card](/reference/chat#connect-slack-card). **Connect** beside **Slack** in [Ari's profile](/reference/interface#aris-profile) runs the same sign-in too. Someone who may add connections can also ask Ari to disconnect Slack; Ari disconnects it without the **Disconnect "[Slack workspace]"?** confirmation this section shows. See [Disconnect Slack](/guides/use-ari-in-slack#disconnect-slack).
 
 Slack's approval screen lists what the cfo.ai app may do. cfo.ai asks to read and send direct messages, read and post in the channels Ari is added to, private or public, upload the files and images its Slack messages carry, see when it is @mentioned, list channels, add emoji reactions, show that it is typing, look up members' names and email addresses so it can match a Slack account to a cfo.ai account, and leave a channel it may not stay in. A Slack workspace connected before a permission was added keeps its earlier grant until an administrator selects **Disconnect** and then **Add to Slack** again.
 
@@ -320,8 +352,8 @@ The section reads **Enable ready-made workflows for everyone in this workspace. 
 | **Items** | The Dimension's items, loaded 200 at a time as you scroll. An item saved only under an item of another Dimension shows **Under [Dimension]: [item]**. An item with no value reads **None**. |
 | **New item** and **Add item** | Adds an item to a Dimension of text items. Offered when a table you can edit shows the Dimension and offers **Create [Dimension] item**; otherwise the section reads **Add items from a table you can edit that shows [Dimension].** |
 | **Rename item** | The pencil on an item added by hand. Renames the item everywhere, with **Save** and **Cancel**. |
-| **Delete item** | The trash can on an item added by hand and saved on its own, not under another Dimension's item. Offered when you can edit the table the Dimension was created on. It asks **Delete item?** first when something still uses the item, and the **Deleted “[item]”** notice offers **Undo**. |
-| **These items come from [import]. Change them there.** | An imported Dimension's items are read-only here. |
+| **Delete item** | The trash can on an item added by hand and saved on its own, not under another Dimension's item, and on an imported item that someone also added by hand. Offered when you can edit the table the Dimension was created on, for an imported Dimension too. It asks **Delete item?** first when something still uses an item added by hand, and the **Deleted “[item]”** notice offers **Undo**. On an imported item, it removes only the copy added by hand, the imported item stays, and the notice reads **Removed the hand-made copy of “[item]”. The imported item remains.** with **Undo**. |
+| **These items come from [import]. Change them there.** | An imported Dimension's items cannot be added or renamed here. An item added by hand, and the hand-made copy of an imported item, can still be deleted with the trash can. |
 | **These items are mapped from dimensions you can’t view, so they aren’t shown.** | The reason for **Items not shown**. |
 | **Its import has not run yet, so only hand-made items are listed.** | The Dimension's import has no run to read items from yet. |
 | **No items yet.** | The Dimension has no items. |
@@ -340,7 +372,9 @@ The color and item edits here are the same changes as the ones in a table's righ
 ## What Settings has no setting for
 
 - A fiscal year that starts in a month other than January. See [Fiscal years](/concepts/actuals-and-forecast#fiscal-years-quarters-and-years-follow-the-calendar).
-- A view-only or other lower role, access to single Pages for one person, or user groups. Use a share link for read-only access; see [Sharing and access](/concepts/sharing-and-access).
+- An editor role, a list of Pages that limits what a teammate can open, or user groups. For a read-only teammate, invite a viewer; see [Invite people](#invite-people). For someone outside the workspace, use a share link; see [Sharing and access](/concepts/sharing-and-access).
+- Changing an administrator into a viewer. Remove the person and invite them again as a viewer; see [Invite people](#invite-people).
+- A list of past changes to who has access. Ask Ari; see [Access history](#access-history).
 - An API key or access token for cfo.ai. AI tools connect to the MCP server and sign in through the browser; see [Is there a cfo.ai API or API key?](/guides/connect-an-ai-client#is-there-a-cfoai-api-or-api-key)
 - Deleting a workspace or an account. See [Cancel your subscription or delete your data](/guides/cancel-or-delete).
 - Pausing a subscription. See [Plans and billing](/reference/plans-and-billing#rules-and-limits).

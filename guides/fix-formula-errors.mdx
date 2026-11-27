@@ -46,6 +46,7 @@ Point at the cell to read which of these it is:
 - A value has the wrong type, such as a date function given a number. Check that each argument is the kind of value the function expects; see [Formula functions](/reference/functions).
 - The formula has a syntax mistake. Open it and read the red underline; see [Formula editor messages](/reference/formula-errors#formula-editor-messages).
 - A name you typed matches no Variable or Dimension, for example because of a typo. The cell's message begins **Syntax errors** and does not say which name failed, so open the formula: that name is underlined in red with **Unknown variable or dimension name**. Write it exactly like the Variable's or Dimension's name, including capital letters, and wrap a name with spaces in backticks. Autocomplete suggests the names as you type.
+- A name you typed is shared by several Variables or Dimensions. The cell's message also begins **Syntax errors**. Open the formula: the name is underlined in red, and the message lists each match with a short `#` code, such as **Revenue names 2 variables: Revenue#a, Revenue#b**. Replace the name with the match you mean; see [Name and argument messages](/reference/formula-errors#name-and-argument-messages).
 
 ## The cell shows #DIV/0!
 

@@ -19,7 +19,7 @@ Where one value lives: a Variable, an item from each of its Dimensions, and a pe
 
 ## Administrator
 
-A person in a workspace who can see and edit every Page, invite others, and manage billing and settings. Everyone you invite joins as an administrator. cfo.ai has no view-only or other lower role to invite someone to; to let someone read Pages without editing, use a [share link](#share-link). See [Sharing and access](/concepts/sharing-and-access).
+A person in a workspace who can see and edit every Page, invite others, and manage billing and settings. The other role you can invite someone to is [viewer](#viewer), who reads everything and changes nothing. To let someone outside the workspace read Pages, use a [share link](#share-link). See [Sharing and access](/concepts/sharing-and-access).
 
 ## Agent
 
@@ -83,7 +83,7 @@ A formula that needs its own result to calculate, shown in the cell as `#CIRC!`.
 
 ## Connect link
 
-A link that lets someone else connect one or more sources to your workspace, such as a founder or a controller who holds a system's login. A link made in cfo.ai, or that Ari makes unless asked otherwise, opens for anyone without a cfo.ai account; Ari can also make one that only a signed-in member can open. It works for 7 days or until it is finished or turned off. See [Send a link so someone else can connect a source](/guides/send-a-connect-link).
+A link that lets someone else connect one or more sources to your workspace, such as a founder or a controller who holds a system's login. A link Ari makes can instead ask for the key to one listed API. A link made in cfo.ai, or that Ari makes unless asked otherwise, opens for anyone without a cfo.ai account; Ari can also make one that only a signed-in member can open. It works for 7 days or until it is finished or turned off. See [Send a link so someone else can connect a source](/guides/send-a-connect-link).
 
 ## Connection
 
@@ -156,6 +156,10 @@ A span of the timeline that can have its own formula. Actuals and Forecast are t
 ## Grain
 
 The length of the periods a table shows, such as months, quarters, or years. **Raw** shows each date without grouping it into periods. Settings calls it date granularity. See [Table block controls and messages](/reference/table-blocks#table-header).
+
+## Guest
+
+A person you invited by email to view one Page. They sign in with that address and read that Page and nothing else in the workspace. See [Sharing and access](/concepts/sharing-and-access#inviting-one-person-to-one-page).
 
 ## Guide
 
@@ -263,7 +267,7 @@ A copy of Main or a Scenario pinned to one moment in its history, which no later
 
 ## Summary column
 
-A total column, the first column in a group of columns on one table, headed **SUM**, **LAST**, or **TOTAL**, for example. It summarizes the cells shown in its group and saves no formula. See [Totals, aggregation, and time rollups](/concepts/totals-and-rollups).
+A total column on one table, the first column in a group of columns or, when the table puts totals after details, the last, headed **SUM**, **LAST**, or **TOTAL**, for example. It summarizes the cells shown in its group and saves no formula. See [Totals, aggregation, and time rollups](/concepts/totals-and-rollups).
 
 ## Sync setup
 
@@ -299,7 +303,7 @@ A scheduled instruction that has Ari run a recurring task at the time you choose
 
 ## User
 
-cfo.ai calls the people you invite to a workspace administrators. To add a user, invite them as an administrator; see [Invite or remove teammates](/guides/invite-teammates) and [Administrator](#administrator).
+cfo.ai calls the people you invite to a workspace administrators and viewers. To add a user, invite them in one of those roles; see [Invite or remove teammates](/guides/invite-teammates), [Administrator](#administrator), and [Viewer](#viewer).
 
 ## Variable
 
@@ -316,6 +320,10 @@ People use the word for three things in cfo.ai: a [Scenario](#scenario), which i
 ## Version history
 
 The record of every change to the Model, yours and Ari's, where you can undo one change or restore an earlier version. See [Scenarios, Snapshots, and version history](/concepts/scenarios).
+
+## Viewer
+
+A person in a workspace who can read every Page, table, and Scenario and cannot change anything or start a chat with Ari. You invite a viewer in Settings or through Ari. See [Sharing and access](/concepts/sharing-and-access#administrators-and-viewers).
 
 ## Workspace
 

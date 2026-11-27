@@ -136,7 +136,7 @@ Two rows that resolve to the same Dimension are refused with `two rows name the 
 
 ## When a table comes back empty
 
-An empty result on a table with dates often means the table's window, the date range and grain it is set to show, does not cover the dates that hold values. Writing dated values does not move the window: a `values` write that names a period outside it is refused, and the same request can widen `window` and write the new periods, as [Write values into dated columns](/agents/write-formulas#write-values-into-dated-columns) describes. A wrong window is fixed on the table itself, with `window`. Two other causes are common:
+An empty result on a table with dates often means the table's window, the date range and grain it is set to show, does not cover the dates that hold values. Writing dated values does not move the window: a `values` write that names a period outside it is refused, and the same request can widen `window` and write the new periods, as [Write values into dated columns](/agents/write-formulas#write-values-into-dated-columns) describes. A wrong window is fixed on the table itself, with `window`. To read values outside the window without changing the table, name the periods in a `read`; see [Pagination and truncation](/agents/mcp-tools#pagination-and-truncation). Two other causes are common:
 
 - An item whose cells are all empty is hidden when the table hides empty items. `show_empty_members` sets this: `false` asks to hide items whose values are all zero or empty, subject to the workspace policy; omitted, `create` uses the workspace default and `update` keeps the saved setting.
 - An item outside a formula's condition reads empty.

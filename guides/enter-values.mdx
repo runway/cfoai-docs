@@ -49,6 +49,8 @@ In a Variable that holds text, such as Job Title, what you type is saved as word
 
 A cell of a date Variable, such as Start Date, opens a calendar. Pick a day, or select **Edit formula** to write a formula.
 
+A cell of a true-or-false Variable, such as Include, shows a checkbox. Select the box, or press **Space** on the cell, to check or clear it. You can also type or paste `true` or `false`. When a formula calculates the value, selecting the box opens the formula. See [Controls in the grid](/reference/table-blocks#controls-in-the-grid).
+
 A column that shows which item each row belongs to, such as each employee's Department, opens a list of the Dimension's items. Search, then pick one. To use a new item, type its name and choose **Add** with that name. The **Edit formula** button opens the formula editor.
 
 When an item column reads its values from a connected system, the list shows **Source** with the name of the import. Picking another item saves your choice over it, and the list then reads **Overrides source**. **View source** opens that connection, or a page headed **Connection removed** when the connection was removed; see [A removed connection's page](/reference/connection-statuses#a-removed-connections-page).
@@ -93,7 +95,7 @@ Select a range of cells. A bar at the lower right of the Page shows **Count:**, 
 
 ## If a value does not save
 
-When cfo.ai refuses a change, the cell returns to its earlier value and a notice says why. Common reasons are a value that comes from an integration, a selection whose cells take different formulas, and a table you can only read. For a value you typed, the formula editor reopens with your entry so you can fix it.
+When cfo.ai refuses a change, the cell returns to its earlier value and a notice says why. Common reasons are a value that comes from an integration, a selection whose cells take different formulas, and a table you can only read. For a value or formula you typed, the formula editor keeps or reopens your entry and shows the reason under it. Change the entry, or press **Enter** to save it again.
 
 Every notice and what to do about it is listed in [Table block controls and messages](/reference/table-blocks#when-a-change-is-not-saved). To take back a change, press **⌘ Z**, or see [Undo a change or restore an earlier version](/guides/undo-changes).
 

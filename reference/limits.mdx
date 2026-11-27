@@ -24,6 +24,8 @@ This page lists every size, count, and time limit in cfo.ai, grouped by part of 
 | Time a download link for a file in a chat works | 5 minutes after you select the file; select it again for a new link |
 | Table Ari posts in Slack as a Slack table | The first table in a message, up to 100 rows, 20 columns, and 10,000 characters of cell text; a larger or later table, and a table inside a code block, posts as text, and a message whose text around the table is too long for Slack posts whole as text |
 | File Ari posts in Slack, with a message or alone in a Slack conversation with Ari | 1 for each message or post, a file of any type saved in a chat, with no size limit beyond the chat's own; an empty file is refused. When a file sent with a message does not go through, the message is not sent, and when a file sent alone does not go through, Ari's reply still posts. An upload stops when no bytes move for 15 seconds. Text sent in one message with a PNG, JPEG, or GIF image, as a heading above it, holds up to 3,000 characters, counted with each link's full address. See [Ari in Slack](/reference/chat#ari-in-slack) |
+| Length of one Slack message from Ari | 40,000 characters, the most Slack shows of one message; some characters, such as most emoji, count as two. Longer text posts whole, as consecutive messages in the same place and in order. Each message but the last ends after the last paragraph break that fits, or else the last line break, or else the last space, outside a code block, a link, and a mention; text with no such place to break is cut at 40,000 characters. See [Ari in Slack](/reference/chat#ari-in-slack) |
+| Earlier Slack messages Ari reads with a channel message | Up to 30. In a thread, the newest earlier messages of that thread, leaving out the ones the conversation already read. At the channel's top level, the most recent top-level messages, and for each one whose thread Ari answered in, Ari's own most recent replies there. A thread is read to its end, whatever its length. See [Add Ari to a channel](/guides/use-ari-in-slack#add-ari-to-a-channel) |
 | Workspace memories Ari reads when it decides whether to reply to a Slack channel message | Up to 12, the closest matches to how Ari takes part in Slack, each up to 600 characters, and 6,000 bytes of text in all; a longer memory is cut at 600 characters. Private memories are not read for this decision. Once Ari has started on the message, it can read the private memories of the person who wrote the message. When saved memory does not answer within 5 seconds, Ari decides from the messages alone. See [Tell Ari when to reply in a channel](/guides/use-ari-in-slack#tell-ari-when-to-reply-in-a-channel) |
 | Time Ari can spend writing one action before the action is cancelled | 3 minutes, counted from when Ari starts writing it; Ari then continues the reply, and a second action cancelled this way in the same reply ends the reply. See [When Ari takes too long to write one action](/reference/chat#when-ari-takes-too-long-to-write-one-action) |
 | Time a reply waits while auto-reload buys AI usage | No fixed limit; the reply continues when the usage arrives, or stops when the purchase fails. See [Notices in the chat](/reference/plans-and-billing#notices-in-the-chat) |
@@ -43,7 +45,7 @@ See [Attach files to a chat](/guides/attach-files) and [Chat controls and messag
 | Size of an Excel or CSV file read from Google Drive | 500 MB, the same as a file attached to a chat; a CSV becomes a data source only up to 50 MB |
 | Tables one connection syncs | 100, for sources with a table picker |
 | Time a connect link works, for someone else to connect a source | 7 days, or until someone finishes it or it is turned off |
-| Sources in one connect link | 10 |
+| Sources in one connect link | 10. A link that asks for an API key carries one API and no other source, and saves one connection. |
 | Connect links Ari turns off in one request | 50 |
 | Time cfo.ai waits for a provider's own first sync, for a later sync the provider is still running after 45 minutes, or for a later sync Fivetran rescheduled to a later time | No fixed limit while the provider keeps reporting the sync unfinished. cfo.ai checks every 10 minutes and stops waiting only after 20 hours with no such report; the data from the last sync cfo.ai loaded stays as it is meanwhile |
 | Time to plan a saved query | 40 seconds |
@@ -79,7 +81,7 @@ See [How imported data loads](/reference/imported-data) and [Integrations direct
 | Items on one table axis before Ari notes that the table may be slow | About 1,000 |
 | Scenarios one Canvas block can read | No fixed limit. A block can compare four or more Scenarios. |
 | Datasets one Canvas block can read | No fixed limit. A dataset is one live read of Model data that the block draws from, and each one is one more calculation. |
-| Size of a Canvas block's source | 256 KB (262,144 bytes), pictures embedded in the block included |
+| Size of a Canvas block's source | No limit. Pictures embedded in the block are part of its source. |
 | Calculated data a Canvas block can read and still be checked by Ari | No limit for the block as a whole; one dataset can read up to 256 MiB. Ari checks a saved block by rendering it in a browser. It does not render a block with a larger dataset, and it reports that the block's render was not observed; the other blocks in the same check still render. A render is not cut off at a fixed total time: it ends with an error when it makes no progress for 30 seconds. See [How Ari checks a visual](/concepts/pages-and-blocks#how-ari-checks-a-visual). |
 | External links on one Page | 100 |
 | Pages one share link opens | 50, across all its Scenarios. A Page counts once for each Scenario the link opens it in, so a Page shared in three Scenarios counts as 3. A link has no separate limit on Scenarios. |
@@ -116,6 +118,7 @@ See [Export a Page to Excel](/guides/download-a-spreadsheet), [Share a Page outs
 | Length of a Skill's instructions | 49,152 characters |
 | Length of a Trigger's name | 200 characters |
 | Length of a Trigger's instructions | 10,000 characters |
+| Length of a run's report of its outcome, and of a decision a Trigger waits on | No fixed limit. A decision longer than one Slack message arrives as consecutive messages; see [Chat with Ari](#chat-with-ari) |
 | Time a reconnect link in a run's message works | 7 days; it opens only for a member of the workspace who signs in |
 | Precision of a Trigger's schedule | 1 minute, on the clock of the Trigger's time zone. A local time the spring change skips runs at the first minute after the gap, and a local time the autumn change repeats runs once. A Trigger saved without a time zone runs in UTC. |
 | Time a one-time Trigger keeps trying to start after its date and time | 24 hours, with attempts from once a minute to once an hour; then it pauses |
@@ -123,7 +126,8 @@ See [Export a Page to Excel](/guides/download-a-spreadsheet), [Share a Page outs
 | Time a download link in a scheduled run's message works | 24 hours |
 | Cells Ari writes when it fills your own workbook with the **Workbook template fill** Skill | Input cells, with a number, text, a date, or a yes/no value, and a new formula in a cell that holds none. Ari does not write a cell that already holds a formula, a cell inside merged cells other than the top-left one, a cell an array formula fills, or a new heading for an Excel table's column; a fill that names one writes nothing. The copy keeps the workbook's formatting, charts, images, sparklines, comments, print settings, and other sheets. A copy that Ari also adds sheets to can lose its charts and images |
 | Formula cells in a workbook Ari filled | Hold the results Ari calculated: the Skill has Ari recalculate the copy before it delivers it, so Excel's Protected View and file previews show the numbers. A copy that Ari could not recalculate holds no stored results, and those cells show empty until Excel, Google Sheets, or LibreOffice opens the copy for editing |
-| Where Ari reads the template for a later fill | The chat you attached it in. After that chat is deleted, attach the workbook again |
+| Where Ari reads the template for a later fill | The Skill that holds the mapping, when the template is saved with it: Ari opens the template wherever it runs that Skill, for you and for anyone who has the Skill, even after the chat you attached it in is deleted. When the template is not saved with the Skill, Ari reads it from the chat you attached it in; after that chat is deleted, attach the workbook again and ask Ari to update the Skill |
+| Files a Skill can carry | Files a person uploaded, in the workspace they were uploaded in, that the Skill's instructions refer to and that the same person saved there. Not files Ari made, and not copies of a connected Google Sheet. See [Files saved with a Skill](/concepts/automation#files-saved-with-a-skill) |
 | Saved Guides in one workspace | 200 |
 | Length of a Guide's name | 64 characters: lowercase letters, digits, and hyphens |
 
@@ -174,10 +178,13 @@ See [Connect Claude, ChatGPT, Codex, or another AI tool to cfo.ai](/guides/conne
 | --- | --- |
 | Email address for a new account | Not at a free or disposable email provider, unless the address has a pending invitation to a workspace. An address at a provider such as Gmail, Outlook, or Yahoo is otherwise refused for a new account, and keeps working for an account that already has it. An account with such an address cannot create a workspace. Any other domain is accepted, and cfo.ai does not check that the domain belongs to your company; see [Work email required for new accounts](/reference/interface#work-email-required-for-new-accounts) |
 | Length of the free trial | 14 days, once per workspace |
+| Workspaces Ari creates for one person | 3 in 24 hours. Every workspace you created in that time counts, including one you created with **Create workspace** and one since deleted. Past that, Ari creates none and is told when the next one fits. **Create workspace** in the account menu has no such limit |
+| Length of the task Ari carries into a workspace it creates, or into another of your workspaces | 1,000 characters. Ari writes the task as a summary of what you asked |
 | Amount of one extra AI usage purchase or one auto-reload | \$5 to \$10,000 |
 | Monthly spend limit on extra AI usage in a new workspace | \$500, until you change or remove it |
 | Length of a welcome note in an invitation | 600 characters, with up to 3 questions of 200 characters each |
-| People Ari invites in one request | 50 |
+| People Ari invites in one request | 50, all in one role: administrators or viewers |
+| People Ari invites by email to view one Page in one request | 20 |
 | Sign-in codes for one email address | 5 sent and 10 checked in 15 minutes; past that, sign-in answers **Too many requests** until the 15 minutes pass |
 | Time a sign-in code works | 10 minutes |
 | Length of an **Ask a human** message | 4,000 characters, with up to 3 PNG, JPG, or WebP screenshots of 5 MB or less each |

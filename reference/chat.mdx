@@ -21,7 +21,7 @@ This page lists what you see in a chat with Ari, in the order you meet it: start
 
 A mention appears in the message box as a chip. Ari reads the exact cell, row, block, or Page it points to, so you do not have to describe it. See [Ask Ari about a number](/guides/ask-about-a-number).
 
-Someone whose access does not include starting chats, such as a visitor who opened a share link, sees no **New chat** button. In the chat area they see **No chats shared with you** above the reason: **You can’t start chats with Ari in this workspace. Ask a workspace admin for access.**, or, for a signed-in address, **You’re signed in as [address], which can’t start chats with Ari in this workspace. A workspace admin can invite this address.** A chat refused for this reason shows the first sentence and no **Retry**, because sending again cannot succeed. cfo.ai starts no Welcome chat for such a person.
+Someone whose access does not include starting chats, such as a viewer, a guest invited to one Page, or a visitor who opened a share link, sees no **New chat** button. In the chat area they see **No chats shared with you** above the reason: **You can’t start chats with Ari in this workspace. Ask a workspace admin for access.**, or, for a signed-in address, **You’re signed in as [address], which can’t start chats with Ari in this workspace. A workspace admin can invite this address.** A chat refused for this reason shows the first sentence and no **Retry**, because sending again cannot succeed. cfo.ai starts no Welcome chat for such a person.
 
 ## Agents
 
@@ -180,7 +180,7 @@ The group does not show a failed step as an error. In the open group, a step tha
 | **Edit pending message** | Takes the message back into the message box so you can change it and send it again. |
 | **Delete pending message** | Removes the message before Ari reads it. |
 
-Waiting messages sit above the message box until Ari takes them. cfo.ai keeps them with the chat, so they show again after you reload the page, in a second browser tab, and to someone who reads the chat without a message box, oldest first and with the same status. A reader without a message box sees them with no **Steer now**, **Edit pending message**, or **Delete pending message**. A message leaves the waiting rows when Ari receives it, so an older queued message stays waiting when a newer message steers the current turn. While cfo.ai is handing a message to Ari, its row offers none of the three buttons. A message that started a turn cannot be edited or deleted. A message that is still sending has no **Edit pending message** button yet; wait a moment for it. Some waiting messages never have one: a message with files, a reply to a passage, a plan approval, and answers to Ari's questions. Delete one of those and send it again. Editing can show these notices:
+Waiting messages sit above the message box until Ari takes them. A message Ari could not start on shows in the chat with the error under it; see [When a reply stops early or shows an error](#when-a-reply-stops-early-or-shows-an-error). cfo.ai keeps them with the chat, so they show again after you reload the page, in a second browser tab, and to someone who reads the chat without a message box, oldest first and with the same status. A reader without a message box sees them with no **Steer now**, **Edit pending message**, or **Delete pending message**. A message leaves the waiting rows when Ari receives it, so an older queued message stays waiting when a newer message steers the current turn. While cfo.ai is handing a message to Ari, its row offers none of the three buttons. A message that started a turn cannot be edited or deleted. A message that is still sending has no **Edit pending message** button yet; wait a moment for it. Some waiting messages never have one: a message with files, a reply to a passage, a plan approval, and answers to Ari's questions. Delete one of those and send it again. Editing can show these notices:
 
 | Message | What to do |
 | --- | --- |
@@ -285,17 +285,17 @@ When Ari wants to call a service you connected under **Settings → Connections*
 | Control | What it does |
 | --- | --- |
 | **Allow** | Runs this one call. Anyone in the chat can choose it. |
-| **Always allow** | Runs the call and lets Ari use this tool on this service without asking again, for the whole workspace. Only people who can manage workspace settings see it. Other cards waiting for the same tool then read **Always allowed**, and Ari's next call to the tool, even later in the same reply, runs without asking. For an API, it applies only while the connection keeps the address the card showed: if the address changed after the card appeared, **Always allow** grants nothing and a notice titled **Could not approve API call** appears. The notice does not name the reason; ask Ari to make the call again, which opens a new card. |
+| **Always allow** | Runs the call and lets Ari use this tool on this service without asking again, for the whole workspace. Only people who can manage workspace settings see it. Other cards waiting for the same tool then read **Always allowed**, and Ari's next call to the tool, even later in the same reply, runs without asking. For an API, it applies only while the connection keeps the address the card showed: if the address changed after the card appeared, **Always allow** grants nothing and a notice titled **Could not approve API call** appears. The notice does not name the reason; ask Ari to make the call again, which opens a new card. An API's card offers **Always allow** only for some calls; see the table below. |
 | **Decline** | Skips the call. Ari continues without it. |
 
-For an API, a line under the buttons says what **Always allow** covers before anyone chooses it. Only people who can manage workspace settings see the line, and it goes away once the card is answered. A card for an MCP server's tool has no such line.
+For an API, a line under the buttons says what **Always allow** covers, or that the card does not offer it, before anyone chooses. Only people who can manage workspace settings see the line, and it goes away once the card is answered. A card for an MCP server's tool has no such line.
 
 | The call | Line on the card |
 | --- | --- |
-| An endpoint the API's specification lists | **Always allow lets every call to this endpoint run without asking, with any query or request body, in every chat and in scheduled runs.** |
-| A path the specification leaves out | **Always allow lets every later call with this method and path, including these IDs, run without asking. It applies with any query or request body, in every chat and in scheduled runs. Other paths are not covered.** |
+| An endpoint the API's specification lists, when cfo.ai's own check of the endpoint found an ordinary call | **Always allow lets every call to this endpoint run without asking, with any query or request body, in every chat and in scheduled runs.** |
+| Any other call | **Always allow is not offered for this call. Each call needs its own approval.** The card has **Allow** and **Decline**, and no **Always allow**. |
 
-The second line covers one exact path: the method and the path as the card shows them, with the IDs in that path. The same path with a different ID is another path, so **Always allow** on this card does not cover it.
+The second line shows in three cases: for a path the specification leaves out, for an endpoint whose check found a call that may move money or cannot be reversed, and for an endpoint cfo.ai has not checked, or whose definition or connection address changed after the check. **Auto-classify** on the connection's page checks every endpoint again, and it also sets each endpoint's permission again; see [Choose what Ari may do](/guides/give-ari-another-service#choose-what-ari-may-do). The check decides only what the card offers. It does not change a permission, and you can still set any endpoint's permission on the connection's page.
 
 For an API, the card also shows **Request**, the exact request your approval sends: the method and full address, each header, and the body. A header that comes from the connection's saved credential shows no value, a saved header that selects an account shows **ending in** and its last four characters, and a credential inside the body reads **[redacted]**. If you already allowed a request on this connection in this chat, the card reads **Same request as the last one allowed in this chat.** or lists the differences under **Changed since the last one allowed in this chat**, with removed lines starting `-` and added lines starting `+`. After **Allow**, cfo.ai sends the request only if it still matches what the card showed. If the connection's address, its saved credential, or the request changed in between, nothing is sent and Ari asks again with a new card.
 
@@ -310,8 +310,53 @@ If the call can no longer be acted on, a notice titled **Could not approve this 
 | **The MCP connection for this tool was removed, so this call can no longer run.** | The connection was removed after Ari asked. |
 | **A workspace setting now blocks this tool, so this call cannot be approved.** | The tool was blocked in Settings after Ari asked. |
 | **This approval request is not part of this chat.** | The card belongs to another chat. |
+| **Always allow is not offered for this call, so each call needs its own approval. Choose Allow to run it once.** | For an API: the card offered **Always allow**, and by the time you chose it the call no longer qualified. The **Always allow** button leaves the card. Select **Allow**. |
 
 If the approval saved but the message to Ari did not go out, a notice reads **Approved, but Ari was not prompted to continue**. Send any message to have Ari run the call.
+
+### Permission change card
+
+When you ask Ari to give itself more room with a connected MCP server or API, Ari cannot save the change itself. It posts a card with one sentence and one button, and nothing changes until a person presses the button. Ari saves a stricter change at once, with no card: **Allow** to **Ask first**, or anything to **Block**. For the steps, see [Choose what Ari may do](/guides/give-ari-another-service#choose-what-ari-may-do).
+
+| What you asked Ari for | Sentence on the card | Button | After you press it |
+| --- | --- | --- | --- |
+| Set a tool or endpoint to **Allow** | **Ari is asking to always allow "[tool]" on [connection].** | **Always allow** | **Always allowed** |
+| Take one off **Block** | **Ari is asking to unblock "[tool]" on [connection], so each call asks first.** | **Unblock** | **Unblocked** |
+| Return one to its default | **Ari is asking to return "[tool]" on [connection] to the default permission.** | **Apply** | **Applied** |
+| Reset an MCP server's permissions | **Ari is asking to reset [connection] permissions: AI classifies each action again, allowing viewing information and asking before changes.** | **Reset permissions** | **Permissions reset** |
+| Reset an API's permissions | **Ari is asking to classify every [connection] endpoint again with AI: reads Allow, writes Ask first, deletes Block. This replaces earlier choices.** | **Reset permissions** | **Permissions reset** |
+
+When the change covers several tools, the sentence counts them, such as **3 actions** for an MCP server or **3 endpoints** for an API, and the card lists each one with its change, such as **Ask first → Allow**. A card that returns tools to their default always shows the list. A tool returned to its default follows the connection's default. An API endpoint returned to its default follows its method: reads on **Allow**, deletes on **Block**, and every other call on **Ask first**.
+
+- The card has no button to refuse. Leave it unpressed and nothing changes.
+- Everyone in the chat sees the card. Pressing it saves the change only for someone who could make the same change on the connection's page. For anyone else, a notice titled **Could not change permissions** gives the reason, and the button stays.
+- The card appears only in a chat in the cfo.ai web app. In a chat outside it, such as Slack, Ari makes no change that needs the card.
+- Ari changes a permission only when the person it works for can edit the connection's settings.
+- Ari cannot change the permissions of an MCP server whose tools cfo.ai has not listed yet. Opening the server's connection page lists them.
+- When the card cannot be shown, the chat reads **The permission change could not be displayed. Ask Ari to prepare it again.**
+
+### Page invitation card
+
+When you ask Ari to invite a person by email to view one Page, Ari cannot send the invitation itself. It posts a card, and nothing is saved or sent until a person presses its button. For the steps, see [Invite one person by email to view a Page](/guides/share-a-page#invite-one-person-by-email-to-view-a-page).
+
+| Part | What it shows |
+| --- | --- |
+| Sentence | **Ari is asking to invite [address] to view [Page] in [Scenario].** With several people it reads **[n] people** in place of the address and lists each address under it. One card names up to 20 addresses. |
+| **Invite** | Saves the invitations and emails each person. |
+| Note | **People who are not admins can view only this page, after signing in with that email. Nothing is saved or sent until you press Invite.** |
+
+After you press **Invite**, one line replaces the button:
+
+| Message | Meaning |
+| --- | --- |
+| **Invitations sent.** | cfo.ai saved the access and emailed everyone whose access changed. |
+| **Access saved. No invitation email was sent.** | cfo.ai saved the access, and at least one person was not emailed, for example because the same person was emailed about this Page in the last 3 days. |
+| **Everyone on the card already has access or an invitation waiting.** | Nothing changed. An address that already holds an invitation to the Page in that Scenario keeps it, and no second one is made. |
+
+- The card has no button to refuse. Leave it unpressed and nothing is saved.
+- Pressing **Invite** saves the invitations only for someone with full access to the Page in that Scenario. When the request fails, a notice titled **Could not send the invitations** gives the reason, and the button stays.
+- The card appears only in a chat in the cfo.ai web app. In a chat outside it, such as Slack or an AI tool you connected, and in a run with no person in it, such as a Trigger, Ari prepares no invitation.
+- A guest can view the Page and cannot edit it. The **Share** panel has no field for inviting a person by email and does not list guests; see [Share panel](/reference/interface#share-panel).
 
 ### View from an MCP server
 
@@ -368,7 +413,7 @@ When Ari emails you or messages you on Slack, the step in its activity group has
 | **Notification request accepted** | The email service or Slack took the message. It does not confirm that the message reached your inbox. |
 | **Notification accepted on some channels** | One channel took the message, and another refused it or did not answer. |
 | **Notification partly sent** | A Slack send's file posted, and the text that follows it did not. |
-| **Notification outcome unconfirmed** | The provider did not answer. |
+| **Notification outcome unconfirmed** | The provider did not answer, or Slack took only the first part of a message that was posted as several messages. |
 | **Couldn’t send the notification** | No channel took the message. |
 | **Prepared an email preview and reported another channel** | An email waits in a preview card for you to send, and the step also reports how another channel did. |
 
@@ -427,7 +472,7 @@ When you ask Ari to connect Slack, Ari posts a card titled **Connect Slack**. It
 | **Slack is connected, but this chat could not continue.** | The connection was saved. Send Ari a message to go on. |
 | **A workspace admin must connect this service.** | You cannot add connections, so **Connect** is unavailable. |
 
-Ari posts the card only in a chat in the cfo.ai web app, to someone who may add connections, while no Slack workspace is connected. In a Slack or iMessage conversation, in a Trigger's run, or once Slack is connected, Ari says why it cannot post the card. Ari cannot disconnect Slack; use **Disconnect** in **Settings → Ari → Slack**.
+Ari posts the card only in a chat in the cfo.ai web app, to someone who may add connections, while no Slack workspace is connected. In a Slack or iMessage conversation, in a Trigger's run, or once Slack is connected, Ari says why it cannot post the card. Ari can also disconnect Slack when someone who may add connections asks. It posts no card and asks for no confirmation; see [Disconnect Slack](/guides/use-ari-in-slack#disconnect-slack).
 
 ### Other cards
 
@@ -435,9 +480,10 @@ Ari posts the card only in a chat in the cfo.ai web app, to someone who may add 
 | --- | --- |
 | Page card | A Page Ari created or changed, with a button to open it. The button opens the Page in the Scenario Ari edited, even when you have since moved to another Scenario; when Ari's step recorded no Scenario, the Page opens in the Scenario you are viewing. Shown when the edit animation is off. |
 | **Formulas** | Every formula Ari wrote in the turn, closed by default; open it to read each formula. Shown when the edit animation is off. |
-| Connection card | Opens the sign-in for a system you are connecting. Ari cannot sign in for you. See [Connect QuickBooks, Xero, NetSuite, or Rillet](/guides/connect-accounting). |
+| Connection card | Opens the sign-in for a system you are connecting. Ari cannot sign in for you. When you close the sign-in before the source links, Ari is told in the same chat; see [Connected is not the same as ready](/concepts/connected-data#connected-is-not-the-same-as-ready). See [Connect QuickBooks, Xero, NetSuite, or Rillet](/guides/connect-accounting). |
 | **Workspace connections** | Above the first message, while a connection is syncing: a count such as **2/3 connected**, and **Manage**, which opens the connection manager. In the chat that sets up your workspace, the card is titled **Connect integrations**, counts the sources that setup asked for, and reads **Ready** once they are connected. While a sign-in is open, the status reads **Connection flow open**. |
 | **Start walkthrough** / **Start tour** | Starts a Guide Ari built or presented. See [Walk someone through a Page with a Guide](/guides/create-a-guide). |
+| Workspace card | A workspace Ari created because you asked for a separate one. It shows the workspace's name and **Empty workspace with you as admin. Open it to finish setup and continue your task.** Select the card to open the workspace. See [A workspace Ari creates](#a-workspace-ari-creates). |
 
 ## Links to Settings in Ari's answers
 
@@ -468,11 +514,11 @@ A **Reply** button appears above words you select in one of Ari's finished answe
 | --- | --- | --- |
 | **Conversation interrupted - tell Ari what to do differently.** | You stopped Ari, or the reply was interrupted. | Say what you want next. Changes saved before the interruption stay. |
 | **Couldn't stop Ari. Please try again.** | The stop did not reach Ari, so it is still working. | Select **Stop** again. |
-| **Ari stopped before finishing.** with **Retry** | The reply was cut off. | Select **Retry**. It sends your last message again, so Ari can pick the work back up. |
+| **Ari stopped before finishing.** with **Retry** | The reply was cut off, or Ari could not start on your last message. When Ari could not start, your message stays in the chat with the error under it, such as **Ari is temporarily unavailable. Please try again in a moment.** | Select **Retry**. When Ari had received your last message, **Retry** sends it again as a new message. When Ari could not start on it, cfo.ai still holds the message, and **Retry** starts Ari on it without sending it a second time. |
 | **I stopped before finishing this reply. It was interrupted, and repeated attempts to continue it did not finish. Changes I saved before the interruption are kept. Sending the message again starts a new reply.** | cfo.ai tried on its own to continue a reply that a fault inside cfo.ai cut off, for example a restart, and could not. A reply you ended with **Stop** is not continued on its own. | Send the request again. |
 | **No internet connection. Reconnect to continue with Ari.** | Your browser is offline. Ari keeps working on the server. | Reconnect. The chat catches up. |
 | **Connection lost. Reconnect to continue with Ari.** | The chat lost its connection to cfo.ai. | Reconnect, then select **Retry** if it is offered. |
-| **Ari is temporarily unavailable. Please try again in a moment.** | The service that runs Ari answered with an error. When that service cannot be reached at all for a moment, such as during a restart, the chat shows no message: it keeps following the running turn and shows the reply when the service is back. | Try again in a moment. |
+| **Ari is temporarily unavailable. Please try again in a moment.** | The service that runs Ari answered with an error. When that service cannot be reached at all for a moment, such as during a restart, the chat shows no message: it keeps following the running turn and shows the reply when the service is back. | Select **Retry** when it is offered, or try again in a moment. A message Ari could not start on stays in the chat above the error, so you do not need to type it again. |
 | **Ari hit an error while reconnecting. Please try again in a moment.** | The chat could not reconnect to a reply in progress. | Try again in a moment. |
 | **Ari is having trouble reaching the model provider. This is usually temporary. Please try again in a moment.** | The AI model kept failing after retries. | Try again in a moment. |
 | **Ari hit a temporary connection problem and could not recover. Please try again in a moment.** | A connection inside cfo.ai kept failing after retries. | Try again in a moment. |
@@ -604,6 +650,8 @@ In a conversation you have with Ari in Slack, a direct message or a channel thre
 
 Ari's reply posts to the Slack thread once, whether the turn ran in your browser, because you had the same chat open in cfo.ai, or on cfo.ai's servers. When Slack is slow to answer or cannot be reached, cfo.ai tries again, starting 30 seconds later and up to five times. A reply that Slack still does not take stays in the chat in cfo.ai; see [When a reply does not reach Slack](#when-a-reply-does-not-reach-slack).
 
+Slack shows at most 40,000 characters of one message. Longer text that Ari posts in Slack, in a reply to you, in a message Ari sends you, or in a reply in the thread under that message, posts whole as consecutive messages in the same place and in order; [Limits](/reference/limits#chat-with-ari) says where each message ends. If one of them does not post, the ones before it stay in Slack, and cfo.ai treats the text as possibly delivered and does not try it again. When the text was Ari's reply to your message, the full reply stays in the chat in cfo.ai with **Ari couldn't confirm that this reply reached Slack. The full reply is here.**
+
 When Ari ends a turn in Slack with questions for you, the questions post in the same thread as a message of their own, under Ari's reply, or alone when the turn has no reply text. The message shows each question, any note Ari added to it, and its choices. A set of questions too long for one Slack message posts as several messages, split between questions, so every question arrives whole. A question with one answer to pick and up to 25 choices shows them as a row of buttons. Select a button to answer, or reply in the thread to answer in your own words. Reply in the thread to answer any other question. In a channel, only the person whose conversation asked the question can answer it with the buttons. The [question form](#question-form) itself shows only in the chat in cfo.ai.
 
 | Message | Meaning |
@@ -611,7 +659,7 @@ When Ari ends a turn in Slack with questions for you, the questions post in the 
 | **is typing…** | In a direct message, Ari is working on your message. Its reply posts in the same thread when the turn ends. |
 | **I answer with your own cfo.ai access. No cfo.ai account matches the email on your Slack profile. A cfo.ai admin can invite that email in Settings → Workspace. Once you sign in and join, I can answer.** | No cfo.ai account uses the email address on your Slack profile, or Slack gives Ari no email address for you. In a direct message, Ari answers each of your messages this way. In a channel, Ari posts it in the thread only when you @mention Ari or select one of its buttons, and does not reply or react to your other messages. No chat starts. |
 | **I answer with your own cfo.ai access. Your cfo.ai account is not a member of this cfo.ai workspace. A cfo.ai admin can invite the email on your Slack profile in Settings → Workspace. Once you sign in and join, I can answer.** | Your cfo.ai account does not belong to the cfo.ai workspace this Slack workspace is connected to. Ari posts it where the row above says: in a direct message, or in a channel thread only when you @mention Ari or select one of its buttons. No chat starts. |
-| **I answer with your own cfo.ai access. Your access to this cfo.ai workspace does not include Ari chats. A cfo.ai admin can change your access in Settings → Workspace. Once they do, I can answer.** | Your cfo.ai account belongs to the workspace without the administrator role, for example because you signed in to keep a Page that was shared with you by link. Ari posts it in a direct message, or in a channel thread only when you @mention Ari or select one of its buttons, and starts no chat. An administrator can make you one; see [Invite or remove teammates](/guides/invite-teammates). |
+| **I answer with your own cfo.ai access. Your access to this cfo.ai workspace does not include Ari chats. A cfo.ai admin can change your access in Settings → Workspace. Once they do, I can answer.** | Your cfo.ai account belongs to the workspace without the administrator role, for example because you were invited as a viewer, or you signed in to keep a Page that was shared with you by link. Ari posts it in a direct message, or in a channel thread only when you @mention Ari or select one of its buttons, and starts no chat. An administrator can make you one; see [Invite or remove teammates](/guides/invite-teammates). |
 | **I answer with your own cfo.ai access. This Slack connection cannot read profiles to tell who you are. A cfo.ai admin can reconnect Slack in Settings → Ari. After that, I can answer.** | The Slack connection lacks the permission to read members' profiles, so Ari cannot match anyone to a cfo.ai account. An administrator selects **Disconnect**, then **Add to Slack** again, in **Settings → Ari → Slack**. |
 | **Only the person whose cfo.ai access this conversation uses can answer this question. Messages you write in the thread go to your own conversation.** | In a channel, you selected a button on a question Ari asked in someone else's conversation. Only you see this note, the question keeps its buttons, and nothing reaches Ari. |
 | **I was removed from this channel and added again, so earlier conversations ended. This button no longer works. Write a new message instead, and I can answer.** | You selected a button on a question from a conversation Ari no longer holds in that thread, because Ari was removed from the channel and added again. The question keeps its buttons, and nothing reaches Ari. |
@@ -639,13 +687,13 @@ When Ari finishes a reply but Slack does not take it, the reply stays in the sam
 | **Ari no longer has access to this Slack channel, so it couldn't post the reply there. The full reply is here.** | The cfo.ai app was removed from the channel, or the channel no longer exists. |
 | **This Slack channel is archived, so Ari couldn't post the reply there. The full reply is here.** | The channel was archived. |
 | **Slack didn't accept Ari's reply. The full reply is here.** | Slack refused the message for another reason. |
-| **Ari couldn't confirm that this reply reached Slack. The full reply is here.** | Slack did not answer in time, or reported an error after it may have accepted the reply. The reply may be in Slack; cfo.ai does not post it a second time. |
+| **Ari couldn't confirm that this reply reached Slack. The full reply is here.** | Slack did not answer in time, reported an error after it may have accepted the reply, or took only the first part of a reply that was posted as several messages. The reply, or part of it, may be in Slack; cfo.ai does not post it a second time. |
 
 When Ari's questions do not post in Slack, the chat in cfo.ai shows **Ari couldn't post its questions in Slack. They are here.** under the reply, and the questions are in that chat. Ari's reply text, when the turn had any, did reach Slack. When the questions were the whole reply and Slack refused them or gave no clear answer, one of the messages in the table shows instead.
 
 ## The Welcome chat and the starting card
 
-A new workspace opens on a chat named **Welcome**, with Ari's greeting and a starting card docked above the message box. If you sign in again before you have opened that chat or written in it, and the link you used names no page or chat, cfo.ai opens the Welcome chat instead of an empty one. A question you had already typed in the message box in that workspace moves into the chat cfo.ai opens and is not sent until you send it.
+A new workspace opens on a chat named **Welcome**, with Ari's greeting and a starting card at the end of the chat, above the message box. If you sign in again before you have opened that chat or written in it, and the link you used names no page or chat, cfo.ai opens the Welcome chat instead of an empty one. A question you had already typed in the message box in that workspace moves into the chat cfo.ai opens and is not sent until you send it. A workspace Ari created for you opens on a different chat; see [A workspace Ari creates](#a-workspace-ari-creates).
 
 ### Company research and brief
 
@@ -672,6 +720,45 @@ The card opens with two questions: where to start, and what you want to see firs
 | **What do you want to see first?** (the last question on every path) | **P&L and forecast**, **Cash runway**, **Hiring plan**, **Budget versus actuals**, **Board or investor update**, or **Other…** for a view you describe. Ari still builds the whole first Model. Your choice names the view Ari leads with: it puts that Page first in the sidebar, starts the walkthrough on it, and opens its closing reply with a link to it. For **Budget versus actuals** before any Actuals are recorded, Ari builds the budget, and the comparison fills in once Actuals arrive. The question is optional; left empty, the Pages come in Ari's usual order. |
 
 When nothing has established which business you run, for example a personal email address and no company named, Ari asks what the business does before it builds. Ari saves a number it had to estimate as an input you can change, and names it in its reply. For a guided first run, see [Build your first Model](/tutorials/first-model).
+
+## Ari and your other workspaces
+
+A chat with Ari works in the workspace it is in. Ari can create a separate workspace for you, and it can start a task in another workspace you belong to. For the steps, see [Create a second workspace or switch workspaces](/guides/manage-workspaces).
+
+### A workspace Ari creates
+
+When you ask Ari for a separate workspace, such as one for a client, Ari creates it and shows a workspace card. The card shows the workspace's name and **Empty workspace with you as admin. Open it to finish setup and continue your task.** Selecting the card opens the workspace. cfo.ai also gives Ari a link for its reply, which reads **Open** followed by the workspace's name.
+
+| Fact | Value |
+| --- | --- |
+| What the workspace starts with | The name you gave, an empty Model, and you as its only member, as an administrator. Creating it starts no plan and charges nothing. The workspace you asked from does not change. |
+| Before Ari creates it | Ari does not ask you to confirm, and shows no card first. Ari is told to create a workspace only when you ask for a separate one. |
+| What opens first | The plan page, as for any new workspace; see [Start a trial or choose a plan](/guides/choose-a-plan). Once the plan or trial has started, the workspace opens on a chat named **Set up** followed by the workspace's name, in place of the Welcome chat. Ari's first message there reads **This is [workspace name]. I'm picking up the task you asked me to carry here.**, and Ari starts on the task you gave it when you asked for the workspace. The task waits until the plan or trial has started. |
+| A name you already use | When you already belong to a workspace with that name, whatever its capital letters, Ari creates nothing, changes nothing in that workspace, and shows no card. |
+| Where Ari will not create a workspace | Ari creates one only for a message you wrote yourself in a chat in the cfo.ai web app. It does not create one from Slack or iMessage, in a Trigger's run, or for an AI assistant connected through the cfo.ai MCP server. |
+| Who can ask | Someone whose account can create a workspace by hand; see [Create a workspace](/guides/manage-workspaces#create-a-workspace). |
+| How many | See [Limits](/reference/limits#workspace-account-and-sign-in). |
+| Deleting it | Ari cannot delete a workspace. See [Delete a workspace or your account](/guides/cancel-or-delete#delete-a-workspace-or-your-account). |
+
+### A task Ari starts in another workspace
+
+When you ask Ari to do something in another workspace you belong to, Ari starts a new chat in that workspace with your task. The chat is yours, it is in that workspace's chat list, and its name comes from the task. Ari's first message in it reads **This is [workspace name]. I'm picking up the task you asked me to start here.** cfo.ai gives Ari a link to the chat for its reply in the chat you asked in, which reads **Open the task in** followed by the workspace's name. This action shows no card.
+
+The chat you asked in does not read or change the other workspace, and the answer is not copied back to it. Asking twice starts two chats. Ari can list your other workspaces by name, with your role in each. For how this works, see [What Ari can see](/concepts/working-with-ari#what-ari-can-see).
+
+Ari does not start the task, and tells you why, in these cases:
+
+| Case | Detail |
+| --- | --- |
+| The request is not your own message in a chat in the cfo.ai web app | Ari does not start a task in another workspace, or name your other workspaces, from Slack or iMessage, in a Trigger's run, or for an AI assistant connected through the cfo.ai MCP server. |
+| The workspace is not one you are a member of | A workspace you reach only through share links you opened does not count. Neither does a workspace cfo.ai has deactivated. |
+| The workspace has not finished its setup | Open it in cfo.ai and finish setup, such as choosing its plan. |
+| The workspace signs people in through its company's own sign-in | A request from another workspace cannot show that you signed in that way. |
+| You cannot chat with Ari in that workspace | Ari starts a chat only where you could start one yourself. |
+| The workspace cannot start a turn now | Its billing does not allow a new turn; see [Billing stops](#billing-stops-out-of-ai-usage-or-over-a-limit). |
+| The workspace is paused while cfo.ai investigates an issue | Ari starts no chat there until it is available again. |
+
+The task Ari carries has a length limit; see [Limits](/reference/limits#workspace-account-and-sign-in).
 
 ## Related
 

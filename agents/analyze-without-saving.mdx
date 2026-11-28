@@ -26,7 +26,7 @@ To narrow a follow-up to a visible row, cell, or subtree, copy row and column re
 
 - Use the saved table's existing Scenario or time comparison when it already answers the question.
 - To compare Scenarios the table does not save, give the read a `comparison` object, as [Read a table that compares Scenarios or periods](/agents/read-formulas#read-a-table-that-compares-scenarios-or-periods) shows. The saved table stays as it is.
-- For a top-items question, read the item rows and rank them from the returned values yourself; the read does not sort.
+- For a top-items question, read the item rows and rank them from the returned values yourself; the read does not sort. Rank only once you hold every item row. A read returns at most 500 rows, and fewer when they do not fit one result. When the result carries `next`, read the next page with `next.after` as `after` before you rank; see [Pagination and truncation](/agents/mcp-tools#pagination-and-truncation).
 
 ## Read the Model as it was
 

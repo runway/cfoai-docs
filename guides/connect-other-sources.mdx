@@ -17,7 +17,7 @@ You need:
 | Source | What you need |
 | --- | --- |
 | Gusto, Justworks, ADP Workforce Now, Paychex, Hibob, UKG, BambooHR, Deel, and the other HR and payroll systems that connect through Merge | Admin access to the company in the HR or payroll system |
-| Rippling | A Rippling API key. API access may need to be turned on as a paid feature in your Rippling account. |
+| Rippling | A Rippling API key. |
 | HubSpot, Salesforce | A HubSpot or Salesforce login, which you use in Fivetran's setup window |
 | Stripe (Direct) | A Stripe login that can install apps on the account |
 | A database or data warehouse, such as PostgreSQL, MySQL, Snowflake, or BigQuery | The database's connection details and a user that can read the tables you want |
@@ -44,7 +44,7 @@ The [integrations directory](/reference/integrations) lists every source and how
         On the **Integrations** tab, search by name, or filter by type, such as **HR & Payroll** or **CRM**. Select **Connect** on the card.
       </Step>
       <Step title="Sign in">
-        An HR or payroll system opens its own sign-in window: sign in and choose the company. If that window closes before you finish and the card reads **[Source] was not connected**, see [Setup not finished](/guides/fix-a-connection#setup-not-finished-finish-or-cancel-it). Rippling first shows **Before you connect Rippling**; select **Proceed** when you have the API key. Stripe (Direct) opens Stripe, where you install cfo.ai's Stripe app with read-only access. Most other sources open Fivetran's setup window, where you sign in or enter the source's credentials.
+        An HR or payroll system opens its own sign-in window: sign in and choose the company. If that window closes before you finish and the card reads **[Source] was not connected**, see [Setup not finished](/guides/fix-a-connection#setup-not-finished-finish-or-cancel-it). Rippling opens Fivetran's setup window, where you enter the Rippling API key. Stripe (Direct) opens Stripe, where you install cfo.ai's Stripe app with read-only access. Most other sources open Fivetran's setup window, where you sign in or enter the source's credentials.
       </Step>
       <Step title="Choose tables, if asked">
         Databases and most sources through Fivetran show a table picker. Every table starts selected; uncheck the ones you do not need, keep 100 or fewer, and select **Finish setup & sync [N] tables**. Pipedrive starts with seven recommended sales tables selected instead; see [Other CRMs](/reference/integrations#other-crms). See [Choose which tables a source syncs](/guides/choose-synced-tables).

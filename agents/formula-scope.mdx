@@ -18,7 +18,7 @@ The server derives the scope from the target. You do not invent Dimension IDs, a
 
 ## Write a condition
 
-No `edit_table_blocks` field takes a formula's condition: the row, column, or cell you target sets it. You write a condition in two places: the `conditions` filter of a `variable` or `dimension` read, and the `condition` of an `edit_dimension_mappings` rule. You read one on each saved formula a result describes.
+No `edit_table_blocks` field takes a formula's condition: the row, column, or cell you target sets it. You write a formula's condition yourself in the `condition` of an `edit_dimension_mappings` rule. You also pass conditions as a filter, in `conditions` on a `variable` or `dimension` read, to pick saved formulas by their scope. You read one on each saved formula a result describes.
 
 When you write a condition yourself, use the readable Dimension and item names that inspection returns. Put backticks around names with spaces, and add a returned reference's short suffix only when needed.
 

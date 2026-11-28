@@ -21,16 +21,16 @@ Use a comparison when you want to see two versions of your plan, such as Main an
   <Tab title="By hand">
     <Steps>
       <Step title="Open the comparison settings">
-        Select **Compare**, the two-arrows button in the table's header. It is not shown on a phone or to anyone who cannot edit the table.
+        Select **Compare**, the two-arrows button in the table's header. It is not shown on a phone or tablet, or to anyone who cannot edit the table.
       </Step>
       <Step title="Choose what to compare">
         Under **Compare between**, choose **Scenarios** and pick the Scenarios to show beside the one you are viewing. Or choose **Time periods** to compare each period with an earlier one, and pick the earlier period, such as the previous period or a set number of periods ago. **None** removes the comparison, as **Reset** does. A time comparison needs exactly one Date row or column; the message the panel shows otherwise is in [Table block controls and messages](/reference/table-blocks#table-header).
       </Step>
-      <Step title="Choose the measures">
-        Under **Variables**, turn on one or more of the available measures: **Value**, **Variance**, and **Variance %**; a time comparison also offers **Comparison value**. At least one stays on. A Scenario comparison starts with **Value** only, and a time comparison starts with **Value** and **Comparison value**.
-      </Step>
       <Step title="Choose the layout">
         Under **Display as**, show the comparisons in **Columns** or **Rows**. For a Scenario comparison in **Rows**, **Group by** orders them **By scenario** or **By variable**; this grouping is a view setting and is not saved with the table.
+      </Step>
+      <Step title="Choose the measures">
+        Under **Variables**, turn on one or more of the available measures: **Value**, **Variance**, and **Variance %**; a time comparison also offers **Comparison value**. At least one stays on. A Scenario comparison starts with **Value** only, and a time comparison starts with **Value** and **Comparison value**.
       </Step>
     </Steps>
 
@@ -44,7 +44,7 @@ A table compares either Scenarios or time periods, not both at once. Comparing t
 
 To show two Scenarios in separate tables on one Page, such as a Plan table above a Plan+ table, choose a Scenario for each table. A table with a Scenario chosen shows that Scenario whatever Scenario the Page is open in. A comparison cannot do this: it adds columns beside the Scenario the table already shows.
 
-You need a desktop browser, permission to change the table's layout on its Page, and access to the Scenario you choose. A member limited to named Pages cannot change a table's layout, so they cannot choose a table's Scenario.
+You need a desktop browser, permission to edit the table on its Page, and access to the Scenario you choose.
 
 <Tabs>
   <Tab title="Ask Ari">
@@ -72,7 +72,7 @@ The list holds your Snapshots as well as your Scenarios, and a table set to a Sn
 
 ## How Variance and Variance % are calculated
 
-In a Scenario comparison, **Variance** is the compared Scenario's value minus the value in the Scenario you are viewing. **Variance %** is that difference divided by the viewed value, and is blank when the viewed value is zero or empty. In a time comparison, **Variance** is the current period minus the earlier one, and **Variance %** is that difference divided by the earlier period's value. It is blank when the earlier value is zero or empty. Whether a positive variance shows as good or bad depends on the Variable's **Variance colors** setting, **Higher is better** or **Lower is better**. Change it on the Variable, and every table that shows it follows; see [Format and arrange a table](/guides/format-a-table).
+In a Scenario comparison, **Variance** is the compared Scenario's value minus the value in the Scenario you are viewing. **Variance %** is that difference divided by the absolute value of the viewed value, and is blank when the viewed value is zero or empty. In a time comparison, **Variance** is the current period minus the earlier one, and **Variance %** is that difference divided by the absolute value of the earlier period's value. It is blank when the earlier value is zero or empty. Dividing by the absolute value gives **Variance %** the same sign as **Variance**: a loss that shrinks from -4 to -2 has a **Variance** of +2 and a **Variance %** of +50%. An Excel download calculates **Variance %** the same way. Whether a positive variance shows as good or bad depends on the Variable's **Variance colors** setting, **Higher is better** or **Lower is better**. Change it on the Variable, and every table that shows it follows; see [Format and arrange a table](/guides/format-a-table).
 
 ## Related
 

@@ -1,6 +1,6 @@
 ---
 title: "Settings"
-description: "Every section and field in cfo.ai Settings, in the order the app shows them: General, Workspace, Profile, Ari, Connections, Skills, Billing, and Usage. Covers the workspace name and brand, Last close and date defaults, negative numbers in parentheses, light or dark mode, inviting teammates, what a member limited to named Pages can and cannot do, who sees each section, its messages, and what Settings has no setting for, such as a fiscal year or an API key."
+description: "Every section and field in cfo.ai Settings, in the order the app shows them: General, Workspace, Profile, Ari, Connections, Skills, Dimensions, Billing, and Usage. Covers the workspace name and brand, the list of the Dimensions you can read with their items and the tables that use them, Last close and date defaults, negative numbers in parentheses, light or dark mode, inviting teammates, who sees each section, its messages, and what Settings has no setting for, such as a fiscal year or an API key."
 ---
 
 Settings holds the workspace's options and your own preferences. To open it, select your name or picture at the bottom of the sidebar, then **Settings**. Settings opens on **General**, with the sections listed down the left side in this order.
@@ -8,15 +8,16 @@ Settings holds the workspace's options and your own preferences. To open it, sel
 | Section | Who sees it | What it holds |
 | --- | --- | --- |
 | **General** | Everyone | The workspace name and brand, date defaults and Last close, how every table shows negative numbers, and your appearance |
-| **Workspace** | Administrators | Inviting, removing, and listing administrators |
+| **Workspace** | Administrators | Inviting, removing, and listing administrators and viewers |
 | **Profile** | Everyone | Your name and sign-in email |
 | **Ari** | Everyone | Ari's thinking animation, sound, notifications, and Slack |
 | **Connections** | Everyone, once the workspace has started its trial or a plan | The cfo.ai MCP server address, and the MCP servers and APIs Ari can call |
 | **Skills** | Everyone | Your own Skills, wherever they apply, and the workspace's optional built-in Skills |
+| **Dimensions** | Everyone | Every Dimension you can read, except the ones cfo.ai generates, such as Date, with its items and the tables and Variables that use it |
 | **Billing** | Workspaces billed in the app | Plan, payment methods, billing recipient, billing history, and cancellation |
 | **Usage** | Workspaces billed in the app | AI usage, extra usage, spend limit, auto-reload, and integration slots |
 
-Only administrators see **Workspace**. A member limited to named Pages cannot change the workspace's settings; see [Members limited to named Pages](#members-limited-to-named-pages). A workspace billed outside the app has no **Billing** or **Usage** section.
+Administrators see **Workspace**. A viewer does not, and sees no **Billing** or **Usage** section. A workspace billed outside the app has no **Billing** or **Usage** section.
 
 ## General
 
@@ -44,7 +45,8 @@ A brand gives the workspace a name, logo, colors, heading typeface or font, side
 | --- | --- |
 | **Website address** and **Build from a website** | Shown with no brand. The box reads `yourfirm.com`, and the button is unavailable until you type an address. Opens a chat in which Ari builds a brand from the website you typed. |
 | **Set up by hand** | Shown with no brand. Opens the brand form. |
-| Brand form | **Name** (up to 40 characters); **Logo for light surfaces** and **Logo for dark surfaces**, each with **Upload** (**Replace** once set) and the note **PNG, JPEG, or WebP. Up to 1 MB and 2,000 pixels on each side. The sidebar shows the logo for its own color, in either mode. The logo for dark surfaces is optional.** (see [Brand your workspace](/guides/brand-your-workspace#what-a-brand-contains)); **Light mode colors** and **Dark mode colors**, each with **Page surface**, **Panel surface**, **Text**, **Accent**, **Sidebar**, and **Sidebar text**; **Heading typeface** (**cfo.ai default**, **Source Serif**, **Newsreader**, **Fraunces**, **Zilla Slab**, or **DM Sans**), hidden while a **Brand font** is set; **Brand font**; **Corner shape** (**Square**, **Soft**, or **Round**); **Show the brand on link previews**; and **Save** and **Cancel** (**Done** when nothing changed). A preview beside the form shows the name with **Powered by cfo.ai**. |
+| Brand form | **Name** (up to 40 characters); **Logo for light surfaces** and **Logo for dark surfaces**, each with **Upload** (**Replace** once set) and the note **PNG, JPEG, or WebP. Up to 1 MB and 2,000 pixels on each side. The sidebar shows the logo for its own color, in either mode. The logo for dark surfaces is optional.** (see [Brand your workspace](/guides/brand-your-workspace#what-a-brand-contains)); **Logo size in the sidebar**; **Light mode colors** and **Dark mode colors**, each with **Page surface**, **Panel surface**, **Text**, **Accent**, **Sidebar**, and **Sidebar text**; **Heading typeface** (**cfo.ai default**, **Source Serif**, **Newsreader**, **Fraunces**, **Zilla Slab**, or **DM Sans**), hidden while a **Brand font** is set; **Brand font**; **Corner shape** (**Square**, **Soft**, or **Round**); **Show the brand on link previews**; and **Save** and **Cancel** (**Done** when nothing changed). A preview beside the form shows the name with **Powered by cfo.ai**. |
+| **Logo size in the sidebar** | Shown under the logo fields once the saved brand has a logo. **Compact** or **Large**; every brand starts at **Compact**. The note reads **Large shows a logo that is not wide at up to twice the height.** **Compact** shows the logo 24 pixels tall in the open sidebar. **Large** shows it up to 48 pixels tall and never wider than 144 pixels, so a logo six or more times as wide as it is tall looks the same at either size. The collapsed sidebar shows the same small square at either size. Applies at once, without **Save**. |
 | **Light mode colors** | The note reads **Enter each color as hex or OKLCH. Colors are saved as entered, written in OKLCH. The sidebar colors are optional.** **Sidebar** and **Sidebar text** are filled in together or left empty together. |
 | **Brand font** | Shown with controls only after the brand is saved; before that the row reads **Save the brand to use any Google font, or your own font file.** With no font, the note reads **Any typeface for headings, in place of the typeface above.**, with a **Google Fonts family** box (**Google Fonts family, such as Playfair Display**) and **Import**, which accepts only a family with Latin letters, a checkbox **Our licence lets cfo.ai host this font and show it to everyone who opens our pages, including people who follow a share link.**, and **Upload a WOFF2 file**, which is unavailable until the checkbox is ticked. With a font, the note reads **Headings use this font.**, and the row shows the font's name, **From Google Fonts** or **Uploaded**, and **Remove**. Each change applies at once, without **Save**. |
 | **Show the brand on link previews** | Shown after the brand is saved. Off unless turned on. **Anyone who sees a link to this workspace’s pages sees the brand, even before opening it: on chat and social cards, on the link’s own page, and on its password prompt.** Applies at once, without **Save**. |
@@ -66,6 +68,7 @@ Someone who cannot change the brand sees **This workspace uses the** [name] **br
 | **That family has no Latin letters, so it can't set headings here.** | The family exists but has no Latin file to import. |
 | **Couldn't reach Google Fonts. Try again.** | The import failed to reach Google Fonts. |
 | **Couldn’t change link previews** | The switch did not save; the reason follows. |
+| **Couldn’t change the logo size** | The **Logo size in the sidebar** choice did not save; the reason follows, or **Couldn’t change the logo size. Try again.** |
 | **The logo must be a PNG, JPEG, or WebP image.** / **The logo file is larger than 1 MB.** / **The logo is wider or taller than 2,000 pixels.** | Under a logo field. The logo was refused. |
 | **The brand saved, but this logo did not.** | Under a logo field after **Save**, followed by the reason. The rest of the brand is saved. |
 | **Brand saved** / **Brand removed** | The save or the removal went through. |
@@ -74,15 +77,15 @@ Someone who cannot change the brand sees **This workspace uses the** [name] **br
 
 A logo field shows **Remove** once a logo is set. After the brand is saved, **Upload**, **Replace**, and **Remove** on a logo apply at once, without **Save**.
 
-**Remove brand** opens **Remove brand?**, which reads **Everyone in this workspace sees their own theme again. Shared pages lose the** [name] **name and logo. Other workspaces keep their copies.**, with **Cancel** and **Remove brand**. Removing a brand also deletes its logos and brand font and turns **Show the brand on link previews** off.
+**Remove brand** opens **Remove brand?**, which reads **Everyone in this workspace sees their own theme again. Shared pages lose the** [name] **name and logo. Other workspaces keep their copies.**, with **Cancel** and **Remove brand**. Removing a brand also deletes its logos and brand font, sets **Logo size in the sidebar** back to **Compact**, and turns **Show the brand on link previews** off.
 
-**Copy to other workspaces** opens a dialog that reads **Each workspace you select gets the** [name] **brand. A later change here does not change the copies.** It lists your other workspaces where you are an administrator and brands are available, each marked **No brand** or **Has the** [name] **brand**. When a selected workspace has a brand, the dialog warns **Copying replaces this brand:** [brand] **in** [workspace]**.** The button reads **Copy to 1 workspace** or **Copy to** [N] **workspaces**. With no workspace to copy to, the dialog reads **You are not an admin of another workspace where brands are available.**
+**Copy to other workspaces** opens a dialog that reads **Each workspace you select gets the** [name] **brand. A later change here does not change the copies.** It lists your other workspaces where you are an administrator, except a workspace cfo.ai has deactivated, each marked **No brand** or **Has the** [name] **brand**. When a selected workspace has a brand, the dialog warns **Copying replaces this brand:** [brand] **in** [workspace]**.** The button reads **Copy to 1 workspace** or **Copy to** [N] **workspaces**. With no workspace to copy to, the dialog reads **You are not an admin of another workspace where brands are available.**
 
 | Copy result | Meaning |
 | --- | --- |
-| **Copied** | The workspace now has the brand, with its logos, brand font, and link-preview choice. |
+| **Copied** | The workspace now has the brand, with its logos, logo size, brand font, and link-preview choice. |
 | **Not copied. You are not an admin of this workspace.** | Your role there changed. |
-| **Not copied. Brands are not available in this workspace.** | The workspace cannot hold a brand. |
+| **Not copied. Brands are not available in this workspace.** | cfo.ai has deactivated the workspace. The dialog does not list a deactivated workspace, so this shows only when the workspace was deactivated after the dialog opened. |
 | **Not copied. This workspace was not found.** | The workspace no longer exists. |
 | **Not copied. The brand could not be saved here. Try again.** | The save failed in that workspace. |
 | **Some workspaces may have changed. Reload the page to see the brand each one has.** | The request failed part way; the reason comes first. |
@@ -94,7 +97,7 @@ The section is headed **Date & Time**. Its settings belong to the Scenario of th
 | Control | What it does |
 | --- | --- |
 | **Default date granularity** | The period new tables show: **Raw**, **Day**, **Week**, **Month**, **Quarter**, **Half**, or **Year**. **Month** unless changed. Last close snaps to the end of a period at this granularity. |
-| **Default date range** | The first and last dates new tables show. A new workspace starts from January 1 of the year six months ago through December 31 of the year six months ahead. Existing tables keep their own range. |
+| **Default date range** | The first and last dates new tables show. A new workspace starts from January 1 of the year six months ago through December 31 of the year six months ahead. Existing tables keep their own range. A table added to a Page that has its own date range starts with the Page's range instead; see [The Page's date range](/concepts/pages-and-blocks#the-pages-date-range). |
 | **Last close** | The end of the last period you closed, your month-end. Periods up to it are Actuals, and later periods are Forecast. Pick a period from the list the picker opens, which shows periods at the default date granularity, such as months; cfo.ai saves its last day. A new workspace starts at the last day of the previous calendar month, and Last close never moves on its own. See [Actuals, Forecast, and Last close](/concepts/actuals-and-forecast). |
 
 There is no fiscal-year setting: quarters, half-years, and years follow the calendar year, January to December. See [Fiscal years](/concepts/actuals-and-forecast#fiscal-years-quarters-and-years-follow-the-calendar).
@@ -119,33 +122,54 @@ Someone without permission to change workspace settings sees the control disable
 
 | Control | What it does |
 | --- | --- |
-| **Color mode** | Light or dark mode: **Auto**, **Light**, or **Dark**. **Auto** follows your device's setting. Saved in this browser. The account menu's **Appearance** item sets the same thing. |
-| **Theme** | **Warm paper**, cfo.ai's own theme, **Prism**, **Pid Girl**, **Hot Dog Stand**, **50s CFO**, **Columnar Pad**, **Spreadsheet**, or **Custom**. Once you have a theme of your own, the list shows it under its own name in place of **Custom**, and the closed control still reads **Custom** while it is selected. Saved to your account and seen only by you. |
+| **Color mode** | Light or dark mode: **Auto**, **Light**, or **Dark**. **Auto** follows your device's setting. A browser that has not chosen starts in **Light**. Saved in this browser. The account menu's **Appearance** item sets the same thing. |
+| **Theme** | **Warm paper**, cfo.ai's own theme, **Prism**, **Pid Girl**, **Hot Dog Stand**, **50s CFO**, **Columnar Pad**, **Spreadsheet**, or **Custom**. Once you have a theme of your own, the list shows it under its own name in place of **Custom**, and the closed control still reads **Custom** while it is selected. You have one theme of your own, with a name of up to 40 characters; a new one replaces it. Saved to your account and seen only by you. |
 | **Create a custom theme** box and **Personalize** | Shown when **Theme** is **Custom**. **Personalize** opens a chat where Ari builds a theme from what you typed. See [Change your theme, sounds, and notifications](/guides/personalize-cfoai). |
 
 In a workspace with a brand, **Theme** is replaced by **This workspace uses the** [name] **brand. Your own theme applies in workspaces without a brand.** If a theme change cannot be saved, a notice reads **Failed to save theme**.
 
+Ari can build or change a theme of your own. Ari cannot set **Color mode**, choose a built-in theme, or change the sound and notification settings under **Settings → Ari**; you set those here.
+
 ## Workspace
 
-### Invite admin
+### Invite people
 
-**Invite admin** adds a teammate to the workspace. The section reads **Admins can see and edit all pages in the workspace, invite others, and manage billing and other settings.** See [Invite or remove teammates](/guides/invite-teammates).
+**Invite people** adds a teammate to the workspace as an administrator or a viewer. The section reads **Admins can see and edit all pages in the workspace, invite others, and manage billing and other settings. Viewers can see every page and table and cannot change anything.** See [Invite or remove teammates](/guides/invite-teammates).
 
 | Control | What it does |
 | --- | --- |
+| **Role** | **Admin** or **Viewer**. **Admin** is selected when the section opens. |
 | **Email address** | The address to invite. |
-| **Add admin** | Unavailable until an address is typed. Creates the invitation and emails it; the form then reads **Admin invitation created for** [address]**.** Adding an address that already has a pending invitation sends the email again. An address that already has access to this workspace's shared Pages through a share link, and so belongs to the workspace without the administrator role, is made an administrator at once, with no email, and the form reads [address] **is now an admin.** See [Keeping access to a shared Page](/concepts/sharing-and-access#keeping-access-to-a-shared-page). The same line appears for an address that is already an administrator, and nothing changes. |
+| **Add admin** | Unavailable until an address is typed. Creates the invitation and emails it; the form then reads **Admin invitation created for** [address]**.** Adding an address that already has a pending invitation sends the email again. An address that already has access to this workspace's shared Pages through a share link, and so belongs to the workspace without the administrator role, is made an administrator at once, with no email, and the form reads [address] **is now an admin.** See [Keeping access to a shared Page](/concepts/sharing-and-access#keeping-access-to-a-shared-page). The same line appears for an address that is already an administrator, and nothing changes. A viewer you add here is made an administrator the same way. |
+| **Add viewer** | Shown in place of **Add admin** when **Role** is **Viewer**. Unavailable until an address is typed. Creates the invitation and emails it; the form then reads **Viewer invitation created for** [address]**.** Adding an address that already has a pending viewer invitation replaces that invitation and sends the email again. |
 
-Every invitation from Settings is for an administrator. To invite a member limited to named Pages, ask Ari; see [Members limited to named Pages](#members-limited-to-named-pages). For read-only access without joining the workspace, use a share link; see [Share a Page outside your workspace](/guides/share-a-page).
+| Message | Meaning |
+| --- | --- |
+| **workspace member already exists** | **Add viewer** was used for an address that already belongs to the workspace in any role, such as an administrator or a person who signed in to keep a Page shared by link. |
+| **this email has a pending admin invitation** | **Add viewer** was used for an address that holds a pending administrator invitation. Cancel that invitation first. |
+| **permissions: invalid argument: this email has a pending viewer invitation** | **Add admin** was used for an address that holds a pending viewer invitation. Cancel that invitation first. |
+| **invite email is invalid** | **Add viewer** was used with an address that is not a valid email address. |
+| **Could not add viewer. Please try again.** | The viewer invitation could not be created. |
+| **Viewer invitations are no longer available in this workspace. Choose a role to continue.** | Shown under **Role** when the workspace stopped offering viewer invitations while **Viewer** was chosen. Nothing is sent until you choose **Admin**. |
+| **Your viewer role does not allow this action. A workspace admin can help or change your role.** | What a viewer gets when cfo.ai refuses an action, because a viewer can read and cannot change anything. |
 
-### Admins
+An invitation is for an administrator or a viewer. What each role can do is in [Administrators and viewers](/concepts/sharing-and-access#administrators-and-viewers). cfo.ai has no editor role, no list of Pages that limits what a teammate can open, and no user groups.
+
+What cfo.ai does not do here, and what to do instead:
+
+- You cannot change an administrator into a viewer. Remove the person in [Admins and viewers](#admins-and-viewers), then invite them again with **Role** set to **Viewer**.
+- You cannot invite a person as a viewer while they already belong to the workspace. Remove them first, then invite them as a viewer.
+- A viewer cannot start a chat with Ari. To let them use Ari, add their address with **Role** set to **Admin**.
+- Settings does not list a guest you invited by email to view one Page, or that guest's pending invitation. Ask Ari to list everyone in the workspace, to cancel a guest's invitation, or to remove a guest; see [Invite one person by email to view a Page](/guides/share-a-page#invite-one-person-by-email-to-view-a-page).
+
+### Admins and viewers
 
 | Control | What it does |
 | --- | --- |
 | **Ask Ari** | Closes Settings and starts a chat that asks Ari to list everyone in the workspace and every pending invitation. Ari changes nothing until you tell it what to change. |
-| A row | A person's name and email, marked **(you)** for you, with **Admin** for someone who joined or **Invited** for a pending invitation. |
-| **Remove member** | On an **Admin** row's menu. Opens **Remove member?**: **They will lose access to this workspace. Any pending invitations for this email will also be cancelled. Their other workspaces are unaffected.** Your own row has no menu. |
-| **Cancel invitation** | On an **Invited** row's menu. Opens **Cancel invitation?**: **They will no longer be able to join through this invitation. If they have already joined, their membership stays unchanged.** |
+| A row | A person's name and email, marked **(you)** for you, with **Admin** or **Viewer** for someone who joined, and **Invited** or **Invited as viewer** for a pending invitation. |
+| **Remove member** | On an **Admin** or **Viewer** row's menu. Opens **Remove member?**: **They will lose access to this workspace. Any pending invitations for this email will also be cancelled. Their other workspaces are unaffected.** Your own row has no menu. |
+| **Cancel invitation** | On an **Invited** or **Invited as viewer** row's menu. Opens **Cancel invitation?**: **They will no longer be able to join through this invitation. If they have already joined, their membership stays unchanged.** |
 
 | Message | Meaning |
 | --- | --- |
@@ -153,56 +177,18 @@ Every invitation from Settings is for an administrator. To invite a member limit
 | [email] **invitation was cancelled.** | The invitation was cancelled, and the list reloaded. |
 | **Couldn’t load the admins of this workspace. Please try again.** | The list could not load. |
 
-### Members limited to named Pages
+### Access history
 
-A member limited to named Pages belongs to the workspace without the administrator role: they see only the Pages an administrator names, and they change Main only through an administrator. cfo.ai's own messages call such a person a scoped member. For how this works, see [Sharing and access](/concepts/sharing-and-access#members-limited-to-named-pages).
+Settings shows who has access now, not how access changed. An administrator can ask Ari to list the changes between two dates; see [See who was given or lost access](/guides/invite-teammates#see-who-was-given-or-lost-access).
 
-Settings has no control for these members:
-
-- You invite one by asking Ari, not from **Invite admin**. See [Invite someone to named Pages only](/guides/invite-teammates#invite-someone-to-named-pages-only).
-- The **Admins** list leaves them out, joined or invited. Ask Ari to list everyone in the workspace. Ari's list names each person and each pending invitation and marks the administrators; it does not say which Pages a person holds.
-- Entering such a member's address under **Invite admin** makes them an administrator at once, which ends their limits.
-
-An invitation gives each named Page one of two levels:
-
-| Level | What the member can do with the Page |
+| Fact | Detail |
 | --- | --- |
-| View | Open the Page, and read the Variables its tables show. |
-| Edit | Also change those Variables' values and formulas, in a Scenario of their own. |
-
-An invitation is refused, and nobody in the same request is invited, when:
-
-- It names no Page, or more than 20 Pages.
-- A Page it names is not a Page in Main.
-- The person already belongs to the workspace, or has a pending administrator invitation.
-- The welcome's first Page is not one of the Pages the invitation names.
-
-Inviting an address again before the person joins replaces the level of each Page named again and keeps the Pages named only in the earlier invitation.
-
-| A member limited to named Pages can | Details |
-| --- | --- |
-| Open their Pages | In Main, and in each Scenario of their own. The sidebar and workspace search hold only what they can read. |
-| Read formulas | Only a formula whose every reference they can read. Other formulas are left out. |
-| Create a Scenario and rename their own | A Scenario they create is theirs to edit. |
-| Change values and formulas | With edit access, on the Variables their Pages' tables show, in a Scenario of their own. A formula must refer only to what they can read. |
-| Chat with Ari | Ari works with the member's access. See [Ari follows the same access](/concepts/sharing-and-access#ari-follows-the-same-access). |
-| Ask for a merge | By asking Ari, which emails the administrators. See [Merge requests](/reference/scenarios-and-history#merge-requests). |
-
-| A member limited to named Pages cannot | Details |
-| --- | --- |
-| Change Main | Every change to Main, or to anything saved in it, is refused, whatever level their Pages have. |
-| Merge or delete a Scenario, or take a Snapshot | Including a Scenario of their own. |
-| Change a Page or a table's layout | No creating, renaming, moving, or deleting a Page or a block, and no saved change to a table's rows, columns, or filters. |
-| Undo, redo, or restore | Version history is closed to them too. |
-| Download a spreadsheet | In the app or by asking Ari. |
-| Attach or upload a file | In a chat or as a data upload. |
-| Add or change a connection | Ari also calls no connected API or MCP server for them. |
-| Create or change a Trigger, a Skill, an agent, or a share link | Workspace Skills still apply in their chats. |
-| Change the workspace's name, brand, billing, or people, or the **Date & Time** settings or Last close of any Scenario | They can read the date settings, and cfo.ai refuses a change to them, in a Scenario of their own too. |
-
-When the app shows why it refused such a member, the reason reads **Your access covers your pages, editing them in your own scenarios, merge requests and your Ari chats. Ask a workspace admin to do this.** For example, **Delete** on their own Scenario shows a notice titled **Couldn’t delete [Scenario]** with that reason.
-
-When a calculation or another request fails for such a member, cfo.ai tells them that it failed without the explanation, because the explanation can name a Variable they cannot read.
+| What cfo.ai records | Each time a person is given access to the workspace or to something in it, loses that access, or has it changed, and each time a person joins or leaves a role. Each change holds its time, the person who made it when one was recorded, the person or role it applies to, and the access before and after. |
+| Access through a share link | Recorded when a reader opens the link, with the person who created the link as the person who made the change. A reader who is not signed in is listed without a name or an email address. |
+| What is not recorded | A share link nobody has opened, access that a Page passes down to the Pages under it, and a Page moving to another place among the Pages. An empty answer means no change was recorded, not that access stayed the same. |
+| How far back it goes | To the time cfo.ai began recording access changes. Ari states that time when the period you ask about starts before it. |
+| What Ari leaves out | A change to something you cannot open now, including something that has since been deleted. |
+| Who can ask | An administrator. Ari refuses anyone else. |
 
 ## Profile
 
@@ -231,9 +217,9 @@ The sections appear in this order.
 
 | Control | What it does |
 | --- | --- |
-| **Play sound when Ari is done** | Plays a short sound when Ari finishes a reply. |
-| Volume | **Quiet**, **Normal**, or **Louder**. |
-| **Alert sound** | **Default** or **Beep Me**. |
+| **Play sound when Ari is done** | Plays a short sound when Ari finishes a reply in the chat you have open. A chat that finishes while it is not open plays no sound. |
+| Volume | **Quiet**, **Normal**, or **Louder**. Starts at **Normal**. |
+| **Alert sound** | **Default** or **Beep Me**. Starts at **Default**. |
 
 The box is unchecked until you check it, and the volume and **Alert sound** are unavailable while it is unchecked. Changing the volume or the alert sound plays it. These settings are saved in this browser.
 
@@ -255,11 +241,11 @@ When the browser blocks notifications, the switch is unavailable and reads **Not
 | Connected | **Connected to** [Slack workspace] and **Ari can now DM you in this Slack workspace, and a cfo.ai admin can invite Ari to a channel.**, with **Disconnect**. A notice reads **Slack connected** when the connection finishes. |
 | Disconnecting | **Disconnect "[Slack workspace]"?** with **cfo.ai Agent will no longer be able to post to this workspace until you reconnect.** |
 
-While no Slack workspace is connected, someone who may add connections can also connect Slack from a chat in the cfo.ai web app: ask Ari to connect Slack, and it posts a card that runs the same sign-in. See [Connect Slack card](/reference/chat#connect-slack-card). Disconnecting is done only here; Ari cannot disconnect Slack.
+While no Slack workspace is connected, someone who may add connections can also connect Slack from a chat in the cfo.ai web app: ask Ari to connect Slack, and it posts a card that runs the same sign-in. See [Connect Slack card](/reference/chat#connect-slack-card). **Connect** beside **Slack** in [Ari's profile](/reference/interface#aris-profile) runs the same sign-in too. Someone who may add connections can also ask Ari to disconnect Slack; Ari disconnects it without the **Disconnect "[Slack workspace]"?** confirmation this section shows. See [Disconnect Slack](/guides/use-ari-in-slack#disconnect-slack).
 
-Slack's approval screen lists what the cfo.ai app may do. cfo.ai asks to read and send direct messages, read and post in the channels Ari is added to, private or public, upload images for its Slack messages to show, see when it is @mentioned, list channels, add emoji reactions, show that it is typing, look up members' names and email addresses so it can match a Slack account to a cfo.ai account, and leave a channel it may not stay in. A Slack workspace connected before a permission was added keeps its earlier grant until an administrator selects **Disconnect** and then **Add to Slack** again.
+Slack's approval screen lists what the cfo.ai app may do. cfo.ai asks to read and send direct messages, read and post in the channels Ari is added to, private or public, upload the files and images its Slack messages carry, see when it is @mentioned, list channels, add emoji reactions, show that it is typing, look up members' names and email addresses so it can match a Slack account to a cfo.ai account, and leave a channel it may not stay in. A Slack workspace connected before a permission was added keeps its earlier grant until an administrator selects **Disconnect** and then **Add to Slack** again.
 
-Anyone whose Slack profile email matches a member of the workspace can message Ari in Slack direct messages, and Ari works as that person. An administrator can also add Ari to a channel, private or public, where Ari answers everyone with that administrator's access. In a public channel, anyone in the Slack workspace can read those answers. See [Talk to Ari from Slack](/guides/use-ari-in-slack).
+Anyone whose Slack profile email matches a member of the workspace who can chat with Ari in cfo.ai can message Ari in Slack direct messages, and Ari works as that person. An administrator can also add Ari to a channel, private or public, where Ari answers each person who can chat with Ari in cfo.ai, with that person's own access. In a public channel, anyone in the Slack workspace can read those answers. See [Talk to Ari from Slack](/guides/use-ari-in-slack).
 
 ## Connections
 
@@ -272,10 +258,10 @@ Each connected service has a row with **Manage**, which opens its connection pag
 
 | Control | What it does |
 | --- | --- |
-| **Edit configuration** | Opens **Edit [name]**. You can change the **Display name**, an API's **Provider name**, the **Base URL** of an API or the **MCP URL** of a server, and the **Authentication**: **Bearer token**, **API key header** with its **Header name**, **Basic authentication**, or **No authentication**. A **Replacement API key** field reads **Leave blank to keep the saved credential.** With **Basic authentication**, the form adds a **Username** field, and the key field reads **Replacement password or API key**. Leave **Username** blank when the API key is the username. A saved username is never shown: on a connection already on Basic authentication the field starts empty and reads **A saved username is not shown. Enter it again with a new password, or leave it blank when the API key is the username.** A username typed with no password is refused with **Enter the password with the username.** A new password typed without the username, on a connection saved with one, is refused with **This connection has a saved username; a new password is saved together with that username.** [Messages about MCP servers and APIs](/reference/connection-statuses#messages-about-mcp-servers-and-apis) lists the messages for a username that cannot be sent. An API connection saved with more secrets than its key also lists a **Replacement [header name]** field for each, under **Re-enter each additional credential for the new server or authentication. These values are never sent to Ari.** They must be filled in when the **Base URL** or **Authentication** changes, and a blank one is refused with **Enter a replacement value for [name].** A connection that signs in through the provider shows **Provider sign-in** and takes a new name only. A name longer than 160 characters is refused with **Use a name of at most 160 characters.** The connection keeps its ID, its saved API specification, its discovered tools, and its tool permissions. |
+| **Edit configuration** | Opens **Edit [name]**. You can change the **Display name**, an API's **Provider name**, the **Base URL** of an API or the **MCP URL** of a server, and the **Authentication**: **Bearer token**, **API key header** with its **Header name**, **Basic authentication**, or **No authentication**. A **Replacement API key** field reads **Leave blank to keep the saved credential.** With **Basic authentication**, the form adds a **Username** field, and the key field reads **Replacement password or API key**. Leave **Username** blank when the API key is the username. A saved username is never shown: on a connection already on Basic authentication the field starts empty and reads **A saved username is not shown. Enter it again with a new password, or leave it blank when the API key is the username.** A username typed with no password is refused with **Enter the password with the username.** A new password typed without the username, on a connection saved with one, is refused with **This connection has a saved username; a new password is saved together with that username.** [Messages about MCP servers and APIs](/reference/connection-statuses#messages-about-mcp-servers-and-apis) lists the messages for a username that cannot be sent. An API connection saved with more secrets than its key also lists a **Replacement [header name]** field for each, under **Re-enter each additional credential for the new server or authentication. These values are never sent to Ari.** They must be filled in when the **Base URL** or **Authentication** changes, and a blank one is refused with **Enter a replacement value for [name].** A connection that signs in through the provider shows **Provider sign-in** and takes a new name only. A name longer than 160 characters is refused with **Use a name of at most 160 characters.** The connection keeps its ID, its saved API specification, its discovered tools, and its tool permissions. When an API's address changes, every endpoint permission that came from **Always allow** on an approval card returns to its default, and a notice titled **The address changed** names each of those endpoints, such as **"Always allow" no longer applies to POST /pay, GET /accounts.** Permissions set on the connection page stay. The notice does not list a call that was waiting for approval when the address changed; [Tool-call approval card](/reference/chat#tool-call-approval-card) says when such a call still runs. |
 | Sign-in state, on an MCP server's row | **Sign-in saved**, **Sign-in saved · expiry unknown**, **Access expired · renewal on next use**, **Reconnect required**, **Sign-in incomplete**, or **Provider access not checked**. Each is defined in [Connection statuses](/reference/connection-statuses#statuses-for-mcp-servers-and-apis). |
 | **Reconnect** | On a server that reads **Reconnect required**. Opens the provider's sign-in again. The connection and its sync setups are kept; the new sign-in replaces the saved one only when it completes. Reconnecting runs no data sync. |
-| **Finish setup** | On a server whose sign-in never finished, for people who can add connections. Opens the server's details, where **Finish setup** starts a new sign-in and replaces the unfinished attempt; the details read **Starts a new sign-in, replacing any unfinished attempt for this server.** The button reads **Finishing setup…** while the sign-in runs. See [Connection statuses](/reference/connection-statuses#statuses-for-mcp-servers-and-apis). |
+| **Finish setup** | On a server whose sign-in never finished, for people who can add connections. Opens the server's details, where **Finish setup** starts a new sign-in and replaces the unfinished attempt; the details read **Starts a new sign-in, replacing any unfinished attempt for this server.** While the sign-in waits, the button shows a spinner and stays selectable; selecting it again starts the sign-in over. See [Connection statuses](/reference/connection-statuses#statuses-for-mcp-servers-and-apis). |
 | **Data freshness**, in a connection's details | Each of its sync setups with its **Schedule**, **Last synced**, and, when the row has one, **Next run**, as [Sync setup rows](/reference/connection-statuses#sync-setup-rows) describes, or **Sync history is unavailable for this workspace.** |
 
 While Ari cannot be used, for example when the workspace is out of AI usage, **Add with Ari** is unavailable, and a line reads **Add with Ari is unavailable.** followed by the reason. Data sources such as QuickBooks are connected from **Connections** in the sidebar; see [Connect QuickBooks, Xero, NetSuite, or Rillet](/guides/connect-accounting).
@@ -333,6 +319,52 @@ The heading shows once the workspace has a Skill that everyone in it shares. Eac
 
 The section reads **Enable ready-made workflows for everyone in this workspace. Skills stay up to date with improvements from cfo.ai.** Each optional built-in Skill has a switch, with its name and a description of when Ari uses it: **Entity consolidation**, **Flash report**, **Investor review**, **Model audit**, **Model migration tie-out**, **Source tie-out**, and **Workbook template fill**. A switch applies to everyone in the workspace. Built-in Skills cannot be edited. See [Turn on a built-in Skill](/guides/turn-on-built-in-skills).
 
+## Dimensions
+
+**Dimensions** lists the Dimensions, which people also call breakdowns or categories, that you can read in one Scenario, so you can review and change them in one place. It opens on the Scenario of the Page on your screen, and its **Scenario** picker changes which Scenario it reads and saves in. It reads **Each dimension's items and the tables and variables that use it. A change here shows in every table in this scenario.** The list shows what you can read with your own access, and leaves out the Dimensions cfo.ai generates, such as Date. For steps, see [See and change every Dimension in one place](/guides/break-down-a-number#see-and-change-every-dimension-in-one-place).
+
+### The list of Dimensions
+
+| Control or text | Meaning |
+| --- | --- |
+| **Scenario** | The picker at the top of the section. Its button shows the name of the Scenario the section reads and saves in. Each time you open Settings, that is the Scenario of the Page on your screen. Select the button to list the workspace's Scenarios and Snapshots, with a check mark on the current one, and pick another: the list reloads with the Dimensions of the Scenario or Snapshot you picked, and a change you make then saves there. The Page behind Settings stays in its own Scenario. The menu only chooses a Scenario: it has no **Create scenario** or **Take snapshot**. |
+| **Search dimensions** | Narrows the list by name as you type. With no match it reads **No dimension matches “[text]”.** |
+| A Dimension's row | Its color, its name, and one line: where its items come from, how many items it has, and how many tables and Variables use it, such as **Hand-made · 12 items · 3 tables · 2 variables**. The list is sorted by name. Select a row to open the Dimension. |
+| **Hand-made** | The items were added by hand or by Ari. |
+| **Imported from [import]** | The items come from connected or uploaded data. It reads **Imported** when you cannot read the import. |
+| **Mapped** | A formula fills the items from other Dimensions. |
+| **Item count unavailable** | The count could not be read. It is never shown as zero. |
+| **Items not shown** | The items are mapped from Dimensions you cannot view, so neither they nor their count are shown. |
+| **No dimensions yet. A dimension appears here once a table or an import adds one.** | The Scenario has no Dimension you can read. |
+| **Loading dimensions…** / **Could not load dimensions.** with **Try again** | The list is loading, or failed to load. |
+
+### One Dimension
+
+| Control or text | Meaning |
+| --- | --- |
+| **Dimensions** | The back button. Returns to the list. |
+| **Scenario** | The same picker as on the list. Picking a Scenario shows this Dimension in that Scenario, or returns to the list when that Scenario does not have it. A name or an item you were typing is discarded. |
+| **Item color: [color]** | The colored dot before the name. Opens **Item color, in every table**, where you choose the color of the Dimension's item pills on every table. Shown as a plain dot when you cannot edit the Dimension. |
+| **Rename** | Opens the name for editing, with **Save** and **Cancel**. **Enter** saves, and **Escape** cancels the rename without closing Settings. The new name shows everywhere. |
+| **Tables** | Each table that shows or filters the Dimension, with the Page it is on, such as **Revenue plan** on **Forecast**. Select one to close Settings and open it. It opens in the Scenario of the Page you were on, even after you pick another Scenario here. Only tables you can open are listed. |
+| **Variables** | The Variables whose formulas name the Dimension, or that use it as the date their numbers are reported on. |
+| **No table or variable you can open uses it.** | Shown in place of **Tables** and **Variables**. |
+| **Items** | The Dimension's items, loaded 200 at a time as you scroll. An item saved only under an item of another Dimension shows **Under [Dimension]: [item]**. An item with no value reads **None**. |
+| **New item** and **Add item** | Adds an item to a Dimension of text items. Offered when a table you can edit shows the Dimension and offers **Create [Dimension] item**; otherwise the section reads **Add items from a table you can edit that shows [Dimension].** |
+| **Rename item** | The pencil on an item added by hand. Renames the item everywhere, with **Save** and **Cancel**. |
+| **Delete item** | The trash can on an item added by hand and saved on its own, not under another Dimension's item, and on an imported item that someone also added by hand. Offered when you can edit the table the Dimension was created on, for an imported Dimension too. It asks **Delete item?** first when something still uses an item added by hand, and the **Deleted “[item]”** notice offers **Undo**. On an imported item, it removes only the copy added by hand, the imported item stays, and the notice reads **Removed the hand-made copy of “[item]”. The imported item remains.** with **Undo**. |
+| **These items come from [import]. Change them there.** | An imported Dimension's items cannot be added or renamed here. An item added by hand, and the hand-made copy of an imported item, can still be deleted with the trash can. |
+| **These items are mapped from dimensions you can’t view, so they aren’t shown.** | The reason for **Items not shown**. |
+| **Its import has not run yet, so only hand-made items are listed.** | The Dimension's import has no run to read items from yet. |
+| **No items yet.** | The Dimension has no items. |
+| **Loading items…**, **Loading more items…** | Items are loading. |
+| **Could not load items.**, **Could not load more items.**, or **Could not refresh items, so these may be out of date.**, each with **Try again** | A read of the items failed. |
+| **You can no longer view these items.** | Your access to the items changed while the list was open. |
+| **This is an earlier version. Return to the latest version before applying changes.** | You opened Settings while version history shows a past version. The page shows that version, and offers no edits. The **Scenario** picker is turned off and stays on the Scenario of the Page on your screen. |
+| **Could not rename**, **Could not change the color**, **Could not create item** | The change failed. Try again. |
+
+The color and item edits here are the same changes as the ones in a table's right-click menu, so they need the same access, show the same notices, and can be undone the same way. **Rename** on the Dimension itself has no match there: a table's right-click menu renames a Dimension's items, not the Dimension. The notices for renaming and deleting items are listed in [Table block controls and messages](/reference/table-blocks#other-notices).
+
 ## Billing and Usage
 
 **Billing** shows **Current plan**, **Payment methods**, **Billing recipient**, **Billing history**, and **Cancel subscription**. **Usage** shows **Included plan usage**, **Extra usage**, and **Integrations**. Every field and message is on [Plans and billing](/reference/plans-and-billing).
@@ -340,8 +372,9 @@ The section reads **Enable ready-made workflows for everyone in this workspace. 
 ## What Settings has no setting for
 
 - A fiscal year that starts in a month other than January. See [Fiscal years](/concepts/actuals-and-forecast#fiscal-years-quarters-and-years-follow-the-calendar).
-- Inviting a member limited to named Pages, listing such members, or changing their Pages. Ask Ari to invite one; see [Members limited to named Pages](#members-limited-to-named-pages).
-- User groups, or a view-only role for the whole workspace. Use a share link for read-only access; see [Sharing and access](/concepts/sharing-and-access).
+- An editor role, a list of Pages that limits what a teammate can open, or user groups. For a read-only teammate, invite a viewer; see [Invite people](#invite-people). For someone outside the workspace, use a share link; see [Sharing and access](/concepts/sharing-and-access).
+- Changing an administrator into a viewer. Remove the person and invite them again as a viewer; see [Invite people](#invite-people).
+- A list of past changes to who has access. Ask Ari; see [Access history](#access-history).
 - An API key or access token for cfo.ai. AI tools connect to the MCP server and sign in through the browser; see [Is there a cfo.ai API or API key?](/guides/connect-an-ai-client#is-there-a-cfoai-api-or-api-key)
 - Deleting a workspace or an account. See [Cancel your subscription or delete your data](/guides/cancel-or-delete).
 - Pausing a subscription. See [Plans and billing](/reference/plans-and-billing#rules-and-limits).

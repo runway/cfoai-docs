@@ -4,14 +4,15 @@ sidebarTitle: "Totals and rollups"
 description: "How cfo.ai adds numbers up: breakdown totals on parent rows, summary columns on a table, time rollups for quarters and years, and the aggregation of imported rows. Why percentages are not summed, and why a quarterly view can show zeros."
 ---
 
-cfo.ai adds numbers up in four places, and each one follows its own arithmetic. Knowing which kind of total you are looking at explains why a year column can add up monthly percentages, or why a quarterly view can show zeros:
+cfo.ai adds numbers up in five places, and each one follows its own arithmetic. Knowing which kind of total you are looking at explains why a year column can add up monthly percentages, or why a quarterly view can show zeros:
 
 | Kind of total | Where you see it | How it calculates |
 | --- | --- | --- |
 | Breakdown total | A parent row above its breakdown, such as Revenue above its products | A formula saved with the table that adds up the rows directly beneath it |
-| Summary column | A total column, the first column in a group of columns, headed **SUM**, **LAST**, or **TOTAL**, for example | A summary of the cells shown in the group, on that table only; no formula is saved |
+| Summary column | A total column at the start of a group of columns, or at its end when the table puts totals after details, headed **SUM**, **LAST**, or **TOTAL**, for example | A summary of the cells shown in the group, on that table only; no formula is saved |
 | Time rollup | Quarter, half-year, and year cells | A formula of the Variable's own at each coarser grain: the sum, last value, or average of its months |
 | Source aggregation | A Variable that reads a connected system | How the source's rows in one period combine into one value |
+| Filter total | A table filtered to several items of a Dimension that is not a date and is not on its rows, columns, or a breakdown | The chosen items added up, in every cell of that table only; no formula is saved, and the cells cannot be edited. See [Item filter](/reference/table-blocks#item-filter). |
 
 ## Breakdown totals: parent rows add up the rows beneath them
 
@@ -19,13 +20,15 @@ When a table breaks a number down, such as Revenue by Product and then Customer,
 
 When the bottom rows hold numbers you typed, cfo.ai also saves a formula of 0 on them, which every typed number overrides. A blank bottom row then counts as 0, and every total still adds up. Because each level adds the level beneath it, a change on any row reaches every total above it: set one line to 0, and its customer, its product, and Revenue all go down.
 
-When adding up is the wrong arithmetic, give the parent its own formula. Revenue per customer, for example, is total revenue divided by customer count, not a sum; a formula you write on a parent replaces the sum at its level, and cfo.ai keeps your version. Removing a level from the table removes that level's sum, and the level above then adds up the next level that remains. Inserting a level above the bottom rows, such as Department between Account and Vendor, keeps the bottom rows' own formula and gives every level above them that has no formula of its own the sum of the level now shown beneath it: Account adds up its departments, and each department adds up its vendors. A formula you wrote for one bottom item, such as a fixed amount for Rent, keeps winning on that item's rows.
+When adding up is the wrong arithmetic, give the parent its own formula. Revenue per customer, for example, is total revenue divided by customer count, not a sum; a formula you write on a parent replaces the sum at its level, and cfo.ai keeps your version. Removing a level from every table that shows it removes that level's sum, and the level above then adds up the next level that remains. Inserting a level above the bottom rows, such as Department between Account and Vendor, keeps the bottom rows' own formula and gives every level above them that has no formula of its own the sum of the level now shown beneath it: Account adds up its departments, and each department adds up its vendors. A formula you wrote for one bottom item, such as a fixed amount for Rent, keeps winning on that item's rows.
+
+Grouping the rows by a Dimension that each bottom item already belongs to is different from inserting a level. Suppose each cost line has one Cost Centre, set by a formula on Cost Centre, and the cost lines have a formula of their own that does not name Cost Centre. Putting Cost Centre above the cost lines then changes only what the table shows. The Variable keeps every formula it had, and cfo.ai saves no new sums and no 0, so the Variable's total and the formulas that read it keep their values.
 
 Not every Variable gets these formulas:
 
 - Text, date, true-or-false, and ID Variables get neither the sums nor the 0.
 - An imported Variable gets no 0, because its bottom rows read the source.
-- A formula of your own on the Variable's row gives every row its value, so the sums and the 0 are removed.
+- A formula of your own on the Variable's row, or on any row above bottom rows that hold typed numbers, also calculates the rows beneath it, so the sums and the 0 are removed in that range.
 - A formula you write on one bottom row wins in that row only; the other rows keep the 0, and every total keeps its sum.
 - A default for every child of one parent, such as every customer under one product, covers that parent's children alone. The other rows keep the 0, and the totals keep their sums.
 
@@ -33,18 +36,20 @@ A table of weeks in a monthly Model gets the same sums at week grain. A table th
 
 ## Percentages and ratios are not added up
 
-Three rates of 5% do not make a rate of 15%, so a Variable whose own format is a percentage is never summed above its breakdown. Each row above the bottom rows gets one of two formulas instead:
+Three rates of 5% do not make a rate of 15%, so a Variable whose own format is a percentage is not summed above its breakdown, unless it is imported. Each row above the bottom rows gets one of two formulas instead:
 
 - The bottom rows' formula, calculated from the row's own inputs, when one formula calculates the bottom rows and everything it reads has a value on that row. A margin of `Profit / Revenue` above the segments then reads total profit over total revenue: the ratio of the totals.
 - A blank everywhere else. That covers bottom rows that hold typed-in rates, bottom rows that several formulas calculate, and a formula that needs the row's own item of a Dimension the row does not have. cfo.ai does not average rates, because no rate for the whole follows from the parts' rates without weights.
+
+An imported percentage gets neither formula. Every row combines the source's rows by the Variable's aggregation, so a sum adds the percentages. Ask Ari for a formula that divides the totals instead.
 
 A rate you type on one bottom row blanks the rows above it; remove it, and the formula returns.
 
 The Variable's own format decides this, not a table's. Formatting a row as a percentage on one table changes only how it looks there, and the Variable keeps adding up. To make a ratio stop adding up, ask Ari to make the Variable a percentage. A ratio written with no time in its formula, such as `` iferror(Revenue / `Paying customers`, NULL) ``, is right at every level and in every period, quarters and years included.
 
-## Summary columns: total columns at the start of a group
+## Summary columns: total columns at the start or end of a group
 
-A summary column is the first column in its column group, and it summarizes the cells shown in that group, such as the months under each year, on that one table. It saves no formula, so it never changes a number anywhere else. Its header names the summary it uses, such as **SUM**, **AVG**, or **LAST**. The **None** summary is headed **TOTAL** and shows the Variable's own value for the whole group, such as its year value beside its months. Every summary, and the one each table starts with, is listed in [Table block controls and messages](/reference/table-blocks#total-columns). To change a column's summary, or to hide the summary columns of one level with **Hide totals**, see [Format and arrange a table](/guides/format-a-table#show-hide-or-pin-total-columns).
+A summary column summarizes the cells shown in its column group, such as the months under each year, on that one table. It sits first in the group, or last when the table's **Total columns after details** setting is on. It saves no formula, so it never changes a number anywhere else. Its header names the summary it uses, such as **SUM**, **AVG**, or **LAST**. The **None** summary is headed **TOTAL** and shows the Variable's own value for the whole group, such as its year value beside its months. Every summary, and the one each table starts with, is listed in [Table block controls and messages](/reference/table-blocks#total-columns). To change a column's summary, or to hide the summary columns of one level with **Hide totals**, see [Format and arrange a table](/guides/format-a-table#show-hide-or-pin-total-columns).
 
 For a full-year total, the two most useful summaries differ. **Sum** adds the months the table shows. **None** shows the Variable's own year value, which comes from its time rollup or from a formula that applies to years. They agree for a flow such as revenue when the table shows all twelve months. They differ for a balance, for a ratio, and for a table that shows part of a year. A year column on Sum adds up monthly percentages, which is wrong; on None, a margin written with no time in its formula shows the year's profit over the year's revenue.
 
@@ -62,7 +67,7 @@ A formula written for months fills month cells only. Quarter, half-year, and yea
 
 A quarter or year total can look complete while one of its months has no value, because a correct sum does not say whether every month was filled in. When Ari reads a table that shows a quarter or year beside its months, the read tells Ari which totals have some, but not all, of their months empty, and how many, such as 1 of 3. A month counts as empty when its cell is blank or shows 0 only because no formula, typed value, or source covers it; a 0 from a formula or a typed 0 counts as a value. The table on the Page shows no mark.
 
-When Ari adds a new number to a table at the Model's base grain, such as a monthly table in a monthly Model, it gives the Variable a rollup in the same save. It uses **SUM** in most cases, including for a Variable that sums or counts its source rows, and **LAST** for a Variable that takes the last value of its source rows, such as a balance. Ari is also told to choose **LAST** for an annual amount, a price, a rate, or a share that stays the same each month, so a \$66,000 yearly budget entered in every month shows \$66,000 in the year column rather than twelve times that; recurring monthly revenue and expenses keep **SUM**. If a year column shows twelve times a monthly value, ask Ari to change that Variable's rollup to **LAST**. Some Variables get no rollup: a percentage, text, a date, a true-or-false value, and a number whose source rows combine by their first, smallest, largest, or any value. A Variable whose formula has no time in it gets none either, because that formula calculates quarters and years directly. A Variable you create by hand from a table gets no rollup. Ask Ari to add or change a Variable's rollup.
+When Ari adds a new number to a table at the Model's base grain, such as a monthly table in a monthly Model, it gives the Variable a rollup in the same save. It uses **SUM** in most cases, including for a Variable that sums or counts its source rows, and **LAST** for a Variable that takes the last value of its source rows, such as a balance. Ari is told to use **SUM** for flows, **LAST** for balances and other levels at a point in time, such as a headcount, and **AVERAGE** for the average of a period. When a Forecast formula repeats the month before it and the year adds up the months, Ari's save result says that the year totals twelve times the monthly value. That is right for a monthly flow and wrong for an annual amount carried into each month: a \$66,000 yearly budget entered in every month would show \$792,000 in the year column. If a year column shows twelve times a monthly value, ask Ari to change that Variable's rollup to **LAST**. Some Variables get no rollup: a percentage, text, a date, a true-or-false value, and a number whose source rows combine by their first, smallest, largest, or any value. A Variable whose formula has no time in it gets none either, because that formula calculates quarters and years directly. A Variable you create by hand from a table gets no rollup. Ask Ari to add or change a Variable's rollup.
 
 ## Why a quarterly view shows zeros
 

@@ -6,7 +6,7 @@ description: "Find and fix the cause when a formula cell shows an error code suc
 
 Use this guide when a formula cell shows an error code or a number you do not expect. Find the problem you see, then check its causes in order. Every code and message is listed in [Formula errors and warnings](/reference/formula-errors).
 
-The fastest first step is often to ask Ari. Right-click the cell and choose **Fix**: a new chat opens about that cell, and Ari traces the formula and its inputs. To find the cause yourself, read on.
+The fastest first step is often to ask Ari. Right-click a cell that shows an error code and choose **Fix**: a new chat opens and asks Ari to fix that cell. The menu shows **Fix** only on a cell with an error code. For a number you do not expect, right-click the cell, choose **Mention cell in chat**, and ask why the number is what it is; see [Ask Ari about a number](/guides/ask-about-a-number). To find the cause yourself, read on.
 
 ## A cell shows an error code
 
@@ -22,17 +22,17 @@ To keep a calculation going while you fix its input, wrap the risky part in `ife
 - Two Variables read each other in the same month. For example, Interest reads Cash Balance, and Cash Balance includes Interest. Break the loop by reading one of them from the previous month: `` `Cash Balance`[-1] * `Interest Rate` ``.
 - A total formula also runs on the rows beneath it. If you give Revenue's whole row the formula `sum(Revenue[Department in any])`, the formula also runs on each department's row, where it reads that department's own cell. Delete the row's formula: the rows above a breakdown add up the rows beneath them unless they have a formula of their own; see [Totals, aggregation, and time rollups](/concepts/totals-and-rollups). Or give the department rows their own formula: right-click the Revenue row and choose **Edit formula for Department**.
 
-Wrapping the formula in `iferror` does not fix a loop: a cell inside the loop keeps `#CIRC!` whatever its own `iferror` says, and only a cell outside the loop can fall back to another value. When Ari saves a formula that reads its own Variable, its receipt warns which cells can show `#CIRC!`. To see how cfo.ai decides which formula runs on which row, read [How formulas work](/concepts/formulas).
+Wrapping the formula in `iferror` does not fix a loop: a cell inside the loop keeps `#CIRC!` whatever its own `iferror` says, and only a cell outside the loop can fall back to another value. When Ari replaces a formula with one that reads its own Variable, its receipt warns that the cells where that read lands on themselves show `#CIRC!`. To see how cfo.ai decides which formula runs on which row, read [How formulas work](/concepts/formulas).
 
 ## The cell shows #REF!
 
-The formula names a Variable or Dimension that does not exist. Someone may have deleted it, or the name has a typo.
+The formula reads a Variable or Dimension that no longer exists, usually because someone deleted it.
 
-1. Open the formula. A name that matches nothing is underlined in red with **Unknown variable or dimension name**.
-2. Check that the name is written exactly like the Variable's or Dimension's, including capital letters. Names match exactly, and a name with spaces needs backticks.
-3. To swap in the right Variable, select the reference and select its name to search; see [Point a reference at something else](/guides/write-a-formula#point-a-reference-at-something-else).
+1. Open the formula. The reference to the deleted Variable or Dimension reads **Reference unavailable**.
+2. Delete that reference and type the name of the Variable or Dimension the formula should read.
+3. To find who deleted it and when, open version history; see [Undo a change or restore an earlier version](/guides/undo-changes).
 
-A renamed Variable does not cause `#REF!`: formulas follow the Variable, not its old name.
+A renamed Variable does not cause `#REF!`: formulas follow the Variable, not its old name. A name with a typo does not cause it either: a formula you typed with a name that matches nothing shows `#VALUE!`; see [The cell shows #VALUE!](#the-cell-shows-value).
 
 ## The cell shows #NAME?
 
@@ -45,6 +45,8 @@ Point at the cell to read which of these it is:
 - A function has the wrong number of arguments, such as **IF requires exactly 3 arguments**. `if` always needs a third argument: `if(Revenue > 0, Revenue, 0)`.
 - A value has the wrong type, such as a date function given a number. Check that each argument is the kind of value the function expects; see [Formula functions](/reference/functions).
 - The formula has a syntax mistake. Open it and read the red underline; see [Formula editor messages](/reference/formula-errors#formula-editor-messages).
+- A name you typed matches no Variable or Dimension, for example because of a typo. The cell's message begins **Syntax errors** and does not say which name failed, so open the formula: that name is underlined in red with **Unknown variable or dimension name**. Write it exactly like the Variable's or Dimension's name, including capital letters, and wrap a name with spaces in backticks. Autocomplete suggests the names as you type.
+- A name you typed is shared by several Variables or Dimensions. The cell's message also begins **Syntax errors**. Open the formula: the name is underlined in red, and the message lists each match with a short `#` code, such as **Revenue names 2 variables: Revenue#a, Revenue#b**. Replace the name with the match you mean; see [Name and argument messages](/reference/formula-errors#name-and-argument-messages).
 
 ## The cell shows #DIV/0!
 
@@ -53,6 +55,17 @@ The formula divides by zero or by an empty value, often a month before any reven
 ```text
 if(Revenue <> 0, `Gross Profit` / Revenue, 0)
 ```
+
+This test catches a divisor of 0. It does not catch an empty divisor, such as an `average` with nothing to average: an empty value does not equal 0, so the division still runs and fails. When the divisor can be empty, catch the error instead: `` iferror(`Gross Profit` / Revenue, 0) ``.
+
+## The cell shows #NUM! or #ERR!
+
+Point at the cell and read the message.
+
+- `#NUM!` means the calculation has no valid number as its answer, such as zero raised to the power of zero, or `datedif` with a start date after its end date. Correct the inputs, or wrap the calculation in `iferror`.
+- `#ERR!` means the calculation failed for a reason that has no more specific code. Right-click the cell and choose **Fix** to ask Ari.
+
+Each code's messages are listed in [Cell error codes](/reference/formula-errors#cell-error-codes).
 
 ## A number reads 0 where you expect a value
 

@@ -23,14 +23,17 @@ Ari keeps working on cfo.ai's servers until it finishes, even if you close the t
 
 Stopping keeps what Ari already saved. To check what it finished, ask "What did you change before I stopped you?"
 
+When a line above the message box reads **Adding AI usage to your workspace — Ari will continue in a moment.**, the workspace ran out of AI usage and auto-reload is buying more. Ari waits for the purchase and continues on its own when the usage arrives. If the wait does not end, select **Stop**, then check your payment method in **Settings → Billing**. See [Notices in the chat](/reference/plans-and-billing#notices-in-the-chat).
+
 You do not need to stop Ari when it is slow to write one action, such as a very large Canvas block. cfo.ai cancels an action that takes too long to write, and Ari continues the reply. If a reply ends with an error this way, ask for a smaller change, such as one block at a time. For the time limit and what each chat shows, see [When Ari takes too long to write one action](/reference/chat#when-ari-takes-too-long-to-write-one-action).
 
 ## Ari stopped or showed an error
 
-- If the chat says **Ari stopped before finishing.**, select **Retry**. It sends your last message again, so Ari can pick the work back up.
+- If the chat says **Ari stopped before finishing.**, select **Retry**. When Ari had received your last message, **Retry** sends it again as a new message, so Ari can pick the work back up. When Ari could not start on it, **Retry** starts Ari on it without sending it a second time; see [When a reply stops early or shows an error](/reference/chat#when-a-reply-stops-early-or-shows-an-error).
 - If your message shows **Not sent.**, select **Send again** to send the same text as a new message.
 - If the chat says **Ari's turn ended: it waited [time] for [n] actions to finish**, select **Retry**, or ask for a smaller piece first. [Chat controls and messages](/reference/chat#when-a-reply-stops-early-or-shows-an-error) explains the message.
-- If the chat says **This request is too large for Ari to continue.**, the chat has grown too long. Select **New chat** at the top of the **Chats** section of the sidebar, restate what you need, and attach only the files the new request needs.
+- If the chat says **This message is too large for Ari to read.**, the message you sent is too large by itself, and cfo.ai could not make it fit by saving its text as a file for Ari to read. Send a shorter message, or fewer or smaller files, in the same chat. A long chat does not cause this: Ari summarizes a long chat's earlier messages and keeps going. A chat saved earlier can show **This request is too large for Ari to continue.** for the same stop; do the same there.
+- If the chat says **Ari's reply stopped: the model provider's content filter withheld it.**, start a new chat and ask again. The same chat would be stopped again, so no **Retry** is offered. Changes Ari saved before the stop stay.
 - If the chat says **No internet connection** or **Connection lost**, reconnect, then select **Retry** if it is offered. Ari keeps working on the server meanwhile.
 - If a reply starts **I had to stop here**, billing stopped the turn. The message names the cause and where to fix it. See [Billing stops](/reference/chat#billing-stops-out-of-ai-usage-or-over-a-limit).
 

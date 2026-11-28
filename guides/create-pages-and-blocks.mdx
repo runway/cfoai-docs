@@ -1,7 +1,7 @@
 ---
 title: "Create and organize Pages and blocks"
 sidebarTitle: "Create and organize Pages"
-description: "Create, rename, nest, reorder, and delete Pages, use a Page with subpages as a folder, keep the Pages Ari creates in order, write headings and notes on a Page, and add, move, copy, or delete the Table blocks and Canvas blocks on it."
+description: "Create, rename, nest, reorder, and delete Pages, use a Page with subpages as a folder, keep the Pages Ari creates in order, write headings and notes on a Page, add, move, copy, or delete the Table blocks and Canvas blocks on it, and collapse the tables on a long Page to their title bars."
 ---
 
 Use this guide to set up the Pages your team reads, such as a Board Page with one subpage per meeting, and to arrange the blocks on each Page. A Page is a document: Text blocks you type in place, with Table blocks and Canvas blocks between them. To learn what Pages and blocks are, read [Pages, Table blocks, and Canvas blocks](/concepts/pages-and-blocks).
@@ -73,7 +73,10 @@ Point at the Page in the sidebar and select its trash button, **Delete page**.
 
 - The Page and its blocks are deleted. Its subpages move up one level and stay.
 - When you are viewing a Scenario other than Main, the Page is deleted in that Scenario only. Main keeps it.
+- A Page you delete in Main is also deleted in the Scenarios built on Main. A Snapshot keeps its copy. See [Scenarios, Snapshots, and version history](/concepts/scenarios).
 - Most deletes happen without a question. cfo.ai asks first only when the Page holds the last table that shows a Variable or Dimension. See [Delete a table that other content uses](#delete-a-table-that-other-content-uses).
+
+When you ask Ari to delete a Page, Ari can delete it in one step, without the question, when one undo brings the Page, its blocks, and their Variables and Dimensions back. Ask Ari what the delete removed, or ask it to undo the delete.
 
 To bring a Page back, press **⌘ Z** (**Ctrl Z**) in the same browser tab, or undo the change in version history. See [Undo a change or restore an earlier version](/guides/undo-changes).
 
@@ -112,6 +115,21 @@ No table owns a Variable or Dimension; the tables that show it decide what a del
 - One that no other table shows is deleted with the table, after cfo.ai asks **Delete variable or dimension?**; **Keep with Ari** has Ari place it on another table instead. The dialog's text and buttons are listed in [Removing and deleting](/reference/table-blocks#removing-and-deleting).
 
 To keep a Variable while you remove its table, first add it to another table, or move the table to another Page instead of deleting it.
+
+## Copy a link to a table, chart, or Canvas block
+
+To point a teammate at one Table block, chart block, or Canvas block, such as in an email or in a conversation outside cfo.ai, click the block's six-dot handle and choose **Copy link to block** in the menu that opens. When someone opens the link in a new browser tab, cfo.ai opens the Page in the Scenario it showed when you copied the link, and scrolls to the block.
+
+The link gives no access of its own. It opens for someone who is signed in to cfo.ai and can already open that Page. To show a Page to someone outside your workspace, see [Share a Page outside your workspace](/guides/share-a-page). Where the item sits in the menu, its messages, and which blocks have it are in [Writing on a Page](/reference/interface#writing-on-a-page).
+
+## Collapse tables to scan a long Page
+
+To read a long Page as a list of its tables, collapse them to their title bars.
+
+- To collapse one table, select the arrow before its name. Select it again to expand the table.
+- To collapse every table on the Page, select **Collapse all tables** in the Page header. Once they are all collapsed, the button reads **Expand all tables**.
+
+Collapsing changes only your own view, so nothing changes for teammates, people on a share link, or Ari. For where the choice is kept, who can collapse a table, and what a collapsed table loads, see [Collapse a table to its title bar](/reference/table-blocks#collapse-a-table-to-its-title-bar).
 
 ## Write and format text on a Page
 

@@ -80,7 +80,7 @@ A lookup in brackets after a name changes which items the reference reads. Every
 
 When a lookup reads several items, wrap it in a function that says how to combine them, such as `sum`, `average`, or `count`: `average(Revenue[Department in any])`. See [Aggregation functions](/reference/functions#aggregation-functions).
 
-A lookup key matches items by the same `=` rule as the rest of the formula, whatever kind the item is. The number key in `Amount[Entity = 3019681]` reads a text item named `3019681`, a text key such as `"1"` reads the number item 1, and an aggregation over a lookup, such as `sum(Amount[Entity = 1])`, adds every item the key equals this way. A formula's condition, which says where the formula applies, matches only items of the key's own kind; see [Ari's save warnings](/reference/formula-errors#aris-save-warnings).
+A lookup key matches items by the same `=` rule as the rest of the formula, whatever kind the item is. The number key in `Amount[Entity = 3019681]` reads a text item named `3019681`, a text key such as `"1"` reads the number item 1, and an aggregation over a lookup, such as `sum(Amount[Entity = 1])`, adds every item the key equals this way. A key that is empty reads the item with no value, the row a table shows as **None**: on the None row of a table by Title, `sum(Pay$[Title = this.Title])` adds the pay of the people who have no title. A formula's condition, which says where the formula applies, matches only items of the key's own kind; see [Ari's save warnings](/reference/formula-errors#aris-save-warnings).
 
 Inside `where`, a plain name refers to the item being tested, and `this.` to the cell being calculated: `sum(Revenue[Department in any] where Revenue > this.Revenue)` adds the departments with more revenue than this one. `where` can also sit inside the brackets, after the Dimension it filters: `` Headcount[Employee where Department[Employee = Employee] = this.Department] `` keeps the employees whose department is this cell's. Within that `where`, the Dimension's own name, as in `Employee = Employee`, is the item being tested.
 
@@ -160,13 +160,24 @@ A range includes both ends. A range written from the later date to the earlier o
 | `sum(Revenue[Date.Month in startofyear([0]):[0]])` | Year to date |
 | `sum(Revenue[Date.Month in startofquarter([0]):[0]])` | Quarter to date |
 
+### Last close in a formula
+
+`` `Last close` `` in a formula is the Scenario's Last close date, your month-end. It is a built-in name, available in every Scenario beside the [names of your Variables and Dimensions](#names-of-variables-and-dimensions), and it holds the date set as that Scenario's Last close. A Scenario with no Last close set has no date for it to hold, so set Last close before you rely on the formula. Write it in backticks, because the name has a space. Use it when a formula should read your latest closed month: the formula follows Last close when it moves, and no month is typed into it.
+
+| You write | It reads |
+| --- | --- |
+| `` Revenue[Date.Month = startofmonth(`Last close`)] `` | Revenue in the Last close month |
+| `` sum(Revenue[Date.Month in dateadd(startofmonth(`Last close`), -2, "month"):startofmonth(`Last close`)]) `` | The three months that end with the Last close month |
+
+To move Last close, see [Set Last close and date defaults](/guides/set-dates-and-last-close).
+
 ### Date filter presets
 
 When you add a date filter to a reference in the formula editor, the presets write a range for you. What a preset covers depends on whether you are editing an Actuals formula.
 
 | Preset | In an Actuals formula | In any other formula, such as a Forecast formula |
 | --- | --- | --- |
-| **Last 3 months of actuals** | The cell's month and the two before it. When the reference reads the formula's own Variable, the three months before the cell's month. | The three months that end with the **Last close** month, the same months for every cell |
+| **Last 3 months of actuals** | The cell's month and the two before it. When the reference reads the formula's own Variable, the three months before the cell's month. | The three months that end with the **Last close** month, the same months for every cell; the range is written with `` `Last close` ``, as in [Last close in a formula](#last-close-in-a-formula) |
 | **Last 6 months of actuals**, **Last 12 months of actuals** | As above, for 6 or 12 months | As above, for 6 or 12 months |
 | **Year to date** | `startofyear([0]):[0]`: January through the cell's month | The same |
 | **Quarter to date** | `startofquarter([0]):[0]`: the quarter's first month through the cell's month | The same |

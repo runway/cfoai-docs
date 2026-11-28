@@ -39,10 +39,10 @@ Your approval appears in the chat as **Build it — with these selected assumpti
 
 ## Allow or decline a call to a connected service
 
-When Ari wants to use an MCP server or API you connected, and the call needs approval, Ari pauses and shows **Ari is asking to run "[tool]" on [service].**
+When Ari wants to use an MCP server or API you connected, and the call needs approval, Ari pauses and shows **Ari is asking to run "[tool]" on [service].** For an API, read the **Request** block on the card first: it shows the full address, headers, and body that cfo.ai sends if you allow it.
 
 - Select **Allow** to run this one call.
-- Select **Always allow** to let Ari use this tool on this service without asking again, for the whole workspace. Only people who can manage workspace settings see it.
+- Select **Always allow** to let Ari use this tool on this service without asking again, for the whole workspace. Only people who can manage workspace settings see it. On an API card, read the line under the buttons first: it says which later calls will then run without asking, in every chat and in scheduled runs. Some API cards have no **Always allow**, for example for a call that may move money; the line then reads **Always allow is not offered for this call. Each call needs its own approval.** Approve those calls one at a time with **Allow**.
 - Select **Decline** to skip the call. Ari continues without it.
 
 Anyone in the chat can allow or decline one call. After you choose, Ari usually continues without another message from you. If it stays paused, for example because a notice says the approval saved but Ari was not prompted to continue, send any message and Ari picks up from there. If the card can no longer be acted on, for example because a teammate already answered it, a notice says why. See [Chat controls and messages](/reference/chat#tool-call-approval-card). To change which tools ask first, see [Give Ari access to another service](/guides/give-ari-another-service).
@@ -59,10 +59,10 @@ Ari emails you at your sign-in address as soon as you ask. An email to anyone el
 
 <Steps>
   <Step title="Read the draft">
-    Check the recipients, the subject, and the message.
+    Check the recipients, the subject, and the message. The message shows formatted, with its bold text, lists, and tables, as it reads in the email.
   </Step>
   <Step title="Change it if needed">
-    Select **Edit**. Type addresses separated by commas or **Enter**; each becomes a removable chip. Select **Preview email** to see your changes. To have Ari rewrite the email, for example "Can you shorten this?", ask in the chat: Ari prepares a new card with the revised draft, and the earlier card keeps its own draft and its own **Send**.
+    Select **Edit**. Type addresses separated by commas or **Enter**; each becomes a removable chip. Change the **Subject**, or edit the **Message** as formatted text, the way you would in a document. Select **Preview email** to see your changes. To have Ari rewrite the email, for example "Can you shorten this?", ask in the chat: Ari prepares a new card with the revised draft, and the earlier card keeps its own draft and its own **Send**.
   </Step>
   <Step title="Send it">
     Select **Send** on the card that holds the version you want. Nothing leaves cfo.ai until you do. Afterwards you can ask Ari where the email went; it learns what happened to each address with your next message.

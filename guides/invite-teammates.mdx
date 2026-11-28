@@ -1,17 +1,12 @@
 ---
 title: "Invite or remove teammates"
 sidebarTitle: "Invite or remove teammates"
-description: "Add a user to your cfo.ai workspace: invite an administrator from Settings or by asking Ari, or ask Ari to invite a member limited to the Pages you name; resend, cancel, or fix an invitation that did not arrive; remove someone; and give read-only access with a share link instead."
+description: "Add a user to your cfo.ai workspace as an administrator or as a view-only viewer, from Settings or by asking Ari; resend, cancel, or fix an invitation that did not arrive; change a viewer into an administrator; remove someone; and give someone outside the workspace read-only access with a share link."
 ---
 
 To add a user to your cfo.ai workspace, invite them by email, from Settings or by asking Ari.
 
-You can invite a person in one of two ways:
-
-- As an administrator, who can see and edit every Page, invite others, and manage billing and settings. The steps below invite an administrator.
-- As a member limited to the Pages you name, who sees nothing else and changes Main only through an administrator. See [Invite someone to named Pages only](#invite-someone-to-named-pages-only).
-
-To let someone read reports without joining, send a share link instead; see [Give someone read-only access](#give-someone-read-only-access).
+Choose a role for each person. An administrator can see and edit every Page, invite others, and manage billing and settings. A viewer can read every Page and table and cannot change anything or start a chat with Ari; see [Administrators and viewers](/concepts/sharing-and-access#administrators-and-viewers). To let someone outside the company read reports without joining, send a share link instead; see [Give someone outside the workspace read-only access](#give-someone-outside-the-workspace-read-only-access).
 
 <Tabs>
   <Tab title="Ask Ari">
@@ -19,7 +14,13 @@ To let someone read reports without joining, send a share link instead; see [Giv
 
     > Invite dana@example.com and lee@example.com to the workspace.
 
-    You can also select **Ask Ari** beside **Admins** in **Settings → Workspace**; see [Admins](/reference/settings#admins) for what that chat starts with.
+    To invite someone who should read and not edit, name the viewer role:
+
+    > Invite sam@example.com as a viewer.
+
+    One request invites people in one role, so ask for administrators and viewers in separate requests.
+
+    You can also select **Ask Ari** beside **Admins and viewers** in **Settings → Workspace**; see [Admins and viewers](/reference/settings#admins-and-viewers) for what that chat starts with.
 
     Ari shows exactly who it will invite and waits for you to confirm. You can add a welcome for the people you invite, with any of these:
 
@@ -32,18 +33,21 @@ To let someone read reports without joining, send a share link instead; see [Giv
 
     > Invite dana@example.com with a note saying she'll own the hiring plan. Open the Headcount Page first and offer the onboarding tour.
 
-    If someone already belongs to the workspace without the administrator role, ask Ari to make them an administrator, or enter their address under **Invite admin** in Settings. Either way changes their role and sends no invitation.
+    If someone already belongs to the workspace without the administrator role, such as a viewer, ask Ari to make them an administrator, or enter their address under **Invite people** in Settings with **Role** set to **Admin**. Either way changes their role and sends no invitation.
   </Tab>
   <Tab title="By hand">
     <Steps>
       <Step title="Open the Workspace settings">
         Open the account menu, your name or picture at the bottom of the sidebar, choose **Settings**, and select **Workspace**.
       </Step>
+      <Step title="Choose the role">
+        Under **Invite people**, set **Role** to **Admin** or **Viewer**.
+      </Step>
       <Step title="Enter the email address">
-        Under **Invite admin**, type the person's **Email address**.
+        Type the person's **Email address**.
       </Step>
       <Step title="Send the invitation">
-        Select **Add admin**. The form reads **Admin invitation created for** the address, and the person appears in the **Admins** list marked **Invited**. If the address already belongs to the workspace without the administrator role, the person becomes an administrator at once, no email is sent, and the form reads that the address **is now an admin.**
+        Select **Add admin** or **Add viewer**; the button follows the role. The form reads **Admin invitation created for** or **Viewer invitation created for** the address, and the person appears in the **Admins and viewers** list marked **Invited** or **Invited as viewer**. If you chose **Admin** and the address already belongs to the workspace without the administrator role, the person becomes an administrator at once, no email is sent, and the form reads that the address **is now an admin.**
       </Step>
     </Steps>
   </Tab>
@@ -51,63 +55,38 @@ To let someone read reports without joining, send a share link instead; see [Giv
 
 Adding people does not change your price: a plan is priced for the workspace, not per person. See [Plans, AI usage, and connection slots](/concepts/plans-and-usage).
 
-## Invite someone to named Pages only
-
-Invite a member limited to named Pages when a teammate should work on part of the Model without seeing the rest, such as a department lead who plans the Marketing budget and must not see payroll. They see only the Pages you name, try changes in Scenarios of their own, and ask an administrator to merge those changes into Main. For how this works, see [Members limited to named Pages](/concepts/sharing-and-access#members-limited-to-named-pages).
-
-Only Ari sends this invitation. **Invite admin** in Settings invites administrators only.
-
-<Steps>
-  <Step title="Ask Ari, naming the Pages">
-    Name the person, each Page, and whether they can view or edit it:
-
-    > Invite sam@example.com as a member limited to named Pages, with edit access to the Marketing budget Page and view access to the Company targets Page.
-
-    You can name up to 20 Pages for one person, and each must be a Page in Main. View access opens the Page and the Variables its tables show. Edit access also lets the person change those Variables' values and formulas in a Scenario of their own.
-  </Step>
-  <Step title="Confirm the invitation">
-    Ari shows who it will invite and waits for you to confirm. To invite several people at once, name them all in one request, with the Pages for each.
-  </Step>
-  <Step title="The person joins">
-    The person gets the same email invitation as an administrator and joins by signing in with the invited address. Their sidebar lists only the Pages you named.
-  </Step>
-</Steps>
-
-You can add a welcome to this invitation too. The Page it opens first must be one of the Pages you named.
-
-After the invitation:
-
-- To change the Pages before the person joins, ask Ari to invite the same address again with the Pages you want. A Page you name again takes the new level, and a Page named only in the earlier invitation stays in it. To drop a Page, cancel the invitation and invite again.
-- Once the person has joined, Ari refuses another invitation for them, because they already belong to the workspace. You can make them an administrator or remove them.
-- To make the person an administrator, ask Ari, or enter their address under **Invite admin** in Settings. Their limits end at once.
-- These members are not in the **Admins** list in Settings. To see who belongs to the workspace, ask Ari to list everyone. To cancel their invitation or remove them, ask Ari; see [Cancel an invitation](#cancel-an-invitation) and [Remove a teammate](#remove-a-teammate).
-
-When the invitation is refused, or for everything such a member can and cannot do, see [Members limited to named Pages](/reference/settings#members-limited-to-named-pages).
-
 ## What the invited person sees
 
 The person gets an email invitation to the workspace. From a workspace with a brand, the email comes from your brand's name **via cfo.ai**, shows the brand, and ends with **Powered by cfo.ai**; see [Brand your workspace](/guides/brand-your-workspace). When they sign in with the invited address, the workspace is in their account. If you added a welcome, the email carries your note when you wrote one, and its link opens the Page you chose when you chose one. The whole welcome shows in Ari's empty chat when they first open the workspace. It is labeled **Note from** your name, with **Take the tour** for the Guide and **Open** followed by the Page's name. The person can dismiss it.
 
+The email is the same for both roles and does not name the role. A viewer cannot chat with Ari, so the welcome in Ari's empty chat, with its questions and tour, does not reach a viewer. A viewer's email still carries your note, and its link opens the Page you chose.
+
 ## Resend an invitation or fix one that did not arrive
 
-An invitation stays pending, marked **Invited**, until the person joins. If they cannot find the email:
+An invitation stays pending, marked **Invited** or **Invited as viewer**, until the person joins. If they cannot find the email:
 
-1. Check the address in the **Admins** list in **Settings → Workspace**. If it is wrong, cancel that invitation and invite the right address.
+1. Check the address in the **Admins and viewers** list in **Settings → Workspace**. If it is wrong, cancel that invitation and invite the right address.
 2. Ask them to check their spam or junk folder.
-3. Send the email again: enter the same address under **Invite admin** and select **Add admin**, or ask Ari to resend the invitation. Resending keeps any welcome you added.
+3. Send the email again: enter the same address under **Invite people** with the same **Role** and select **Add admin** or **Add viewer**, or ask Ari to resend the invitation. Resending keeps any welcome you added.
 4. Or skip the email: ask them to go to [app.cfo.ai](https://app.cfo.ai) and sign in with exactly the invited address. A pending invitation is accepted when that address signs in, and the workspace appears.
 
-A teammate who does not have a cfo.ai account yet needs a work email address. An invitation to a personal address, such as a Gmail address, is refused at sign-in with **Use your work email** unless an account with that address already exists; see [Work email required for new accounts](/reference/interface#work-email-required-for-new-accounts).
+You can invite a teammate at a personal address, such as a Gmail address, even when they have no cfo.ai account yet. They must sign in with exactly the address you invited. If they see **Use your work email**, they signed in with a personal address that has no pending invitation: check that the invitation is still marked **Invited** or **Invited as viewer** and that they used that address. An account with a personal address can join workspaces it is invited to, and cannot create a workspace of its own; see [Work email required for new accounts](/reference/interface#work-email-required-for-new-accounts).
 
 If the person signs in with a different address, such as the one on their Slack profile, invite that address instead.
 
 ## Cancel an invitation
 
-In **Settings → Workspace**, open the menu on the person's **Invited** row, choose **Cancel invitation**, and confirm. You can also ask Ari, for example "Cancel the invitation for dana@example.com." An invitation for a member limited to named Pages has no row in Settings, so ask Ari to cancel it. Ari names the invitation it will cancel and waits for you to confirm. Once it is canceled, they can no longer join through it. If they joined before you confirmed, they keep their access; to take it away, remove them.
+In **Settings → Workspace**, open the menu on the person's **Invited** or **Invited as viewer** row, choose **Cancel invitation**, and confirm. You can also ask Ari, for example "Cancel the invitation for dana@example.com." Ari names the invitation it will cancel and waits for you to confirm. Once it is canceled, they can no longer join through it. If they joined before you confirmed, they keep their access; to take it away, remove them.
+
+## Change a viewer into an administrator
+
+In **Settings → Workspace**, enter the viewer's address under **Invite people** with **Role** set to **Admin** and select **Add admin**, or ask Ari to make them an administrator. The change takes effect at once and sends no email.
+
+You cannot change an administrator into a viewer. Remove them, then invite them again as a viewer.
 
 ## Remove a teammate
 
-In **Settings → Workspace**, open the menu on the person's **Admin** row, choose **Remove member**, and confirm. You can also ask Ari, for example "Remove lee@example.com from the workspace." A member limited to named Pages has no row in Settings, so ask Ari to remove them.
+In **Settings → Workspace**, open the menu on the person's **Admin** or **Viewer** row, choose **Remove member**, and confirm. You can also ask Ari, for example "Remove lee@example.com from the workspace."
 
 The person loses access to this workspace right away, and any pending invitations for their email are canceled. Their access to other workspaces and their cfo.ai account stay as they are. To delete an account, see [Cancel your subscription or delete your data](/guides/cancel-or-delete).
 
@@ -115,9 +94,26 @@ You cannot remove yourself or the workspace's last administrator, in Settings or
 
 In a workspace billed in the app, if the person you remove receives the workspace's invoices and receipts, those emails go to a remaining administrator afterward; the removal dialog says so. To send them somewhere else, change the recipient first in **Settings → Billing**; see [Billing recipient](/reference/plans-and-billing#billing-recipient).
 
-## Give someone read-only access
+## See who was given or lost access
 
-To show reports to an investor, a board member, or a client without giving them access to everything, share a Page with a link instead of inviting them. A link opens the Pages you choose, read-only, without a cfo.ai account. For a teammate who should join the workspace but see only some Pages, see [Invite someone to named Pages only](#invite-someone-to-named-pages-only). See [Share a Page outside your workspace](/guides/share-a-page) and [Sharing and access](/concepts/sharing-and-access).
+To check who joined the workspace, who was removed, and who made each change over a period, ask Ari:
+
+> Who was given or lost access to this workspace in November, and who made each change?
+
+Ari lists each recorded change from the oldest: when it happened, who made it, who gained or lost access, and the access before and after. Only an administrator can ask. Ari can go back only to the time cfo.ai began recording access changes, and it tells you when the period you asked about starts earlier. For what the record holds and what it leaves out, see [Access history](/reference/settings#access-history).
+
+## If an invitation is refused
+
+- **workspace member already exists** when you add a viewer means the address already belongs to the workspace, for example because the person signed in to keep a Page you shared with a link. Remove them, then invite them as a viewer.
+- A message about a pending admin or viewer invitation means the address already holds an invitation in the other role. Cancel that invitation, then invite again.
+
+Every message is listed in [Invite people](/reference/settings#invite-people).
+
+## Give someone outside the workspace read-only access
+
+To show reports to an investor, a board member, or a client without giving them access to everything, share a Page with a link instead of inviting them. A link opens the Pages you choose, read-only, without a cfo.ai account. See [Share a Page outside your workspace](/guides/share-a-page) and [Sharing and access](/concepts/sharing-and-access).
+
+To let one named person open one Page after they sign in, ask Ari to invite them to that Page; see [Invite one person by email to view a Page](/guides/share-a-page#invite-one-person-by-email-to-view-a-page).
 
 ## Related
 

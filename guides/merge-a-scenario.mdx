@@ -1,7 +1,7 @@
 ---
 title: "Merge a Scenario into Main"
 sidebarTitle: "Merge a Scenario"
-description: "Adopt a Scenario as your plan: review what it would change, merge it into Main, and undo a merge if you need to. Also how a member limited to named Pages asks an administrator to merge their Scenario."
+description: "Adopt a Scenario as your plan: review what it would change, merge it into Main, and undo a merge if you need to."
 ---
 
 Merge a Scenario when you decide to adopt it as your plan. Merging applies every change the Scenario holds to Main, the Scenario that holds your current plan, and then deletes the merged Scenario.
@@ -16,7 +16,7 @@ Merge a Scenario when you decide to adopt it as your plan. Merging applies every
 
     > Merge the Hiring freeze Scenario into Main.
 
-    Ari merges directly. To confirm the merge yourself, ask Ari to let you confirm. It then adds a **Merge** button to the chat for you to press.
+    Ari merges directly. To confirm the merge yourself, ask Ari to let you confirm. It then adds a **Merge** button to the chat. The button opens the same dialog as the **By hand** steps, where you review the changes and confirm.
   </Tab>
   <Tab title="By hand">
     <Steps>
@@ -24,27 +24,17 @@ Merge a Scenario when you decide to adopt it as your plan. Merging applies every
         Select the Scenario in the Scenario picker in the sidebar.
       </Step>
       <Step title="Start the merge">
-        Select **Merge** beside the Scenario picker. Its tooltip names where the changes go, such as **Merge all changes into Main Scenario**.
+        Select **Merge** beside the Scenario picker. While a chat is open beside the Page, **Merge** also follows the Page's name in the Page header. Its tooltip names where the changes go, such as **Merge all changes into Main Scenario**.
       </Step>
       <Step title="Review the changes">
         The dialog summarizes every change the Scenario holds, across the whole Model, not only the Page you are on. It names each Page the Scenario changed with the number of changes on it, and gives one count for changes that belong to the whole Model, such as Variables and formulas. It does not show each change. It also reminds you that the Scenario is deleted after the merge.
       </Step>
       <Step title="Confirm">
-        Select the confirm button, which counts the changes, such as **Merge 12 changes**.
+        Select the confirm button, which counts the changes, such as **Merge 12 changes**. The merged Scenario leaves the Scenario picker, and the picker moves to the Scenario it merged into, usually Main.
       </Step>
     </Steps>
   </Tab>
 </Tabs>
-
-## Ask an administrator to merge your Scenario
-
-A member limited to named Pages cannot merge a Scenario: their changes reach Main only through an administrator. If you are such a member, ask Ari to send the request:
-
-> Ask an administrator to merge my Marketing plan Scenario.
-
-cfo.ai emails the workspace's administrators a link to your Scenario, and Ari can tell you how many administrators the email went to. You can keep editing the Scenario while you wait; it is merged when an administrator merges it. What the email says, and what a request does and does not save, is in [Merge requests](/reference/scenarios-and-history#merge-requests).
-
-If you are an administrator and receive the email, select **Open [Scenario]** in it, review what the Scenario changes, and merge it with the steps above. The email's wording is in [Merge requests](/reference/scenarios-and-history#merge-requests).
 
 ## Undo a merge
 
@@ -56,6 +46,7 @@ A merge shows in the version history of the Scenario it merged into, usually Mai
 - A Snapshot taken from the Scenario does not block the merge. A Scenario from an older workspace that still has an editable child Scenario cannot be merged; the refusal names the child, such as **scenario cannot be merged while it has 1 child scenario**, and you merge or delete the child first.
 - Main and Snapshots cannot be merged, so **Merge** is not shown for them.
 - **Merge** is not shown on a phone or tablet, or while you are viewing an earlier version from version history. On a phone or tablet, ask Ari to merge, or ask your browser for its desktop site. In an earlier version, select **Back to latest** first.
+- If a notice says the Scenario was not merged because another change was saving into it, nothing changed. Wait for Ari or your teammate to finish, then merge again. The notice is listed with the other [merge dialog](/reference/scenarios-and-history#merge-dialog) messages.
 
 ## Related
 

@@ -5,7 +5,7 @@ description: "For agents working on cfo.ai formulas: which tool answers which fo
 searchable: false
 ---
 
-Formulas belong to saved Variables, and their calculated values appear in saved Table blocks. The Model the user sees is the source of truth for human and agent work alike, so an agent reads and writes formulas through the same tables a person uses. For how cfo.ai chooses a formula for each cell, see [How formulas work](/concepts/formulas); for the expression grammar and functions, see [Formula syntax](/reference/formula-syntax) and [Formula functions](/reference/functions).
+Formulas belong to saved Variables and Dimensions, and their calculated values appear in saved Table blocks. The Model the user sees is the source of truth for human and agent work alike, so an agent reads and writes formulas through the same tables a person uses. For how cfo.ai chooses a formula for each cell, see [How formulas work](/concepts/formulas); for the expression grammar and functions, see [Formula syntax](/reference/formula-syntax) and [Formula functions](/reference/functions).
 
 Tool messages and field descriptions often call a saved formula a rule. These pages say formula, except when they quote the product.
 
@@ -26,11 +26,19 @@ A question that existing values can answer stays read-only. A new calculated res
 
 ## Start from the visible table
 
-Read the relevant Table block once, reuse the row and column references it returns, and send related edits together. The server derives the Variable, the formula's scope, and its Date grain from that visible target, and the read tells you whether each cell is writable, so you never build those yourself. The range is the one you name: `default_formulas.actuals` or `default_formulas.forecast`.
+Read the relevant Table block once, reuse the row and column references it returns, and send related edits together. The server derives the Variable, the formula's scope, and its Date grain from that visible target, and the read tells you whether each cell is writable, so you never build those yourself. The range of a row or column formula limited to Actuals or to Forecast is the one you name: `default_formulas.actuals` or `default_formulas.forecast`. The periods the table shows do not choose it. A timeless `formula` applies in both ranges; see [Where a timeless formula is written](/agents/write-formulas#where-a-timeless-formula-is-written).
 
 When the work has no table yet, read the existing Variables and Dimensions first, and reuse their returned references, such as `Revenue#3f2`, when you compose a formula.
 
-Write expressions with readable Variable names. Put backticks around a name that contains spaces, punctuation, or a reserved word, such as `` `Gross Profit` ``. When a formula fails to parse and its bare words match a Variable or Dimension in the Model, the refusal ends with the accepted form, such as "a name with spaces is written in backticks, as in `` `Gross Profit` ``". Add a returned reference's short suffix only when two names collide.
+Write expressions with readable Variable names. Put backticks around a name that contains spaces, punctuation, or a reserved word, such as `` `Gross Profit` ``.
+
+After a dot, also put backticks around a name that is a grain word: `Day`, `Week`, `Month`, `Quarter`, `Half`, or `Year`. A bare grain word after a dot is a grain on the name before it, as in `Date.Year`; see [Date grains](/reference/formula-syntax#date-grains). In backticks, it is a name to look up. `` Employee.`Year` `` is the Variable named Year for the cell's employee, the same kind of lookup as `Employee.Salary`; see [Lookups through a Dimension mapping](/reference/formula-syntax#lookups-through-a-dimension-mapping).
+
+A read returns such a name in backticks. A read also puts backticks around a name that would otherwise run into the word before it, as in `` not`Revenue` ``.
+
+When a formula fails to parse and its bare words match a Variable or Dimension in the Model, the refusal ends with the accepted form, such as "a name with spaces is written in backticks, as in `` `Gross Profit` ``".
+
+Add a returned reference's short suffix only when two names collide. After a backticked name, the suffix follows the closing backtick, as in `` `Gross Profit`#3f2 ``.
 
 ## Respect the Scenario
 
@@ -40,8 +48,8 @@ Formulas are Scenario-scoped. Use the Scenario the user is working in, or the on
 
 A formula has two parts. The condition decides where it applies; the expression decides what it calculates. For a visible table edit, the server derives the condition from the target you choose:
 
-- a row's own formula,
-- a `child_defaults` formula that the items beneath a row inherit, or
+- a row's or column's own formula,
+- a `child_defaults` formula that the items beneath a row or column inherit, or
 - one cell.
 
 [Formula scope and formula ranges](/agents/formula-scope) covers conditions and Actuals and Forecast ranges.

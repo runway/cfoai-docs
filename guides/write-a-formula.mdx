@@ -111,6 +111,10 @@ When you open a cell that has no formula of its own, the editor shows the formul
 
 Saving gives the cell its own formula, called an override. The cell keeps it when the row's formula changes, and a dashed underline marks it.
 
+## See every formula a Variable has, and change any of them
+
+Select a cell, then select **All formulas** at the right end of the formula bar. The list shows each formula the Variable has and where it applies. **Applies here** marks the formula your cell uses, and **No date** marks a formula that applies to every period. Choose **Edit** beside a formula, or **Override** beside one marked **Source default**, change it, and select **Save formula**. This changes that formula everywhere it applies; it does not give the selected cell its own formula. If the formula bar is hidden, open the table's **…** menu and choose **Show formula bar**. Every part of the list is described in [All formulas in the formula bar](/reference/table-blocks#all-formulas-in-the-formula-bar).
+
 ## Remove an override or a row's formula
 
 To make one cell follow its row again, select the cell and press **Delete** or **Backspace**; see [Clear a value or a cell's own formula](/guides/enter-values#clear-a-value-or-a-cells-own-formula).
@@ -126,6 +130,8 @@ After you save a formula on a lower row of a breakdown, the editor can ask **Pro
 - Choose **Yes** to give the cells above it formulas that add up the rows beneath them, with `sum`.
 - Choose **No** to leave the rows above as they are.
 
+If you click outside the editor while the formula is still saving, the editor closes when the save finishes and does not ask. The formula is saved, and the rows above stay as they are, as with **No**.
+
 Press **⌘ Enter** (**Ctrl Enter** on Windows and Linux) while saving to propagate without the question. A breakdown's rows above already add up the rows beneath them unless they have a formula of their own; see [Totals, aggregation, and time rollups](/concepts/totals-and-rollups).
 
 ## Show or hide the formula columns
@@ -136,7 +142,7 @@ The formula columns start hidden.
 - Click the button to keep them open. Click it again, **Hide formulas**, to hide them. The choice is saved for this browser.
 - In a phone browser, open the table's **…** menu and choose **Show formula columns**.
 
-On a table that shows days, weeks, months, quarters, half-years, or years, the formula column splits into **Actuals Formula** and **Forecast Formula**. When those periods are not the Model's base periods, months unless your Model uses another grain, a row with no formula for the table's periods shows the formula saved for the base periods there, dimmed and read-only; to change it, switch the table to the base grain, usually **Monthly**. To hide one of the columns or bring it back, see [Show the Actuals and Forecast formulas side by side](/guides/actuals-and-forecast-formulas#show-the-actuals-and-forecast-formulas-side-by-side).
+On a table that shows days, weeks, months, quarters, half-years, or years, the formula column splits into **Actuals Formula** and **Forecast Formula**. When those periods are not the Model's base periods, months unless your Model uses another grain, a row with no formula for the table's periods shows the formula saved for the base periods there, dimmed and read-only; to change it, switch the table to the base grain, usually **Monthly**, or select **All formulas** in the formula bar and choose **Edit**. To hide one of the columns or bring it back, see [Show the Actuals and Forecast formulas side by side](/guides/actuals-and-forecast-formulas#show-the-actuals-and-forecast-formulas-side-by-side).
 
 ## Common patterns
 

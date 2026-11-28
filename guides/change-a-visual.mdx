@@ -1,16 +1,16 @@
 ---
 title: "Change a chart or Canvas block"
 sidebarTitle: "Change a chart"
-description: "Change a chart, scorecard, or other Canvas block by asking Ari. Point Ari at one part with Select element, restyle an existing chart block yourself, and keep a control's setting after you reload the Page."
+description: "Change a chart, scorecard, or other Canvas block by asking Ari. Point Ari at one part with Select element, reword a heading or note in a Canvas block yourself, keep a dashboard's controls in view while you scroll, restyle an existing chart block yourself, and keep a control's setting after you reload the Page."
 ---
 
-To change a chart, a scorecard, or any other Canvas block, tell Ari what you want, such as stacked bars instead of a line, or one segment instead of all of them. Canvas blocks are the custom visuals Ari builds from your Model's data, and they have no code editor. If a Page already has a chart block, you can also restyle it yourself in its sidebar.
+To change a chart, a scorecard, or any other Canvas block, tell Ari what you want, such as stacked bars instead of a line, or one segment instead of all of them. Canvas blocks are the custom visuals Ari builds from your Model's data, and they have no code editor. The one part of a Canvas block you can edit yourself is text that Ari marked as editable; see [Reword text in a Canvas block yourself](#reword-text-in-a-canvas-block-yourself). A chart block is a different kind of block: if a Page already has one, you can restyle it yourself in its sidebar.
 
 <Tabs>
   <Tab title="Ask Ari">
     <Steps>
       <Step title="Point Ari at the block">
-        Hover the block and select **Mention in chat** at its top corner, or open the block's menu from the six-dot handle at its left edge and choose **Mention canvas in chat**. The block appears in the message box as a chip. For a Canvas block with a title, you can also type **@** and two or more characters of the title in the message box and pick the block from the list, without opening its Page. A chart block is not in that list.
+        Hover the block and select **Mention in chat** at its top corner, or open the block's menu from the six-dot handle at its left edge and choose **Mention canvas in chat**. The block appears in the message box as a chip. For a Canvas block with a title, you can also type **@** and two or more characters of the title in the message box and pick the block from the list, without opening its Page. A chart block is not in that list and has no corner buttons: open its menu from the six-dot handle and choose **Mention chart in chat**.
       </Step>
       <Step title="Point at one part, if the change is small">
         To change one bar, number, label, or control, select **Select element** at the block's corner and then click that part. It joins the message box as its own chip, so Ari changes that part and leaves the rest alone.
@@ -39,7 +39,7 @@ To change a chart, a scorecard, or any other Canvas block, tell Ari what you wan
         On the **Setup** tab, pick the chart type, such as **Line**, **Bar**, **Bar Stacked**, **Area**, **Pie**, **Combo**, or **Waterfall**. Under **X-Axis**, change the date grain. Under **Y-Axis**, add or remove Variables, select a Variable's swatch (**Pick color**) to change its color, or select **Segment by** to split it by a Dimension. In a pie or donut chart, that list is headed **Values**, and there is no **X-Axis**. In a combo chart, each series can be a line or bars.
       </Step>
       <Step title="Change how it looks">
-        On the **Display** tab, turn on or off **Show chart title**, **Show legend**, **Show X axis**, **Show Y axis**, **Show horizontal grid lines**, and the axis titles, and type the title in **Chart title text**.
+        On the **Display** tab, turn **Show title**, **Show legend**, **X axis**, **Y axis**, **Grid lines**, and the axis titles (**X title** and **Y title**) on or off. With **Show title** on, type the title in the box under it. A pie, donut, or Nightingale chart has no axis settings.
       </Step>
       <Step title="Compare Scenarios, if you want">
         Select **Compare** in the chart's header and choose **Scenarios** to show other Scenarios beside the one you are viewing.
@@ -50,13 +50,35 @@ To change a chart, a scorecard, or any other Canvas block, tell Ari what you wan
   </Tab>
 </Tabs>
 
+## Reword text in a Canvas block yourself
+
+To change a heading, title, or short note in a Canvas block without a chat, ask Ari once to make that text editable:
+
+> Make the headline and the commentary on this block editable, so I can reword them myself.
+
+Then click the text on the Page, or tap it on a phone or tablet, type the new wording, and press **Enter**. **Escape** puts the saved wording back. The new wording is saved in the block for everyone who opens the Page, **Undo** reverses it, and Ari keeps it the next time it changes the block.
+
+You need edit access to the Page and the block, and the text is one line of up to 2,000 characters. Text built from your Model's numbers cannot be made editable; ask Ari to change it. The notes and notices the editor shows are listed in [The cfo.ai interface](/reference/interface#text-you-can-edit-in-a-canvas-block).
+
+## Keep a block's controls in view while you scroll
+
+On a tall Canvas block, such as a dashboard with a row of filters above a long report, ask Ari to pin the controls:
+
+> Keep this dashboard's filter bar at the top of the screen while I scroll through it.
+
+The pinned row stays at the top of the Page's visible area while its block is in view, on a solid background, and scrolls away with the end of the block. A block pins one row. Ari can also make one part of a block as tall as the visible Page, so a long list inside it scrolls by itself:
+
+> Make this table fill the screen and scroll inside the block.
+
+Printing and Ari's own check of the block draw it in its ordinary layout, without the pinned row or the screen-height part.
+
 ## Keep a control's setting
 
 Sliders, toggles, and menus in a Canvas block change only what you see, unless the block was built to save that setting. If a setting goes back when you reload the Page, ask Ari to keep it:
 
 > Make this chart remember whether I pick monthly or quarterly.
 
-A saved setting belongs to that block in that Scenario, so everyone who opens the Page in that Scenario sees it. A control never changes a value in your Model. To change an assumption, such as a hiring date, edit it in a Table block or ask Ari. See [Pages, Table blocks, and Canvas blocks](/concepts/pages-and-blocks#controls-change-the-view-never-the-model).
+A saved setting belongs to that block in that Scenario, so everyone who opens the Page in that Scenario sees it. Ari can also set or clear a saved setting for you, such as "Clear the moves saved in the hiring timeline block." Ari changes the setting in the Scenario it is working in and leaves the block's code as it is; [Each chat works in one Scenario](/concepts/scenarios#each-chat-works-in-one-scenario) says which Scenario that is. A control never changes a value in your Model. To change an assumption, such as a hiring date, edit it in a Table block or ask Ari. See [Pages, Table blocks, and Canvas blocks](/concepts/pages-and-blocks#controls-change-the-view-never-the-model).
 
 ## If a block shows an error
 

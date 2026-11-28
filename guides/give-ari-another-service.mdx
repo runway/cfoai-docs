@@ -13,8 +13,8 @@ If the service has no MCP server and no API definition, Ari can fetch its data o
 ## Before you start
 
 - You need permission to manage connections. Someone without it sees **A workspace admin must connect this service.**
-- For an MCP server: the service's MCP address, and a sign-in to the service or a token. Many common servers are in the catalog with their address filled in.
-- For an API: an API key, or a username and password for an API that signs in with Basic authentication, unless the API needs none, and an OpenAPI 3 or Swagger 2.0 definition, as JSON or YAML, for an API that is not in the catalog.
+- For an MCP server: the service's MCP address, and a sign-in to the service, a token, or an API key. Many common servers are in the catalog with their address filled in.
+- For an API: an API key, or a username and password for an API that signs in with Basic authentication, unless the API needs none, and an OpenAPI 3 or Swagger 2.0 definition, as JSON or YAML, for an API that is not in the catalog. When someone else holds the key to a listed API, ask Ari for a link they can enter it on; see [Send a link so someone else can enter an API key](/guides/send-a-connect-link#send-a-link-so-someone-else-can-enter-an-api-key).
 - MCP servers and APIs use no plan slot, with or without a sync setup.
 
 ## Connect a service
@@ -25,9 +25,9 @@ If the service has no MCP server and no API definition, Ari can fetch its data o
 
     > Connect Mercury's MCP server so you can read our bank balances.
 
-    Ari reads the provider's official documentation and posts a card titled **Connect [service]**. The card shows the service's logo, its address, how it signs in, such as **MCP token** for a server that takes a token, or **API key**, **Username and password, or API key**, or **No sign-in required** for an API, and a **Provider documentation** link. Select **Connect**. A service that uses OAuth opens its sign-in window; one that takes a token or key shows a secure field on the card. An API that signs in with Basic authentication shows two fields: **Username**, already filled in when Ari proposed one, and **Password or API key**. Leave **Username** blank when the API key is the username. A service that needs more than one secret, such as a bearer token and an `AccessKey` header, shows one more secure field for each, labeled with the header's name, and a field left blank is refused with **The [name] field is required.** What you type there goes to cfo.ai's connection service, not to Ari or the chat. Never paste a key into a chat message.
+    Ari reads the provider's official documentation and posts a card titled **Connect [service]**. The card shows the service's logo, its address, how it signs in, such as **MCP token** for a server that takes a token, **API key in the X-API-Key header** for a server that takes an API key in a header, or **API key**, **Username and password, or API key**, or **No sign-in required** for an API, and a **Connection instructions** link. Select **Connect**. A service that uses OAuth opens its sign-in window; one that takes a token or key shows a secure field on the card. An API that signs in with Basic authentication shows two fields: **Username**, already filled in when Ari proposed one, and **Password or API key**. Leave **Username** blank when the API key is the username. A service that needs more than one secret, such as a bearer token and an `AccessKey` header, shows one more secure field for each, labeled with the header's name, and a field left blank is refused with **The [name] field is required.** What you type there goes to cfo.ai's connection service, not to Ari or the chat. Never paste a key into a chat message.
 
-    Before Ari offers a Connect card for a server that signs in with OAuth, it checks whether the provider accepts cfo.ai as an app. When the provider signs in only apps registered with it in advance, Ari says so in the chat instead of posting a card that would fail; a check that cannot finish within ten seconds still offers the card.
+    Before Ari offers a Connect card for a server that signs in with OAuth, it checks whether the provider accepts cfo.ai as an app. When the provider accepts only apps registered with it in advance, the card adds two fields, **Client ID** and **Client secret**, for an OAuth app your workspace registered with the provider, and names the redirect URL that app must allow; see [Sign in with your own OAuth app](#sign-in-with-your-own-oauth-app). A check that cannot finish within ten seconds offers the usual card.
 
     The card reads **Connecting…**, then **Checking connection…**, then **Connected** for an MCP server or **Connection added** for an API. Ari then checks that the tools or endpoints answer before it relies on them. **Connection added** means the specification loaded, not that the API answers, so Ari checks access with a read before relying on it, and for an API that takes a key that read also shows whether the key works; the card says **Ari will check access before using this connection.** If an MCP server's sign-in fails or you cancel it, Ari learns what went wrong in the same chat and can suggest what to try next. When an API's definition has parts cfo.ai cannot use but at least one usable operation, the connection imports the usable operations, and Ari's result lists the skipped ones with their reasons; a definition with no usable operation is refused instead, with the message listed in [Connection statuses and actions](/reference/connection-statuses#messages-about-mcp-servers-and-apis).
   </Tab>
@@ -40,7 +40,7 @@ If the service has no MCP server and no API definition, Ari can fetch its data o
         Search the catalog and select **Connect** on the service's card. An OAuth service opens its sign-in window; a service that uses a token or key asks for it.
       </Step>
       <Step title="Or add one manually">
-        Select **Add manually**. For an MCP server, **Add MCP server** asks for a **Name** and the **MCP URL**. Under **Advanced**, choose the **Authentication**: **OAuth**, **Bearer token**, or **API key header**, which also takes a **Header name**, such as `X-API-Key`, and the **API key**.
+        Select **Add manually**. For an MCP server, **Add MCP server** asks for a **Name** and the **MCP URL**. Under **Advanced**, choose the **Authentication**: **OAuth**, **Bearer token**, or **API key header**, which also takes a **Header name**, such as `X-API-Key`, and the **API key**. With **OAuth**, **Use my own OAuth client** signs in with an app you registered with the provider; see [Sign in with your own OAuth app](#sign-in-with-your-own-oauth-app).
 
         For an API, **Add API** asks for a **Display name**, the **Authentication** (**Bearer token**, **API key header**, **Basic authentication**, or **No authentication**), the **API key**, and the **OpenAPI specification**, as a **Specification URL** or with **Paste JSON**. With **Basic authentication**, the form adds a **Username** field and the key field reads **Password or API key**; leave **Username** blank when the API key is the username. The address may start with `http://`: cfo.ai fetches the definition at its `https://` address and never over plain HTTP. A specification that declares several servers also needs the **Base URL** under **Advanced**.
 
@@ -54,6 +54,26 @@ If the service has no MCP server and no API definition, Ari can fetch its data o
 </Tabs>
 
 **Add with Ari** on the same tabs opens a chat that starts the Ask Ari path, and the connection picker closes once the chat is open. While the workspace cannot use AI, the button is off and a line under it reads **Add with Ari is unavailable.** with the reason, such as **This workspace is out of AI usage.** **Add manually** still works.
+
+For Notion, Linear, Intercom, or Attio, there is a shorter path: select **Ari** in the sidebar, in the row above your name, and select **Connect** on the service's row under **Context**. The service's sign-in window opens at once. **View all** there opens the **MCP** tab. See [Ari's profile](/reference/interface#aris-profile).
+
+### Sign in with your own OAuth app
+
+Some providers sign in only OAuth apps that were registered with them in advance, so cfo.ai cannot register itself when you connect. Connect such a server with an app your workspace registered with the provider.
+
+<Steps>
+  <Step title="Register an app with the provider">
+    In the provider's developer settings, create an OAuth app and allow the redirect URL `https://app.cfo.ai/integrations/mcp/callback`. Copy the app's client ID and client secret.
+  </Step>
+  <Step title="Enter the app in cfo.ai">
+    Select **Add manually** on the **MCP** tab, enter the **Name** and **MCP URL**, open **Advanced**, keep **Authentication** on **OAuth**, and check **Use my own OAuth client**. Enter the **Client ID** and **Client secret**. If Ari posted a Connect card with those two fields, enter them there instead.
+  </Step>
+  <Step title="Sign in">
+    Select **Log in with OAuth**, or **Connect** on Ari's card, and approve access in the provider's window.
+  </Step>
+</Steps>
+
+cfo.ai stores the client secret encrypted on the connection and never sends it to Ari. **Reconnect** and **Finish setup** use the saved app, so you do not enter it again.
 
 ### Rippling's MCP server
 
@@ -79,14 +99,16 @@ Each tool of an MCP server, and each endpoint of an API, has a permission:
 | **Ask first** | Asks you to approve each call. See [Answer Ari's questions and approve its actions](/guides/approve-ari-actions). In a Trigger run, scheduled or started with **Run now**, nobody can approve, so a tool or endpoint on **Ask first** does not run; see [What a run cannot do on its own](/concepts/automation#what-a-run-cannot-do-on-its-own). |
 | **Block** | Never uses it |
 
-A new MCP server starts with every tool on **Ask first**. A new API starts by method: reads (`GET` and `HEAD`) on **Allow**, deletes on **Block**, and every other call on **Ask first**. When Ari asks and you choose **Always allow**, that tool stays on **Allow** for the whole workspace.
+cfo.ai sorts a new MCP server's tools the first time Ari uses the server, or the first time the **Available actions** section of its connection page opens, whichever comes first. Tools that only view information start on **Allow**, and tools that change or delete something start on **Ask first**. A tool the server itself labels as read-only, and does not also label as able to delete or overwrite data, counts as one that only views information; [The connection's page](/reference/connection-statuses#the-connections-page) says how cfo.ai uses that label. A tool cfo.ai could not sort starts on **Ask first**. Sorting never changes a permission you chose. A new API starts by method: reads (`GET` and `HEAD`) on **Allow**, deletes on **Block**, and every other call on **Ask first**. When Ari asks and you choose **Always allow**, that tool stays on **Allow** for the whole workspace. For an API, that lasts until the connection's address changes. An API's card does not offer **Always allow** for every call; [Tool-call approval card](/reference/chat#tool-call-approval-card) says when it does.
 
-Ari can also call a path the API's specification leaves out. A read (`GET` or `HEAD`) of such a path runs without asking, unless you have set one of the API's listed reads to **Ask first** or **Block**, in which case Ari asks first. A delete of such a path never runs, and any other call to one asks you first; in a Trigger run, nobody can approve, so it does not run. A call that waited for your approval is listed on the connection page's **Endpoints** afterward, where you can set its permission, and **Always allow** on its card allows that exact path only. Updating the specification removes those added paths and their permissions unless the new specification includes them.
+Ari can also call a path the API's specification leaves out. A read (`GET` or `HEAD`) of such a path runs without asking, unless you have set one of the API's listed reads to **Ask first** or **Block**, in which case Ari asks first. A delete of such a path never runs, and any other call to one asks you first; in a Trigger run, nobody can approve, so it does not run. A call that waited for your approval is listed on the connection page's **Endpoints** afterward, where you can set its permission. Its card offers **Allow** and **Decline** only, with no **Always allow**. Updating the specification removes those added paths and their permissions unless the new specification includes them.
 
 To change them, open the service's connection page: select its row in the sidebar, or select **Manage** on the service in **Settings → Connections** or on the **MCP** or **API** tab. The page's **Available actions** section groups an MCP server's tools as **View information** and **Change or delete**, and its **Endpoints** section groups an API's endpoints as **Read endpoints** and **Write/delete endpoints**. One button sets them for you:
 
 - For an MCP server, **Reset permissions**: **View information** tools to **Allow**, and **Change or delete** tools to **Ask first**.
 - For an API, **Auto-classify**: reads to **Allow**, writes to **Ask first**, and deletes to **Block**.
+
+You can also ask Ari to change a permission, for example "Ask me before you create an issue in Linear" or "Stop asking before you read our Mercury balances." A change that makes Ari stricter saves at once: **Allow** to **Ask first**, or anything to **Block**. A change that gives Ari more room saves nothing until a person presses the button on the card Ari posts, such as **Always allow**. That covers setting a tool or endpoint to **Allow**, taking one off **Block**, returning one to its default, and resetting the whole connection. The card appears only in a chat in the cfo.ai web app. [Permission change card](/reference/chat#permission-change-card) lists each card and who can press it.
 
 When Ari calls a write tool and the answer is lost on the way back, it does not repeat the call on its own. Check the other service before you ask Ari to try again.
 
@@ -104,7 +126,7 @@ When a server limits the rate of requests it accepts (HTTP 429), the sync waits 
 
 ## Change a connection's name, address, or authentication
 
-When a service changes its address, or you set up its authentication the wrong way, change the saved connection instead of disconnecting and adding it again. The connection keeps its ID, its tools, its tool permissions, and its sync setups. This applies to a connection you added with a key or token. A connection that signs in through the provider takes a new name only; when its sign-in breaks, use [Reconnect an MCP server](#reconnect-an-mcp-server) instead.
+When a service changes its address, or you set up its authentication the wrong way, change the saved connection instead of disconnecting and adding it again. The connection keeps its ID, its tools, its tool permissions, and its sync setups. One exception: when you change an API's address, each **Always allow** chosen on an approval card for that API ends, and Ari asks again the next time it calls that endpoint. Permissions you set on the connection page stay. This applies to a connection you added with a key or token. A connection that signs in through the provider takes a new name only; when its sign-in breaks, use [Reconnect an MCP server](#reconnect-an-mcp-server) instead.
 
 <Tabs>
   <Tab title="Ask Ari">
@@ -129,7 +151,7 @@ To have a teammate sign the server in, ask Ari for a link you can forward. Ari p
 
 ## Finish a sign-in that did not complete
 
-When a server reads **Waiting for you**, or its sign-in state reads **Sign-in incomplete**, select **Finish setup** on its row in **Settings → Connections**, in its details, or on its card in the sidebar. It starts a new sign-in and replaces the unfinished attempt, and the sign-in finishes even if the cfo.ai tab that started it reloads before the provider sends you back. [Connection statuses and actions](/reference/connection-statuses#statuses-for-mcp-servers-and-apis) lists the statuses, what the page the provider returns you to says, and what to do when the browser blocks the provider's window.
+When a server reads **Waiting for you**, or its sign-in state reads **Sign-in incomplete**, select **Finish setup** on its row in **Settings → Connections**, in its details, or on its card in the sidebar. It starts a new sign-in and replaces the unfinished attempt, and the sign-in finishes even if the cfo.ai tab that started it reloads before the provider sends you back. The sign-in has no time limit. If its window never comes back, select **Finish setup** again to start over. [Connection statuses and actions](/reference/connection-statuses#statuses-for-mcp-servers-and-apis) lists the statuses, what the page the provider returns you to says, and what to do when the browser blocks the provider's window.
 
 ## Disconnect a service
 
@@ -138,7 +160,8 @@ In **Settings → Connections**, open the service's **…** menu and select **Di
 ## If something goes wrong
 
 - **The provider must allow cfo.ai's redirect URI https://app.cfo.ai/integrations/mcp/callback before you can connect.** The provider has to allow that exact address first; trying again does not help until its administrator does. For NetSuite, see [NetSuite's MCP server](#netsuites-mcp-server).
-- **This provider signs in only apps registered with it in advance.** The server cannot be connected with OAuth. When Ari can check the provider first, it tells you this before offering a Connect card. Use a token if the provider offers one.
+- **This provider accepts only OAuth apps registered with it in advance.** The sign-in brought no app of your own. Register an app with the provider and connect with **Use my own OAuth client**; see [Sign in with your own OAuth app](#sign-in-with-your-own-oauth-app).
+- If a sign-in window never comes back, select **Reconnect** or **Finish setup** again. The button stays selectable while a sign-in waits, and a new click starts the sign-in over in a new window.
 - **Reconnect this source to continue.** The saved sign-in no longer works. Sign in to the server again.
 
 [Connection statuses and actions](/reference/connection-statuses#messages-about-mcp-servers-and-apis) lists every message.

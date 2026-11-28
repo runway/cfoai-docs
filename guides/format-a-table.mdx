@@ -1,7 +1,7 @@
 ---
 title: "Format and arrange a table"
 sidebarTitle: "Format a table"
-description: "Show numbers as currency or percentages, set decimals, color and bold rows, and see why numbers turn green or red. Also color a Dimension's items, change date headers, show, hide, or pin total columns, put subtotals below their details, hide or reorder rows and columns, show a field such as Name as the row names, resize or pin (freeze) columns, show values in thousands, millions, or billions, and show negative numbers in parentheses."
+description: "Show numbers as currency or percentages, set decimals, color and bold rows, color negative numbers red, and see why numbers turn blue, green, or red. Also color a Dimension's items, change date headers, show, hide, or pin total columns, put total columns after their details, start column groups collapsed for everyone (Columns open to), put subtotals below their details, hide or reorder rows and columns, show a field such as Name as the row names, resize or pin (freeze) columns, wrap long column headings, show values in thousands, millions, or billions, and show negative numbers in parentheses."
 ---
 
 Use this guide to make a table easy to read: money as currency, margins as percentages, section rows in bold, and the columns your readers need first. Most formatting changes only how the table looks; it never changes a number. To learn which settings belong to a table and which to a Variable, read [Pages, Table blocks, and Canvas blocks](/concepts/pages-and-blocks).
@@ -81,6 +81,28 @@ Accounting statements show a loss or a cost as `(1,250)` rather than `-1,250`. Y
 
 Parentheses apply in every number format at the cell's decimals and scale: `($1,250.50)`, `(12.5%)`, `(1.25x)`, or `($3.6B)`. The cell keeps its exact value, and an Excel download shows the same choice, except that a negative that rounds to zero exports as `(0.00)` where the Page shows `0.00`. A **Variance** column reads `($5)` instead of `-$5`; its colors do not change. Canvas charts take their format from the Variable, so they keep the minus sign.
 
+## Color negative numbers red
+
+To make losses or unfavorable variances stand out, color numbers by their sign. You choose once, and the color follows each number when it changes.
+
+<Tabs>
+  <Tab title="Ask Ari">
+    > Color negative numbers red on the P&L table.
+  </Tab>
+  <Tab title="By hand">
+    <Steps>
+      <Step title="Open Color by sign">
+        For the whole table, open the table's **…** menu, **Table block settings**, and choose **Color by sign**. For one row, column, or cell, right-click it, choose **Format and display**, then **Color by sign**.
+      </Step>
+      <Step title="Choose the colors">
+        Choose **Negatives red**, **Negatives red, positives green**, or **Negatives green, positives red**. Choose **Off** to remove the colors.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+For a cost row, where a lower number is better, choose **Negatives green, positives red**. A row's own choice wins over the table's, so you can turn the colors **Off** on one row. **Color by sign** does not change the **Variance** and **Variance %** columns of a comparison; to choose which direction is green there, see [Why a number is green or red](#why-a-number-is-green-or-red). The exact rules, such as which numbers stay uncolored, are in [Format and display options](/reference/table-blocks#format-and-display-options).
+
 ## Format several rows at once
 
 Select several row names: drag down the row-name column, or press **⌘ A** to select the whole table. Right-click one of the selected row names. The menu entry reads **Format [N] variables** and applies to every selected row.
@@ -91,13 +113,13 @@ In **Format and display**, choose **Background** to fill the row, column, or cel
 
 These settings belong to this table, so the same Variable can look different on another table. A fill or text style stays on the row you set it on: coloring a group's row, such as Payroll, leaves the rows inside the group as they were, so select those rows and style them too if you want the whole group colored. The exact rule is in [Format and display options](/reference/table-blocks#format-and-display-options).
 
-### Color the cells you type into
+### Tell the cells you type into from calculated ones
 
-cfo.ai does not color typed-in cells automatically. It marks a cell that holds its own value with a dashed underline; see [See whether a number is typed or calculated](/guides/enter-values#see-whether-a-number-is-typed-or-calculated). To color your inputs, select those cells or rows and set a **Background** or **Text color**.
+cfo.ai shows typed values in blue and calculated values in the normal text color, on every table; see [See whether a number is typed or calculated](/guides/enter-values#see-whether-a-number-is-typed-or-calculated). You cannot turn this off or change the blue. A **Text color** you set on a row, column, or cell replaces it there, and a **Background** adds a fill.
 
 ## Why a number is green or red
 
-Numbers turn green or red only in comparison columns: **Variance** and **Variance %**. Green means the change is good and red means it is bad, and an increase shows a **+**. Plain values are never colored by their sign.
+Numbers turn green or red in two cases. In the comparison columns **Variance** and **Variance %**, green means the change is good and red means it is bad, and an increase shows a **+**. On a table, row, column, or cell where someone chose **Color by sign**, a number outside those comparison columns is red or green by its sign; see [Color negative numbers red](#color-negative-numbers-red). A blue number is a typed value.
 
 Which direction counts as good is a setting on the Variable, so it applies on every table:
 
@@ -138,19 +160,21 @@ The key stays each row's identity: formulas, the formula bar, filters, and row a
 
 ## Change how dates read in the headers
 
-Right-click a date header, choose **Format and display**, then **Date format**, and pick a style such as **Abbreviated** (`Sep-26`), **Full month** (`September 2026`), or **Compressed year** (`Sep ’26`, or `W35 ’26` for a week). The style applies to this table. Every style, at every grain, is listed in [Date formats](/reference/table-blocks#date-formats).
+Right-click a date header, choose **Format and display**, then **Date format**, and pick a style such as **Abbreviated** (`Sep-26`), **Full month** (`September 2026`), or **Compressed year** (`Sep ’26`, or `W35 ’26` for a week). The style applies to this table. On a weekly table, choose **Month-first slash** to label each week by the date it ends, such as `08/30/2026`, or **Descriptive** for `WE 30-Aug-26`. Every style, at every grain, is listed in [Date formats](/reference/table-blocks#date-formats).
 
 ## Show, hide, or pin total columns
 
-A total column, also called a summary column, is the first column in each group of columns and summarizes the cells shown in that group, such as each region's months. It is different from a parent row that adds up the rows beneath it; see [Totals, aggregation, and time rollups](/concepts/totals-and-rollups).
+A total column, also called a summary column, summarizes the cells shown in its group of columns, such as each region's months. It comes first in the group unless you put totals after their details. It is different from a parent row that adds up the rows beneath it; see [Totals, aggregation, and time rollups](/concepts/totals-and-rollups).
 
 - To show or hide them, open the table's **…** menu, **Table block settings**, and choose **Show total columns**.
 - To keep them beside the row names while you scroll, choose **Pin total columns** in the same menu.
+- To put each total after its columns, such as a year's total after its months, choose **Total columns after details** in the same menu. Choose it again to put totals first. While it is on, **Pin total columns** is not available. You can also ask Ari: "Put each year's total after its months."
 - To choose what a total column shows, right-click its header and choose **None**, **Sum**, **Average**, **Minimum**, **Maximum**, **Count**, or **Last**. Only summaries that fit the Variables are offered. The header names the choice, such as **SUM**, **LAST**, or **TOTAL** for **None**.
 - To show only a group's total, select the arrow in the group's header.
+- To start every column group collapsed to its total for everyone, such as a report that opens with one column for each month, open the table's **…** menu, **Table block settings**, select **Columns open to**, and choose **Top level**. Choose a deeper level to open that many levels of groups, or **Default** to remove the saved choice. Each viewer can still open a group, and their browser remembers it. You can also ask Ari: "Open this table with every column group collapsed."
 - To hide the total columns of one level for everyone, such as every region's total while the regions stay open, right-click one of those total columns' headers and choose **Hide totals**. To bring them back, right-click a group's header at that level, such as a region, open **[Dimension] dimension settings**, and choose **Show totals**. A collapsed group still shows its total. Choosing **None** as the summary does not hide a total column.
 
-The summary choice and **Hide totals** are saved with the table. **Show total columns** and **Pin total columns** are not saved: a table always opens unpinned and with **Show total columns** on, so each expanded group shows its total column unless **Hide totals** is set for its level.
+The summary choice, **Hide totals**, **Columns open to**, and **Total columns after details** are saved with the table. **Show total columns** and **Pin total columns** are not saved: a table always opens unpinned and with **Show total columns** on, so each expanded group shows its total column unless **Hide totals** is set for its level.
 
 ## Put subtotals below their details
 
@@ -178,6 +202,7 @@ To show or hide the label rows above each Dimension's items, such as **DEPARTMEN
 ## Resize and reorder rows and columns
 
 - To resize a column, drag the right edge of its header. Double-click the edge to fit the column to its content, or choose **Auto-fit all columns** in **Table block settings** to fit every column. Widths are saved for everyone.
+- To read long column names in full without widening the columns, open the table's **…** menu, **Table block settings**, and choose **Wrap column headings**. Long names wrap onto more lines and the header row grows to fit. The choice is saved with the table for everyone. You can also ask Ari: "Wrap the column headings on this table."
 - To reorder rows, point at the left edge of a row and drag its grip. Dragging the items of a Dimension puts the Dimension in a manual order; see [Filter and sort a table](/guides/filter-and-sort-a-table).
 - To reorder columns, drag a column header. Date columns stay in date order.
 

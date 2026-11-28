@@ -1,7 +1,7 @@
 ---
 title: "Scenario and version history controls"
 sidebarTitle: "Scenarios and history"
-description: "Every control, label, and message for Scenarios (versions of your plan), Snapshots, and version history: the Scenario picker with Create scenario and Duplicate scenario, its actions menu, the Take snapshot and merge dialogs, the merge request email, and the version history panel where you undo a change or restore an earlier version."
+description: "Every control, label, and message for Scenarios (versions of your plan), Snapshots, and version history: the Scenario picker with Create scenario and Duplicate scenario, its actions menu, the Take snapshot and merge dialogs, and the version history panel where you undo a change or restore an earlier version."
 ---
 
 Scenarios, Snapshots, and version history each have their own controls: the Scenario picker in the sidebar, the **Take snapshot** and merge dialogs, and the version history panel. This page lists every control and message, in the order the app shows them. For what each one is for, see [Scenarios, Snapshots, and version history](/concepts/scenarios).
@@ -26,7 +26,7 @@ The list keeps Scenarios and Snapshots in separate groups. From top to bottom:
 | **Create scenario** | Adds a row where you type the new Scenario's name. **Enter** creates it from Main and lists its Pages in the sidebar. The Page on screen stays in the Scenario it was in; select a Page in the list to work in the new Scenario. |
 | **Merge** (beside the picker, while it shows a Scenario) | Opens the [merge dialog](#merge-dialog). Its tooltip reads **Merge all changes into [target]**, **No changes to merge**, or **Checking for changes…**. Not shown for Main or a Snapshot, on a phone or tablet, or while you view an earlier version from version history. |
 
-You must have permission to create Scenarios to see **Take snapshot**, **Duplicate scenario**, and **Create scenario**. None is offered on a phone.
+You must have permission to create Scenarios to see **Take snapshot**, **Duplicate scenario**, and **Create scenario**. None is offered in a phone or tablet browser.
 
 ### Scenario actions menu
 
@@ -41,8 +41,8 @@ Items you do not have permission for are not shown.
 
 | Message | Meaning |
 | --- | --- |
-| **Couldn’t rename [Scenario]**, with the reason | The rename was refused or failed. The row goes back to the saved name. Without a reason from cfo.ai, the notice reads **Could not rename the scenario.** |
-| **Couldn’t delete [Scenario]**, with the reason | The delete was refused or failed, and the Scenario stays. Without a reason from cfo.ai, the notice reads **Could not delete the scenario.** A member limited to named Pages gets this notice for a Scenario of their own, because such a member cannot delete a Scenario; see [Members limited to named Pages](/reference/settings#members-limited-to-named-pages). |
+| **Couldn't rename [Scenario]**, with the reason | The rename was refused or failed. The row goes back to the saved name. Without a reason from cfo.ai, the notice reads **Could not rename the scenario.** |
+| **Couldn't delete [Scenario]**, with the reason | The delete was refused or failed, and the Scenario stays. Without a reason from cfo.ai, the notice reads **Could not delete the scenario.** |
 
 ### Scenario names
 
@@ -55,7 +55,7 @@ The dialog is titled **Take snapshot**, with **Keep a version for an approved bu
 | Control | What it does |
 | --- | --- |
 | **Snapshot name** | The new Snapshot's name. It starts as **[Scenario] snapshot**. |
-| **Create snapshot** | Creates the Snapshot. Reads **Creating…** while it saves. |
+| **Create snapshot** | Creates the Snapshot. Reads **Creating…** while it saves. What happens next depends on where the dialog was opened. From **Take snapshot** in the sidebar's picker: the picker shows the Snapshot and lists its Pages, and the Page on screen stays in its own Scenario. From **Take snapshot** in the Page header's picker: the Page on screen switches to the Snapshot. From **Take snapshot here** in version history: version history closes and the Page on screen opens in the Snapshot. |
 | **Cancel** | Closes the dialog. |
 
 ## Merge dialog
@@ -73,21 +73,7 @@ The dialog is titled **Merge "[Scenario]" into [target]?**. The target is Main, 
 | **Could not load the changes in "[Scenario]".**, with the reason and **Retry** | The summary could not be read. **Retry** reads it again. |
 | **Nothing in "[Scenario]" differs from [target] yet.** | The Scenario holds no changes, so there is nothing to merge. |
 | **scenario cannot be merged while it has [n] child scenario**, followed by the children's names | The Scenario has editable child Scenarios, so the merge is refused. Snapshots taken from the Scenario do not block a merge. |
-
-## Merge requests
-
-A member limited to named Pages cannot merge a Scenario. They ask Ari to request the merge, and cfo.ai emails the workspace's administrators. The app has no button for the request. See [Ask an administrator to merge your Scenario](/guides/merge-a-scenario#ask-an-administrator-to-merge-your-scenario).
-
-| Part of the email | What it reads |
-| --- | --- |
-| Subject and heading | **[Name] asks to merge [Scenario] into [target]**. The name is the person who asked, or their email address when their account has no name. The target is the Scenario's parent, which is Main for a Scenario created from Main. |
-| Text | **Open the scenario to compare it with [target], then merge it from the scenario menu.** To merge, use **Merge** beside the Scenario picker; see [Merge dialog](#merge-dialog). |
-| Button | **Open [Scenario]**, which opens the workspace in that Scenario. |
-
-- The email goes to up to 50 of the workspace's administrators. The person who asked is left out.
-- In a workspace with a brand, the email carries the brand and comes from the brand's name **via cfo.ai**, as an invitation does.
-- A request saves nothing and locks nothing. The app does not list requests, and nothing marks a Scenario as waiting for a merge.
-- A request is refused for Main and for a Snapshot, which cannot be merged.
+| **The scenario was not merged, and nothing changed: another change was saving into it on every attempt. Merging again is safe.** | A notice after you confirm. Another change, such as an edit by Ari or a teammate, was saving into the Scenario on each of the merge's five tries, over about three seconds. Nothing changed, so a second merge cannot apply anything twice. Merge again after Ari or your teammate finishes; a merge started while they are still saving can be refused the same way. |
 
 ## Confirmation cards in the chat
 
@@ -105,7 +91,21 @@ The version history panel lists every change to the Model, yours and Ari's. Open
 | Scenario line | Names the Scenario and shows **Live**, or the version you are viewing. |
 | **Show Main Scenario changes** | In a Scenario other than Main, also lists the changes it inherited from Main. |
 
-Each entry names who made the change, when, and what it touched. A merge is listed in the history of the Scenario it merged into, as **Merged [Scenario] into [target]**, and it opens, previews, and undoes like any other entry. A formula entry names the Variable. For a formula with a condition, the entry also names the condition and its reach: **includes additional dimensions** when it also covers cells that carry more Dimensions, or **exact grain** when it matches exactly the Dimensions it names.
+Each entry names who made the change, when, and what it touched. An entry for a change Ari made also names the person who asked for it: its summary reads **Ari, asked by [name]**, or **Ari** alone when no name was recorded for the change. See [The message that asked Ari](#the-message-that-asked-ari). A merge is listed in the history of the Scenario it merged into, as **Merged [Scenario] into [target]**, and it opens, previews, and undoes like any other entry. A formula entry names the Variable. An entry for one value typed into a cell reads **Edited cell [cell] for [Variable] to [value]**, such as **Edited cell Mar-26 for Marketing to 6000**. The entry always names the cell's period in the **Abbreviated** date format, such as **Mar-26**, **Q2-26**, or **2026**, even when the table shows its dates in another **Date format**. It names any other Dimension with its item, as in **Region = West, Q2-26**. For a formula with a condition, the entry also names the condition and its reach: **Includes additional dimensions** when it also covers cells that carry more Dimensions, or **Exact grain** when it matches exactly the Dimensions it names.
+
+### The message that asked Ari
+
+To see why Ari made a change, expand its entry with the arrow at the entry's left edge (**Expand change details**). Above the change's details, **[name] asked Ari** shows the message that started the work. The label reads **Asked Ari** when no name was recorded. A long message scrolls inside its box.
+
+The message is the one message the person sent, in a chat in the cfo.ai web app, that started Ari's work on that change. No other message from that chat is shown.
+
+| Who is reading | What an entry for Ari's change shows |
+| --- | --- |
+| The person who sent the message | **Ari, asked by [name]** and the message |
+| An administrator of the workspace | **Ari, asked by [name]** and the message |
+| Anyone else who can open version history | **Ari, asked by [name]** only |
+
+No message is shown for work that started anywhere other than a chat in the cfo.ai web app: in Slack, in iMessage, in an AI tool connected to cfo.ai, in a Trigger's run, or in other background work. No message is shown once the chat has been deleted. The message of an archived chat still shows.
 
 ### Entry actions
 
@@ -115,8 +115,8 @@ Point at an entry and select its **…** button (**Actions for [entry]**).
 | --- | --- |
 | **Undo this change** | Reverses this change and keeps everything after it. Undo restores only the fields the change wrote, such as a Page's name or one formula's text, so a later edit to another field of the same Page, table, Variable, or formula stays. When a later change edited one of the same fields, nothing is undone and a notice says so; see [Entry action messages](#entry-action-messages). Undo that later change first. For what undo does to a Scenario's only edit of something it read from Main, see [Version history records every change](/concepts/scenarios#version-history-records-every-change). Not offered for a change the Scenario inherited from Main. |
 | **Redo this change** | Shown instead of **Undo this change** on the entry that recorded an undo. The entry it undid is struck through and carries the badge **Undone**; its own menu still reads **Undo this change**. |
-| **Restore this version** | Opens the [restore dialog](#viewing-a-past-version) for this point. Needs full access to the Scenario; otherwise its tooltip reads **Only people with full access to this scenario can restore it.** Not offered on a Snapshot, and neither is **Undo this change**. |
-| **Take snapshot here** | Opens the [Take snapshot dialog](#take-snapshot-dialog), pinned at this entry. |
+| **Restore this version** | Opens the [restore dialog](#viewing-a-past-version) for this point. Needs full access to the Scenario; otherwise its tooltip reads **Only people with full access to this scenario can restore it.** On a Snapshot, **Restore this version** is unavailable for everyone and shows the same tooltip, and **Undo this change** is not shown. |
+| **Take snapshot here** | Opens the [Take snapshot dialog](#take-snapshot-dialog), pinned at this entry. A Snapshot shows the version history of the Scenario it was taken from, so on a Snapshot this pins that Scenario at the entry, not the Snapshot. Not offered in a phone or tablet browser. |
 | **Copy link to version** | Copies a link that opens the Model as it was at this entry. |
 
 **⌘ Z** undoes only your own last change in the current browser tab; see [Keyboard shortcuts](/reference/keyboard-shortcuts#undo-and-redo).
@@ -125,7 +125,7 @@ Point at an entry and select its **…** button (**Actions for [entry]**).
 
 | Message | Meaning |
 | --- | --- |
-| **Couldn’t undo changes**, with **A later change edited the [field] of [subject], so this change can’t be undone on its own.** | A later change edited one of the same fields, so nothing was undone. Undo that later change first. The notice adds **Later changes also edited [n] other items.** when more than one later change did. |
+| **Couldn’t undo changes**, with **A later change edited the [field] of [subject], so this change can’t be undone on its own.** | A later change edited one of the same fields, so nothing was undone. Undo that later change first. When later changes also edited other items this change touched, the notice adds **Later changes also edited 1 other item.** or **Later changes also edited [n] other items.** |
 
 ### Viewing a past version
 
@@ -137,7 +137,7 @@ Selecting an entry shows the Model as it was at that moment, read-only, with a b
 | **This is already the current version.** | Restoring would change nothing. |
 | **Someone changed this scenario while you were looking. Review the newest changes, then restore again.** | The Scenario changed while the dialog was open. Close it, look at the newest entries, and restore again. |
 | **Changes made in Main Scenario stay as they are.** | Shown in a Scenario other than Main. Restoring leaves the changes made in Main as they are. |
-| **Restored to [time]** | The restore finished. |
+| **Restored to [time]** | The restore finished. **Undo** on the notice undoes the restore. If that fails, a notice reads **Couldn’t undo the restore** with **Try again.** |
 | **Couldn’t restore this version** | The restore failed. |
 
 ## Related

@@ -45,9 +45,11 @@ Anything else you type in a number cell is read as a formula, such as `Revenue *
 
 ## Type text, dates, and items
 
-In a Variable that holds text, such as Job Title, what you type is saved as words: `Finance assistant`, `N/A`, and `2026-01-01` all stay as typed. Start with `=` to enter a formula instead.
+In a Variable that holds text, such as Job Title, what you type is saved as words: `Finance assistant`, `N/A`, and `2026-01-01` all stay as typed. Start with `=` to enter a formula instead. A web address typed alone, such as `https://example.com/invoice`, shows as a link; see **Underlined text** in [Controls in the grid](/reference/table-blocks#controls-in-the-grid).
 
 A cell of a date Variable, such as Start Date, opens a calendar. Pick a day, or select **Edit formula** to write a formula.
+
+A cell of a true-or-false Variable, such as Include, shows a checkbox. Select the box, or press **Space** on the cell, to check or clear it. You can also type or paste `true` or `false`. When a formula calculates the value, selecting the box opens the formula. See [Controls in the grid](/reference/table-blocks#controls-in-the-grid).
 
 A column that shows which item each row belongs to, such as each employee's Department, opens a list of the Dimension's items. Search, then pick one. To use a new item, type its name and choose **Add** with that name. The **Edit formula** button opens the formula editor.
 
@@ -55,7 +57,9 @@ When an item column reads its values from a connected system, the list shows **S
 
 ## See whether a number is typed or calculated
 
-A dashed underline marks a cell that holds its own value or formula, such as a number someone typed. That value replaces the row's formula in this cell only. A cell without the underline takes its number from the row's formula or from a connected system. A picked item or date is the exception: it belongs to the cell but never shows the underline.
+A typed value shows in blue, and a calculated value shows in the normal text color. Blue marks a number, a percent, or text that someone typed, whether into that cell or once for its row, its column, or a group of items, so a row that holds 4 in every month is blue in every month. Totals, comparison columns, and picked items are never blue; [What colors and marks mean](/reference/table-blocks#what-colors-and-marks-mean) lists every case.
+
+A dashed underline marks a cell that holds its own value or formula, such as a number someone typed into it. That value replaces the row's formula in this cell only. A cell without the underline takes its number from the row's formula or from a connected system, so a blue number without the underline was typed once for its row, its column, or a group of items. A picked item or date is the exception: it belongs to the cell but never shows the underline.
 
 A number typed into a Forecast month takes the range of the formula the cell was following. When that range is Forecast, the number applies while the month is in the Forecast: once Last close moves past the month, the cell shows what Actuals gives it instead. The typed number is kept, and it shows again if Last close moves back before that month. When the formula had no range, the typed number applies on both sides of Last close. The exact rule is in [Actuals, Forecast, and Last close](/concepts/actuals-and-forecast#a-variable-can-use-one-formula-for-actuals-and-another-for-forecast).
 
@@ -91,7 +95,7 @@ Select a range of cells. A bar at the lower right of the Page shows **Count:**, 
 
 ## If a value does not save
 
-When cfo.ai refuses a change, the cell returns to its earlier value and a notice says why. Common reasons are a value that comes from an integration, a selection whose cells take different formulas, and a table you can only read. For a value you typed, the formula editor reopens with your entry so you can fix it.
+When cfo.ai refuses a change, the cell returns to its earlier value and a notice says why. Common reasons are a value that comes from an integration, a selection whose cells take different formulas, and a table you can only read. For a value or formula you typed, the formula editor keeps or reopens your entry and shows the reason under it. Change the entry, or press **Enter** to save it again.
 
 Every notice and what to do about it is listed in [Table block controls and messages](/reference/table-blocks#when-a-change-is-not-saved). To take back a change, press **⌘ Z**, or see [Undo a change or restore an earlier version](/guides/undo-changes).
 

@@ -34,13 +34,13 @@ You create a Variable when you add a row with a new name to a table, when Ari bu
 
 A Dimension is a list of categories that breaks Variables down. Each entry in the list is a **Dimension item**, or item for short: Sales is an item of Department, and West is an item of Region. Common Dimensions are Department, Region, Product, Customer, Vendor, Account, Entity, and Date.
 
-One Dimension serves every Variable that uses it. Department splits Payroll, Headcount, and Expenses the same way, so when you add a new department, every Variable broken down by Department has a place for it.
+One Dimension serves every Variable that uses it. Department splits Payroll, Headcount, and Expenses the same way, so when you add a new department, every Variable broken down by Department has a place for it. Because a Dimension belongs to the Model and not to one table, Settings lists the Dimensions you can read in one place, one Scenario at a time, each with its items and the tables and Variables that use it. The list leaves out the Dimensions cfo.ai generates, such as Date; see [See and change every Dimension in one place](/guides/break-down-a-number#see-and-change-every-dimension-in-one-place).
 
 A Dimension can play two roles on a table. It can break a Variable down into one row or column per item. It can also show which item each row belongs to, such as each employee's department; that second role is a mapping, explained in [Dimension mappings and shared Dimensions](/concepts/dimension-mappings).
 
 ## Is the timeline always in months?
 
-No. Months are the default, and most Models calculate monthly. Each Scenario's **Default date granularity** sets its base time grain: **Raw**, **Day**, **Week**, **Month**, **Quarter**, **Half**, or **Year**. New tables in that Scenario show that grain, and a formula Ari saves without a table uses it. A formula written through a table takes that table's grain, so one written on a table of years fills years, not months. Changing the setting leaves the tables and formulas you already have at their own grain. See [Set Last close and date defaults](/guides/set-dates-and-last-close).
+No. Months are the default, and most Models calculate monthly. Each Scenario's **Default date granularity** sets its base time grain: **Day**, **Week**, **Month**, **Quarter**, **Half**, or **Year**. New tables in that Scenario show that grain, and a formula Ari saves without a table uses it. The setting has one more choice, **Raw**, which changes new tables only: they show each date without grouping it into periods, while the base grain stays at months, so a formula Ari saves without a table still uses months. A formula written through a table takes that table's grain, so one written on a table of years fills years, not months. Changing the setting leaves the tables and formulas you already have at their own grain. See [Set Last close and date defaults](/guides/set-dates-and-last-close).
 
 Date is a Dimension too. Its items are periods, and a period is one bucket of time at the base grain, such as March 2026 in a monthly Model. A table can show coarser periods than the base grain: quarters and years in a monthly Model come from each Variable's time rollup, explained in [Totals, aggregation, and time rollups](/concepts/totals-and-rollups). A table can also show finer periods, such as weeks in a monthly Model, but a formula written for months does not fill week columns; weeks need formulas written for weeks.
 
@@ -61,7 +61,7 @@ Do not choose by the kind of data:
 - Headcount is a count, not a list of people, so it is a Variable.
 - Date holds dates, but it organizes values across time, so it is a Dimension.
 
-Accounts are the common hard case. An account from your books, such as account 6100, classifies transactions, so Account is a Dimension. A line you report, such as Revenue or Rent expense, is a Variable. When several accounts roll up into one line, a mapping says which accounts belong to it; see [Dimension mappings and shared Dimensions](/concepts/dimension-mappings).
+Accounts are the common hard case. An account from your books, such as account 6100, classifies transactions, so Account is a Dimension. A line you report, such as Revenue or Operating expenses, is a Variable. When several accounts roll up into one line, a mapping says which accounts belong to it; see [Dimension mappings and shared Dimensions](/concepts/dimension-mappings).
 
 Alternative futures are neither. A base case, an upside, and a downside never happen together, so adding them up answers nothing. Each one is a Scenario; see [Scenarios, Snapshots, and version history](/concepts/scenarios).
 

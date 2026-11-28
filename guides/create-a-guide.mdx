@@ -24,7 +24,7 @@ Ari saves the Guide under a name and tells you what it saved. To try it, ask Ari
 
 Press **Esc** to close any Guide.
 
-A Guide that points at a block, a table row, column, or cell, or a Canvas element is saved against one Scenario and switches to it when it starts, so its numbers match what the cards say. Name the Scenario when you ask; otherwise Ari uses the Scenario your chat is in. A Guide whose steps point only at parts of the app, or at nothing, has no Scenario and runs in whatever Scenario the reader has open. What happens to a Guide when its Scenario is merged, or the merge is undone, is in [Merge a Scenario](/guides/merge-a-scenario#undo-a-merge). A Guide whose Scenario was deleted without a merge cannot open until Ari updates it.
+A Guide that points at a block, a table row, column, or cell, or a Canvas element is saved against one Scenario and switches to it when it starts, so its numbers match what the cards say. Name the Scenario when you ask; otherwise Ari uses the Scenario your chat is in. A Guide whose steps point only at parts of the app, or at nothing, has no Scenario and runs in whatever Scenario the reader has open, unless you ask Ari to save it against one. What happens to a Guide when its Scenario is merged, or the merge is undone, is in [Merge a Scenario](/guides/merge-a-scenario#undo-a-merge). A Guide whose Scenario was deleted without a merge cannot open until Ari updates it.
 
 ### What a step can point at
 
@@ -55,7 +55,7 @@ Every step waits for the reader's button: **Next** (**Continue** on a walkthroug
 A step can carry one of these actions instead of only pointing:
 
 - Open the chat with suggested prompts to try.
-- Open the Canvas block library with templates already picked.
+- Open the Canvas block library with examples already picked.
 - Show the formula behind one table cell.
 - Open a table's **Compare** settings to show where Scenarios are compared. This step is skipped in the phone and tablet reading layout and for anyone who cannot change the table.
 - Light up a Canvas control, such as a slider, for the reader to try, and move on when it reaches a value you name.
@@ -76,8 +76,10 @@ If a Guide cannot open, a notice says so, because the Guide or one of its target
 
 A Guide never starts by itself when someone opens a Page. To offer one:
 
-- Ask Ari to add a button to a Canvas block on the Page that starts the Guide. The button opens a new chat that asks Ari for the Guide, and a tour still waits for its **Start tour** button.
+- Ask Ari to add a button to a Canvas block on the Page that starts the Guide. The button sends the request to Ari in a new chat without opening that chat, so a tour or walkthrough still waits there for its **Start tour** or **Start walkthrough** button. [Canvas block controls](/reference/interface#canvas-block-controls) describes the panel under the block that shows the request and opens the chat.
 - Name the Guide when you ask Ari to invite a teammate. Their first visit shows a **Take the tour** button. See [Invite or remove teammates](/guides/invite-teammates).
+
+Only a workspace member can run a Guide. Someone who reads a Page through a share link cannot chat with Ari, so they cannot start one.
 
 Saved Guides are not listed in the Help center. A walkthrough or explanation you ran since the app last loaded appears under **Recently viewed** in the Help center, with a button that asks Ari to refresh it with your latest numbers.
 

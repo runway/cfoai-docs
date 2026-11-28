@@ -27,7 +27,7 @@ Select the **Syncing** line above the message box, then **Stop**. The connection
 
 ## Re-import past months
 
-The nightly refresh does not always re-read your whole history. QuickBooks Online re-reads the last three months, or the whole history when it has not synced for more than a month. For a company that reports in one currency, it also re-reads the older months of the same fiscal year when the balance sheet's year-to-date net income differs from the stored months by one constant amount, which is what an edit to an older month looks like; see [QuickBooks Online](/reference/integrations#quickbooks-online). Any other correction to an older month reaches cfo.ai only when you re-import the full history. Xero re-reads its trial balance and balance sheet for its whole range every night, and reads only the invoices, bills, credit notes, and payments that changed in Xero since the last sync. Sources that sync through Fivetran keep each table's full history.
+The nightly refresh does not always re-read your whole history. QuickBooks Online re-reads the last three months, or the whole history when it has not synced for more than a month. For a company that reports in one currency, it also re-reads the older months of the same fiscal year when the balance sheet's year-to-date net income differs from the stored months by one constant amount, which is what an edit to an older month looks like, and the balance sheet of any older month that an earlier refresh still owes; see [QuickBooks Online](/reference/integrations#quickbooks-online). Any other correction to an older month reaches cfo.ai only when you re-import the full history. QuickBooks vendor bills, bill payments, and vendor credits are the exception: every sync reads all of them again, so a payment or an edit on an old bill arrives without a re-import. Xero re-reads its trial balance and balance sheet for its whole range every night, and reads only the invoices, bills, credit notes, and payments that changed in Xero since the last sync. Sources that sync through Fivetran keep each table's full history.
 
 A full-history refresh is available for QuickBooks Online, Xero, Plaid, Stripe (Direct), and Rillet. It re-reads the history, reruns the connection's saved queries into Main, and Ari tells you in the same chat when it has finished. Only QuickBooks Online and Xero take a starting year; Plaid, Stripe (Direct), and Rillet re-read their whole history. To re-import QuickBooks Online or Xero, ask Ari:
 
@@ -37,7 +37,7 @@ To reach further back than January 1 of last year, name the first year, 2015 or 
 
 > Re-import QuickBooks' full history from 2021.
 
-The months a full-history import brings in stay through later refreshes. A full-history import is slower than a routine refresh.
+The months a full-history import brings in stay through later refreshes. A full-history import is slower than a routine refresh. Ari needs no separate approval for one: it starts the import when you ask, and it can start one itself when a first sync left earlier months out and nothing else is loading them.
 
 ## Change when a connection refreshes
 
@@ -50,13 +50,13 @@ Ari saves the time and time zone on the connection. From the next nightly run, t
 ## Sources that refresh differently
 
 - CSV uploads never refresh. Upload the new version; see [Upload a CSV as a data source](/guides/upload-a-csv#replace-the-file-with-a-newer-version).
-- Google Sheets and Google Drive files are re-read every night, and when you ask Ari. An unchanged file starts no update.
+- Google Sheets and Google Drive files are re-read every night, and when you ask Ari. An unchanged file starts no update. A file connected from a chat updates your Model only after the person who connected it asks Ari to keep the Model updated; see [Turn automatic updates on or off](/guides/connect-a-google-sheet#turn-automatic-updates-on-or-off).
 - MCP servers and APIs are called live when Ari needs them. A sync setup Ari saved for one refreshes nightly like an integration, and can take its own time. For people who can manage workspace settings, the connection's page shows each setup's **Schedule**, such as **Daily at 2:00 AM** in your time zone, and, when the connection is scheduled, its **Next run**; see [Sync setup rows](/reference/connection-statuses#sync-setup-rows).
 - A source with no integration that Ari fetches for you is fetched again once a day, and can take its own time. Its tables have no refresh of their own: to get newer data sooner, ask Ari to fetch from the source again. See [Bring in data from a source that has no integration](/guides/connect-other-sources#bring-in-data-from-a-source-that-has-no-integration).
 
 ## If a refresh does not run
 
-If the workspace has no active plan, or its billing is locked, the nightly refresh skips the workspace. A refresh you ask for gets the answer **data syncing is paused for this workspace — choose a plan, or settle the outstanding payment, to resume syncing**. Syncing resumes as soon as the workspace has an active plan.
+If the workspace has no active plan, or its billing is locked, the nightly refresh skips the workspace. A refresh you ask for gets the answer **data syncing is paused for this workspace — choose a plan, or settle the outstanding payment, to resume syncing**. Once the workspace has an active plan again, the next nightly refresh runs as usual. Choosing a plan starts no sync by itself, so ask Ari to refresh a connection, or select **Sync now**, when you want the data sooner.
 
 If the sync fails, the connection shows why and offers the fix. See [Fix a connection that needs attention](/guides/fix-a-connection).
 

@@ -17,7 +17,7 @@ You need:
 | Source | What you need |
 | --- | --- |
 | Gusto, Justworks, ADP Workforce Now, Paychex, Hibob, UKG, BambooHR, Deel, and the other HR and payroll systems that connect through Merge | Admin access to the company in the HR or payroll system |
-| Rippling | A Rippling API key. API access may need to be turned on as a paid feature in your Rippling account. |
+| Rippling | A Rippling API key. |
 | HubSpot, Salesforce | A HubSpot or Salesforce login, which you use in Fivetran's setup window |
 | Stripe (Direct) | A Stripe login that can install apps on the account |
 | A database or data warehouse, such as PostgreSQL, MySQL, Snowflake, or BigQuery | The database's connection details and a user that can read the tables you want |
@@ -44,7 +44,7 @@ The [integrations directory](/reference/integrations) lists every source and how
         On the **Integrations** tab, search by name, or filter by type, such as **HR & Payroll** or **CRM**. Select **Connect** on the card.
       </Step>
       <Step title="Sign in">
-        An HR or payroll system opens its own sign-in window: sign in and choose the company. If that window closes before you finish and the card mentions third-party cookies, see [Setup not finished](/guides/fix-a-connection#setup-not-finished-finish-or-cancel-it). Rippling first shows **Before you connect Rippling**; select **Proceed** when you have the API key. Stripe (Direct) opens Stripe, where you install cfo.ai's Stripe app with read-only access. Most other sources open Fivetran's setup window, where you sign in or enter the source's credentials.
+        An HR or payroll system opens its own sign-in window: sign in and choose the company. If that window closes before you finish and the card reads **[Source] was not connected**, see [Setup not finished](/guides/fix-a-connection#setup-not-finished-finish-or-cancel-it). Rippling opens Fivetran's setup window, where you enter the Rippling API key. Stripe (Direct) opens Stripe, where you install cfo.ai's Stripe app with read-only access. Most other sources open Fivetran's setup window, where you sign in or enter the source's credentials.
       </Step>
       <Step title="Choose tables, if asked">
         Databases and most sources through Fivetran show a table picker. Every table starts selected; uncheck the ones you do not need, keep 100 or fewer, and select **Finish setup & sync [N] tables**. Pipedrive starts with seven recommended sales tables selected instead; see [Other CRMs](/reference/integrations#other-crms). See [Choose which tables a source syncs](/guides/choose-synced-tables).
@@ -60,7 +60,7 @@ The [integrations directory](/reference/integrations) lists every source and how
 
 | Source | Usual time |
 | --- | --- |
-| HR and payroll through Merge | Minutes, or hours when Merge is still building its first sync of your account. cfo.ai waits up to 20 hours, and the card says how long it has waited. |
+| HR and payroll through Merge | Minutes, or hours when Merge is still building its first sync of your account. cfo.ai waits for as long as Merge reports that sync unfinished, and the card says how long it has waited. |
 | Rippling | Minutes |
 | HubSpot, Salesforce | Minutes to an hour |
 | Stripe (Direct) | A day or more for an account with a long history, because the first sync lists every object |
@@ -121,8 +121,8 @@ You need to be a workspace admin, and you need a login or key for the source. Wh
       <Step title="Search the directory">
         In the sidebar, point at **Connections** and select **+** (**Add integration**). On the **Integrations** tab, type the system's name in **Search integrations**.
       </Step>
-      <Step title="Select Ask Ari to build it">
-        When nothing matches, the directory reads **No integrations found**, with **Not here?** and **Ask Ari to build it** under it. Select **Ask Ari to build it**. A chat opens with the message **Help me connect [what you searched for] to this workspace.**
+      <Step title="Select Build this for me">
+        When nothing matches and no filter hides a match, Ari offers to build the integration: **“[what you searched for]” isn’t in the catalogue yet. I can build it for you, though.** Select **Build this for me** under it. A chat opens with the message **Help me connect [what you searched for] to this workspace.** If the directory reads **No integrations found** instead, clear the filter; people who cannot add connections do not get the offer. The button is unavailable while the workspace's AI usage is blocked; see [The directory in the app](/reference/integrations#the-directory-in-the-app).
       </Step>
       <Step title="Answer Ari and continue on the card">
         Ari asks which product it is and what data you want from it, then posts the card. Continue from the second step of the **Ask Ari** tab.
@@ -140,6 +140,8 @@ If a fetch stops:
 - When a fetch you asked for stops with a question, such as a login the source rejected, Ari tells you in the chat that asked for it.
 - The connection reads **Needs attention** when the latest fetch ended without data: it failed, it loaded no table, or nobody entered the code in time. Ask Ari to fetch from the source again.
 - When a scheduled fetch gets the data but cannot load all of it, Ari tells the person who made the connection in a chat, the first night it happens: which file did not load and what it needs from you. Ari writes there once more on the night the files load again, and not on the nights in between.
+- When a scheduled fetch fails and delivers nothing, even after Ari tried to repair its script, Ari tells the person who made the connection in a chat what the fetch tried, the first night it happens. Ari does not write again about later nights that deliver nothing, until a fetch has delivered data again. A fetch that someone stopped says nothing.
+- When a scheduled fetch changes the saved script, as a repair does, Ari tells the person who made the connection which revision the fetch saved and which earlier revision to restore to undo the change. Ari says so even when the data loaded. To restore a revision, see [A source Ari fetches waits for a code or needs attention](/guides/fix-a-connection#a-source-ari-fetches-waits-for-a-code-or-needs-attention).
 - cfo.ai has no form for changing a source connection's saved login or key. When the password or key changes, ask Ari to connect the source again, then remove the old connection in **Settings → Connections**.
 - cfo.ai does not open a browser to sign in for you. Ari's script signs in with web requests to the source's own domain, so a source that signs in only through a separate single sign-on provider or a browser check cannot be fetched this way. Use an API key if the source offers one, or export the data and [upload it as a CSV](/guides/upload-a-csv).
 

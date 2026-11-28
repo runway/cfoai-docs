@@ -8,14 +8,14 @@ Use this guide when a connection in the sidebar shows a red triangle, an orange 
 
 ## Find out what is wrong
 
-- Look at the mark at the end of the connection's row. A red triangle means you must act. A steady orange dot usually needs nothing from you: the sync resumes by itself, only cfo.ai can fix it, or someone else must act. The one exception is a **Partly synced** connection whose source refused access to a table, which offers **Reconnect**; see [Partly synced](#partly-synced). A gray dot means setup was not finished, someone stopped the latest sync, or the source was added but never connected. See [Sidebar marks](/reference/connection-statuses#sidebar-marks).
+- Look at the mark at the end of the connection's row. A red triangle means you must act. A steady orange dot usually needs nothing from you: the sync resumes by itself, only cfo.ai can fix it, or someone else must act. Two cases do need you. A **Partly synced** connection whose source refused access to a table offers **Reconnect**; see [Partly synced](#partly-synced). A connected file that waits for your decision, either an answer to Ari's question or a request to import a changed file, also shows the orange dot; see [Waiting for your decision](#waiting-for-your-decision). A gray dot means setup was not finished, someone stopped the latest sync, or the source was added but never connected. See [Sidebar marks](/reference/connection-statuses#sidebar-marks).
 - Point at the connection's row in the sidebar to read its status and the line under it.
 - Select the row to open the connection's page, which shows every action it offers.
 - Ask Ari: "What's wrong with my Xero connection?" Ari reads the same status, including the provider's own report when it gave one.
 
 ## Setup not finished: finish or cancel it
 
-The connection reads **Setup not finished** when someone started connecting and did not finish, for example because the sign-in window was closed. Select **Finish setup** to continue the same connection, or **Cancel setup** to remove it. Canceling asks nothing, because the connection holds no data, and it frees the plan slot the connection was holding. When a QuickBooks Online, Xero, or HR and payroll sign-in window closes early, the chat card reads **[Source] was not connected**, with a line about third-party cookies. If the sign-in window asked you to enable them, allow them in your browser's settings, or open cfo.ai in a regular Chrome window. Then select **Try again** on that card; it continues the same connection.
+The connection reads **Setup not finished** when someone started connecting and did not finish, for example because the sign-in window was closed. Select **Finish setup** to continue the same connection, or **Cancel setup** to remove it. Canceling asks nothing, because the connection holds no data, and it frees the plan slot the connection was holding. When a QuickBooks Online, Xero, or HR and payroll sign-in window closes early, the chat card reads **[Source] was not connected**. When the card has a line about third-party cookies and the sign-in window asked you to enable them, allow them in your browser's settings, or open cfo.ai in a regular Chrome window. When the card reads **[Source] refused the authorization.**, the provider turned the sign-in down, and cookies are not the cause. Either way, select **Try again** on that card to continue the same connection. Both cards are described in [Messages while connecting](/reference/connection-statuses#messages-while-connecting).
 
 Connecting the same source again, from its card, from a link, or by asking Ari, also continues the unfinished connection instead of adding a second one.
 
@@ -44,11 +44,17 @@ For Xero, if the consent screen lists your organisation as already connected, di
 
 Asking Ari to connect a source never reconnects an existing connection. Ask Ari to reconnect the connection by name, or use **Reconnect**. When you ask Ari, it leaves a **Connect integrations** card in the chat, and the connection manager stays closed. Select the card's **Connect integrations** button to start the sign-in for that connection. For a source that offers no **Reconnect**, such as a Google Sheet, the button opens the connection manager instead.
 
+## Grant a source's new permissions on a connection that works
+
+A source sometimes adds data that needs a permission you did not grant when you connected, and the provider grants it only through a new sign-in. You do not need to remove the connection. Open the connection's page and select **Reconnect** at the bottom, beside **Remove connection**, then sign in to the same company. The connection keeps its saved queries and sync setup, and the next sync uses the new sign-in.
+
+The button appears only while the connection is healthy and no sync is running. [The connection's page](/reference/connection-statuses#the-connections-page) lists which sources offer it.
+
 ## A sync failed: retry it
 
 The connection reads **Sync failed**. Read the line under it:
 
-- **[Source]’s sync hit an error. cfo.ai will try again on the next scheduled sync.** The provider's own run failed, often for a moment. Do nothing, or select **Retry** to run it now. When the line includes the provider's report, such as a user that cannot access a table, fix that at the source first.
+- **[Source]’s sync hit an error. cfo.ai will try again on the next scheduled sync.** The provider's own run failed, often for a moment. Do nothing, or select **Retry** to run it now. When the line includes the provider's report, such as a user that cannot access a table, fix that at the source first. For an HR or payroll system that syncs through Merge, the report names Merge's open issues for the account, such as **Missing Permissions (Missing employee permissions.)**: give the account that connected the system the permission it names.
 - Any other reason, or **The last sync couldn’t finish.** Select **Retry**. If it fails again, select **Investigate with Ari**, which opens a chat where Ari looks for the cause.
 
 **Retry** runs the import again with the same sign-in and does not use another plan slot.
@@ -57,9 +63,17 @@ When setup itself failed, the connection reads **Connection failed** with **Retr
 
 ## Syncs paused: fix the source, then retry
 
-The connection reads **Syncs paused** when its first sync has never finished and its last three nightly syncs failed with the same error from the provider, and that error names a problem another try cannot clear. cfo.ai stops the nightly syncs, because another try would fail the same way. An error that can pass by itself keeps its nightly retries and never pauses the connection. The line under the status quotes the provider's report, such as **Contact NetSuite support (netsuite_internal_error)**.
+The connection reads **Syncs paused** when its first sync has never finished and its last three nightly syncs failed with the same error from the provider, and that error names a problem another try cannot clear. cfo.ai then tries the sync once a week instead of every night, because another try is likely to fail the same way, and the line under the status gives the date of the next try. An error that can pass by itself keeps its nightly retries and never pauses the connection. The line under the status quotes the provider's report, such as **Contact NetSuite support (netsuite_internal_error)**.
 
-Fix what the report names, at the source or with the provider. Then select **Retry**, or ask Ari to sync the connection. Either one starts a sync and resumes the nightly syncs. See [Syncs paused](/reference/connection-statuses#syncs-paused).
+Fix what the report names, at the source or with the provider. Then select **Retry**, or ask Ari to sync the connection. Either one starts a sync and resumes the nightly syncs. You do not have to wait for the weekly try. If the failing table is one you do not need, ask Ari to turn it off; Ari starts a sync when it does. Ari refuses to turn off a table that a saved query reads. See [Syncs paused](/reference/connection-statuses#syncs-paused).
+
+When the nightly sync that starts the pause was not started from a chat, it also starts Ari's background repair for the person who connected the source, once for each pause. If the repair needs you or has something to report, a chat titled **[Connection name] stopped updating** appears in that person's chat list; see [When cfo.ai repairs a source for you](#when-cfoai-repairs-a-source-for-you).
+
+A NetSuite connection that syncs more tables than cfo.ai's statements read can fail its first sync on a table no statement uses. Its report then ends **The connection can be narrowed to the tables its reports read**, whether the connection reads **Sync failed** or **Syncs paused**, and you do not need NetSuite support. Ask Ari:
+
+> Narrow our NetSuite connection to the tables its reports read, then sync it.
+
+Ari turns the other tables off and starts a sync. Ari can do this only before the connection's first sync has finished, and it refuses when a saved query reads a table it would turn off. **Retry** alone syncs the same tables again.
 
 ## NetSuite is missing access
 
@@ -80,23 +94,23 @@ If a missing table belongs to a NetSuite feature you do not use, **Multiple Curr
 
 HR and payroll systems, sources that sync through Fivetran, and banks connected through Plaid prepare your account's data on their side before cfo.ai can load anything. While cfo.ai waits, the connection reads **Syncing**, and the line says how long it has waited, what the provider last reported, and when the wait ends. A source such as Pipedrive can run out of API calls partway through its first sync; Fivetran then reschedules the sync, the line names when its next attempt is due, and cfo.ai keeps waiting and starts the sync again once that time has passed. Xero can also wait for its request allowance to reset. You do not need to do anything.
 
-If the provider still has not finished 20 hours after cfo.ai began waiting, the connection reads **First sync not ready**. The next nightly sync starts a new wait, or select **Retry** to start one now. A bank connected through Plaid is the exception: at the first check after the 20 hours, its first sync loads the recent transactions Plaid has ready, and later syncs add the older history. It reads **First sync not ready** only when Plaid has no recent transactions ready either. [Syncing](/reference/connection-statuses#syncing) lists what the line says while it waits.
+cfo.ai keeps waiting for as long as the provider reports that its first sync is still unfinished, so a first sync that takes more than a day is not cut off. If 20 hours pass with no such report, the connection reads **First sync not ready**. The next nightly sync starts a new wait, or select **Retry** to start one now. A bank connected through Plaid does not wait for its full history: its first sync loads recent transactions as soon as Plaid has them ready, and later syncs add the older history. It reads **First sync not ready** only when Plaid had nothing ready when the wait ended. [Syncing](/reference/connection-statuses#syncing) lists what the line says while it waits.
 
-A payments system with a long history, such as Stripe, can spend a day or more in its first sync. Ask Ari whether the load is still running before you treat it as a failure.
+A payments system with a long history, such as Stripe, can spend a day or more in its first sync. Ask Ari whether the load is still running before you treat it as a failure. Afterward, a Stripe (Direct) connection can read **Still loading** for several nights while one large table, such as payment methods, fills. The line says how far the read has got, and you do not need to do anything; see [Still loading](/reference/connection-statuses#still-loading).
 
 ## A later sync is still running
 
-A later nightly sync can wait too. When a source that syncs through Fivetran is still running its own sync 45 minutes after cfo.ai asked for one, cfo.ai waits for that sync instead of starting another, checking about every 10 minutes for up to 20 hours, and loads it once it finishes. The connection reads **Syncing**, the data from the last loaded sync stays usable, and you do not need to do anything. If the source still reports the sync running after 20 hours, the sync fails with the reason on the card, and the next nightly sync tries again.
+A later nightly sync can wait too. When a source that syncs through Fivetran is still running its own sync 45 minutes after cfo.ai asked for one, cfo.ai waits for that sync instead of starting another, checking about every 10 minutes for as long as the source reports that sync still running, and loads it once it finishes. The connection reads **Syncing**, the data from the last loaded sync stays usable, and you do not need to do anything. If 20 hours pass with no report that the sync is still running, the sync fails with the reason on the card, and the next nightly sync tries again.
 
-cfo.ai waits the same way when Fivetran postpones a later sync because the source takes no more requests for now. cfo.ai asks for the sync once the time Fivetran set for its next attempt has passed, then loads it. A retry before that time would wait for the same attempt, so Ari offers none until then. When that time is more than 20 hours after the wait began, the sync fails at the 20-hour limit. [Connection statuses and actions](/reference/connection-statuses#syncing) has the line the card shows.
+cfo.ai waits the same way when Fivetran postpones a later sync because the source takes no more requests for now. cfo.ai asks for the sync once the time Fivetran set for its next attempt has passed, then loads it. A retry before that time would wait for the same attempt, so Ari offers none until then. The wait goes on when that time is more than 20 hours away, because each check at which Fivetran reports the sync postponed counts as a report. [Connection statuses and actions](/reference/connection-statuses#syncing) has the line the card shows.
 
 ## Partly synced
 
-The connection reads **Partly synced** when the last sync finished without some tables. The data that arrived is usable. Until cfo.ai has read why each table failed, for a moment after you open the connection or for as long as cfo.ai cannot read the sync's outcome, the line says only that the last sync could not refresh those tables, and **Reconnect** is offered as for any connection that needs attention. Once the cause is known, the line says whose side it is on:
+The connection reads **Partly synced** when the last sync finished without some tables. The data that arrived is usable. Until cfo.ai has read why each table failed, for a moment after you open the connection or for as long as cfo.ai cannot read the sync's outcome, the line says only that the last sync could not refresh those tables, and **Reconnect** is offered as for any connection that needs attention. Once cfo.ai has read the outcome, the line names any table the source refused:
 
 - If it says the source **refused this connection access** to a table, the account you signed in with cannot read that table. Select **Reconnect** and sign in with an account that can, and the next sync refreshes it. Everything else is already up to date.
-- If it says **A problem on cfo.ai’s or [source]’s side kept the last sync from refreshing** a table, reconnecting does not help, and no **Reconnect** is offered. cfo.ai retries the table on the next sync. You do not need to do anything.
-- If it names both, **Reconnect** repairs only the refused tables.
+- If it says only that the last sync **couldn’t refresh** a table, and no **Reconnect** is offered, the source did not refuse the table. cfo.ai retries it on the next sync. You do not need to do anything.
+- If it names refused tables and then says the last sync **also couldn’t refresh** others, **Reconnect** repairs only the refused tables.
 
 [Connection statuses and actions](/reference/connection-statuses#partly-synced) lists each line.
 
@@ -135,13 +149,17 @@ The connection reads **No data found** when the sync finished but found no rows.
 
 For QuickBooks Online, a company with no posted transactions since January 1 of last year loads empty reports. Ask Ari for a full-history import from an earlier year; see [Refresh data](/guides/refresh-data#re-import-past-months).
 
+## Waiting for your decision
+
+A Google Sheets or Google Drive connection reads **Waiting for your decision**, with a steady orange dot, when its last sync finished and Ari's import of the file waits for you. Nothing failed. Open the chat about the import: either a question is waiting there, or the chat says the file changed and nothing was imported, and you can ask Ari to import it. **Investigate with Ari** on the connection asks Ari what the import waits on and what each choice would do. Only the person who connected the file can record the decision. See [Waiting for your decision](/reference/connection-statuses#waiting-for-your-decision).
+
 ## An uploaded file did not load
 
 The file's row reads **The file couldn’t load**, followed by what was wrong. Fix the file, open its page, and select **Update file**. See [Upload a CSV as a data source](/guides/upload-a-csv#if-the-file-does-not-load).
 
 ## When cfo.ai repairs a source for you
 
-When a nightly sync of a source that was not connected from a chat completes without refreshing a table that had been refreshing, Ari starts a background repair for that table, acting with your permissions; see [When a source stops updating](/concepts/connected-data#when-a-source-stops-updating). It checks the connection and fixes what it can, such as a saved query that a change in the source's layout broke. Ari treats the repair as part of its standing role for the connection: an instruction you gave it for one earlier task, such as not to change a query during a review, ended with that task, while a restriction you set to last until a date, an event, or your approval holds until then. If the repair worked, you hear nothing. If it needs your decision, could not finish, or changed something you should know, a chat titled **[Connection name] stopped updating** appears in your chat list. Answer Ari there. How often the worker is asked again about a query that keeps failing is in [When a source stops updating](/concepts/connected-data#when-a-source-stops-updating).
+When a nightly sync of a source that was not connected from a chat completes without refreshing a table that had been refreshing, Ari starts a background repair for that table, acting with your permissions; see [When a source stops updating](/concepts/connected-data#when-a-source-stops-updating). It checks the connection and fixes what it can, such as a saved query that a change in the source's layout broke. Ari treats the repair as part of its standing role for the connection: an instruction you gave it for one earlier task, such as not to change a query during a review, ended with that task, while a restriction you set to last until a date, an event, or your approval holds until then. If the repair worked, you hear nothing. If it needs your decision, could not finish, or changed something you should know, a chat titled **[Connection name] stopped updating** appears in your chat list. Answer Ari there. A repair that Ari recorded as waiting on access only you can restore, such as signing in again, closes by itself once later syncs have refreshed every table that had stopped, with no failure since, and tells that chat which tables refreshed and when the last one did, on your clock. How often the worker is asked again about a query that keeps failing is in [When a source stops updating](/concepts/connected-data#when-a-source-stops-updating).
 
 ## If no action appears
 
